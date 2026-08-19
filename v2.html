@@ -3265,6 +3265,12 @@ function api(action) {
 
       return data.data;
     });
+  }).catch(function(err){
+    var msg = err && err.message ? String(err.message) : String(err || "");
+    if (/load failed|failed to fetch|networkerror|cancelled/i.test(msg)) {
+      throw new Error("เชื่อมต่อ API ไม่สำเร็จ: รูปสลิปอาจใหญ่เกินไป หรือ Apps Script ยังไม่ได้ Deploy เวอร์ชันล่าสุด");
+    }
+    throw err;
   });
 }
 
@@ -3662,12 +3668,19 @@ function openSelfDeposit() {
         Swal.showValidationMessage("กรุณาเลือกไฟล์สลิป");
         return false;
       }
-      if (file.size > 4 * 1024 * 1024) {
-        Swal.showValidationMessage("ไฟล์สลิปต้องมีขนาดไม่เกิน 4 MB");
+      if (file.size > 10 * 1024 * 1024) {
+        Swal.showValidationMessage("ไฟล์สลิปต้องมีขนาดไม่เกิน 10 MB");
         return false;
       }
 
       return fileToBase64V16(file).then(function(base64){
+        var rawBase64 = String(base64 || "").split(",").pop();
+        var approxBytes = Math.floor(rawBase64.length * 3 / 4);
+        if (approxBytes > 4 * 1024 * 1024) {
+          Swal.showValidationMessage("รูปสลิปยังใหญ่เกินไป กรุณาครอปเฉพาะสลิปหรือส่งรูปที่ชัดและเล็กลง");
+          return false;
+        }
+
         return {
           amount:amount,
           transferDate:transferDate,
@@ -3709,10 +3722,50 @@ function openSelfDeposit() {
 }
 
 function fileToBase64V16(file) {
+  if (file && /^image\//.test(file.type || "")) {
+    return compressSlipImageV16(file);
+  }
+
   return new Promise(function(resolve, reject){
     var reader = new FileReader();
     reader.onload = function(){ resolve(reader.result); };
     reader.onerror = function(){ reject(new Error("อ่านไฟล์สลิปไม่สำเร็จ")); };
+    reader.readAsDataURL(file);
+  });
+}
+
+function compressSlipImageV16(file) {
+  return new Promise(function(resolve, reject){
+    var reader = new FileReader();
+    reader.onerror = function(){ reject(new Error("อ่านไฟล์สลิปไม่สำเร็จ")); };
+    reader.onload = function(){
+      var img = new Image();
+      img.onerror = function(){ resolve(reader.result); };
+      img.onload = function(){
+        try {
+          var maxSide = 1600;
+          var w = img.naturalWidth || img.width || 0;
+          var h = img.naturalHeight || img.height || 0;
+          if (!w || !h) return resolve(reader.result);
+
+          var scale = Math.min(1, maxSide / Math.max(w, h));
+          var canvas = document.createElement("canvas");
+          canvas.width = Math.max(1, Math.round(w * scale));
+          canvas.height = Math.max(1, Math.round(h * scale));
+
+          var ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+          var compressed = canvas.toDataURL("image/jpeg", 0.82);
+          resolve(compressed && compressed.length < String(reader.result || "").length
+            ? compressed
+            : reader.result);
+        } catch (e) {
+          resolve(reader.result);
+        }
+      };
+      img.src = reader.result;
+    };
     reader.readAsDataURL(file);
   });
 }
@@ -3722,7 +3775,7 @@ function showMoneyFeatureUnavailable(label) {
   Swal.fire({
     icon:"info",
     title:label,
-    html:"ระบบนี้ยังไม่เชื่อมธุรกรรมเงินจริงเข้ากับเครดิตที่ใช้แทงหวยโดยอัตโนมัติ",
+    html:"ระบบถอนเงินยังไม่เปิดใช้งาน",
     confirmButtonText:"ตกลง",
     confirmButtonColor:"#0f7d4e"
   });
