@@ -921,15 +921,32 @@ button:active {
 .login-card-credit p { margin:0 0 18px;color:#71717a;font-size:12px;font-weight:700; }
 .login-field { margin:11px 0; }
 .login-field label { display:block;font-size:11px;font-weight:900;color:#52525b;margin-bottom:6px; }
-.login-field input {
+.login-field input,
+.login-field select {
   width:100%;height:52px;border:1.5px solid #e4e4e7;border-radius:14px;
-  padding:0 14px;outline:none;font-size:16px;
+  padding:0 14px;outline:none;font-size:16px;background:#fff;
 }
-.login-field input:focus { border-color:#e11d48;box-shadow:0 0 0 3px rgba(225,29,72,.08); }
+.login-field input:focus,
+.login-field select:focus { border-color:#e11d48;box-shadow:0 0 0 3px rgba(225,29,72,.08); }
 .login-submit {
   width:100%;height:52px;border:0;border-radius:14px;margin-top:8px;
   background:linear-gradient(135deg,#a5122b,#e11d48);color:#fff;font-weight:950;
 }
+.auth-tabs {
+  display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:16px 0 8px;
+}
+.auth-tab {
+  height:44px;border:1px solid #e4e4e7;border-radius:13px;background:#fafafa;
+  color:#52525b;font-size:13px;font-weight:900;
+}
+.auth-tab.active {
+  border-color:#0c7146;background:#ecfdf5;color:#0c7146;
+}
+.auth-panel { display:none; }
+.auth-panel.active { display:block; }
+.register-grid { display:grid;grid-template-columns:1fr 1fr;gap:0 9px; }
+.register-grid .full { grid-column:1/-1; }
+@media(max-width:480px){.register-grid{grid-template-columns:1fr}.register-grid .full{grid-column:auto}}
 .api-state { min-height:18px;font-size:10px;font-weight:850;margin-bottom:8px;color:#71717a; }
 
 #mainApp.hidden { display:none; }
@@ -2679,18 +2696,68 @@ html,body{
   <section id="loginScreen">
     <div class="login-card-credit">
       <div class="login-logo-credit">฿</div>
-      <h1 class="login-title-inline">เข้าสู่ระบบ <span class="login-version" id="loginVersion">V15</span></h1>
+      <h1 class="login-title-inline">ตลาดหวย <span class="login-version" id="loginVersion">V15</span></h1>
       
       <div class="api-state" id="apiState">กำลังตรวจการเชื่อมต่อ...</div>
-      <div class="login-field">
-        <label>User</label>
-        <input id="loginUser" autocomplete="username" placeholder="username">
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="authLoginTab" type="button">เข้าสู่ระบบ</button>
+        <button class="auth-tab" id="authRegisterTab" type="button">สมัครสมาชิก</button>
       </div>
-      <div class="login-field">
-        <label>Password</label>
-        <input id="loginPass" type="password" autocomplete="current-password" placeholder="••••••">
+
+      <div class="auth-panel active" id="loginPanel">
+        <div class="login-field">
+          <label>เบอร์โทร</label>
+          <input id="loginUser" autocomplete="username" inputmode="tel" placeholder="0812345678">
+        </div>
+        <div class="login-field">
+          <label>รหัสผ่าน</label>
+          <input id="loginPass" type="password" autocomplete="current-password" placeholder="••••••">
+        </div>
+        <button class="login-submit" id="loginBtn">เข้าสู่ระบบ</button>
       </div>
-      <button class="login-submit" id="loginBtn">เข้าสู่ระบบ</button>
+
+      <div class="auth-panel" id="registerPanel">
+        <div class="register-grid">
+          <div class="login-field full">
+            <label>เบอร์โทร</label>
+            <input id="regPhone" autocomplete="tel" inputmode="tel" placeholder="0812345678">
+          </div>
+          <div class="login-field">
+            <label>รหัสผ่าน</label>
+            <input id="regPass" type="password" autocomplete="new-password" placeholder="6 ตัวขึ้นไป">
+          </div>
+          <div class="login-field">
+            <label>ยืนยันรหัสผ่าน</label>
+            <input id="regPassConfirm" type="password" autocomplete="new-password" placeholder="••••••">
+          </div>
+          <div class="login-field full">
+            <label>ชื่อ - นามสกุล</label>
+            <input id="regBankNameAccount" autocomplete="name" placeholder="ชื่อบัญชีธนาคาร">
+          </div>
+          <div class="login-field">
+            <label>ธนาคาร</label>
+            <select id="regBankName">
+              <option value="">เลือกธนาคาร</option>
+              <option value="ธนาคารกสิกรไทย">ธนาคารกสิกรไทย</option>
+              <option value="ธนาคารไทยพาณิชย์">ธนาคารไทยพาณิชย์</option>
+              <option value="ธนาคารกรุงเทพ">ธนาคารกรุงเทพ</option>
+              <option value="ธนาคารกรุงไทย">ธนาคารกรุงไทย</option>
+              <option value="ธนาคารกรุงศรีอยุธยา">ธนาคารกรุงศรีอยุธยา</option>
+              <option value="ธนาคารทหารไทยธนชาต">ธนาคารทหารไทยธนชาต</option>
+              <option value="ธนาคารออมสิน">ธนาคารออมสิน</option>
+              <option value="ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร">ธ.ก.ส.</option>
+              <option value="ธนาคารซีไอเอ็มบีไทย">ธนาคารซีไอเอ็มบีไทย</option>
+              <option value="ธนาคารยูโอบี">ธนาคารยูโอบี</option>
+            </select>
+          </div>
+          <div class="login-field">
+            <label>หมายเลขบัญชี</label>
+            <input id="regBankAccountNo" inputmode="numeric" placeholder="เลขบัญชี">
+          </div>
+        </div>
+        <button class="login-submit" id="registerBtn">สมัครสมาชิก</button>
+      </div>
     </div>
   </section>
 
@@ -3221,7 +3288,7 @@ var toastTimer = null;
 
 document.addEventListener("DOMContentLoaded", function () {
   [
-    "loginScreen","mainApp","apiState","loginVersion","loginUser","loginPass","loginBtn",
+    "loginScreen","mainApp","apiState","loginVersion","authLoginTab","authRegisterTab","loginPanel","registerPanel","loginUser","loginPass","loginBtn","regPhone","regPass","regPassConfirm","regBankNameAccount","regBankName","regBankAccountNo","registerBtn",
     "homeScreen","homeCredit","homeUserName","homeUsername","homeLogoutBtn","homeDepositBtn","homeWithdrawBtn","homeLottoBtn","homeHistoryBtn","homeResultsBtn","homeSummaryBtn","homeMoneyBtn","lottoHomeBtn","betHomeBtn",
     "lottoScreen","betScreen","historyScreen","moneyScreen","memberSummaryScreen","resultsScreen","adminScreen","lottoGrid","lottoEmpty",
     "backBtn","selectedName","selectedRound","selectedClose","selectedCount",
@@ -3295,8 +3362,11 @@ function testApi() {
 }
 
 function bindEvents() {
+  if (els.authLoginTab) els.authLoginTab.onclick = function(){ setAuthMode("login"); };
+  if (els.authRegisterTab) els.authRegisterTab.onclick = function(){ setAuthMode("register"); };
   els.loginBtn.onclick = login;
   els.loginPass.onkeydown = function(e){ if (e.key === "Enter") login(); };
+  if (els.registerBtn) els.registerBtn.onclick = registerMember;
 
   if (els.homeLottoBtn) els.homeLottoBtn.onclick = showLotto;
   if (els.homeHistoryBtn) els.homeHistoryBtn.onclick = showHistory;
@@ -3313,9 +3383,7 @@ function bindEvents() {
 
   // V16.1: สมาชิกอัปโหลดสลิปและตรวจสอบได้ด้วยตัวเอง
   if (els.homeDepositBtn) els.homeDepositBtn.onclick = openSelfDeposit;
-  if (els.homeWithdrawBtn) els.homeWithdrawBtn.onclick = function(){
-    showMoneyFeatureUnavailable("ถอนเงิน");
-  };
+  if (els.homeWithdrawBtn) els.homeWithdrawBtn.onclick = showWithdrawInfo;
 
   els.backBtn.onclick = backToLotto;
   els.memberSummaryBtn.onclick = showMemberSummary;
@@ -3421,6 +3489,15 @@ function bindEvents() {
 /* =====================================================
    LOGIN / BOOT
 ===================================================== */
+function setAuthMode(mode) {
+  var isRegister = mode === "register";
+  if (els.authLoginTab) els.authLoginTab.classList.toggle("active", !isRegister);
+  if (els.authRegisterTab) els.authRegisterTab.classList.toggle("active", isRegister);
+  if (els.loginPanel) els.loginPanel.classList.toggle("active", !isRegister);
+  if (els.registerPanel) els.registerPanel.classList.toggle("active", isRegister);
+  clearError();
+}
+
 function login() {
   var u = (els.loginUser.value || "").trim();
   var p = els.loginPass.value || "";
@@ -3439,6 +3516,79 @@ function login() {
     })
     .catch(showErrorGlobal)
     .finally(function(){ setLoading(false); });
+}
+
+function registerMember() {
+  var payload = {
+    phone: normalizeDigits(els.regPhone && els.regPhone.value),
+    password: els.regPass ? els.regPass.value || "" : "",
+    confirmPassword: els.regPassConfirm ? els.regPassConfirm.value || "" : "",
+    bankAccountName: els.regBankNameAccount ? els.regBankNameAccount.value || "" : "",
+    bankName: els.regBankName ? els.regBankName.value || "" : "",
+    bankAccountNo: normalizeDigits(els.regBankAccountNo && els.regBankAccountNo.value)
+  };
+
+  if (!payload.phone || !/^0\d{8,9}$/.test(payload.phone)) {
+    showErrorGlobal("กรุณากรอกเบอร์โทรให้ถูกต้อง");
+    return;
+  }
+  if (payload.password.length < 6) {
+    showErrorGlobal("รหัสผ่านอย่างน้อย 6 ตัว");
+    return;
+  }
+  if (payload.password !== payload.confirmPassword) {
+    showErrorGlobal("ยืนยันรหัสผ่านไม่ตรงกัน");
+    return;
+  }
+  if (!payload.bankAccountName || !payload.bankName || !payload.bankAccountNo) {
+    showErrorGlobal("กรุณากรอกข้อมูลธนาคารให้ครบ");
+    return;
+  }
+
+  setLoading(true);
+  api("webRegister", payload)
+    .then(function(r){
+      state.token = r.token;
+      sessionStorage.setItem("creditToken", state.token);
+      return boot();
+    })
+    .then(function(){
+      Swal.fire({
+        icon:"success",
+        title:"สมัครสมาชิกสำเร็จ",
+        timer:1200,
+        showConfirmButton:false
+      });
+    })
+    .catch(showErrorGlobal)
+    .finally(function(){ setLoading(false); });
+}
+
+function normalizeDigits(value) {
+  return String(value || "").replace(/[^\d]/g, "");
+}
+
+function bankOptionsHtml(selected) {
+  selected = String(selected || "");
+  var banks = [
+    ["", "เลือกธนาคาร"],
+    ["ธนาคารกสิกรไทย", "ธนาคารกสิกรไทย"],
+    ["ธนาคารไทยพาณิชย์", "ธนาคารไทยพาณิชย์"],
+    ["ธนาคารกรุงเทพ", "ธนาคารกรุงเทพ"],
+    ["ธนาคารกรุงไทย", "ธนาคารกรุงไทย"],
+    ["ธนาคารกรุงศรีอยุธยา", "ธนาคารกรุงศรีอยุธยา"],
+    ["ธนาคารทหารไทยธนชาต", "ธนาคารทหารไทยธนชาต"],
+    ["ธนาคารออมสิน", "ธนาคารออมสิน"],
+    ["ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร", "ธ.ก.ส."],
+    ["ธนาคารซีไอเอ็มบีไทย", "ธนาคารซีไอเอ็มบีไทย"],
+    ["ธนาคารยูโอบี", "ธนาคารยูโอบี"]
+  ];
+
+  return banks.map(function(b){
+    return '<option value="' + escapeAttr(b[0]) + '"' +
+      (b[0] === selected ? ' selected' : '') + '>' +
+      escapeHtml(b[1]) + '</option>';
+  }).join("");
 }
 
 function logout(callServer) {
@@ -3641,7 +3791,7 @@ function openSelfDeposit() {
       return fileToBase64V16(file).then(function(base64){
         var rawBase64 = String(base64 || "").split(",").pop();
         var approxBytes = Math.floor(rawBase64.length * 3 / 4);
-        if (approxBytes > 4 * 1024 * 1024) {
+        if (approxBytes > 1200 * 1024) {
           Swal.showValidationMessage("รูปสลิปยังใหญ่เกินไป กรุณาครอปเฉพาะสลิปหรือส่งรูปที่ชัดและเล็กลง");
           return false;
         }
@@ -3692,6 +3842,8 @@ function fileToBase64V16(file) {
 }
 
 function compressSlipImageV16(file) {
+  var targetBytes = 900 * 1024;
+
   return new Promise(function(resolve, reject){
     var reader = new FileReader();
     reader.onerror = function(){ reject(new Error("อ่านไฟล์สลิปไม่สำเร็จ")); };
@@ -3700,23 +3852,34 @@ function compressSlipImageV16(file) {
       img.onerror = function(){ resolve(reader.result); };
       img.onload = function(){
         try {
-          var maxSide = 1600;
+          var maxSide = 1400;
           var w = img.naturalWidth || img.width || 0;
           var h = img.naturalHeight || img.height || 0;
           if (!w || !h) return resolve(reader.result);
 
-          var scale = Math.min(1, maxSide / Math.max(w, h));
+          var best = String(reader.result || "");
+          var qualities = [0.82, 0.72, 0.62];
+          var sides = [maxSide, 1200, 1000];
           var canvas = document.createElement("canvas");
-          canvas.width = Math.max(1, Math.round(w * scale));
-          canvas.height = Math.max(1, Math.round(h * scale));
-
           var ctx = canvas.getContext("2d");
-          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-          var compressed = canvas.toDataURL("image/jpeg", 0.82);
-          resolve(compressed && compressed.length < String(reader.result || "").length
-            ? compressed
-            : reader.result);
+          for (var s = 0; s < sides.length; s++) {
+            var scale = Math.min(1, sides[s] / Math.max(w, h));
+            canvas.width = Math.max(1, Math.round(w * scale));
+            canvas.height = Math.max(1, Math.round(h * scale));
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+            for (var q = 0; q < qualities.length; q++) {
+              var compressed = canvas.toDataURL("image/jpeg", qualities[q]);
+              if (compressed && compressed.length < best.length) best = compressed;
+
+              var rawBase64 = String(best || "").split(",").pop();
+              var approxBytes = Math.floor(rawBase64.length * 3 / 4);
+              if (approxBytes <= targetBytes) return resolve(best);
+            }
+          }
+
+          resolve(best);
         } catch (e) {
           resolve(reader.result);
         }
@@ -3728,11 +3891,24 @@ function compressSlipImageV16(file) {
 }
 
 
-function showMoneyFeatureUnavailable(label) {
+function showWithdrawInfo() {
+  var user = state.user || {};
+  var bankAccountName = user.bankAccountName || user.displayName || "";
+  var bankName = user.bankName || "";
+  var bankAccountNo = user.bankAccountNo || "";
+
   Swal.fire({
     icon:"info",
-    title:label,
-    html:"ระบบถอนเงินยังไม่เปิดใช้งาน",
+    title:"ถอนเงิน",
+    html:
+      '<div style="text-align:left;font-size:13px;line-height:1.8">' +
+        '<div style="padding:13px;border:1px solid #bbf7d0;border-radius:13px;background:#f0fdf4;color:#14532d">' +
+          '<div style="font-size:10px;font-weight:900;margin-bottom:6px;color:#166534">ข้อมูลธนาคารสำหรับถอนเงิน</div>' +
+          '<div><b>ชื่อบัญชี:</b> ' + escapeHtml(bankAccountName || "-") + '</div>' +
+          '<div><b>ธนาคาร:</b> ' + escapeHtml(bankName || "-") + '</div>' +
+          '<div><b>เลขบัญชี:</b> ' + escapeHtml(bankAccountNo || "-") + '</div>' +
+        '</div>' +
+      '</div>',
     confirmButtonText:"ตกลง",
     confirmButtonColor:"#0f7d4e"
   });
@@ -5137,12 +5313,25 @@ async function openCreateUser() {
       '<div class="swal-admin-field"><label>Password</label><input id="admNewPass" type="password"></div>' +
       '<div class="swal-admin-field"><label>ชื่อ</label><input id="admNewName"></div>' +
       '<div class="swal-admin-field"><label>เครดิตเริ่มต้น</label><input id="admNewCredit" type="number" value="0"></div>' +
+      '<div class="swal-admin-field"><label>เบอร์โทร</label><input id="admNewPhone" inputmode="tel"></div>' +
+      '<div class="swal-admin-field"><label>ธนาคาร</label><select id="admNewBank">' + bankOptionsHtml("") + '</select></div>' +
+      '<div class="swal-admin-field"><label>ชื่อบัญชี</label><input id="admNewBankAccountName"></div>' +
+      '<div class="swal-admin-field"><label>หมายเลขบัญชี</label><input id="admNewBankAccountNo" inputmode="numeric"></div>' +
     '</div>',
     showCancelButton:true,
     confirmButtonText:"สร้าง Member",
     cancelButtonText:"ยกเลิก",
     preConfirm:function(){
-      return {username:document.getElementById("admNewUser").value,password:document.getElementById("admNewPass").value,displayName:document.getElementById("admNewName").value,credit:num(document.getElementById("admNewCredit").value)};
+      return {
+        username:document.getElementById("admNewUser").value,
+        password:document.getElementById("admNewPass").value,
+        displayName:document.getElementById("admNewName").value,
+        credit:num(document.getElementById("admNewCredit").value),
+        phone:document.getElementById("admNewPhone").value,
+        bankAccountName:document.getElementById("admNewBankAccountName").value,
+        bankName:document.getElementById("admNewBank").value,
+        bankAccountNo:document.getElementById("admNewBankAccountNo").value
+      };
     }
   });
   if (!r.isConfirmed) return;
@@ -5208,12 +5397,25 @@ async function openEditUser(u) {
         '<option value="ACTIVE"' + (u.status === "ACTIVE" ? " selected" : "") + '>ACTIVE</option>' +
         '<option value="SUSPENDED"' + (u.status !== "ACTIVE" ? " selected" : "") + '>SUSPENDED</option>' +
       '</select></div>' +
+      '<div class="swal-admin-field"><label>เบอร์โทร</label><input id="admEditPhone" inputmode="tel" value="' + escapeAttr(u.phone || u.username || "") + '"></div>' +
+      '<div class="swal-admin-field"><label>ธนาคาร</label><select id="admEditBank">' + bankOptionsHtml(u.bankName || "") + '</select></div>' +
+      '<div class="swal-admin-field"><label>ชื่อบัญชี</label><input id="admEditBankAccountName" value="' + escapeAttr(u.bankAccountName || "") + '"></div>' +
+      '<div class="swal-admin-field"><label>หมายเลขบัญชี</label><input id="admEditBankAccountNo" inputmode="numeric" value="' + escapeAttr(u.bankAccountNo || "") + '"></div>' +
       '<div class="swal-admin-field full"><label>Password ใหม่ (ไม่เปลี่ยนให้เว้นว่าง)</label><input id="admEditPass" type="password"></div>' +
     '</div>',
     showCancelButton:true,
     confirmButtonText:"บันทึก",
     cancelButtonText:"ยกเลิก",
-    preConfirm:function(){ return {userId:u.userId,displayName:document.getElementById("admEditName").value,status:document.getElementById("admEditStatus").value,newPassword:document.getElementById("admEditPass").value}; }
+    preConfirm:function(){ return {
+      userId:u.userId,
+      displayName:document.getElementById("admEditName").value,
+      status:document.getElementById("admEditStatus").value,
+      phone:document.getElementById("admEditPhone").value,
+      bankAccountName:document.getElementById("admEditBankAccountName").value,
+      bankName:document.getElementById("admEditBank").value,
+      bankAccountNo:document.getElementById("admEditBankAccountNo").value,
+      newPassword:document.getElementById("admEditPass").value
+    }; }
   });
   if (!r.isConfirmed) return;
   try {
