@@ -3604,13 +3604,6 @@ function showHome() {
 
 
 function openSelfDeposit() {
-  var now = new Date();
-  var localDate = now.getFullYear() + "-" +
-    String(now.getMonth()+1).padStart(2,"0") + "-" +
-    String(now.getDate()).padStart(2,"0");
-  var localTime = String(now.getHours()).padStart(2,"0") + ":" +
-    String(now.getMinutes()).padStart(2,"0");
-
   Swal.fire({
     title:"เติมเครดิตเดิมพัน",
     html:
@@ -3621,24 +3614,10 @@ function openSelfDeposit() {
           '<div style="font-size:11px;margin-top:3px;color:#166534">ธนาคารไทยพาณิชย์</div>' +
           '<div style="font-size:11px;margin-top:2px;color:#166534">น.ส. ทิพวรรณ ฮุ่งเมือง</div>' +
         '</div>' +
-        '<label style="display:block;font-size:11px;font-weight:800;margin:4px 0 6px">ยอดที่โอน</label>' +
-        '<input id="swalDepositAmount" class="swal2-input" type="number" min="1" step="0.01" inputmode="decimal" placeholder="เช่น 500" style="margin:0;width:100%">' +
-
-        '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">' +
-          '<div>' +
-            '<label style="display:block;font-size:10px;font-weight:800;margin-bottom:5px">วันที่โอน</label>' +
-            '<input id="swalDepositDate" type="date" value="' + localDate + '" style="width:100%;height:44px;border:1px solid #d4d4d8;border-radius:10px;padding:0 9px;font:inherit">' +
-          '</div>' +
-          '<div>' +
-            '<label style="display:block;font-size:10px;font-weight:800;margin-bottom:5px">เวลาโอน</label>' +
-            '<input id="swalDepositTime" type="time" value="' + localTime + '" step="60" style="width:100%;height:44px;border:1px solid #d4d4d8;border-radius:10px;padding:0 9px;font:inherit">' +
-          '</div>' +
-        '</div>' +
-
-        '<label style="display:block;font-size:11px;font-weight:800;margin:14px 0 6px">อัปโหลดสลิป</label>' +
+        '<label style="display:block;font-size:11px;font-weight:800;margin:4px 0 6px">อัปโหลดสลิป</label>' +
         '<input id="swalDepositSlip" type="file" accept="image/jpeg,image/png,image/gif,image/webp" style="width:100%;padding:12px;border:1px dashed #bbf7d0;border-radius:12px;background:#f0fdf4">' +
 
-        '<div class="deposit-time-hint">ระบบจะตรวจยอด, สลิปซ้ำ และเปรียบเทียบวัน/เวลาในสลิปกับวันที่และเวลาที่กรอกในระดับ “นาที”</div>' +
+        '<div class="deposit-time-hint">ระบบจะอ่านยอดเงินจากสลิป ตรวจบัญชีผู้รับ และตรวจสลิปซ้ำให้อัตโนมัติ</div>' +
       '</div>',
     showCancelButton:true,
     confirmButtonText:"ตรวจสลิป",
@@ -3646,24 +3625,10 @@ function openSelfDeposit() {
     confirmButtonColor:"#0f7d4e",
     focusConfirm:false,
     preConfirm:function(){
-      var amountEl = document.getElementById("swalDepositAmount");
-      var dateEl = document.getElementById("swalDepositDate");
-      var timeEl = document.getElementById("swalDepositTime");
       var fileEl = document.getElementById("swalDepositSlip");
 
-      var amount = Number(amountEl && amountEl.value || 0);
-      var transferDate = String(dateEl && dateEl.value || "");
-      var transferTime = String(timeEl && timeEl.value || "");
       var file = fileEl && fileEl.files && fileEl.files[0];
 
-      if (!amount || amount <= 0) {
-        Swal.showValidationMessage("กรุณากรอกยอดที่โอน");
-        return false;
-      }
-      if (!transferDate || !transferTime) {
-        Swal.showValidationMessage("กรุณาระบุวันและเวลาโอน");
-        return false;
-      }
       if (!file) {
         Swal.showValidationMessage("กรุณาเลือกไฟล์สลิป");
         return false;
@@ -3682,10 +3647,6 @@ function openSelfDeposit() {
         }
 
         return {
-          amount:amount,
-          transferDate:transferDate,
-          transferTime:transferTime,
-          transferDateTime:transferDate + " " + transferTime,
           base64:base64
         };
       });
@@ -3706,11 +3667,7 @@ function openSelfDeposit() {
           title:"เติมเครดิตสำเร็จ",
           html:
             '<div style="font-size:13px;line-height:1.8">' +
-              'ยอดที่เติม <b>' + money(r.verifiedAmount) + ' บาท</b><br>' +
-              'เครดิตพร้อมเดิมพันคงเหลือ <b>' + money(state.user && state.user.credit) + ' บาท</b><br>' +
-              (r.slipDate ? 'วันเวลาในสลิป <b>' + escapeHtml(r.slipDate) + '</b><br>' : '') +
-              (r.transRef ? 'เลขอ้างอิง <b>' + escapeHtml(r.transRef) + '</b><br>' : '') +
-              '<span style="color:#71717a;font-size:10px">Thunder ตรวจสลิปผ่านและเพิ่มเครดิตเดิมพันให้อัตโนมัติแล้ว ใช้แทงหวยได้ทันที</span>' +
+              'ยอดที่เติม <b>' + money(r.verifiedAmount) + ' บาท</b>' +
             '</div>',
           confirmButtonText:"ตกลง",
           confirmButtonColor:"#0f7d4e"
