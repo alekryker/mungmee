@@ -2986,6 +2986,8 @@ html,body{
       <select id="moneyType" class="wide">
        <option value="">ทุกรายการ</option>
        <option value="DEPOSIT_SLIP">เติมเครดิตด้วยสลิป</option>
+       <option value="WITHDRAW_PENDING">ถอนเงินรออนุมัติ</option>
+       <option value="WITHDRAW_CANCEL">ยกเลิกถอน/คืนเครดิต</option>
        <option value="BET">แทงหวย</option>
        <option value="CANCEL">คืนเครดิตยกเลิกโพย</option>
        <option value="WIN">ถูกรางวัล</option>
@@ -3111,6 +3113,7 @@ html,body{
       <button class="admin-tab active" data-admin-tab="dashboard">สรุปแพ้-ชนะ</button>
       <button class="admin-tab" data-admin-tab="openbets">โพยทั้งหมด</button>
       <button class="admin-tab" data-admin-tab="users">ยูสเซอร์/เครดิต</button>
+      <button class="admin-tab" data-admin-tab="withdraws">รายการถอน</button>
       <button class="admin-tab" data-admin-tab="lotto">ตั้งค่าหวย</button>
      </div>
     </div>
@@ -3200,6 +3203,29 @@ html,body{
         <button class="admin-btn red" id="adminCreateUserBtn">+ เปิด Member</button>
        </div>
        <div class="admin-table-wrap" id="adminUserTable" style="margin-top:11px"></div>
+      </div>
+     </section>
+
+     <section class="admin-panel" id="adminPanel-withdraws">
+      <div class="admin-card">
+       <div class="admin-card-head">
+        <div>
+         <h2>รายการถอน</h2>
+         <div class="admin-muted">ตรวจรายการถอนที่สมาชิกส่งเข้ามา</div>
+        </div>
+       </div>
+       <div class="admin-toolbar">
+        <div class="admin-field"><label>สถานะ</label>
+         <select id="adminWithdrawStatus">
+          <option value="">ทุกสถานะ</option>
+          <option value="PENDING">รออนุมัติ</option>
+          <option value="APPROVED">อนุมัติแล้ว</option>
+          <option value="CANCELLED">ยกเลิก</option>
+         </select>
+        </div>
+        <button class="admin-btn dark" id="adminWithdrawReloadBtn">โหลดรายการ</button>
+       </div>
+       <div class="admin-table-wrap" id="adminWithdrawTable" style="margin-top:11px"></div>
       </div>
      </section>
 
@@ -3294,7 +3320,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "backBtn","selectedName","selectedRound","selectedClose","selectedCount",
     "accountName","heroCredit","betCredit","bottomCredit","summaryCredit","adminBtn",
     "memberSummaryBtn","moneyBtn","resultsBtn","historyBtn","logoutBtn","resultsBackBtn","resultsBalance","resultsDate","resultsReloadBtn","resultsSource","resultsList","historyBackBtn","historyCredit","historyFrom","historyTo",
-     "historyStatus","historyList","moneyBackBtn","moneyBalance","moneyFrom","moneyTo","moneyType","moneyList","memberSummaryBackBtn","memberSummaryBalance","memberSummaryFrom","memberSummaryTo","memberSummaryLotto","memberSummarySearchBtn","memberSummaryStats","memberSummaryTable","adminIdentity","adminLogoutBtn","syncResultsBtn","adminDashRange","adminDashFrom","adminDashTo","adminDashCustomBtn","adminDashSelectAll","adminDashClearAll","adminDashLottoChecks","adminDashStats","adminByUser","adminByLotto","adminBetFrom","adminBetTo","adminBetStatus","adminOpenUser","adminOpenLotto","adminOpenSearchBtn","adminOpenTable","adminCreateUserBtn","adminUserTable","adminLottoToggleTable","adminLottoRulesTable","adminRateUser","adminRateLotto","adminRateModeNote","adminRate3Straight","adminRate3Tod","adminRate2Top","adminRate2Bottom","adminRateRunTop","adminRateRunBottom","adminRateSaveBtn","adminRateResetBtn","adminRateOverridesTable","directTitle","numberCount","numberInput",
+     "historyStatus","historyList","moneyBackBtn","moneyBalance","moneyFrom","moneyTo","moneyType","moneyList","memberSummaryBackBtn","memberSummaryBalance","memberSummaryFrom","memberSummaryTo","memberSummaryLotto","memberSummarySearchBtn","memberSummaryStats","memberSummaryTable","adminIdentity","adminLogoutBtn","syncResultsBtn","adminDashRange","adminDashFrom","adminDashTo","adminDashCustomBtn","adminDashSelectAll","adminDashClearAll","adminDashLottoChecks","adminDashStats","adminByUser","adminByLotto","adminBetFrom","adminBetTo","adminBetStatus","adminOpenUser","adminOpenLotto","adminOpenSearchBtn","adminOpenTable","adminCreateUserBtn","adminUserTable","adminWithdrawStatus","adminWithdrawReloadBtn","adminWithdrawTable","adminLottoToggleTable","adminLottoRulesTable","adminRateUser","adminRateLotto","adminRateModeNote","adminRate3Straight","adminRate3Tod","adminRate2Top","adminRate2Bottom","adminRateRunTop","adminRateRunBottom","adminRateSaveBtn","adminRateResetBtn","adminRateOverridesTable","directTitle","numberCount","numberInput",
     "clearNumbersBtn","numberChipBox","reverseBtn","doubleBtn",
     "priceA","priceB","priceALabel","priceBLabel","priceBField","directPriceGrid",
     "sourceCount","betCount","grandTotal","clearAllBtn","submitBtn","error",
@@ -3392,6 +3418,8 @@ function bindEvents() {
   els.moneyFrom.onchange = loadMoneyTransactions;
   els.moneyTo.onchange = loadMoneyTransactions;
   els.moneyType.onchange = loadMoneyTransactions;
+  if (els.adminWithdrawStatus) els.adminWithdrawStatus.onchange = loadAdminWithdraws;
+  if (els.adminWithdrawReloadBtn) els.adminWithdrawReloadBtn.onclick = loadAdminWithdraws;
   els.memberSummaryBackBtn.onclick = showHome;
   els.memberSummarySearchBtn.onclick = function(){ loadMemberSummary("custom"); };
   els.memberSummaryLotto.onchange = function(){ loadMemberSummary("custom"); };
@@ -3908,9 +3936,42 @@ function showWithdrawInfo() {
           '<div><b>ธนาคาร:</b> ' + escapeHtml(bankName || "-") + '</div>' +
           '<div><b>เลขบัญชี:</b> ' + escapeHtml(bankAccountNo || "-") + '</div>' +
         '</div>' +
+        '<label style="display:block;font-size:11px;font-weight:800;margin:14px 0 6px">ยอดถอน</label>' +
+        '<input id="swalWithdrawAmount" class="swal2-input" type="number" min="1" step="0.01" inputmode="decimal" placeholder="เช่น 500" style="margin:0;width:100%">' +
       '</div>',
+    showCancelButton:true,
+    cancelButtonText:"ยกเลิก",
     confirmButtonText:"ตกลง",
-    confirmButtonColor:"#0f7d4e"
+    confirmButtonColor:"#0f7d4e",
+    preConfirm:function(){
+      var amount = num(document.getElementById("swalWithdrawAmount").value);
+      if (!amount || amount <= 0) {
+        Swal.showValidationMessage("กรุณากรอกยอดถอน");
+        return false;
+      }
+      if (state.user && Number(state.user.credit || 0) < amount) {
+        Swal.showValidationMessage("เครดิตไม่พอสำหรับถอน");
+        return false;
+      }
+      return {amount:amount};
+    }
+  }).then(function(result){
+    if (!result.isConfirmed || !result.value) return;
+    setLoading(true);
+    api("memberSubmitWithdraw", state.token, result.value)
+      .then(function(r){
+        if (state.user) state.user.credit = Number(r.credit || r.balanceAfter || 0);
+        updateUserUI();
+        Swal.fire({
+          icon:"success",
+          title:"ส่งรายการถอนแล้ว",
+          html:'<div style="font-size:13px;line-height:1.8">ยอดถอน <b>' + money(r.amount) + ' บาท</b><br>สถานะ <b>รออนุมัติ</b></div>',
+          confirmButtonText:"ตกลง",
+          confirmButtonColor:"#0f7d4e"
+        });
+      })
+      .catch(showErrorGlobal)
+      .finally(function(){ setLoading(false); });
   });
 }
 
@@ -4599,6 +4660,8 @@ function moneyTypeText(type) {
     SETTLE_WIN:"ถูกรางวัล",
     ADMIN_ADD:"แอดมินเพิ่มเครดิต",
     ADMIN_SUB:"แอดมินหักเครดิต",
+    WITHDRAW_PENDING:"ถอนเงิน - รออนุมัติ",
+    WITHDRAW_CANCEL:"ยกเลิกถอน / คืนเครดิต",
     OPENING:"เครดิตเปิดยูส",
     PURCHASE:"ซื้อสินค้า",
     REFUND:"คืนเงินสินค้า",
@@ -5078,6 +5141,7 @@ function showAdminTab(tab) {
   if (state.adminTab === "dashboard") loadAdminDashboard("day");
   if (state.adminTab === "openbets") loadAdminAllBets();
   if (state.adminTab === "users") loadAdminUsers();
+  if (state.adminTab === "withdraws") loadAdminWithdraws();
   if (state.adminTab === "lotto") { loadAdminLottoSettings(); showLottoSubTab(state.lottoSubTab || "enabled"); }
 }
 
@@ -5127,6 +5191,80 @@ function adminTable(headers, rows) {
       }).join("") + '</tr>';
     }).join("") +
     '</tbody></table>';
+}
+
+function withdrawStatusText(status) {
+  return ({
+    PENDING:"รออนุมัติ",
+    APPROVED:"อนุมัติแล้ว",
+    CANCELLED:"ยกเลิก"
+  })[String(status || "").toUpperCase()] || status;
+}
+
+async function loadAdminWithdraws() {
+  try {
+    if (!els.adminWithdrawTable) return;
+    els.adminWithdrawTable.innerHTML = '<div class="admin-muted">กำลังโหลดรายการถอน...</div>';
+    var rows = await api("adminGetWithdrawRequests", state.token, {
+      status: els.adminWithdrawStatus ? els.adminWithdrawStatus.value || "" : ""
+    });
+    rows = rows || [];
+    if (!rows.length) {
+      els.adminWithdrawTable.innerHTML = '<div class="admin-muted">ยังไม่มีรายการถอน</div>';
+      return;
+    }
+
+    els.adminWithdrawTable.innerHTML = adminTable(
+      ["เวลา","User","เลขบัญชี","ธนาคาร","ชื่อบัญชี","จำนวนเงิน","สถานะ","จัดการ"],
+      rows.map(function(x){
+        var actions = x.status === "PENDING"
+          ? '<button class="admin-mini green" data-approve-withdraw="' + escapeAttr(x.withdrawId) + '">อนุมัติ</button> ' +
+            '<button class="admin-mini danger" data-cancel-withdraw="' + escapeAttr(x.withdrawId) + '">ยกเลิก</button>'
+          : '-';
+        return [
+          escapeHtml(x.createdAtText || formatDateTime(x.createdAt)),
+          escapeHtml(x.username),
+          escapeHtml(x.bankAccountNo),
+          escapeHtml(x.bankName),
+          escapeHtml(x.bankAccountName),
+          money(x.amount),
+          escapeHtml(withdrawStatusText(x.status)),
+          actions
+        ];
+      })
+    );
+
+    els.adminWithdrawTable.querySelectorAll("[data-approve-withdraw]").forEach(function(btn){
+      btn.onclick = async function(){
+        var ask = await Swal.fire({icon:"question",title:"อนุมัติรายการถอน?",showCancelButton:true,confirmButtonText:"อนุมัติ",cancelButtonText:"ยกเลิก",confirmButtonColor:"#0f7d4e"});
+        if (!ask.isConfirmed) return;
+        try {
+          adminBusy("กำลังอนุมัติ...");
+          await api("adminApproveWithdraw", state.token, btn.dataset.approveWithdraw);
+          Swal.close();
+          await loadAdminWithdraws();
+          toast("อนุมัติรายการถอนแล้ว");
+        } catch(e) { Swal.close(); showAdminError(e); }
+      };
+    });
+
+    els.adminWithdrawTable.querySelectorAll("[data-cancel-withdraw]").forEach(function(btn){
+      btn.onclick = async function(){
+        var ask = await Swal.fire({icon:"warning",title:"ยกเลิกรายการถอน?",text:"ระบบจะคืนเครดิตให้สมาชิก",showCancelButton:true,confirmButtonText:"ยกเลิกรายการ",cancelButtonText:"กลับ",confirmButtonColor:"#e11d48"});
+        if (!ask.isConfirmed) return;
+        try {
+          adminBusy("กำลังยกเลิก...");
+          await api("adminCancelWithdraw", state.token, btn.dataset.cancelWithdraw);
+          Swal.close();
+          await loadAdminWithdraws();
+          await loadAdminUsers();
+          toast("ยกเลิกและคืนเครดิตแล้ว");
+        } catch(e) { Swal.close(); showAdminError(e); }
+      };
+    });
+  } catch(e) {
+    showAdminError(e);
+  }
 }
 
 async function loadAdminDashboard(mode) {
