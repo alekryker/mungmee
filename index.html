@@ -2231,7 +2231,7 @@ function bindEvents() {
   els.doubleBtn.onclick = function(){
     if (state.betMode !== "two") return;
     for (var i=0;i<=9;i++) addUniqueNumber(String(i)+String(i));
-    syncInputFromState();
+    els.numberInput.value = "";
     renderDirectBet();
   };
 
@@ -2463,7 +2463,7 @@ function getModeConfig() {
   if (state.betMode === "three") {
     return {
       title:"กรอกเลข 3 ตัว",
-      help:"พิมพ์เลข 3 ตัว เช่น 123 456 789",
+      help:"พิมพ์ครบ 3 หลัก ระบบจะเพิ่มเข้าเลขที่กำลังแทงให้อัตโนมัติ",
       placeholder:"เช่น 123 456 789",
       len:3,
       priceA:"ตรง",
@@ -2475,7 +2475,7 @@ function getModeConfig() {
   if (state.betMode === "six") {
     return {
       title:"กรอกเลข 6 กลับ",
-      help:"พิมพ์เลข 3 ตัว ระบบจะสร้างเลขสลับตำแหน่งให้อัตโนมัติ",
+      help:"พิมพ์ครบ 3 หลัก แล้วระบบจะเพิ่มและสร้าง 6 กลับให้อัตโนมัติ",
       placeholder:"เช่น 015 817 807",
       len:3,
       priceA:"6 กลับ",
@@ -2487,7 +2487,7 @@ function getModeConfig() {
   if (state.betMode === "gate") {
     return {
       title:"กรอกเลขรูด 19 ประตู",
-      help:"ใส่เลขหลักเดียว เช่น 6 9 แล้วระบบคิด 19 ประตูต่อเลข",
+      help:"พิมพ์เลข 1 หลัก ระบบจะเพิ่มและแสดง 19 ประตูให้อัตโนมัติ",
       placeholder:"เช่น 6 9",
       len:1,
       priceA:"บน",
@@ -2498,7 +2498,7 @@ function getModeConfig() {
 
   return {
     title:"กรอกเลข 2 ตัว",
-    help:"พิมพ์เลข 2 ตัว แยกด้วยช่องว่าง / , หรือขึ้นบรรทัดใหม่",
+    help:"พิมพ์ครบ 2 หลัก ระบบจะเพิ่มเข้าเลขที่กำลังแทงให้อัตโนมัติ",
     placeholder:"เช่น 12 34 56",
     len:2,
     priceA:"บน",
@@ -2511,21 +2511,46 @@ function syncNumbersFromInput() {
   clearError();
 
   var cfg = getModeConfig();
+  var len = Number(cfg.len || 0);
   var raw = String(els.numberInput.value || "");
 
-  // ช่องว่างระหว่างพิมพ์ถือเป็นเรื่องปกติ
-  if (!raw.trim()) {
-    state.numbers = [];
+  // เอาเฉพาะตัวเลขทั้งหมดที่กำลังพิมพ์
+  var digits = raw.replace(/\D/g, "");
+
+  if (!digits) {
+    els.numberInput.value = "";
+    return;
+  }
+
+  // 19 ประตู = 1 หลัก พิมพ์แล้วเข้าเลขที่กำลังแทงทันที
+  if (len === 1) {
+    digits.split("").forEach(function(d) {
+      addUniqueNumber(d);
+    });
+    els.numberInput.value = "";
     renderDirectBet();
     return;
   }
 
-  state.numbers = parseNumberInput(raw, cfg.len);
-  renderDirectBet();
-}
+  // 2 ตัว / 3 ตัว / 6 กลับ
+  // ตัดทีละชุดเมื่อครบจำนวนหลัก แล้วเหลือเศษที่ยังไม่ครบไว้ในช่องกรอก
+  while (digits.length >= len) {
+    var completed = digits.slice(0, len);
+    addUniqueNumber(completed);
+    digits = digits.slice(len);
+  }
 
-function syncInputFromState() {
-  els.numberInput.value = state.numbers.join(" ");
+  // เช่น 2 ตัว พิมพ์ 123 -> 12 เข้าเลขที่แทง และเหลือ 3 ไว้รอพิมพ์ตัวต่อไป
+  els.numberInput.value = digits;
+
+  renderDirectBet();
+
+  // ให้ cursor อยู่ท้ายช่อง พร้อมพิมพ์เลขถัดไปต่อทันที
+  try {
+    els.numberInput.focus();
+    var pos = els.numberInput.value.length;
+    els.numberInput.setSelectionRange(pos, pos);
+  } catch(e) {}
 }
 
 function parseNumberInput(raw, len) {
@@ -2572,7 +2597,6 @@ function addUniqueNumber(n) {
 
 function removeNumber(n) {
   state.numbers = state.numbers.filter(function(x){ return x !== n; });
-  syncInputFromState();
   renderDirectBet();
 }
 
