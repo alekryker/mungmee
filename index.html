@@ -1986,6 +1986,67 @@ button:active {
   vertical-align:middle;
 }
 
+
+/* V12 - อ่านง่ายขึ้น */
+html, body { font-weight:400; letter-spacing:0; }
+body, input, textarea, select, button {
+  font-family:"Prompt","Noto Sans Thai",sans-serif;
+}
+h1,h2,h3,.hero h1,.admin-head-row h1,.direct-title,.lotto-name,
+.selected-name,.history-head strong,.result-card-head strong {
+  font-weight:700 !important;
+}
+button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
+.direct-submit,.direct-clear-all,.clear-numbers {
+  font-weight:600 !important;
+}
+.eyebrow,.api-state,.lotto-meta,.lotto-date,.selected-sub,.history-meta,
+.history-raw,.admin-muted,.admin-table,.admin-table th,.admin-table td,
+.result-date,.submit-credit-note {
+  font-weight:400 !important;
+}
+.account-credit small,.credit-mini small,.price-section-title,
+.direct-price-label,.bet-summary-item small,.result-num small {
+  font-weight:500 !important;
+}
+.account-credit strong,.credit-mini b,.grand strong,.direct-grand strong,
+.bet-summary-item b,.result-num b,.history-money,.status-pill {
+  font-weight:650 !important;
+}
+.login-version {
+  min-width:34px;
+  padding:0 7px;
+  font-weight:600 !important;
+}
+
+.history-detail-btn {
+  width:100%;
+  min-height:40px;
+  margin-top:9px;
+  border:1px solid #e4e4e7;
+  border-radius:11px;
+  background:#fafafa;
+  color:#3f3f46;
+  font-size:10px;
+  font-weight:600;
+}
+.bet-detail-wrap { text-align:left; font-size:12px; color:#3f3f46; }
+.bet-detail-top { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:10px; }
+.bet-detail-top>div { padding:10px 11px; border-radius:12px; background:#fafafa; }
+.bet-detail-top small { display:block; color:#a1a1aa; font-size:9px; }
+.bet-detail-top b { display:block; margin-top:2px; font-size:14px; font-weight:650; }
+.bet-detail-meta { padding:10px 11px; margin-bottom:9px; border-radius:12px; background:#fff1f2; color:#71717a; line-height:1.7; }
+.bet-detail-group { padding:10px; margin-top:8px; border:1px solid #e4e4e7; border-radius:13px; }
+.bet-detail-group-head { display:flex; justify-content:space-between; gap:8px; align-items:center; }
+.bet-detail-group-head b { font-weight:650; }
+.bet-detail-group-head span { color:#a1a1aa; font-size:9px; }
+.bet-detail-numbers { display:flex; flex-wrap:wrap; gap:5px; margin-top:8px; }
+.bet-detail-numbers span { padding:5px 7px; border-radius:8px; background:#f4f4f5; font-variant-numeric:tabular-nums; }
+.bet-detail-price { margin-top:8px; color:#991b1b; font-weight:600; }
+.bet-detail-summary { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:10px; padding:10px 11px; border-top:1px dashed #e4e4e7; }
+.bet-detail-summary b { font-size:16px; font-weight:700; }
+.bet-detail-empty { padding:18px; text-align:center; color:#a1a1aa; }
+
 </style>
  </head>
  <body>
@@ -1993,7 +2054,7 @@ button:active {
   <section id="loginScreen">
     <div class="login-card-credit">
       <div class="login-logo-credit">฿</div>
-      <h1 class="login-title-inline">เข้าสู่ระบบ <span class="login-version">V</span></h1>
+      <h1 class="login-title-inline">เข้าสู่ระบบ <span class="login-version" id="loginVersion">V12</span></h1>
       
       <div class="api-state" id="apiState">กำลังตรวจการเชื่อมต่อ...</div>
       <div class="login-field">
@@ -2207,7 +2268,7 @@ button:active {
     <div class="admin-tabs-wrap">
      <div class="admin-tabs">
       <button class="admin-tab active" data-admin-tab="dashboard">Dashboard</button>
-      <button class="admin-tab" data-admin-tab="openbets">โพยรอผล</button>
+      <button class="admin-tab" data-admin-tab="openbets">โพยทั้งหมด</button>
       <button class="admin-tab" data-admin-tab="users">ยูสเซอร์/เครดิต</button>
       <button class="admin-tab" data-admin-tab="lotto">ตั้งค่าหวย</button>
      </div>
@@ -2252,12 +2313,22 @@ button:active {
       <div class="admin-card">
        <div class="admin-card-head">
         <div>
-         <h2>โพยรอผลทุกยูสเซอร์</h2>
-         
+         <h2>โพยทั้งหมด / ย้อนหลัง</h2>
         </div>
        </div>
        <div class="admin-toolbar">
-        <div class="admin-field"><label>ค้นหา User</label><input id="adminOpenUser" placeholder="username"></div>
+        <div class="admin-field"><label>จากวันที่</label><input id="adminBetFrom" type="date"></div>
+        <div class="admin-field"><label>ถึงวันที่</label><input id="adminBetTo" type="date"></div>
+        <div class="admin-field"><label>สถานะ</label>
+         <select id="adminBetStatus">
+          <option value="">ทุกสถานะ</option>
+          <option value="WAITING">รอผล</option>
+          <option value="WIN">ถูกรางวัล</option>
+          <option value="LOSE">ไม่ถูกรางวัล</option>
+          <option value="CANCELLED">ยกเลิก</option>
+         </select>
+        </div>
+        <div class="admin-field"><label>User / บิล</label><input id="adminOpenUser" placeholder=""></div>
         <div class="admin-field"><label>หวย</label><select id="adminOpenLotto"><option value="">ทั้งหมด</option></select></div>
         <button class="admin-btn dark" id="adminOpenSearchBtn">ค้นหา</button>
        </div>
@@ -2302,6 +2373,7 @@ button:active {
   
 
 <script>
+const APP_VERSION = "V12";
 const API = "https://script.google.com/macros/s/AKfycbzhCttywyi-ihmYs5ctKid6oQkRmb4itxHUZ2a6juYd9jltSE81PBt1I-20yr_X9Pcg/exec";
 const AFTER_MIDNIGHT_CUTOFF_HOUR = 6;
 
@@ -2318,6 +2390,8 @@ var state = {
   isAdmin: false,
   adminUsers: [],
   adminLottos: [],
+  historyBets: [],
+  adminBets: [],
   adminTab: "dashboard"
 };
 
@@ -2327,18 +2401,19 @@ var toastTimer = null;
 
 document.addEventListener("DOMContentLoaded", function () {
   [
-    "loginScreen","mainApp","apiState","loginUser","loginPass","loginBtn",
+    "loginScreen","mainApp","apiState","loginVersion","loginUser","loginPass","loginBtn",
     "lottoScreen","betScreen","historyScreen","resultsScreen","adminScreen","lottoGrid","lottoEmpty",
     "backBtn","selectedName","selectedRound","selectedClose","selectedCount",
     "accountName","heroCredit","betCredit","bottomCredit","summaryCredit","adminBtn",
     "resultsBtn","historyBtn","logoutBtn","resultsBackBtn","resultsBalance","resultsDate","resultsReloadBtn","resultsSource","resultsList","historyBackBtn","historyCredit","historyFrom","historyTo",
-     "historyStatus","historyList","adminIdentity","adminLogoutBtn","syncResultsBtn","adminDashRange","adminDashFrom","adminDashTo","adminDashCustomBtn","adminDashStats","adminByUser","adminByLotto","adminOpenUser","adminOpenLotto","adminOpenSearchBtn","adminOpenTable","adminCreateUserBtn","adminUserTable","adminLottoTable","directTitle","numberCount","numberInput",
+     "historyStatus","historyList","adminIdentity","adminLogoutBtn","syncResultsBtn","adminDashRange","adminDashFrom","adminDashTo","adminDashCustomBtn","adminDashStats","adminByUser","adminByLotto","adminBetFrom","adminBetTo","adminBetStatus","adminOpenUser","adminOpenLotto","adminOpenSearchBtn","adminOpenTable","adminCreateUserBtn","adminUserTable","adminLottoTable","directTitle","numberCount","numberInput",
     "clearNumbersBtn","numberChipBox","reverseBtn","doubleBtn",
     "priceA","priceB","priceALabel","priceBLabel","priceBField","directPriceGrid",
     "sourceCount","betCount","grandTotal","clearAllBtn","submitBtn","error",
     "loading","toast"
   ].forEach(function(id){ els[id] = document.getElementById(id); });
 
+  if (els.loginVersion) els.loginVersion.textContent = APP_VERSION;
   bindEvents();
   testApi();
 
@@ -2377,6 +2452,9 @@ function testApi() {
     .then(function(r){ return r.json(); })
     .then(function(j){
       if (!els.apiState) return;
+      if (els.loginVersion) {
+        els.loginVersion.textContent = (j && j.version) ? j.version : APP_VERSION;
+      }
       els.apiState.textContent = j && j.ok
         ? "● API พร้อมใช้งาน" + (j.huayCount ? " • หวย " + j.huayCount + " รายการ" : "")
         : "● API ยังไม่พร้อม";
@@ -2448,7 +2526,10 @@ function bindEvents() {
 
   els.adminDashCustomBtn.onclick = function(){ loadAdminDashboard("custom"); };
   els.syncResultsBtn.onclick = syncAdminResults;
-  els.adminOpenSearchBtn.onclick = loadAdminOpenBets;
+  els.adminOpenSearchBtn.onclick = loadAdminAllBets;
+  els.adminBetFrom.onchange = loadAdminAllBets;
+  els.adminBetTo.onchange = loadAdminAllBets;
+  els.adminBetStatus.onchange = loadAdminAllBets;
   els.adminCreateUserBtn.onclick = openCreateUser;
 
   els.historyFrom.onchange = loadHistory;
@@ -3350,6 +3431,7 @@ function loadHistory() {
       updateUserUI();
 
       var bets = r.bets || [];
+      state.historyBets = bets;
 
       if (!bets.length) {
         els.historyList.innerHTML = '<div class="empty">ยังไม่มีรายการโพย</div>';
@@ -3373,8 +3455,19 @@ function loadHistory() {
           '<div class="history-raw">' + escapeHtml(b.rawText || "") + '</div>' +
           '<div class="history-money"><span>ยอดแทง ' + money(b.totalAmount) +
           '</span><span>' + right + '</span></div>' +
+          '<button class="history-detail-btn" type="button" data-history-bill="' +
+          escapeHtml(String(b.billId || "")) + '">ดูรายละเอียดโพย</button>' +
           '</article>';
       }).join("");
+
+      els.historyList.querySelectorAll("[data-history-bill]").forEach(function(btn){
+        btn.onclick = function(){
+          var bet = state.historyBets.find(function(x){
+            return String(x.billId) === String(btn.dataset.historyBill);
+          });
+          if (bet) showBetDetails(bet, false);
+        };
+      });
     })
     .catch(showErrorGlobal);
 }
@@ -3388,6 +3481,77 @@ function statusText(s) {
   })[s] || s;
 }
 
+
+function betGroupPriceText(g) {
+  var mode = String(g.mode || "");
+  var top = Number(g.top || 0);
+  var bottom = Number(g.bottom || 0);
+  var parts = [];
+
+  if (mode === "ตท" || mode === "ตรงโต๊ด") {
+    if (top > 0) parts.push("ตรง " + money(top));
+    if (bottom > 0) parts.push("โต๊ด " + money(bottom));
+  } else if (mode === "6กลับ") {
+    if (top > 0) parts.push("6 กลับ " + money(top));
+  } else {
+    if (top > 0) parts.push("บน " + money(top));
+    if (bottom > 0) parts.push("ล่าง " + money(bottom));
+  }
+
+  return parts.join("  |  ");
+}
+
+function showBetDetails(bet, isAdminView) {
+  bet = bet || {};
+  var groups = Array.isArray(bet.groups) ? bet.groups : [];
+
+  var groupsHtml = groups.length
+    ? groups.map(function(g){
+        var nums = Array.isArray(g.numbers) ? g.numbers : [];
+
+        return '<div class="bet-detail-group">' +
+          '<div class="bet-detail-group-head"><b>' +
+            escapeHtml(String(g.mode || "รายการ")) +
+          '</b><span>' + nums.length + ' เลข</span></div>' +
+          '<div class="bet-detail-numbers">' +
+            nums.map(function(n){
+              return '<span>' + escapeHtml(n) + '</span>';
+            }).join("") +
+          '</div>' +
+          '<div class="bet-detail-price">' +
+            escapeHtml(betGroupPriceText(g)) +
+          '</div>' +
+        '</div>';
+      }).join("")
+    : '<div class="bet-detail-empty">ไม่มีรายละเอียด</div>';
+
+  var payoutRow = bet.status === "WIN"
+    ? '<div class="bet-detail-summary"><span>ยอดถูกรางวัล</span><b>' + money(bet.payout) + '</b></div>'
+    : '';
+
+  Swal.fire({
+    title:isAdminView ? "รายละเอียดโพย" : "โพยของฉัน",
+    width:720,
+    html:
+      '<div class="bet-detail-wrap">' +
+        '<div class="bet-detail-top">' +
+          '<div><small>หวย</small><b>' + escapeHtml(bet.lottoName || "-") + '</b></div>' +
+          '<div><small>สถานะ</small><b>' + escapeHtml(statusText(bet.status)) + '</b></div>' +
+        '</div>' +
+        '<div class="bet-detail-meta">' +
+          (isAdminView ? 'User ' + escapeHtml(bet.username || "-") + ' • ' : '') +
+          'รอบ ' + escapeHtml(bet.roundDate || "-") + '<br>' +
+          escapeHtml(bet.betAtText || formatDateTime(bet.betAt)) + '<br>' +
+          'Bill: ' + escapeHtml(String(bet.billId || "")) +
+        '</div>' +
+        groupsHtml +
+        '<div class="bet-detail-summary"><span>ยอดแทง</span><b>' + money(bet.totalAmount) + '</b></div>' +
+        payoutRow +
+      '</div>',
+    confirmButtonText:"ปิด",
+    confirmButtonColor:"#991b1b"
+  });
+}
 
 /* =====================================================
    ADMIN BACKOFFICE
@@ -3427,7 +3591,7 @@ function showAdminTab(tab) {
   if (panel) panel.classList.add("active");
 
   if (state.adminTab === "dashboard") loadAdminDashboard("day");
-  if (state.adminTab === "openbets") loadAdminOpenBets();
+  if (state.adminTab === "openbets") loadAdminAllBets();
   if (state.adminTab === "users") loadAdminUsers();
   if (state.adminTab === "lotto") loadAdminLottoSettings();
 }
@@ -3563,32 +3727,67 @@ async function syncAdminResults() {
   }
 }
 
-async function loadAdminOpenBets() {
+async function loadAdminAllBets() {
   if (!state.isAdmin) return;
 
   try {
-    var r = await api("adminGetOpenBets", state.token, {
+    var filter = {
+      dateFrom:els.adminBetFrom.value || "",
+      dateTo:els.adminBetTo.value || "",
+      status:els.adminBetStatus.value || "",
       userKeyword:els.adminOpenUser.value || "",
-      lottoName:els.adminOpenLotto.value || ""
-    });
+      lottoName:els.adminOpenLotto.value || "",
+      limit:3000
+    };
+
+    var r;
+
+    try {
+      r = await api("adminGetAllBets", state.token, filter);
+    } catch(e) {
+      if (filter.status && filter.status !== "WAITING") throw e;
+
+      r = await api("adminGetOpenBets", state.token, {
+        userKeyword:filter.userKeyword,
+        lottoName:filter.lottoName
+      });
+    }
+
+    state.adminBets = r || [];
 
     els.adminOpenTable.innerHTML = adminTable(
-      ["User","หวย","รอบ","ยอด","เวลา","โพย"],
-      (r || []).map(function(b){
+      ["เวลา","User","หวย","รอบ","ยอด","สถานะ","รายละเอียด"],
+      state.adminBets.map(function(b){
         return [
+          escapeHtml(b.betAtText || formatDateTime(b.betAt)),
           escapeHtml(b.username),
           escapeHtml(b.lottoName),
           escapeHtml(b.roundDate),
           money(b.totalAmount),
-          escapeHtml((b.betAtText || formatDateTime(b.betAt))),
-          '<span class="numbers">' + escapeHtml(b.rawText || "") + '</span>'
+          '<span class="status-pill status-' + escapeHtml(b.status) + '">' +
+            escapeHtml(statusText(b.status)) + '</span>',
+          '<button class="admin-mini edit" data-admin-bill="' +
+            escapeHtml(String(b.billId || "")) + '">ดูโพย</button>'
         ];
       })
     );
 
+    els.adminOpenTable.querySelectorAll("[data-admin-bill]").forEach(function(btn){
+      btn.onclick = function(){
+        var bet = state.adminBets.find(function(x){
+          return String(x.billId) === String(btn.dataset.adminBill);
+        });
+        if (bet) showBetDetails(bet, true);
+      };
+    });
+
   } catch(e) {
     showAdminError(e);
   }
+}
+
+function loadAdminOpenBets() {
+  return loadAdminAllBets();
 }
 
 async function loadAdminUsers() {
