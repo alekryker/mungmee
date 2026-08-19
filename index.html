@@ -2508,6 +2508,7 @@ function boot() {
           lottoName: l.lottoName,
           closeTime: l.closeTime,
           roundDate: l.roundDate,
+          closeDate: l.closeDate || l.roundDate,
           drawDate: l.roundDate,
           open: l.open !== false,
           minPerNumber: Number(l.minPerNumber || 0),
@@ -3195,7 +3196,21 @@ async function openConfirm() {
     focusConfirm:false
   });
 
-  if (result.isConfirmed) confirmAndSend();
+  if (result.isConfirmed) {
+    confirmAndSend();
+    return;
+  }
+
+  if (result.dismiss === Swal.DismissReason.cancel) {
+    // กลับไปหน้าแทงหวยตัวเดิมเพื่อแก้ไข
+    showBet();
+
+    setTimeout(function(){
+      try {
+        els.numberInput.focus();
+      } catch(e) {}
+    }, 120);
+  }
 }
 
 function closeConfirm() {
@@ -3275,8 +3290,7 @@ function loadMemberResults() {
 
     if (els.resultsSource) {
       els.resultsSource.textContent =
-        "AllHuay • อัปเดต " + (r.checkedAt || "") +
-        (Number(r.settledBills || 0) > 0 ? " • ตรวจโพย " + Number(r.settledBills) + " บิล" : "");
+        "AllHuay • อัปเดต " + (r.checkedAt || "");
     }
 
     if (!rows.length) {
@@ -4018,17 +4032,30 @@ function bangkokNowParts() {
   };
 }
 
+function parseIsoDateParts(text) {
+  var iso = String(text || "").match(/(\d{4})-(\d{1,2})-(\d{1,2})/);
+
+  if (!iso) return null;
+
+  return {
+    year:Number(iso[1]),
+    month:Number(iso[2]),
+    day:Number(iso[3])
+  };
+}
+
 function getRoundDateParts(l) {
-  var text = l && (l.drawDate || l.date || l.roundDate) || "";
+  var p = parseIsoDateParts(l && l.roundDate);
 
-  var iso = String(text).match(/(\d{4})-(\d{1,2})-(\d{1,2})/);
-  if (iso) return {day:+iso[3], month:+iso[2], year:+iso[1]};
-
-  var m = String(text).match(/(\d{1,2})[-\/](\d{1,2})[-\/](\d{4})/);
-  if (m) return {day:+m[1], month:+m[2], year:+m[3]};
+  if (p) return p;
 
   var b = bangkokNowParts();
-  return {day:b.day, month:b.month, year:b.year};
+
+  return {
+    year:b.year,
+    month:b.month,
+    day:b.day
+  };
 }
 
 function getRoundDateText(l) {
@@ -4039,23 +4066,41 @@ function getRoundDateText(l) {
 function getLottoCloseTarget(l) {
   if (!l) return null;
 
-  var p = getRoundDateParts(l);
+  var p =
+    parseIsoDateParts(l.closeDate) ||
+    getRoundDateParts(l);
+
   var m = String(l.closeTime || "").match(/(\d{1,2}):(\d{2})/);
+
   if (!m) return null;
 
-  var hh = pad2(Number(m[1]));
-  var mm = pad2(Number(m[2]));
-
-  // roundDate จาก API เป็นวันที่รอบตาม Bangkok แล้ว
   return new Date(
-    p.year + "-" + pad2(p.month) + "-" + pad2(p.day) +
-    "T" + hh + ":" + mm + ":00+07:00"
+    p.year + "-" +
+    pad2(p.month) + "-" +
+    pad2(p.day) + "T" +
+    pad2(Number(m[1])) + ":" +
+    pad2(Number(m[2])) +
+    ":00+07:00"
   );
 }
 
 function getActualCloseText(l) {
+  var p = parseIsoDateParts(l && l.closeDate);
+
+  if (p) {
+    return (
+      pad2(p.day) + "-" +
+      pad2(p.month) + "-" +
+      p.year + " " +
+      (l.closeTime || "--:--")
+    );
+  }
+
   var t = getLottoCloseTarget(l);
-  return t ? formatDateOnly(t) + " " + (l.closeTime || "--:--") : (l.closeTime || "--:--");
+
+  return t
+    ? formatDateOnly(t) + " " + (l.closeTime || "--:--")
+    : (l.closeTime || "--:--");
 }
 
 function formatDateOnly(d) {
