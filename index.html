@@ -989,6 +989,347 @@ button:active {
   .account-btn { padding:0 8px; }
 }
 
+
+/* =====================================================
+   DIRECT BET UI — 2 ตัว / 3 ตัว / 6 กลับ / 19 ประตู
+===================================================== */
+.bet-mode-wrap {
+  padding: 14px 11px 0;
+  background: linear-gradient(180deg,#fff1f2 0,#f6f6f8 100%);
+}
+.bet-mode-tabs {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:5px;
+  padding:6px;
+  background:#fff;
+  border:1px solid #e4e4e7;
+  border-radius:18px;
+  box-shadow:0 7px 24px rgba(0,0,0,.06);
+}
+.bet-mode-tab {
+  min-height:62px;
+  border:0;
+  border-radius:14px;
+  background:transparent;
+  color:#3f3f46;
+  font-size:13px;
+  font-weight:950;
+  white-space:nowrap;
+}
+.bet-mode-tab.active {
+  background:linear-gradient(135deg,#c81431,#ed183d);
+  color:#fff;
+  box-shadow:0 7px 18px rgba(201,21,45,.20);
+}
+
+.direct-bet-content {
+  padding:12px 11px calc(185px + env(safe-area-inset-bottom));
+}
+.direct-card {
+  background:#fff;
+  border:1px solid #e4e4e7;
+  border-radius:22px;
+  padding:16px;
+  box-shadow:0 8px 26px rgba(24,24,27,.05);
+}
+.direct-title-row {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+.direct-title {
+  font-size:20px;
+  font-weight:950;
+}
+.number-count-pill {
+  padding:7px 11px;
+  border:1px solid #fecdd3;
+  border-radius:999px;
+  background:#fff1f2;
+  color:#be123c;
+  font-size:11px;
+  font-weight:950;
+  white-space:nowrap;
+}
+.direct-help {
+  margin-top:5px;
+  color:#71717a;
+  font-size:11px;
+  font-weight:700;
+}
+.number-entry {
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:8px;
+  margin-top:14px;
+}
+.number-entry-input {
+  width:100%;
+  min-height:70px;
+  border:1.5px solid #d4d4d8;
+  border-radius:17px;
+  padding:13px 14px;
+  outline:none;
+  resize:none;
+  background:#fff;
+  color:#18181b;
+  font-size:19px;
+  line-height:1.45;
+  font-weight:900;
+}
+.number-entry-input:focus {
+  border-color:#e11d48;
+  box-shadow:0 0 0 3px rgba(225,29,72,.08);
+}
+.add-number-btn {
+  width:72px;
+  border:0;
+  border-radius:17px;
+  background:#fff1f2;
+  color:#be123c;
+  font-size:13px;
+  font-weight:950;
+}
+.selected-label-row {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:18px;
+  gap:8px;
+}
+.selected-label {
+  color:#52525b;
+  font-size:12px;
+  font-weight:900;
+}
+.clear-numbers {
+  border:0;
+  background:transparent;
+  color:#e11d48;
+  padding:5px;
+  font-size:11px;
+  font-weight:900;
+}
+.number-chip-box {
+  min-height:94px;
+  margin-top:8px;
+  padding:10px;
+  display:flex;
+  align-content:flex-start;
+  flex-wrap:wrap;
+  gap:7px;
+  border:1.5px dashed #e4e4e7;
+  border-radius:17px;
+  background:#fafafa;
+}
+.number-chip-empty {
+  width:100%;
+  display:grid;
+  place-items:center;
+  min-height:70px;
+  color:#a1a1aa;
+  font-size:12px;
+  font-weight:850;
+}
+.bet-number-chip {
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  min-height:39px;
+  padding:0 9px 0 12px;
+  border:1px solid #fecdd3;
+  border-radius:11px;
+  background:#fff1f2;
+  color:#9f1239;
+  font-size:15px;
+  font-weight:950;
+}
+.bet-number-chip button {
+  width:21px;height:21px;border:0;border-radius:50%;
+  background:#fff;color:#e11d48;font-size:14px;line-height:1;
+}
+.quick-tools {
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:13px;
+}
+.quick-tool {
+  min-height:44px;
+  padding:0 14px;
+  border:1.5px solid #d4d4d8;
+  border-radius:13px;
+  background:#fff;
+  color:#27272a;
+  font-size:12px;
+  font-weight:950;
+}
+.quick-tool.primary-tool {
+  border-color:#fecdd3;
+  background:#fff1f2;
+  color:#be123c;
+}
+.quick-tool.active {
+  border-color:#be123c;
+  background:#be123c;
+  color:#fff;
+}
+.quick-tool.hidden { display:none; }
+
+.price-section {
+  margin-top:18px;
+  padding-top:16px;
+  border-top:1px solid #f1f1f1;
+}
+.price-section-title {
+  font-size:13px;
+  font-weight:950;
+  color:#52525b;
+}
+.direct-price-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:9px;
+  margin-top:10px;
+}
+.direct-price-grid.one {
+  grid-template-columns:1fr;
+}
+.direct-price-field {
+  position:relative;
+}
+.direct-price-field.hidden { display:none; }
+.direct-price-input {
+  width:100%;
+  height:64px;
+  border:1.5px solid #d4d4d8;
+  border-radius:15px;
+  outline:none;
+  text-align:center;
+  padding:22px 9px 5px;
+  background:#fff;
+  font-size:20px;
+  font-weight:950;
+  color:#991b1b;
+}
+.direct-price-input:focus {
+  border-color:#e11d48;
+  box-shadow:0 0 0 3px rgba(225,29,72,.08);
+}
+.direct-price-label {
+  position:absolute;
+  left:0;right:0;top:7px;
+  text-align:center;
+  color:#a1a1aa;
+  font-size:9px;
+  font-weight:900;
+  pointer-events:none;
+}
+.bet-summary {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:7px;
+  margin-top:14px;
+}
+.bet-summary-item {
+  padding:10px 8px;
+  border-radius:13px;
+  background:#fafafa;
+  text-align:center;
+}
+.bet-summary-item small {
+  display:block;
+  color:#a1a1aa;
+  font-size:8px;
+  font-weight:900;
+}
+.bet-summary-item b {
+  display:block;
+  margin-top:2px;
+  color:#3f3f46;
+  font-size:13px;
+  font-weight:950;
+}
+.mode-info {
+  margin-top:12px;
+  padding:10px 11px;
+  border-radius:13px;
+  background:#fff7ed;
+  color:#9a3412;
+  font-size:10px;
+  font-weight:800;
+  line-height:1.55;
+}
+
+.direct-bottom {
+  position:fixed;
+  left:50%;
+  bottom:calc(7px + env(safe-area-inset-bottom));
+  transform:translateX(-50%);
+  z-index:45;
+  width:min(calc(100% - 14px),706px);
+  padding:9px;
+  border:1px solid rgba(228,228,231,.95);
+  border-radius:21px;
+  background:rgba(255,255,255,.97);
+  backdrop-filter:blur(18px);
+  box-shadow:0 15px 42px rgba(0,0,0,.16);
+}
+.direct-grand {
+  min-height:60px;
+  padding:10px 15px;
+  border-radius:15px;
+  background:linear-gradient(135deg,#791426,#b41630);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.direct-grand small {
+  color:rgba(255,255,255,.70);
+  font-size:10px;
+  font-weight:850;
+}
+.direct-grand strong {
+  font-size:25px;
+  font-weight:950;
+}
+.direct-action-row {
+  display:grid;
+  grid-template-columns:.75fr 1.55fr;
+  gap:8px;
+  margin-top:8px;
+}
+.direct-clear-all,.direct-submit {
+  min-height:51px;
+  border-radius:14px;
+  font-size:13px;
+  font-weight:950;
+}
+.direct-clear-all {
+  border:1.5px solid #fecdd3;
+  background:#fff;
+  color:#e11d48;
+}
+.direct-submit {
+  border:0;
+  background:linear-gradient(135deg,#c9152d,#ed173c);
+  color:#fff;
+}
+.direct-submit:disabled {
+  background:#d4d4d8;
+}
+
+@media (max-width:420px) {
+  .bet-mode-tab { min-height:58px;font-size:12px; }
+  .number-entry { grid-template-columns:1fr 62px; }
+  .add-number-btn { width:62px; }
+  .direct-card { padding:14px; }
+}
+
 </style>
  </head>
  <body>
@@ -1042,35 +1383,18 @@ button:active {
      </div>
     </div>
    </section>
+
    <section class="screen" id="betScreen">
     <header class="topbar">
      <div class="toprow">
-      <button class="back" id="backBtn">
-       ‹
-      </button>
+      <button class="back" id="backBtn">‹</button>
       <div class="lotto-selected">
-       <small>
-        หวยที่เลือก
-       </small>
-       <div class="selected-name" id="selectedName">
-        -
-       </div>
+       <small>หวยที่เลือก</small>
+       <div class="selected-name" id="selectedName">-</div>
        <div class="selected-sub">
-        <span id="selectedRound">
-         รอบ -
-        </span>
-        <span>
-         •
-        </span>
-        <span id="selectedClose">
-         ปิด --:--
-        </span>
-        <span>
-         •
-        </span>
-        <span class="selected-count" id="selectedCount">
-         --:--:--
-        </span>
+        <span id="selectedRound">รอบ -</span><span>•</span>
+        <span id="selectedClose">ปิด --:--</span><span>•</span>
+        <span class="selected-count" id="selectedCount">--:--:--</span>
        </div>
       </div>
       <div class="credit-mini">
@@ -1078,75 +1402,85 @@ button:active {
        <b id="betCredit">0</b>
       </div>
      </div>
-     <div class="floating-price" id="floatingPrice">
-      <div class="floating-price-head">
-       <div class="floating-price-title">
-        <small>ราคากลุ่มที่เลือก</small>
-        <b id="floatingPriceTitle">ยังไม่มีรายการ</b>
-       </div>
-       <div class="floating-price-count" id="floatingPriceCount">0 รายการ</div>
-      </div>
-
-      <div class="floating-price-grid" id="floatingPriceGrid">
-       <div class="float-price-field">
-        <span id="floatPriceALabel">ราคา</span>
-        <input class="float-price-input" id="floatPriceA" type="number" inputmode="numeric" min="0" step="1" placeholder="0">
-       </div>
-       <div class="float-price-field" id="floatPriceBField">
-        <span id="floatPriceBLabel">ราคา</span>
-        <input class="float-price-input" id="floatPriceB" type="number" inputmode="numeric" min="0" step="1" placeholder="0">
-       </div>
-      </div>
-     </div>
     </header>
-    <div class="content">
-     <section class="card">
-      <div class="card-title">
-       วางโพย
-      </div>
-      
-      <textarea class="slip" id="slipInput" placeholder="" spellcheck="false"></textarea>
-      <div class="parse-actions">
-       <button class="secondary" id="clearInput">
-        ล้าง
-       </button>
-       <button class="primary" id="parseBtn">
-        แยกโพย
-       </button>
-      </div>
-      <div class="parse-summary" id="parseSummary">
-       ยังไม่ได้แยกโพย
-      </div>
-      <div class="error" id="error">
-      </div>
-     </section>
-     <div class="groups-head">
-      <div class="groups-title">
-       รายการที่ระบบแยก
-      </div>
-      <div class="groups-count" id="groupsCount">
-       0 กลุ่ม
-      </div>
-     </div>
-     <div class="group-list" id="groupList">
-      <div class="empty">
-       วางโพยแล้วกด “แยกโพย”
-      </div>
+
+    <div class="bet-mode-wrap">
+     <div class="bet-mode-tabs">
+      <button class="bet-mode-tab active" data-mode="two">2 ตัว</button>
+      <button class="bet-mode-tab" data-mode="three">3 ตัว</button>
+      <button class="bet-mode-tab" data-mode="six">6 กลับ</button>
+      <button class="bet-mode-tab" data-mode="gate">19 ประตู</button>
      </div>
     </div>
-    <section class="bottom">
-     <div class="grand">
-      <small>
-       รวมยอดแทงทั้งหมด
-      </small>
-      <strong id="grandTotal">
-       0 บาท
-      </strong>
+
+    <div class="direct-bet-content">
+     <section class="direct-card">
+      <div class="direct-title-row">
+       <div>
+        <div class="direct-title" id="directTitle">กรอกเลข 2 ตัว</div>
+        <div class="direct-help" id="directHelp">พิมพ์เลข 2 ตัว แยกด้วยช่องว่าง / , หรือขึ้นบรรทัดใหม่</div>
+       </div>
+       <span class="number-count-pill" id="numberCount">0 ตัว</span>
+      </div>
+
+      <div class="number-entry">
+       <textarea id="numberInput" class="number-entry-input" inputmode="numeric" autocomplete="off" placeholder="เช่น 12 34 56"></textarea>
+       <button class="add-number-btn" id="addNumberBtn">เพิ่ม</button>
+      </div>
+
+      <div class="selected-label-row">
+       <span class="selected-label">เลขที่กำลังแทง</span>
+       <button class="clear-numbers" id="clearNumbersBtn">ล้างเลข</button>
+      </div>
+      <div class="number-chip-box" id="numberChipBox">
+       <div class="number-chip-empty">ยังไม่มีเลข</div>
+      </div>
+
+      <div class="quick-tools">
+       <button class="quick-tool primary-tool" id="reverseBtn">↔ กลับเลข</button>
+       <button class="quick-tool" id="doubleBtn">+ เลขเบิ้ล</button>
+      </div>
+
+      <div class="price-section">
+       <div class="price-section-title">ใส่ราคา</div>
+       <div class="direct-price-grid" id="directPriceGrid">
+        <div class="direct-price-field">
+         <span class="direct-price-label" id="priceALabel">บน</span>
+         <input class="direct-price-input" id="priceA" type="number" inputmode="decimal" min="0" step="1" placeholder="0">
+        </div>
+        <div class="direct-price-field" id="priceBField">
+         <span class="direct-price-label" id="priceBLabel">ล่าง</span>
+         <input class="direct-price-input" id="priceB" type="number" inputmode="decimal" min="0" step="1" placeholder="0">
+        </div>
+       </div>
+      </div>
+
+      <div class="bet-summary">
+       <div class="bet-summary-item"><small>เลขต้นฉบับ</small><b id="sourceCount">0</b></div>
+       <div class="bet-summary-item"><small>รายการแทง</small><b id="betCount">0</b></div>
+       <div class="bet-summary-item"><small>เครดิตคงเหลือ</small><b id="summaryCredit">0</b></div>
+      </div>
+
+      <div class="mode-info" id="modeInfo">
+       2 ตัวสามารถเลือกกลับเลขได้ และกด “เลขเบิ้ล” เพื่อเพิ่ม 00, 11, 22 ... 99
+      </div>
+      <div class="error" id="error"></div>
+     </section>
+    </div>
+
+    <section class="direct-bottom">
+     <div class="direct-grand">
+      <small>รวมยอดแทงทั้งหมด</small>
+      <strong id="grandTotal">0 เครดิต</strong>
      </div>
-     <div class="submit-credit-note"><span>ยอดนี้จะหักจากเครดิตทันที</span><span id="bottomCredit">เครดิต 0</span></div>
-     <button class="send" disabled="" id="submitBtn">
-      ตรวจสอบและยืนยันโพย
-     </button>
+     <div class="submit-credit-note">
+      <span>ยอดจะถูกหักจากเครดิตทันที</span>
+      <span id="bottomCredit">เครดิต 0</span>
+     </div>
+     <div class="direct-action-row">
+      <button class="direct-clear-all" id="clearAllBtn">ล้างทั้งหมด</button>
+      <button class="direct-submit" disabled id="submitBtn">ยืนยันโพย</button>
+     </div>
     </section>
    </section>
 
@@ -1215,10 +1549,8 @@ button:active {
   <div class="toast" id="toast">
   </div>
   
+
 <script>
-/* =====================================================
-   CREDIT WEB CONFIG / STATE
-===================================================== */
 const API = "https://script.google.com/macros/s/AKfycbzhCttywyi-ihmYs5ctKid6oQkRmb4itxHUZ2a6juYd9jltSE81PBt1I-20yr_X9Pcg/exec";
 const AFTER_MIDNIGHT_CUTOFF_HOUR = 6;
 
@@ -1227,29 +1559,30 @@ var state = {
   user: null,
   lottos: [],
   selectedLotto: null,
-  groups: [],
-  pendingPayloads: null,
-  activePriceGroupId: ""
+  betMode: "two",
+  numbers: [],
+  reverse: false,
+  priceA: 0,
+  priceB: 0
 };
 
 var els = {};
-var timer = null, toastTimer = null;
+var timer = null;
+var toastTimer = null;
 
-/* =====================================================
-   INIT / API
-===================================================== */
 document.addEventListener("DOMContentLoaded", function () {
   [
     "loginScreen","mainApp","apiState","loginUser","loginPass","loginBtn",
-    "lottoScreen","betScreen","historyScreen","lottoGrid","lottoEmpty","backBtn",
-    "selectedName","selectedRound","selectedClose","selectedCount","slipInput","clearInput",
-    "parseBtn","parseSummary","error","groupList","groupsCount","grandTotal","submitBtn",
-    "overlay","dialogSub","dialogBody","closeDialog","cancelDialog","confirmSend","loading","toast",
-    "floatingPrice","floatingPriceTitle","floatingPriceCount","floatingPriceGrid","floatPriceA","floatPriceB",
-    "floatPriceALabel","floatPriceBLabel","floatPriceBField","accountName","heroCredit","betCredit",
-    "bottomCredit","historyBtn","logoutBtn","historyBackBtn","historyCredit","historyFrom","historyTo",
-    "historyStatus","historyList"
-  ].forEach(function(id){ els[id]=document.getElementById(id); });
+    "lottoScreen","betScreen","historyScreen","lottoGrid","lottoEmpty",
+    "backBtn","selectedName","selectedRound","selectedClose","selectedCount",
+    "accountName","heroCredit","betCredit","bottomCredit","summaryCredit",
+    "historyBtn","logoutBtn","historyBackBtn","historyCredit","historyFrom","historyTo",
+    "historyStatus","historyList","directTitle","directHelp","numberCount","numberInput",
+    "addNumberBtn","clearNumbersBtn","numberChipBox","reverseBtn","doubleBtn",
+    "priceA","priceB","priceALabel","priceBLabel","priceBField","directPriceGrid",
+    "sourceCount","betCount","modeInfo","grandTotal","clearAllBtn","submitBtn","error",
+    "overlay","dialogSub","dialogBody","closeDialog","cancelDialog","confirmSend","loading","toast"
+  ].forEach(function(id){ els[id] = document.getElementById(id); });
 
   bindEvents();
   testApi();
@@ -1260,179 +1593,237 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function api(action) {
-  var args = Array.prototype.slice.call(arguments,1);
-  return fetch(API,{
-    method:"POST",
-    redirect:"follow",
-    headers:{"Content-Type":"text/plain;charset=utf-8"},
-    body:JSON.stringify({action:action,args:args})
+  var args = Array.prototype.slice.call(arguments, 1);
+
+  return fetch(API, {
+    method: "POST",
+    redirect: "follow",
+    headers: {"Content-Type":"text/plain;charset=utf-8"},
+    body: JSON.stringify({action:action,args:args})
   }).then(function(res){
     return res.text().then(function(text){
       var data;
-      try { data=text?JSON.parse(text):{}; }
-      catch(e){ throw new Error("API ตอบกลับไม่ถูกต้อง กรุณา Deploy Apps Script เวอร์ชันล่าสุด"); }
-      if (!res.ok || data.ok===false) throw new Error(data.error || "API error");
+      try { data = text ? JSON.parse(text) : {}; }
+      catch(e) {
+        throw new Error("API ตอบกลับไม่ถูกต้อง กรุณา Deploy Apps Script เวอร์ชันล่าสุด");
+      }
+
+      if (!res.ok || data.ok === false) {
+        throw new Error(data.error || "API error");
+      }
+
       return data.data;
     });
   });
 }
 
-function testApi(){
-  fetch(API+"?action=ping",{cache:"no-store",redirect:"follow"})
-    .then(function(r){return r.json();})
+function testApi() {
+  fetch(API + "?action=ping", {cache:"no-store",redirect:"follow"})
+    .then(function(r){ return r.json(); })
     .then(function(j){
-      if(!els.apiState)return;
-      els.apiState.textContent=j&&j.ok?"● API พร้อมใช้งาน":"● API ยังไม่พร้อม";
-      els.apiState.style.color=j&&j.ok?"#15803d":"#b91c1c";
+      if (!els.apiState) return;
+      els.apiState.textContent = j && j.ok
+        ? "● API พร้อมใช้งาน" + (j.huayCount ? " • หวย " + j.huayCount + " รายการ" : "")
+        : "● API ยังไม่พร้อม";
+      els.apiState.style.color = j && j.ok ? "#15803d" : "#b91c1c";
     })
     .catch(function(){
-      if(!els.apiState)return;
-      els.apiState.textContent="● เชื่อม API ไม่ได้";
-      els.apiState.style.color="#b91c1c";
+      if (!els.apiState) return;
+      els.apiState.textContent = "● เชื่อม API ไม่ได้";
+      els.apiState.style.color = "#b91c1c";
     });
 }
 
-function login(){
-  var u=(els.loginUser.value||"").trim();
-  var p=els.loginPass.value||"";
-  if(!u||!p){ showErrorGlobal("กรุณากรอก User และ Password"); return; }
+function bindEvents() {
+  els.loginBtn.onclick = login;
+  els.loginPass.onkeydown = function(e){ if (e.key === "Enter") login(); };
+
+  els.backBtn.onclick = backToLotto;
+  els.historyBtn.onclick = showHistory;
+  els.historyBackBtn.onclick = showLotto;
+  els.logoutBtn.onclick = function(){ logout(true); };
+
+  document.querySelectorAll(".bet-mode-tab").forEach(function(btn){
+    btn.onclick = function(){ setBetMode(btn.dataset.mode); };
+  });
+
+  els.addNumberBtn.onclick = addNumbersFromInput;
+  els.numberInput.onkeydown = function(e){
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      addNumbersFromInput();
+    }
+  };
+
+  els.clearNumbersBtn.onclick = function(){
+    state.numbers = [];
+    renderDirectBet();
+  };
+
+  els.reverseBtn.onclick = function(){
+    if (state.betMode !== "two") return;
+    state.reverse = !state.reverse;
+    renderDirectBet();
+  };
+
+  els.doubleBtn.onclick = function(){
+    if (state.betMode !== "two") return;
+    for (var i=0;i<=9;i++) addUniqueNumber(String(i)+String(i));
+    renderDirectBet();
+  };
+
+  els.priceA.oninput = function(){ state.priceA = num(els.priceA.value); renderTotalsOnly(); };
+  els.priceB.oninput = function(){ state.priceB = num(els.priceB.value); renderTotalsOnly(); };
+
+  els.clearAllBtn.onclick = clearCurrentBet;
+  els.submitBtn.onclick = openConfirm;
+
+  els.closeDialog.onclick = closeConfirm;
+  els.cancelDialog.onclick = closeConfirm;
+  els.confirmSend.onclick = confirmAndSend;
+  els.overlay.onclick = function(e){ if (e.target === els.overlay) closeConfirm(); };
+
+  els.historyFrom.onchange = loadHistory;
+  els.historyTo.onchange = loadHistory;
+  els.historyStatus.onchange = loadHistory;
+}
+
+/* =====================================================
+   LOGIN / BOOT
+===================================================== */
+function login() {
+  var u = (els.loginUser.value || "").trim();
+  var p = els.loginPass.value || "";
+
+  if (!u || !p) {
+    showErrorGlobal("กรุณากรอก User และ Password");
+    return;
+  }
+
   setLoading(true);
-  api("webLogin",u,p)
+  api("webLogin", u, p)
     .then(function(r){
-      state.token=r.token;
-      sessionStorage.setItem("creditToken",state.token);
+      state.token = r.token;
+      sessionStorage.setItem("creditToken", state.token);
       return boot();
     })
     .catch(showErrorGlobal)
-    .finally(function(){setLoading(false);});
+    .finally(function(){ setLoading(false); });
 }
 
-function logout(callServer){
-  if(callServer!==false && state.token) api("webLogout",state.token).catch(function(){});
-  state.token="";
-  state.user=null;
+function logout(callServer) {
+  if (callServer !== false && state.token) {
+    api("webLogout", state.token).catch(function(){});
+  }
+
+  state.token = "";
+  state.user = null;
   sessionStorage.removeItem("creditToken");
+
   els.mainApp.classList.add("hidden");
   els.loginScreen.classList.remove("hidden");
 }
 
-function boot(){
-  if(!state.token) return Promise.reject(new Error("ไม่มี session"));
+function boot() {
+  if (!state.token) return Promise.reject(new Error("ไม่มี session"));
+
   setLoading(true);
-  return api("getCreditBetBoot",state.token)
+
+  return api("getCreditBetBoot", state.token)
     .then(function(data){
-      state.user=data.user;
-      state.lottos=(data.lottos||[]).map(function(l){
+      state.user = data.user;
+
+      state.lottos = (data.lottos || []).map(function(l){
         return {
-          name:l.lottoName,
-          lottoName:l.lottoName,
-          closeTime:l.closeTime,
-          roundDate:l.roundDate,
-          drawDate:l.roundDate,
-          open:l.open!==false,
-          minPerNumber:l.minPerNumber,
-          maxPerNumber:l.maxPerNumber
+          name: l.lottoName,
+          lottoName: l.lottoName,
+          closeTime: l.closeTime,
+          roundDate: l.roundDate,
+          drawDate: l.roundDate,
+          open: l.open !== false,
+          minPerNumber: Number(l.minPerNumber || 0),
+          maxPerNumber: Number(l.maxPerNumber || 0),
+          maxPerBill: Number(l.maxPerBill || 0)
         };
       });
+
       updateUserUI();
       renderLottos();
       showLotto();
+
       els.loginScreen.classList.add("hidden");
       els.mainApp.classList.remove("hidden");
       return data;
     })
-    .finally(function(){setLoading(false);});
+    .finally(function(){ setLoading(false); });
 }
 
-function updateUserUI(){
-  if(!state.user)return;
-  var credit=money(state.user.credit);
-  els.accountName.textContent=(state.user.displayName||state.user.username||"USER").toUpperCase();
-  els.heroCredit.textContent=credit+" เครดิต";
-  els.betCredit.textContent=credit;
-  els.bottomCredit.textContent="เครดิต "+credit;
-  els.historyCredit.textContent=credit+" เครดิต";
-}
+function updateUserUI() {
+  if (!state.user) return;
 
-/* =====================================================
-   EVENTS
-===================================================== */
-function bindEvents(){
-  els.loginBtn.onclick=login;
-  els.loginPass.onkeydown=function(e){if(e.key==="Enter")login();};
-  els.backBtn.onclick=backToLotto;
+  var credit = money(state.user.credit);
 
-  els.clearInput.onclick=function(){
-    els.slipInput.value="";
-    state.groups=[];
-    state.activePriceGroupId="";
-    renderGroups();
-    clearError();
-  };
-
-  els.parseBtn.onclick=parseCurrentSlip;
-  els.submitBtn.onclick=openConfirm;
-  els.closeDialog.onclick=closeConfirm;
-  els.cancelDialog.onclick=closeConfirm;
-  els.confirmSend.onclick=confirmAndSend;
-
-  els.overlay.onclick=function(e){if(e.target===els.overlay)closeConfirm();};
-
-  els.floatPriceA.oninput=function(){updateActiveFloatingPrice("A",els.floatPriceA.value);};
-  els.floatPriceB.oninput=function(){updateActiveFloatingPrice("B",els.floatPriceB.value);};
-
-  els.historyBtn.onclick=function(){showHistory();};
-  els.historyBackBtn.onclick=function(){showLotto();};
-  els.logoutBtn.onclick=function(){logout(true);};
-
-  els.historyFrom.onchange=loadHistory;
-  els.historyTo.onchange=loadHistory;
-  els.historyStatus.onchange=loadHistory;
+  els.accountName.textContent = (state.user.displayName || state.user.username || "USER").toUpperCase();
+  els.heroCredit.textContent = credit + " เครดิต";
+  els.betCredit.textContent = credit;
+  els.bottomCredit.textContent = "เครดิต " + credit;
+  els.summaryCredit.textContent = credit;
+  els.historyCredit.textContent = credit + " เครดิต";
 }
 
 /* =====================================================
-   LOTTO SCREEN
+   LOTTO
 ===================================================== */
-function renderLottos(){
-  els.lottoGrid.innerHTML="";
-  var open=state.lottos.filter(function(l){return l.open!==false;});
-  els.lottoEmpty.style.display=open.length?"none":"block";
+function renderLottos() {
+  els.lottoGrid.innerHTML = "";
+
+  var open = state.lottos.filter(function(l){ return l.open !== false; });
+  els.lottoEmpty.style.display = open.length ? "none" : "block";
 
   open.forEach(function(lotto){
-    var b=document.createElement("button");
-    b.className="lotto";
-    b.type="button";
-    b._lotto=lotto;
-    b.innerHTML='<div><div class="lotto-name"></div><div class="lotto-meta"></div></div><div class="lotto-right"><div class="lotto-date"></div><div class="countdown"></div></div>';
-    b.querySelector(".lotto-name").textContent=lotto.name||"-";
-    b.querySelector(".lotto-meta").textContent="ปิดรับ "+getActualCloseText(lotto)+" • ขั้นต่ำ "+money(lotto.minPerNumber||0);
-    b.querySelector(".lotto-date").textContent="รอบ "+getRoundDateText(lotto);
-    b.querySelector(".countdown")._lotto=lotto;
-    b.onclick=function(){
-      var t=getLottoCloseTarget(lotto);
-      if(t && t.getTime()<=Date.now()) return;
+    var b = document.createElement("button");
+    b.className = "lotto";
+    b.type = "button";
+    b._lotto = lotto;
+
+    b.innerHTML =
+      '<div><div class="lotto-name"></div><div class="lotto-meta"></div></div>' +
+      '<div class="lotto-right"><div class="lotto-date"></div><div class="countdown"></div></div>';
+
+    b.querySelector(".lotto-name").textContent = lotto.name || "-";
+    b.querySelector(".lotto-meta").textContent =
+      "ปิดรับ " + getActualCloseText(lotto) +
+      (lotto.minPerNumber > 0 ? " • ขั้นต่ำ " + money(lotto.minPerNumber) : "");
+
+    b.querySelector(".lotto-date").textContent = "รอบ " + getRoundDateText(lotto);
+    b.querySelector(".countdown")._lotto = lotto;
+
+    b.onclick = function(){
+      var t = getLottoCloseTarget(lotto);
+      if (t && t.getTime() <= Date.now()) return;
       chooseLotto(lotto);
     };
+
     els.lottoGrid.appendChild(b);
   });
 
   startTimer(updateLottoCountdowns);
 }
 
-function chooseLotto(lotto){
-  state.selectedLotto=lotto;
-  state.groups=[];
-  state.activePriceGroupId="";
-  els.slipInput.value="";
-  els.selectedName.textContent=lotto.name||"-";
-  els.selectedRound.textContent="รอบ "+getRoundDateText(lotto);
-  els.selectedClose.textContent="ปิด "+getActualCloseText(lotto);
-  renderGroups();
+function chooseLotto(lotto) {
+  state.selectedLotto = lotto;
+  state.betMode = "two";
+  clearCurrentBet(false);
+
+  els.selectedName.textContent = lotto.name || "-";
+  els.selectedRound.textContent = "รอบ " + getRoundDateText(lotto);
+  els.selectedClose.textContent = "ปิด " + getActualCloseText(lotto);
+
   showBet();
   startTimer(updateSelectedCountdown);
 }
 
-function showLotto(){
+function showLotto() {
   els.betScreen.classList.remove("active");
   els.historyScreen.classList.remove("active");
   els.lottoScreen.classList.add("active");
@@ -1440,483 +1831,393 @@ function showLotto(){
   scrollTo(0,0);
 }
 
-function showBet(){
+function showBet() {
   els.lottoScreen.classList.remove("active");
   els.historyScreen.classList.remove("active");
   els.betScreen.classList.add("active");
+  renderDirectBet();
   scrollTo(0,0);
 }
 
-function backToLotto(){
-  state.selectedLotto=null;
-  state.groups=[];
-  renderGroups();
+function backToLotto() {
+  state.selectedLotto = null;
+  clearCurrentBet(false);
   showLotto();
 }
 
 /* =====================================================
-   HISTORY
+   DIRECT BET
 ===================================================== */
-function showHistory(){
-  els.lottoScreen.classList.remove("active");
-  els.betScreen.classList.remove("active");
-  els.historyScreen.classList.add("active");
-  clearInterval(timer);
-  scrollTo(0,0);
-  loadHistory();
+function setBetMode(mode) {
+  if (["two","three","six","gate"].indexOf(mode) === -1) return;
+
+  state.betMode = mode;
+  state.numbers = [];
+  state.reverse = false;
+  state.priceA = 0;
+  state.priceB = 0;
+  els.numberInput.value = "";
+
+  renderDirectBet();
 }
 
-function loadHistory(){
-  if(!state.token)return;
-  els.historyList.innerHTML='<div class="empty">กำลังโหลดรายการ...</div>';
-  api("getMyBetHistory",state.token,{
-    dateFrom:els.historyFrom.value||"",
-    dateTo:els.historyTo.value||"",
-    status:els.historyStatus.value||""
-  }).then(function(r){
-    state.user=r.user;
-    updateUserUI();
-
-    var bets=r.bets||[];
-    if(!bets.length){
-      els.historyList.innerHTML='<div class="empty">ยังไม่มีรายการโพย</div>';
-      return;
-    }
-
-    els.historyList.innerHTML=bets.map(function(b){
-      var st=statusText(b.status);
-      var right=b.status==="WIN"?"รับ "+money(b.payout)+" เครดิต":
-                b.status==="WAITING"?"รอผล":"จ่าย 0";
-      return '<article class="history-card">'+
-        '<div class="history-head"><strong>'+escapeHtml(b.lottoName)+'</strong><span class="status-pill status-'+escapeHtml(b.status)+'">'+st+'</span></div>'+
-        '<div class="history-meta">รอบ '+escapeHtml(b.roundDate)+' • '+formatDateTime(b.betAt)+' • บิล '+escapeHtml(String(b.billId||"").slice(0,8))+'</div>'+
-        '<div class="history-raw">'+escapeHtml(b.rawText||"")+'</div>'+
-        '<div class="history-money"><span>ยอดแทง '+money(b.totalAmount)+' เครดิต</span><span>'+right+'</span></div>'+
-      '</article>';
-    }).join("");
-  }).catch(showErrorGlobal);
-}
-
-function statusText(s){
-  return ({WAITING:"รอผล",WIN:"ถูกรางวัล",LOSE:"ไม่ถูกรางวัล",CANCELLED:"ยกเลิก"})[s]||s;
-}
-
-/* =====================================================
-   SLIP PARSER
-===================================================== */
-function parseCurrentSlip(){
-  clearError();
-  var text=els.slipInput.value||"";
-  if(!text.trim()){showError("กรุณาวางโพยก่อน");return;}
-  var groups=parseSlip(text);
-  if(!groups.length){showError("ยังแยกเลขจากข้อความนี้ไม่ได้");return;}
-  state.groups=groups;
-  state.activePriceGroupId=groups.length?groups[0].id:"";
-  renderGroups();
-  showToast("แยกโพยแล้ว");
-}
-
-function normalizeText(text){
-  return String(text||"")
-    .replace(/\\\*/g,"*")
-    .replace(/[×xX]/g,"*")
-    .replace(/\r/g,"")
-    .replace(/[–—]/g,"-")
-    .replace(/[：]/g,":")
-    .replace(/หก\s*กลับ|หก\s*กับ/gi,"6กลับ")
-    .replace(/สาม\s*กลับ|สาม\s*กับ/gi,"3กลับ")
-    .replace(/รุด|ลูด/gi,"รูด");
-}
-
-function parseSlip(text){
-  var lines=normalizeText(text).split("\n");
-  var groups=[],current=null;
-
-  function newGroup(type,explicit){
-    var g={id:createId(),type:type,sourceNumbers:[],reverse:false,priceA:0,priceB:0,_explicit:!!explicit};
-    groups.push(g);current=g;return g;
-  }
-  function ensure(type){
-    if(current&&current.type===type)return current;
-    for(var ei=groups.length-1;ei>=0;ei--){
-      if(groups[ei].type===type&&!groups[ei]._explicit){current=groups[ei];return current;}
-    }
-    current=newGroup(type,false);return current;
-  }
-  function pushNums(g,nums){
-    nums.forEach(function(n){if(g.sourceNumbers.indexOf(n)===-1)g.sourceNumbers.push(n);});
-  }
-
-  lines.forEach(function(raw){
-    var line=raw.trim().replace(/^[-•]+\s*/,"");
-    if(!line)return;
-    var lower=line.replace(/\s+/g," ");
-
-    var isGate=/รูด|19\s*ประตู/i.test(lower);
-    var isSix=/6\s*กลับ|6กลับ|3\s*ตัว\s*6\s*กลับ/i.test(lower);
-    var isTwo=/2\s*ตัว|สอง\s*ตัว|บน\s*ล่าง|บลก|บล\b/i.test(lower);
-    var isThree=/3\s*ตัว|สาม\s*ตัว|ตรง\s*โต๊ด|ตรงโต๊ด|โต๊ด|ตรง/i.test(lower);
-
-    if(isGate){
-      current=newGroup("gate19",true);
-      var noPrice=lower.replace(/(\d+(?:\.\d+)?)\s*\*\s*(\d+(?:\.\d+)?)/g,function(_,a,b){
-        current.priceA=num(a);current.priceB=num(b);return " ";
-      });
-      var seedPart=noPrice.replace(/รูด|19\s*ประตู|บลก|บล|บนล่าง|บน|ล่าง/ig," ");
-      var seeds=(seedPart.match(/\d/g)||[]);
-      pushNums(current,unique(seeds));
-      return;
-    }
-
-    if(isSix){
-      if(current&&current.sourceNumbers.length&&/^6\s*กลับ\s*\d+(?:\.\d+)?$/i.test(lower)&&(current.type==="six"||current.type==="three")){
-        if(current.type==="three")current.type="six";
-        current.reverse=true;
-        var pm=lower.match(/6\s*กลับ\s*(\d+(?:\.\d+)?)/i);
-        if(pm)current.priceA=num(pm[1]);
-        current.priceB=0;
-        return;
-      }
-      current=newGroup("six",true);
-      current.reverse=true;
-      var sixPrice=lower.match(/6\s*กลับ\s*(\d+(?:\.\d+)?)/i);
-      if(sixPrice&&sixPrice[1])current.priceA=num(sixPrice[1]);
-      var nums6=extractExactDigits(lower.replace(/6\s*กลับ\s*\d*(?:\.\d+)?/ig," "),3);
-      pushNums(current,nums6);
-      return;
-    }
-
-    if(isTwo){
-      current=newGroup("two",true);
-      current.reverse=/บลก|กลับ/i.test(lower);
-      var pp=extractPairPrice(lower);
-      if(pp){current.priceA=pp[0];current.priceB=pp[1];}
-      else {
-        var ps=extractSinglePrice(lower);
-        if(ps>0){
-          if(/ล่าง/i.test(lower)&&!/บน\s*ล่าง|บล/i.test(lower)){current.priceA=0;current.priceB=ps;}
-          else if(/บน/i.test(lower)&&!/บน\s*ล่าง|บล/i.test(lower)){current.priceA=ps;current.priceB=0;}
-          else {current.priceA=ps;current.priceB=ps;}
-        }
-      }
-      var nums2=extractExactDigits(removePricesAndMode(lower),2);
-      pushNums(current,nums2);
-      return;
-    }
-
-    if(isThree){
-      current=newGroup("three",true);
-      current.reverse=/กลับ/i.test(lower);
-      var p3=extractPairPrice(lower);
-      if(p3){current.priceA=p3[0];current.priceB=p3[1];}
-      else {
-        var p3s=extractSinglePrice(lower);
-        if(p3s>0){
-          if(/โต๊ด/i.test(lower)&&!/ตรง\s*โต๊ด|ตรงโต๊ด/i.test(lower)){current.priceA=0;current.priceB=p3s;}
-          else if(/ตรง/i.test(lower)&&!/ตรง\s*โต๊ด|ตรงโต๊ด/i.test(lower)){current.priceA=p3s;current.priceB=0;}
-          else {current.priceA=p3s;current.priceB=p3s;}
-        }
-      }
-      var nums3=extractExactDigits(removePricesAndMode(lower),3);
-      pushNums(current,nums3);
-      return;
-    }
-
-    var pair=extractPairPrice(lower);
-    if(pair&&current){
-      current.priceA=pair[0];
-      if(current.type!=="six")current.priceB=pair[1];
-      return;
-    }
-
-    var sixOnly=lower.match(/^6\s*กลับ\s*(\d+(?:\.\d+)?)$/i);
-    if(sixOnly&&current){
-      if(current.type==="three")current.type="six";
-      current.reverse=true;
-      current.priceA=num(sixOnly[1]);
-      current.priceB=0;
-      return;
-    }
-
-    if(current){
-      var need=current.type==="gate19"?1:(current.type==="two"?2:3);
-      var nums=extractExactDigits(lower,need);
-      if(nums.length){pushNums(current,nums);return;}
-    }
-
-    var n3=extractExactDigits(lower,3),n2=extractExactDigits(lower,2);
-    if(n3.length&&!n2.length){current=ensure("three");pushNums(current,n3);}
-    else if(n2.length&&!n3.length){current=ensure("two");pushNums(current,n2);}
-  });
-
-  return groups.filter(function(g){return g.sourceNumbers.length;}).map(cleanGroup);
-}
-
-function cleanGroup(g){
-  g.sourceNumbers=unique(g.sourceNumbers);
-  if(g.type==="six")g.reverse=true;
-  delete g._explicit;
-  return g;
-}
-
-function removePricesAndMode(s){
-  return s
-    .replace(/\d+(?:\.\d+)?\s*\*\s*\d+(?:\.\d+)?/g," ")
-    .replace(/(?:=|\s)\d+(?:\.\d+)?\s*(?:บาท|บ\.?)?\s*$/g," ")
-    .replace(/3\s*ตัว|2\s*ตัว|สาม\s*ตัว|สอง\s*ตัว|ตรงโต๊ด|ตรง|โต๊ด|บนล่าง|บน|ล่าง|บลก|บล|กลับ/ig," ");
-}
-function extractPairPrice(s){
-  var m=String(s).match(/(\d+(?:\.\d+)?)\s*\*\s*(\d+(?:\.\d+)?)/);
-  return m?[num(m[1]),num(m[2])]:null;
-}
-function extractSinglePrice(s){
-  var cleaned=String(s).replace(/\d+(?:\.\d+)?\s*\*\s*\d+(?:\.\d+)?/g," ");
-  var m=cleaned.match(/(?:=|\s)(\d+(?:\.\d+)?)\s*(?:บาท|บ\.?)?\s*$/i);
-  return m?num(m[1]):0;
-}
-function extractExactDigits(s,len){
-  var parts=String(s||"").match(/\d+/g)||[],out=[];
-  parts.forEach(function(x){
-    if(x.length===len)out.push(x);
-    else if(x.length>len&&x.length%len===0){
-      for(var i=0;i<x.length;i+=len)out.push(x.slice(i,i+len));
-    }
-  });
-  return unique(out);
-}
-
-/* =====================================================
-   FLOATING PRICE
-===================================================== */
-function getActivePriceGroup(){
-  if(!state.groups.length)return null;
-  var g=state.groups.find(function(x){return x.id===state.activePriceGroupId;});
-  if(!g){g=state.groups[0];state.activePriceGroupId=g.id;}
-  return g;
-}
-function selectPriceGroup(groupId){
-  state.activePriceGroupId=groupId||"";
-  document.querySelectorAll(".group").forEach(function(card){
-    card.classList.toggle("active-price",card.dataset.groupId===state.activePriceGroupId);
-  });
-  renderFloatingPrice();
-}
-function renderFloatingPrice(){
-  var g=getActivePriceGroup();
-  if(!g){
-    els.floatingPriceTitle.textContent="ยังไม่มีรายการ";
-    els.floatingPriceCount.textContent="0 รายการ";
-    els.floatPriceA.value="";
-    els.floatPriceB.value="";
-    els.floatPriceA.disabled=true;
-    els.floatPriceB.disabled=true;
-    els.floatPriceBField.style.display="none";
-    els.floatingPriceGrid.classList.add("one");
-    return;
-  }
-
-  var info=getGroupInfo(g);
-  els.floatPriceA.disabled=false;
-  els.floatPriceB.disabled=false;
-  els.floatingPriceTitle.textContent=info.label;
-  els.floatingPriceCount.textContent=getGroupBetCount(g)+" รายการ";
-  els.floatPriceALabel.textContent=info.priceA||"ราคา";
-  els.floatPriceBLabel.textContent=info.priceB||"ราคา";
-  els.floatPriceA.value=g.priceA||"";
-  els.floatPriceB.value=g.priceB||"";
-
-  if(!info.priceB){
-    els.floatPriceBField.style.display="none";
-    els.floatingPriceGrid.classList.add("one");
-  } else {
-    els.floatPriceBField.style.display="block";
-    els.floatingPriceGrid.classList.remove("one");
-  }
-}
-function updateActiveFloatingPrice(side,value){
-  var g=getActivePriceGroup();
-  if(!g)return;
-  if(side==="A")g.priceA=num(value);
-  if(side==="B")g.priceB=num(value);
-
-  var card=document.querySelector('.group[data-group-id="'+g.id+'"]');
-  if(card){
-    var a=card.querySelector(".price-a"),b=card.querySelector(".price-b");
-    if(a&&document.activeElement!==a)a.value=g.priceA||"";
-    if(b&&document.activeElement!==b)b.value=g.priceB||"";
-    updateGroupTotal(card,g);
-  }
-  updateGrandTotal();
-}
-
-/* =====================================================
-   GROUP UI / CALC
-===================================================== */
-function renderGroups(){
-  els.groupList.innerHTML="";
-  if(!state.groups.length){
-    els.groupList.innerHTML='<div class="empty">วางโพยแล้วกด “แยกโพย”</div>';
-    els.groupsCount.textContent="0 กลุ่ม";
-    els.parseSummary.textContent="ยังไม่ได้แยกโพย";
-    state.activePriceGroupId="";
-    updateGrandTotal();
-    renderFloatingPrice();
-    return;
-  }
-
-  state.groups.forEach(function(g,idx){
-    var info=getGroupInfo(g);
-    var card=document.createElement("article");
-    card.className="group"+(g.id===state.activePriceGroupId?" active-price":"");
-    card.dataset.groupId=g.id;
-
-    var display=getGroupDisplayNumbers(g);
-    var betCount=getGroupBetCount(g);
-
-    card.innerHTML='<div class="group-head"><div><div class="group-label"></div><div class="group-sub"></div></div><button class="delete">ลบ</button></div>'+
-      '<div class="group-body"><div class="chips"></div><div class="source-note"></div><div class="tools"></div>'+
-      '<div class="price-title">ใส่ราคาแยกสำหรับกลุ่มนี้</div><div class="price-grid">'+
-      '<div class="price-field"><span class="price-label price-a-label"></span><input class="price-input price-a" type="number" inputmode="numeric" min="0" step="1" placeholder="0"></div>'+
-      '<div class="price-field field-b"><span class="price-label price-b-label"></span><input class="price-input price-b" type="number" inputmode="numeric" min="0" step="1" placeholder="0"></div>'+
-      '</div><div class="group-total"><span>ยอดกลุ่มนี้</span><b>0 บาท</b></div></div>';
-
-    card.querySelector(".group-head").onclick=function(e){
-      if(e.target&&e.target.classList.contains("delete"))return;
-      selectPriceGroup(g.id);
+function getModeConfig() {
+  if (state.betMode === "three") {
+    return {
+      title:"กรอกเลข 3 ตัว",
+      help:"พิมพ์เลข 3 ตัว เช่น 123 456 789",
+      placeholder:"เช่น 123 456 789",
+      len:3,
+      priceA:"ตรง",
+      priceB:"โต๊ด",
+      info:"3 ตัว: ราคา “ตรง” และ “โต๊ด” แยกกัน เลขแต่ละชุดคิดตามราคาที่กรอก"
     };
-    card.querySelector(".group-label").textContent=(idx+1)+". "+info.label;
-    card.querySelector(".group-sub").textContent=betCount+" รายการ"+(display.length!==betCount?" • แสดง "+display.length+" เลข":"");
+  }
 
-    var chipWrap=card.querySelector(".chips");
-    display.forEach(function(n){
-      var c=document.createElement("span");c.className="chip";c.textContent=n;chipWrap.appendChild(c);
+  if (state.betMode === "six") {
+    return {
+      title:"กรอกเลข 6 กลับ",
+      help:"พิมพ์เลข 3 ตัว ระบบจะสร้างเลขสลับตำแหน่งให้อัตโนมัติ",
+      placeholder:"เช่น 015 817 807",
+      len:3,
+      priceA:"6 กลับ",
+      priceB:null,
+      info:"6 กลับ: แต่ละเลข 3 ตัวจะสร้างชุดสลับตำแหน่งอัตโนมัติ เลขซ้ำอาจได้ 3 ชุดแทน 6 ชุด"
+    };
+  }
+
+  if (state.betMode === "gate") {
+    return {
+      title:"กรอกเลขรูด 19 ประตู",
+      help:"ใส่เลขหลักเดียว เช่น 6 9 แล้วระบบคิด 19 ประตูต่อเลข",
+      placeholder:"เช่น 6 9",
+      len:1,
+      priceA:"บน",
+      priceB:"ล่าง",
+      info:"19 ประตู: เลขตั้งต้น 1 ตัว = 19 รายการ เช่น รูด 6 จะได้ 60-69 และ 06-96 โดยไม่ซ้ำ 66"
+    };
+  }
+
+  return {
+    title:"กรอกเลข 2 ตัว",
+    help:"พิมพ์เลข 2 ตัว แยกด้วยช่องว่าง / , หรือขึ้นบรรทัดใหม่",
+    placeholder:"เช่น 12 34 56",
+    len:2,
+    priceA:"บน",
+    priceB:"ล่าง",
+    info:"2 ตัวสามารถเลือกกลับเลขได้ และกด “เลขเบิ้ล” เพื่อเพิ่ม 00, 11, 22 ... 99"
+  };
+}
+
+function addNumbersFromInput() {
+  clearError();
+
+  var cfg = getModeConfig();
+  var raw = String(els.numberInput.value || "").trim();
+
+  if (!raw) return;
+
+  var parsed = parseNumberInput(raw, cfg.len);
+
+  if (!parsed.length) {
+    showError("ไม่พบเลข " + cfg.len + " หลักที่ถูกต้อง");
+    return;
+  }
+
+  parsed.forEach(addUniqueNumber);
+  els.numberInput.value = "";
+  renderDirectBet();
+}
+
+function parseNumberInput(raw, len) {
+  var chunks = String(raw || "")
+    .replace(/[，,\/\\;|]+/g, " ")
+    .replace(/[-_]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .split(" ")
+    .filter(Boolean);
+
+  var out = [];
+
+  chunks.forEach(function(x){
+    x = x.replace(/\D/g,"");
+    if (!x) return;
+
+    if (len === 1) {
+      x.split("").forEach(function(d){ out.push(d); });
+      return;
+    }
+
+    if (x.length === len) {
+      out.push(x);
+      return;
+    }
+
+    if (x.length > len && x.length % len === 0) {
+      for (var i=0; i<x.length; i+=len) {
+        out.push(x.slice(i,i+len));
+      }
+    }
+  });
+
+  return unique(out.filter(function(n){
+    return new RegExp("^\\d{" + len + "}$").test(n);
+  }));
+}
+
+function addUniqueNumber(n) {
+  n = String(n);
+  if (state.numbers.indexOf(n) === -1) state.numbers.push(n);
+}
+
+function removeNumber(n) {
+  state.numbers = state.numbers.filter(function(x){ return x !== n; });
+  renderDirectBet();
+}
+
+function getEffectiveNumbers() {
+  if (state.betMode === "two" && state.reverse) {
+    var out = [];
+
+    state.numbers.forEach(function(n){
+      out.push(n);
+      var r = n.charAt(1) + n.charAt(0);
+      if (r !== n) out.push(r);
     });
 
-    card.querySelector(".source-note").textContent=buildSourceNote(g);
-    var tools=card.querySelector(".tools");
+    return unique(out);
+  }
 
-    if(g.type==="two"||g.type==="three"){
-      var rb=document.createElement("button");
-      rb.type="button";
-      rb.className="reverse"+(g.reverse?" active":"");
-      rb.textContent=g.reverse?"✓ กลับเลขแล้ว":"↔ กลับเลข";
-      rb.onclick=function(){g.reverse=!g.reverse;renderGroups();};
-      tools.appendChild(rb);
-    } else if(g.type==="six"){
-      var tag=document.createElement("span");
-      tag.className="reverse active";tag.textContent="✓ 6 กลับอัตโนมัติ";tools.appendChild(tag);
-    } else {
-      var tag2=document.createElement("span");
-      tag2.className="reverse active";tag2.textContent="✓ รูดเป็น 19 ประตู";tools.appendChild(tag2);
-    }
+  if (state.betMode === "six") {
+    var countList = [];
 
-    var grid=card.querySelector(".price-grid"),a=card.querySelector(".price-a"),b=card.querySelector(".price-b");
-    card.querySelector(".price-a-label").textContent=info.priceA;
-    card.querySelector(".price-b-label").textContent=info.priceB||"";
-    a.value=g.priceA||"";b.value=g.priceB||"";
+    state.numbers.forEach(function(n){
+      countList.push({
+        source:n,
+        permutations:getPermutations3(n)
+      });
+    });
 
-    if(!info.priceB){grid.classList.add("one");card.querySelector(".field-b").style.display="none";}
+    return countList;
+  }
 
-    a.oninput=function(){
-      g.priceA=num(a.value);updateGroupTotal(card,g);updateGrandTotal();
-      if(state.activePriceGroupId===g.id)renderFloatingPrice();
-    };
-    b.oninput=function(){
-      g.priceB=num(b.value);updateGroupTotal(card,g);updateGrandTotal();
-      if(state.activePriceGroupId===g.id)renderFloatingPrice();
-    };
+  return state.numbers.slice();
+}
 
-    card.querySelector(".delete").onclick=function(){
-      state.groups=state.groups.filter(function(x){return x.id!==g.id;});
-      if(state.activePriceGroupId===g.id)state.activePriceGroupId=state.groups.length?state.groups[0].id:"";
-      renderGroups();
-    };
+function getBetCount() {
+  if (state.betMode === "six") {
+    return state.numbers.reduce(function(sum,n){
+      return sum + getPermutations3(n).length;
+    }, 0);
+  }
 
-    updateGroupTotal(card,g);
-    els.groupList.appendChild(card);
+  if (state.betMode === "gate") {
+    return state.numbers.length * 19;
+  }
+
+  return getEffectiveNumbers().length;
+}
+
+function getTotalAmount() {
+  var count = getBetCount();
+
+  if (state.betMode === "six") {
+    return count * num(state.priceA);
+  }
+
+  return count * (num(state.priceA) + num(state.priceB));
+}
+
+function renderDirectBet() {
+  var cfg = getModeConfig();
+
+  document.querySelectorAll(".bet-mode-tab").forEach(function(btn){
+    btn.classList.toggle("active", btn.dataset.mode === state.betMode);
   });
 
-  els.groupsCount.textContent=state.groups.length+" กลุ่ม";
-  var c3=state.groups.filter(function(g){return g.type==="three"||g.type==="six";}).length;
-  var c2=state.groups.filter(function(g){return g.type==="two";}).length;
-  var c19=state.groups.filter(function(g){return g.type==="gate19";}).length;
-  els.parseSummary.textContent="แยกแล้ว "+state.groups.length+" กลุ่ม • 3 ตัว "+c3+" • 2 ตัว "+c2+" • 19 ประตู "+c19;
+  els.directTitle.textContent = cfg.title;
+  els.directHelp.textContent = cfg.help;
+  els.numberInput.placeholder = cfg.placeholder;
+  els.numberCount.textContent = state.numbers.length + " ตัว";
 
-  if(!state.activePriceGroupId&&state.groups.length)state.activePriceGroupId=state.groups[0].id;
-  updateGrandTotal();
-  renderFloatingPrice();
+  els.priceALabel.textContent = cfg.priceA;
+  els.priceBLabel.textContent = cfg.priceB || "";
+  els.priceA.value = state.priceA || "";
+  els.priceB.value = state.priceB || "";
+
+  if (cfg.priceB) {
+    els.priceBField.classList.remove("hidden");
+    els.directPriceGrid.classList.remove("one");
+  } else {
+    els.priceBField.classList.add("hidden");
+    els.directPriceGrid.classList.add("one");
+  }
+
+  els.reverseBtn.classList.toggle("hidden", state.betMode !== "two");
+  els.doubleBtn.classList.toggle("hidden", state.betMode !== "two");
+  els.reverseBtn.classList.toggle("active", state.reverse);
+  els.reverseBtn.textContent = state.reverse ? "✓ กลับเลขแล้ว" : "↔ กลับเลข";
+
+  els.modeInfo.textContent = cfg.info;
+
+  if (!state.numbers.length) {
+    els.numberChipBox.innerHTML = '<div class="number-chip-empty">ยังไม่มีเลข</div>';
+  } else {
+    els.numberChipBox.innerHTML = state.numbers.map(function(n){
+      var detail = "";
+
+      if (state.betMode === "six") {
+        detail = '<small style="font-size:8px;opacity:.65">' + getPermutations3(n).length + ' กลับ</small>';
+      }
+
+      return '<span class="bet-number-chip"><span>' + escapeHtml(n) + '</span>' +
+        detail +
+        '<button type="button" data-remove="' + escapeHtml(n) + '">×</button></span>';
+    }).join("");
+
+    els.numberChipBox.querySelectorAll("[data-remove]").forEach(function(btn){
+      btn.onclick = function(){ removeNumber(btn.dataset.remove); };
+    });
+  }
+
+  renderTotalsOnly();
 }
 
-function getGroupInfo(g){
-  if(g.type==="three")return {label:"3 ตัวตรง / โต๊ด",priceA:"ตรง",priceB:"โต๊ด"};
-  if(g.type==="two")return {label:"2 ตัวบน / ล่าง",priceA:"บน",priceB:"ล่าง"};
-  if(g.type==="gate19")return {label:"19 ประตู",priceA:"บน",priceB:"ล่าง"};
-  return {label:"3 ตัว 6 กลับ",priceA:"6 กลับ",priceB:null};
+function renderTotalsOnly() {
+  var total = getTotalAmount();
+  var count = getBetCount();
+
+  els.sourceCount.textContent = state.numbers.length;
+  els.betCount.textContent = count;
+  els.grandTotal.textContent = money(total) + " เครดิต";
+
+  if (state.user) {
+    els.bottomCredit.textContent = "เครดิต " + money(state.user.credit);
+    els.summaryCredit.textContent = money(state.user.credit);
+  }
+
+  els.submitBtn.disabled = !state.numbers.length || total <= 0;
 }
-function getGroupDisplayNumbers(g){
-  var out=[];
-  if(g.type==="gate19")g.sourceNumbers.forEach(function(d){out=out.concat(get19GateNumbers(d));});
-  else if(g.type==="six"||(g.type==="three"&&g.reverse))g.sourceNumbers.forEach(function(n){out=out.concat(getPermutations3(n));});
-  else if(g.type==="two"&&g.reverse)g.sourceNumbers.forEach(function(n){out=out.concat(getTwoReverseSet(n));});
-  else out=g.sourceNumbers.slice();
-  return unique(out);
+
+function clearCurrentBet(render) {
+  state.numbers = [];
+  state.reverse = false;
+  state.priceA = 0;
+  state.priceB = 0;
+
+  if (els.numberInput) els.numberInput.value = "";
+
+  if (render !== false) renderDirectBet();
+  clearError();
 }
-function getGroupBetCount(g){return getGroupDisplayNumbers(g).length;}
-function buildSourceNote(g){
-  if(g.type==="gate19")return "เลขตั้งต้น: "+g.sourceNumbers.join(", ")+" • คิดเงิน 19 รายการต่อเลขตั้งต้น";
-  if(g.type==="six")return "เลขต้นฉบับ: "+g.sourceNumbers.join(" ")+" • แต่ละชุดสร้างเลขกลับแยกกัน";
-  if(g.reverse)return "เลขต้นฉบับ: "+g.sourceNumbers.join(" ")+" • ระบบคิดจำนวนหลังกลับเลข";
-  return "เลขต้นฉบับ: "+g.sourceNumbers.join(" ");
-}
-function getGroupTotal(g){
-  var info=getGroupInfo(g),count=getGroupBetCount(g),p=g.priceA+(info.priceB?g.priceB:0);
-  return count*p;
-}
-function updateGroupTotal(card,g){card.querySelector(".group-total b").textContent=money(getGroupTotal(g))+" บาท";}
-function updateGrandTotal(){
-  var total=getGrandTotal();
-  els.grandTotal.textContent=money(total)+" เครดิต";
-  els.submitBtn.disabled=!state.groups.length||total<=0;
-}
-function getGrandTotal(){return state.groups.reduce(function(s,g){return s+getGroupTotal(g);},0);}
 
 /* =====================================================
-   CONFIRM / SUBMIT CREDIT
+   VALIDATION / PAYLOAD
 ===================================================== */
-function buildCanonicalRawText(){
-  var lines=[];
-  state.groups.forEach(function(g){
-    if(g.type==="two"){
-      var nums=getGroupDisplayNumbers(g);
-      lines.push(nums.join(" ")+" บล "+num(g.priceA)+"*"+num(g.priceB));
-    } else if(g.type==="three"){
-      var nums3=getGroupDisplayNumbers(g);
-      lines.push(nums3.join(" ")+" ตรงโต๊ด "+num(g.priceA)+"*"+num(g.priceB));
-    } else if(g.type==="six"){
-      lines.push(g.sourceNumbers.join(" ")+" 6กลับ "+num(g.priceA));
-    } else if(g.type==="gate19"){
-      lines.push("รูด "+g.sourceNumbers.join("/")+" บล "+num(g.priceA)+"*"+num(g.priceB));
+function validateDirectBet() {
+  if (!state.selectedLotto) throw new Error("กรุณาเลือกหวย");
+  if (!state.numbers.length) throw new Error("กรุณาใส่เลข");
+
+  var total = getTotalAmount();
+  if (total <= 0) throw new Error("กรุณาใส่ราคา");
+
+  var min = Number(state.selectedLotto.minPerNumber || 0);
+  var max = Number(state.selectedLotto.maxPerNumber || 0);
+  var prices = [num(state.priceA), num(state.priceB)].filter(function(x){ return x > 0; });
+
+  prices.forEach(function(p){
+    if (min > 0 && p < min) {
+      throw new Error("ราคาขั้นต่ำต่อเลข " + money(min) + " เครดิต");
+    }
+    if (max > 0 && p > max) {
+      throw new Error("ราคาสูงสุดต่อเลข " + money(max) + " เครดิต");
     }
   });
-  return lines.join("\n");
+
+  var maxBill = Number(state.selectedLotto.maxPerBill || 0);
+  if (maxBill > 0 && total > maxBill) {
+    throw new Error("ยอดต่อบิลสูงสุด " + money(maxBill) + " เครดิต");
+  }
+
+  if (state.user && Number(state.user.credit || 0) < total) {
+    throw new Error("เครดิตไม่เพียงพอ • มี " + money(state.user.credit) + " เครดิต");
+  }
+
+  var close = getLottoCloseTarget(state.selectedLotto);
+  if (close && close.getTime() <= Date.now()) {
+    throw new Error("หวยนี้ปิดรับแล้ว");
+  }
+
+  return true;
 }
 
-function openConfirm(){
+function buildCanonicalRawText() {
+  var a = num(state.priceA);
+  var b = num(state.priceB);
+  var lines = [];
+
+  if (state.betMode === "two") {
+    var nums = getEffectiveNumbers();
+
+    if (a > 0 && b > 0) {
+      lines.push(nums.join(" ") + " บล " + a + "*" + b);
+    } else if (a > 0) {
+      lines.push(nums.join(" ") + " บน " + a);
+    } else {
+      lines.push(nums.join(" ") + " ล่าง " + b);
+    }
+
+    return lines.join("\n");
+  }
+
+  if (state.betMode === "three") {
+    if (a > 0 && b > 0) {
+      lines.push(state.numbers.join(" ") + " ตรงโต๊ด " + a + "*" + b);
+    } else if (a > 0) {
+      lines.push(state.numbers.join(" ") + " ตรง " + a);
+    } else {
+      lines.push(state.numbers.join(" ") + " โต๊ด " + b);
+    }
+
+    return lines.join("\n");
+  }
+
+  if (state.betMode === "six") {
+    state.numbers.forEach(function(n){
+      lines.push(n + " 6กลับ " + a);
+    });
+
+    return lines.join("\n");
+  }
+
+  if (state.betMode === "gate") {
+    state.numbers.forEach(function(d){
+      if (a > 0 && b > 0) {
+        lines.push("รูด " + d + " บล " + a + "*" + b);
+      } else if (a > 0) {
+        lines.push("รูดบน " + d + " บน " + a);
+      } else {
+        lines.push("รูดล่าง " + d + " ล่าง " + b);
+      }
+    });
+
+    return lines.join("\n");
+  }
+
+  return "";
+}
+
+/* =====================================================
+   CONFIRM
+===================================================== */
+function openConfirm() {
   clearError();
-  if(!state.groups.length){showError("ยังไม่มีรายการ");return;}
 
-  var missing=state.groups.some(function(g){
-    var i=getGroupInfo(g);
-    return g.priceA<=0&&(!i.priceB||g.priceB<=0);
-  });
-  if(missing){showError("กรุณาใส่ราคาอย่างน้อย 1 ช่องในทุกกลุ่ม");return;}
-
-  var close=getLottoCloseTarget(state.selectedLotto);
-  if(close&&close.getTime()<=Date.now()){showError("หวยนี้ปิดรับแล้ว");return;}
-
-  var total=getGrandTotal();
-  if(state.user&&Number(state.user.credit||0)<total){
-    showError("เครดิตไม่เพียงพอ • มี "+money(state.user.credit)+" เครดิต");
+  try {
+    validateDirectBet();
+  } catch(e) {
+    showError(e.message);
     return;
   }
 
@@ -1924,161 +2225,343 @@ function openConfirm(){
   els.overlay.classList.add("show");
 }
 
-function closeConfirm(){els.overlay.classList.remove("show");}
-
-function renderConfirm(){
-  els.dialogBody.innerHTML="";
-  els.dialogSub.textContent=(state.selectedLotto?state.selectedLotto.name:"")+" • รวม "+money(getGrandTotal())+" เครดิต";
-
-  state.groups.forEach(function(g){
-    var info=getGroupInfo(g),c=document.createElement("section");
-    c.className="confirm-card";
-    c.innerHTML='<div class="confirm-card-head"><span></span><span></span></div><div class="confirm-card-body"></div>';
-    c.querySelector(".confirm-card-head span:first-child").textContent=info.label;
-    c.querySelector(".confirm-card-head span:last-child").textContent=money(getGroupTotal(g))+" เครดิต";
-    c.querySelector(".confirm-card-body").textContent=getGroupDisplayNumbers(g).join(" ");
-    els.dialogBody.appendChild(c);
-  });
+function closeConfirm() {
+  els.overlay.classList.remove("show");
 }
 
-function confirmAndSend(){
-  if(!state.selectedLotto||!state.groups.length)return;
+function renderConfirm() {
+  var cfg = getModeConfig();
+  var total = getTotalAmount();
+
+  els.dialogBody.innerHTML = "";
+  els.dialogSub.textContent =
+    (state.selectedLotto ? state.selectedLotto.name : "") +
+    " • " + cfg.title.replace("กรอกเลข ","") +
+    " • รวม " + money(total) + " เครดิต";
+
+  var card = document.createElement("section");
+  card.className = "confirm-card";
+
+  var priceText = "";
+  if (state.betMode === "six") {
+    priceText = cfg.priceA + " " + money(state.priceA);
+  } else {
+    var ps = [];
+    if (state.priceA > 0) ps.push(cfg.priceA + " " + money(state.priceA));
+    if (state.priceB > 0 && cfg.priceB) ps.push(cfg.priceB + " " + money(state.priceB));
+    priceText = ps.join(" / ");
+  }
+
+  var displayNumbers;
+
+  if (state.betMode === "two") {
+    displayNumbers = getEffectiveNumbers().join(" ");
+  } else if (state.betMode === "six") {
+    displayNumbers = state.numbers.map(function(n){
+      return n + " → " + getPermutations3(n).join(" ");
+    }).join("\n");
+  } else if (state.betMode === "gate") {
+    displayNumbers = "รูด " + state.numbers.join(", ") + " • " + getBetCount() + " รายการ";
+  } else {
+    displayNumbers = state.numbers.join(" ");
+  }
+
+  card.innerHTML =
+    '<div class="confirm-card-head"><span></span><span></span></div>' +
+    '<div class="confirm-card-body" style="white-space:pre-wrap"></div>';
+
+  card.querySelector(".confirm-card-head span:first-child").textContent = cfg.title.replace("กรอกเลข ","");
+  card.querySelector(".confirm-card-head span:last-child").textContent = money(total) + " เครดิต";
+  card.querySelector(".confirm-card-body").textContent =
+    displayNumbers + "\n" + priceText + "\nจำนวนแทง " + getBetCount() + " รายการ";
+
+  els.dialogBody.appendChild(card);
+}
+
+function confirmAndSend() {
+  try {
+    validateDirectBet();
+  } catch(e) {
+    closeConfirm();
+    showError(e.message);
+    return;
+  }
 
   closeConfirm();
   setLoading(true);
 
-  var raw=buildCanonicalRawText();
+  var raw = buildCanonicalRawText();
 
-  api("placeCreditBet",state.token,{
-    lottoName:state.selectedLotto.name,
-    rawText:raw
-  }).then(function(r){
-    if(state.user)state.user.credit=r.credit;
-    updateUserUI();
+  api("placeCreditBet", state.token, {
+    lottoName: state.selectedLotto.name,
+    rawText: raw
+  })
+    .then(function(r){
+      if (state.user) state.user.credit = r.credit;
+      updateUserUI();
 
-    els.slipInput.value="";
-    state.groups=[];
-    state.activePriceGroupId="";
-    renderGroups();
+      var billId = String(r.billId || "").slice(0,8);
+      var total = Number(r.totalAmount || getTotalAmount());
 
-    showToast("แทงสำเร็จ • รอผล");
-    setTimeout(function(){
-      alert("แทงสำเร็จ\nบิล "+String(r.billId||"").slice(0,8)+"\nยอด "+money(r.totalAmount)+" เครดิต\nเครดิตคงเหลือ "+money(r.credit));
-    },120);
-  }).catch(showErrorGlobal).finally(function(){setLoading(false);});
+      clearCurrentBet();
+      showToast("แทงสำเร็จ • รอผล");
+
+      setTimeout(function(){
+        alert(
+          "แทงสำเร็จ\n" +
+          "บิล " + billId + "\n" +
+          "ยอด " + money(total) + " เครดิต\n" +
+          "เครดิตคงเหลือ " + money(r.credit)
+        );
+      }, 120);
+    })
+    .catch(showErrorGlobal)
+    .finally(function(){ setLoading(false); });
 }
 
 /* =====================================================
-   NUMBER GENERATORS
+   HISTORY
 ===================================================== */
-function getTwoReverseSet(n){
-  var r=n.charAt(1)+n.charAt(0);
-  return r===n?[n]:[n,r];
+function showHistory() {
+  els.lottoScreen.classList.remove("active");
+  els.betScreen.classList.remove("active");
+  els.historyScreen.classList.add("active");
+
+  clearInterval(timer);
+  scrollTo(0,0);
+  loadHistory();
 }
-function getPermutations3(n){
-  if(String(n).length!==3)return [];
-  var a=n[0],b=n[1],c=n[2];
-  return unique([a+b+c,a+c+b,b+a+c,b+c+a,c+a+b,c+b+a]);
+
+function loadHistory() {
+  if (!state.token) return;
+
+  els.historyList.innerHTML = '<div class="empty">กำลังโหลดรายการ...</div>';
+
+  api("getMyBetHistory", state.token, {
+    dateFrom: els.historyFrom.value || "",
+    dateTo: els.historyTo.value || "",
+    status: els.historyStatus.value || ""
+  })
+    .then(function(r){
+      state.user = r.user;
+      updateUserUI();
+
+      var bets = r.bets || [];
+
+      if (!bets.length) {
+        els.historyList.innerHTML = '<div class="empty">ยังไม่มีรายการโพย</div>';
+        return;
+      }
+
+      els.historyList.innerHTML = bets.map(function(b){
+        var st = statusText(b.status);
+
+        var right =
+          b.status === "WIN" ? "รับ " + money(b.payout) + " เครดิต" :
+          b.status === "WAITING" ? "รอผล" :
+          "จ่าย 0";
+
+        return '<article class="history-card">' +
+          '<div class="history-head"><strong>' + escapeHtml(b.lottoName) + '</strong>' +
+          '<span class="status-pill status-' + escapeHtml(b.status) + '">' + st + '</span></div>' +
+          '<div class="history-meta">รอบ ' + escapeHtml(b.roundDate) +
+          ' • ' + formatDateTime(b.betAt) +
+          ' • บิล ' + escapeHtml(String(b.billId || "").slice(0,8)) + '</div>' +
+          '<div class="history-raw">' + escapeHtml(b.rawText || "") + '</div>' +
+          '<div class="history-money"><span>ยอดแทง ' + money(b.totalAmount) +
+          ' เครดิต</span><span>' + right + '</span></div>' +
+          '</article>';
+      }).join("");
+    })
+    .catch(showErrorGlobal);
 }
-function get19GateNumbers(d){
-  var out=[];
-  for(var i=0;i<=9;i++){
-    var o=String(i);
-    out.push(d+o);
-    if(o!==d)out.push(o+d);
-  }
-  return unique(out);
+
+function statusText(s) {
+  return ({
+    WAITING:"รอผล",
+    WIN:"ถูกรางวัล",
+    LOSE:"ไม่ถูกรางวัล",
+    CANCELLED:"ยกเลิก"
+  })[s] || s;
+}
+
+/* =====================================================
+   NUMBER HELPERS
+===================================================== */
+function getPermutations3(n) {
+  if (String(n).length !== 3) return [];
+
+  var a=n[0], b=n[1], c=n[2];
+
+  return unique([
+    a+b+c, a+c+b,
+    b+a+c, b+c+a,
+    c+a+b, c+b+a
+  ]);
 }
 
 /* =====================================================
    COUNTDOWN / DATE
 ===================================================== */
-function startTimer(fn){clearInterval(timer);fn();timer=setInterval(fn,1000);}
-function updateLottoCountdowns(){
+function startTimer(fn) {
+  clearInterval(timer);
+  fn();
+  timer = setInterval(fn,1000);
+}
+
+function updateLottoCountdowns() {
   document.querySelectorAll(".lotto").forEach(function(b){
-    var t=getLottoCloseTarget(b._lotto),closed=!!(t&&t.getTime()<=Date.now());
+    var t = getLottoCloseTarget(b._lotto);
+    var closed = !!(t && t.getTime() <= Date.now());
+
     b.classList.toggle("closed",closed);
     renderCountdown(b.querySelector(".countdown"),t);
   });
 }
-function updateSelectedCountdown(){renderCountdown(els.selectedCount,getLottoCloseTarget(state.selectedLotto));}
-function renderCountdown(el,t){
-  if(!t){el.textContent="--:--:--";return;}
+
+function updateSelectedCountdown() {
+  renderCountdown(els.selectedCount,getLottoCloseTarget(state.selectedLotto));
+}
+
+function renderCountdown(el,t) {
+  if (!t) {
+    el.textContent="--:--:--";
+    return;
+  }
+
   var diff=t.getTime()-Date.now();
-  if(diff<=0){el.textContent="ปิดรับแล้ว";return;}
-  var s=Math.floor(diff/1000),h=Math.floor(s/3600),m=Math.floor((s%3600)/60),r=s%60;
+
+  if (diff<=0) {
+    el.textContent="ปิดรับแล้ว";
+    return;
+  }
+
+  var s=Math.floor(diff/1000);
+  var h=Math.floor(s/3600);
+  var m=Math.floor((s%3600)/60);
+  var r=s%60;
+
   el.textContent=pad2(h)+":"+pad2(m)+":"+pad2(r);
 }
-function getRoundDateParts(l){
-  var text=l&&(l.drawDate||l.date||l.roundDate)||"";
-  var iso=String(text).match(/(\d{4})-(\d{1,2})-(\d{1,2})/);
-  if(iso)return {day:+iso[3],month:+iso[2]-1,year:+iso[1]};
-  var m=String(text).match(/(\d{1,2})[-\/](\d{1,2})[-\/](\d{4})/);
-  if(m)return {day:+m[1],month:+m[2]-1,year:+m[3]};
-  var n=new Date();
+
+function getRoundDateParts(l) {
+  var text = l && (l.drawDate || l.date || l.roundDate) || "";
+
+  var iso = String(text).match(/(\d{4})-(\d{1,2})-(\d{1,2})/);
+  if (iso) return {day:+iso[3],month:+iso[2]-1,year:+iso[1]};
+
+  var m = String(text).match(/(\d{1,2})[-\/](\d{1,2})[-\/](\d{4})/);
+  if (m) return {day:+m[1],month:+m[2]-1,year:+m[3]};
+
+  var n = new Date();
   return {day:n.getDate(),month:n.getMonth(),year:n.getFullYear()};
 }
-function getRoundDateText(l){var p=getRoundDateParts(l);return pad2(p.day)+"-"+pad2(p.month+1)+"-"+p.year;}
-function getLottoCloseTarget(l){
-  if(!l)return null;
-  var p=getRoundDateParts(l),m=String(l.closeTime||"").match(/(\d{1,2}):(\d{2})/);
-  if(!m)return null;
-  var h=+m[1],d=new Date(p.year,p.month,p.day,h,+m[2],0,0);
-  if(h<AFTER_MIDNIGHT_CUTOFF_HOUR)d.setDate(d.getDate()+1);
+
+function getRoundDateText(l) {
+  var p=getRoundDateParts(l);
+  return pad2(p.day)+"-"+pad2(p.month+1)+"-"+p.year;
+}
+
+function getLottoCloseTarget(l) {
+  if (!l) return null;
+
+  var p=getRoundDateParts(l);
+  var m=String(l.closeTime||"").match(/(\d{1,2}):(\d{2})/);
+
+  if (!m) return null;
+
+  var h=+m[1];
+  var d=new Date(p.year,p.month,p.day,h,+m[2],0,0);
+
+  if (h<AFTER_MIDNIGHT_CUTOFF_HOUR) d.setDate(d.getDate()+1);
+
   return d;
 }
-function getActualCloseText(l){
+
+function getActualCloseText(l) {
   var t=getLottoCloseTarget(l);
-  return t?formatDateOnly(t)+" "+(l.closeTime||"--:--"):(l.closeTime||"--:--");
+  return t ? formatDateOnly(t)+" "+(l.closeTime||"--:--") : (l.closeTime||"--:--");
 }
-function formatDateOnly(d){return pad2(d.getDate())+"-"+pad2(d.getMonth()+1)+"-"+d.getFullYear();}
+
+function formatDateOnly(d) {
+  return pad2(d.getDate())+"-"+pad2(d.getMonth()+1)+"-"+d.getFullYear();
+}
 
 /* =====================================================
-   UI HELPERS
+   UI / GENERAL
 ===================================================== */
-function showError(e){
+function showError(e) {
   setLoading(false);
-  els.error.textContent=typeof e==="string"?e:(e&&e.message?e.message:"เกิดข้อผิดพลาด");
+  els.error.textContent = typeof e === "string"
+    ? e
+    : (e && e.message ? e.message : "เกิดข้อผิดพลาด");
 }
-function showErrorGlobal(e){
+
+function showErrorGlobal(e) {
   setLoading(false);
-  var msg=typeof e==="string"?e:(e&&e.message?e.message:"เกิดข้อผิดพลาด");
-  if(els.error)els.error.textContent=msg;
+
+  var msg = typeof e === "string"
+    ? e
+    : (e && e.message ? e.message : "เกิดข้อผิดพลาด");
+
+  if (els.error) els.error.textContent = msg;
   alert(msg);
 }
-function clearError(){if(els.error)els.error.textContent="";}
-function setLoading(on){els.loading.classList.toggle("show",!!on);}
-function showToast(t){
-  els.toast.textContent=t;
-  els.toast.classList.add("show");
-  clearTimeout(toastTimer);
-  toastTimer=setTimeout(function(){els.toast.classList.remove("show");},1400);
+
+function clearError() {
+  if (els.error) els.error.textContent="";
 }
 
-/* =====================================================
-   GENERAL
-===================================================== */
-function unique(a){
+function setLoading(on) {
+  els.loading.classList.toggle("show",!!on);
+}
+
+function showToast(t) {
+  els.toast.textContent=t;
+  els.toast.classList.add("show");
+
+  clearTimeout(toastTimer);
+
+  toastTimer=setTimeout(function(){
+    els.toast.classList.remove("show");
+  },1400);
+}
+
+function unique(a) {
   var seen={};
-  return a.filter(function(x){
-    if(seen[x])return false;
+
+  return (a||[]).filter(function(x){
+    x=String(x);
+    if (seen[x]) return false;
     seen[x]=1;
     return true;
   });
 }
-function num(v){return Number(v||0)||0;}
-function money(v){return Number(v||0).toLocaleString("en-US");}
-function pad2(v){return String(v).padStart(2,"0");}
-function createId(){return Date.now()+"-"+Math.random().toString(36).slice(2);}
-function escapeHtml(s){
+
+function num(v) {
+  return Number(v||0)||0;
+}
+
+function money(v) {
+  return Number(v||0).toLocaleString("en-US");
+}
+
+function pad2(v) {
+  return String(v).padStart(2,"0");
+}
+
+function escapeHtml(s) {
   return String(s==null?"":s).replace(/[&<>"']/g,function(m){
     return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m];
   });
 }
-function formatDateTime(v){
-  try{return new Date(v).toLocaleString("th-TH");}catch(e){return String(v||"");}
+
+function formatDateTime(v) {
+  try { return new Date(v).toLocaleString("th-TH"); }
+  catch(e) { return String(v||""); }
 }
 </script>
+
 
  </body>
 </html>
