@@ -1664,6 +1664,132 @@ button:active {
   .swal-admin-field.full { grid-column:auto; }
 }
 
+
+/* =====================================================
+   DIRECT BET UX V2
+   - กรอกแล้วแสดงทันที
+   - แสดงเลขที่แทงจริงหลังกลับ/6กลับ/19ประตู
+===================================================== */
+.number-entry {
+  display:block !important;
+}
+.number-entry-input {
+  min-height:86px !important;
+  font-size:22px !important;
+  letter-spacing:.02em;
+}
+.add-number-btn {
+  display:none !important;
+}
+
+.number-chip-box {
+  max-height:310px;
+  overflow:auto;
+  align-content:flex-start;
+}
+
+.bet-number-chip {
+  position:relative;
+}
+.bet-number-chip.generated {
+  border-color:#e4e4e7;
+  background:#fff;
+  color:#3f3f46;
+}
+.bet-number-chip.generated.reverse-chip {
+  border-color:#fecdd3;
+  background:#fff7f7;
+  color:#be123c;
+}
+.bet-number-chip.generated.gate-chip {
+  border-color:#bbf7d0;
+  background:#f0fdf4;
+  color:#166534;
+}
+.bet-number-chip.generated.six-chip {
+  border-color:#fde68a;
+  background:#fffbeb;
+  color:#92400e;
+}
+.bet-number-chip small {
+  font-size:7px;
+  opacity:.62;
+  font-weight:900;
+}
+
+.number-group-title {
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  padding:4px 2px 1px;
+  color:#71717a;
+  font-size:9px;
+  font-weight:950;
+}
+.number-group-title:not(:first-child) {
+  margin-top:7px;
+  padding-top:9px;
+  border-top:1px dashed #e4e4e7;
+}
+
+.bet-summary {
+  grid-template-columns:repeat(2,1fr) !important;
+}
+.bet-summary-item.primary-summary {
+  background:#fff1f2;
+}
+.bet-summary-item.primary-summary b {
+  color:#be123c;
+  font-size:16px;
+}
+
+.quick-tool {
+  transition:transform .16s ease,box-shadow .16s ease,background .16s ease;
+}
+.quick-tool:active {
+  transform:scale(.96);
+}
+.quick-tool.active {
+  box-shadow:0 7px 18px rgba(190,18,60,.22);
+}
+
+.bet-mode-tab {
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+.bet-mode-tab.active {
+  animation:tabPop .24s ease-out;
+}
+
+.direct-submit:not(:disabled) {
+  box-shadow:0 9px 24px rgba(225,29,72,.24);
+  animation:importantPulse 1.8s ease-in-out infinite;
+}
+.direct-submit:active {
+  animation:none;
+  transform:scale(.985);
+}
+
+.clear-numbers,
+.direct-clear-all {
+  transition:transform .14s ease,background .14s ease;
+}
+.clear-numbers:active,
+.direct-clear-all:active {
+  transform:scale(.97);
+}
+
+@keyframes tabPop {
+  0% { transform:scale(.96); }
+  70% { transform:scale(1.035); }
+  100% { transform:scale(1); }
+}
+@keyframes importantPulse {
+  0%,100% { transform:translateY(0); box-shadow:0 9px 24px rgba(225,29,72,.22); }
+  50% { transform:translateY(-2px); box-shadow:0 13px 30px rgba(225,29,72,.34); }
+}
+
 </style>
  </head>
  <body>
@@ -1760,11 +1886,10 @@ button:active {
 
       <div class="number-entry">
        <textarea id="numberInput" class="number-entry-input" inputmode="numeric" autocomplete="off" placeholder="เช่น 12 34 56"></textarea>
-       <button class="add-number-btn" id="addNumberBtn">เพิ่ม</button>
       </div>
 
       <div class="selected-label-row">
-       <span class="selected-label">เลขที่กำลังแทง</span>
+       <span class="selected-label">เลขที่กำลังแทงจริง</span>
        <button class="clear-numbers" id="clearNumbersBtn">ล้างเลข</button>
       </div>
       <div class="number-chip-box" id="numberChipBox">
@@ -1791,8 +1916,7 @@ button:active {
       </div>
 
       <div class="bet-summary">
-       <div class="bet-summary-item"><small>เลขต้นฉบับ</small><b id="sourceCount">0</b></div>
-       <div class="bet-summary-item"><small>รายการแทง</small><b id="betCount">0</b></div>
+       <div class="bet-summary-item primary-summary"><small>รายการแทงจริง</small><b id="betCount">0</b></div>
        <div class="bet-summary-item"><small>เครดิตคงเหลือ</small><b id="summaryCredit">0</b></div>
       </div>
 
@@ -2020,8 +2144,8 @@ document.addEventListener("DOMContentLoaded", function () {
     "backBtn","selectedName","selectedRound","selectedClose","selectedCount",
     "accountName","heroCredit","betCredit","bottomCredit","summaryCredit","adminBtn",
     "historyBtn","logoutBtn","historyBackBtn","historyCredit","historyFrom","historyTo",
-    "historyStatus","historyList","adminIdentity","adminBetBtn","adminLogoutBtn","syncResultsBtn","adminDashRange","adminDashFrom","adminDashTo","adminDashCustomBtn","adminDashStats","adminByUser","adminByLotto","adminOpenUser","adminOpenLotto","adminOpenSearchBtn","adminOpenTable","adminCreateUserBtn","adminUserTable","adminLottoTable","directTitle","directHelp","numberCount","numberInput",
-    "addNumberBtn","clearNumbersBtn","numberChipBox","reverseBtn","doubleBtn",
+     "historyStatus","historyList","adminIdentity","adminBetBtn","adminLogoutBtn","syncResultsBtn","adminDashRange","adminDashFrom","adminDashTo","adminDashCustomBtn","adminDashStats","adminByUser","adminByLotto","adminOpenUser","adminOpenLotto","adminOpenSearchBtn","adminOpenTable","adminCreateUserBtn","adminUserTable","adminLottoTable","directTitle","directHelp","numberCount","numberInput",
+    "clearNumbersBtn","numberChipBox","reverseBtn","doubleBtn",
     "priceA","priceB","priceALabel","priceBLabel","priceBField","directPriceGrid",
     "sourceCount","betCount","modeInfo","grandTotal","clearAllBtn","submitBtn","error",
     "overlay","dialogSub","dialogBody","closeDialog","cancelDialog","confirmSend","loading","toast"
@@ -2090,16 +2214,11 @@ function bindEvents() {
     btn.onclick = function(){ setBetMode(btn.dataset.mode); };
   });
 
-  els.addNumberBtn.onclick = addNumbersFromInput;
-  els.numberInput.onkeydown = function(e){
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      addNumbersFromInput();
-    }
-  };
+  els.numberInput.oninput = syncNumbersFromInput;
 
   els.clearNumbersBtn.onclick = function(){
     state.numbers = [];
+    els.numberInput.value = "";
     renderDirectBet();
   };
 
@@ -2112,6 +2231,7 @@ function bindEvents() {
   els.doubleBtn.onclick = function(){
     if (state.betMode !== "two") return;
     for (var i=0;i<=9;i++) addUniqueNumber(String(i)+String(i));
+    syncInputFromState();
     renderDirectBet();
   };
 
@@ -2347,7 +2467,7 @@ function getModeConfig() {
       len:3,
       priceA:"ตรง",
       priceB:"โต๊ด",
-      info:"3 ตัว: ราคา “ตรง” และ “โต๊ด” แยกกัน เลขแต่ละชุดคิดตามราคาที่กรอก"
+      info:"ใส่ราคา “ตรง” และ “โต๊ด” แยกกันได้"
     };
   }
 
@@ -2359,7 +2479,7 @@ function getModeConfig() {
       len:3,
       priceA:"6 กลับ",
       priceB:null,
-      info:"6 กลับ: แต่ละเลข 3 ตัวจะสร้างชุดสลับตำแหน่งอัตโนมัติ เลขซ้ำอาจได้ 3 ชุดแทน 6 ชุด"
+      info:"ระบบสร้างเลขสลับทั้งหมดให้ทันที เลขซ้ำอาจได้ 3 รายการแทน 6"
     };
   }
 
@@ -2371,7 +2491,7 @@ function getModeConfig() {
       len:1,
       priceA:"บน",
       priceB:"ล่าง",
-      info:"19 ประตู: เลขตั้งต้น 1 ตัว = 19 รายการ เช่น รูด 6 จะได้ 60-69 และ 06-96 โดยไม่ซ้ำ 66"
+      info:"เลขรูด 1 ตัว = 19 รายการ และแสดงเลขทั้งหมดด้านบนทันที"
     };
   }
 
@@ -2386,24 +2506,25 @@ function getModeConfig() {
   };
 }
 
-function addNumbersFromInput() {
+function syncNumbersFromInput() {
   clearError();
 
   var cfg = getModeConfig();
-  var raw = String(els.numberInput.value || "").trim();
+  var raw = String(els.numberInput.value || "");
 
-  if (!raw) return;
-
-  var parsed = parseNumberInput(raw, cfg.len);
-
-  if (!parsed.length) {
-    showError("ไม่พบเลข " + cfg.len + " หลักที่ถูกต้อง");
+  // ช่องว่างระหว่างพิมพ์ถือเป็นเรื่องปกติ
+  if (!raw.trim()) {
+    state.numbers = [];
+    renderDirectBet();
     return;
   }
 
-  parsed.forEach(addUniqueNumber);
-  els.numberInput.value = "";
+  state.numbers = parseNumberInput(raw, cfg.len);
   renderDirectBet();
+}
+
+function syncInputFromState() {
+  els.numberInput.value = state.numbers.join(" ");
 }
 
 function parseNumberInput(raw, len) {
@@ -2450,6 +2571,7 @@ function addUniqueNumber(n) {
 
 function removeNumber(n) {
   state.numbers = state.numbers.filter(function(x){ return x !== n; });
+  syncInputFromState();
   renderDirectBet();
 }
 
@@ -2482,6 +2604,19 @@ function getEffectiveNumbers() {
   return state.numbers.slice();
 }
 
+function get19GateNumbers(d) {
+  d = String(d || "");
+  if (!/^\d$/.test(d)) return [];
+
+  var out = [];
+  for (var i=0;i<=9;i++) {
+    var x = String(i);
+    out.push(d + x);
+    if (x !== d) out.push(x + d);
+  }
+  return unique(out);
+}
+
 function getBetCount() {
   if (state.betMode === "six") {
     return state.numbers.reduce(function(sum,n){
@@ -2506,6 +2641,93 @@ function getTotalAmount() {
   return count * (num(state.priceA) + num(state.priceB));
 }
 
+function chipHtml(number, cls, note, removable) {
+  var html = '<span class="bet-number-chip ' + (cls || "") + '">' +
+    '<span>' + escapeHtml(number) + '</span>';
+
+  if (note) html += '<small>' + escapeHtml(note) + '</small>';
+
+  if (removable) {
+    html += '<button type="button" data-remove="' + escapeHtml(removable) + '">×</button>';
+  }
+
+  return html + '</span>';
+}
+
+function buildActualBetChips() {
+  // 2 ตัว: โชว์เลขต้นฉบับ + เลขกลับที่เกิดขึ้นจริง
+  if (state.betMode === "two") {
+    var seen = {};
+    var parts = [];
+
+    state.numbers.forEach(function(n){
+      if (!seen[n]) {
+        seen[n] = true;
+        parts.push(chipHtml(n, "", "", n));
+      }
+
+      if (state.reverse) {
+        var r = n.charAt(1) + n.charAt(0);
+        if (r !== n && !seen[r]) {
+          seen[r] = true;
+          parts.push(chipHtml(r, "generated reverse-chip", "กลับ", ""));
+        }
+      }
+    });
+
+    return parts.join("");
+  }
+
+  // 3 ตัวตรง/โต๊ด: กรอกแล้วแสดงทันที
+  if (state.betMode === "three") {
+    return state.numbers.map(function(n){
+      return chipHtml(n, "", "", n);
+    }).join("");
+  }
+
+  // 6 กลับ: แสดงเลขที่ถูกสร้างจริงทั้งหมด แยกตามเลขต้นฉบับ
+  if (state.betMode === "six") {
+    var sixHtml = [];
+
+    state.numbers.forEach(function(source){
+      var perms = getPermutations3(source);
+
+      sixHtml.push(
+        '<div class="number-group-title"><span>จาก ' + escapeHtml(source) +
+        '</span><span>' + perms.length + ' รายการ</span></div>'
+      );
+
+      perms.forEach(function(n){
+        sixHtml.push(chipHtml(n, "generated six-chip", "", ""));
+      });
+    });
+
+    return sixHtml.join("");
+  }
+
+  // 19 ประตู: แสดงทั้ง 19 ตัวจริง แยกตามเลขรูด
+  if (state.betMode === "gate") {
+    var gateHtml = [];
+
+    state.numbers.forEach(function(source){
+      var gates = get19GateNumbers(source);
+
+      gateHtml.push(
+        '<div class="number-group-title"><span>รูด ' + escapeHtml(source) +
+        '</span><span>19 รายการ</span></div>'
+      );
+
+      gates.forEach(function(n){
+        gateHtml.push(chipHtml(n, "generated gate-chip", "", ""));
+      });
+    });
+
+    return gateHtml.join("");
+  }
+
+  return "";
+}
+
 function renderDirectBet() {
   var cfg = getModeConfig();
 
@@ -2516,7 +2738,7 @@ function renderDirectBet() {
   els.directTitle.textContent = cfg.title;
   els.directHelp.textContent = cfg.help;
   els.numberInput.placeholder = cfg.placeholder;
-  els.numberCount.textContent = state.numbers.length + " ตัว";
+  els.numberCount.textContent = getBetCount() + " รายการ";
 
   els.priceALabel.textContent = cfg.priceA;
   els.priceBLabel.textContent = cfg.priceB || "";
@@ -2539,20 +2761,11 @@ function renderDirectBet() {
   els.modeInfo.textContent = cfg.info;
 
   if (!state.numbers.length) {
-    els.numberChipBox.innerHTML = '<div class="number-chip-empty">ยังไม่มีเลข</div>';
+    els.numberChipBox.innerHTML = '<div class="number-chip-empty">กรอกเลขด้านบน แล้วเลขที่แทงจริงจะแสดงตรงนี้ทันที</div>';
   } else {
-    els.numberChipBox.innerHTML = state.numbers.map(function(n){
-      var detail = "";
+    els.numberChipBox.innerHTML = buildActualBetChips();
 
-      if (state.betMode === "six") {
-        detail = '<small style="font-size:8px;opacity:.65">' + getPermutations3(n).length + ' กลับ</small>';
-      }
-
-      return '<span class="bet-number-chip"><span>' + escapeHtml(n) + '</span>' +
-        detail +
-        '<button type="button" data-remove="' + escapeHtml(n) + '">×</button></span>';
-    }).join("");
-
+    // ปุ่ม x มีเฉพาะเลขต้นฉบับที่ผู้ใช้กรอก
     els.numberChipBox.querySelectorAll("[data-remove]").forEach(function(btn){
       btn.onclick = function(){ removeNumber(btn.dataset.remove); };
     });
@@ -2565,8 +2778,7 @@ function renderTotalsOnly() {
   var total = getTotalAmount();
   var count = getBetCount();
 
-  els.sourceCount.textContent = state.numbers.length;
-  els.betCount.textContent = count;
+  els.betCount.textContent = count + " รายการ";
   els.grandTotal.textContent = money(total) + " เครดิต";
 
   if (state.user) {
