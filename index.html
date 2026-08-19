@@ -1798,7 +1798,7 @@ button:active {
     <div class="login-card-credit">
       <div class="login-logo-credit">฿</div>
       <h1>เข้าสู่ระบบ</h1>
-      <p>ระบบแทงหวยแบบเครดิต</p>
+      
       <div class="api-state" id="apiState">กำลังตรวจการเชื่อมต่อ...</div>
       <div class="login-field">
         <label>User</label>
@@ -1821,9 +1821,7 @@ button:active {
      <h1>
       เลือกหวย
      </h1>
-     <p>
-      เลือกหวยก่อน แล้วเลือก 2 ตัว / 3 ตัว / 6 กลับ / 19 ประตู
-     </p>
+     
      <div class="account-row">
       <div class="account-credit">
        <small id="accountName">USER</small>
@@ -1879,7 +1877,6 @@ button:active {
       <div class="direct-title-row">
        <div>
         <div class="direct-title" id="directTitle">กรอกเลข 2 ตัว</div>
-        <div class="direct-help" id="directHelp">พิมพ์เลข 2 ตัว แยกด้วยช่องว่าง / , หรือขึ้นบรรทัดใหม่</div>
        </div>
        <span class="number-count-pill" id="numberCount">0 ตัว</span>
       </div>
@@ -1918,10 +1915,6 @@ button:active {
       <div class="bet-summary">
        <div class="bet-summary-item primary-summary"><small>รายการแทงจริง</small><b id="betCount">0</b></div>
        <div class="bet-summary-item"><small>เครดิตคงเหลือ</small><b id="summaryCredit">0</b></div>
-      </div>
-
-      <div class="mode-info" id="modeInfo">
-       2 ตัวสามารถเลือกกลับเลขได้ และกด “เลขเบิ้ล” เพื่อเพิ่ม 00, 11, 22 ... 99
       </div>
       <div class="error" id="error"></div>
      </section>
@@ -2039,7 +2032,7 @@ button:active {
        <div class="admin-card-head">
         <div>
          <h2>โพยรอผลทุกยูสเซอร์</h2>
-         <div class="admin-muted">เฉพาะโพยที่สถานะยังเป็น “รอผล”</div>
+         
         </div>
        </div>
        <div class="admin-toolbar">
@@ -2056,7 +2049,7 @@ button:active {
        <div class="admin-card-head">
         <div>
          <h2>Member / เครดิต</h2>
-         <div class="admin-muted">เปิด Member, เพิ่ม/หักเครดิต, ปรับเรทจ่ายราย Member และระงับบัญชี</div>
+         
         </div>
         <button class="admin-btn red" id="adminCreateUserBtn">+ เปิด Member</button>
        </div>
@@ -2069,7 +2062,7 @@ button:active {
        <div class="admin-card-head">
         <div>
          <h2>ตั้งค่าหวย</h2>
-         <div class="admin-muted">ขั้นต่ำ, สูงสุดต่อเลข, สูงสุดต่อบิล, เวลาปิด, เรทจ่าย และ Alias</div>
+         
         </div>
        </div>
        <div class="admin-table-wrap" id="adminLottoTable" style="margin-top:11px"></div>
@@ -2079,32 +2072,6 @@ button:active {
    </section>
 
   </main>
-  <div class="overlay" id="overlay">
-   <div class="dialog">
-    <div class="dialog-head">
-     <div>
-      <div class="dialog-title">
-       ตรวจสอบโพย
-      </div>
-      <div class="dialog-sub" id="dialogSub">
-      </div>
-     </div>
-     <button class="close" id="closeDialog">
-      ×
-     </button>
-    </div>
-    <div class="dialog-body" id="dialogBody">
-    </div>
-    <div class="dialog-foot">
-     <button class="cancel" id="cancelDialog">
-      แก้ไข
-     </button>
-     <button class="confirm" id="confirmSend">
-      ยืนยันส่งโพย
-     </button>
-    </div>
-   </div>
-  </div>
   <div class="loading" id="loading">
    <div class="spinner">
    </div>
@@ -2144,11 +2111,11 @@ document.addEventListener("DOMContentLoaded", function () {
     "backBtn","selectedName","selectedRound","selectedClose","selectedCount",
     "accountName","heroCredit","betCredit","bottomCredit","summaryCredit","adminBtn",
     "historyBtn","logoutBtn","historyBackBtn","historyCredit","historyFrom","historyTo",
-     "historyStatus","historyList","adminIdentity","adminLogoutBtn","syncResultsBtn","adminDashRange","adminDashFrom","adminDashTo","adminDashCustomBtn","adminDashStats","adminByUser","adminByLotto","adminOpenUser","adminOpenLotto","adminOpenSearchBtn","adminOpenTable","adminCreateUserBtn","adminUserTable","adminLottoTable","directTitle","directHelp","numberCount","numberInput",
+     "historyStatus","historyList","adminIdentity","adminLogoutBtn","syncResultsBtn","adminDashRange","adminDashFrom","adminDashTo","adminDashCustomBtn","adminDashStats","adminByUser","adminByLotto","adminOpenUser","adminOpenLotto","adminOpenSearchBtn","adminOpenTable","adminCreateUserBtn","adminUserTable","adminLottoTable","directTitle","numberCount","numberInput",
     "clearNumbersBtn","numberChipBox","reverseBtn","doubleBtn",
     "priceA","priceB","priceALabel","priceBLabel","priceBField","directPriceGrid",
-    "sourceCount","betCount","modeInfo","grandTotal","clearAllBtn","submitBtn","error",
-    "overlay","dialogSub","dialogBody","closeDialog","cancelDialog","confirmSend","loading","toast"
+    "sourceCount","betCount","grandTotal","clearAllBtn","submitBtn","error",
+    "loading","toast"
   ].forEach(function(id){ els[id] = document.getElementById(id); });
 
   bindEvents();
@@ -2240,11 +2207,6 @@ function bindEvents() {
 
   els.clearAllBtn.onclick = clearCurrentBet;
   els.submitBtn.onclick = openConfirm;
-
-  els.closeDialog.onclick = closeConfirm;
-  els.cancelDialog.onclick = closeConfirm;
-  els.confirmSend.onclick = confirmAndSend;
-  els.overlay.onclick = function(e){ if (e.target === els.overlay) closeConfirm(); };
 
 
   els.adminBtn.onclick = function(){ showAdmin("dashboard"); };
@@ -2463,48 +2425,40 @@ function getModeConfig() {
   if (state.betMode === "three") {
     return {
       title:"กรอกเลข 3 ตัว",
-      help:"พิมพ์ครบ 3 หลัก ระบบจะเพิ่มเข้าเลขที่กำลังแทงให้อัตโนมัติ",
       placeholder:"เช่น 123 456 789",
       len:3,
       priceA:"ตรง",
-      priceB:"โต๊ด",
-      info:"ใส่ราคา “ตรง” และ “โต๊ด” แยกกันได้"
+      priceB:"โต๊ด"
     };
   }
 
   if (state.betMode === "six") {
     return {
       title:"กรอกเลข 6 กลับ",
-      help:"พิมพ์ครบ 3 หลัก แล้วระบบจะเพิ่มและสร้าง 6 กลับให้อัตโนมัติ",
       placeholder:"เช่น 015 817 807",
       len:3,
       priceA:"6 กลับ",
-      priceB:null,
-      info:"ระบบสร้างเลขสลับทั้งหมดให้ทันที เลขซ้ำอาจได้ 3 รายการแทน 6"
+      priceB:null
     };
   }
 
   if (state.betMode === "gate") {
     return {
       title:"กรอกเลขรูด 19 ประตู",
-      help:"พิมพ์เลข 1 หลัก ระบบจะเพิ่มและแสดง 19 ประตูให้อัตโนมัติ",
       placeholder:"เช่น 6 9",
       len:1,
       priceA:"บน",
-      priceB:"ล่าง",
-      info:"เลขรูด 1 ตัว = 19 รายการ และแสดงเลขทั้งหมดด้านบนทันที"
+      priceB:"ล่าง"
     };
   }
 
   return {
     title:"กรอกเลข 2 ตัว",
-    help:"พิมพ์ครบ 2 หลัก ระบบจะเพิ่มเข้าเลขที่กำลังแทงให้อัตโนมัติ",
     placeholder:"เช่น 12 34 56",
     len:2,
     priceA:"บน",
-    priceB:"ล่าง",
-    info:"2 ตัวสามารถเลือกกลับเลขได้ และกด “เลขเบิ้ล” เพื่อเพิ่ม 00, 11, 22 ... 99"
-  };
+    priceB:"ล่าง"
+    };
 }
 
 function syncNumbersFromInput() {
@@ -2761,7 +2715,6 @@ function renderDirectBet() {
   });
 
   els.directTitle.textContent = cfg.title;
-  els.directHelp.textContent = cfg.help;
   els.numberInput.placeholder = cfg.placeholder;
   els.numberCount.textContent = getBetCount() + " รายการ";
 
@@ -2782,8 +2735,6 @@ function renderDirectBet() {
   els.doubleBtn.classList.toggle("hidden", state.betMode !== "two");
   els.reverseBtn.classList.toggle("active", state.reverse);
   els.reverseBtn.textContent = state.reverse ? "✓ กลับเลขแล้ว" : "↔ กลับเลข";
-
-  els.modeInfo.textContent = cfg.info;
 
   if (!state.numbers.length) {
     els.numberChipBox.innerHTML = '<div class="number-chip-empty">กรอกเลขด้านบน แล้วเลขที่แทงจริงจะแสดงตรงนี้ทันที</div>';
@@ -2935,7 +2886,65 @@ function buildCanonicalRawText() {
 /* =====================================================
    CONFIRM
 ===================================================== */
-function openConfirm() {
+function buildConfirmHtml() {
+  var cfg = getModeConfig();
+  var total = getTotalAmount();
+  var priceText = "";
+  var displayNumbers = "";
+
+  if (state.betMode === "six") {
+    priceText = cfg.priceA + " " + money(state.priceA);
+    displayNumbers = state.numbers.map(function(n){
+      return '<div style="margin:6px 0"><b>' + escapeHtml(n) + '</b><br>' +
+        '<span style="font-size:12px;color:#71717a">' +
+        escapeHtml(getPermutations3(n).join(" ")) +
+        '</span></div>';
+    }).join("");
+  }
+  else if (state.betMode === "gate") {
+    var prices = [];
+    if (state.priceA > 0) prices.push(cfg.priceA + " " + money(state.priceA));
+    if (state.priceB > 0) prices.push(cfg.priceB + " " + money(state.priceB));
+    priceText = prices.join(" / ");
+
+    displayNumbers = state.numbers.map(function(d){
+      return '<div style="margin:6px 0"><b>รูด ' + escapeHtml(d) + '</b><br>' +
+        '<span style="font-size:12px;color:#71717a">' +
+        escapeHtml(get19GateNumbers(d).join(" ")) +
+        '</span></div>';
+    }).join("");
+  }
+  else {
+    var ps = [];
+    if (state.priceA > 0) ps.push(cfg.priceA + " " + money(state.priceA));
+    if (state.priceB > 0 && cfg.priceB) ps.push(cfg.priceB + " " + money(state.priceB));
+    priceText = ps.join(" / ");
+
+    var nums = state.betMode === "two" ? getEffectiveNumbers() : state.numbers;
+    displayNumbers =
+      '<div style="font-size:20px;font-weight:900;line-height:1.8;word-break:break-word">' +
+      escapeHtml(nums.join(" ")) +
+      '</div>';
+  }
+
+  return '<div style="text-align:left">' +
+    '<div style="padding:10px 12px;background:#fff1f2;border-radius:12px;margin-bottom:10px">' +
+      '<div style="font-size:12px;color:#71717a">' + escapeHtml(state.selectedLotto.name) + '</div>' +
+      '<div style="font-size:24px;font-weight:950;color:#991b1b;margin-top:2px">' +
+        money(total) + ' เครดิต' +
+      '</div>' +
+    '</div>' +
+    '<div style="font-size:12px;font-weight:900;margin-bottom:6px">' +
+      escapeHtml(cfg.title.replace("กรอกเลข ","")) +
+    '</div>' +
+    displayNumbers +
+    '<div style="margin-top:10px;padding-top:10px;border-top:1px solid #eee;font-size:13px;font-weight:800">' +
+      escapeHtml(priceText) + ' • ' + getBetCount() + ' รายการ' +
+    '</div>' +
+  '</div>';
+}
+
+async function openConfirm() {
   clearError();
 
   try {
@@ -2945,103 +2954,73 @@ function openConfirm() {
     return;
   }
 
-  renderConfirm();
-  els.overlay.classList.add("show");
+  var result = await Swal.fire({
+    title:"ยืนยันโพย",
+    html:buildConfirmHtml(),
+    icon:"question",
+    showCancelButton:true,
+    confirmButtonText:"ยืนยันแทง",
+    cancelButtonText:"แก้ไข",
+    reverseButtons:true,
+    confirmButtonColor:"#e11d48",
+    cancelButtonColor:"#71717a",
+    focusConfirm:false
+  });
+
+  if (result.isConfirmed) confirmAndSend();
 }
 
 function closeConfirm() {
-  els.overlay.classList.remove("show");
+  if (typeof Swal !== "undefined") Swal.close();
 }
 
-function renderConfirm() {
-  var cfg = getModeConfig();
-  var total = getTotalAmount();
-
-  els.dialogBody.innerHTML = "";
-  els.dialogSub.textContent =
-    (state.selectedLotto ? state.selectedLotto.name : "") +
-    " • " + cfg.title.replace("กรอกเลข ","") +
-    " • รวม " + money(total) + " เครดิต";
-
-  var card = document.createElement("section");
-  card.className = "confirm-card";
-
-  var priceText = "";
-  if (state.betMode === "six") {
-    priceText = cfg.priceA + " " + money(state.priceA);
-  } else {
-    var ps = [];
-    if (state.priceA > 0) ps.push(cfg.priceA + " " + money(state.priceA));
-    if (state.priceB > 0 && cfg.priceB) ps.push(cfg.priceB + " " + money(state.priceB));
-    priceText = ps.join(" / ");
-  }
-
-  var displayNumbers;
-
-  if (state.betMode === "two") {
-    displayNumbers = getEffectiveNumbers().join(" ");
-  } else if (state.betMode === "six") {
-    displayNumbers = state.numbers.map(function(n){
-      return n + " → " + getPermutations3(n).join(" ");
-    }).join("\n");
-  } else if (state.betMode === "gate") {
-    displayNumbers = "รูด " + state.numbers.join(", ") + " • " + getBetCount() + " รายการ";
-  } else {
-    displayNumbers = state.numbers.join(" ");
-  }
-
-  card.innerHTML =
-    '<div class="confirm-card-head"><span></span><span></span></div>' +
-    '<div class="confirm-card-body" style="white-space:pre-wrap"></div>';
-
-  card.querySelector(".confirm-card-head span:first-child").textContent = cfg.title.replace("กรอกเลข ","");
-  card.querySelector(".confirm-card-head span:last-child").textContent = money(total) + " เครดิต";
-  card.querySelector(".confirm-card-body").textContent =
-    displayNumbers + "\n" + priceText + "\nจำนวนแทง " + getBetCount() + " รายการ";
-
-  els.dialogBody.appendChild(card);
-}
+function renderConfirm() {}
 
 function confirmAndSend() {
   try {
     validateDirectBet();
   } catch(e) {
-    closeConfirm();
     showError(e.message);
     return;
   }
 
-  closeConfirm();
-  setLoading(true);
-
+  var totalBeforeSend = getTotalAmount();
   var raw = buildCanonicalRawText();
+
+  Swal.fire({
+    title:"กำลังส่งโพย",
+    allowOutsideClick:false,
+    allowEscapeKey:false,
+    didOpen:function(){ Swal.showLoading(); }
+  });
 
   api("placeCreditBet", state.token, {
     lottoName: state.selectedLotto.name,
     rawText: raw,
     directBet: buildDirectBetPayload()
   })
-    .then(function(r){
-      if (state.user) state.user.credit = r.credit;
-      updateUserUI();
+  .then(function(r){
+    if (state.user) state.user.credit = r.credit;
+    updateUserUI();
 
-      var billId = String(r.billId || "").slice(0,8);
-      var total = Number(r.totalAmount || getTotalAmount());
+    var billId = String(r.billId || "").slice(0,8);
+    var total = Number(r.totalAmount || totalBeforeSend);
+    clearCurrentBet();
 
-      clearCurrentBet();
-      showToast("แทงสำเร็จ • รอผล");
-
-      setTimeout(function(){
-        alert(
-          "แทงสำเร็จ\n" +
-          "บิล " + billId + "\n" +
-          "ยอด " + money(total) + " เครดิต\n" +
-          "เครดิตคงเหลือ " + money(r.credit)
-        );
-      }, 120);
-    })
-    .catch(showErrorGlobal)
-    .finally(function(){ setLoading(false); });
+    return Swal.fire({
+      icon:"success",
+      title:"แทงสำเร็จ",
+      html:
+        'บิล <b>' + escapeHtml(billId) + '</b><br>' +
+        'ยอดแทง <b>' + money(total) + '</b> เครดิต<br>' +
+        'เครดิตคงเหลือ <b>' + money(r.credit) + '</b>',
+      confirmButtonText:"ตกลง",
+      confirmButtonColor:"#e11d48"
+    });
+  })
+  .catch(function(e){
+    showErrorGlobal(e);
+  });
 }
 
 /* =====================================================
@@ -3665,7 +3644,7 @@ function showAdminError(e) {
       text:msg
     });
   } else {
-    alert(msg);
+    Swal.fire({icon:"info",title:"แจ้งเตือน",text:String(msg),confirmButtonText:"ตกลง",confirmButtonColor:"#e11d48"});
   }
 }
 
@@ -3817,9 +3796,20 @@ function formatDateOnly(d) {
 ===================================================== */
 function showError(e) {
   setLoading(false);
-  els.error.textContent = typeof e === "string"
+
+  var msg = typeof e === "string"
     ? e
     : (e && e.message ? e.message : "เกิดข้อผิดพลาด");
+
+  if (els.error) els.error.textContent = msg;
+
+  Swal.fire({
+    icon:"warning",
+    title:"ตรวจสอบข้อมูล",
+    text:msg,
+    confirmButtonText:"ตกลง",
+    confirmButtonColor:"#e11d48"
+  });
 }
 
 function showErrorGlobal(e) {
@@ -3831,11 +3821,13 @@ function showErrorGlobal(e) {
 
   if (els.error) els.error.textContent = msg;
 
-  if (/อ่านโพยไม่ได้|สร้างโพยไม่สำเร็จ/.test(msg)) {
-    msg += "\n\nต้อง Deploy Code.gs ตัวล่าสุดด้วย เพราะหน้าแทงใหม่นี้ส่งข้อมูลแบบ Direct Bet";
-  }
-
-  alert(msg);
+  Swal.fire({
+    icon:"error",
+    title:"เกิดข้อผิดพลาด",
+    text:msg,
+    confirmButtonText:"ตกลง",
+    confirmButtonColor:"#e11d48"
+  });
 }
 
 function clearError() {
