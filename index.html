@@ -6,6 +6,9 @@
   <meta content="#991B1B" name="theme-color"/>
   <title>ระบบแทงหวยเครดิต</title>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
 :root {
   --red: #c9152d;
@@ -31,7 +34,7 @@ html, body {
   min-height: 100%;
   background: var(--bg);
   color: var(--ink);
-  font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans Thai",sans-serif;
+  font-family:"Prompt","Noto Sans Thai",sans-serif;
 }
 
 button, input, textarea {
@@ -1950,6 +1953,39 @@ button:active {
 }
 .result-num.main b { color:#be123c; }
 
+
+.swal2-popup,
+.swal2-title,
+.swal2-html-container,
+.swal2-actions,
+.swal2-confirm,
+.swal2-cancel,
+.swal2-input,
+.swal2-select {
+  font-family:"Prompt","Noto Sans Thai",sans-serif !important;
+}
+
+.login-title-inline {
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+.login-version {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:24px;
+  height:18px;
+  padding:0 6px;
+  border-radius:999px;
+  background:#fff1f2;
+  color:#be123c;
+  font-size:9px;
+  line-height:1;
+  font-weight:900;
+  vertical-align:middle;
+}
+
 </style>
  </head>
  <body>
@@ -1957,7 +1993,7 @@ button:active {
   <section id="loginScreen">
     <div class="login-card-credit">
       <div class="login-logo-credit">฿</div>
-      <h1>เข้าสู่ระบบ</h1>
+      <h1 class="login-title-inline">เข้าสู่ระบบ <span class="login-version">V</span></h1>
       
       <div class="api-state" id="apiState">กำลังตรวจการเชื่อมต่อ...</div>
       <div class="login-field">
@@ -2114,6 +2150,7 @@ button:active {
       <input id="resultsDate" type="date">
       <button id="resultsReloadBtn">ดูผล</button>
      </div>
+     <div id="resultsSource" style="margin:-3px 2px 10px;color:#71717a;font-size:9px;font-weight:800"></div>
      <div class="result-list" id="resultsList">
       <div class="empty">กำลังโหลดผล...</div>
      </div>
@@ -2294,7 +2331,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "lottoScreen","betScreen","historyScreen","resultsScreen","adminScreen","lottoGrid","lottoEmpty",
     "backBtn","selectedName","selectedRound","selectedClose","selectedCount",
     "accountName","heroCredit","betCredit","bottomCredit","summaryCredit","adminBtn",
-    "resultsBtn","historyBtn","logoutBtn","resultsBackBtn","resultsBalance","resultsDate","resultsReloadBtn","resultsList","historyBackBtn","historyCredit","historyFrom","historyTo",
+    "resultsBtn","historyBtn","logoutBtn","resultsBackBtn","resultsBalance","resultsDate","resultsReloadBtn","resultsSource","resultsList","historyBackBtn","historyCredit","historyFrom","historyTo",
      "historyStatus","historyList","adminIdentity","adminLogoutBtn","syncResultsBtn","adminDashRange","adminDashFrom","adminDashTo","adminDashCustomBtn","adminDashStats","adminByUser","adminByLotto","adminOpenUser","adminOpenLotto","adminOpenSearchBtn","adminOpenTable","adminCreateUserBtn","adminUserTable","adminLottoTable","directTitle","numberCount","numberInput",
     "clearNumbersBtn","numberChipBox","reverseBtn","doubleBtn",
     "priceA","priceB","priceALabel","priceBLabel","priceBField","directPriceGrid",
@@ -3236,6 +3273,12 @@ function loadMemberResults() {
   .then(function(r){
     var rows = (r && r.results) || [];
 
+    if (els.resultsSource) {
+      els.resultsSource.textContent =
+        "AllHuay • อัปเดต " + (r.checkedAt || "") +
+        (Number(r.settledBills || 0) > 0 ? " • ตรวจโพย " + Number(r.settledBills) + " บิล" : "");
+    }
+
     if (!rows.length) {
       els.resultsList.innerHTML = '<div class="empty">ยังไม่มีผลหวย</div>';
       return;
@@ -3311,7 +3354,7 @@ function loadHistory() {
           '<div class="history-head"><strong>' + escapeHtml(b.lottoName) + '</strong>' +
           '<span class="status-pill status-' + escapeHtml(b.status) + '">' + st + '</span></div>' +
           '<div class="history-meta">รอบ ' + escapeHtml(b.roundDate) +
-          ' • ' + formatDateTime(b.betAt) +
+          ' • ' + (b.betAtText || formatDateTime(b.betAt)) +
           ' • บิล ' + escapeHtml(String(b.billId || "").slice(0,8)) + '</div>' +
           '<div class="history-raw">' + escapeHtml(b.rawText || "") + '</div>' +
           '<div class="history-money"><span>ยอดแทง ' + money(b.totalAmount) +
@@ -3523,7 +3566,7 @@ async function loadAdminOpenBets() {
           escapeHtml(b.lottoName),
           escapeHtml(b.roundDate),
           money(b.totalAmount),
-          escapeHtml(formatDateTime(b.betAt)),
+          escapeHtml((b.betAtText || formatDateTime(b.betAt))),
           '<span class="numbers">' + escapeHtml(b.rawText || "") + '</span>'
         ];
       })
@@ -4125,7 +4168,7 @@ function escapeHtml(s) {
 
 function formatDateTime(v) {
   try {
-    return new Date(v).toLocaleString("th-TH", {
+    return new Intl.DateTimeFormat("th-TH", {
       timeZone:"Asia/Bangkok",
       year:"numeric",
       month:"2-digit",
@@ -4133,8 +4176,8 @@ function formatDateTime(v) {
       hour:"2-digit",
       minute:"2-digit",
       second:"2-digit",
-      hour12:false
-    });
+      hourCycle:"h23"
+    }).format(new Date(v));
   } catch(e) {
     return String(v || "");
   }
