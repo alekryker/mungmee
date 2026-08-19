@@ -2258,6 +2258,9 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
 @media (max-width:390px) {
   .bet-mode-tab { font-size:10px; min-height:56px; }
 }
+
+/* V15 ADMIN SUBMENUS / MULTI LOTTO / USER RATES */
+.admin-lotto-filter{margin-top:12px;padding:11px;border:1px solid #e4e4e7;border-radius:13px;background:#fafafa}.admin-lotto-filter-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}.admin-lotto-filter-head strong{font-size:11px;font-weight:650}.admin-lotto-checks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px 9px;max-height:310px;overflow:auto}.admin-lotto-check{display:flex;align-items:flex-start;gap:6px;min-width:0;padding:5px 6px;border-radius:8px;background:#fff;font-size:9px;cursor:pointer}.admin-lotto-check input{margin-top:2px}.admin-lotto-check span{min-width:0;line-height:1.4}.lotto-subtabs{display:flex;gap:7px;overflow:auto;margin-top:11px;padding-bottom:3px}.lotto-subtab{flex:0 0 auto;min-height:40px;padding:0 13px;border:1px solid #e4e4e7;border-radius:10px;background:#fafafa;color:#52525b;font-size:10px;font-weight:600}.lotto-subtab.active{border-color:#991b1b;background:#fff1f2;color:#991b1b}.lotto-subpanel{display:none;margin-top:12px}.lotto-subpanel.active{display:block}.lotto-status{display:inline-flex;align-items:center;min-height:24px;padding:0 8px;border-radius:999px;font-size:9px;font-weight:650}.lotto-status.on{background:#dcfce7;color:#166534}.lotto-status.off{background:#fee2e2;color:#991b1b}.admin-mini.danger{border-color:#fecaca;background:#fff1f2;color:#be123c}.admin-mini.green{border-color:#bbf7d0;background:#f0fdf4;color:#15803d}.rate-editor-card{padding:12px;border:1px solid #e4e4e7;border-radius:14px;background:#fafafa}.rate-editor-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.rate-mode-note{margin-top:9px;padding:8px 10px;border-radius:9px;background:#fff;color:#71717a;font-size:9px}.rate-input-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:9px}.rate-input-grid label{display:block;margin-bottom:4px;color:#71717a;font-size:9px}.rate-input-grid input{width:100%;height:42px;border:1px solid #e4e4e7;border-radius:10px;padding:0 9px;background:#fff;font:inherit}.rate-editor-actions{display:flex;gap:7px;margin-top:10px}.rate-editor-actions button{flex:1}.rate-editor-actions button:disabled{opacity:.45;cursor:not-allowed}@media(max-width:800px){.admin-lotto-checks{grid-template-columns:repeat(2,minmax(0,1fr))}.rate-input-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:520px){.admin-lotto-checks{grid-template-columns:1fr}.rate-editor-grid,.rate-input-grid{grid-template-columns:1fr}}
 </style>
  </head>
  <body>
@@ -2265,7 +2268,7 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
   <section id="loginScreen">
     <div class="login-card-credit">
       <div class="login-logo-credit">฿</div>
-      <h1 class="login-title-inline">เข้าสู่ระบบ <span class="login-version" id="loginVersion">V14</span></h1>
+      <h1 class="login-title-inline">เข้าสู่ระบบ <span class="login-version" id="loginVersion">V15</span></h1>
       
       <div class="api-state" id="apiState">กำลังตรวจการเชื่อมต่อ...</div>
       <div class="login-field">
@@ -2575,8 +2578,18 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
         <button class="admin-btn soft" data-dash-range="month">เดือนนี้</button>
         <div class="admin-field"><label>จาก</label><input id="adminDashFrom" type="date"></div>
         <div class="admin-field"><label>ถึง</label><input id="adminDashTo" type="date"></div>
-        <div class="admin-field"><label>หวย</label><select id="adminDashLotto"><option value="">ทั้งหมด</option></select></div>
-        <button class="admin-btn dark" id="adminDashCustomBtn">เลือกวันที่</button>
+        <button class="admin-btn dark" id="adminDashCustomBtn">ค้นหา</button>
+       </div>
+
+       <div class="admin-lotto-filter">
+        <div class="admin-lotto-filter-head">
+         <strong>เลือกหวย</strong>
+         <div>
+          <button type="button" class="admin-mini" id="adminDashSelectAll">เลือกทั้งหมด</button>
+          <button type="button" class="admin-mini" id="adminDashClearAll">เอาออกทั้งหมด</button>
+         </div>
+        </div>
+        <div class="admin-lotto-checks" id="adminDashLottoChecks"></div>
        </div>
 
        <div class="admin-stats" id="adminDashStats"></div>
@@ -2636,13 +2649,42 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
 
      <section class="admin-panel" id="adminPanel-lotto">
       <div class="admin-card">
-       <div class="admin-card-head">
-        <div>
-         <h2>ตั้งค่าหวย</h2>
-         
-        </div>
+       <div class="admin-card-head"><div><h2>ตั้งค่าหวย</h2></div></div>
+       <div class="lotto-subtabs">
+        <button class="lotto-subtab active" data-lotto-subtab="enabled">เปิด / ปิดหวย</button>
+        <button class="lotto-subtab" data-lotto-subtab="rules">เงื่อนไขหวย</button>
+        <button class="lotto-subtab" data-lotto-subtab="rates">เรทจ่าย</button>
        </div>
-       <div class="admin-table-wrap" id="adminLottoTable" style="margin-top:11px"></div>
+       <div class="lotto-subpanel active" id="lottoSub-enabled">
+        <div class="admin-muted">เปิดหรือปิดรับแทงแยกแต่ละหวย</div>
+        <div class="admin-table-wrap" id="adminLottoToggleTable" style="margin-top:11px"></div>
+       </div>
+       <div class="lotto-subpanel" id="lottoSub-rules">
+        <div class="admin-muted">เวลาปิดรับ ขั้นต่ำ สูงสุดต่อเลข สูงสุดต่อบิล และ Alias</div>
+        <div class="admin-table-wrap" id="adminLottoRulesTable" style="margin-top:11px"></div>
+       </div>
+       <div class="lotto-subpanel" id="lottoSub-rates">
+        <div class="rate-editor-card">
+         <div class="rate-editor-grid">
+          <div class="admin-field"><label>Member</label><select id="adminRateUser"><option value="">ค่าเริ่มต้นทุก Member</option></select></div>
+          <div class="admin-field"><label>หวย</label><select id="adminRateLotto"></select></div>
+         </div>
+         <div class="rate-mode-note" id="adminRateModeNote">เรท Default ของหวย</div>
+         <div class="rate-input-grid">
+          <div><label>3 ตัวตรง</label><input id="adminRate3Straight" type="number" step="0.01"></div>
+          <div><label>3 ตัวโต๊ด</label><input id="adminRate3Tod" type="number" step="0.01"></div>
+          <div><label>2 ตัวบน</label><input id="adminRate2Top" type="number" step="0.01"></div>
+          <div><label>2 ตัวล่าง</label><input id="adminRate2Bottom" type="number" step="0.01"></div>
+          <div><label>วิ่งบน</label><input id="adminRateRunTop" type="number" step="0.01"></div>
+          <div><label>วิ่งล่าง</label><input id="adminRateRunBottom" type="number" step="0.01"></div>
+         </div>
+         <div class="rate-editor-actions">
+          <button class="admin-btn dark" id="adminRateSaveBtn">บันทึกเรท</button>
+          <button class="admin-btn soft" id="adminRateResetBtn">ใช้ค่า Default</button>
+         </div>
+        </div>
+        <div class="admin-table-wrap" id="adminRateOverridesTable" style="margin-top:12px"></div>
+       </div>
       </div>
      </section>
     </div>
@@ -2658,7 +2700,7 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
   
 
 <script>
-const APP_VERSION = "V14";
+const APP_VERSION = "V15";
 const API = "https://script.google.com/macros/s/AKfycbzhCttywyi-ihmYs5ctKid6oQkRmb4itxHUZ2a6juYd9jltSE81PBt1I-20yr_X9Pcg/exec";
 const AFTER_MIDNIGHT_CUTOFF_HOUR = 6;
 
@@ -2675,6 +2717,9 @@ var state = {
   isAdmin: false,
   adminUsers: [],
   adminLottos: [],
+  adminRateMatrix: null,
+  adminSummarySelected: [],
+  lottoSubTab: "enabled",
   historyBets: [],
   adminBets: [],
   adminTab: "dashboard"
@@ -2691,7 +2736,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "backBtn","selectedName","selectedRound","selectedClose","selectedCount",
     "accountName","heroCredit","betCredit","bottomCredit","summaryCredit","adminBtn",
     "memberSummaryBtn","moneyBtn","resultsBtn","historyBtn","logoutBtn","resultsBackBtn","resultsBalance","resultsDate","resultsReloadBtn","resultsSource","resultsList","historyBackBtn","historyCredit","historyFrom","historyTo",
-     "historyStatus","historyList","moneyBackBtn","moneyBalance","moneyFrom","moneyTo","moneyType","moneyList","memberSummaryBackBtn","memberSummaryBalance","memberSummaryFrom","memberSummaryTo","memberSummaryLotto","memberSummarySearchBtn","memberSummaryStats","memberSummaryTable","adminIdentity","adminLogoutBtn","syncResultsBtn","adminDashRange","adminDashFrom","adminDashTo","adminDashLotto","adminDashCustomBtn","adminDashStats","adminByUser","adminByLotto","adminBetFrom","adminBetTo","adminBetStatus","adminOpenUser","adminOpenLotto","adminOpenSearchBtn","adminOpenTable","adminCreateUserBtn","adminUserTable","adminLottoTable","directTitle","numberCount","numberInput",
+     "historyStatus","historyList","moneyBackBtn","moneyBalance","moneyFrom","moneyTo","moneyType","moneyList","memberSummaryBackBtn","memberSummaryBalance","memberSummaryFrom","memberSummaryTo","memberSummaryLotto","memberSummarySearchBtn","memberSummaryStats","memberSummaryTable","adminIdentity","adminLogoutBtn","syncResultsBtn","adminDashRange","adminDashFrom","adminDashTo","adminDashCustomBtn","adminDashSelectAll","adminDashClearAll","adminDashLottoChecks","adminDashStats","adminByUser","adminByLotto","adminBetFrom","adminBetTo","adminBetStatus","adminOpenUser","adminOpenLotto","adminOpenSearchBtn","adminOpenTable","adminCreateUserBtn","adminUserTable","adminLottoToggleTable","adminLottoRulesTable","adminRateUser","adminRateLotto","adminRateModeNote","adminRate3Straight","adminRate3Tod","adminRate2Top","adminRate2Bottom","adminRateRunTop","adminRateRunBottom","adminRateSaveBtn","adminRateResetBtn","adminRateOverridesTable","directTitle","numberCount","numberInput",
     "clearNumbersBtn","numberChipBox","reverseBtn","doubleBtn",
     "priceA","priceB","priceALabel","priceBLabel","priceBField","directPriceGrid",
     "sourceCount","betCount","grandTotal","clearAllBtn","submitBtn","error",
@@ -2830,7 +2875,21 @@ function bindEvents() {
   });
 
   els.adminDashCustomBtn.onclick = function(){ loadAdminDashboard("custom"); };
-  els.adminDashLotto.onchange = function(){ loadAdminDashboard("custom"); };
+  els.adminDashSelectAll.onclick = function(){
+    state.adminSummarySelected = state.lottos.map(function(l){ return l.lottoName; });
+    renderAdminSummaryLottoChecks();
+  };
+  els.adminDashClearAll.onclick = function(){
+    state.adminSummarySelected = [];
+    renderAdminSummaryLottoChecks();
+  };
+  document.querySelectorAll("[data-lotto-subtab]").forEach(function(btn){
+    btn.onclick = function(){ showLottoSubTab(btn.dataset.lottoSubtab); };
+  });
+  els.adminRateUser.onchange = renderAdminRateEditor;
+  els.adminRateLotto.onchange = renderAdminRateEditor;
+  els.adminRateSaveBtn.onclick = saveAdminPayoutRate;
+  els.adminRateResetBtn.onclick = resetAdminPayoutRate;
   els.syncResultsBtn.onclick = syncAdminResults;
   els.adminOpenSearchBtn.onclick = loadAdminAllBets;
   els.adminBetFrom.onchange = loadAdminAllBets;
@@ -4149,26 +4208,38 @@ function showAdminTab(tab) {
   if (state.adminTab === "dashboard") loadAdminDashboard("day");
   if (state.adminTab === "openbets") loadAdminAllBets();
   if (state.adminTab === "users") loadAdminUsers();
-  if (state.adminTab === "lotto") loadAdminLottoSettings();
+  if (state.adminTab === "lotto") { loadAdminLottoSettings(); showLottoSubTab(state.lottoSubTab || "enabled"); }
 }
 
 function fillAdminLottoFilter() {
-  var options =
-    '<option value="">ทั้งหมด</option>' +
-    state.lottos.map(function(l){
-      return '<option value="' + escapeHtml(l.lottoName) + '">' +
-        escapeHtml(l.lottoName) + '</option>';
-    }).join("");
+  var options = '<option value="">ทั้งหมด</option>' + state.lottos.map(function(l){
+    return '<option value="' + escapeHtml(l.lottoName) + '">' + escapeHtml(l.lottoName) + '</option>';
+  }).join("");
 
-  [els.adminOpenLotto, els.adminDashLotto, els.memberSummaryLotto].forEach(function(select){
+  [els.adminOpenLotto, els.memberSummaryLotto].forEach(function(select){
     if (!select) return;
-
     var current = select.value || "";
     select.innerHTML = options;
+    if ([].slice.call(select.options).some(function(o){ return o.value === current; })) select.value = current;
+  });
 
-    if ([].slice.call(select.options).some(function(o){ return o.value === current; })) {
-      select.value = current;
-    }
+  if (!state.adminSummarySelected.length && state.lottos.length) {
+    state.adminSummarySelected = state.lottos.map(function(l){ return l.lottoName; });
+  }
+  renderAdminSummaryLottoChecks();
+}
+
+function renderAdminSummaryLottoChecks() {
+  if (!els.adminDashLottoChecks) return;
+  var selected = {};
+  state.adminSummarySelected.forEach(function(x){ selected[x] = true; });
+  els.adminDashLottoChecks.innerHTML = state.lottos.map(function(l){
+    return '<label class="admin-lotto-check"><input type="checkbox" value="' + escapeAttr(l.lottoName) + '"' + (selected[l.lottoName] ? ' checked' : '') + '><span>' + escapeHtml(l.lottoName) + '</span></label>';
+  }).join("");
+  els.adminDashLottoChecks.querySelectorAll('input[type="checkbox"]').forEach(function(box){
+    box.onchange = function(){
+      state.adminSummarySelected = [].slice.call(els.adminDashLottoChecks.querySelectorAll('input[type="checkbox"]:checked')).map(function(x){ return x.value; });
+    };
   });
 }
 
@@ -4192,72 +4263,23 @@ async function loadAdminDashboard(mode) {
   if (!state.isAdmin) return;
 
   try {
-    var filter = {mode:mode || "day", lottoName:els.adminDashLotto.value || ""};
-
+    var filter = {mode:mode || "day", lottoNames:state.adminSummarySelected.slice()};
     if (mode === "custom") {
-      if (!els.adminDashFrom.value || !els.adminDashTo.value) {
-        throw new Error("กรุณาเลือกวันที่เริ่มต้นและสิ้นสุด");
-      }
-
-      filter = {
-        from:els.adminDashFrom.value,
-        to:els.adminDashTo.value,
-        lottoName:els.adminDashLotto.value || ""
-      };
+      if (!els.adminDashFrom.value || !els.adminDashTo.value) throw new Error("กรุณาเลือกวันที่เริ่มต้นและสิ้นสุด");
+      filter = {from:els.adminDashFrom.value,to:els.adminDashTo.value,lottoNames:state.adminSummarySelected.slice()};
     }
 
     var r = await api("adminGetDashboard", state.token, filter);
-
     els.adminDashRange.textContent = r.range.from + " ถึง " + r.range.to;
-
     if (!els.adminDashFrom.value) els.adminDashFrom.value = r.range.from;
     if (!els.adminDashTo.value) els.adminDashTo.value = r.range.to;
 
     var s = r.summary || {};
+    var stats = [["ยอดแทง",s.turnover],["จ่ายรางวัล",s.payout],["กำไร/ขาดทุน",s.net,"net"],["ยอดรอผล",s.waiting],["จำนวนบิล",s.totalBills],["ยูสเซอร์",s.totalUsers],["บิลถูก",s.winBills],["เครดิตคงเหลือรวม",s.creditOutstanding]];
+    els.adminDashStats.innerHTML = stats.map(function(x){ return '<div class="admin-stat ' + (x[2] || "") + '"><small>' + escapeHtml(x[0]) + '</small><strong>' + money(x[1]) + '</strong></div>'; }).join("");
 
-    var stats = [
-      ["ยอดแทง",s.turnover],
-      ["จ่ายรางวัล",s.payout],
-      ["กำไร/ขาดทุน",s.net,"net"],
-      ["ยอดรอผล",s.waiting],
-      ["จำนวนบิล",s.totalBills],
-      ["ยูสเซอร์",s.totalUsers],
-      ["บิลถูก",s.winBills],
-      ["เครดิตคงเหลือรวม",s.creditOutstanding]
-    ];
-
-    els.adminDashStats.innerHTML = stats.map(function(x){
-      return '<div class="admin-stat ' + (x[2] || "") + '">' +
-        '<small>' + escapeHtml(x[0]) + '</small>' +
-        '<strong>' + money(x[1]) + '</strong></div>';
-    }).join("");
-
-    els.adminByUser.innerHTML = adminTable(
-      ["User","ยอดแทง","จ่าย","แพ้/ชนะ","บิล"],
-      (r.byUser || []).map(function(x){
-        return [
-          escapeHtml(x.username),
-          money(x.turnover),
-          money(x.payout),
-          money(x.net),
-          money(x.bills)
-        ];
-      })
-    );
-
-    els.adminByLotto.innerHTML = adminTable(
-      ["หวย","ยอดแทง","จ่าย","แพ้/ชนะ","บิล"],
-      (r.byLotto || []).map(function(x){
-        return [
-          escapeHtml(x.lottoName),
-          money(x.turnover),
-          money(x.payout),
-          money(x.net),
-          money(x.bills)
-        ];
-      })
-    );
-
+    els.adminByUser.innerHTML = adminTable(["User","ยอดแทง","จ่าย","แพ้/ชนะ","บิล"],(r.byUser || []).map(function(x){ return [escapeHtml(x.username),money(x.turnover),money(x.payout),money(x.net),money(x.bills)]; }));
+    els.adminByLotto.innerHTML = adminTable(["หวย","ยอดแทง","จ่าย","แพ้/ชนะ","บิล"],(r.byLotto || []).map(function(x){ return [escapeHtml(x.lottoName),money(x.turnover),money(x.payout),money(x.net),money(x.bills)]; }));
   } catch(e) {
     showAdminError(e);
   }
@@ -4317,7 +4339,7 @@ async function loadAdminAllBets() {
     state.adminBets = r || [];
 
     els.adminOpenTable.innerHTML = adminTable(
-      ["เวลา","User","หวย","รอบ","ยอด","สถานะ","รายละเอียด"],
+      ["เวลา","User","หวย","รอบ","ยอด","สถานะ","รายละเอียด","ยกเลิก"],
       state.adminBets.map(function(b){
         return [
           escapeHtml(b.betAtText || formatDateTime(b.betAt)),
@@ -4328,7 +4350,10 @@ async function loadAdminAllBets() {
           '<span class="status-pill status-' + escapeHtml(b.status) + '">' +
             escapeHtml(statusText(b.status)) + '</span>',
           '<button class="admin-mini edit" data-admin-bill="' +
-            escapeHtml(String(b.billId || "")) + '">ดูโพย</button>'
+            escapeHtml(String(b.billId || "")) + '">ดูโพย</button>',
+          b.status === "WAITING"
+            ? '<button class="admin-mini danger" data-admin-cancel="' + escapeHtml(String(b.billId || "")) + '">ยกเลิก</button>'
+            : '-'
         ];
       })
     );
@@ -4339,6 +4364,16 @@ async function loadAdminAllBets() {
           return String(x.billId) === String(btn.dataset.adminBill);
         });
         if (bet) showBetDetails(bet, true);
+      };
+    });
+
+    els.adminOpenTable.querySelectorAll("[data-admin-cancel]").forEach(function(btn){
+      btn.onclick = async function(){
+        var bet = state.adminBets.find(function(x){ return String(x.billId) === String(btn.dataset.adminCancel); });
+        if (!bet) return;
+        var ask = await Swal.fire({icon:"warning",title:"ยกเลิกโพย " + escapeHtml(bet.username),html:escapeHtml(bet.lottoName) + "<br>ยอดคืน <b>" + money(bet.totalAmount) + "</b>",showCancelButton:true,confirmButtonText:"ยืนยันยกเลิก",cancelButtonText:"ไม่ยกเลิก",confirmButtonColor:"#be123c"});
+        if (!ask.isConfirmed) return;
+        try{adminBusy("กำลังยกเลิกโพย...");await api("adminCancelBet",state.token,bet.billId);Swal.close();await loadAdminAllBets();await loadAdminDashboard("day");await loadAdminUsers();toast("ยกเลิกโพยและคืนยอดแล้ว");}catch(e){Swal.close();showAdminError(e);}
       };
     });
 
@@ -4403,54 +4438,28 @@ async function openCreateUser() {
   var r = await Swal.fire({
     title:"เปิด Member",
     width:650,
-    html:
-      '<div class="swal-admin-grid">' +
-       '<div class="swal-admin-field"><label>User</label><input id="admNewUser" autocomplete="off"></div>' +
-       '<div class="swal-admin-field"><label>Password</label><input id="admNewPass" type="password"></div>' +
-       '<div class="swal-admin-field"><label>ชื่อ</label><input id="admNewName"></div>' +
-       '<div class="swal-admin-field"><label>เครดิตเริ่มต้น</label><input id="admNewCredit" type="number" value="0"></div>' +
-       '<div class="swal-admin-field"><label>3 ตัวตรง</label><input id="admNewR31" type="number" value="800"></div>' +
-       '<div class="swal-admin-field"><label>3 ตัวโต๊ด</label><input id="admNewR3T" type="number" value="125"></div>' +
-       '<div class="swal-admin-field"><label>2 ตัวบน</label><input id="admNewR2T" type="number" value="100"></div>' +
-       '<div class="swal-admin-field"><label>2 ตัวล่าง</label><input id="admNewR2B" type="number" value="100"></div>' +
-      '</div>',
+    html:'<div class="swal-admin-grid">' +
+      '<div class="swal-admin-field"><label>User</label><input id="admNewUser" autocomplete="off"></div>' +
+      '<div class="swal-admin-field"><label>Password</label><input id="admNewPass" type="password"></div>' +
+      '<div class="swal-admin-field"><label>ชื่อ</label><input id="admNewName"></div>' +
+      '<div class="swal-admin-field"><label>เครดิตเริ่มต้น</label><input id="admNewCredit" type="number" value="0"></div>' +
+    '</div>',
     showCancelButton:true,
     confirmButtonText:"สร้าง Member",
     cancelButtonText:"ยกเลิก",
     preConfirm:function(){
-      return {
-        username:document.getElementById("admNewUser").value,
-        password:document.getElementById("admNewPass").value,
-        displayName:document.getElementById("admNewName").value,
-        credit:num(document.getElementById("admNewCredit").value),
-        rate3Straight:num(document.getElementById("admNewR31").value),
-        rate3Tod:num(document.getElementById("admNewR3T").value),
-        rate2Top:num(document.getElementById("admNewR2T").value),
-        rate2Bottom:num(document.getElementById("admNewR2B").value)
-      };
+      return {username:document.getElementById("admNewUser").value,password:document.getElementById("admNewPass").value,displayName:document.getElementById("admNewName").value,credit:num(document.getElementById("admNewCredit").value)};
     }
   });
-
   if (!r.isConfirmed) return;
-
   try {
     adminBusy("กำลังเปิดยูส...");
-    await api("adminCreateUser", state.token, r.value);
+    await api("adminCreateUser",state.token,r.value);
     Swal.close();
     await loadAdminUsers();
     await loadAdminDashboard("day");
-
-    Swal.fire({
-      icon:"success",
-      title:"สร้าง Member แล้ว",
-      timer:1200,
-      showConfirmButton:false
-    });
-
-  } catch(e) {
-    Swal.close();
-    showAdminError(e);
-  }
+    Swal.fire({icon:"success",title:"สร้าง Member แล้ว",timer:1200,showConfirmButton:false});
+  } catch(e) { Swal.close(); showAdminError(e); }
 }
 
 async function openCreditAdjust(u) {
@@ -4499,193 +4508,78 @@ async function openEditUser(u) {
   var r = await Swal.fire({
     title:"แก้ไข " + escapeHtml(u.username),
     width:680,
-    html:
-      '<div class="swal-admin-grid">' +
-       '<div class="swal-admin-field"><label>ชื่อ</label><input id="admEditName" value="' + escapeAttr(u.displayName || "") + '"></div>' +
-       '<div class="swal-admin-field"><label>สถานะ</label><select id="admEditStatus">' +
+    html:'<div class="swal-admin-grid">' +
+      '<div class="swal-admin-field"><label>ชื่อ</label><input id="admEditName" value="' + escapeAttr(u.displayName || "") + '"></div>' +
+      '<div class="swal-admin-field"><label>สถานะ</label><select id="admEditStatus">' +
         '<option value="ACTIVE"' + (u.status === "ACTIVE" ? " selected" : "") + '>ACTIVE</option>' +
         '<option value="SUSPENDED"' + (u.status !== "ACTIVE" ? " selected" : "") + '>SUSPENDED</option>' +
-       '</select></div>' +
-       '<div class="swal-admin-field"><label>3 ตัวตรง</label><input id="admEditR31" type="number" value="' + Number(u.rates.threeStraight || 0) + '"></div>' +
-       '<div class="swal-admin-field"><label>3 ตัวโต๊ด</label><input id="admEditR3T" type="number" value="' + Number(u.rates.threeTod || 0) + '"></div>' +
-       '<div class="swal-admin-field"><label>2 ตัวบน</label><input id="admEditR2T" type="number" value="' + Number(u.rates.twoTop || 0) + '"></div>' +
-       '<div class="swal-admin-field"><label>2 ตัวล่าง</label><input id="admEditR2B" type="number" value="' + Number(u.rates.twoBottom || 0) + '"></div>' +
-       '<div class="swal-admin-field full"><label>Password ใหม่ (ไม่เปลี่ยนให้เว้นว่าง)</label><input id="admEditPass" type="password"></div>' +
-      '</div>',
+      '</select></div>' +
+      '<div class="swal-admin-field full"><label>Password ใหม่ (ไม่เปลี่ยนให้เว้นว่าง)</label><input id="admEditPass" type="password"></div>' +
+    '</div>',
     showCancelButton:true,
     confirmButtonText:"บันทึก",
     cancelButtonText:"ยกเลิก",
-    preConfirm:function(){
-      return {
-        userId:u.userId,
-        displayName:document.getElementById("admEditName").value,
-        status:document.getElementById("admEditStatus").value,
-        rate3Straight:num(document.getElementById("admEditR31").value),
-        rate3Tod:num(document.getElementById("admEditR3T").value),
-        rate2Top:num(document.getElementById("admEditR2T").value),
-        rate2Bottom:num(document.getElementById("admEditR2B").value),
-        newPassword:document.getElementById("admEditPass").value
-      };
-    }
+    preConfirm:function(){ return {userId:u.userId,displayName:document.getElementById("admEditName").value,status:document.getElementById("admEditStatus").value,newPassword:document.getElementById("admEditPass").value}; }
   });
-
   if (!r.isConfirmed) return;
-
   try {
     adminBusy("กำลังบันทึก...");
-    await api("adminUpdateUser", state.token, r.value);
+    await api("adminUpdateUser",state.token,r.value);
     Swal.close();
     await loadAdminUsers();
+    Swal.fire({icon:"success",title:"บันทึกแล้ว",timer:1100,showConfirmButton:false});
+  } catch(e) { Swal.close(); showAdminError(e); }
+}
 
-    Swal.fire({
-      icon:"success",
-      title:"บันทึกแล้ว",
-      timer:1100,
-      showConfirmButton:false
-    });
-
-  } catch(e) {
-    Swal.close();
-    showAdminError(e);
-  }
+function showLottoSubTab(tab) {
+  state.lottoSubTab = tab || "enabled";
+  document.querySelectorAll("[data-lotto-subtab]").forEach(function(btn){ btn.classList.toggle("active",btn.dataset.lottoSubtab === state.lottoSubTab); });
+  document.querySelectorAll(".lotto-subpanel").forEach(function(panel){ panel.classList.remove("active"); });
+  var panel = document.getElementById("lottoSub-" + state.lottoSubTab); if (panel) panel.classList.add("active");
+  if (state.lottoSubTab === "rates") loadAdminPayoutRates();
 }
 
 async function loadAdminLottoSettings() {
   if (!state.isAdmin) return;
-
   try {
-    var rows = await api("adminGetLottoSettings", state.token);
-    state.adminLottos = rows || [];
-
-    els.adminLottoTable.innerHTML = adminTable(
-      ["หวย","เปิด","ปิดรับ","ขั้นต่ำ","สูงสุด/เลข","สูงสุด/บิล","เรท 3ตรง/โต๊ด/2บน/2ล่าง/วิ่งบน/วิ่งล่าง","Alias","แก้ไข"],
-      state.adminLottos.map(function(l){
-        return [
-          escapeHtml(l.lottoName),
-          l.enabled ? "เปิด" : "ปิด",
-          escapeHtml(l.closeTime),
-          money(l.minPerNumber),
-          money(l.maxPerNumber),
-          money(l.maxPerBill),
-          [
-            money(l.rate3Straight),
-            money(l.rate3Tod),
-            money(l.rate2Top),
-            money(l.rate2Bottom),
-            money(l.rateRunTop),
-            money(l.rateRunBottom)
-          ].join(" / "),
-          escapeHtml(l.aliases || ""),
-          '<button class="admin-mini edit" data-edit-lotto="' + escapeAttr(l.lottoName) + '">แก้ไข</button>'
-        ];
-      })
-    );
-
-    els.adminLottoTable.querySelectorAll("[data-edit-lotto]").forEach(function(btn){
-      btn.onclick = function(){
-        var l = state.adminLottos.find(function(x){ return x.lottoName === btn.dataset.editLotto; });
-        if (l) openEditLotto(l);
-      };
-    });
-
-  } catch(e) {
-    showAdminError(e);
-  }
+    state.adminLottos = await api("adminGetLottoSettings",state.token) || [];
+    els.adminLottoToggleTable.innerHTML = adminTable(["หวย","ปิดรับ","สถานะ","เปิด / ปิด"],state.adminLottos.map(function(l){ return [escapeHtml(l.lottoName),escapeHtml(l.closeTime),l.enabled ? '<span class="lotto-status on">เปิด</span>' : '<span class="lotto-status off">ปิด</span>','<button class="admin-mini ' + (l.enabled ? 'danger' : 'green') + '" data-toggle-lotto="' + escapeAttr(l.lottoName) + '" data-enabled="' + (l.enabled ? '1':'0') + '">' + (l.enabled ? 'ปิดหวย':'เปิดหวย') + '</button>']; }));
+    els.adminLottoRulesTable.innerHTML = adminTable(["หวย","ปิดรับ","ขั้นต่ำ","สูงสุด/เลข","สูงสุด/บิล","Alias","แก้ไข"],state.adminLottos.map(function(l){ return [escapeHtml(l.lottoName),escapeHtml(l.closeTime),money(l.minPerNumber),money(l.maxPerNumber),money(l.maxPerBill),escapeHtml(l.aliases || ""),'<button class="admin-mini edit" data-edit-rule="' + escapeAttr(l.lottoName) + '">แก้ไข</button>']; }));
+    els.adminLottoToggleTable.querySelectorAll("[data-toggle-lotto]").forEach(function(btn){ btn.onclick = async function(){ var enabled = btn.dataset.enabled !== "1"; try { adminBusy(enabled ? "กำลังเปิดหวย...":"กำลังปิดหวย..."); await api("adminSetLottoEnabled",state.token,{lottoName:btn.dataset.toggleLotto,enabled:enabled}); Swal.close(); await refreshBootData(); await loadAdminLottoSettings(); toast(enabled ? "เปิดหวยแล้ว":"ปิดหวยแล้ว"); } catch(e) { Swal.close(); showAdminError(e); } }; });
+    els.adminLottoRulesTable.querySelectorAll("[data-edit-rule]").forEach(function(btn){ btn.onclick=function(){ var l=state.adminLottos.find(function(x){return x.lottoName===btn.dataset.editRule;}); if(l) openEditLottoRules(l); }; });
+    showLottoSubTab(state.lottoSubTab || "enabled");
+  } catch(e) { showAdminError(e); }
 }
 
-async function openEditLotto(l) {
-  var r = await Swal.fire({
-    title:escapeHtml(l.lottoName),
-    width:760,
-    html:
-      '<div class="swal-admin-grid">' +
-       '<div class="swal-admin-field"><label>สถานะ</label><select id="admLottoEnabled">' +
-        '<option value="1"' + (l.enabled ? " selected" : "") + '>เปิด</option>' +
-        '<option value="0"' + (!l.enabled ? " selected" : "") + '>ปิด</option>' +
-       '</select></div>' +
-       '<div class="swal-admin-field"><label>เวลาปิดรับ</label><input id="admLottoClose" value="' + escapeAttr(l.closeTime) + '"></div>' +
-       '<div class="swal-admin-field"><label>ขั้นต่ำ/เลข</label><input id="admLottoMin" type="number" value="' + Number(l.minPerNumber || 0) + '"></div>' +
-       '<div class="swal-admin-field"><label>สูงสุด/เลข</label><input id="admLottoMax" type="number" value="' + Number(l.maxPerNumber || 0) + '"></div>' +
-       '<div class="swal-admin-field"><label>สูงสุด/บิล</label><input id="admLottoBill" type="number" value="' + Number(l.maxPerBill || 0) + '"></div>' +
-       '<div class="swal-admin-field"><label>3 ตัวตรง</label><input id="admLottoR31" type="number" value="' + Number(l.rate3Straight || 0) + '"></div>' +
-       '<div class="swal-admin-field"><label>3 ตัวโต๊ด</label><input id="admLottoR3T" type="number" value="' + Number(l.rate3Tod || 0) + '"></div>' +
-       '<div class="swal-admin-field"><label>2 ตัวบน</label><input id="admLottoR2T" type="number" value="' + Number(l.rate2Top || 0) + '"></div>' +
-       '<div class="swal-admin-field"><label>2 ตัวล่าง</label><input id="admLottoR2B" type="number" value="' + Number(l.rate2Bottom || 0) + '"></div>' +
-       '<div class="swal-admin-field"><label>วิ่งบน</label><input id="admLottoRunTop" type="number" value="' + Number(l.rateRunTop == null ? 3 : l.rateRunTop) + '"></div>' +
-       '<div class="swal-admin-field"><label>วิ่งล่าง</label><input id="admLottoRunBottom" type="number" value="' + Number(l.rateRunBottom == null ? 4 : l.rateRunBottom) + '"></div>' +
-       '<div class="swal-admin-field full"><label>Alias จาก AllHuay (คั่นด้วย |)</label><input id="admLottoAlias" value="' + escapeAttr(l.aliases || "") + '"></div>' +
-      '</div>',
-    showCancelButton:true,
-    confirmButtonText:"บันทึก",
-    cancelButtonText:"ยกเลิก",
-    preConfirm:function(){
-      return {
-        lottoName:l.lottoName,
-        enabled:document.getElementById("admLottoEnabled").value === "1",
-        closeTime:document.getElementById("admLottoClose").value,
-        minPerNumber:num(document.getElementById("admLottoMin").value),
-        maxPerNumber:num(document.getElementById("admLottoMax").value),
-        maxPerBill:num(document.getElementById("admLottoBill").value),
-        rate3Straight:num(document.getElementById("admLottoR31").value),
-        rate3Tod:num(document.getElementById("admLottoR3T").value),
-        rate2Top:num(document.getElementById("admLottoR2T").value),
-        rate2Bottom:num(document.getElementById("admLottoR2B").value),
-        rateRunTop:num(document.getElementById("admLottoRunTop").value),
-        rateRunBottom:num(document.getElementById("admLottoRunBottom").value),
-        aliases:document.getElementById("admLottoAlias").value,
-        sortOrder:l.sortOrder
-      };
-    }
-  });
-
-  if (!r.isConfirmed) return;
-
-  try {
-    adminBusy("กำลังบันทึกหวย...");
-    await api("adminSaveLottoSetting", state.token, r.value);
-    Swal.close();
-
-    await refreshBootData();
-    await loadAdminLottoSettings();
-
-    Swal.fire({
-      icon:"success",
-      title:"บันทึกหวยแล้ว",
-      timer:1100,
-      showConfirmButton:false
-    });
-
-  } catch(e) {
-    Swal.close();
-    showAdminError(e);
-  }
+async function openEditLottoRules(l) {
+  var r = await Swal.fire({title:escapeHtml(l.lottoName),width:680,html:'<div class="swal-admin-grid">' +
+    '<div class="swal-admin-field"><label>เวลาปิดรับ</label><input id="admLottoClose" value="' + escapeAttr(l.closeTime) + '"></div>' +
+    '<div class="swal-admin-field"><label>ขั้นต่ำ/เลข</label><input id="admLottoMin" type="number" value="' + Number(l.minPerNumber || 0) + '"></div>' +
+    '<div class="swal-admin-field"><label>สูงสุด/เลข</label><input id="admLottoMax" type="number" value="' + Number(l.maxPerNumber || 0) + '"></div>' +
+    '<div class="swal-admin-field"><label>สูงสุด/บิล</label><input id="admLottoBill" type="number" value="' + Number(l.maxPerBill || 0) + '"></div>' +
+    '<div class="swal-admin-field full"><label>Alias จาก AllHuay</label><input id="admLottoAlias" value="' + escapeAttr(l.aliases || "") + '"></div></div>',showCancelButton:true,confirmButtonText:"บันทึก",cancelButtonText:"ยกเลิก",preConfirm:function(){ return {lottoName:l.lottoName,enabled:l.enabled,closeTime:document.getElementById("admLottoClose").value,minPerNumber:num(document.getElementById("admLottoMin").value),maxPerNumber:num(document.getElementById("admLottoMax").value),maxPerBill:num(document.getElementById("admLottoBill").value),rate3Straight:l.rate3Straight,rate3Tod:l.rate3Tod,rate2Top:l.rate2Top,rate2Bottom:l.rate2Bottom,rateRunTop:l.rateRunTop,rateRunBottom:l.rateRunBottom,aliases:document.getElementById("admLottoAlias").value,sortOrder:l.sortOrder}; }});
+  if(!r.isConfirmed)return;
+  try{adminBusy("กำลังบันทึก...");await api("adminSaveLottoSetting",state.token,r.value);Swal.close();await refreshBootData();await loadAdminLottoSettings();toast("บันทึกเงื่อนไขแล้ว");}catch(e){Swal.close();showAdminError(e);}
 }
 
-async function refreshBootData() {
-  var data = await api("getCreditBetBoot", state.token);
-
-  state.user = data.user;
-  state.isAdmin = !!data.isAdmin;
-
-  state.lottos = (data.lottos || []).map(function(l){
-    return {
-      name:l.lottoName,
-      lottoName:l.lottoName,
-      closeTime:l.closeTime,
-      roundDate:l.roundDate,
-      drawDate:l.roundDate,
-      open:l.open !== false,
-      minPerNumber:Number(l.minPerNumber || 0),
-      maxPerNumber:Number(l.maxPerNumber || 0),
-      maxPerBill:Number(l.maxPerBill || 0)
-    };
-  });
-
-  updateUserUI();
-  renderLottos();
-  fillAdminLottoFilter();
-  els.adminBtn.classList.toggle("hidden", !state.isAdmin);
+async function loadAdminPayoutRates() {
+  if(!state.isAdmin)return;
+  try{
+    var matrix=await api("adminGetPayoutRateMatrix",state.token);state.adminRateMatrix=matrix;
+    var currentUser=els.adminRateUser.value||"", currentLotto=els.adminRateLotto.value||"";
+    els.adminRateUser.innerHTML='<option value="">ค่าเริ่มต้นทุก Member</option>'+(matrix.users||[]).map(function(u){return '<option value="'+escapeAttr(u.userId)+'">'+escapeHtml(u.username)+'</option>';}).join("");
+    els.adminRateLotto.innerHTML=(matrix.lottos||[]).map(function(l){return '<option value="'+escapeAttr(l.lottoName)+'">'+escapeHtml(l.lottoName)+'</option>';}).join("");
+    if([].slice.call(els.adminRateUser.options).some(function(o){return o.value===currentUser;}))els.adminRateUser.value=currentUser;
+    if([].slice.call(els.adminRateLotto.options).some(function(o){return o.value===currentLotto;}))els.adminRateLotto.value=currentLotto;
+    renderAdminRateEditor();renderAdminRateOverridesTable();
+  }catch(e){showAdminError(e);}
 }
+
+function getAdminRateSelection(){var m=state.adminRateMatrix||{users:[],lottos:[],overrides:[]};var uid=els.adminRateUser.value||"",ln=els.adminRateLotto.value||"";return{userId:uid,user:(m.users||[]).find(function(x){return x.userId===uid;})||null,lottoName:ln,lotto:(m.lottos||[]).find(function(x){return x.lottoName===ln;})||null,override:uid?((m.overrides||[]).find(function(x){return x.userId===uid&&x.lottoName===ln;})||null):null};}
+function renderAdminRateEditor(){var s=getAdminRateSelection();if(!s.lotto)return;var r=s.override?s.override.rates:s.lotto.defaults;els.adminRate3Straight.value=r.threeStraight;els.adminRate3Tod.value=r.threeTod;els.adminRate2Top.value=r.twoTop;els.adminRate2Bottom.value=r.twoBottom;els.adminRateRunTop.value=r.runTop;els.adminRateRunBottom.value=r.runBottom;if(!s.userId){els.adminRateModeNote.textContent="ค่า Default • ใช้กับ Member ที่ไม่ได้กำหนดเรทเฉพาะ";els.adminRateResetBtn.disabled=true;}else if(s.override){els.adminRateModeNote.textContent="เรทเฉพาะ "+s.user.username+" • "+s.lottoName;els.adminRateResetBtn.disabled=false;}else{els.adminRateModeNote.textContent=s.user.username+" ยังใช้ค่า Default ของ "+s.lottoName;els.adminRateResetBtn.disabled=true;}}
+async function saveAdminPayoutRate(){var s=getAdminRateSelection();if(!s.lottoName)return;try{adminBusy("กำลังบันทึกเรท...");await api("adminSavePayoutRate",state.token,{userId:s.userId,lottoName:s.lottoName,rate3Straight:num(els.adminRate3Straight.value),rate3Tod:num(els.adminRate3Tod.value),rate2Top:num(els.adminRate2Top.value),rate2Bottom:num(els.adminRate2Bottom.value),rateRunTop:num(els.adminRateRunTop.value),rateRunBottom:num(els.adminRateRunBottom.value)});Swal.close();await loadAdminPayoutRates();toast("บันทึกเรทแล้ว");}catch(e){Swal.close();showAdminError(e);}}
+async function resetAdminPayoutRate(){var s=getAdminRateSelection();if(!s.userId||!s.override)return;var ask=await Swal.fire({icon:"question",title:"ใช้ค่า Default?",text:"ลบเรทเฉพาะของ "+s.user.username+" สำหรับ "+s.lottoName,showCancelButton:true,confirmButtonText:"ใช้ Default",cancelButtonText:"ยกเลิก",confirmButtonColor:"#52525b"});if(!ask.isConfirmed)return;try{adminBusy("กำลังคืนค่า Default...");await api("adminDeletePayoutRate",state.token,{userId:s.userId,lottoName:s.lottoName});Swal.close();await loadAdminPayoutRates();toast("กลับมาใช้ค่า Default แล้ว");}catch(e){Swal.close();showAdminError(e);}}
+function renderAdminRateOverridesTable(){var m=state.adminRateMatrix||{overrides:[]};els.adminRateOverridesTable.innerHTML=adminTable(["Member","หวย","3ตรง","โต๊ด","2บน","2ล่าง","วิ่งบน","วิ่งล่าง"],(m.overrides||[]).map(function(x){return[escapeHtml(x.username),escapeHtml(x.lottoName),money(x.rates.threeStraight),money(x.rates.threeTod),money(x.rates.twoTop),money(x.rates.twoBottom),money(x.rates.runTop),money(x.rates.runBottom)];}));}
 
 function adminBusy(title) {
   if (typeof Swal === "undefined") return;
