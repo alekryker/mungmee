@@ -2713,13 +2713,13 @@ html,body{
 
       <section class="v16-wallet">
        <div class="v16-wallet-top">
-        <div class="v16-wallet-label">ยอดเงินคงเหลือ</div>
+        <div class="v16-wallet-label">เครดิตซื้อสินค้า</div>
         <div class="v16-wallet-user" id="homeUserName">MEMBER</div>
        </div>
        <div class="v16-wallet-balance"><b id="homeCredit">0.00</b><span>฿</span></div>
        <div class="v16-wallet-sub">
         <span id="homeUsername">@user</span>
-        <span>V16.4</span>
+        <span>V16.5</span>
        </div>
       </section>
 
@@ -2764,7 +2764,7 @@ html,body{
       </div>
 
       <div class="v16-safe-note">
-       V16.2 เพิ่มอัปโหลดสลิปและตรวจสอบสลิปด้วย Thunder API โดย API Key เก็บฝั่ง Apps Script
+       V16.5 SHOP • ตรวจสลิปผ่าน Thunder แล้วเพิ่มเครดิตซื้อสินค้าอัตโนมัติ
       </div>
      </div>
     </div>
@@ -2919,12 +2919,10 @@ html,body{
       <input id="moneyTo" type="date">
       <select id="moneyType" class="wide">
        <option value="">ทุกรายการ</option>
-       <option value="ADMIN_ADD">เติมเงิน</option>
-       <option value="ADMIN_SUB">หักเงิน</option>
-       <option value="OPENING">ยอดเปิดบัญชี</option>
-       <option value="BET">แทงหวย</option>
-       <option value="WIN">ถูกรางวัล</option>
-       <option value="CANCEL">คืนยอดยกเลิกโพย</option>
+       <option value="DEPOSIT_SLIP">เติมเครดิตด้วยสลิป</option>
+       <option value="PURCHASE">ซื้อสินค้า</option>
+       <option value="REFUND">คืนเงินสินค้า</option>
+       <option value="ADJUST">ปรับยอด</option>
       </select>
      </div>
      <div class="money-list" id="moneyList">
@@ -3190,13 +3188,14 @@ html,body{
   
 
 <script>
-const APP_VERSION = "V16.4";
+const APP_VERSION = "V16.5 SHOP";
 const API = "https://script.google.com/macros/s/AKfycbzhCttywyi-ihmYs5ctKid6oQkRmb4itxHUZ2a6juYd9jltSE81PBt1I-20yr_X9Pcg/exec";
 const AFTER_MIDNIGHT_CUTOFF_HOUR = 6;
 
 var state = {
   token: sessionStorage.getItem("creditToken") || "",
   user: null,
+  shopCredit: 0,
   lottos: [],
   selectedLotto: null,
   betMode: "two",
@@ -3456,6 +3455,7 @@ function boot() {
   return api("getCreditBetBoot", state.token)
     .then(function(data){
       state.user = data.user;
+      state.shopCredit = Number(data.shopWalletBalance || 0);
       state.isAdmin = !!data.isAdmin;
 
       state.lottos = (data.lottos || []).map(function(l){
@@ -3498,7 +3498,7 @@ function updateUserUI() {
   var credit = money(state.user.credit);
 
 
-  if (els.homeCredit) els.homeCredit.textContent = credit;
+  if (els.homeCredit) els.homeCredit.textContent = money(state.shopCredit || 0);
   if (els.homeUserName) {
     els.homeUserName.textContent =
       (state.user.displayName || state.user.username || "MEMBER").toUpperCase();
@@ -3515,7 +3515,7 @@ function updateUserUI() {
   els.bottomCredit.textContent = credit;
   els.summaryCredit.textContent = credit;
   els.historyCredit.textContent = credit;
-  if (els.moneyBalance) els.moneyBalance.textContent = credit;
+  if (els.moneyBalance) els.moneyBalance.textContent = money(state.shopCredit || 0);
   if (els.memberSummaryBalance) els.memberSummaryBalance.textContent = credit;
   if (els.resultsBalance) els.resultsBalance.textContent = credit;
   if (els.adminIdentity) {
@@ -3603,9 +3603,15 @@ function openSelfDeposit() {
     String(now.getMinutes()).padStart(2,"0");
 
   Swal.fire({
-    title:"ตรวจสอบสลิปฝากเงิน",
+    title:"เติมเครดิตซื้อสินค้า",
     html:
       '<div style="text-align:left">' +
+        '<div style="margin-bottom:14px;padding:13px;border:1px solid #bbf7d0;border-radius:13px;background:#f0fdf4">' +
+          '<div style="font-size:10px;color:#166534;font-weight:900;margin-bottom:5px">บัญชีสำหรับรับโอน</div>' +
+          '<div style="font-size:15px;font-weight:900;color:#14532d">SCB • 5054158114</div>' +
+          '<div style="font-size:11px;margin-top:3px;color:#166534">ธนาคารไทยพาณิชย์</div>' +
+          '<div style="font-size:11px;margin-top:2px;color:#166534">น.ส. ทิพวรรณ ฮุ่งเมือง</div>' +
+        '</div>' +
         '<label style="display:block;font-size:11px;font-weight:800;margin:4px 0 6px">ยอดที่โอน</label>' +
         '<input id="swalDepositAmount" class="swal2-input" type="number" min="1" step="0.01" inputmode="decimal" placeholder="เช่น 500" style="margin:0;width:100%">' +
 
@@ -3675,15 +3681,19 @@ function openSelfDeposit() {
 
     api("memberSubmitDepositSlip", state.token, result.value)
       .then(function(r){
+        state.shopCredit = Number(r.shopCredit || r.balanceAfter || 0);
+        updateUserUI();
+
         Swal.fire({
           icon:"success",
-          title:"ตรวจสลิปสำเร็จ",
+          title:"เติมเครดิตสำเร็จ",
           html:
             '<div style="font-size:13px;line-height:1.8">' +
-              'ยอดในสลิป <b>' + money(r.verifiedAmount) + ' บาท</b><br>' +
+              'ยอดที่เติม <b>' + money(r.verifiedAmount) + ' บาท</b><br>' +
+              'เครดิตซื้อสินค้าคงเหลือ <b>' + money(state.shopCredit) + ' บาท</b><br>' +
               (r.slipDate ? 'วันเวลาในสลิป <b>' + escapeHtml(r.slipDate) + '</b><br>' : '') +
               (r.transRef ? 'เลขอ้างอิง <b>' + escapeHtml(r.transRef) + '</b><br>' : '') +
-              '<span style="color:#71717a;font-size:10px">สลิปผ่านการตรวจสอบและบันทึกรายการแล้ว</span>' +
+              '<span style="color:#71717a;font-size:10px">Thunder ตรวจสลิปผ่านและเพิ่มเครดิตให้อัตโนมัติแล้ว</span>' +
             '</div>',
           confirmButtonText:"ตกลง",
           confirmButtonColor:"#0f7d4e"
@@ -4392,19 +4402,17 @@ function showMoney() {
 
 function moneyTypeText(type) {
   return ({
-    OPENING:"ยอดเปิดบัญชี",
-    ADMIN_ADD:"เติมเงิน",
-    ADMIN_SUB:"หักเงิน",
-    BET:"แทงหวย",
-    WIN:"ถูกรางวัล",
-    CANCEL:"คืนยอดยกเลิกโพย"
+    DEPOSIT_SLIP:"เติมเครดิตด้วยสลิป",
+    PURCHASE:"ซื้อสินค้า",
+    REFUND:"คืนเงินสินค้า",
+    ADJUST:"ปรับยอด"
   })[String(type || "").toUpperCase()] || type;
 }
 
 function loadMoneyTransactions() {
   els.moneyList.innerHTML = '<div class="empty">กำลังโหลดรายการ...</div>';
 
-  api("getMyCreditTransactions", state.token, {
+  api("getMyShopWalletTransactions", state.token, {
     dateFrom:els.moneyFrom.value || "",
     dateTo:els.moneyTo.value || "",
     type:els.moneyType.value || ""
