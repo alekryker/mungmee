@@ -1335,6 +1335,77 @@ button:active {
 }
 
 
+function betGroupPriceText(g) {
+  var mode = String(g.mode || "");
+  var top = Number(g.top || 0);
+  var bottom = Number(g.bottom || 0);
+  var parts = [];
+
+  if (mode === "ตท" || mode === "ตรงโต๊ด") {
+    if (top > 0) parts.push("ตรง " + money(top));
+    if (bottom > 0) parts.push("โต๊ด " + money(bottom));
+  } else if (mode === "6กลับ") {
+    if (top > 0) parts.push("6 กลับ " + money(top));
+  } else {
+    if (top > 0) parts.push("บน " + money(top));
+    if (bottom > 0) parts.push("ล่าง " + money(bottom));
+  }
+
+  return parts.join("  |  ");
+}
+
+function showBetDetails(bet, isAdminView) {
+  bet = bet || {};
+  var groups = Array.isArray(bet.groups) ? bet.groups : [];
+
+  var groupsHtml = groups.length
+    ? groups.map(function(g){
+        var nums = Array.isArray(g.numbers) ? g.numbers : [];
+
+        return '<div class="bet-detail-group">' +
+          '<div class="bet-detail-group-head"><b>' +
+            escapeHtml(String(g.mode || "รายการ")) +
+          '</b><span>' + nums.length + ' เลข</span></div>' +
+          '<div class="bet-detail-numbers">' +
+            nums.map(function(n){
+              return '<span>' + escapeHtml(n) + '</span>';
+            }).join("") +
+          '</div>' +
+          '<div class="bet-detail-price">' +
+            escapeHtml(betGroupPriceText(g)) +
+          '</div>' +
+        '</div>';
+      }).join("")
+    : '<div class="bet-detail-empty">ไม่มีรายละเอียด</div>';
+
+  var payoutRow = bet.status === "WIN"
+    ? '<div class="bet-detail-summary"><span>ยอดถูกรางวัล</span><b>' + money(bet.payout) + '</b></div>'
+    : '';
+
+  Swal.fire({
+    title:isAdminView ? "รายละเอียดโพย" : "โพยของฉัน",
+    width:720,
+    html:
+      '<div class="bet-detail-wrap">' +
+        '<div class="bet-detail-top">' +
+          '<div><small>หวย</small><b>' + escapeHtml(bet.lottoName || "-") + '</b></div>' +
+          '<div><small>สถานะ</small><b>' + escapeHtml(statusText(bet.status)) + '</b></div>' +
+        '</div>' +
+        '<div class="bet-detail-meta">' +
+          (isAdminView ? 'User ' + escapeHtml(bet.username || "-") + ' • ' : '') +
+          'รอบ ' + escapeHtml(bet.roundDate || "-") + '<br>' +
+          escapeHtml(bet.betAtText || formatDateTime(bet.betAt)) + '<br>' +
+          'Bill: ' + escapeHtml(String(bet.billId || "")) +
+        '</div>' +
+        groupsHtml +
+        '<div class="bet-detail-summary"><span>ยอดแทง</span><b>' + money(bet.totalAmount) + '</b></div>' +
+        payoutRow +
+      '</div>',
+    confirmButtonText:"ปิด",
+    confirmButtonColor:"#991b1b"
+  });
+}
+
 /* =====================================================
    ADMIN BACKOFFICE
 ===================================================== */
@@ -2047,6 +2118,204 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
 .bet-detail-summary b { font-size:16px; font-weight:700; }
 .bet-detail-empty { padding:18px; text-align:center; color:#a1a1aa; }
 
+
+/* =====================================================
+   V13 MEMBER MONEY + WIN/LOSS
+===================================================== */
+.account-actions {
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+.account-btn {
+  min-height:38px;
+  padding:0 10px;
+}
+
+.money-list {
+  display:grid;
+  gap:9px;
+}
+.money-card {
+  padding:13px;
+  border:1px solid #e4e4e7;
+  border-radius:16px;
+  background:#fff;
+  box-shadow:0 4px 15px rgba(0,0,0,.04);
+}
+.money-card-head {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+.money-card-head strong {
+  display:block;
+  font-size:13px;
+  font-weight:650;
+}
+.money-card-head small {
+  display:block;
+  margin-top:2px;
+  color:#a1a1aa;
+  font-size:9px;
+  font-weight:400;
+}
+.money-card-head b {
+  font-size:16px;
+  font-weight:700;
+}
+.money-card-head b.plus { color:#15803d; }
+.money-card-head b.minus { color:#be123c; }
+.money-balance-row {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:9px;
+  padding-top:8px;
+  border-top:1px dashed #e4e4e7;
+  color:#71717a;
+  font-size:11px;
+}
+.money-balance-row strong {
+  color:#27272a;
+  font-weight:650;
+}
+.money-note {
+  margin-top:6px;
+  color:#71717a;
+  font-size:10px;
+}
+
+.summary-page {
+  padding:12px 10px 34px;
+}
+.summary-filter-card,
+.summary-table-card {
+  border:1px solid #e4e4e7;
+  border-radius:17px;
+  background:#fff;
+  padding:12px;
+  box-shadow:0 5px 18px rgba(0,0,0,.04);
+}
+.summary-presets {
+  display:flex;
+  gap:6px;
+  overflow:auto;
+  padding-bottom:3px;
+}
+.summary-preset {
+  flex:0 0 auto;
+  min-height:38px;
+  border:1px solid #e4e4e7;
+  border-radius:10px;
+  padding:0 11px;
+  background:#fafafa;
+  color:#52525b;
+  font-size:10px;
+  font-weight:550;
+}
+.summary-preset.active {
+  border-color:#e11d48;
+  background:#fff1f2;
+  color:#be123c;
+}
+.summary-filter-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+  margin-top:10px;
+}
+.summary-filter-grid > div.wide {
+  grid-column:1/-1;
+}
+.summary-filter-grid label {
+  display:block;
+  margin-bottom:4px;
+  color:#71717a;
+  font-size:9px;
+}
+.summary-filter-grid input,
+.summary-filter-grid select {
+  width:100%;
+  height:42px;
+  border:1px solid #e4e4e7;
+  border-radius:10px;
+  padding:0 9px;
+  background:#fff;
+  font:inherit;
+}
+.summary-filter-grid button {
+  grid-column:1/-1;
+  min-height:42px;
+  border:0;
+  border-radius:10px;
+  background:#991b1b;
+  color:#fff;
+  font-weight:600;
+}
+.summary-stats {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+  margin:10px 0;
+}
+.summary-stat {
+  padding:11px;
+  border:1px solid #e4e4e7;
+  border-radius:13px;
+  background:#fff;
+}
+.summary-stat small {
+  display:block;
+  color:#71717a;
+  font-size:9px;
+  font-weight:400;
+}
+.summary-stat b {
+  display:block;
+  margin-top:3px;
+  font-size:17px;
+  font-weight:700;
+}
+.summary-stat.positive b,
+.sum-positive { color:#15803d; }
+.summary-stat.negative b,
+.sum-negative { color:#be123c; }
+.summary-title {
+  margin-bottom:9px;
+  font-size:13px;
+  font-weight:650;
+}
+.summary-table-wrap {
+  overflow:auto;
+  border:1px solid #e4e4e7;
+  border-radius:12px;
+}
+.summary-table {
+  width:100%;
+  min-width:520px;
+  border-collapse:collapse;
+  font-size:10px;
+}
+.summary-table th {
+  padding:9px 8px;
+  background:#fafafa;
+  color:#71717a;
+  text-align:left;
+  white-space:nowrap;
+  font-weight:550;
+}
+.summary-table td {
+  padding:9px 8px;
+  border-top:1px solid #f4f4f5;
+  font-weight:400;
+}
+
+/* ไม่แสดงข้อความ placeholder ในกล่องเลขว่าง */
+.number-chip-empty {
+  min-height:38px;
+}
+
 </style>
  </head>
  <body>
@@ -2054,7 +2323,7 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
   <section id="loginScreen">
     <div class="login-card-credit">
       <div class="login-logo-credit">฿</div>
-      <h1 class="login-title-inline">เข้าสู่ระบบ <span class="login-version" id="loginVersion">V12</span></h1>
+      <h1 class="login-title-inline">เข้าสู่ระบบ <span class="login-version" id="loginVersion">V13</span></h1>
       
       <div class="api-state" id="apiState">กำลังตรวจการเชื่อมต่อ...</div>
       <div class="login-field">
@@ -2086,6 +2355,8 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
       </div>
       <div class="account-actions">
        <button class="account-btn light hidden" id="adminBtn">หลังบ้าน</button>
+       <button class="account-btn light" id="memberSummaryBtn">สรุปแพ้-ชนะ</button>
+       <button class="account-btn light" id="moneyBtn">รายการเงิน</button>
        <button class="account-btn light" id="resultsBtn">ผลหวย</button>
        <button class="account-btn light" id="historyBtn">รายการโพย</button>
        <button class="account-btn" id="logoutBtn">ออก</button>
@@ -2194,6 +2465,73 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
     </section>
    </section>
 
+   <section class="screen" id="moneyScreen">
+    <header class="hero">
+     <div class="eyebrow">MONEY HISTORY</div>
+     <h1>รายการเงิน</h1>
+     <div class="account-row">
+      <button class="account-btn light" id="moneyBackBtn">‹ กลับ</button>
+      <div class="account-credit">
+       <small>ยอดคงเหลือ</small>
+       <strong id="moneyBalance">0.00</strong>
+      </div>
+     </div>
+    </header>
+    <div class="history-body">
+     <div class="history-toolbar">
+      <input id="moneyFrom" type="date">
+      <input id="moneyTo" type="date">
+      <select id="moneyType" class="wide">
+       <option value="">ทุกรายการ</option>
+       <option value="ADMIN_ADD">เติมเงิน</option>
+       <option value="ADMIN_SUB">หักเงิน</option>
+       <option value="OPENING">ยอดเปิดบัญชี</option>
+       <option value="BET">แทงหวย</option>
+       <option value="WIN">ถูกรางวัล</option>
+      </select>
+     </div>
+     <div class="money-list" id="moneyList">
+      <div class="empty">กำลังโหลดรายการ...</div>
+     </div>
+    </div>
+   </section>
+
+   <section class="screen" id="memberSummaryScreen">
+    <header class="hero">
+     <div class="eyebrow">WIN / LOSS</div>
+     <h1>สรุปแพ้-ชนะ</h1>
+     <div class="account-row">
+      <button class="account-btn light" id="memberSummaryBackBtn">‹ กลับ</button>
+      <div class="account-credit">
+       <small>ยอดคงเหลือ</small>
+       <strong id="memberSummaryBalance">0.00</strong>
+      </div>
+     </div>
+    </header>
+    <div class="summary-page">
+     <div class="summary-filter-card">
+      <div class="summary-presets">
+       <button class="summary-preset active" data-member-range="day">วันนี้</button>
+       <button class="summary-preset" data-member-range="yesterday">เมื่อวาน</button>
+       <button class="summary-preset" data-member-range="week">สัปดาห์นี้</button>
+       <button class="summary-preset" data-member-range="lastweek">สัปดาห์ที่แล้ว</button>
+       <button class="summary-preset" data-member-range="month">เดือนนี้</button>
+      </div>
+      <div class="summary-filter-grid">
+       <div><label>จาก</label><input id="memberSummaryFrom" type="date"></div>
+       <div><label>ถึง</label><input id="memberSummaryTo" type="date"></div>
+       <div class="wide"><label>หวย</label><select id="memberSummaryLotto"><option value="">ทั้งหมด</option></select></div>
+       <button id="memberSummarySearchBtn">ค้นหา</button>
+      </div>
+     </div>
+     <div class="summary-stats" id="memberSummaryStats"></div>
+     <div class="summary-table-card">
+      <div class="summary-title">สรุปแยกตามหวย</div>
+      <div class="summary-table-wrap" id="memberSummaryTable"></div>
+     </div>
+    </div>
+   </section>
+
    <section class="screen" id="resultsScreen">
     <header class="hero">
      <div class="eyebrow">RESULTS</div>
@@ -2267,7 +2605,7 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
 
     <div class="admin-tabs-wrap">
      <div class="admin-tabs">
-      <button class="admin-tab active" data-admin-tab="dashboard">Dashboard</button>
+      <button class="admin-tab active" data-admin-tab="dashboard">สรุปแพ้-ชนะ</button>
       <button class="admin-tab" data-admin-tab="openbets">โพยทั้งหมด</button>
       <button class="admin-tab" data-admin-tab="users">ยูสเซอร์/เครดิต</button>
       <button class="admin-tab" data-admin-tab="lotto">ตั้งค่าหวย</button>
@@ -2287,10 +2625,13 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
 
        <div class="admin-toolbar">
         <button class="admin-btn soft" data-dash-range="day">วันนี้</button>
-        <button class="admin-btn soft" data-dash-range="week">สัปดาห์</button>
-        <button class="admin-btn soft" data-dash-range="month">เดือน</button>
+        <button class="admin-btn soft" data-dash-range="yesterday">เมื่อวาน</button>
+        <button class="admin-btn soft" data-dash-range="week">สัปดาห์นี้</button>
+        <button class="admin-btn soft" data-dash-range="lastweek">สัปดาห์ที่แล้ว</button>
+        <button class="admin-btn soft" data-dash-range="month">เดือนนี้</button>
         <div class="admin-field"><label>จาก</label><input id="adminDashFrom" type="date"></div>
         <div class="admin-field"><label>ถึง</label><input id="adminDashTo" type="date"></div>
+        <div class="admin-field"><label>หวย</label><select id="adminDashLotto"><option value="">ทั้งหมด</option></select></div>
         <button class="admin-btn dark" id="adminDashCustomBtn">เลือกวันที่</button>
        </div>
 
@@ -2373,7 +2714,7 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
   
 
 <script>
-const APP_VERSION = "V12";
+const APP_VERSION = "V13";
 const API = "https://script.google.com/macros/s/AKfycbzhCttywyi-ihmYs5ctKid6oQkRmb4itxHUZ2a6juYd9jltSE81PBt1I-20yr_X9Pcg/exec";
 const AFTER_MIDNIGHT_CUTOFF_HOUR = 6;
 
@@ -2402,11 +2743,11 @@ var toastTimer = null;
 document.addEventListener("DOMContentLoaded", function () {
   [
     "loginScreen","mainApp","apiState","loginVersion","loginUser","loginPass","loginBtn",
-    "lottoScreen","betScreen","historyScreen","resultsScreen","adminScreen","lottoGrid","lottoEmpty",
+    "lottoScreen","betScreen","historyScreen","moneyScreen","memberSummaryScreen","resultsScreen","adminScreen","lottoGrid","lottoEmpty",
     "backBtn","selectedName","selectedRound","selectedClose","selectedCount",
     "accountName","heroCredit","betCredit","bottomCredit","summaryCredit","adminBtn",
-    "resultsBtn","historyBtn","logoutBtn","resultsBackBtn","resultsBalance","resultsDate","resultsReloadBtn","resultsSource","resultsList","historyBackBtn","historyCredit","historyFrom","historyTo",
-     "historyStatus","historyList","adminIdentity","adminLogoutBtn","syncResultsBtn","adminDashRange","adminDashFrom","adminDashTo","adminDashCustomBtn","adminDashStats","adminByUser","adminByLotto","adminBetFrom","adminBetTo","adminBetStatus","adminOpenUser","adminOpenLotto","adminOpenSearchBtn","adminOpenTable","adminCreateUserBtn","adminUserTable","adminLottoTable","directTitle","numberCount","numberInput",
+    "memberSummaryBtn","moneyBtn","resultsBtn","historyBtn","logoutBtn","resultsBackBtn","resultsBalance","resultsDate","resultsReloadBtn","resultsSource","resultsList","historyBackBtn","historyCredit","historyFrom","historyTo",
+     "historyStatus","historyList","moneyBackBtn","moneyBalance","moneyFrom","moneyTo","moneyType","moneyList","memberSummaryBackBtn","memberSummaryBalance","memberSummaryFrom","memberSummaryTo","memberSummaryLotto","memberSummarySearchBtn","memberSummaryStats","memberSummaryTable","adminIdentity","adminLogoutBtn","syncResultsBtn","adminDashRange","adminDashFrom","adminDashTo","adminDashLotto","adminDashCustomBtn","adminDashStats","adminByUser","adminByLotto","adminBetFrom","adminBetTo","adminBetStatus","adminOpenUser","adminOpenLotto","adminOpenSearchBtn","adminOpenTable","adminCreateUserBtn","adminUserTable","adminLottoTable","directTitle","numberCount","numberInput",
     "clearNumbersBtn","numberChipBox","reverseBtn","doubleBtn",
     "priceA","priceB","priceALabel","priceBLabel","priceBField","directPriceGrid",
     "sourceCount","betCount","grandTotal","clearAllBtn","submitBtn","error",
@@ -2472,6 +2813,20 @@ function bindEvents() {
   els.loginPass.onkeydown = function(e){ if (e.key === "Enter") login(); };
 
   els.backBtn.onclick = backToLotto;
+  els.memberSummaryBtn.onclick = showMemberSummary;
+  els.moneyBtn.onclick = showMoney;
+  els.moneyBackBtn.onclick = showLotto;
+  els.moneyFrom.onchange = loadMoneyTransactions;
+  els.moneyTo.onchange = loadMoneyTransactions;
+  els.moneyType.onchange = loadMoneyTransactions;
+  els.memberSummaryBackBtn.onclick = showLotto;
+  els.memberSummarySearchBtn.onclick = function(){ loadMemberSummary("custom"); };
+  els.memberSummaryLotto.onchange = function(){ loadMemberSummary("custom"); };
+
+  document.querySelectorAll("[data-member-range]").forEach(function(btn){
+    btn.onclick = function(){ loadMemberSummary(btn.dataset.memberRange); };
+  });
+
   els.resultsBtn.onclick = showResults;
   els.resultsBackBtn.onclick = showLotto;
   els.resultsReloadBtn.onclick = loadMemberResults;
@@ -2525,6 +2880,7 @@ function bindEvents() {
   });
 
   els.adminDashCustomBtn.onclick = function(){ loadAdminDashboard("custom"); };
+  els.adminDashLotto.onchange = function(){ loadAdminDashboard("custom"); };
   els.syncResultsBtn.onclick = syncAdminResults;
   els.adminOpenSearchBtn.onclick = loadAdminAllBets;
   els.adminBetFrom.onchange = loadAdminAllBets;
@@ -2630,6 +2986,8 @@ function updateUserUI() {
   els.bottomCredit.textContent = credit;
   els.summaryCredit.textContent = credit;
   els.historyCredit.textContent = credit;
+  if (els.moneyBalance) els.moneyBalance.textContent = credit;
+  if (els.memberSummaryBalance) els.memberSummaryBalance.textContent = credit;
   if (els.resultsBalance) els.resultsBalance.textContent = credit;
   if (els.adminIdentity) {
     els.adminIdentity.textContent =
@@ -2692,6 +3050,8 @@ function chooseLotto(lotto) {
 function showLotto() {
   els.betScreen.classList.remove("active");
   els.historyScreen.classList.remove("active");
+  els.moneyScreen.classList.remove("active");
+  els.memberSummaryScreen.classList.remove("active");
   els.resultsScreen.classList.remove("active");
   els.adminScreen.classList.remove("active");
   els.lottoScreen.classList.add("active");
@@ -2702,6 +3062,8 @@ function showLotto() {
 function showBet() {
   els.lottoScreen.classList.remove("active");
   els.historyScreen.classList.remove("active");
+  els.moneyScreen.classList.remove("active");
+  els.memberSummaryScreen.classList.remove("active");
   els.resultsScreen.classList.remove("active");
   els.adminScreen.classList.remove("active");
   els.betScreen.classList.add("active");
@@ -3047,7 +3409,7 @@ function renderDirectBet() {
   els.reverseBtn.textContent = state.reverse ? "✓ กลับเลขแล้ว" : "↔ กลับเลข";
 
   if (!state.numbers.length) {
-    els.numberChipBox.innerHTML = '<div class="number-chip-empty">กรอกเลขด้านบน แล้วเลขที่แทงจริงจะแสดงตรงนี้ทันที</div>';
+    els.numberChipBox.innerHTML = '<div class="number-chip-empty"></div>';
   } else {
     els.numberChipBox.innerHTML = buildActualBetChips();
 
@@ -3344,12 +3706,183 @@ function confirmAndSend() {
 }
 
 /* =====================================================
+   MEMBER MONEY
+===================================================== */
+function showMoney() {
+  els.lottoScreen.classList.remove("active");
+  els.betScreen.classList.remove("active");
+  els.historyScreen.classList.remove("active");
+  els.memberSummaryScreen.classList.remove("active");
+  els.resultsScreen.classList.remove("active");
+  els.adminScreen.classList.remove("active");
+  els.moneyScreen.classList.add("active");
+  clearInterval(timer);
+  scrollTo(0,0);
+  loadMoneyTransactions();
+}
+
+function moneyTypeText(type) {
+  return ({
+    OPENING:"ยอดเปิดบัญชี",
+    ADMIN_ADD:"เติมเงิน",
+    ADMIN_SUB:"หักเงิน",
+    BET:"แทงหวย",
+    WIN:"ถูกรางวัล"
+  })[String(type || "").toUpperCase()] || type;
+}
+
+function loadMoneyTransactions() {
+  els.moneyList.innerHTML = '<div class="empty">กำลังโหลดรายการ...</div>';
+
+  api("getMyCreditTransactions", state.token, {
+    dateFrom:els.moneyFrom.value || "",
+    dateTo:els.moneyTo.value || "",
+    type:els.moneyType.value || ""
+  })
+  .then(function(rows){
+    rows = rows || [];
+
+    if (!rows.length) {
+      els.moneyList.innerHTML = '<div class="empty">ยังไม่มีรายการเงิน</div>';
+      return;
+    }
+
+    els.moneyList.innerHTML = rows.map(function(x){
+      var plus = Number(x.amount || 0) >= 0;
+      var amount = Number(x.amount || 0);
+
+      return '<article class="money-card">' +
+        '<div class="money-card-head">' +
+          '<div><strong>' + escapeHtml(moneyTypeText(x.type)) + '</strong>' +
+          '<small>' + escapeHtml(x.createdAtText || formatDateTime(x.createdAt)) + '</small></div>' +
+          '<b class="' + (plus ? 'plus' : 'minus') + '">' +
+            (plus ? '+' : '') + money(amount) +
+          '</b>' +
+        '</div>' +
+        '<div class="money-balance-row">' +
+          '<span>' + money(x.balanceBefore) + '</span>' +
+          '<span>→</span>' +
+          '<strong>' + money(x.balanceAfter) + '</strong>' +
+        '</div>' +
+        (x.note ? '<div class="money-note">' + escapeHtml(x.note) + '</div>' : '') +
+      '</article>';
+    }).join("");
+  })
+  .catch(showErrorGlobal);
+}
+
+/* =====================================================
+   MEMBER WIN / LOSS
+===================================================== */
+function showMemberSummary() {
+  els.lottoScreen.classList.remove("active");
+  els.betScreen.classList.remove("active");
+  els.historyScreen.classList.remove("active");
+  els.moneyScreen.classList.remove("active");
+  els.resultsScreen.classList.remove("active");
+  els.adminScreen.classList.remove("active");
+  els.memberSummaryScreen.classList.add("active");
+  clearInterval(timer);
+  scrollTo(0,0);
+  loadMemberSummary("day");
+}
+
+function setMemberRangeActive(mode) {
+  document.querySelectorAll("[data-member-range]").forEach(function(btn){
+    btn.classList.toggle("active", btn.dataset.memberRange === mode);
+  });
+}
+
+function loadMemberSummary(mode) {
+  mode = mode || "day";
+
+  var filter = {
+    mode:mode,
+    lottoName:els.memberSummaryLotto.value || ""
+  };
+
+  if (mode === "custom") {
+    if (!els.memberSummaryFrom.value || !els.memberSummaryTo.value) {
+      if (!els.memberSummaryFrom.value && !els.memberSummaryTo.value) {
+        mode = "day";
+        filter.mode = "day";
+      } else {
+        showError("กรุณาเลือกวันที่เริ่มต้นและสิ้นสุด");
+        return;
+      }
+    } else {
+      filter = {
+        from:els.memberSummaryFrom.value,
+        to:els.memberSummaryTo.value,
+        lottoName:els.memberSummaryLotto.value || ""
+      };
+    }
+  }
+
+  api("getMyWinLossSummary", state.token, filter)
+    .then(function(r){
+      state.user = r.user || state.user;
+      updateUserUI();
+
+      els.memberSummaryFrom.value = r.range.from;
+      els.memberSummaryTo.value = r.range.to;
+
+      if (mode !== "custom") setMemberRangeActive(mode);
+
+      var s = r.summary || {};
+
+      els.memberSummaryStats.innerHTML =
+        '<div class="summary-stat"><small>ยอดแทง</small><b>' + money(s.turnover) + '</b></div>' +
+        '<div class="summary-stat"><small>ยอดถูกรางวัล</small><b>' + money(s.payout) + '</b></div>' +
+        '<div class="summary-stat ' + (Number(s.memberNet || 0) >= 0 ? 'positive' : 'negative') + '">' +
+          '<small>สุทธิ</small><b>' + money(s.memberNet) + '</b></div>' +
+        '<div class="summary-stat"><small>ยอดรอผล</small><b>' + money(s.waiting) + '</b></div>';
+
+      var rows = r.byLotto || [];
+
+      els.memberSummaryTable.innerHTML = summaryTable(
+        ["ชนิดหวย","ยอดแทง","ถูกรางวัล","สุทธิ"],
+        rows.map(function(x){
+          return [
+            escapeHtml(x.lottoName),
+            money(x.turnover),
+            money(x.payout),
+            '<span class="' + (Number(x.memberNet) >= 0 ? 'sum-positive' : 'sum-negative') + '">' +
+              money(x.memberNet) +
+            '</span>'
+          ];
+        })
+      );
+    })
+    .catch(showErrorGlobal);
+}
+
+function summaryTable(headers, rows) {
+  if (!rows || !rows.length) {
+    return '<div class="empty">ไม่มีข้อมูลในช่วงนี้</div>';
+  }
+
+  return '<table class="summary-table"><thead><tr>' +
+    headers.map(function(h){ return '<th>' + escapeHtml(h) + '</th>'; }).join("") +
+    '</tr></thead><tbody>' +
+    rows.map(function(row){
+      return '<tr>' +
+        row.map(function(cell){ return '<td>' + (cell == null ? '' : cell) + '</td>'; }).join("") +
+      '</tr>';
+    }).join("") +
+  '</tbody></table>';
+}
+
+
+/* =====================================================
    MEMBER RESULTS
 ===================================================== */
 function showResults() {
   els.lottoScreen.classList.remove("active");
   els.betScreen.classList.remove("active");
   els.historyScreen.classList.remove("active");
+  els.moneyScreen.classList.remove("active");
+  els.memberSummaryScreen.classList.remove("active");
   els.adminScreen.classList.remove("active");
   els.resultsScreen.classList.add("active");
 
@@ -3482,77 +4015,6 @@ function statusText(s) {
 }
 
 
-function betGroupPriceText(g) {
-  var mode = String(g.mode || "");
-  var top = Number(g.top || 0);
-  var bottom = Number(g.bottom || 0);
-  var parts = [];
-
-  if (mode === "ตท" || mode === "ตรงโต๊ด") {
-    if (top > 0) parts.push("ตรง " + money(top));
-    if (bottom > 0) parts.push("โต๊ด " + money(bottom));
-  } else if (mode === "6กลับ") {
-    if (top > 0) parts.push("6 กลับ " + money(top));
-  } else {
-    if (top > 0) parts.push("บน " + money(top));
-    if (bottom > 0) parts.push("ล่าง " + money(bottom));
-  }
-
-  return parts.join("  |  ");
-}
-
-function showBetDetails(bet, isAdminView) {
-  bet = bet || {};
-  var groups = Array.isArray(bet.groups) ? bet.groups : [];
-
-  var groupsHtml = groups.length
-    ? groups.map(function(g){
-        var nums = Array.isArray(g.numbers) ? g.numbers : [];
-
-        return '<div class="bet-detail-group">' +
-          '<div class="bet-detail-group-head"><b>' +
-            escapeHtml(String(g.mode || "รายการ")) +
-          '</b><span>' + nums.length + ' เลข</span></div>' +
-          '<div class="bet-detail-numbers">' +
-            nums.map(function(n){
-              return '<span>' + escapeHtml(n) + '</span>';
-            }).join("") +
-          '</div>' +
-          '<div class="bet-detail-price">' +
-            escapeHtml(betGroupPriceText(g)) +
-          '</div>' +
-        '</div>';
-      }).join("")
-    : '<div class="bet-detail-empty">ไม่มีรายละเอียด</div>';
-
-  var payoutRow = bet.status === "WIN"
-    ? '<div class="bet-detail-summary"><span>ยอดถูกรางวัล</span><b>' + money(bet.payout) + '</b></div>'
-    : '';
-
-  Swal.fire({
-    title:isAdminView ? "รายละเอียดโพย" : "โพยของฉัน",
-    width:720,
-    html:
-      '<div class="bet-detail-wrap">' +
-        '<div class="bet-detail-top">' +
-          '<div><small>หวย</small><b>' + escapeHtml(bet.lottoName || "-") + '</b></div>' +
-          '<div><small>สถานะ</small><b>' + escapeHtml(statusText(bet.status)) + '</b></div>' +
-        '</div>' +
-        '<div class="bet-detail-meta">' +
-          (isAdminView ? 'User ' + escapeHtml(bet.username || "-") + ' • ' : '') +
-          'รอบ ' + escapeHtml(bet.roundDate || "-") + '<br>' +
-          escapeHtml(bet.betAtText || formatDateTime(bet.betAt)) + '<br>' +
-          'Bill: ' + escapeHtml(String(bet.billId || "")) +
-        '</div>' +
-        groupsHtml +
-        '<div class="bet-detail-summary"><span>ยอดแทง</span><b>' + money(bet.totalAmount) + '</b></div>' +
-        payoutRow +
-      '</div>',
-    confirmButtonText:"ปิด",
-    confirmButtonColor:"#991b1b"
-  });
-}
-
 /* =====================================================
    ADMIN BACKOFFICE
 ===================================================== */
@@ -3567,6 +4029,8 @@ function showAdmin(tab) {
   els.lottoScreen.classList.remove("active");
   els.betScreen.classList.remove("active");
   els.historyScreen.classList.remove("active");
+  els.moneyScreen.classList.remove("active");
+  els.memberSummaryScreen.classList.remove("active");
   els.resultsScreen.classList.remove("active");
   els.adminScreen.classList.add("active");
 
@@ -3597,19 +4061,23 @@ function showAdminTab(tab) {
 }
 
 function fillAdminLottoFilter() {
-  if (!els.adminOpenLotto) return;
-
-  var current = els.adminOpenLotto.value || "";
-  els.adminOpenLotto.innerHTML =
+  var options =
     '<option value="">ทั้งหมด</option>' +
     state.lottos.map(function(l){
       return '<option value="' + escapeHtml(l.lottoName) + '">' +
         escapeHtml(l.lottoName) + '</option>';
     }).join("");
 
-  if ([].slice.call(els.adminOpenLotto.options).some(function(o){ return o.value === current; })) {
-    els.adminOpenLotto.value = current;
-  }
+  [els.adminOpenLotto, els.adminDashLotto, els.memberSummaryLotto].forEach(function(select){
+    if (!select) return;
+
+    var current = select.value || "";
+    select.innerHTML = options;
+
+    if ([].slice.call(select.options).some(function(o){ return o.value === current; })) {
+      select.value = current;
+    }
+  });
 }
 
 function adminTable(headers, rows) {
@@ -3632,7 +4100,7 @@ async function loadAdminDashboard(mode) {
   if (!state.isAdmin) return;
 
   try {
-    var filter = {mode:mode || "day"};
+    var filter = {mode:mode || "day", lottoName:els.adminDashLotto.value || ""};
 
     if (mode === "custom") {
       if (!els.adminDashFrom.value || !els.adminDashTo.value) {
@@ -3641,7 +4109,8 @@ async function loadAdminDashboard(mode) {
 
       filter = {
         from:els.adminDashFrom.value,
-        to:els.adminDashTo.value
+        to:els.adminDashTo.value,
+        lottoName:els.adminDashLotto.value || ""
       };
     }
 
