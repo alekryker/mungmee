@@ -3,7 +3,7 @@
  <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover" name="viewport"/>
-  <meta content="#991B1B" name="theme-color"/>
+  <meta content="#0c7146" name="theme-color"/>
   <title>ตลาดหวย</title>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,10 +11,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
 :root {
-  --red: #c9152d;
-  --red2: #e11d35;
-  --deep: #791426;
-  --soft: #fff1f2;
+  --red: #11995e;
+  --red2: #18b86f;
+  --deep: #075c39;
+  --soft: #ecfdf5;
   --bg: #f6f6f8;
   --card: #fff;
   --ink: #18181b;
@@ -67,7 +67,7 @@ button:active {
 .hero {
   padding: calc(28px + env(safe-area-inset-top)) 18px 28px;
   color: #fff;
-  background: radial-gradient(circle at 100% 0,rgba(255,255,255,.18),transparent 38%),linear-gradient(140deg,#701524,#aa1730 52%,#e42441);
+  background: radial-gradient(circle at 100% 0,rgba(255,255,255,.18),transparent 38%),linear-gradient(140deg,#06492f,#0d7548 52%,#1dbb73);
   border-radius: 0 0 30px 30px;
   box-shadow: 0 12px 34px rgba(153,27,46,.2);
 }
@@ -168,7 +168,7 @@ button:active {
   z-index: 30;
   padding: calc(10px + env(safe-area-inset-top)) 11px 11px;
   color: #fff;
-  background: linear-gradient(135deg,#701524,#b41630);
+  background: linear-gradient(135deg,#06492f,#0f7d4e);
   box-shadow: 0 8px 25px rgba(153,27,46,.2);
 }
 
@@ -378,8 +378,8 @@ button:active {
 
 .group-head {
   padding: 11px 12px;
-  background: linear-gradient(90deg,#fff1f2,#fff);
-  border-bottom: 1px solid #fee2e2;
+  background: linear-gradient(90deg,#ecfdf5,#fff);
+  border-bottom: 1px solid #dcfce7;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -401,7 +401,7 @@ button:active {
 
 .delete {
   border: 0;
-  background: #fff1f2;
+  background: #ecfdf5;
   color: #e11d48;
   border-radius: 9px;
   padding: 7px 9px;
@@ -424,7 +424,7 @@ button:active {
   padding: 8px 9px;
   border-radius: 10px;
   background: #fef2f2;
-  color: #991b1b;
+  color: #0c7146;
   font-size: 14px;
   font-weight: 900;
   text-align: center;
@@ -450,7 +450,7 @@ button:active {
   padding: 0 12px;
   border: 1px solid #fecdd3;
   border-radius: 11px;
-  background: #fff1f2;
+  background: #ecfdf5;
   color: #b91c1c;
   font-size: 11px;
   font-weight: 900;
@@ -552,7 +552,7 @@ button:active {
 .grand {
   min-height: 50px;
   border-radius: 13px;
-  background: linear-gradient(135deg,#701524,#b41630);
+  background: linear-gradient(135deg,#06492f,#0f7d4e);
   color: #fff;
   padding: 8px 12px;
   display: flex;
@@ -660,7 +660,7 @@ button:active {
 
 .confirm-card-head {
   padding: 8px 10px;
-  background: #fff1f2;
+  background: #ecfdf5;
   color: #b91c1c;
   font-size: 12px;
   font-weight: 950;
@@ -722,7 +722,7 @@ button:active {
 .spinner {
   width: 44px;
   height: 44px;
-  border: 5px solid #fee2e2;
+  border: 5px solid #dcfce7;
   border-top-color: var(--red2);
   border-radius: 50%;
   animation: spin .7s linear infinite;
@@ -860,7 +860,7 @@ button:active {
   padding: 16px 7px 3px;
   outline: none;
   background: rgba(255,255,255,.96);
-  color: #991b1b;
+  color: #0c7146;
   text-align: center;
   font-size: 17px;
   font-weight: 950;
@@ -901,7 +901,7 @@ button:active {
   place-items: center;
   padding: 22px;
   background: radial-gradient(circle at 100% 0,rgba(255,255,255,.13),transparent 38%),
-              linear-gradient(140deg,#701524,#aa1730 52%,#e42441);
+              linear-gradient(140deg,#06492f,#0d7548 52%,#1dbb73);
 }
 #loginScreen.hidden { display:none; }
 .login-card-credit {
@@ -948,7 +948,7 @@ button:active {
   min-height:38px;border:1px solid rgba(255,255,255,.20);border-radius:11px;
   background:rgba(255,255,255,.10);color:#fff;padding:0 10px;font-size:10px;font-weight:900;
 }
-.account-btn.light { background:#fff;color:#991b1b;border-color:#fff; }
+.account-btn.light { background:#fff;color:#0c7146;border-color:#fff; }
 
 .credit-mini {
   margin-left:auto;padding:7px 9px;border-radius:11px;background:rgba(255,255,255,.11);
@@ -980,7 +980,7 @@ button:active {
 .status-WAITING { background:#fef3c7;color:#92400e; }
 .status-WIN { background:#dcfce7;color:#166534; }
 .status-LOSE { background:#f4f4f5;color:#52525b; }
-.status-CANCELLED { background:#fee2e2;color:#991b1b; }
+.status-CANCELLED { background:#dcfce7;color:#0c7146; }
 
 .submit-credit-note {
   display:flex;justify-content:space-between;gap:10px;font-size:10px;font-weight:850;color:#71717a;
@@ -999,7 +999,7 @@ button:active {
 ===================================================== */
 .bet-mode-wrap {
   padding: 14px 11px 0;
-  background: linear-gradient(180deg,#fff1f2 0,#f6f6f8 100%);
+  background: linear-gradient(180deg,#ecfdf5 0,#f6f6f8 100%);
 }
 .bet-mode-tabs {
   display:grid;
@@ -1051,8 +1051,8 @@ button:active {
   padding:7px 11px;
   border:1px solid #fecdd3;
   border-radius:999px;
-  background:#fff1f2;
-  color:#be123c;
+  background:#ecfdf5;
+  color:#0d6f45;
   font-size:11px;
   font-weight:950;
   white-space:nowrap;
@@ -1091,8 +1091,8 @@ button:active {
   width:72px;
   border:0;
   border-radius:17px;
-  background:#fff1f2;
-  color:#be123c;
+  background:#ecfdf5;
+  color:#0d6f45;
   font-size:13px;
   font-weight:950;
 }
@@ -1145,7 +1145,7 @@ button:active {
   padding:0 9px 0 12px;
   border:1px solid #fecdd3;
   border-radius:11px;
-  background:#fff1f2;
+  background:#ecfdf5;
   color:#9f1239;
   font-size:15px;
   font-weight:950;
@@ -1172,12 +1172,12 @@ button:active {
 }
 .quick-tool.primary-tool {
   border-color:#fecdd3;
-  background:#fff1f2;
-  color:#be123c;
+  background:#ecfdf5;
+  color:#0d6f45;
 }
 .quick-tool.active {
-  border-color:#be123c;
-  background:#be123c;
+  border-color:#0d6f45;
+  background:#0d6f45;
   color:#fff;
 }
 .quick-tool.hidden { display:none; }
@@ -1216,7 +1216,7 @@ button:active {
   background:#fff;
   font-size:20px;
   font-weight:950;
-  color:#991b1b;
+  color:#0c7146;
 }
 .direct-price-input:focus {
   border-color:#e11d48;
@@ -1285,7 +1285,7 @@ button:active {
   min-height:60px;
   padding:10px 15px;
   border-radius:15px;
-  background:linear-gradient(135deg,#791426,#b41630);
+  background:linear-gradient(135deg,#075c39,#0f7d4e);
   color:#fff;
   display:flex;
   align-items:center;
@@ -1320,7 +1320,7 @@ button:active {
 }
 .direct-submit {
   border:0;
-  background:linear-gradient(135deg,#c9152d,#ed173c);
+  background:linear-gradient(135deg,#11995e,#ed173c);
   color:#fff;
 }
 .direct-submit:disabled {
@@ -1379,7 +1379,7 @@ button:active {
 }
 .admin-head-btn.light {
   background:#fff;
-  color:#991b1b;
+  color:#0c7146;
   border-color:#fff;
 }
 
@@ -1505,8 +1505,8 @@ button:active {
 }
 .admin-btn.soft {
   border:1px solid #fecdd3;
-  background:#fff1f2;
-  color:#be123c;
+  background:#ecfdf5;
+  color:#0d6f45;
 }
 .admin-btn.green {
   background:#15803d;
@@ -1702,7 +1702,7 @@ button:active {
 .bet-number-chip.generated.reverse-chip {
   border-color:#fecdd3;
   background:#fff7f7;
-  color:#be123c;
+  color:#0d6f45;
 }
 .bet-number-chip.generated.gate-chip {
   border-color:#bbf7d0;
@@ -1741,10 +1741,10 @@ button:active {
   grid-template-columns:repeat(2,1fr) !important;
 }
 .bet-summary-item.primary-summary {
-  background:#fff1f2;
+  background:#ecfdf5;
 }
 .bet-summary-item.primary-summary b {
-  color:#be123c;
+  color:#0d6f45;
   font-size:16px;
 }
 
@@ -1824,8 +1824,8 @@ button:active {
 }
 .quick-tool.primary-tool {
   border-color:#fb7185;
-  background:#fff1f2;
-  color:#be123c;
+  background:#ecfdf5;
+  color:#0d6f45;
 }
 .quick-tool.active {
   border-color:#e11d48;
@@ -1838,14 +1838,14 @@ button:active {
   padding:0 14px !important;
   border:2px solid #fb7185 !important;
   border-radius:11px !important;
-  background:#fff1f2 !important;
-  color:#be123c !important;
+  background:#ecfdf5 !important;
+  color:#0d6f45 !important;
   box-shadow:0 5px 15px rgba(225,29,72,.11);
 }
 .direct-clear-all {
   border:2px solid #fb7185 !important;
   background:#fff !important;
-  color:#be123c !important;
+  color:#0d6f45 !important;
 }
 .direct-submit:not(:disabled) {
   box-shadow:0 11px 29px rgba(225,29,72,.30) !important;
@@ -1867,7 +1867,7 @@ button:active {
 }
 .price-section-title {
   margin-bottom:6px;
-  color:#991b1b !important;
+  color:#0c7146 !important;
 }
 .direct-price-input {
   border-width:2px !important;
@@ -1937,7 +1937,7 @@ button:active {
   background:#fafafa;
   text-align:center;
 }
-.result-num.main { background:#fff1f2; }
+.result-num.main { background:#ecfdf5; }
 .result-num small {
   display:block;
   color:#a1a1aa;
@@ -1951,7 +1951,7 @@ button:active {
   font-size:19px;
   font-weight:950;
 }
-.result-num.main b { color:#be123c; }
+.result-num.main b { color:#0d6f45; }
 
 
 .swal2-popup,
@@ -1978,8 +1978,8 @@ button:active {
   height:18px;
   padding:0 6px;
   border-radius:999px;
-  background:#fff1f2;
-  color:#be123c;
+  background:#ecfdf5;
+  color:#0d6f45;
   font-size:9px;
   line-height:1;
   font-weight:900;
@@ -2035,14 +2035,14 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
 .bet-detail-top>div { padding:10px 11px; border-radius:12px; background:#fafafa; }
 .bet-detail-top small { display:block; color:#a1a1aa; font-size:9px; }
 .bet-detail-top b { display:block; margin-top:2px; font-size:14px; font-weight:650; }
-.bet-detail-meta { padding:10px 11px; margin-bottom:9px; border-radius:12px; background:#fff1f2; color:#71717a; line-height:1.7; }
+.bet-detail-meta { padding:10px 11px; margin-bottom:9px; border-radius:12px; background:#ecfdf5; color:#71717a; line-height:1.7; }
 .bet-detail-group { padding:10px; margin-top:8px; border:1px solid #e4e4e7; border-radius:13px; }
 .bet-detail-group-head { display:flex; justify-content:space-between; gap:8px; align-items:center; }
 .bet-detail-group-head b { font-weight:650; }
 .bet-detail-group-head span { color:#a1a1aa; font-size:9px; }
 .bet-detail-numbers { display:flex; flex-wrap:wrap; gap:5px; margin-top:8px; }
 .bet-detail-numbers span { padding:5px 7px; border-radius:8px; background:#f4f4f5; font-variant-numeric:tabular-nums; }
-.bet-detail-price { margin-top:8px; color:#991b1b; font-weight:600; }
+.bet-detail-price { margin-top:8px; color:#0c7146; font-weight:600; }
 .bet-detail-summary { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:10px; padding:10px 11px; border-top:1px dashed #e4e4e7; }
 .bet-detail-summary b { font-size:16px; font-weight:700; }
 .bet-detail-empty { padding:18px; text-align:center; color:#a1a1aa; }
@@ -2094,7 +2094,7 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
   font-weight:700;
 }
 .money-card-head b.plus { color:#15803d; }
-.money-card-head b.minus { color:#be123c; }
+.money-card-head b.minus { color:#0d6f45; }
 .money-balance-row {
   display:flex;
   align-items:center;
@@ -2145,8 +2145,8 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
 }
 .summary-preset.active {
   border-color:#e11d48;
-  background:#fff1f2;
-  color:#be123c;
+  background:#ecfdf5;
+  color:#0d6f45;
 }
 .summary-filter-grid {
   display:grid;
@@ -2178,7 +2178,7 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
   min-height:42px;
   border:0;
   border-radius:10px;
-  background:#991b1b;
+  background:#0c7146;
   color:#fff;
   font-weight:600;
 }
@@ -2209,7 +2209,7 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
 .summary-stat.positive b,
 .sum-positive { color:#15803d; }
 .summary-stat.negative b,
-.sum-negative { color:#be123c; }
+.sum-negative { color:#0d6f45; }
 .summary-title {
   margin-bottom:9px;
   font-size:13px;
@@ -2260,7 +2260,7 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
 }
 
 /* V15 ADMIN SUBMENUS / MULTI LOTTO / USER RATES */
-.admin-lotto-filter{margin-top:12px;padding:11px;border:1px solid #e4e4e7;border-radius:13px;background:#fafafa}.admin-lotto-filter-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}.admin-lotto-filter-head strong{font-size:11px;font-weight:650}.admin-lotto-checks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px 9px;max-height:310px;overflow:auto}.admin-lotto-check{display:flex;align-items:flex-start;gap:6px;min-width:0;padding:5px 6px;border-radius:8px;background:#fff;font-size:9px;cursor:pointer}.admin-lotto-check input{margin-top:2px}.admin-lotto-check span{min-width:0;line-height:1.4}.lotto-subtabs{display:flex;gap:7px;overflow:auto;margin-top:11px;padding-bottom:3px}.lotto-subtab{flex:0 0 auto;min-height:40px;padding:0 13px;border:1px solid #e4e4e7;border-radius:10px;background:#fafafa;color:#52525b;font-size:10px;font-weight:600}.lotto-subtab.active{border-color:#991b1b;background:#fff1f2;color:#991b1b}.lotto-subpanel{display:none;margin-top:12px}.lotto-subpanel.active{display:block}.lotto-status{display:inline-flex;align-items:center;min-height:24px;padding:0 8px;border-radius:999px;font-size:9px;font-weight:650}.lotto-status.on{background:#dcfce7;color:#166534}.lotto-status.off{background:#fee2e2;color:#991b1b}.admin-mini.danger{border-color:#fecaca;background:#fff1f2;color:#be123c}.admin-mini.green{border-color:#bbf7d0;background:#f0fdf4;color:#15803d}.rate-editor-card{padding:12px;border:1px solid #e4e4e7;border-radius:14px;background:#fafafa}.rate-editor-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.rate-mode-note{margin-top:9px;padding:8px 10px;border-radius:9px;background:#fff;color:#71717a;font-size:9px}.rate-input-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:9px}.rate-input-grid label{display:block;margin-bottom:4px;color:#71717a;font-size:9px}.rate-input-grid input{width:100%;height:42px;border:1px solid #e4e4e7;border-radius:10px;padding:0 9px;background:#fff;font:inherit}.rate-editor-actions{display:flex;gap:7px;margin-top:10px}.rate-editor-actions button{flex:1}.rate-editor-actions button:disabled{opacity:.45;cursor:not-allowed}@media(max-width:800px){.admin-lotto-checks{grid-template-columns:repeat(2,minmax(0,1fr))}.rate-input-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:520px){.admin-lotto-checks{grid-template-columns:1fr}.rate-editor-grid,.rate-input-grid{grid-template-columns:1fr}}
+.admin-lotto-filter{margin-top:12px;padding:11px;border:1px solid #e4e4e7;border-radius:13px;background:#fafafa}.admin-lotto-filter-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}.admin-lotto-filter-head strong{font-size:11px;font-weight:650}.admin-lotto-checks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px 9px;max-height:310px;overflow:auto}.admin-lotto-check{display:flex;align-items:flex-start;gap:6px;min-width:0;padding:5px 6px;border-radius:8px;background:#fff;font-size:9px;cursor:pointer}.admin-lotto-check input{margin-top:2px}.admin-lotto-check span{min-width:0;line-height:1.4}.lotto-subtabs{display:flex;gap:7px;overflow:auto;margin-top:11px;padding-bottom:3px}.lotto-subtab{flex:0 0 auto;min-height:40px;padding:0 13px;border:1px solid #e4e4e7;border-radius:10px;background:#fafafa;color:#52525b;font-size:10px;font-weight:600}.lotto-subtab.active{border-color:#0c7146;background:#ecfdf5;color:#0c7146}.lotto-subpanel{display:none;margin-top:12px}.lotto-subpanel.active{display:block}.lotto-status{display:inline-flex;align-items:center;min-height:24px;padding:0 8px;border-radius:999px;font-size:9px;font-weight:650}.lotto-status.on{background:#dcfce7;color:#166534}.lotto-status.off{background:#dcfce7;color:#0c7146}.admin-mini.danger{border-color:#bbf7d0;background:#ecfdf5;color:#0d6f45}.admin-mini.green{border-color:#bbf7d0;background:#f0fdf4;color:#15803d}.rate-editor-card{padding:12px;border:1px solid #e4e4e7;border-radius:14px;background:#fafafa}.rate-editor-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.rate-mode-note{margin-top:9px;padding:8px 10px;border-radius:9px;background:#fff;color:#71717a;font-size:9px}.rate-input-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:9px}.rate-input-grid label{display:block;margin-bottom:4px;color:#71717a;font-size:9px}.rate-input-grid input{width:100%;height:42px;border:1px solid #e4e4e7;border-radius:10px;padding:0 9px;background:#fff;font:inherit}.rate-editor-actions{display:flex;gap:7px;margin-top:10px}.rate-editor-actions button{flex:1}.rate-editor-actions button:disabled{opacity:.45;cursor:not-allowed}@media(max-width:800px){.admin-lotto-checks{grid-template-columns:repeat(2,minmax(0,1fr))}.rate-input-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:520px){.admin-lotto-checks{grid-template-columns:1fr}.rate-editor-grid,.rate-input-grid{grid-template-columns:1fr}}
 
 /* =====================================================
    V16 — MEMBER HOME / RED PREMIUM
@@ -2273,7 +2273,7 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
   background:
     radial-gradient(circle at 88% 4%,rgba(255,89,115,.17),transparent 27%),
     radial-gradient(circle at 4% 38%,rgba(255,255,255,.055),transparent 26%),
-    linear-gradient(180deg,#21070c 0%,#390a13 42%,#180609 100%);
+    linear-gradient(180deg,#041f17 0%,#063322 42%,#031911 100%);
 }
 .v16-home{
   max-width:690px;
@@ -2300,7 +2300,7 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
   display:grid;
   place-items:center;
   font-size:24px;
-  background:linear-gradient(145deg,#ff425a,#9f1025);
+  background:linear-gradient(145deg,#24c97d,#087347);
   box-shadow:0 10px 26px rgba(194,22,45,.35);
   border:1px solid rgba(255,255,255,.16);
 }
@@ -2339,7 +2339,7 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
   color:#fff;
   background:
     radial-gradient(circle at 88% 20%,rgba(255,255,255,.18),transparent 25%),
-    linear-gradient(135deg,#6f0d1d 0%,#ac1029 50%,#ec2845 100%);
+    linear-gradient(135deg,#075c39 0%,#0b8350 50%,#20bc74 100%);
   box-shadow:0 18px 45px rgba(0,0,0,.27);
   border:1px solid rgba(255,255,255,.1);
 }
@@ -2426,10 +2426,10 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
   box-shadow:0 11px 25px rgba(0,0,0,.18);
 }
 .v16-money-btn.deposit{
-  background:linear-gradient(135deg,#d31331,#ff3b56);
+  background:linear-gradient(135deg,#10985d,#28c981);
 }
 .v16-money-btn.withdraw{
-  background:linear-gradient(135deg,#56111c,#8d1525);
+  background:linear-gradient(135deg,#063e29,#0b6540);
   border:1px solid rgba(255,255,255,.08);
 }
 .v16-money-icon{
@@ -2457,7 +2457,7 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
   color:#fff;
   background:
     radial-gradient(circle at 90% 20%,rgba(255,207,73,.14),transparent 25%),
-    linear-gradient(135deg,#360a10,#6e0d1c 50%,#9d1327);
+    linear-gradient(135deg,#052c20,#07573a 50%,#0a7a4a);
   box-shadow:0 14px 34px rgba(0,0,0,.21);
 }
 .v16-lotto-row{
@@ -2473,7 +2473,7 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
   padding:0 10px;
   border-radius:999px;
   background:#ffdd78;
-  color:#76101d;
+  color:#07543a;
   font-size:9px;
   font-weight:950;
 }
@@ -2485,7 +2485,7 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
   display:grid;
   place-items:center;
   background:linear-gradient(145deg,#fff2c7,#f1b936);
-  color:#8e1824;
+  color:#086a43;
   font-size:30px;
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.45),0 10px 25px rgba(0,0,0,.18);
 }
@@ -2511,7 +2511,7 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
   justify-content:space-between;
   padding:0 15px;
   background:#fff;
-  color:#991b1b;
+  color:#0c7146;
   font-size:13px;
   font-weight:900;
 }
@@ -2563,6 +2563,116 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
   .v16-shortcut{min-height:70px}
 }
 
+
+/* =====================================================
+   V16.4 — GREEN THEME OVERRIDES
+===================================================== */
+:root{
+  --red:#11995e !important;
+  --red2:#18b86f !important;
+  --deep:#075c39 !important;
+  --soft:#ecfdf5 !important;
+  --green:#169b62 !important;
+}
+html,body{
+  background:#f4f8f5 !important;
+}
+.hero,
+.topbar{
+  background:
+    radial-gradient(circle at 100% 0,rgba(255,255,255,.16),transparent 38%),
+    linear-gradient(140deg,#06492f,#0c7146 52%,#18b86f) !important;
+  box-shadow:0 12px 34px rgba(7,92,57,.20) !important;
+}
+.login-submit,
+.direct-submit,
+.admin-primary,
+.summary-filter-grid button,
+.swal2-confirm{
+  background:linear-gradient(135deg,#0c7146,#18b86f) !important;
+}
+.bet-mode-tab.active,
+.lotto-subtab.active{
+  border-color:#0c7146 !important;
+  background:#ecfdf5 !important;
+  color:#0c7146 !important;
+}
+.v16-home-shell{
+  background:
+    radial-gradient(circle at 88% 4%,rgba(53,220,139,.16),transparent 27%),
+    radial-gradient(circle at 4% 38%,rgba(255,255,255,.05),transparent 26%),
+    linear-gradient(180deg,#041f17 0%,#063322 42%,#031911 100%) !important;
+}
+.v16-brand-mark{
+  background:linear-gradient(145deg,#25cb7e,#087347) !important;
+  box-shadow:0 10px 26px rgba(11,131,80,.34) !important;
+}
+.v16-wallet{
+  background:
+    radial-gradient(circle at 88% 20%,rgba(255,255,255,.17),transparent 25%),
+    linear-gradient(135deg,#075c39 0%,#0b8350 50%,#20bc74 100%) !important;
+}
+.v16-money-btn.deposit{
+  background:linear-gradient(135deg,#0b8350,#27c77e) !important;
+}
+.v16-money-btn.withdraw{
+  background:linear-gradient(135deg,#063e29,#0b6540) !important;
+}
+.v16-lotto-entry{
+  background:
+    radial-gradient(circle at 90% 20%,rgba(231,255,147,.12),transparent 25%),
+    linear-gradient(135deg,#052c20,#07573a 50%,#0a7a4a) !important;
+}
+.v16-lotto-badge{
+  background:#d8f4a6 !important;
+  color:#07543a !important;
+}
+.v16-lotto-ball{
+  background:linear-gradient(145deg,#edffd7,#a7df68) !important;
+  color:#086a43 !important;
+}
+.v16-lotto-go{
+  color:#0c7146 !important;
+}
+.account-btn,
+.account-btn.light,
+.v16-logout{
+  border-color:rgba(255,255,255,.14) !important;
+}
+.home-nav-inline{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:14px;
+}
+.home-nav-inline button,
+.bet-home-btn{
+  min-height:40px;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:12px;
+  padding:0 13px;
+  background:rgba(255,255,255,.11);
+  color:#fff;
+  font-size:11px;
+  font-weight:850;
+}
+.bet-home-btn{
+  flex:0 0 auto;
+  min-width:42px;
+  padding:0 10px;
+  font-size:18px;
+}
+.deposit-time-hint{
+  margin-top:8px;
+  padding:9px 10px;
+  border-radius:10px;
+  background:#ecfdf5;
+  color:#166534;
+  font-size:9px;
+  line-height:1.55;
+  font-weight:700;
+}
+
 </style>
  </head>
  <body>
@@ -2609,7 +2719,7 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
        <div class="v16-wallet-balance"><b id="homeCredit">0.00</b><span>฿</span></div>
        <div class="v16-wallet-sub">
         <span id="homeUsername">@user</span>
-        <span>V16.1</span>
+        <span>V16.4</span>
        </div>
       </section>
 
@@ -2654,13 +2764,13 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
       </div>
 
       <div class="v16-safe-note">
-       V16.1 เพิ่มอัปโหลดสลิปและตรวจสอบสลิปด้วย Thunder API โดย API Key เก็บฝั่ง Apps Script
+       V16.2 เพิ่มอัปโหลดสลิปและตรวจสอบสลิปด้วย Thunder API โดย API Key เก็บฝั่ง Apps Script
       </div>
      </div>
     </div>
    </section>
 
-   <section class="screen active" id="lottoScreen">
+   <section class="screen" id="lottoScreen">
     <header class="hero">
      <div class="eyebrow">
       LOTTERY
@@ -2668,6 +2778,9 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
      <h1>
       เลือกหวย
      </h1>
+     <div class="home-nav-inline">
+      <button id="lottoHomeBtn" type="button">⌂ หน้าหลัก</button>
+     </div>
      
      <div class="account-row">
       <div class="account-credit">
@@ -2697,6 +2810,7 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
     <header class="topbar">
      <div class="toprow">
       <button class="back" id="backBtn">‹</button>
+      <button class="bet-home-btn" id="betHomeBtn" type="button" title="หน้าหลัก">⌂</button>
       <div class="lotto-selected">
        <small>หวยที่เลือก</small>
        <div class="selected-name" id="selectedName">-</div>
@@ -3076,8 +3190,8 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
   
 
 <script>
-const APP_VERSION = "V16.1";
-const API = "https://script.google.com/macros/s/AKfycbyDnjGnxA1CtMD1TWxUCE8ThyQ8nxRG2kXJ7-bEkmCKfyJ3SsgghHP9Qj1OmyshyUI/exec";
+const APP_VERSION = "V16.4";
+const API = "https://script.google.com/macros/s/AKfycbzhCttywyi-ihmYs5ctKid6oQkRmb4itxHUZ2a6juYd9jltSE81PBt1I-20yr_X9Pcg/exec";
 const AFTER_MIDNIGHT_CUTOFF_HOUR = 6;
 
 var state = {
@@ -3108,7 +3222,7 @@ var toastTimer = null;
 document.addEventListener("DOMContentLoaded", function () {
   [
     "loginScreen","mainApp","apiState","loginVersion","loginUser","loginPass","loginBtn",
-    "homeScreen","homeCredit","homeUserName","homeUsername","homeLogoutBtn","homeDepositBtn","homeWithdrawBtn","homeLottoBtn","homeHistoryBtn","homeResultsBtn","homeSummaryBtn","homeMoneyBtn",
+    "homeScreen","homeCredit","homeUserName","homeUsername","homeLogoutBtn","homeDepositBtn","homeWithdrawBtn","homeLottoBtn","homeHistoryBtn","homeResultsBtn","homeSummaryBtn","homeMoneyBtn","lottoHomeBtn","betHomeBtn",
     "lottoScreen","betScreen","historyScreen","moneyScreen","memberSummaryScreen","resultsScreen","adminScreen","lottoGrid","lottoEmpty",
     "backBtn","selectedName","selectedRound","selectedClose","selectedCount",
     "accountName","heroCredit","betCredit","bottomCredit","summaryCredit","adminBtn",
@@ -3184,6 +3298,12 @@ function bindEvents() {
   if (els.homeSummaryBtn) els.homeSummaryBtn.onclick = showMemberSummary;
   if (els.homeMoneyBtn) els.homeMoneyBtn.onclick = showMoney;
   if (els.homeLogoutBtn) els.homeLogoutBtn.onclick = function(){ logout(true); };
+  if (els.lottoHomeBtn) els.lottoHomeBtn.onclick = showHome;
+  if (els.betHomeBtn) els.betHomeBtn.onclick = function(){
+    state.selectedLotto = null;
+    clearCurrentBet(false);
+    showHome();
+  };
 
   // V16.1: สมาชิกอัปโหลดสลิปและตรวจสอบได้ด้วยตัวเอง
   if (els.homeDepositBtn) els.homeDepositBtn.onclick = openSelfDeposit;
@@ -3475,29 +3595,58 @@ function showHome() {
 
 
 function openSelfDeposit() {
+  var now = new Date();
+  var localDate = now.getFullYear() + "-" +
+    String(now.getMonth()+1).padStart(2,"0") + "-" +
+    String(now.getDate()).padStart(2,"0");
+  var localTime = String(now.getHours()).padStart(2,"0") + ":" +
+    String(now.getMinutes()).padStart(2,"0");
+
   Swal.fire({
-    title:"เติมเงิน",
+    title:"ตรวจสอบสลิปฝากเงิน",
     html:
       '<div style="text-align:left">' +
         '<label style="display:block;font-size:11px;font-weight:800;margin:4px 0 6px">ยอดที่โอน</label>' +
         '<input id="swalDepositAmount" class="swal2-input" type="number" min="1" step="0.01" inputmode="decimal" placeholder="เช่น 500" style="margin:0;width:100%">' +
+
+        '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">' +
+          '<div>' +
+            '<label style="display:block;font-size:10px;font-weight:800;margin-bottom:5px">วันที่โอน</label>' +
+            '<input id="swalDepositDate" type="date" value="' + localDate + '" style="width:100%;height:44px;border:1px solid #d4d4d8;border-radius:10px;padding:0 9px;font:inherit">' +
+          '</div>' +
+          '<div>' +
+            '<label style="display:block;font-size:10px;font-weight:800;margin-bottom:5px">เวลาโอน</label>' +
+            '<input id="swalDepositTime" type="time" value="' + localTime + '" step="60" style="width:100%;height:44px;border:1px solid #d4d4d8;border-radius:10px;padding:0 9px;font:inherit">' +
+          '</div>' +
+        '</div>' +
+
         '<label style="display:block;font-size:11px;font-weight:800;margin:14px 0 6px">อัปโหลดสลิป</label>' +
-        '<input id="swalDepositSlip" type="file" accept="image/jpeg,image/png,image/gif,image/webp" style="width:100%;padding:12px;border:1px dashed #d4d4d8;border-radius:12px;background:#fafafa">' +
-        '<div style="margin-top:8px;color:#71717a;font-size:9px;line-height:1.6">รองรับ JPG, PNG, GIF, WebP ขนาดไม่เกิน 4 MB ระบบจะตรวจยอดและสลิปซ้ำผ่าน Thunder API</div>' +
+        '<input id="swalDepositSlip" type="file" accept="image/jpeg,image/png,image/gif,image/webp" style="width:100%;padding:12px;border:1px dashed #bbf7d0;border-radius:12px;background:#f0fdf4">' +
+
+        '<div class="deposit-time-hint">ระบบจะตรวจยอด, สลิปซ้ำ และเปรียบเทียบวัน/เวลาในสลิปกับวันที่และเวลาที่กรอกในระดับ “นาที”</div>' +
       '</div>',
     showCancelButton:true,
     confirmButtonText:"ตรวจสลิป",
     cancelButtonText:"ยกเลิก",
-    confirmButtonColor:"#b41630",
+    confirmButtonColor:"#0f7d4e",
     focusConfirm:false,
     preConfirm:function(){
       var amountEl = document.getElementById("swalDepositAmount");
+      var dateEl = document.getElementById("swalDepositDate");
+      var timeEl = document.getElementById("swalDepositTime");
       var fileEl = document.getElementById("swalDepositSlip");
+
       var amount = Number(amountEl && amountEl.value || 0);
+      var transferDate = String(dateEl && dateEl.value || "");
+      var transferTime = String(timeEl && timeEl.value || "");
       var file = fileEl && fileEl.files && fileEl.files[0];
 
       if (!amount || amount <= 0) {
         Swal.showValidationMessage("กรุณากรอกยอดที่โอน");
+        return false;
+      }
+      if (!transferDate || !transferTime) {
+        Swal.showValidationMessage("กรุณาระบุวันและเวลาโอน");
         return false;
       }
       if (!file) {
@@ -3510,7 +3659,13 @@ function openSelfDeposit() {
       }
 
       return fileToBase64V16(file).then(function(base64){
-        return {amount:amount, base64:base64};
+        return {
+          amount:amount,
+          transferDate:transferDate,
+          transferTime:transferTime,
+          transferDateTime:transferDate + " " + transferTime,
+          base64:base64
+        };
       });
     }
   }).then(function(result){
@@ -3526,11 +3681,12 @@ function openSelfDeposit() {
           html:
             '<div style="font-size:13px;line-height:1.8">' +
               'ยอดในสลิป <b>' + money(r.verifiedAmount) + ' บาท</b><br>' +
+              (r.slipDate ? 'วันเวลาในสลิป <b>' + escapeHtml(r.slipDate) + '</b><br>' : '') +
               (r.transRef ? 'เลขอ้างอิง <b>' + escapeHtml(r.transRef) + '</b><br>' : '') +
-              '<span style="color:#71717a;font-size:10px">ระบบบันทึกรายการตรวจสอบสลิปเรียบร้อยแล้ว</span>' +
+              '<span style="color:#71717a;font-size:10px">สลิปผ่านการตรวจสอบและบันทึกรายการแล้ว</span>' +
             '</div>',
           confirmButtonText:"ตกลง",
-          confirmButtonColor:"#b41630"
+          confirmButtonColor:"#0f7d4e"
         });
       })
       .catch(showErrorGlobal)
@@ -3552,9 +3708,9 @@ function showMoneyFeatureUnavailable(label) {
   Swal.fire({
     icon:"info",
     title:label,
-    html:"V16 ชุดนี้ยังไม่เชื่อมการโอนเงินจริงหรือการถอนเงินจริงเข้ากับเครดิตที่ใช้แทงหวย",
+    html:"ระบบนี้ยังไม่เชื่อมธุรกรรมเงินจริงเข้ากับเครดิตที่ใช้แทงหวยโดยอัตโนมัติ",
     confirmButtonText:"ตกลง",
-    confirmButtonColor:"#b41630"
+    confirmButtonColor:"#0f7d4e"
   });
 }
 
@@ -4112,9 +4268,9 @@ function buildConfirmHtml() {
   }
 
   return '<div style="text-align:left">' +
-    '<div style="padding:10px 12px;background:#fff1f2;border-radius:12px;margin-bottom:10px">' +
+    '<div style="padding:10px 12px;background:#ecfdf5;border-radius:12px;margin-bottom:10px">' +
       '<div style="font-size:12px;color:#71717a">' + escapeHtml(state.selectedLotto.name) + '</div>' +
-      '<div style="font-size:24px;font-weight:950;color:#991b1b;margin-top:2px">' +
+      '<div style="font-size:24px;font-weight:950;color:#0c7146;margin-top:2px">' +
         money(total) +
       '</div>' +
     '</div>' +
@@ -4621,7 +4777,7 @@ async function showBetDetails(bet, isAdminView) {
       '</div>',
     showDenyButton:!isAdminView && !!bet.canCancel,
     denyButtonText:"ยกเลิกโพย",
-    denyButtonColor:"#be123c",
+    denyButtonColor:"#0d6f45",
     confirmButtonText:"ปิด",
     confirmButtonColor:"#52525b"
   });
@@ -4634,7 +4790,7 @@ async function showBetDetails(bet, isAdminView) {
       showCancelButton:true,
       confirmButtonText:"ยืนยันยกเลิก",
       cancelButtonText:"ไม่ยกเลิก",
-      confirmButtonColor:"#be123c"
+      confirmButtonColor:"#0d6f45"
     });
 
     if (!confirmCancel.isConfirmed) return;
@@ -4880,7 +5036,7 @@ async function loadAdminAllBets() {
       btn.onclick = async function(){
         var bet = state.adminBets.find(function(x){ return String(x.billId) === String(btn.dataset.adminCancel); });
         if (!bet) return;
-        var ask = await Swal.fire({icon:"warning",title:"ยกเลิกโพย " + escapeHtml(bet.username),html:escapeHtml(bet.lottoName) + "<br>ยอดคืน <b>" + money(bet.totalAmount) + "</b>",showCancelButton:true,confirmButtonText:"ยืนยันยกเลิก",cancelButtonText:"ไม่ยกเลิก",confirmButtonColor:"#be123c"});
+        var ask = await Swal.fire({icon:"warning",title:"ยกเลิกโพย " + escapeHtml(bet.username),html:escapeHtml(bet.lottoName) + "<br>ยอดคืน <b>" + money(bet.totalAmount) + "</b>",showCancelButton:true,confirmButtonText:"ยืนยันยกเลิก",cancelButtonText:"ไม่ยกเลิก",confirmButtonColor:"#0d6f45"});
         if (!ask.isConfirmed) return;
         try{adminBusy("กำลังยกเลิกโพย...");await api("adminCancelBet",state.token,bet.billId);Swal.close();await loadAdminAllBets();await loadAdminDashboard("day");await loadAdminUsers();toast("ยกเลิกโพยและคืนยอดแล้ว");}catch(e){Swal.close();showAdminError(e);}
       };
