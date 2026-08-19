@@ -1003,7 +1003,7 @@ button:active {
 }
 .bet-mode-tabs {
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:repeat(5,1fr);
   gap:5px;
   padding:6px;
   background:#fff;
@@ -1334,77 +1334,6 @@ button:active {
   .direct-card { padding:14px; }
 }
 
-
-function betGroupPriceText(g) {
-  var mode = String(g.mode || "");
-  var top = Number(g.top || 0);
-  var bottom = Number(g.bottom || 0);
-  var parts = [];
-
-  if (mode === "ตท" || mode === "ตรงโต๊ด") {
-    if (top > 0) parts.push("ตรง " + money(top));
-    if (bottom > 0) parts.push("โต๊ด " + money(bottom));
-  } else if (mode === "6กลับ") {
-    if (top > 0) parts.push("6 กลับ " + money(top));
-  } else {
-    if (top > 0) parts.push("บน " + money(top));
-    if (bottom > 0) parts.push("ล่าง " + money(bottom));
-  }
-
-  return parts.join("  |  ");
-}
-
-function showBetDetails(bet, isAdminView) {
-  bet = bet || {};
-  var groups = Array.isArray(bet.groups) ? bet.groups : [];
-
-  var groupsHtml = groups.length
-    ? groups.map(function(g){
-        var nums = Array.isArray(g.numbers) ? g.numbers : [];
-
-        return '<div class="bet-detail-group">' +
-          '<div class="bet-detail-group-head"><b>' +
-            escapeHtml(String(g.mode || "รายการ")) +
-          '</b><span>' + nums.length + ' เลข</span></div>' +
-          '<div class="bet-detail-numbers">' +
-            nums.map(function(n){
-              return '<span>' + escapeHtml(n) + '</span>';
-            }).join("") +
-          '</div>' +
-          '<div class="bet-detail-price">' +
-            escapeHtml(betGroupPriceText(g)) +
-          '</div>' +
-        '</div>';
-      }).join("")
-    : '<div class="bet-detail-empty">ไม่มีรายละเอียด</div>';
-
-  var payoutRow = bet.status === "WIN"
-    ? '<div class="bet-detail-summary"><span>ยอดถูกรางวัล</span><b>' + money(bet.payout) + '</b></div>'
-    : '';
-
-  Swal.fire({
-    title:isAdminView ? "รายละเอียดโพย" : "โพยของฉัน",
-    width:720,
-    html:
-      '<div class="bet-detail-wrap">' +
-        '<div class="bet-detail-top">' +
-          '<div><small>หวย</small><b>' + escapeHtml(bet.lottoName || "-") + '</b></div>' +
-          '<div><small>สถานะ</small><b>' + escapeHtml(statusText(bet.status)) + '</b></div>' +
-        '</div>' +
-        '<div class="bet-detail-meta">' +
-          (isAdminView ? 'User ' + escapeHtml(bet.username || "-") + ' • ' : '') +
-          'รอบ ' + escapeHtml(bet.roundDate || "-") + '<br>' +
-          escapeHtml(bet.betAtText || formatDateTime(bet.betAt)) + '<br>' +
-          'Bill: ' + escapeHtml(String(bet.billId || "")) +
-        '</div>' +
-        groupsHtml +
-        '<div class="bet-detail-summary"><span>ยอดแทง</span><b>' + money(bet.totalAmount) + '</b></div>' +
-        payoutRow +
-      '</div>',
-    confirmButtonText:"ปิด",
-    confirmButtonColor:"#991b1b"
-  });
-}
 
 /* =====================================================
    ADMIN BACKOFFICE
@@ -2316,6 +2245,19 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
   min-height:38px;
 }
 
+
+/* V14 RUNNING NUMBER + CANCEL BET */
+.bet-mode-tabs { grid-template-columns:repeat(5,minmax(0,1fr)) !important; }
+.bet-mode-tab { padding-left:4px; padding-right:4px; font-size:11px; }
+.bet-number-chip.run-chip { border-color:#bae6fd; background:#f0f9ff; color:#075985; }
+.bet-cancel-note {
+  margin-top:10px; padding:9px 10px; border-radius:10px;
+  background:#f0fdf4; color:#166534; font-size:10px; font-weight:500;
+}
+.bet-cancel-note.closed { background:#f4f4f5; color:#71717a; }
+@media (max-width:390px) {
+  .bet-mode-tab { font-size:10px; min-height:56px; }
+}
 </style>
  </head>
  <body>
@@ -2323,7 +2265,7 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
   <section id="loginScreen">
     <div class="login-card-credit">
       <div class="login-logo-credit">฿</div>
-      <h1 class="login-title-inline">เข้าสู่ระบบ <span class="login-version" id="loginVersion">V13</span></h1>
+      <h1 class="login-title-inline">เข้าสู่ระบบ <span class="login-version" id="loginVersion">V14</span></h1>
       
       <div class="api-state" id="apiState">กำลังตรวจการเชื่อมต่อ...</div>
       <div class="login-field">
@@ -2398,6 +2340,7 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
       <button class="bet-mode-tab" data-mode="three">3 ตัว</button>
       <button class="bet-mode-tab" data-mode="six">6 กลับ</button>
       <button class="bet-mode-tab" data-mode="gate">19 ประตู</button>
+      <button class="bet-mode-tab" data-mode="run">เลขวิ่ง</button>
      </div>
     </div>
 
@@ -2405,7 +2348,7 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
      <section class="direct-card">
       <div class="direct-title-row">
        <div>
-        <div class="direct-title" id="directTitle">กรอกเลข 2 ตัว</div>
+        <div class="direct-title" id="directTitle">เลข 2 ตัว</div>
        </div>
        <span class="number-count-pill" id="numberCount">0 ตัว</span>
       </div>
@@ -2415,7 +2358,7 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
       </div>
 
       <div class="selected-label-row">
-       <span class="selected-label">เลขที่กำลังแทงจริง</span>
+       <span class="selected-label">รายละเอียดโพย</span>
        <button class="clear-numbers" id="clearNumbersBtn">ล้างเลข</button>
       </div>
       <div class="number-chip-box" id="numberChipBox">
@@ -2488,6 +2431,7 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
        <option value="OPENING">ยอดเปิดบัญชี</option>
        <option value="BET">แทงหวย</option>
        <option value="WIN">ถูกรางวัล</option>
+       <option value="CANCEL">คืนยอดยกเลิกโพย</option>
       </select>
      </div>
      <div class="money-list" id="moneyList">
@@ -2714,7 +2658,7 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
   
 
 <script>
-const APP_VERSION = "V13";
+const APP_VERSION = "V14";
 const API = "https://script.google.com/macros/s/AKfycbzhCttywyi-ihmYs5ctKid6oQkRmb4itxHUZ2a6juYd9jltSE81PBt1I-20yr_X9Pcg/exec";
 const AFTER_MIDNIGHT_CUTOFF_HOUR = 6;
 
@@ -2831,6 +2775,12 @@ function bindEvents() {
   els.resultsBackBtn.onclick = showLotto;
   els.resultsReloadBtn.onclick = loadMemberResults;
   els.resultsDate.onchange = loadMemberResults;
+
+  els.historyList.onclick = function(e){
+    var btn = e.target.closest("[data-history-bill]");
+    if (!btn) return;
+    showMemberBetDetailById(btn.dataset.historyBill);
+  };
 
   els.historyBtn.onclick = showHistory;
   els.historyBackBtn.onclick = showLotto;
@@ -3081,7 +3031,7 @@ function backToLotto() {
    DIRECT BET
 ===================================================== */
 function setBetMode(mode) {
-  if (["two","three","six","gate"].indexOf(mode) === -1) return;
+  if (["two","three","six","gate","run"].indexOf(mode) === -1) return;
 
   state.betMode = mode;
   state.numbers = [];
@@ -3095,42 +3045,22 @@ function setBetMode(mode) {
 
 function getModeConfig() {
   if (state.betMode === "three") {
-    return {
-      title:"กรอกเลข 3 ตัว",
-      placeholder:"",
-      len:3,
-      priceA:"ตรง",
-      priceB:"โต๊ด"
-    };
+    return {title:"เลข 3 ตัว",placeholder:"",len:3,priceA:"ตรง",priceB:"โต๊ด"};
   }
 
   if (state.betMode === "six") {
-    return {
-      title:"กรอกเลข 6 กลับ",
-      placeholder:"",
-      len:3,
-      priceA:"6 กลับ",
-      priceB:null
-    };
+    return {title:"เลข 6 กลับ",placeholder:"",len:3,priceA:"6 กลับ",priceB:null};
   }
 
   if (state.betMode === "gate") {
-    return {
-      title:"กรอกเลขรูด 19 ประตู",
-      placeholder:"",
-      len:1,
-      priceA:"บน",
-      priceB:"ล่าง"
-    };
+    return {title:"รูด 19 ประตู",placeholder:"",len:1,priceA:"บน",priceB:"ล่าง"};
   }
 
-  return {
-    title:"กรอกเลข 2 ตัว",
-    placeholder:"",
-    len:2,
-    priceA:"บน",
-    priceB:"ล่าง"
-    };
+  if (state.betMode === "run") {
+    return {title:"เลขวิ่ง",placeholder:"",len:1,priceA:"บน",priceB:"ล่าง"};
+  }
+
+  return {title:"เลข 2 ตัว",placeholder:"",len:2,priceA:"บน",priceB:"ล่าง"};
 }
 
 function syncNumbersFromInput() {
@@ -3356,6 +3286,12 @@ function buildActualBetChips() {
     return sixHtml.join("");
   }
 
+  if (state.betMode === "run") {
+    return state.numbers.map(function(n){
+      return chipHtml(n, "generated run-chip", "วิ่ง", n);
+    }).join("");
+  }
+
   // 19 ประตู: แสดงทั้ง 19 ตัวจริง แยกตามเลขรูด
   if (state.betMode === "gate") {
     var gateHtml = [];
@@ -3535,6 +3471,19 @@ function buildCanonicalRawText() {
       lines.push(n + " 6กลับ " + a);
     });
 
+    return lines.join("\n");
+  }
+
+  if (state.betMode === "run") {
+    state.numbers.forEach(function(d){
+      if (a > 0 && b > 0) {
+        lines.push("วิ่ง " + d + " บน " + a + " | ล่าง " + b);
+      } else if (a > 0) {
+        lines.push("วิ่ง " + d + " บน " + a);
+      } else {
+        lines.push("วิ่ง " + d + " ล่าง " + b);
+      }
+    });
     return lines.join("\n");
   }
 
@@ -3727,7 +3676,8 @@ function moneyTypeText(type) {
     ADMIN_ADD:"เติมเงิน",
     ADMIN_SUB:"หักเงิน",
     BET:"แทงหวย",
-    WIN:"ถูกรางวัล"
+    WIN:"ถูกรางวัล",
+    CANCEL:"คืนยอดยกเลิกโพย"
   })[String(type || "").toUpperCase()] || type;
 }
 
@@ -4018,6 +3968,148 @@ function statusText(s) {
 /* =====================================================
    ADMIN BACKOFFICE
 ===================================================== */
+function betGroupPriceText(g) {
+  var mode = String(g.mode || "");
+  var top = Number(g.top || 0);
+  var bottom = Number(g.bottom || 0);
+  var parts = [];
+
+  if (mode === "ตท" || mode === "ตรงโต๊ด") {
+    if (top > 0) parts.push("ตรง " + money(top));
+    if (bottom > 0) parts.push("โต๊ด " + money(bottom));
+  } else if (mode === "6กลับ") {
+    if (top > 0) parts.push("6 กลับ " + money(top));
+  } else if (mode === "วิ่ง") {
+    if (top > 0) parts.push("บน " + money(top) + " ×3");
+    if (bottom > 0) parts.push("ล่าง " + money(bottom) + " ×4");
+  } else {
+    if (top > 0) parts.push("บน " + money(top));
+    if (bottom > 0) parts.push("ล่าง " + money(bottom));
+  }
+
+  return parts.join("  |  ");
+}
+
+async function showBetDetails(bet, isAdminView) {
+  bet = bet || {};
+  var groups = Array.isArray(bet.groups) ? bet.groups : [];
+
+  var groupsHtml = groups.length
+    ? groups.map(function(g){
+        var nums = Array.isArray(g.numbers) ? g.numbers : [];
+
+        return '<div class="bet-detail-group">' +
+          '<div class="bet-detail-group-head"><b>' +
+            escapeHtml(String(g.mode || "รายการ")) +
+          '</b><span>' + nums.length + ' เลข</span></div>' +
+          '<div class="bet-detail-numbers">' +
+            nums.map(function(n){
+              return '<span>' + escapeHtml(n) + '</span>';
+            }).join("") +
+          '</div>' +
+          '<div class="bet-detail-price">' +
+            escapeHtml(betGroupPriceText(g)) +
+          '</div>' +
+        '</div>';
+      }).join("")
+    : '<div class="bet-detail-empty">ไม่มีรายละเอียด</div>';
+
+  var payoutRow = bet.status === "WIN"
+    ? '<div class="bet-detail-summary"><span>ยอดถูกรางวัล</span><b>' +
+        money(bet.payout) + '</b></div>'
+    : '';
+
+  var cancelInfo = '';
+
+  if (!isAdminView && bet.status === "WAITING") {
+    cancelInfo = bet.canCancel
+      ? '<div class="bet-cancel-note">ยกเลิกได้ก่อน ' +
+          escapeHtml(bet.cancelCloseAtText || '') +
+        '</div>'
+      : '<div class="bet-cancel-note closed">' +
+          escapeHtml(bet.cancelReason || 'ไม่สามารถยกเลิกได้') +
+        '</div>';
+  }
+
+  var result = await Swal.fire({
+    title:"รายละเอียดโพย",
+    width:720,
+    html:
+      '<div class="bet-detail-wrap">' +
+        '<div class="bet-detail-top">' +
+          '<div><small>หวย</small><b>' + escapeHtml(bet.lottoName || "-") + '</b></div>' +
+          '<div><small>สถานะ</small><b>' + escapeHtml(statusText(bet.status)) + '</b></div>' +
+        '</div>' +
+        '<div class="bet-detail-meta">' +
+          (isAdminView ? 'User ' + escapeHtml(bet.username || "-") + ' • ' : '') +
+          'รอบ ' + escapeHtml(bet.roundDate || "-") + '<br>' +
+          escapeHtml(bet.betAtText || formatDateTime(bet.betAt)) + '<br>' +
+          'Bill: ' + escapeHtml(String(bet.billId || "")) +
+        '</div>' +
+        groupsHtml +
+        '<div class="bet-detail-summary"><span>ยอดแทง</span><b>' +
+          money(bet.totalAmount) + '</b></div>' +
+        payoutRow +
+        cancelInfo +
+      '</div>',
+    showDenyButton:!isAdminView && !!bet.canCancel,
+    denyButtonText:"ยกเลิกโพย",
+    denyButtonColor:"#be123c",
+    confirmButtonText:"ปิด",
+    confirmButtonColor:"#52525b"
+  });
+
+  if (!isAdminView && result.isDenied && bet.canCancel) {
+    var confirmCancel = await Swal.fire({
+      icon:"warning",
+      title:"ยืนยันยกเลิกโพย",
+      text:"ยอดแทงจะถูกคืนเข้ายอดคงเหลือ",
+      showCancelButton:true,
+      confirmButtonText:"ยืนยันยกเลิก",
+      cancelButtonText:"ไม่ยกเลิก",
+      confirmButtonColor:"#be123c"
+    });
+
+    if (!confirmCancel.isConfirmed) return;
+
+    Swal.fire({
+      title:"กำลังยกเลิกโพย",
+      allowOutsideClick:false,
+      allowEscapeKey:false,
+      didOpen:function(){ Swal.showLoading(); }
+    });
+
+    try {
+      var r = await api("cancelMemberBet", state.token, bet.billId);
+
+      if (state.user) {
+        state.user.credit = Number(r.credit || state.user.credit);
+      }
+
+      updateUserUI();
+
+      await Swal.fire({
+        icon:"success",
+        title:"ยกเลิกโพยแล้ว",
+        confirmButtonText:"ตกลง",
+        confirmButtonColor:"#52525b"
+      });
+
+      loadHistory();
+    } catch(e) {
+      showErrorGlobal(e);
+    }
+  }
+}
+
+function showMemberBetDetailById(billId) {
+  var bet = state.historyBets.find(function(x){
+    return String(x.billId) === String(billId);
+  });
+
+  if (bet) showBetDetails(bet, false);
+}
+
 function showAdmin(tab) {
   if (!state.isAdmin) {
     showErrorGlobal("ไม่มีสิทธิ์ Admin");
@@ -4466,7 +4558,7 @@ async function loadAdminLottoSettings() {
     state.adminLottos = rows || [];
 
     els.adminLottoTable.innerHTML = adminTable(
-      ["หวย","เปิด","ปิดรับ","ขั้นต่ำ","สูงสุด/เลข","สูงสุด/บิล","เรท 3ตรง/โต๊ด/2บน/2ล่าง","Alias","แก้ไข"],
+      ["หวย","เปิด","ปิดรับ","ขั้นต่ำ","สูงสุด/เลข","สูงสุด/บิล","เรท 3ตรง/โต๊ด/2บน/2ล่าง/วิ่งบน/วิ่งล่าง","Alias","แก้ไข"],
       state.adminLottos.map(function(l){
         return [
           escapeHtml(l.lottoName),
@@ -4479,7 +4571,9 @@ async function loadAdminLottoSettings() {
             money(l.rate3Straight),
             money(l.rate3Tod),
             money(l.rate2Top),
-            money(l.rate2Bottom)
+            money(l.rate2Bottom),
+            money(l.rateRunTop),
+            money(l.rateRunBottom)
           ].join(" / "),
           escapeHtml(l.aliases || ""),
           '<button class="admin-mini edit" data-edit-lotto="' + escapeAttr(l.lottoName) + '">แก้ไข</button>'
@@ -4517,6 +4611,8 @@ async function openEditLotto(l) {
        '<div class="swal-admin-field"><label>3 ตัวโต๊ด</label><input id="admLottoR3T" type="number" value="' + Number(l.rate3Tod || 0) + '"></div>' +
        '<div class="swal-admin-field"><label>2 ตัวบน</label><input id="admLottoR2T" type="number" value="' + Number(l.rate2Top || 0) + '"></div>' +
        '<div class="swal-admin-field"><label>2 ตัวล่าง</label><input id="admLottoR2B" type="number" value="' + Number(l.rate2Bottom || 0) + '"></div>' +
+       '<div class="swal-admin-field"><label>วิ่งบน</label><input id="admLottoRunTop" type="number" value="' + Number(l.rateRunTop == null ? 3 : l.rateRunTop) + '"></div>' +
+       '<div class="swal-admin-field"><label>วิ่งล่าง</label><input id="admLottoRunBottom" type="number" value="' + Number(l.rateRunBottom == null ? 4 : l.rateRunBottom) + '"></div>' +
        '<div class="swal-admin-field full"><label>Alias จาก AllHuay (คั่นด้วย |)</label><input id="admLottoAlias" value="' + escapeAttr(l.aliases || "") + '"></div>' +
       '</div>',
     showCancelButton:true,
@@ -4534,6 +4630,8 @@ async function openEditLotto(l) {
         rate3Tod:num(document.getElementById("admLottoR3T").value),
         rate2Top:num(document.getElementById("admLottoR2T").value),
         rate2Bottom:num(document.getElementById("admLottoR2B").value),
+        rateRunTop:num(document.getElementById("admLottoRunTop").value),
+        rateRunBottom:num(document.getElementById("admLottoRunBottom").value),
         aliases:document.getElementById("admLottoAlias").value,
         sortOrder:l.sortOrder
       };
