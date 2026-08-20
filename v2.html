@@ -1,3 +1,4 @@
+<!-- RESULT HISTORY SHEET FINAL -->
 <!doctype html>
 <html lang="th">
  <head>
@@ -1377,6 +1378,7 @@ button:active {
   .add-number-btn { width:62px; }
   .direct-card { padding:14px; }
 }
+
 
 
 /* =====================================================
@@ -4545,6 +4547,24 @@ h1,h2,h3,strong,b,
   box-shadow:inset 0 1px 0 rgba(255,255,255,.76) !important;
 }
 
+.v16-shortcut-affiliate{
+  background:linear-gradient(135deg,#fff1c6,#ffd36a 55%,#ffbd45) !important;
+  border:1px solid rgba(168,84,0,.28) !important;
+  box-shadow:0 18px 36px rgba(191,108,0,.22), inset 0 1px 0 rgba(255,255,255,.70) !important;
+  color:#5a0b0b !important;
+}
+
+.v16-shortcut-affiliate .v16-shortcut-icon{
+  background:linear-gradient(135deg,#9b1111,#d92b20) !important;
+  color:#fff7ea !important;
+  box-shadow:0 10px 22px rgba(146,14,14,.28), inset 0 1px 0 rgba(255,255,255,.25) !important;
+}
+
+.v16-shortcut-affiliate span:last-child{
+  color:#5a0b0b !important;
+  font-weight:800 !important;
+}
+
 .hero,
 .topbar,
 .admin-hero{
@@ -7567,6 +7587,59 @@ textarea:focus{
     text-align:center !important;
   }
 }
+
+/* V47 — RESULT HISTORY FROM CREDIT2_RESULTS */
+.results-toolbar button:disabled{
+  opacity:.45;
+  cursor:not-allowed;
+  box-shadow:none !important;
+}
+#resultsDate{
+  font-variant-numeric:tabular-nums;
+}
+#adminPanel-results .admin-muted{
+  line-height:1.65 !important;
+}
+
+
+/* =====================================================
+   AFFILIATE TURNOVER UI
+===================================================== */
+.affiliate-page{padding:14px 11px 34px}
+.affiliate-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.affiliate-stat{padding:13px;border:1px solid #e7c1b8;border-radius:14px;background:#fffaf7;box-shadow:0 8px 20px rgba(90,11,11,.07)}
+.affiliate-stat small{display:block;color:#76534b;font-size:9px}.affiliate-stat b{display:block;margin-top:4px;color:#4a0707;font-size:19px;font-weight:650!important}
+.affiliate-link-card{margin-bottom:11px;padding:15px;border:2px solid #8f1010;border-radius:16px;background:linear-gradient(135deg,#fffaf7,#ffe4dc)}
+.affiliate-link-card small{color:#6a413a;font-size:10px}.affiliate-code{margin-top:4px;font-size:23px;font-weight:700!important;color:#7c0c0c!important}
+.affiliate-link-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:7px;margin-top:10px}.affiliate-link-row input{min-width:0;height:44px;border:1px solid #d7aaa0;border-radius:11px;padding:0 10px;background:#fff;font:inherit;font-size:11px}.affiliate-link-row button,.affiliate-withdraw-btn{border:0;border-radius:11px;background:linear-gradient(135deg,#5a0b0b,#bd211b);color:#fff;padding:0 13px;font:inherit;font-weight:600!important}
+.affiliate-withdraw-btn{width:100%;min-height:48px;margin-top:11px;font-size:14px}
+.affiliate-section{margin-top:12px;padding:13px;border:1px solid #e7c1b8;border-radius:15px;background:#fffaf7}.affiliate-section h3{margin:0 0 9px;font-size:14px}
+.affiliate-list{display:grid;gap:7px}.affiliate-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;padding:9px 10px;border:1px solid #f0d5ce;border-radius:11px;background:#fff}.affiliate-row strong{font-size:12px}.affiliate-row small{display:block;margin-top:3px;color:#7b625c;font-size:9px}.affiliate-row b{font-size:13px;color:#8f1010!important}.affiliate-negative b{color:#991b1b!important}
+.affiliate-ref-hint{margin-top:5px;padding:7px 9px;border-radius:9px;background:#fff3cd;color:#6b4710;font-size:9px}
+.admin-affiliate-stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:11px}.admin-affiliate-stat{padding:10px;border:1px solid #ead2c6;border-radius:12px;background:#fffaf7}.admin-affiliate-stat small{display:block;color:#76534b;font-size:8px}.admin-affiliate-stat b{display:block;margin-top:3px;font-size:15px}
+@media(max-width:650px){.admin-affiliate-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.affiliate-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:430px){.affiliate-link-row{grid-template-columns:1fr}.affiliate-link-row button{min-height:42px}.affiliate-grid{grid-template-columns:1fr 1fr}.v16-shortcuts{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+.admin-tabs{grid-template-columns:repeat(8,minmax(118px,1fr))!important}
+
+
+
+/* =====================================================
+   WEBSITE ANNOUNCEMENTS / POPUP
+===================================================== */
+.announcement-admin-list{display:grid;gap:10px;margin-top:12px}
+.announcement-admin-card{display:grid;grid-template-columns:92px minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px;border:1px solid #e7c1b8;border-radius:15px;background:#fffaf7}
+.announcement-admin-thumb{width:92px;height:74px;border-radius:11px;object-fit:cover;background:#f5e7e1;border:1px solid #ecd2c8}
+.announcement-admin-thumb.empty{display:grid;place-items:center;color:#9d7b72;font-size:10px;padding:8px}
+.announcement-admin-main{min-width:0}.announcement-admin-main strong{display:block;color:#3d0a08!important;font-size:14px}.announcement-admin-main small{display:block;margin-top:4px;color:#76534b!important;font-size:10px;line-height:1.5}
+.announcement-admin-actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.announcement-status{display:inline-flex;align-items:center;min-height:23px;padding:0 8px;border-radius:999px;font-size:9px;font-weight:650}.announcement-status.on{background:#dcfce7;color:#166534}.announcement-status.off{background:#f4f4f5;color:#52525b}.announcement-status.wait{background:#fef3c7;color:#92400e}
+.announcement-popup-wrap{display:grid;gap:12px;text-align:left}
+.announcement-popup-card{overflow:hidden;border:1px solid #edd5cd;border-radius:17px;background:linear-gradient(180deg,#fffdfb,#fff5f0);box-shadow:0 8px 24px rgba(90,11,11,.08)}
+.announcement-popup-card img{display:block;width:100%;max-height:420px;object-fit:contain;background:#fff}
+.announcement-popup-copy{padding:14px 15px}.announcement-popup-copy strong{display:block;color:#4a0707!important;font-size:18px;font-weight:700!important}.announcement-popup-copy div{margin-top:7px;color:#513832;font-size:13px;line-height:1.7;word-break:break-word}
+.announcement-form-preview{margin-top:8px;max-height:220px;overflow:hidden;border:1px solid #ead2c6;border-radius:12px;background:#fff;text-align:center}.announcement-form-preview img{display:block;width:100%;max-height:220px;object-fit:contain}
+@media(max-width:620px){.announcement-admin-card{grid-template-columns:72px minmax(0,1fr)}.announcement-admin-thumb{width:72px;height:64px}.announcement-admin-actions{grid-column:1/-1;justify-content:flex-start}}
+
 </style>
  </head>
  <body>
@@ -7633,6 +7706,11 @@ textarea:focus{
           <div class="login-field">
             <label>หมายเลขบัญชี</label>
             <input id="regBankAccountNo" inputmode="numeric" placeholder="เลขบัญชี">
+          </div>
+          <div class="login-field full">
+            <label>รหัสแนะนำ Affiliate (ถ้ามี)</label>
+            <input id="regReferralCode" autocomplete="off" placeholder="เช่น AFF-A001">
+            <div class="affiliate-ref-hint hidden" id="regReferralHint">สมัครผ่านลิงก์แนะนำ ระบบจะผูกผู้แนะนำให้บัญชีนี้ถาวร</div>
           </div>
         </div>
         <button class="login-submit" id="registerBtn">สมัครสมาชิก</button>
@@ -7712,6 +7790,9 @@ textarea:focus{
        <button class="v16-shortcut" id="homeMoneyBtn" type="button">
         <span class="v16-shortcut-icon">฿</span><span>รายการเงิน</span>
        </button>
+       <button class="v16-shortcut v16-shortcut-affiliate" id="homeAffiliateBtn" type="button">
+        <span class="v16-shortcut-icon">🎁</span><span>แนะนำเพื่อน</span>
+       </button>
       </div>
 
      </div>
@@ -7752,7 +7833,7 @@ textarea:focus{
      <div class="lotto-grid" id="lottoGrid">
      </div>
      <div class="empty" id="lottoEmpty" style="display:none">
-      ยังไม่มีหวยที่เปิดรับ
+      ยังไม่มีหวยที่เปิดรับ • รอบใหม่เปิดเวลา 05:00 น.
      </div>
     </div>
    </section>
@@ -7775,7 +7856,7 @@ textarea:focus{
        <small>ยอดคงเหลือ</small>
        <b id="betCredit">0.00</b>
       </div>
-      <button class="bet-rules-classic-btn" id="classicRuleBtn" type="button">กติกา & วิธีเล่น</button>
+      <button class="bet-rules-classic-btn" id="classicRuleBtn" type="button">อัตราการจ่าย & วิธีเล่น</button>
      </div>
     </header>
 
@@ -7800,7 +7881,7 @@ textarea:focus{
        <small>ยอดคงเหลือ</small>
        <b id="modernBetCredit">0.00</b>
       </div>
-      <button class="modern-rule-btn" type="button" id="modernRuleBtn">กติกา & วิธีเล่น</button>
+      <button class="modern-rule-btn" type="button" id="modernRuleBtn">อัตราการจ่าย & วิธีเล่น</button>
      </div>
 
      <button class="modern-lotto-select" id="modernLottoSelect" type="button">
@@ -8021,13 +8102,43 @@ textarea:focus{
     </header>
     <div class="results-body">
      <div class="results-toolbar">
-      <input id="resultsDate" type="date" readonly aria-label="วันที่ผลหวยวันนี้">
-      <button id="resultsReloadBtn">รีเฟรชผลวันนี้</button>
+      <input id="resultsDate" type="date" aria-label="เลือกรอบวันที่เพื่อดูผลย้อนหลัง">
+      <button id="resultsReloadBtn">ดูผลวันที่เลือก</button>
+      <button id="resultsPrevBtn">‹ วันก่อน</button>
+      <button id="resultsNextBtn">วันถัดไป ›</button>
      </div>
-     <div id="resultsSource" style="margin:-3px 2px 10px;color:#71717a;font-size:9px;font-weight:800"></div>
+     <div id="resultsSource" style="margin:-3px 2px 10px;color:#71717a;font-size:10px;font-weight:800"></div>
      <div class="result-list" id="resultsList">
-      <div class="empty">กำลังโหลดผล...</div>
+      <div class="empty">กำลังโหลด…</div>
      </div>
+    </div>
+   </section>
+
+
+   <section class="screen" id="affiliateScreen">
+    <header class="hero">
+     <div class="eyebrow">AFFILIATE</div>
+     <h1>แนะนำเพื่อน</h1>
+     <p>รับค่าคอมจากยอดแทงจริงของสมาชิกที่สมัครผ่านลิงก์ของคุณ</p>
+     <div class="account-row">
+      <button class="account-btn light" id="affiliateBackBtn">‹ กลับ</button>
+      <div class="account-credit"><small>คอมถอนได้</small><strong id="affiliateAvailableTop">0.00</strong></div>
+     </div>
+    </header>
+    <div class="affiliate-page">
+     <div class="affiliate-link-card">
+      <small>รหัสแนะนำเพื่อนของคุณ</small>
+      <div class="affiliate-code" id="affiliateCode">-</div>
+      <div class="affiliate-link-row">
+       <input id="affiliateLink" readonly value="">
+       <button id="affiliateCopyBtn" type="button">คัดลอกลิงก์</button>
+      </div>
+      <div class="affiliate-ref-hint">ค่าคอมคิดจาก Turnover ของโพยที่แทงสำเร็จ • ไม่คิดจากยอดเติมเงิน</div>
+     </div>
+     <div class="affiliate-grid" id="affiliateStats"></div>
+     <button class="affiliate-withdraw-btn" id="affiliateWithdrawBtn" type="button">ถอนค่าคอม</button>
+     <div class="affiliate-section"><h3>ประวัติค่าคอม</h3><div class="affiliate-list" id="affiliateCommissionList"><div class="empty">กำลังโหลด…</div></div></div>
+     <div class="affiliate-section"><h3>ประวัติถอนเงิน</h3><div class="affiliate-list" id="affiliateWithdrawList"><div class="empty">กำลังโหลด…</div></div></div>
     </div>
    </section>
 
@@ -8085,6 +8196,9 @@ textarea:focus{
       <button class="admin-tab" data-admin-tab="users">ยูสเซอร์/เครดิต</button>
       <button class="admin-tab" data-admin-tab="withdraws">รายการถอน</button>
       <button class="admin-tab" data-admin-tab="lotto">ตั้งค่าหวย</button>
+      <button class="admin-tab" data-admin-tab="results">ผลหวย / แก้ไขผล</button>
+      <button class="admin-tab" data-admin-tab="affiliate">Affiliate</button>
+      <button class="admin-tab" data-admin-tab="announcements">ประกาศหน้าเว็บ</button>
       <button class="admin-tab" data-admin-tab="connections">การเชื่อมต่อ</button>
      </div>
     </div>
@@ -8267,6 +8381,65 @@ textarea:focus{
       </div>
      </section>
 
+     <section class="admin-panel" id="adminPanel-results">
+      <div class="admin-card">
+       <div class="admin-card-head">
+        <div>
+         <h2>ผลหวยย้อนหลัง</h2>
+         <div class="admin-muted">ผลทุกงวดถูกเก็บไว้ในระบบ สามารถดูย้อนหลังและแก้ไขผลได้</div>
+        </div>
+        <div class="admin-actions-inline">
+         <button class="admin-btn green" id="adminResultsSyncBtn">ดึงผล → บันทึกชีต</button>
+         <button class="admin-btn dark" id="adminResultsAddBtn">+ เพิ่มผลเอง</button>
+        </div>
+       </div>
+       <div class="admin-toolbar">
+        <div class="admin-field"><label>จากรอบวันที่</label><input id="adminResultsFrom" type="date"></div>
+        <div class="admin-field"><label>ถึงรอบวันที่</label><input id="adminResultsTo" type="date"></div>
+        <div class="admin-field"><label>หวย</label><select id="adminResultsLotto"><option value="">ทั้งหมด</option></select></div>
+        <button class="admin-btn soft" id="adminResultsReloadBtn">อ่านจากชีต</button>
+       </div>
+       <div class="admin-table-wrap" id="adminResultsTable" style="margin-top:11px"></div>
+      </div>
+     </section>
+
+
+     <section class="admin-panel" id="adminPanel-affiliate">
+      <div class="admin-card">
+       <div class="admin-card-head">
+        <div><h2>Affiliate</h2><div class="admin-muted">Turnover Commission • ค่าเริ่มต้น 1% • ปรับ % รายคนได้</div></div>
+        <button class="admin-btn dark" id="adminAffiliateReloadBtn">โหลดใหม่</button>
+       </div>
+       <div class="admin-toolbar">
+        <div class="admin-field full"><label>ค้นหา Affiliate / User</label><input id="adminAffiliateSearch" placeholder="AFF-A001 หรือเบอร์โทร"></div>
+       </div>
+       <div class="admin-affiliate-stats" id="adminAffiliateStats"></div>
+       <div class="admin-table-wrap" id="adminAffiliateTable" style="margin-top:11px"></div>
+      </div>
+      <div class="admin-card">
+       <div class="admin-card-head"><div><h3>คำขอถอนค่าคอม</h3><div class="admin-muted">อนุมัติแล้วถือว่าจ่ายออกจาก Affiliate Wallet</div></div></div>
+       <div class="admin-table-wrap" id="adminAffiliateWithdrawTable" style="margin-top:10px"></div>
+      </div>
+     </section>
+
+
+     <section class="admin-panel" id="adminPanel-announcements">
+      <div class="admin-card">
+       <div class="admin-card-head">
+        <div>
+         <h2>ประกาศหน้าเว็บ</h2>
+         <div class="admin-muted">เปิด/ปิด Popup • ตั้งวันที่แสดง • อัปโหลดรูป • หน้า Member แสดงพร้อมกันสูงสุด 2 รายการ</div>
+        </div>
+        <div class="admin-actions-inline">
+         <button class="admin-btn soft" id="adminAnnouncementReloadBtn">โหลดใหม่</button>
+         <button class="admin-btn dark" id="adminAnnouncementAddBtn">+ เพิ่มประกาศ</button>
+        </div>
+       </div>
+       <div class="admin-muted" style="margin-top:10px">หากมีประกาศที่เปิดและอยู่ในช่วงวันที่เกิน 2 รายการ ระบบจะแสดง 2 รายการที่แก้ไขล่าสุด</div>
+       <div class="announcement-admin-list" id="adminAnnouncementsTable"><div class="admin-empty">กำลังโหลด…</div></div>
+      </div>
+     </section>
+
      <section class="admin-panel" id="adminPanel-connections">
       <div class="admin-card">
        <div class="admin-card-head">
@@ -8329,7 +8502,7 @@ textarea:focus{
   
 
 <script>
-const APP_VERSION = "LOTTERY MUNGMEE";
+const APP_VERSION = "LOTTERY MUNGMEE • AFFILIATE";
 const APPS_SCRIPT_API = "https://script.google.com/macros/s/AKfycbyDnjGnxA1CtMD1TWxUCE8ThyQ8nxRG2kXJ7-bEkmCKfyJ3SsgghHP9Qj1OmyshyUI/exec";
 const API = window.LOTTERY_API_URL || APPS_SCRIPT_API;
 const AFTER_MIDNIGHT_CUTOFF_HOUR = 6;
@@ -8366,6 +8539,11 @@ var state = {
   lottoSubTab: "enabled",
   historyBets: [],
   adminBets: [],
+  affiliate: null,
+  adminAffiliates: [],
+  adminAffiliateWithdrawals: [],
+  adminAnnouncements: [],
+  announcementsShown: false,
   adminTab: "dashboard"
 };
 
@@ -8377,19 +8555,20 @@ var LOTTO_ROUND_SWITCH_HOUR = 5;
 
 document.addEventListener("DOMContentLoaded", function () {
   [
-    "loginScreen","mainApp","apiState","loginVersion","authLoginTab","authRegisterTab","loginPanel","registerPanel","loginUser","loginPass","loginPassToggle","loginBtn","regPhone","regPass","regPassConfirm","regBankNameAccount","regBankName","regBankAccountNo","registerBtn",
-    "homeScreen","homeCredit","homeUserName","homeUsername","homeLineContactBtn","homeLogoutBtn","homeDepositBtn","homeWithdrawBtn","homeLottoBtn","homeHistoryBtn","homeResultsBtn","homeSummaryBtn","homeMoneyBtn","lottoHomeBtn","betHomeBtn",
-    "lottoScreen","betScreen","historyScreen","moneyScreen","memberSummaryScreen","resultsScreen","adminScreen","lottoGrid","lottoEmpty",
+    "loginScreen","mainApp","apiState","loginVersion","authLoginTab","authRegisterTab","loginPanel","registerPanel","loginUser","loginPass","loginPassToggle","loginBtn","regPhone","regPass","regPassConfirm","regBankNameAccount","regBankName","regBankAccountNo","regReferralCode","regReferralHint","registerBtn",
+    "homeScreen","homeCredit","homeUserName","homeUsername","homeLineContactBtn","homeLogoutBtn","homeDepositBtn","homeWithdrawBtn","homeLottoBtn","homeHistoryBtn","homeResultsBtn","homeSummaryBtn","homeMoneyBtn","homeAffiliateBtn","lottoHomeBtn","betHomeBtn",
+    "lottoScreen","betScreen","historyScreen","moneyScreen","memberSummaryScreen","resultsScreen","affiliateScreen","adminScreen","lottoGrid","lottoEmpty",
     "backBtn","bottomBackBtn","classicRuleBtn","selectedName","selectedRound","selectedClose","selectedCount","selectedLimitNote","selectedRateNote",
     "accountName","heroCredit","betCredit","modernBetCredit","bottomCredit","summaryCredit","adminBtn",
-    "memberSummaryBtn","moneyBtn","resultsBtn","historyBtn","lineContactBtn","logoutBtn","resultsBackBtn","resultsBalance","resultsDate","resultsReloadBtn","resultsSource","resultsList","historyBackBtn","historyCredit","historyFrom","historyTo",
-     "historyStatus","historyList","moneyBackBtn","moneyBalance","moneyFrom","moneyTo","moneyType","moneyList","memberSummaryBackBtn","memberSummaryBalance","memberSummaryFrom","memberSummaryTo","memberSummaryLotto","memberSummarySearchBtn","memberSummaryStats","memberSummaryTable","adminIdentity","adminLogoutBtn","syncResultsBtn","adminDashRange","adminDashFrom","adminDashTo","adminDashCustomBtn","adminDashSelectAll","adminDashClearAll","adminDashLottoChecks","adminDashStats","adminByUser","adminByLotto","adminBetFrom","adminBetTo","adminBetStatus","adminOpenUser","adminOpenLotto","adminOpenSearchBtn","adminOpenTable","adminCreateUserBtn","adminUserSearch","adminUserCount","adminUserTable","adminWithdrawStatus","adminWithdrawReloadBtn","adminWithdrawTable","adminLottoToggleTable","adminLottoRulesTable","adminRateUser","adminRateLotto","adminRateModeNote","adminRate3Straight","adminRate3Tod","adminRate2Top","adminRate2Bottom","adminRateRunTop","adminRateRunBottom","adminRateSaveBtn","adminRateResetBtn","adminRateOverridesTable","adminLimitLotto","adminLimitKind","adminLimitBetType","adminLimitSide","adminLimitNumbers","adminLimitReverseBtn","adminLimitAddBtn","adminLimitSaveBtn","adminNumberLimitsTable","adminConnectionSaveBtn","adminTelegramToken","adminTelegramChatId","adminLineContactUrl","adminDepositBankShort","adminDepositBankName","adminDepositAccountNo","adminDepositAccountName","adminDepositLogoUrl","adminDepositBorderColor","adminDepositPreview","adminDepositPreviewLogo","adminDepositPreviewNumber","adminDepositPreviewBank","adminDepositPreviewName","modernBetPanel","modernBackBtn","modernRuleBtn","modernLottoSelect","modernLottoSelectText","modernSelectedTitle","modernDigitSlots","modernNumberChipBox","modernClearNumbersBtn","modernBillStack","modernBillStackList","modernBillStackCount","directTitle","numberCount","numberInput",
+    "memberSummaryBtn","moneyBtn","resultsBtn","historyBtn","lineContactBtn","logoutBtn","affiliateBackBtn","affiliateAvailableTop","affiliateCode","affiliateLink","affiliateCopyBtn","affiliateStats","affiliateWithdrawBtn","affiliateCommissionList","affiliateWithdrawList","resultsBackBtn","resultsBalance","resultsDate","resultsReloadBtn","resultsPrevBtn","resultsNextBtn","resultsSource","resultsList","historyBackBtn","historyCredit","historyFrom","historyTo",
+     "historyStatus","historyList","moneyBackBtn","moneyBalance","moneyFrom","moneyTo","moneyType","moneyList","memberSummaryBackBtn","memberSummaryBalance","memberSummaryFrom","memberSummaryTo","memberSummaryLotto","memberSummarySearchBtn","memberSummaryStats","memberSummaryTable","adminIdentity","adminLogoutBtn","syncResultsBtn","adminAffiliateReloadBtn","adminAffiliateSearch","adminAffiliateStats","adminAffiliateTable","adminAffiliateWithdrawTable","adminResultsSyncBtn","adminResultsAddBtn","adminResultsFrom","adminResultsTo","adminResultsLotto","adminResultsReloadBtn","adminResultsTable","adminDashRange","adminDashFrom","adminDashTo","adminDashCustomBtn","adminDashSelectAll","adminDashClearAll","adminDashLottoChecks","adminDashStats","adminByUser","adminByLotto","adminBetFrom","adminBetTo","adminBetStatus","adminOpenUser","adminOpenLotto","adminOpenSearchBtn","adminOpenTable","adminCreateUserBtn","adminUserSearch","adminUserCount","adminUserTable","adminWithdrawStatus","adminWithdrawReloadBtn","adminWithdrawTable","adminLottoToggleTable","adminLottoRulesTable","adminRateUser","adminRateLotto","adminRateModeNote","adminRate3Straight","adminRate3Tod","adminRate2Top","adminRate2Bottom","adminRateRunTop","adminRateRunBottom","adminRateSaveBtn","adminRateResetBtn","adminRateOverridesTable","adminLimitLotto","adminLimitKind","adminLimitBetType","adminLimitSide","adminLimitNumbers","adminLimitReverseBtn","adminLimitAddBtn","adminLimitSaveBtn","adminNumberLimitsTable","adminAnnouncementAddBtn","adminAnnouncementReloadBtn","adminAnnouncementsTable","adminConnectionSaveBtn","adminTelegramToken","adminTelegramChatId","adminLineContactUrl","adminDepositBankShort","adminDepositBankName","adminDepositAccountNo","adminDepositAccountName","adminDepositLogoUrl","adminDepositBorderColor","adminDepositPreview","adminDepositPreviewLogo","adminDepositPreviewNumber","adminDepositPreviewBank","adminDepositPreviewName","modernBetPanel","modernBackBtn","modernRuleBtn","modernLottoSelect","modernLottoSelectText","modernSelectedTitle","modernDigitSlots","modernNumberChipBox","modernClearNumbersBtn","modernBillStack","modernBillStackList","modernBillStackCount","directTitle","numberCount","numberInput",
     "clearNumbersBtn","numberChipBox","reverseBtn","doubleBtn",
     "priceA","priceB","priceAField","priceALabel","priceBLabel","priceBField","directPriceGrid",
     "sourceCount","betCount","currentBillTotal","grandTotal","clearAllBtn","addBillBtn","submitBtn","error","billStack","billStackList","billStackCount",
     "loading","toast"
   ].forEach(function(id){ els[id] = document.getElementById(id); });
 
+  captureAffiliateRef();
   bindEvents();
   bindRouteHistory();
   testApi();
@@ -8489,6 +8668,7 @@ function openAppRoute(route) {
   if (route === "money") return showMoney();
   if (route === "summary") return showMemberSummary();
   if (route === "results") return showResults();
+  if (route === "affiliate") return showAffiliate();
   if (route === "admin" && state.isAdmin) return showAdmin(state.adminTab || "dashboard");
 
   showHome();
@@ -8525,6 +8705,12 @@ function bindEvents() {
   // V16.1: สมาชิกอัปโหลดสลิปและตรวจสอบได้ด้วยตัวเอง
   if (els.homeDepositBtn) els.homeDepositBtn.onclick = openSelfDeposit;
   if (els.homeWithdrawBtn) els.homeWithdrawBtn.onclick = showWithdrawInfo;
+  if (els.homeAffiliateBtn) els.homeAffiliateBtn.onclick = showAffiliate;
+  if (els.affiliateBackBtn) els.affiliateBackBtn.onclick = showHome;
+  if (els.affiliateCopyBtn) els.affiliateCopyBtn.onclick = copyAffiliateLink;
+  if (els.affiliateWithdrawBtn) els.affiliateWithdrawBtn.onclick = requestAffiliateWithdraw;
+  if (els.adminAnnouncementAddBtn) els.adminAnnouncementAddBtn.onclick = function(){ openAdminAnnouncementEditor(null); };
+  if (els.adminAnnouncementReloadBtn) els.adminAnnouncementReloadBtn.onclick = loadAdminAnnouncements;
 
   els.backBtn.onclick = backToLotto;
   if (els.bottomBackBtn) els.bottomBackBtn.onclick = backToLotto;
@@ -8547,7 +8733,9 @@ function bindEvents() {
   els.resultsBtn.onclick = showResults;
   els.resultsBackBtn.onclick = showHome;
   els.resultsReloadBtn.onclick = loadMemberResults;
-  els.resultsDate.onchange = loadMemberResults;
+  els.resultsDate.onchange = function(){ updateMemberResultNavButtons(); loadMemberResults(); };
+  if (els.resultsPrevBtn) els.resultsPrevBtn.onclick = function(){ shiftMemberResultDate(-1); };
+  if (els.resultsNextBtn) els.resultsNextBtn.onclick = function(){ shiftMemberResultDate(1); };
   if (els.lineContactBtn) els.lineContactBtn.onclick = openLineContact;
 
   els.historyList.onclick = function(e){
@@ -8653,6 +8841,14 @@ function bindEvents() {
   if (els.adminLimitAddBtn) els.adminLimitAddBtn.onclick = addAdminNumberLimit;
   if (els.adminLimitSaveBtn) els.adminLimitSaveBtn.onclick = saveAdminNumberLimits;
   els.syncResultsBtn.onclick = syncAdminResults;
+  if (els.adminResultsSyncBtn) els.adminResultsSyncBtn.onclick = async function(){ await syncAdminResults(); await loadAdminResults(); };
+  if (els.adminResultsReloadBtn) els.adminResultsReloadBtn.onclick = loadAdminResults;
+  if (els.adminResultsFrom) els.adminResultsFrom.onchange = loadAdminResults;
+  if (els.adminResultsTo) els.adminResultsTo.onchange = loadAdminResults;
+  if (els.adminResultsLotto) els.adminResultsLotto.onchange = loadAdminResults;
+  if (els.adminResultsAddBtn) els.adminResultsAddBtn.onclick = function(){ openAdminResultEditor(null); };
+  if (els.adminAffiliateReloadBtn) els.adminAffiliateReloadBtn.onclick = loadAdminAffiliates;
+  if (els.adminAffiliateSearch) els.adminAffiliateSearch.oninput = loadAdminAffiliates;
   if (els.adminConnectionSaveBtn) els.adminConnectionSaveBtn.onclick = saveAdminConnectionSettings;
   if (els.adminLineContactUrl) els.adminLineContactUrl.oninput = function(){
     state.lineContactUrl = (els.adminLineContactUrl.value || "").trim() || DEFAULT_LINE_CONTACT_URL;
@@ -8714,7 +8910,8 @@ function registerMember() {
     confirmPassword: els.regPassConfirm ? els.regPassConfirm.value || "" : "",
     bankAccountName: els.regBankNameAccount ? els.regBankNameAccount.value || "" : "",
     bankName: els.regBankName ? els.regBankName.value || "" : "",
-    bankAccountNo: normalizeDigits(els.regBankAccountNo && els.regBankAccountNo.value)
+    bankAccountNo: normalizeDigits(els.regBankAccountNo && els.regBankAccountNo.value),
+    referralCode: String(els.regReferralCode && els.regReferralCode.value || "").trim().toUpperCase()
   };
 
   if (!payload.phone || !/^0\d{8,9}$/.test(payload.phone)) {
@@ -8739,6 +8936,7 @@ function registerMember() {
     .then(function(r){
       state.token = r.token;
       sessionStorage.setItem("creditToken", state.token);
+      localStorage.removeItem("affiliateRef");
       return boot();
     })
     .then(function(){
@@ -8869,6 +9067,7 @@ function logout(callServer) {
 
   state.token = "";
   state.user = null;
+  state.announcementsShown = false;
   sessionStorage.removeItem("creditToken");
 
   els.mainApp.classList.add("hidden");
@@ -8935,6 +9134,7 @@ function boot() {
 
       els.loginScreen.classList.add("hidden");
       els.mainApp.classList.remove("hidden");
+      if (!state.isAdmin) setTimeout(loadAndShowActiveAnnouncements, 250);
       return data;
     })
     .finally(function(){ setLoading(false); });
@@ -9036,7 +9236,7 @@ function chooseLotto(lotto) {
 function hideMemberScreensV16() {
   [
     "homeScreen","lottoScreen","betScreen","historyScreen",
-    "moneyScreen","memberSummaryScreen","resultsScreen","adminScreen"
+    "moneyScreen","memberSummaryScreen","resultsScreen","affiliateScreen","adminScreen"
   ].forEach(function(id){
     if (els[id]) els[id].classList.remove("active");
   });
@@ -9261,6 +9461,7 @@ function showBet() {
   els.moneyScreen.classList.remove("active");
   els.memberSummaryScreen.classList.remove("active");
   els.resultsScreen.classList.remove("active");
+  if (els.affiliateScreen) els.affiliateScreen.classList.remove("active");
   els.adminScreen.classList.remove("active");
   els.betScreen.classList.add("active");
   pushAppRoute("bet");
@@ -9311,7 +9512,7 @@ function buildBetRulesHtml() {
 
 function openBetRules() {
   Swal.fire({
-    title:"กติกา & วิธีเล่น",
+    title:"อัตราการจ่าย & วิธีเล่น",
     html:buildBetRulesHtml(),
     width:560,
     confirmButtonText:"ตกลง",
@@ -10423,6 +10624,7 @@ function showMoney() {
   els.historyScreen.classList.remove("active");
   els.memberSummaryScreen.classList.remove("active");
   els.resultsScreen.classList.remove("active");
+  if (els.affiliateScreen) els.affiliateScreen.classList.remove("active");
   els.adminScreen.classList.remove("active");
   els.moneyScreen.classList.add("active");
   pushAppRoute("money");
@@ -10445,7 +10647,8 @@ function moneyTypeText(type) {
     OPENING:"เครดิตเปิดยูส",
     PURCHASE:"ซื้อสินค้า",
     REFUND:"คืนเงินสินค้า",
-    ADJUST:"ปรับยอด"
+    ADJUST:"ปรับยอด",
+    RESULT_ADJUST:"ปรับเครดิตตามผลหวยที่แก้ไข"
   })[String(type || "").toUpperCase()] || type;
 }
 
@@ -10607,6 +10810,7 @@ function showResults() {
   els.historyScreen.classList.remove("active");
   els.moneyScreen.classList.remove("active");
   els.memberSummaryScreen.classList.remove("active");
+  if (els.affiliateScreen) els.affiliateScreen.classList.remove("active");
   els.adminScreen.classList.remove("active");
   els.resultsScreen.classList.add("active");
   pushAppRoute("results");
@@ -10620,22 +10824,26 @@ function showResults() {
 function loadMemberResults() {
   if (!state.token) return;
 
-  setResultsToday();
-  els.resultsList.innerHTML = '<div class="empty">กำลังโหลดผล...</div>';
+  if (!els.resultsDate.value) setResultsToday();
+  var selectedDate = els.resultsDate.value || memberDefaultResultDate();
+  if (els.resultsSource) els.resultsSource.textContent = "กำลังโหลด…";
+  els.resultsList.innerHTML = '<div class="empty">กำลังโหลด…</div>';
 
   api("getMemberResults", state.token, {
-    date:todayDateValue()
+    date:selectedDate
   })
   .then(function(r){
-    var rows = (r && r.results) || [];
+    r = (r && typeof r === "object") ? r : {};
+    var rows = Array.isArray(r.results) ? r.results : [];
 
     if (els.resultsSource) {
       els.resultsSource.textContent =
-        "AllHuay • อัปเดต " + (r.checkedAt || "");
+        "รอบ " + formatResultDate(r.roundDate || selectedDate) +
+        (r.checkedAt ? " • อัปเดตล่าสุด " + r.checkedAt : "");
     }
 
     if (!rows.length) {
-      els.resultsList.innerHTML = '<div class="empty">ยังไม่มีผลหวยที่ออกวันนี้</div>';
+      els.resultsList.innerHTML = '<div class="empty">ยังไม่มีผลหวยในชีตสำหรับรอบวันที่ ' + escapeHtml(formatResultDate(selectedDate)) + '</div>';
       return;
     }
 
@@ -10643,7 +10851,7 @@ function loadMemberResults() {
       return '<article class="result-card">' +
         '<div class="result-card-head">' +
           '<strong>' + escapeHtml(x.lottoName) + '</strong>' +
-          '<span class="result-date">' + escapeHtml(formatResultDate(x.roundDate)) + '</span>' +
+          '<span class="result-date">รอบ ' + escapeHtml(formatResultDate(x.roundDate)) + '</span>' +
         '</div>' +
         '<div class="result-numbers">' +
           '<div class="result-num main"><small>3 ตัวบน</small><b>' + escapeHtml(x.threeTop || "-") + '</b></div>' +
@@ -10654,7 +10862,7 @@ function loadMemberResults() {
     }).join("");
   })
   .catch(function(e){
-    els.resultsList.innerHTML = '<div class="empty">โหลดผลหวยไม่สำเร็จ</div>';
+    els.resultsList.innerHTML = '<div class="empty">โหลดผลหวยจากชีตไม่สำเร็จ</div>';
     showErrorGlobal(e);
   });
 }
@@ -10672,12 +10880,44 @@ function todayDateValue() {
   return y + "-" + m + "-" + d;
 }
 
+function memberDefaultResultDate() {
+  var now = bangkokNowParts();
+  var p = {year:now.year, month:now.month, day:now.day};
+  if (now.hour < 5) p = shiftDateParts(p,-1);
+  return p.year + "-" + pad2(p.month) + "-" + pad2(p.day);
+}
+
 function setResultsToday() {
   if (!els.resultsDate) return;
-  var today = todayDateValue();
-  els.resultsDate.value = today;
-  els.resultsDate.max = today;
-  els.resultsDate.min = today;
+  var roundDate = memberDefaultResultDate();
+  els.resultsDate.value = roundDate;
+  els.resultsDate.max = roundDate;
+  els.resultsDate.removeAttribute("min");
+  updateMemberResultNavButtons();
+}
+
+function shiftMemberResultDate(days) {
+  if (!els.resultsDate) return;
+  var value = els.resultsDate.value || memberDefaultResultDate();
+  var m = value.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!m) return;
+
+  var p = shiftDateParts({year:Number(m[1]), month:Number(m[2]), day:Number(m[3])}, Number(days || 0));
+  var next = p.year + "-" + pad2(p.month) + "-" + pad2(p.day);
+  var maxDate = memberDefaultResultDate();
+  if (next > maxDate) next = maxDate;
+
+  els.resultsDate.value = next;
+  updateMemberResultNavButtons();
+  loadMemberResults();
+}
+
+function updateMemberResultNavButtons() {
+  if (!els.resultsDate) return;
+  var maxDate = memberDefaultResultDate();
+  if (els.resultsNextBtn) {
+    els.resultsNextBtn.disabled = !els.resultsDate.value || els.resultsDate.value >= maxDate;
+  }
 }
 
 /* =====================================================
@@ -10688,6 +10928,7 @@ function showHistory() {
   els.lottoScreen.classList.remove("active");
   els.betScreen.classList.remove("active");
   els.resultsScreen.classList.remove("active");
+  if (els.affiliateScreen) els.affiliateScreen.classList.remove("active");
   els.adminScreen.classList.remove("active");
   els.historyScreen.classList.add("active");
   pushAppRoute("history");
@@ -10763,6 +11004,185 @@ function statusText(s) {
     LOSE:"ไม่ถูกรางวัล",
     CANCELLED:"ยกเลิก"
   })[s] || s;
+}
+
+
+/* =====================================================
+   AFFILIATE — MEMBER
+===================================================== */
+function captureAffiliateRef() {
+  var ref = "";
+  try { ref = new URLSearchParams(location.search).get("ref") || ""; } catch(e) {}
+  ref = String(ref || "").trim().toUpperCase();
+  if (ref) localStorage.setItem("affiliateRef", ref);
+  if (!ref) ref = String(localStorage.getItem("affiliateRef") || "").trim().toUpperCase();
+  if (els.regReferralCode) els.regReferralCode.value = ref;
+  if (els.regReferralHint) els.regReferralHint.classList.toggle("hidden", !ref);
+  if (ref && els.authRegisterTab) setTimeout(function(){ setAuthMode("register"); }, 0);
+}
+
+function buildAffiliateLink(code) {
+  code = String(code || "").trim();
+  var base = window.AFFILIATE_REGISTER_BASE || (location.origin + location.pathname);
+  return base + (base.indexOf("?") >= 0 ? "&" : "?") + "ref=" + encodeURIComponent(code);
+}
+
+function showAffiliate() {
+  if (!state.token || state.isAdmin) return;
+  hideMemberScreensV16();
+  if (els.affiliateScreen) els.affiliateScreen.classList.add("active");
+  pushAppRoute("affiliate");
+  clearInterval(timer);
+  scrollTo(0,0);
+  loadAffiliateDashboard();
+}
+
+async function loadAffiliateDashboard() {
+  if (!els.affiliateStats) return;
+  els.affiliateStats.innerHTML = '<div class="empty" style="grid-column:1/-1">กำลังโหลด…</div>';
+  try {
+    var d = await api("getMyAffiliateDashboard", state.token);
+    state.affiliate = d || {};
+    var link = buildAffiliateLink(d.affiliateCode || "");
+    if (els.affiliateCode) els.affiliateCode.textContent = d.affiliateCode || "-";
+    if (els.affiliateLink) els.affiliateLink.value = link;
+    if (els.affiliateAvailableTop) els.affiliateAvailableTop.textContent = money(d.availableCommission || 0);
+
+    var stats = [
+      ["คอมถอนได้", money(d.availableCommission || 0) + " ฿"],
+      ["คอมเรท", Number(d.commissionRate || 0).toFixed(2).replace(/\.00$/,"") + "%"],
+      ["ลูกทีมทั้งหมด", Number(d.memberCount || 0) + " คน"],
+      ["สมาชิกใหม่วันนี้", Number(d.newMembersToday || 0) + " คน"],
+      ["ยอดแทงวันนี้", money(d.todayTurnover || 0) + " ฿"],
+      ["คอมวันนี้", money(d.todayCommission || 0) + " ฿"],
+      ["ยอดแทงเดือนนี้", money(d.monthTurnover || 0) + " ฿"],
+      ["คอมเดือนนี้", money(d.monthCommission || 0) + " ฿"],
+      ["รอถอน", money(d.pendingWithdraw || 0) + " ฿"],
+      ["ถอนแล้ว", money(d.approvedWithdraw || 0) + " ฿"]
+    ];
+    els.affiliateStats.innerHTML = stats.map(function(x){
+      return '<div class="affiliate-stat"><small>' + escapeHtml(x[0]) + '</small><b>' + escapeHtml(x[1]) + '</b></div>';
+    }).join("");
+
+    var commissions = d.commissions || [];
+    els.affiliateCommissionList.innerHTML = commissions.length ? commissions.map(function(c){
+      var neg = Number(c.commission || 0) < 0;
+      return '<div class="affiliate-row ' + (neg?'affiliate-negative':'') + '"><div><strong>' + escapeHtml(c.lottoName || "ค่าคอม") + '</strong>' +
+        '<small>' + escapeHtml(c.createdAtText || "") + ' • ' + escapeHtml(c.memberUsername || "") + ' • Turnover ' + money(c.turnover || 0) + '</small></div>' +
+        '<b>' + (Number(c.commission||0)>0?'+':'') + money(c.commission || 0) + '</b></div>';
+    }).join("") : '<div class="empty">ยังไม่มีค่าคอม</div>';
+
+    var withdrawals = d.withdrawals || [];
+    els.affiliateWithdrawList.innerHTML = withdrawals.length ? withdrawals.map(function(w){
+      return '<div class="affiliate-row"><div><strong>ถอนค่าคอม • ' + escapeHtml(affiliateWithdrawStatusText(w.status)) + '</strong>' +
+        '<small>' + escapeHtml(w.createdAtText || "") + ' • ' + escapeHtml(w.bankName || "") + ' ' + escapeHtml(w.bankAccountNo || "") + '</small></div>' +
+        '<b>' + money(w.amount || 0) + '</b></div>';
+    }).join("") : '<div class="empty">ยังไม่มีประวัติถอน</div>';
+  } catch(e) {
+    els.affiliateStats.innerHTML = '<div class="empty" style="grid-column:1/-1">โหลดข้อมูลไม่สำเร็จ</div>';
+    showErrorGlobal(e);
+  }
+}
+
+function affiliateWithdrawStatusText(status) {
+  return ({PENDING:"รออนุมัติ",APPROVED:"อนุมัติแล้ว",CANCELLED:"ยกเลิก"})[String(status||"").toUpperCase()] || status || "-";
+}
+
+function copyAffiliateLink() {
+  var link = els.affiliateLink ? els.affiliateLink.value : "";
+  copyTextToClipboard(link).then(function(){ showToast("คัดลอกลิงก์ Affiliate แล้ว"); }).catch(function(){ showToast("คัดลอกไม่สำเร็จ"); });
+}
+
+function requestAffiliateWithdraw() {
+  var d = state.affiliate || {};
+  var max = Number(d.availableCommission || 0);
+  var min = 100;
+  if (max <= 0) { showToast("ยังไม่มีค่าคอมที่ถอนได้"); return; }
+  if (max < min) { showToast("ถอนขั้นต่ำ 100 บาท"); return; }
+  Swal.fire({
+    title:"ถอนค่าคอม",
+    html:'<div style="text-align:left">' +
+      '<div style="margin-bottom:12px;padding:14px;border-radius:16px;background:#f5f1f0;border:1px solid #ead6d0">' +
+        '<div style="font-size:14px;font-weight:700;color:#4a0707;margin-bottom:8px">จำนวนที่ถอนได้</div>' +
+        '<div style="padding:14px 12px;border-radius:14px;background:#fff;border:1px solid #ece2de;text-align:center;font-size:32px;font-weight:800;color:#11a323">฿ ' + money(max) + '</div>' +
+      '</div>' +
+      '<div style="margin-bottom:10px;padding:14px;border-radius:16px;background:#f5f1f0;border:1px solid #ead6d0">' +
+        '<div style="font-size:14px;font-weight:700;color:#4a0707;margin-bottom:8px">จำนวนที่ต้องการถอน</div>' +
+        '<input id="affiliateWithdrawAmount" type="number" min="100" max="' + escapeAttr(String(max)) + '" step="0.01" value="' + escapeAttr(String(max.toFixed(2))) + '" style="width:100%;height:56px;border:1px solid #e1d1cb;border-radius:14px;padding:0 16px;font-size:20px;box-sizing:border-box;background:#fff;color:#2b1c1a">' +
+      '</div>' +
+      '<div style="font-size:13px;color:#6f5149;line-height:1.6">ถอนขั้นต่ำ 100 บาท<br>โอนเข้าบัญชี: ' + escapeHtml(d.bankName||"") + ' ' + escapeHtml(d.bankAccountNo||"") + '</div>' +
+    '</div>',
+    showCancelButton:true, confirmButtonText:"ส่งคำขอถอน", cancelButtonText:"ยกเลิก",
+    focusConfirm:false,
+    preConfirm:function(){
+      var el = document.getElementById("affiliateWithdrawAmount");
+      var n = Number((el && el.value) || 0);
+      if (!(n > 0)) { Swal.showValidationMessage("กรุณากรอกยอดถอน"); return false; }
+      if (n < min) { Swal.showValidationMessage("ถอนขั้นต่ำ 100 บาท"); return false; }
+      if (n > max) { Swal.showValidationMessage("ยอดถอนไม่ถูกต้อง"); return false; }
+      return n;
+    }
+  }).then(async function(r){
+    if (!r.isConfirmed) return;
+    try { setLoading(true); await api("affiliateRequestWithdraw", state.token, Number(r.value)); await loadAffiliateDashboard(); Swal.fire({icon:"success",title:"ส่งคำขอถอนแล้ว",timer:1200,showConfirmButton:false}); }
+    catch(e){ showErrorGlobal(e); } finally { setLoading(false); }
+  });
+}
+
+/* =====================================================
+   AFFILIATE — ADMIN
+===================================================== */
+async function loadAdminAffiliates() {
+  if (!state.isAdmin || !els.adminAffiliateTable) return;
+  els.adminAffiliateTable.innerHTML = '<div class="admin-empty">กำลังโหลด…</div>';
+  try {
+    var r = await api("adminGetAffiliates", state.token, {search:els.adminAffiliateSearch ? els.adminAffiliateSearch.value : ""});
+    state.adminAffiliates = r.affiliates || [];
+    state.adminAffiliateWithdrawals = r.pendingWithdrawals || [];
+    var t = r.totals || {};
+    els.adminAffiliateStats.innerHTML = [
+      ["Affiliate",t.affiliates||0],["ลูกทีม",t.members||0],["Turnover วันนี้",money(t.todayTurnover||0)],["คอมวันนี้",money(t.todayCommission||0)],["รอถอน",money(t.pendingWithdraw||0)]
+    ].map(function(x){return '<div class="admin-affiliate-stat"><small>'+escapeHtml(String(x[0]))+'</small><b>'+escapeHtml(String(x[1]))+'</b></div>';}).join("");
+    renderAdminAffiliateTable();
+    renderAdminAffiliateWithdrawals();
+  } catch(e) { showAdminError(e); }
+}
+
+function renderAdminAffiliateTable() {
+  var rows = state.adminAffiliates || [];
+  if (!rows.length) { els.adminAffiliateTable.innerHTML='<div class="admin-empty">ยังไม่มี Affiliate</div>'; return; }
+  els.adminAffiliateTable.innerHTML = '<table class="admin-table"><thead><tr><th>Affiliate</th><th>User</th><th>ลูกทีม</th><th>Turnover วันนี้</th><th>Turnover เดือน</th><th>%</th><th>คอมถอนได้</th><th></th></tr></thead><tbody>' +
+    rows.map(function(a){return '<tr><td><b>'+escapeHtml(a.affiliateCode)+'</b></td><td>'+escapeHtml(a.username)+'</td><td>'+Number(a.memberCount||0)+'</td><td>'+money(a.todayTurnover||0)+'</td><td>'+money(a.monthTurnover||0)+'</td><td>'+Number(a.commissionRate||0)+'%</td><td>'+money(a.availableCommission||0)+'</td><td><div class="admin-actions-inline"><button class="admin-mini edit" data-aff-detail="'+escapeAttr(a.affiliateId)+'">ดู</button><button class="admin-mini credit" data-aff-rate="'+escapeAttr(a.affiliateId)+'">แก้ %</button></div></td></tr>';}).join("") + '</tbody></table>';
+  els.adminAffiliateTable.querySelectorAll('[data-aff-detail]').forEach(function(btn){btn.onclick=function(){openAdminAffiliateDetail(btn.dataset.affDetail);};});
+  els.adminAffiliateTable.querySelectorAll('[data-aff-rate]').forEach(function(btn){btn.onclick=function(){openAdminAffiliateRate(btn.dataset.affRate);};});
+}
+
+async function openAdminAffiliateRate(id) {
+  var a=(state.adminAffiliates||[]).find(function(x){return String(x.affiliateId)===String(id);}); if(!a)return;
+  var r=await Swal.fire({title:"ปรับ % Affiliate",html:'<div style="font-size:12px">'+escapeHtml(a.affiliateCode)+' • '+escapeHtml(a.username)+'<br><small>มีผลกับโพยใหม่เท่านั้น ประวัติคอมเดิมไม่เปลี่ยน</small></div>',input:"number",inputValue:String(a.commissionRate||1),inputAttributes:{min:"0",max:"10",step:"0.1"},showCancelButton:true,confirmButtonText:"บันทึก",cancelButtonText:"ยกเลิก"});
+  if(!r.isConfirmed)return; try{await api("adminUpdateAffiliateRate",state.token,id,Number(r.value));showToast("บันทึก % แล้ว");await loadAdminAffiliates();}catch(e){showAdminError(e);}
+}
+
+async function openAdminAffiliateDetail(id) {
+  try{
+    adminBusy("กำลังโหลด..."); var d=await api("adminGetAffiliateDetail",state.token,id); Swal.close();
+    var members=(d.members||[]).slice(0,50).map(function(m){return '<div class="affiliate-row"><div><strong>'+escapeHtml(m.memberUsername)+'</strong><small>สมัคร '+escapeHtml(m.registeredAtText||"")+'</small></div></div>';}).join("") || '<div class="empty">ยังไม่มีลูกทีม</div>';
+    var comm=(d.commissions||[]).slice(0,50).map(function(c){return '<div class="affiliate-row"><div><strong>'+escapeHtml(c.lottoName||"")+'</strong><small>'+escapeHtml(c.memberUsername||"")+' • '+escapeHtml(c.createdAtText||"")+'</small></div><b>'+(Number(c.commission||0)>0?'+':'')+money(c.commission||0)+'</b></div>';}).join("") || '<div class="empty">ยังไม่มีคอม</div>';
+    await Swal.fire({title:d.affiliateCode,html:'<div style="text-align:left"><div class="affiliate-grid"><div class="affiliate-stat"><small>ลูกทีม</small><b>'+Number(d.memberCount||0)+'</b></div><div class="affiliate-stat"><small>คอมถอนได้</small><b>'+money(d.availableCommission||0)+'</b></div><div class="affiliate-stat"><small>Turnover เดือนนี้</small><b>'+money(d.monthTurnover||0)+'</b></div><div class="affiliate-stat"><small>คอมเดือนนี้</small><b>'+money(d.monthCommission||0)+'</b></div></div><div class="affiliate-section"><h3>ลูกทีมล่าสุด</h3><div class="affiliate-list">'+members+'</div></div><div class="affiliate-section"><h3>ค่าคอมล่าสุด</h3><div class="affiliate-list">'+comm+'</div></div></div>',width:720,confirmButtonText:"ปิด"});
+  }catch(e){Swal.close();showAdminError(e);}
+}
+
+function renderAdminAffiliateWithdrawals() {
+  var rows=state.adminAffiliateWithdrawals||[];
+  if(!rows.length){els.adminAffiliateWithdrawTable.innerHTML='<div class="admin-empty">ไม่มีรายการรอถอน</div>';return;}
+  els.adminAffiliateWithdrawTable.innerHTML='<table class="admin-table"><thead><tr><th>เวลา</th><th>User</th><th>ยอด</th><th>บัญชี</th><th>สถานะ</th><th></th></tr></thead><tbody>'+rows.map(function(w){return '<tr><td>'+escapeHtml(w.createdAtText||"")+'</td><td>'+escapeHtml(w.username||"")+'</td><td>'+money(w.amount||0)+'</td><td>'+escapeHtml((w.bankName||"")+" "+(w.bankAccountNo||""))+'</td><td>'+escapeHtml(affiliateWithdrawStatusText(w.status))+'</td><td><div class="admin-actions-inline"><button class="admin-mini green" data-aff-wd-ok="'+escapeAttr(w.withdrawId)+'">อนุมัติ</button><button class="admin-mini danger" data-aff-wd-no="'+escapeAttr(w.withdrawId)+'">ยกเลิก</button></div></td></tr>';}).join("")+'</tbody></table>';
+  els.adminAffiliateWithdrawTable.querySelectorAll('[data-aff-wd-ok]').forEach(function(b){b.onclick=function(){adminAffiliateWithdrawAction(b.dataset.affWdOk,true);};});
+  els.adminAffiliateWithdrawTable.querySelectorAll('[data-aff-wd-no]').forEach(function(b){b.onclick=function(){adminAffiliateWithdrawAction(b.dataset.affWdNo,false);};});
+}
+
+async function adminAffiliateWithdrawAction(id,approve){
+  var c=await Swal.fire({icon:"question",title:approve?"อนุมัติถอนค่าคอม?":"ยกเลิกคำขอถอน?",showCancelButton:true,confirmButtonText:approve?"อนุมัติ":"ยืนยันยกเลิก",cancelButtonText:"กลับ"}); if(!c.isConfirmed)return;
+  try{adminBusy("กำลังบันทึก...");await api(approve?"adminApproveAffiliateWithdrawal":"adminCancelAffiliateWithdrawal",state.token,id);Swal.close();showToast(approve?"อนุมัติแล้ว":"ยกเลิกแล้ว");await loadAdminAffiliates();}catch(e){Swal.close();showAdminError(e);}
 }
 
 
@@ -10926,6 +11346,7 @@ function showAdmin(tab) {
   els.moneyScreen.classList.remove("active");
   els.memberSummaryScreen.classList.remove("active");
   els.resultsScreen.classList.remove("active");
+  if (els.affiliateScreen) els.affiliateScreen.classList.remove("active");
   els.adminScreen.classList.add("active");
   pushAppRoute("admin");
 
@@ -10954,6 +11375,9 @@ function showAdminTab(tab) {
   if (state.adminTab === "users") loadAdminUsers();
   if (state.adminTab === "withdraws") loadAdminWithdraws();
   if (state.adminTab === "lotto") { loadAdminLottoSettings(); showLottoSubTab(state.lottoSubTab || "enabled"); }
+  if (state.adminTab === "results") loadAdminResults();
+  if (state.adminTab === "affiliate") loadAdminAffiliates();
+  if (state.adminTab === "announcements") loadAdminAnnouncements();
   if (state.adminTab === "connections") { loadAdminConnectionSettings(); showConnectSubTab(state.connectSubTab || "telegram"); }
 }
 
@@ -10962,7 +11386,7 @@ function fillAdminLottoFilter() {
     return '<option value="' + escapeHtml(l.lottoName) + '">' + escapeHtml(l.lottoName) + '</option>';
   }).join("");
 
-  [els.adminOpenLotto, els.memberSummaryLotto].forEach(function(select){
+  [els.adminOpenLotto, els.memberSummaryLotto, els.adminResultsLotto].forEach(function(select){
     if (!select) return;
     var current = select.value || "";
     select.innerHTML = options;
@@ -11216,15 +11640,141 @@ async function syncAdminResults() {
       icon:"success",
       title:"ตรวจผลเสร็จแล้ว",
       html:
-        "พบผล " + money(r.found || 0) + " รายการ<br>" +
-        "จับคู่ได้ " + money(r.saved || 0) + "<br>" +
-        "ปิดผล " + money(r.settledBills || 0) + " บิล<br>" +
-        "คืนเครดิต " + money(r.credited || 0)
+        "พบผลจาก AllHuay " + money(r.foundFromAllHuay || r.found || 0) + " รายการ<br>" +
+        "บันทึก/จับคู่ลงชีต " + money(r.matchedHuay || r.saved || 0) + "<br>" +
+        "ตรวจโพยจากชีต " + money(r.settledBills || 0) + " บิล<br>" +
+        "จ่ายเครดิต " + money(r.credited || 0)
     });
 
     await refreshBootData();
     await loadAdminDashboard("day");
 
+  } catch(e) {
+    Swal.close();
+    showAdminError(e);
+  }
+}
+
+
+function adminResultDefaultRoundDate() {
+  var now = bangkokNowParts();
+  var p = {year:now.year, month:now.month, day:now.day};
+  if (now.hour < 5) p = shiftDateParts(p,-1);
+  return p.year + "-" + pad2(p.month) + "-" + pad2(p.day);
+}
+
+async function loadAdminResults() {
+  if (!state.isAdmin || !els.adminResultsTable) return;
+
+  var def = adminResultDefaultRoundDate();
+  if (els.adminResultsFrom && !els.adminResultsFrom.value) els.adminResultsFrom.value = def;
+  if (els.adminResultsTo && !els.adminResultsTo.value) els.adminResultsTo.value = def;
+
+  try {
+    els.adminResultsTable.innerHTML = '<div class="admin-empty">กำลังโหลด…</div>';
+    var rows = await api("adminGetResults", state.token, {
+      from:els.adminResultsFrom ? els.adminResultsFrom.value : "",
+      to:els.adminResultsTo ? els.adminResultsTo.value : ""
+    });
+
+    var lotto = els.adminResultsLotto ? els.adminResultsLotto.value : "";
+    if (lotto) rows = (rows || []).filter(function(x){ return x.lottoName === lotto; });
+    state.adminResults = rows || [];
+    renderAdminResultsTable();
+  } catch(e) {
+    showAdminError(e);
+  }
+}
+
+function renderAdminResultsTable() {
+  if (!els.adminResultsTable) return;
+  var rows = state.adminResults || [];
+  if (!rows.length) {
+    els.adminResultsTable.innerHTML = '<div class="admin-empty">ยังไม่มีผลหวยในชีตสำหรับรอบที่เลือก</div>';
+    return;
+  }
+
+  var html = '<table class="admin-table"><thead><tr>' +
+    '<th>รอบ</th><th>หวย</th><th>3 บน</th><th>2 บน</th><th>2 ล่าง</th><th>ที่มา</th><th>อัปเดต</th><th></th>' +
+    '</tr></thead><tbody>';
+
+  rows.forEach(function(x, i){
+    html += '<tr>' +
+      '<td>' + escapeHtml(x.roundDate || '-') + '</td>' +
+      '<td>' + escapeHtml(x.lottoName || '-') + '</td>' +
+      '<td><b>' + escapeHtml(x.threeTop || '-') + '</b></td>' +
+      '<td>' + escapeHtml(x.twoTop || '-') + '</td>' +
+      '<td><b>' + escapeHtml(x.twoBottom || '-') + '</b></td>' +
+      '<td>' + escapeHtml(x.source || '-') + '</td>' +
+      '<td>' + escapeHtml(x.checkedAtText || '-') + '</td>' +
+      '<td><button class="admin-mini edit admin-result-edit" data-i="' + i + '">แก้ไข</button></td>' +
+      '</tr>';
+  });
+  html += '</tbody></table>';
+  els.adminResultsTable.innerHTML = html;
+
+  els.adminResultsTable.querySelectorAll('.admin-result-edit').forEach(function(btn){
+    btn.onclick = function(){
+      var row = state.adminResults[Number(btn.dataset.i)];
+      if (row) openAdminResultEditor(row);
+    };
+  });
+}
+
+async function openAdminResultEditor(row) {
+  row = row || null;
+  var defaultRound = row && row.roundDate ? row.roundDate : adminResultDefaultRoundDate();
+  var defaultLotto = row && row.lottoName ? row.lottoName : ((state.lottos && state.lottos[0]) ? state.lottos[0].lottoName : '');
+  var options = (state.lottos || []).map(function(l){
+    var selected = l.lottoName === defaultLotto ? ' selected' : '';
+    return '<option value="' + escapeAttr(l.lottoName) + '"' + selected + '>' + escapeHtml(l.lottoName) + '</option>';
+  }).join('');
+
+  var result = await Swal.fire({
+    title:row ? 'แก้ไขผลหวย' : 'เพิ่มผลหวย',
+    html:
+      '<div class="swal-admin-grid">' +
+       '<div class="swal-admin-field"><label>รอบวันที่</label><input id="swalResultRound" type="date" value="' + escapeAttr(defaultRound) + '"></div>' +
+       '<div class="swal-admin-field"><label>หวย</label><select id="swalResultLotto">' + options + '</select></div>' +
+       '<div class="swal-admin-field"><label>3 ตัวบน</label><input id="swalResultThree" inputmode="numeric" maxlength="3" value="' + escapeAttr(row && row.threeTop || '') + '"></div>' +
+       '<div class="swal-admin-field"><label>2 ตัวล่าง</label><input id="swalResultBottom" inputmode="numeric" maxlength="2" value="' + escapeAttr(row && row.twoBottom || '') + '"></div>' +
+       '<div class="swal-admin-field full"><div class="admin-muted">2 ตัวบนคำนวณจาก 2 หลักท้ายของ 3 ตัวบนอัตโนมัติ • วันที่นี้คือ “รอบหวย” ไม่ใช่วันที่ปฏิทินที่ผลออก • เมื่อแก้ผล ระบบจะตรวจโพยทั้งหมดของงวดนั้นใหม่โดยยึดผลล่าสุดที่บันทึกไว้</div></div>' +
+      '</div>',
+    showCancelButton:true,
+    confirmButtonText:'บันทึกลงชีต',
+    cancelButtonText:'ยกเลิก',
+    preConfirm:function(){
+      var roundDate = document.getElementById('swalResultRound').value;
+      var lottoName = document.getElementById('swalResultLotto').value;
+      var threeTop = String(document.getElementById('swalResultThree').value || '').replace(/\D/g,'');
+      var twoBottom = String(document.getElementById('swalResultBottom').value || '').replace(/\D/g,'');
+      if (!roundDate) return Swal.showValidationMessage('กรุณาเลือกรอบวันที่');
+      if (!lottoName) return Swal.showValidationMessage('กรุณาเลือกหวย');
+      if (!/^\d{3}$/.test(threeTop)) return Swal.showValidationMessage('3 ตัวบนต้องมี 3 หลัก');
+      if (!/^\d{2}$/.test(twoBottom)) return Swal.showValidationMessage('2 ตัวล่างต้องมี 2 หลัก');
+      return {roundDate:roundDate, lottoName:lottoName, threeTop:threeTop, twoBottom:twoBottom};
+    }
+  });
+
+  if (!result.isConfirmed || !result.value) return;
+
+  try {
+    adminBusy('กำลังบันทึกผลลงชีตและตรวจโพย...');
+    var saved = await api('adminSaveResult', state.token, result.value);
+    Swal.close();
+    await loadAdminResults();
+    await refreshBootData();
+    Swal.fire({
+      icon:'success',
+      title:'บันทึกผลแล้ว',
+      html:
+        'บันทึกผลเรียบร้อย' +
+        '<br>ตรวจโพยใหม่ ' + money(saved.recalculatedBills || saved.settledBills || 0) + ' บิล' +
+        '<br>โพยที่มีการเปลี่ยนแปลง ' + money(saved.changedBills || 0) + ' บิล' +
+        '<br>ชนะ ' + money(saved.winBills || 0) + ' • แพ้ ' + money(saved.loseBills || 0) +
+        '<br>ปรับเครดิตสุทธิ ' + ((Number(saved.creditAdjustment || 0) >= 0) ? '+' : '') + money(saved.creditAdjustment || 0) + ' บาท',
+      confirmButtonText:'ตกลง'
+    });
   } catch(e) {
     Swal.close();
     showAdminError(e);
@@ -11802,19 +12352,9 @@ function getRoundDateText(l) {
 }
 
 function getDisplayRoundDateParts(l) {
-  var p = getRoundDateParts(l);
-  var now = bangkokNowParts();
-
-  if (
-    now.hour < LOTTO_ROUND_SWITCH_HOUR &&
-    p.year === now.year &&
-    p.month === now.month &&
-    p.day === now.day
-  ) {
-    return shiftDateParts(p,-1);
-  }
-
-  return p;
+  // roundDate ถูกคำนวณจากฝั่ง Apps Script แล้ว
+  // ห้ามหน้าเว็บเลื่อนวันเอง เพราะจะทำให้หวยเช้าเปิด/แสดงรอบเก่าซ้ำหลังเที่ยงคืน
+  return getRoundDateParts(l);
 }
 
 function shiftDateParts(p,days) {
@@ -12004,6 +12544,170 @@ function formatDateTime(v) {
     return String(v || "");
   }
 }
+
+
+/* =====================================================
+   WEBSITE ANNOUNCEMENTS / POPUP
+===================================================== */
+async function loadAndShowActiveAnnouncements() {
+  if (!state.token || state.isAdmin || state.announcementsShown) return;
+  state.announcementsShown = true;
+  try {
+    var r = await api("getActiveAnnouncements", state.token);
+    var rows = (r && r.announcements) || [];
+    if (!rows.length) return;
+    rows = rows.slice(0,2);
+    var html = '<div class="announcement-popup-wrap">' + rows.map(function(a){
+      var img = a.imageUrl ? '<img src="' + escapeAttr(a.imageUrl) + '" alt="ประกาศ" onerror="this.style.display=\'none\'">' : '';
+      var title = a.title ? '<strong>' + escapeHtml(a.title) + '</strong>' : '';
+      var msg = a.message ? '<div>' + escapeHtml(a.message).replace(/\n/g,'<br>') + '</div>' : '';
+      return '<div class="announcement-popup-card">' + img + '<div class="announcement-popup-copy">' + title + msg + '</div></div>';
+    }).join('') + '</div>';
+    await Swal.fire({title:'ประกาศ',html:html,confirmButtonText:'รับทราบ',confirmButtonColor:'#8f1010',width:620});
+  } catch(e) {
+    state.announcementsShown = false;
+  }
+}
+
+async function loadAdminAnnouncements() {
+  if (!state.isAdmin || !els.adminAnnouncementsTable) return;
+  els.adminAnnouncementsTable.innerHTML = '<div class="admin-empty">กำลังโหลด…</div>';
+  try {
+    state.adminAnnouncements = await api("adminGetAnnouncements", state.token) || [];
+    renderAdminAnnouncements();
+  } catch(e) {
+    els.adminAnnouncementsTable.innerHTML = '<div class="admin-empty">โหลดประกาศไม่สำเร็จ</div>';
+    showAdminError(e);
+  }
+}
+
+function announcementDateText(a) {
+  var from = a.startDate ? formatResultDate(a.startDate) : 'ไม่จำกัด';
+  var to = a.endDate ? formatResultDate(a.endDate) : 'ไม่จำกัด';
+  return from + ' → ' + to;
+}
+
+function renderAdminAnnouncements() {
+  if (!els.adminAnnouncementsTable) return;
+  var rows = state.adminAnnouncements || [];
+  if (!rows.length) {
+    els.adminAnnouncementsTable.innerHTML = '<div class="admin-empty">ยังไม่มีประกาศ</div>';
+    return;
+  }
+  els.adminAnnouncementsTable.innerHTML = rows.map(function(a){
+    var thumb = a.imageUrl
+      ? '<img class="announcement-admin-thumb" src="' + escapeAttr(a.imageUrl) + '" alt="">'
+      : '<div class="announcement-admin-thumb empty">ไม่มีรูป</div>';
+    var statusClass = !a.enabled ? 'off' : (a.activeNow ? 'on' : 'wait');
+    var statusText = !a.enabled ? 'ปิด Popup' : (a.activeNow ? 'กำลังแสดง' : 'ตั้งเวลาไว้');
+    return '<div class="announcement-admin-card">' + thumb +
+      '<div class="announcement-admin-main"><strong>' + escapeHtml(a.title || 'ประกาศไม่มีหัวข้อ') + '</strong>' +
+      '<small><span class="announcement-status ' + statusClass + '">' + escapeHtml(statusText) + '</span> • ' + escapeHtml(announcementDateText(a)) + '</small>' +
+      '<small>' + escapeHtml((a.message || '').slice(0,120)) + '</small></div>' +
+      '<div class="announcement-admin-actions">' +
+       '<button class="admin-mini ' + (a.enabled ? 'danger' : 'green') + '" data-ann-toggle="' + escapeAttr(a.announcementId) + '">' + (a.enabled ? 'ปิด' : 'เปิด') + '</button>' +
+       '<button class="admin-mini edit" data-ann-edit="' + escapeAttr(a.announcementId) + '">แก้ไข</button>' +
+       '<button class="admin-mini danger" data-ann-delete="' + escapeAttr(a.announcementId) + '">ลบ</button>' +
+      '</div></div>';
+  }).join('');
+
+  els.adminAnnouncementsTable.querySelectorAll('[data-ann-edit]').forEach(function(btn){
+    btn.onclick = function(){
+      var a = (state.adminAnnouncements || []).find(function(x){ return x.announcementId === btn.dataset.annEdit; });
+      openAdminAnnouncementEditor(a || null);
+    };
+  });
+  els.adminAnnouncementsTable.querySelectorAll('[data-ann-toggle]').forEach(function(btn){
+    btn.onclick = async function(){
+      var a = (state.adminAnnouncements || []).find(function(x){ return x.announcementId === btn.dataset.annToggle; });
+      if (!a) return;
+      try {
+        adminBusy(a.enabled ? 'กำลังปิด Popup…' : 'กำลังเปิด Popup…');
+        await api('adminSaveAnnouncement', state.token, {
+          announcementId:a.announcementId, enabled:!a.enabled, title:a.title, message:a.message,
+          imageUrl:a.imageUrl, imageFileId:a.imageFileId, startDate:a.startDate, endDate:a.endDate
+        });
+        Swal.close();
+        await loadAdminAnnouncements();
+        showToast(a.enabled ? 'ปิด Popup แล้ว' : 'เปิด Popup แล้ว');
+      } catch(e) { Swal.close(); showAdminError(e); }
+    };
+  });
+  els.adminAnnouncementsTable.querySelectorAll('[data-ann-delete]').forEach(function(btn){
+    btn.onclick = async function(){
+      var ask = await Swal.fire({icon:'warning',title:'ลบประกาศ?',text:'รูปที่อัปโหลดของประกาศนี้จะถูกลบด้วย',showCancelButton:true,confirmButtonText:'ลบ',cancelButtonText:'ยกเลิก'});
+      if (!ask.isConfirmed) return;
+      try { adminBusy('กำลังลบ…'); await api('adminDeleteAnnouncement',state.token,btn.dataset.annDelete); Swal.close(); await loadAdminAnnouncements(); showToast('ลบประกาศแล้ว'); }
+      catch(e){ Swal.close(); showAdminError(e); }
+    };
+  });
+}
+
+function addDaysDateValue(base, days) {
+  var d = base ? new Date(base + 'T12:00:00') : new Date();
+  d.setDate(d.getDate() + Number(days || 0));
+  var y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,'0'),day=String(d.getDate()).padStart(2,'0');
+  return y+'-'+m+'-'+day;
+}
+
+function openAdminAnnouncementEditor(item) {
+  item = item || {};
+  var isEdit = !!item.announcementId;
+  var start = item.startDate || todayDateValue();
+  var end = item.endDate || addDaysDateValue(start, 7);
+  var currentImage = item.imageUrl ? '<div class="announcement-form-preview"><img src="'+escapeAttr(item.imageUrl)+'" alt="รูปปัจจุบัน"></div>' : '';
+  Swal.fire({
+    title:isEdit ? 'แก้ไขประกาศ' : 'เพิ่มประกาศ',
+    width:650,
+    html:'<div style="text-align:left">' +
+      '<label style="display:block;font-size:11px;margin:0 0 5px">หัวข้อ</label><input id="annTitle" class="swal2-input" style="width:100%;margin:0 0 10px" value="'+escapeAttr(item.title||'')+'">' +
+      '<label style="display:block;font-size:11px;margin:0 0 5px">ข้อความประกาศ</label><textarea id="annMessage" class="swal2-textarea" style="width:100%;margin:0 0 10px;min-height:100px">'+escapeHtml(item.message||'')+'</textarea>' +
+      '<div class="swal-admin-grid"><div class="swal-admin-field"><label>เริ่มแสดง</label><input id="annStart" type="date" value="'+escapeAttr(start)+'"></div>' +
+      '<div class="swal-admin-field"><label>สิ้นสุด</label><input id="annEnd" type="date" value="'+escapeAttr(end)+'"></div></div>' +
+      '<label style="display:flex;align-items:center;gap:8px;margin:12px 0;font-size:12px"><input id="annEnabled" type="checkbox" '+(item.enabled !== false ? 'checked' : '')+'> เปิด Popup</label>' +
+      '<label style="display:block;font-size:11px;margin:0 0 5px">อัปโหลดรูป Popup (JPG / PNG / WEBP / GIF)</label><input id="annImage" type="file" accept="image/jpeg,image/png,image/webp,image/gif" style="width:100%;padding:10px;border:1px dashed #c9a69d;border-radius:11px;background:#fff">' +
+      currentImage +
+      (item.imageUrl ? '<label style="display:flex;align-items:center;gap:8px;margin:10px 0 0;font-size:11px"><input id="annRemoveImage" type="checkbox"> ลบรูปปัจจุบัน</label>' : '') +
+      '<div style="margin-top:10px;color:#76534b;font-size:10px">หน้า Member จะแสดง Popup พร้อมกันสูงสุด 2 รายการ</div>' +
+    '</div>',
+    showCancelButton:true,confirmButtonText:'บันทึก',cancelButtonText:'ยกเลิก',focusConfirm:false,
+    preConfirm:function(){
+      var title=(document.getElementById('annTitle').value||'').trim();
+      var message=(document.getElementById('annMessage').value||'').trim();
+      var startDate=document.getElementById('annStart').value||'';
+      var endDate=document.getElementById('annEnd').value||'';
+      var enabled=document.getElementById('annEnabled').checked;
+      var removeEl=document.getElementById('annRemoveImage');
+      var removeImage=!!(removeEl&&removeEl.checked);
+      var fileEl=document.getElementById('annImage');
+      var file=fileEl&&fileEl.files&&fileEl.files[0];
+      if(!title&&!message&&!file&&!item.imageUrl){Swal.showValidationMessage('กรุณาใส่หัวข้อ ข้อความ หรือรูปประกาศ');return false;}
+      if(startDate&&endDate&&endDate<startDate){Swal.showValidationMessage('วันที่สิ้นสุดต้องไม่น้อยกว่าวันเริ่ม');return false;}
+      if(file&&file.size>8*1024*1024){Swal.showValidationMessage('รูปต้นฉบับต้องไม่เกิน 8 MB');return false;}
+      var base={announcementId:item.announcementId||'',title:title,message:message,startDate:startDate,endDate:endDate,enabled:enabled,removeImage:removeImage,imageUrl:item.imageUrl||'',imageFileId:item.imageFileId||''};
+      if(!file)return base;
+      return fileToBase64V16(file).then(function(b64){base.upload={base64:b64,fileName:file.name||'announcement',mimeType:file.type||'image/jpeg'};return base;});
+    }
+  }).then(async function(r){
+    if(!r.isConfirmed||!r.value)return;
+    try{
+      adminBusy('กำลังบันทึกประกาศ…');
+      var payload=r.value;
+      if(payload.upload){
+        var uploaded=await api('adminUploadAnnouncementImage',state.token,payload.upload);
+        payload.imageUrl=uploaded.imageUrl||'';
+        payload.imageFileId=uploaded.fileId||'';
+        payload.removeImage=false;
+        delete payload.upload;
+      }
+      await api('adminSaveAnnouncement',state.token,payload);
+      Swal.close();
+      await loadAdminAnnouncements();
+      showToast('บันทึกประกาศแล้ว');
+    }catch(e){Swal.close();showAdminError(e);}
+  });
+}
+
 </script>
 
 
