@@ -5337,6 +5337,195 @@ textarea:focus{
     flex-basis:96px !important;
   }
 }
+/* =====================================================
+   V31 — PROMINENT PRICE ENTRY
+===================================================== */
+.direct-bet-content{
+  padding-bottom:calc(240px + env(safe-area-inset-bottom)) !important;
+}
+
+.price-section{
+  position:relative !important;
+  z-index:3 !important;
+  margin:16px 0 20px !important;
+  padding:16px !important;
+  border:3px solid #8f1010 !important;
+  border-radius:20px !important;
+  background:
+    linear-gradient(180deg,#fffdfb,#ffe1d7) !important;
+  box-shadow:
+    0 18px 38px rgba(92,11,11,.18),
+    inset 0 1px 0 rgba(255,255,255,.86) !important;
+}
+
+.price-section:before{
+  content:"";
+  position:absolute;
+  inset:-3px;
+  border-radius:20px;
+  pointer-events:none;
+  box-shadow:0 0 0 4px rgba(185,43,36,.12);
+}
+
+.price-section-title{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  margin:0 0 12px !important;
+  color:#5c0808 !important;
+  font-size:20px !important;
+  line-height:1.2 !important;
+  font-weight:650 !important;
+}
+
+.price-section-title:after{
+  content:"สำคัญ";
+  display:inline-flex;
+  align-items:center;
+  min-height:28px;
+  padding:0 12px;
+  border-radius:999px;
+  background:#8f1010;
+  color:#fff7f2;
+  font-size:12px;
+  font-weight:600;
+}
+
+.direct-price-grid{
+  gap:12px !important;
+  margin-top:0 !important;
+}
+
+.direct-price-input{
+  height:78px !important;
+  border:3px solid #b92b24 !important;
+  border-radius:17px !important;
+  background:#fffaf7 !important;
+  color:#5c0808 !important;
+  font-size:30px !important;
+  font-weight:600 !important;
+  padding:26px 10px 8px !important;
+}
+
+.direct-price-input:focus{
+  border-color:#5c0808 !important;
+  box-shadow:0 0 0 5px rgba(143,16,16,.20) !important;
+}
+
+.direct-price-label{
+  top:8px !important;
+  color:#5c0808 !important;
+  font-size:12px !important;
+  font-weight:600 !important;
+}
+
+.selected-label-row{
+  margin-top:12px !important;
+}
+
+.number-chip-box{
+  max-height:220px !important;
+}
+
+@media(max-width:430px){
+  .price-section{
+    padding:14px !important;
+    border-radius:18px !important;
+  }
+
+  .price-section-title{
+    font-size:18px !important;
+  }
+
+  .direct-price-input{
+    height:72px !important;
+    font-size:27px !important;
+  }
+}
+/* =====================================================
+   V32 — PRICE INSIDE BOTTOM BAR
+===================================================== */
+.direct-bet-content{
+  padding-bottom:calc(335px + env(safe-area-inset-bottom)) !important;
+}
+
+.direct-bottom{
+  padding:10px !important;
+  border-radius:22px !important;
+}
+
+.bottom-price-section{
+  margin:0 0 9px !important;
+  padding:10px !important;
+  border:2px solid #8f1010 !important;
+  border-radius:16px !important;
+  background:linear-gradient(180deg,#fffaf7,#ffe8df) !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.86),0 8px 18px rgba(92,11,11,.10) !important;
+}
+
+.bottom-price-section:before{
+  display:none !important;
+}
+
+.bottom-price-section .price-section-title{
+  margin:0 0 8px !important;
+  font-size:15px !important;
+  line-height:1.15 !important;
+  font-weight:650 !important;
+}
+
+.bottom-price-section .price-section-title:after{
+  content:"ต้องใส่ก่อนยืนยัน";
+  min-height:22px;
+  padding:0 9px;
+  font-size:10px;
+}
+
+.bottom-price-section .direct-price-grid{
+  gap:8px !important;
+}
+
+.bottom-price-section .direct-price-input{
+  height:58px !important;
+  border-width:2px !important;
+  border-radius:13px !important;
+  font-size:22px !important;
+  padding:20px 8px 5px !important;
+}
+
+.bottom-price-section .direct-price-label{
+  top:6px !important;
+  font-size:10px !important;
+}
+
+.direct-grand{
+  min-height:52px !important;
+}
+
+.direct-action-row{
+  margin-top:7px !important;
+}
+
+.direct-clear-all,
+.direct-submit,
+.direct-back-bottom{
+  min-height:48px !important;
+}
+
+@media(max-width:430px){
+  .direct-bet-content{
+    padding-bottom:calc(330px + env(safe-area-inset-bottom)) !important;
+  }
+
+  .bottom-price-section{
+    padding:9px !important;
+  }
+
+  .bottom-price-section .direct-price-input{
+    height:54px !important;
+    font-size:20px !important;
+  }
+}
 </style>
  </head>
  <body>
@@ -5573,20 +5762,6 @@ textarea:focus{
        <button class="quick-tool" id="doubleBtn">+ เลขเบิ้ล</button>
       </div>
 
-      <div class="price-section">
-       <div class="price-section-title">ใส่ราคา</div>
-       <div class="direct-price-grid" id="directPriceGrid">
-        <div class="direct-price-field">
-         <span class="direct-price-label" id="priceALabel">บน</span>
-         <input class="direct-price-input" id="priceA" type="number" inputmode="decimal" min="0" step="1" placeholder="0">
-        </div>
-        <div class="direct-price-field" id="priceBField">
-         <span class="direct-price-label" id="priceBLabel">ล่าง</span>
-         <input class="direct-price-input" id="priceB" type="number" inputmode="decimal" min="0" step="1" placeholder="0">
-        </div>
-       </div>
-      </div>
-
       <div class="bet-summary">
        <div class="bet-summary-item primary-summary"><small>รายการแทงจริง</small><b id="betCount">0</b></div>
        <div class="bet-summary-item"><small>ยอดคงเหลือ</small><b id="summaryCredit">0.00</b></div>
@@ -5596,6 +5771,19 @@ textarea:focus{
     </div>
 
     <section class="direct-bottom">
+     <div class="price-section bottom-price-section">
+      <div class="price-section-title">ใส่ราคา</div>
+      <div class="direct-price-grid" id="directPriceGrid">
+       <div class="direct-price-field">
+        <span class="direct-price-label" id="priceALabel">บน</span>
+        <input class="direct-price-input" id="priceA" type="number" inputmode="decimal" min="0" step="1" placeholder="0">
+       </div>
+       <div class="direct-price-field" id="priceBField">
+        <span class="direct-price-label" id="priceBLabel">ล่าง</span>
+        <input class="direct-price-input" id="priceB" type="number" inputmode="decimal" min="0" step="1" placeholder="0">
+       </div>
+      </div>
+     </div>
      <div class="direct-grand">
       <small>รวมยอดแทงทั้งหมด</small>
       <strong id="grandTotal">0.00</strong>
@@ -6732,22 +6920,22 @@ function setBetMode(mode) {
 
 function getModeConfig() {
   if (state.betMode === "three") {
-    return {title:"เลข 3 ตัว",placeholder:"",len:3,priceA:"ตรง",priceB:"โต๊ด"};
+    return {title:"เลข 3 ตัว",placeholder:"พิมพ์เลข 3 ตัว เช่น 123 456",len:3,priceA:"ตรง",priceB:"โต๊ด"};
   }
 
   if (state.betMode === "six") {
-    return {title:"เลข 6 กลับ",placeholder:"",len:3,priceA:"6 กลับ",priceB:null};
+    return {title:"เลข 6 กลับ",placeholder:"พิมพ์เลข 3 ตัว เช่น 123",len:3,priceA:"6 กลับ",priceB:null};
   }
 
   if (state.betMode === "gate") {
-    return {title:"รูด 19 ประตู",placeholder:"",len:1,priceA:"บน",priceB:"ล่าง"};
+    return {title:"รูด 19 ประตู",placeholder:"พิมพ์เลขหลักเดียว เช่น 5",len:1,priceA:"บน",priceB:"ล่าง"};
   }
 
   if (state.betMode === "run") {
-    return {title:"เลขวิ่ง",placeholder:"",len:1,priceA:"บน",priceB:"ล่าง"};
+    return {title:"เลขวิ่ง",placeholder:"พิมพ์เลขวิ่ง เช่น 5 8 9",len:1,priceA:"บน",priceB:"ล่าง"};
   }
 
-  return {title:"เลข 2 ตัว",placeholder:"",len:2,priceA:"บน",priceB:"ล่าง"};
+  return {title:"เลข 2 ตัว",placeholder:"พิมพ์เลข 2 ตัว เช่น 12 34 56",len:2,priceA:"บน",priceB:"ล่าง"};
 }
 
 function syncNumbersFromInput() {
@@ -7032,7 +7220,7 @@ function renderDirectBet() {
   els.reverseBtn.textContent = state.reverse ? "✓ กลับเลขแล้ว" : "↔ กลับเลข";
 
   if (!state.numbers.length) {
-    els.numberChipBox.innerHTML = '<div class="number-chip-empty"></div>';
+    els.numberChipBox.innerHTML = '<div class="number-chip-empty">เลขที่พิมพ์จะแสดงตรงนี้</div>';
   } else {
     els.numberChipBox.innerHTML = buildActualBetChips();
 
