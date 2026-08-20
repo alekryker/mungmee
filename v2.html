@@ -3721,6 +3721,7 @@ var state = {
 var els = {};
 var timer = null;
 var toastTimer = null;
+var suppressRoutePush = false;
 
 document.addEventListener("DOMContentLoaded", function () {
   [
@@ -3738,6 +3739,7 @@ document.addEventListener("DOMContentLoaded", function () {
   ].forEach(function(id){ els[id] = document.getElementById(id); });
 
   bindEvents();
+  bindRouteHistory();
   testApi();
 
   if (state.token) {
@@ -3789,6 +3791,55 @@ function testApi() {
       els.apiState.textContent = "";
       els.apiState.style.color = "#b91c1c";
     });
+}
+
+function bindRouteHistory() {
+  try {
+    history.replaceState({appRoute:"login"}, "", location.pathname + location.search + "#login");
+  } catch(e) {}
+
+  window.addEventListener("popstate", function(ev) {
+    if (!state.token) return;
+
+    var route = ev && ev.state && ev.state.appRoute
+      ? ev.state.appRoute
+      : "home";
+
+    suppressRoutePush = true;
+    try {
+      openAppRoute(route);
+    } finally {
+      suppressRoutePush = false;
+    }
+  });
+}
+
+function pushAppRoute(route, replace) {
+  if (suppressRoutePush || !route) return;
+
+  try {
+    var nextUrl = location.pathname + location.search + "#" + route;
+    var currentRoute = history.state && history.state.appRoute;
+    if (replace || currentRoute === route) {
+      history.replaceState({appRoute:route}, "", nextUrl);
+    } else {
+      history.pushState({appRoute:route}, "", nextUrl);
+    }
+  } catch(e) {}
+}
+
+function openAppRoute(route) {
+  route = String(route || "home");
+
+  if (route === "lotto") return showLotto();
+  if (route === "bet" && state.selectedLotto) return showBet();
+  if (route === "history") return showHistory();
+  if (route === "money") return showMoney();
+  if (route === "summary") return showMemberSummary();
+  if (route === "results") return showResults();
+  if (route === "admin" && state.isAdmin) return showAdmin(state.adminTab || "dashboard");
+
+  showHome();
 }
 
 function bindEvents() {
@@ -4035,6 +4086,9 @@ function logout(callServer) {
 
   els.mainApp.classList.add("hidden");
   els.loginScreen.classList.remove("hidden");
+  try {
+    history.replaceState({appRoute:"login"}, "", location.pathname + location.search + "#login");
+  } catch(e) {}
 }
 
 function boot() {
@@ -4069,11 +4123,18 @@ function boot() {
 
       els.adminBtn.classList.toggle("hidden", !state.isAdmin);
 
-      if (state.isAdmin) {
-        showAdmin("dashboard");
-      } else {
-        showHome();
+      suppressRoutePush = true;
+      try {
+        if (state.isAdmin) {
+          showAdmin("dashboard");
+        } else {
+          showHome();
+        }
+      } finally {
+        suppressRoutePush = false;
       }
+
+      pushAppRoute(state.isAdmin ? "admin" : "home", true);
 
       els.loginScreen.classList.add("hidden");
       els.mainApp.classList.remove("hidden");
@@ -4181,6 +4242,7 @@ function hideMemberScreensV16() {
 function showHome() {
   hideMemberScreensV16();
   if (els.homeScreen) els.homeScreen.classList.add("active");
+  pushAppRoute("home");
   clearInterval(timer);
   scrollTo(0,0);
 }
@@ -4389,6 +4451,7 @@ function showLotto() {
   els.resultsScreen.classList.remove("active");
   els.adminScreen.classList.remove("active");
   els.lottoScreen.classList.add("active");
+  pushAppRoute("lotto");
   startTimer(updateLottoCountdowns);
   scrollTo(0,0);
 }
@@ -4402,6 +4465,7 @@ function showBet() {
   els.resultsScreen.classList.remove("active");
   els.adminScreen.classList.remove("active");
   els.betScreen.classList.add("active");
+  pushAppRoute("bet");
   renderDirectBet();
   scrollTo(0,0);
 }
@@ -5051,6 +5115,7 @@ function showMoney() {
   els.resultsScreen.classList.remove("active");
   els.adminScreen.classList.remove("active");
   els.moneyScreen.classList.add("active");
+  pushAppRoute("money");
   clearInterval(timer);
   scrollTo(0,0);
   loadMoneyTransactions();
@@ -5126,6 +5191,7 @@ function showMemberSummary() {
   els.resultsScreen.classList.remove("active");
   els.adminScreen.classList.remove("active");
   els.memberSummaryScreen.classList.add("active");
+  pushAppRoute("summary");
   clearInterval(timer);
   scrollTo(0,0);
   loadMemberSummary("day");
@@ -5230,6 +5296,7 @@ function showResults() {
   els.memberSummaryScreen.classList.remove("active");
   els.adminScreen.classList.remove("active");
   els.resultsScreen.classList.add("active");
+  pushAppRoute("results");
 
   clearInterval(timer);
   scrollTo(0,0);
@@ -5307,6 +5374,7 @@ function showHistory() {
   els.resultsScreen.classList.remove("active");
   els.adminScreen.classList.remove("active");
   els.historyScreen.classList.add("active");
+  pushAppRoute("history");
 
   clearInterval(timer);
   scrollTo(0,0);
@@ -5540,6 +5608,7 @@ function showAdmin(tab) {
   els.memberSummaryScreen.classList.remove("active");
   els.resultsScreen.classList.remove("active");
   els.adminScreen.classList.add("active");
+  pushAppRoute("admin");
 
   showAdminTab(tab || state.adminTab || "dashboard");
   scrollTo(0,0);
