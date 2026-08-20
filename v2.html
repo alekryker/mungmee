@@ -3,12 +3,12 @@
  <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover" name="viewport"/>
-  <meta content="#0c7146" name="theme-color"/>
+  <meta content="#6d28d9" name="theme-color"/>
   <title>ทรัพย์มั่งมี</title>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
 :root {
   --red: #11995e;
@@ -34,7 +34,7 @@ html, body {
   min-height: 100%;
   background: var(--bg);
   color: var(--ink);
-  font-family:"Prompt","Noto Sans Thai",sans-serif;
+  font-family:"Kanit","Noto Sans Thai",sans-serif;
 }
 
 button, input, textarea {
@@ -1979,7 +1979,7 @@ button:active {
 .swal2-cancel,
 .swal2-input,
 .swal2-select {
-  font-family:"Prompt","Noto Sans Thai",sans-serif !important;
+  font-family:"Kanit","Noto Sans Thai",sans-serif !important;
 }
 
 .login-title-inline {
@@ -2007,7 +2007,7 @@ button:active {
 /* V12 - อ่านง่ายขึ้น */
 html, body { font-weight:400; letter-spacing:0; }
 body, input, textarea, select, button {
-  font-family:"Prompt","Noto Sans Thai",sans-serif;
+  font-family:"Kanit","Noto Sans Thai",sans-serif;
 }
 h1,h2,h3,.hero h1,.admin-head-row h1,.direct-title,.lotto-name,
 .selected-name,.history-head strong,.result-card-head strong {
@@ -2975,7 +2975,7 @@ button:hover{
 }
 .swal2-popup{
   border-radius:22px !important;
-  font-family:"Prompt","Noto Sans Thai",sans-serif !important;
+  font-family:"Kanit","Noto Sans Thai",sans-serif !important;
 }
 .swal2-title{
   color:var(--ink) !important;
@@ -3102,6 +3102,189 @@ button:hover{
   .direct-submit{
     grid-column:1/-1;
   }
+}
+
+/* =====================================================
+   V19 — FULL PURPLE THEME
+===================================================== */
+:root{
+  --red:#6d28d9 !important;
+  --red2:#a855f7 !important;
+  --deep:#2e1065 !important;
+  --soft:#f5f3ff !important;
+  --bg:#faf7ff !important;
+  --card:#ffffff !important;
+  --ink:#22142f !important;
+  --muted:#75667f !important;
+  --line:#e9d5ff !important;
+  --green:#8b5cf6 !important;
+  --surface:#ffffff !important;
+  --surface-2:#fbf8ff !important;
+  --brand:#6d28d9 !important;
+  --brand-2:#a855f7 !important;
+  --brand-dark:#2e1065 !important;
+  --accent:#f0abfc !important;
+}
+body,
+.screen,
+.direct-bet-content,
+.results-body{
+  background:linear-gradient(180deg,#fbf8ff 0%,#f4ecff 100%) !important;
+  color:#22142f !important;
+}
+.hero,
+.topbar,
+.login-card-credit,
+.v16-wallet,
+.v16-home-shell,
+.admin-hero{
+  background:
+    radial-gradient(circle at 90% 10%,rgba(255,255,255,.22),transparent 34%),
+    linear-gradient(135deg,#2e1065 0%,#6d28d9 55%,#a855f7 100%) !important;
+  color:#fff !important;
+}
+.v16-home{
+  background:linear-gradient(180deg,#1e1030 0%,#351263 48%,#160b25 100%) !important;
+}
+.v16-brand-mark,
+.login-logo-credit{
+  background:linear-gradient(145deg,#c084fc,#7c3aed) !important;
+  color:#fff !important;
+}
+.v16-action.primary,
+.login-submit,
+.direct-submit,
+.admin-tab.active,
+.bet-mode-tab.active,
+.quick-tool.primary-tool,
+.quick-tool.active,
+.direct-grand,
+.admin-btn.green,
+.results-toolbar button,
+.account-btn,
+.v16-logout{
+  background:linear-gradient(135deg,#6d28d9,#a855f7) !important;
+  border-color:#8b5cf6 !important;
+  color:#fff !important;
+}
+.v16-action.secondary,
+.account-btn.light,
+.direct-back-bottom,
+.direct-clear-all,
+.clear-numbers,
+.quick-tool,
+.auth-tab,
+.lotto-subtab,
+.admin-mini,
+.admin-mini.green{
+  background:#fff !important;
+  border-color:#ddd6fe !important;
+  color:#5b21b6 !important;
+}
+.auth-tab.active,
+.lotto-subtab.active,
+.number-count-pill,
+.result-num.main,
+.bet-number-chip,
+.bet-number-chip.generated,
+.bet-number-chip.generated.reverse-chip,
+.bet-number-chip.generated.gate-chip,
+.bet-number-chip.generated.six-chip,
+.bet-number-chip.run-chip,
+.money-card-head b.plus,
+.sum-positive,
+.status-WIN,
+.lotto-status.on{
+  background:#f5f3ff !important;
+  border-color:#c4b5fd !important;
+  color:#6d28d9 !important;
+}
+.admin-mini.danger,
+.direct-clear-all,
+.status-CANCELLED,
+.lotto-status.off{
+  background:#faf5ff !important;
+  border-color:#d8b4fe !important;
+  color:#7e22ce !important;
+}
+.direct-card,
+.card,
+.result-card,
+.history-card,
+.money-card,
+.summary-card,
+.admin-card,
+.lotto,
+.v16-lotto-card,
+.results-toolbar input,
+.number-entry-input,
+.number-chip-box,
+.direct-price-input,
+.bet-mode-tabs,
+.admin-table-wrap,
+.rate-editor-card{
+  background:#fff !important;
+  border-color:#e9d5ff !important;
+  color:#22142f !important;
+  box-shadow:0 18px 45px rgba(88,28,135,.10) !important;
+}
+.direct-title,
+.selected-label,
+.price-section-title,
+.bet-mode-tab,
+.history-card strong,
+.result-card strong,
+.money-card strong,
+.summary-title,
+.admin-card h2,
+.v16-lotto-title{
+  color:#22142f !important;
+}
+.muted,
+.history-meta,
+.money-note,
+.result-date,
+.submit-credit-note,
+.admin-muted,
+.rate-mode-note,
+.login-field label,
+.v16-wallet-label,
+.v16-user{
+  color:#75667f !important;
+}
+input:focus,
+select:focus,
+textarea:focus,
+.direct-price-input:focus,
+.number-entry-input:focus{
+  border-color:#8b5cf6 !important;
+  box-shadow:0 0 0 4px rgba(139,92,246,.14) !important;
+}
+.toast{
+  background:#2e1065 !important;
+  color:#fff !important;
+}
+.swal2-popup{
+  border:1px solid #e9d5ff !important;
+}
+.swal2-confirm,
+.swal2-styled.swal2-confirm{
+  background:linear-gradient(135deg,#6d28d9,#a855f7) !important;
+  border-color:#8b5cf6 !important;
+  color:#fff !important;
+}
+.swal2-cancel,
+.swal2-styled.swal2-cancel{
+  background:#ede9fe !important;
+  color:#4c1d95 !important;
+}
+body,
+button,
+input,
+select,
+textarea,
+.swal2-popup{
+  font-family:"Kanit","Noto Sans Thai",sans-serif !important;
 }
 
 </style>
@@ -4253,21 +4436,21 @@ function openSelfDeposit() {
     title:"เติมเครดิตเดิมพัน",
     html:
       '<div style="text-align:left">' +
-        '<div style="margin-bottom:14px;padding:13px;border:1px solid #bbf7d0;border-radius:13px;background:#f0fdf4">' +
-          '<div style="font-size:10px;color:#166534;font-weight:900;margin-bottom:5px">บัญชีสำหรับรับโอน</div>' +
-          '<div style="font-size:15px;font-weight:900;color:#14532d">SCB • 5054158114</div>' +
-          '<div style="font-size:11px;margin-top:3px;color:#166534">ธนาคารไทยพาณิชย์</div>' +
-          '<div style="font-size:11px;margin-top:2px;color:#166534">น.ส. ทิพวรรณ ฮุ่งเมือง</div>' +
+        '<div style="margin-bottom:14px;padding:13px;border:1px solid #ddd6fe;border-radius:13px;background:#f5f3ff">' +
+          '<div style="font-size:10px;color:#6d28d9;font-weight:900;margin-bottom:5px">บัญชีสำหรับรับโอน</div>' +
+          '<div style="font-size:15px;font-weight:900;color:#4c1d95">SCB • 5054158114</div>' +
+          '<div style="font-size:11px;margin-top:3px;color:#6d28d9">ธนาคารไทยพาณิชย์</div>' +
+          '<div style="font-size:11px;margin-top:2px;color:#6d28d9">น.ส. ทิพวรรณ ฮุ่งเมือง</div>' +
         '</div>' +
         '<label style="display:block;font-size:11px;font-weight:800;margin:4px 0 6px">อัปโหลดสลิป</label>' +
-        '<input id="swalDepositSlip" type="file" accept="image/jpeg,image/png,image/gif,image/webp" style="width:100%;padding:12px;border:1px dashed #bbf7d0;border-radius:12px;background:#f0fdf4">' +
+        '<input id="swalDepositSlip" type="file" accept="image/jpeg,image/png,image/gif,image/webp" style="width:100%;padding:12px;border:1px dashed #c4b5fd;border-radius:12px;background:#f5f3ff">' +
 
         '<div class="deposit-time-hint">ระบบจะอ่านยอดเงินจากสลิป ตรวจบัญชีผู้รับ และตรวจสลิปซ้ำให้อัตโนมัติ</div>' +
       '</div>',
     showCancelButton:true,
     confirmButtonText:"ตรวจสลิป",
     cancelButtonText:"ยกเลิก",
-    confirmButtonColor:"#0f7d4e",
+    confirmButtonColor:"#6d28d9",
     focusConfirm:false,
     preConfirm:function(){
       var fileEl = document.getElementById("swalDepositSlip");
@@ -4315,7 +4498,7 @@ function openSelfDeposit() {
               'ยอดที่เติม <b>' + money(r.verifiedAmount) + ' บาท</b>' +
             '</div>',
           confirmButtonText:"ตกลง",
-          confirmButtonColor:"#0f7d4e"
+          confirmButtonColor:"#6d28d9"
         });
       })
       .catch(showErrorGlobal)
@@ -4397,8 +4580,8 @@ function showWithdrawInfo() {
     title:"ถอนเงิน",
     html:
       '<div style="text-align:left;font-size:13px;line-height:1.8">' +
-        '<div style="padding:13px;border:1px solid #bbf7d0;border-radius:13px;background:#f0fdf4;color:#14532d">' +
-          '<div style="font-size:10px;font-weight:900;margin-bottom:6px;color:#166534">ข้อมูลธนาคารสำหรับถอนเงิน</div>' +
+        '<div style="padding:13px;border:1px solid #ddd6fe;border-radius:13px;background:#f5f3ff;color:#4c1d95">' +
+          '<div style="font-size:10px;font-weight:900;margin-bottom:6px;color:#6d28d9">ข้อมูลธนาคารสำหรับถอนเงิน</div>' +
           '<div><b>ชื่อบัญชี:</b> ' + escapeHtml(bankAccountName || "-") + '</div>' +
           '<div><b>ธนาคาร:</b> ' + escapeHtml(bankName || "-") + '</div>' +
           '<div><b>เลขบัญชี:</b> ' + escapeHtml(bankAccountNo || "-") + '</div>' +
@@ -4409,7 +4592,7 @@ function showWithdrawInfo() {
     showCancelButton:true,
     cancelButtonText:"ยกเลิก",
     confirmButtonText:"ตกลง",
-    confirmButtonColor:"#0f7d4e",
+    confirmButtonColor:"#6d28d9",
     preConfirm:function(){
       var amount = num(document.getElementById("swalWithdrawAmount").value);
       if (!amount || amount <= 0) {
@@ -4434,7 +4617,7 @@ function showWithdrawInfo() {
           title:"ส่งรายการถอนแล้ว",
           html:'<div style="font-size:13px;line-height:1.8">ยอดถอน <b>' + money(r.amount) + ' บาท</b><br>สถานะ <b>รออนุมัติ</b></div>',
           confirmButtonText:"ตกลง",
-          confirmButtonColor:"#0f7d4e"
+          confirmButtonColor:"#6d28d9"
         });
       })
       .catch(showErrorGlobal)
@@ -4998,9 +5181,9 @@ function buildConfirmHtml() {
   }
 
   return '<div style="text-align:left">' +
-    '<div style="padding:10px 12px;background:#ecfdf5;border-radius:12px;margin-bottom:10px">' +
+    '<div style="padding:10px 12px;background:#f5f3ff;border-radius:12px;margin-bottom:10px">' +
       '<div style="font-size:12px;color:#71717a">' + escapeHtml(state.selectedLotto.name) + '</div>' +
-      '<div style="font-size:24px;font-weight:950;color:#0c7146;margin-top:2px">' +
+      '<div style="font-size:24px;font-weight:950;color:#6d28d9;margin-top:2px">' +
         money(total) +
       '</div>' +
     '</div>' +
@@ -5737,7 +5920,7 @@ async function loadAdminWithdraws() {
 
     els.adminWithdrawTable.querySelectorAll("[data-approve-withdraw]").forEach(function(btn){
       btn.onclick = async function(){
-        var ask = await Swal.fire({icon:"question",title:"อนุมัติรายการถอน?",showCancelButton:true,confirmButtonText:"อนุมัติ",cancelButtonText:"ยกเลิก",confirmButtonColor:"#0f7d4e"});
+        var ask = await Swal.fire({icon:"question",title:"อนุมัติรายการถอน?",showCancelButton:true,confirmButtonText:"อนุมัติ",cancelButtonText:"ยกเลิก",confirmButtonColor:"#6d28d9"});
         if (!ask.isConfirmed) return;
         try {
           adminBusy("กำลังอนุมัติ...");
