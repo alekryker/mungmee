@@ -5843,10 +5843,6 @@ textarea:focus{
   font-weight:650 !important;
 }
 
-.bill-stack-summary{
-  margin-top:14px;
-}
-
 .bill-summary-pill{
   display:flex;
   align-items:center;
@@ -6278,14 +6274,6 @@ textarea:focus{
   color:#fff !important;
 }
 
-.bill-stack-summary .bill-summary-pill span{
-  color:#fff !important;
-}
-
-.bill-stack-summary .bill-summary-pill strong{
-  color:#fff !important;
-}
-
 .direct-bottom .submit-credit-note{
   display:none !important;
 }
@@ -6594,10 +6582,9 @@ textarea:focus{
       <div class="bill-stack hidden" id="billStack">
        <div class="bill-stack-head">
         <span>รายการบิล</span>
-        <b id="billStackCount">0 บิล</b>
+       <b id="billStackCount">0 บิล</b>
        </div>
        <div class="bill-stack-list" id="billStackList"></div>
-       <div class="bill-stack-summary" id="billStackSummary"></div>
       </div>
 
       <div class="bet-summary">
@@ -7000,7 +6987,7 @@ document.addEventListener("DOMContentLoaded", function () {
      "historyStatus","historyList","moneyBackBtn","moneyBalance","moneyFrom","moneyTo","moneyType","moneyList","memberSummaryBackBtn","memberSummaryBalance","memberSummaryFrom","memberSummaryTo","memberSummaryLotto","memberSummarySearchBtn","memberSummaryStats","memberSummaryTable","adminIdentity","adminLogoutBtn","syncResultsBtn","adminDashRange","adminDashFrom","adminDashTo","adminDashCustomBtn","adminDashSelectAll","adminDashClearAll","adminDashLottoChecks","adminDashStats","adminByUser","adminByLotto","adminBetFrom","adminBetTo","adminBetStatus","adminOpenUser","adminOpenLotto","adminOpenSearchBtn","adminOpenTable","adminCreateUserBtn","adminUserTable","adminWithdrawStatus","adminWithdrawReloadBtn","adminWithdrawTable","adminLottoToggleTable","adminLottoRulesTable","adminRateUser","adminRateLotto","adminRateModeNote","adminRate3Straight","adminRate3Tod","adminRate2Top","adminRate2Bottom","adminRateRunTop","adminRateRunBottom","adminRateSaveBtn","adminRateResetBtn","adminRateOverridesTable","directTitle","numberCount","numberInput",
     "clearNumbersBtn","numberChipBox","reverseBtn","doubleBtn",
     "priceA","priceB","priceALabel","priceBLabel","priceBField","directPriceGrid",
-    "sourceCount","betCount","currentBillTotal","grandTotal","clearAllBtn","addBillBtn","submitBtn","error","billStack","billStackList","billStackCount","billStackSummary",
+    "sourceCount","betCount","currentBillTotal","grandTotal","clearAllBtn","addBillBtn","submitBtn","error","billStack","billStackList","billStackCount",
     "loading","toast"
   ].forEach(function(id){ els[id] = document.getElementById(id); });
 
@@ -8215,16 +8202,6 @@ function renderBillStack() {
 
   els.billStack.classList.toggle("hidden", !state.billItems.length);
   if (els.billStackCount) els.billStackCount.textContent = state.billItems.length + " บิล";
-  if (els.billStackSummary) {
-    els.billStackSummary.innerHTML = state.billItems.length
-      ? '<div class="bill-summary-pill"><span>รวมบิลที่เพิ่มไว้</span><strong>' + money(getCombinedTotalAmount()) + ' บาท</strong></div>' +
-        '<div class="bill-summary-meta">' +
-          '<span>' + state.billItems.length + ' บิล</span>' +
-          '<span>' + getCombinedBetCount() + ' รายการแทงจริง</span>' +
-          '<span>คงเหลือ ' + money(state.user ? state.user.credit : 0) + '</span>' +
-        '</div>'
-      : '';
-  }
 
   els.billStackList.innerHTML = state.billItems.map(function(bill,index){
     var nums = getBillEffectiveNumbers(bill);
