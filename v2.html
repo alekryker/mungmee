@@ -3,7 +3,7 @@
  <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover" name="viewport"/>
-  <meta content="#6d28d9" name="theme-color"/>
+  <meta content="#b91c1c" name="theme-color"/>
   <title>ทรัพย์มั่งมี</title>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,9 +12,9 @@
   <style>
 :root {
   --red: #11995e;
-  --red2: #18b86f;
-  --deep: #075c39;
-  --soft: #ecfdf5;
+  --red2: #ef4444;
+  --deep: #450a0a;
+  --soft: #fef2f2;
   --bg: #f6f6f8;
   --card: #fff;
   --ink: #18181b;
@@ -67,7 +67,7 @@ button:active {
 .hero {
   padding: calc(28px + env(safe-area-inset-top)) 18px 28px;
   color: #fff;
-  background: radial-gradient(circle at 100% 0,rgba(255,255,255,.18),transparent 38%),linear-gradient(140deg,#06492f,#0d7548 52%,#1dbb73);
+  background: radial-gradient(circle at 100% 0,rgba(255,255,255,.18),transparent 38%),linear-gradient(140deg,#450a0a,#0d7548 52%,#1dbb73);
   border-radius: 0 0 30px 30px;
   box-shadow: 0 12px 34px rgba(153,27,46,.2);
 }
@@ -168,7 +168,7 @@ button:active {
   z-index: 30;
   padding: calc(10px + env(safe-area-inset-top)) 11px 11px;
   color: #fff;
-  background: linear-gradient(135deg,#06492f,#0f7d4e);
+  background: linear-gradient(135deg,#450a0a,#b91c1c);
   box-shadow: 0 8px 25px rgba(153,27,46,.2);
 }
 
@@ -378,7 +378,7 @@ button:active {
 
 .group-head {
   padding: 11px 12px;
-  background: linear-gradient(90deg,#ecfdf5,#fff);
+  background: linear-gradient(90deg,#fef2f2,#fff);
   border-bottom: 1px solid #dcfce7;
   display: flex;
   align-items: center;
@@ -401,7 +401,7 @@ button:active {
 
 .delete {
   border: 0;
-  background: #ecfdf5;
+  background: #fef2f2;
   color: #e11d48;
   border-radius: 9px;
   padding: 7px 9px;
@@ -424,7 +424,7 @@ button:active {
   padding: 8px 9px;
   border-radius: 10px;
   background: #fef2f2;
-  color: #0c7146;
+  color: #b91c1c;
   font-size: 14px;
   font-weight: 900;
   text-align: center;
@@ -450,7 +450,7 @@ button:active {
   padding: 0 12px;
   border: 1px solid #fecdd3;
   border-radius: 11px;
-  background: #ecfdf5;
+  background: #fef2f2;
   color: #b91c1c;
   font-size: 11px;
   font-weight: 900;
@@ -552,7 +552,7 @@ button:active {
 .grand {
   min-height: 50px;
   border-radius: 13px;
-  background: linear-gradient(135deg,#06492f,#0f7d4e);
+  background: linear-gradient(135deg,#450a0a,#b91c1c);
   color: #fff;
   padding: 8px 12px;
   display: flex;
@@ -660,7 +660,7 @@ button:active {
 
 .confirm-card-head {
   padding: 8px 10px;
-  background: #ecfdf5;
+  background: #fef2f2;
   color: #b91c1c;
   font-size: 12px;
   font-weight: 950;
@@ -860,7 +860,7 @@ button:active {
   padding: 16px 7px 3px;
   outline: none;
   background: rgba(255,255,255,.96);
-  color: #0c7146;
+  color: #b91c1c;
   text-align: center;
   font-size: 17px;
   font-weight: 950;
@@ -901,7 +901,7 @@ button:active {
   place-items: center;
   padding: 22px;
   background: radial-gradient(circle at 100% 0,rgba(255,255,255,.13),transparent 38%),
-              linear-gradient(140deg,#06492f,#0d7548 52%,#1dbb73);
+              linear-gradient(140deg,#450a0a,#0d7548 52%,#1dbb73);
 }
 #loginScreen.hidden { display:none; }
 .login-card-credit {
@@ -940,7 +940,7 @@ button:active {
   color:#52525b;font-size:13px;font-weight:900;
 }
 .auth-tab.active {
-  border-color:#0c7146;background:#ecfdf5;color:#0c7146;
+  border-color:#b91c1c;background:#fef2f2;color:#b91c1c;
 }
 .auth-panel { display:none; }
 .auth-panel.active { display:block; }
@@ -965,7 +965,7 @@ button:active {
   min-height:38px;border:1px solid rgba(255,255,255,.20);border-radius:11px;
   background:rgba(255,255,255,.10);color:#fff;padding:0 10px;font-size:10px;font-weight:900;
 }
-.account-btn.light { background:#fff;color:#0c7146;border-color:#fff; }
+.account-btn.light { background:#fff;color:#b91c1c;border-color:#fff; }
 
 .credit-mini {
   margin-left:auto;padding:7px 9px;border-radius:11px;background:rgba(255,255,255,.11);
@@ -995,9 +995,9 @@ button:active {
 }
 .status-pill { display:inline-flex;padding:5px 8px;border-radius:999px;font-size:9px;font-weight:950; }
 .status-WAITING { background:#fef3c7;color:#92400e; }
-.status-WIN { background:#dcfce7;color:#166534; }
+.status-WIN { background:#dcfce7;color:#991b1b; }
 .status-LOSE { background:#f4f4f5;color:#52525b; }
-.status-CANCELLED { background:#dcfce7;color:#0c7146; }
+.status-CANCELLED { background:#dcfce7;color:#b91c1c; }
 
 .submit-credit-note {
   display:flex;justify-content:space-between;gap:10px;font-size:10px;font-weight:850;color:#71717a;
@@ -1016,7 +1016,7 @@ button:active {
 ===================================================== */
 .bet-mode-wrap {
   padding: 14px 11px 0;
-  background: linear-gradient(180deg,#ecfdf5 0,#f6f6f8 100%);
+  background: linear-gradient(180deg,#fef2f2 0,#f6f6f8 100%);
 }
 .bet-mode-tabs {
   display:grid;
@@ -1068,8 +1068,8 @@ button:active {
   padding:7px 11px;
   border:1px solid #fecdd3;
   border-radius:999px;
-  background:#ecfdf5;
-  color:#0d6f45;
+  background:#fef2f2;
+  color:#991b1b;
   font-size:11px;
   font-weight:950;
   white-space:nowrap;
@@ -1108,8 +1108,8 @@ button:active {
   width:72px;
   border:0;
   border-radius:17px;
-  background:#ecfdf5;
-  color:#0d6f45;
+  background:#fef2f2;
+  color:#991b1b;
   font-size:13px;
   font-weight:950;
 }
@@ -1162,7 +1162,7 @@ button:active {
   padding:0 9px 0 12px;
   border:1px solid #fecdd3;
   border-radius:11px;
-  background:#ecfdf5;
+  background:#fef2f2;
   color:#9f1239;
   font-size:15px;
   font-weight:950;
@@ -1189,12 +1189,12 @@ button:active {
 }
 .quick-tool.primary-tool {
   border-color:#fecdd3;
-  background:#ecfdf5;
-  color:#0d6f45;
+  background:#fef2f2;
+  color:#991b1b;
 }
 .quick-tool.active {
-  border-color:#0d6f45;
-  background:#0d6f45;
+  border-color:#991b1b;
+  background:#991b1b;
   color:#fff;
 }
 .quick-tool.hidden { display:none; }
@@ -1233,7 +1233,7 @@ button:active {
   background:#fff;
   font-size:20px;
   font-weight:950;
-  color:#0c7146;
+  color:#b91c1c;
 }
 .direct-price-input:focus {
   border-color:#e11d48;
@@ -1302,7 +1302,7 @@ button:active {
   min-height:60px;
   padding:10px 15px;
   border-radius:15px;
-  background:linear-gradient(135deg,#075c39,#0f7d4e);
+  background:linear-gradient(135deg,#450a0a,#b91c1c);
   color:#fff;
   display:flex;
   align-items:center;
@@ -1396,7 +1396,7 @@ button:active {
 }
 .admin-head-btn.light {
   background:#fff;
-  color:#0c7146;
+  color:#b91c1c;
   border-color:#fff;
 }
 
@@ -1522,11 +1522,11 @@ button:active {
 }
 .admin-btn.soft {
   border:1px solid #fecdd3;
-  background:#ecfdf5;
-  color:#0d6f45;
+  background:#fef2f2;
+  color:#991b1b;
 }
 .admin-btn.green {
-  background:#15803d;
+  background:#b91c1c;
   color:#fff;
 }
 
@@ -1619,7 +1619,7 @@ button:active {
 }
 .admin-mini.credit {
   background:#dcfce7;
-  color:#166534;
+  color:#991b1b;
 }
 .admin-mini.edit {
   background:#f4f4f5;
@@ -1719,12 +1719,12 @@ button:active {
 .bet-number-chip.generated.reverse-chip {
   border-color:#fecdd3;
   background:#fff7f7;
-  color:#0d6f45;
+  color:#991b1b;
 }
 .bet-number-chip.generated.gate-chip {
-  border-color:#bbf7d0;
-  background:#f0fdf4;
-  color:#166534;
+  border-color:#fecaca;
+  background:#fff1f2;
+  color:#991b1b;
 }
 .bet-number-chip.generated.six-chip {
   border-color:#fde68a;
@@ -1758,10 +1758,10 @@ button:active {
   grid-template-columns:repeat(2,1fr) !important;
 }
 .bet-summary-item.primary-summary {
-  background:#ecfdf5;
+  background:#fef2f2;
 }
 .bet-summary-item.primary-summary b {
-  color:#0d6f45;
+  color:#991b1b;
   font-size:16px;
 }
 
@@ -1841,8 +1841,8 @@ button:active {
 }
 .quick-tool.primary-tool {
   border-color:#fb7185;
-  background:#ecfdf5;
-  color:#0d6f45;
+  background:#fef2f2;
+  color:#991b1b;
 }
 .quick-tool.active {
   border-color:#e11d48;
@@ -1855,14 +1855,14 @@ button:active {
   padding:0 14px !important;
   border:2px solid #fb7185 !important;
   border-radius:11px !important;
-  background:#ecfdf5 !important;
-  color:#0d6f45 !important;
+  background:#fef2f2 !important;
+  color:#991b1b !important;
   box-shadow:0 5px 15px rgba(225,29,72,.11);
 }
 .direct-clear-all {
   border:2px solid #fb7185 !important;
   background:#fff !important;
-  color:#0d6f45 !important;
+  color:#991b1b !important;
 }
 .direct-submit:not(:disabled) {
   box-shadow:0 11px 29px rgba(225,29,72,.30) !important;
@@ -1884,7 +1884,7 @@ button:active {
 }
 .price-section-title {
   margin-bottom:6px;
-  color:#0c7146 !important;
+  color:#b91c1c !important;
 }
 .direct-price-input {
   border-width:2px !important;
@@ -1954,7 +1954,7 @@ button:active {
   background:#fafafa;
   text-align:center;
 }
-.result-num.main { background:#ecfdf5; }
+.result-num.main { background:#fef2f2; }
 .result-num small {
   display:block;
   color:#a1a1aa;
@@ -1968,7 +1968,7 @@ button:active {
   font-size:19px;
   font-weight:950;
 }
-.result-num.main b { color:#0d6f45; }
+.result-num.main b { color:#991b1b; }
 
 
 .swal2-popup,
@@ -1995,8 +1995,8 @@ button:active {
   height:18px;
   padding:0 6px;
   border-radius:999px;
-  background:#ecfdf5;
-  color:#0d6f45;
+  background:#fef2f2;
+  color:#991b1b;
   font-size:9px;
   line-height:1;
   font-weight:900;
@@ -2052,14 +2052,14 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
 .bet-detail-top>div { padding:10px 11px; border-radius:12px; background:#fafafa; }
 .bet-detail-top small { display:block; color:#a1a1aa; font-size:9px; }
 .bet-detail-top b { display:block; margin-top:2px; font-size:14px; font-weight:650; }
-.bet-detail-meta { padding:10px 11px; margin-bottom:9px; border-radius:12px; background:#ecfdf5; color:#71717a; line-height:1.7; }
+.bet-detail-meta { padding:10px 11px; margin-bottom:9px; border-radius:12px; background:#fef2f2; color:#71717a; line-height:1.7; }
 .bet-detail-group { padding:10px; margin-top:8px; border:1px solid #e4e4e7; border-radius:13px; }
 .bet-detail-group-head { display:flex; justify-content:space-between; gap:8px; align-items:center; }
 .bet-detail-group-head b { font-weight:650; }
 .bet-detail-group-head span { color:#a1a1aa; font-size:9px; }
 .bet-detail-numbers { display:flex; flex-wrap:wrap; gap:5px; margin-top:8px; }
 .bet-detail-numbers span { padding:5px 7px; border-radius:8px; background:#f4f4f5; font-variant-numeric:tabular-nums; }
-.bet-detail-price { margin-top:8px; color:#0c7146; font-weight:600; }
+.bet-detail-price { margin-top:8px; color:#b91c1c; font-weight:600; }
 .bet-detail-summary { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:10px; padding:10px 11px; border-top:1px dashed #e4e4e7; }
 .bet-detail-summary b { font-size:16px; font-weight:700; }
 .bet-detail-empty { padding:18px; text-align:center; color:#a1a1aa; }
@@ -2110,8 +2110,8 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
   font-size:16px;
   font-weight:700;
 }
-.money-card-head b.plus { color:#15803d; }
-.money-card-head b.minus { color:#0d6f45; }
+.money-card-head b.plus { color:#b91c1c; }
+.money-card-head b.minus { color:#991b1b; }
 .money-balance-row {
   display:flex;
   align-items:center;
@@ -2162,8 +2162,8 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
 }
 .summary-preset.active {
   border-color:#e11d48;
-  background:#ecfdf5;
-  color:#0d6f45;
+  background:#fef2f2;
+  color:#991b1b;
 }
 .summary-filter-grid {
   display:grid;
@@ -2195,7 +2195,7 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
   min-height:42px;
   border:0;
   border-radius:10px;
-  background:#0c7146;
+  background:#b91c1c;
   color:#fff;
   font-weight:600;
 }
@@ -2224,9 +2224,9 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
   font-weight:700;
 }
 .summary-stat.positive b,
-.sum-positive { color:#15803d; }
+.sum-positive { color:#b91c1c; }
 .summary-stat.negative b,
-.sum-negative { color:#0d6f45; }
+.sum-negative { color:#991b1b; }
 .summary-title {
   margin-bottom:9px;
   font-size:13px;
@@ -2269,7 +2269,7 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
 .bet-number-chip.run-chip { border-color:#bae6fd; background:#f0f9ff; color:#075985; }
 .bet-cancel-note {
   margin-top:10px; padding:9px 10px; border-radius:10px;
-  background:#f0fdf4; color:#166534; font-size:10px; font-weight:500;
+  background:#fff1f2; color:#991b1b; font-size:10px; font-weight:500;
 }
 .bet-cancel-note.closed { background:#f4f4f5; color:#71717a; }
 @media (max-width:390px) {
@@ -2277,7 +2277,7 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
 }
 
 /* V15 ADMIN SUBMENUS / MULTI LOTTO / USER RATES */
-.admin-lotto-filter{margin-top:12px;padding:11px;border:1px solid #e4e4e7;border-radius:13px;background:#fafafa}.admin-lotto-filter-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}.admin-lotto-filter-head strong{font-size:11px;font-weight:650}.admin-lotto-checks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px 9px;max-height:310px;overflow:auto}.admin-lotto-check{display:flex;align-items:flex-start;gap:6px;min-width:0;padding:5px 6px;border-radius:8px;background:#fff;font-size:9px;cursor:pointer}.admin-lotto-check input{margin-top:2px}.admin-lotto-check span{min-width:0;line-height:1.4}.lotto-subtabs{display:flex;gap:7px;overflow:auto;margin-top:11px;padding-bottom:3px}.lotto-subtab{flex:0 0 auto;min-height:40px;padding:0 13px;border:1px solid #e4e4e7;border-radius:10px;background:#fafafa;color:#52525b;font-size:10px;font-weight:600}.lotto-subtab.active{border-color:#0c7146;background:#ecfdf5;color:#0c7146}.lotto-subpanel{display:none;margin-top:12px}.lotto-subpanel.active{display:block}.lotto-status{display:inline-flex;align-items:center;min-height:24px;padding:0 8px;border-radius:999px;font-size:9px;font-weight:650}.lotto-status.on{background:#dcfce7;color:#166534}.lotto-status.off{background:#dcfce7;color:#0c7146}.admin-mini.danger{border-color:#bbf7d0;background:#ecfdf5;color:#0d6f45}.admin-mini.green{border-color:#bbf7d0;background:#f0fdf4;color:#15803d}.rate-editor-card{padding:12px;border:1px solid #e4e4e7;border-radius:14px;background:#fafafa}.rate-editor-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.rate-mode-note{margin-top:9px;padding:8px 10px;border-radius:9px;background:#fff;color:#71717a;font-size:9px}.rate-input-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:9px}.rate-input-grid label{display:block;margin-bottom:4px;color:#71717a;font-size:9px}.rate-input-grid input{width:100%;height:42px;border:1px solid #e4e4e7;border-radius:10px;padding:0 9px;background:#fff;font:inherit}.rate-editor-actions{display:flex;gap:7px;margin-top:10px}.rate-editor-actions button{flex:1}.rate-editor-actions button:disabled{opacity:.45;cursor:not-allowed}@media(max-width:800px){.admin-lotto-checks{grid-template-columns:repeat(2,minmax(0,1fr))}.rate-input-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:520px){.admin-lotto-checks{grid-template-columns:1fr}.rate-editor-grid,.rate-input-grid{grid-template-columns:1fr}}
+.admin-lotto-filter{margin-top:12px;padding:11px;border:1px solid #e4e4e7;border-radius:13px;background:#fafafa}.admin-lotto-filter-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}.admin-lotto-filter-head strong{font-size:11px;font-weight:650}.admin-lotto-checks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px 9px;max-height:310px;overflow:auto}.admin-lotto-check{display:flex;align-items:flex-start;gap:6px;min-width:0;padding:5px 6px;border-radius:8px;background:#fff;font-size:9px;cursor:pointer}.admin-lotto-check input{margin-top:2px}.admin-lotto-check span{min-width:0;line-height:1.4}.lotto-subtabs{display:flex;gap:7px;overflow:auto;margin-top:11px;padding-bottom:3px}.lotto-subtab{flex:0 0 auto;min-height:40px;padding:0 13px;border:1px solid #e4e4e7;border-radius:10px;background:#fafafa;color:#52525b;font-size:10px;font-weight:600}.lotto-subtab.active{border-color:#b91c1c;background:#fef2f2;color:#b91c1c}.lotto-subpanel{display:none;margin-top:12px}.lotto-subpanel.active{display:block}.lotto-status{display:inline-flex;align-items:center;min-height:24px;padding:0 8px;border-radius:999px;font-size:9px;font-weight:650}.lotto-status.on{background:#dcfce7;color:#991b1b}.lotto-status.off{background:#dcfce7;color:#b91c1c}.admin-mini.danger{border-color:#fecaca;background:#fef2f2;color:#991b1b}.admin-mini.green{border-color:#fecaca;background:#fff1f2;color:#b91c1c}.rate-editor-card{padding:12px;border:1px solid #e4e4e7;border-radius:14px;background:#fafafa}.rate-editor-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.rate-mode-note{margin-top:9px;padding:8px 10px;border-radius:9px;background:#fff;color:#71717a;font-size:9px}.rate-input-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:9px}.rate-input-grid label{display:block;margin-bottom:4px;color:#71717a;font-size:9px}.rate-input-grid input{width:100%;height:42px;border:1px solid #e4e4e7;border-radius:10px;padding:0 9px;background:#fff;font:inherit}.rate-editor-actions{display:flex;gap:7px;margin-top:10px}.rate-editor-actions button{flex:1}.rate-editor-actions button:disabled{opacity:.45;cursor:not-allowed}@media(max-width:800px){.admin-lotto-checks{grid-template-columns:repeat(2,minmax(0,1fr))}.rate-input-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:520px){.admin-lotto-checks{grid-template-columns:1fr}.rate-editor-grid,.rate-input-grid{grid-template-columns:1fr}}
 
 /* =====================================================
    V16 — MEMBER HOME / RED PREMIUM
@@ -2316,7 +2316,7 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
   display:grid;
   place-items:center;
   font-size:24px;
-  background:linear-gradient(145deg,#24c97d,#087347);
+  background:linear-gradient(145deg,#24c97d,#991b1b);
   box-shadow:0 10px 26px rgba(194,22,45,.35);
   border:1px solid rgba(255,255,255,.16);
 }
@@ -2355,7 +2355,7 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
   color:#fff;
   background:
     radial-gradient(circle at 88% 20%,rgba(255,255,255,.18),transparent 25%),
-    linear-gradient(135deg,#075c39 0%,#0b8350 50%,#20bc74 100%);
+    linear-gradient(135deg,#450a0a 0%,#0b8350 50%,#20bc74 100%);
   box-shadow:0 18px 45px rgba(0,0,0,.27);
   border:1px solid rgba(255,255,255,.1);
 }
@@ -2527,7 +2527,7 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
   justify-content:space-between;
   padding:0 15px;
   background:#fff;
-  color:#0c7146;
+  color:#b91c1c;
   font-size:13px;
   font-weight:900;
 }
@@ -2585,9 +2585,9 @@ button,.login-submit,.account-btn,.admin-btn,.admin-tab,.quick-tool,
 ===================================================== */
 :root{
   --red:#11995e !important;
-  --red2:#18b86f !important;
-  --deep:#075c39 !important;
-  --soft:#ecfdf5 !important;
+  --red2:#ef4444 !important;
+  --deep:#450a0a !important;
+  --soft:#fef2f2 !important;
   --green:#169b62 !important;
 }
 html,body{
@@ -2597,7 +2597,7 @@ html,body{
 .topbar{
   background:
     radial-gradient(circle at 100% 0,rgba(255,255,255,.16),transparent 38%),
-    linear-gradient(140deg,#06492f,#0c7146 52%,#18b86f) !important;
+    linear-gradient(140deg,#450a0a,#b91c1c 52%,#ef4444) !important;
   box-shadow:0 12px 34px rgba(7,92,57,.20) !important;
 }
 .login-submit,
@@ -2605,13 +2605,13 @@ html,body{
 .admin-primary,
 .summary-filter-grid button,
 .swal2-confirm{
-  background:linear-gradient(135deg,#0c7146,#18b86f) !important;
+  background:linear-gradient(135deg,#b91c1c,#ef4444) !important;
 }
 .bet-mode-tab.active,
 .lotto-subtab.active{
-  border-color:#0c7146 !important;
-  background:#ecfdf5 !important;
-  color:#0c7146 !important;
+  border-color:#b91c1c !important;
+  background:#fef2f2 !important;
+  color:#b91c1c !important;
 }
 .v16-home-shell{
   background:
@@ -2620,13 +2620,13 @@ html,body{
     linear-gradient(180deg,#041f17 0%,#063322 42%,#031911 100%) !important;
 }
 .v16-brand-mark{
-  background:linear-gradient(145deg,#25cb7e,#087347) !important;
+  background:linear-gradient(145deg,#25cb7e,#991b1b) !important;
   box-shadow:0 10px 26px rgba(11,131,80,.34) !important;
 }
 .v16-wallet{
   background:
     radial-gradient(circle at 88% 20%,rgba(255,255,255,.17),transparent 25%),
-    linear-gradient(135deg,#075c39 0%,#0b8350 50%,#20bc74 100%) !important;
+    linear-gradient(135deg,#450a0a 0%,#0b8350 50%,#20bc74 100%) !important;
 }
 .v16-money-btn.deposit{
   background:linear-gradient(135deg,#0b8350,#27c77e) !important;
@@ -2648,7 +2648,7 @@ html,body{
   color:#086a43 !important;
 }
 .v16-lotto-go{
-  color:#0c7146 !important;
+  color:#b91c1c !important;
 }
 .account-btn,
 .account-btn.light,
@@ -2682,8 +2682,8 @@ html,body{
   margin-top:8px;
   padding:9px 10px;
   border-radius:10px;
-  background:#ecfdf5;
-  color:#166534;
+  background:#fef2f2;
+  color:#991b1b;
   font-size:9px;
   line-height:1.55;
   font-weight:700;
@@ -2695,7 +2695,7 @@ html,body{
 :root{
   --surface:#ffffff;
   --surface-2:#f7faf8;
-  --brand:#0f7d4e;
+  --brand:#b91c1c;
   --brand-2:#22c77b;
   --brand-dark:#04291d;
   --accent:#f4c542;
@@ -2750,8 +2750,8 @@ button:hover{
   min-height:24px;
   padding:0 8px;
   border-radius:999px;
-  background:#ecfdf5;
-  color:#0f7d4e;
+  background:#fef2f2;
+  color:#b91c1c;
   font-size:10px;
   vertical-align:middle;
 }
@@ -2816,8 +2816,8 @@ button:hover{
 }
 .v16-brand-mark{
   border-radius:14px !important;
-  background:linear-gradient(145deg,#ecfdf5,#1fc67a) !important;
-  color:#075c39 !important;
+  background:linear-gradient(145deg,#fef2f2,#1fc67a) !important;
+  color:#450a0a !important;
 }
 .v16-brand-copy strong{
   font-size:20px !important;
@@ -2900,7 +2900,7 @@ button:hover{
 .hero,
 .topbar,
 .admin-hero{
-  background:linear-gradient(140deg,#053524,#0c7146 58%,#18b86f) !important;
+  background:linear-gradient(140deg,#053524,#b91c1c 58%,#ef4444) !important;
   box-shadow:0 16px 36px rgba(7,92,57,.18) !important;
 }
 .hero{
@@ -2929,7 +2929,7 @@ button:hover{
   color:#0f8f5b !important;
 }
 .bet-mode-wrap{
-  background:linear-gradient(180deg,#ecfdf5,#f4f8f5) !important;
+  background:linear-gradient(180deg,#fef2f2,#f4f8f5) !important;
 }
 .bet-mode-tabs{
   border-radius:16px !important;
@@ -2965,8 +2965,8 @@ button:hover{
   color:#fff !important;
 }
 .admin-mini.green{
-  border-color:#bbf7d0 !important;
-  color:#087347 !important;
+  border-color:#fecaca !important;
+  color:#991b1b !important;
 }
 .admin-mini.danger{
   border-color:#fecaca !important;
@@ -3005,7 +3005,7 @@ button:hover{
   color:#263b31 !important;
 }
 .bet-mode-tab.active{
-  background:linear-gradient(135deg,#075c39,#18a96c) !important;
+  background:linear-gradient(135deg,#450a0a,#18a96c) !important;
   box-shadow:0 9px 18px rgba(7,92,57,.18) !important;
 }
 .direct-bet-content{
@@ -3022,8 +3022,8 @@ button:hover{
 }
 .number-count-pill{
   border-color:#bfead1 !important;
-  background:#f0fdf4 !important;
-  color:#087347 !important;
+  background:#fff1f2 !important;
+  color:#991b1b !important;
 }
 .number-entry-input{
   border-color:#d8e5dd !important;
@@ -3041,7 +3041,7 @@ button:hover{
 }
 .bet-number-chip button{
   background:#fff !important;
-  color:#0f7d4e !important;
+  color:#b91c1c !important;
 }
 .bet-number-chip.generated,
 .bet-number-chip.generated.reverse-chip,
@@ -3062,8 +3062,8 @@ button:hover{
 .quick-tool.primary-tool,
 .quick-tool.active{
   border-color:#bfead1 !important;
-  background:#ecfdf5 !important;
-  color:#075c39 !important;
+  background:#fef2f2 !important;
+  color:#450a0a !important;
 }
 .direct-price-input{
   border-color:#d8e5dd !important;
@@ -3075,7 +3075,7 @@ button:hover{
   box-shadow:0 0 0 4px rgba(24,169,108,.12) !important;
 }
 .direct-grand{
-  background:linear-gradient(135deg,#075c39,#0f7d4e) !important;
+  background:linear-gradient(135deg,#450a0a,#b91c1c) !important;
 }
 .submit-credit-note{
   color:#66776f !important;
@@ -3105,32 +3105,33 @@ button:hover{
 }
 
 /* =====================================================
-   V19 — FULL PURPLE THEME
+   V20 — FULL RED THEME
+   Keep deposit receiver account panel purple by inline styles.
 ===================================================== */
 :root{
-  --red:#6d28d9 !important;
-  --red2:#a855f7 !important;
-  --deep:#2e1065 !important;
-  --soft:#f5f3ff !important;
-  --bg:#faf7ff !important;
+  --red:#b91c1c !important;
+  --red2:#ef4444 !important;
+  --deep:#450a0a !important;
+  --soft:#fef2f2 !important;
+  --bg:#fff7f7 !important;
   --card:#ffffff !important;
-  --ink:#22142f !important;
-  --muted:#75667f !important;
-  --line:#e9d5ff !important;
-  --green:#8b5cf6 !important;
+  --ink:#2a1111 !important;
+  --muted:#7f5f5f !important;
+  --line:#fecaca !important;
+  --green:#dc2626 !important;
   --surface:#ffffff !important;
-  --surface-2:#fbf8ff !important;
-  --brand:#6d28d9 !important;
-  --brand-2:#a855f7 !important;
-  --brand-dark:#2e1065 !important;
-  --accent:#f0abfc !important;
+  --surface-2:#fffafa !important;
+  --brand:#b91c1c !important;
+  --brand-2:#ef4444 !important;
+  --brand-dark:#450a0a !important;
+  --accent:#fca5a5 !important;
 }
 body,
 .screen,
 .direct-bet-content,
 .results-body{
-  background:linear-gradient(180deg,#fbf8ff 0%,#f4ecff 100%) !important;
-  color:#22142f !important;
+  background:linear-gradient(180deg,#fffafa 0%,#fee2e2 100%) !important;
+  color:#2a1111 !important;
 }
 .hero,
 .topbar,
@@ -3140,15 +3141,15 @@ body,
 .admin-hero{
   background:
     radial-gradient(circle at 90% 10%,rgba(255,255,255,.22),transparent 34%),
-    linear-gradient(135deg,#2e1065 0%,#6d28d9 55%,#a855f7 100%) !important;
+    linear-gradient(135deg,#450a0a 0%,#b91c1c 55%,#ef4444 100%) !important;
   color:#fff !important;
 }
 .v16-home{
-  background:linear-gradient(180deg,#1e1030 0%,#351263 48%,#160b25 100%) !important;
+  background:linear-gradient(180deg,#250707 0%,#5f1212 48%,#1a0505 100%) !important;
 }
 .v16-brand-mark,
 .login-logo-credit{
-  background:linear-gradient(145deg,#c084fc,#7c3aed) !important;
+  background:linear-gradient(145deg,#f87171,#b91c1c) !important;
   color:#fff !important;
 }
 .v16-action.primary,
@@ -3163,8 +3164,8 @@ body,
 .results-toolbar button,
 .account-btn,
 .v16-logout{
-  background:linear-gradient(135deg,#6d28d9,#a855f7) !important;
-  border-color:#8b5cf6 !important;
+  background:linear-gradient(135deg,#b91c1c,#ef4444) !important;
+  border-color:#dc2626 !important;
   color:#fff !important;
 }
 .v16-action.secondary,
@@ -3178,8 +3179,8 @@ body,
 .admin-mini,
 .admin-mini.green{
   background:#fff !important;
-  border-color:#ddd6fe !important;
-  color:#5b21b6 !important;
+  border-color:#fecaca !important;
+  color:#991b1b !important;
 }
 .auth-tab.active,
 .lotto-subtab.active,
@@ -3195,17 +3196,16 @@ body,
 .sum-positive,
 .status-WIN,
 .lotto-status.on{
-  background:#f5f3ff !important;
-  border-color:#c4b5fd !important;
-  color:#6d28d9 !important;
+  background:#fef2f2 !important;
+  border-color:#fca5a5 !important;
+  color:#b91c1c !important;
 }
 .admin-mini.danger,
-.direct-clear-all,
 .status-CANCELLED,
 .lotto-status.off{
-  background:#faf5ff !important;
-  border-color:#d8b4fe !important;
-  color:#7e22ce !important;
+  background:#fff1f2 !important;
+  border-color:#fecdd3 !important;
+  color:#be123c !important;
 }
 .direct-card,
 .card,
@@ -3224,9 +3224,9 @@ body,
 .admin-table-wrap,
 .rate-editor-card{
   background:#fff !important;
-  border-color:#e9d5ff !important;
-  color:#22142f !important;
-  box-shadow:0 18px 45px rgba(88,28,135,.10) !important;
+  border-color:#fecaca !important;
+  color:#2a1111 !important;
+  box-shadow:0 18px 45px rgba(153,27,27,.10) !important;
 }
 .direct-title,
 .selected-label,
@@ -3238,7 +3238,7 @@ body,
 .summary-title,
 .admin-card h2,
 .v16-lotto-title{
-  color:#22142f !important;
+  color:#2a1111 !important;
 }
 .muted,
 .history-meta,
@@ -3250,41 +3250,39 @@ body,
 .login-field label,
 .v16-wallet-label,
 .v16-user{
-  color:#75667f !important;
+  color:#7f5f5f !important;
 }
 input:focus,
 select:focus,
 textarea:focus,
 .direct-price-input:focus,
 .number-entry-input:focus{
-  border-color:#8b5cf6 !important;
-  box-shadow:0 0 0 4px rgba(139,92,246,.14) !important;
+  border-color:#dc2626 !important;
+  box-shadow:0 0 0 4px rgba(220,38,38,.14) !important;
 }
 .toast{
-  background:#2e1065 !important;
+  background:#450a0a !important;
   color:#fff !important;
 }
 .swal2-popup{
-  border:1px solid #e9d5ff !important;
+  border:1px solid #fecaca !important;
 }
 .swal2-confirm,
 .swal2-styled.swal2-confirm{
-  background:linear-gradient(135deg,#6d28d9,#a855f7) !important;
-  border-color:#8b5cf6 !important;
+  background:linear-gradient(135deg,#b91c1c,#ef4444) !important;
+  border-color:#dc2626 !important;
   color:#fff !important;
 }
 .swal2-cancel,
 .swal2-styled.swal2-cancel{
-  background:#ede9fe !important;
-  color:#4c1d95 !important;
+  background:#fee2e2 !important;
+  color:#991b1b !important;
 }
-body,
-button,
-input,
-select,
-textarea,
-.swal2-popup{
-  font-family:"Kanit","Noto Sans Thai",sans-serif !important;
+.bet-detail-price,
+.result-num.main b,
+.money-card-head b.minus,
+.sum-negative{
+  color:#b91c1c !important;
 }
 
 </style>
@@ -3967,7 +3965,7 @@ function testApi() {
     .then(function(j){
       if (!els.apiState) return;
       els.apiState.textContent = "";
-      els.apiState.style.color = j && j.ok ? "#15803d" : "#b91c1c";
+      els.apiState.style.color = "#b91c1c";
     })
     .catch(function(){
       if (!els.apiState) return;
@@ -4443,14 +4441,14 @@ function openSelfDeposit() {
           '<div style="font-size:11px;margin-top:2px;color:#6d28d9">น.ส. ทิพวรรณ ฮุ่งเมือง</div>' +
         '</div>' +
         '<label style="display:block;font-size:11px;font-weight:800;margin:4px 0 6px">อัปโหลดสลิป</label>' +
-        '<input id="swalDepositSlip" type="file" accept="image/jpeg,image/png,image/gif,image/webp" style="width:100%;padding:12px;border:1px dashed #c4b5fd;border-radius:12px;background:#f5f3ff">' +
+        '<input id="swalDepositSlip" type="file" accept="image/jpeg,image/png,image/gif,image/webp" style="width:100%;padding:12px;border:1px dashed #fca5a5;border-radius:12px;background:#fef2f2">' +
 
         '<div class="deposit-time-hint">ระบบจะอ่านยอดเงินจากสลิป ตรวจบัญชีผู้รับ และตรวจสลิปซ้ำให้อัตโนมัติ</div>' +
       '</div>',
     showCancelButton:true,
     confirmButtonText:"ตรวจสลิป",
     cancelButtonText:"ยกเลิก",
-    confirmButtonColor:"#6d28d9",
+    confirmButtonColor:"#b91c1c",
     focusConfirm:false,
     preConfirm:function(){
       var fileEl = document.getElementById("swalDepositSlip");
@@ -4498,7 +4496,7 @@ function openSelfDeposit() {
               'ยอดที่เติม <b>' + money(r.verifiedAmount) + ' บาท</b>' +
             '</div>',
           confirmButtonText:"ตกลง",
-          confirmButtonColor:"#6d28d9"
+          confirmButtonColor:"#b91c1c"
         });
       })
       .catch(showErrorGlobal)
@@ -4580,8 +4578,8 @@ function showWithdrawInfo() {
     title:"ถอนเงิน",
     html:
       '<div style="text-align:left;font-size:13px;line-height:1.8">' +
-        '<div style="padding:13px;border:1px solid #ddd6fe;border-radius:13px;background:#f5f3ff;color:#4c1d95">' +
-          '<div style="font-size:10px;font-weight:900;margin-bottom:6px;color:#6d28d9">ข้อมูลธนาคารสำหรับถอนเงิน</div>' +
+        '<div style="padding:13px;border:1px solid #fecaca;border-radius:13px;background:#fef2f2;color:#7f1d1d">' +
+          '<div style="font-size:10px;font-weight:900;margin-bottom:6px;color:#b91c1c">ข้อมูลธนาคารสำหรับถอนเงิน</div>' +
           '<div><b>ชื่อบัญชี:</b> ' + escapeHtml(bankAccountName || "-") + '</div>' +
           '<div><b>ธนาคาร:</b> ' + escapeHtml(bankName || "-") + '</div>' +
           '<div><b>เลขบัญชี:</b> ' + escapeHtml(bankAccountNo || "-") + '</div>' +
@@ -4592,7 +4590,7 @@ function showWithdrawInfo() {
     showCancelButton:true,
     cancelButtonText:"ยกเลิก",
     confirmButtonText:"ตกลง",
-    confirmButtonColor:"#6d28d9",
+    confirmButtonColor:"#b91c1c",
     preConfirm:function(){
       var amount = num(document.getElementById("swalWithdrawAmount").value);
       if (!amount || amount <= 0) {
@@ -4617,7 +4615,7 @@ function showWithdrawInfo() {
           title:"ส่งรายการถอนแล้ว",
           html:'<div style="font-size:13px;line-height:1.8">ยอดถอน <b>' + money(r.amount) + ' บาท</b><br>สถานะ <b>รออนุมัติ</b></div>',
           confirmButtonText:"ตกลง",
-          confirmButtonColor:"#6d28d9"
+          confirmButtonColor:"#b91c1c"
         });
       })
       .catch(showErrorGlobal)
@@ -5181,9 +5179,9 @@ function buildConfirmHtml() {
   }
 
   return '<div style="text-align:left">' +
-    '<div style="padding:10px 12px;background:#f5f3ff;border-radius:12px;margin-bottom:10px">' +
+    '<div style="padding:10px 12px;background:#fef2f2;border-radius:12px;margin-bottom:10px">' +
       '<div style="font-size:12px;color:#71717a">' + escapeHtml(state.selectedLotto.name) + '</div>' +
-      '<div style="font-size:24px;font-weight:950;color:#6d28d9;margin-top:2px">' +
+      '<div style="font-size:24px;font-weight:950;color:#b91c1c;margin-top:2px">' +
         money(total) +
       '</div>' +
     '</div>' +
@@ -5728,7 +5726,7 @@ async function showBetDetails(bet, isAdminView) {
       '</div>',
     showDenyButton:!isAdminView && !!bet.canCancel,
     denyButtonText:"ยกเลิกโพย",
-    denyButtonColor:"#0d6f45",
+    denyButtonColor:"#991b1b",
     confirmButtonText:"ปิด",
     confirmButtonColor:"#52525b"
   });
@@ -5741,7 +5739,7 @@ async function showBetDetails(bet, isAdminView) {
       showCancelButton:true,
       confirmButtonText:"ยืนยันยกเลิก",
       cancelButtonText:"ไม่ยกเลิก",
-      confirmButtonColor:"#0d6f45"
+      confirmButtonColor:"#991b1b"
     });
 
     if (!confirmCancel.isConfirmed) return;
@@ -5920,7 +5918,7 @@ async function loadAdminWithdraws() {
 
     els.adminWithdrawTable.querySelectorAll("[data-approve-withdraw]").forEach(function(btn){
       btn.onclick = async function(){
-        var ask = await Swal.fire({icon:"question",title:"อนุมัติรายการถอน?",showCancelButton:true,confirmButtonText:"อนุมัติ",cancelButtonText:"ยกเลิก",confirmButtonColor:"#6d28d9"});
+        var ask = await Swal.fire({icon:"question",title:"อนุมัติรายการถอน?",showCancelButton:true,confirmButtonText:"อนุมัติ",cancelButtonText:"ยกเลิก",confirmButtonColor:"#b91c1c"});
         if (!ask.isConfirmed) return;
         try {
           adminBusy("กำลังอนุมัติ...");
@@ -6063,7 +6061,7 @@ async function loadAdminAllBets() {
       btn.onclick = async function(){
         var bet = state.adminBets.find(function(x){ return String(x.billId) === String(btn.dataset.adminCancel); });
         if (!bet) return;
-        var ask = await Swal.fire({icon:"warning",title:"ยกเลิกโพย " + escapeHtml(bet.username),html:escapeHtml(bet.lottoName) + "<br>ยอดคืน <b>" + money(bet.totalAmount) + "</b>",showCancelButton:true,confirmButtonText:"ยืนยันยกเลิก",cancelButtonText:"ไม่ยกเลิก",confirmButtonColor:"#0d6f45"});
+        var ask = await Swal.fire({icon:"warning",title:"ยกเลิกโพย " + escapeHtml(bet.username),html:escapeHtml(bet.lottoName) + "<br>ยอดคืน <b>" + money(bet.totalAmount) + "</b>",showCancelButton:true,confirmButtonText:"ยืนยันยกเลิก",cancelButtonText:"ไม่ยกเลิก",confirmButtonColor:"#991b1b"});
         if (!ask.isConfirmed) return;
         try{adminBusy("กำลังยกเลิกโพย...");await api("adminCancelBet",state.token,bet.billId);Swal.close();await loadAdminAllBets();await loadAdminDashboard("day");await loadAdminUsers();showToast("ยกเลิกโพยและคืนยอดแล้ว");}catch(e){Swal.close();showAdminError(e);}
       };
