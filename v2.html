@@ -3598,6 +3598,1645 @@ body{
   }
 }
 
+/* =====================================================
+   V23 — REDESIGN: LESS CLEAN, LIGHTER TEXT
+===================================================== */
+:root{
+  --v23-ink:#2f1713;
+  --v23-muted:#80655d;
+  --v23-red:#b72023;
+  --v23-red2:#e34a36;
+  --v23-dark:#3b0a09;
+  --v23-gold:#dcae50;
+  --v23-panel:#fffaf7;
+  --v23-panel2:#fff0e9;
+  --v23-line:#ead2c6;
+  --v23-shadow:0 16px 34px rgba(91,18,12,.12);
+}
+
+html,body{
+  background:
+    linear-gradient(90deg,rgba(101,17,15,.035) 1px,transparent 1px),
+    linear-gradient(180deg,#fff8f5 0%,#ffece5 100%) !important;
+  background-size:18px 18px,auto !important;
+  color:var(--v23-ink) !important;
+  font-weight:400 !important;
+}
+body,input,textarea,select,button,
+.swal2-popup,.swal2-title,.swal2-html-container{
+  font-weight:400 !important;
+  letter-spacing:0 !important;
+}
+h1,h2,h3,strong,b,.hero h1,.admin-head-row h1,.login-card-credit h1,
+.direct-title,.selected-name,.lotto-name,.v16-brand-copy strong,
+.v16-wallet-balance,.v16-lotto-title,.card-title,.groups-title,.group-label{
+  font-weight:500 !important;
+  letter-spacing:0 !important;
+}
+button,.login-submit,.auth-tab,.account-btn,.admin-btn,.admin-tab,.admin-mini,
+.summary-preset,.quick-tool,.direct-submit,.direct-clear-all,.clear-numbers,
+.bet-mode-tab,.v16-money-btn,.v16-shortcut,.v16-logout,.v16-lotto-go,.status-pill{
+  font-weight:450 !important;
+}
+small,label,.eyebrow,.login-field label,.v16-section-title,.v16-brand-copy small,
+.v16-wallet-label,.v16-wallet-sub,.v16-lotto-desc,.lotto-meta,.lotto-date,
+.selected-sub,.history-meta,.history-raw,.money-note,.result-date,
+.submit-credit-note,.admin-muted,.admin-table,.summary-table{
+  font-weight:350 !important;
+}
+
+.app{max-width:760px !important;}
+
+#loginScreen{
+  padding:20px !important;
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px),
+    linear-gradient(180deg,#310807 0%,#7a1711 52%,#e55238 100%) !important;
+  background-size:22px 22px,auto !important;
+}
+.login-card-credit{
+  position:relative !important;
+  overflow:hidden !important;
+  width:min(470px,100%) !important;
+  border-radius:18px !important;
+  padding:24px !important;
+  background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,246,241,.97)) !important;
+  color:var(--v23-ink) !important;
+  border:1px solid rgba(255,236,222,.92) !important;
+  box-shadow:0 28px 70px rgba(30,4,3,.36) !important;
+}
+.login-card-credit:before{
+  content:"";
+  position:absolute;
+  inset:0 0 auto 0;
+  height:8px;
+  background:linear-gradient(90deg,var(--v23-gold),var(--v23-red2),var(--v23-dark));
+}
+.login-logo-credit{
+  width:52px !important;
+  height:52px !important;
+  border-radius:12px !important;
+  background:#2f1713 !important;
+  color:#f5c76c !important;
+  border:1px solid rgba(220,174,80,.42) !important;
+  box-shadow:none !important;
+}
+.login-card-credit h1,.login-title-inline{
+  color:var(--v23-ink) !important;
+  text-shadow:none !important;
+}
+.auth-tabs{
+  padding:4px !important;
+  border-radius:12px !important;
+  background:#f2dfd4 !important;
+  border:1px solid var(--v23-line) !important;
+  box-shadow:none !important;
+}
+.auth-tab{min-height:42px !important;border-radius:9px !important;color:#6d3730 !important;}
+.auth-tab.active{
+  background:var(--v23-panel) !important;
+  color:var(--v23-dark) !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 8px 18px rgba(91,18,12,.08) !important;
+}
+
+.v16-home-shell{
+  min-height:100svh !important;
+  padding:calc(18px + env(safe-area-inset-top)) 14px calc(34px + env(safe-area-inset-bottom)) !important;
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px),
+    linear-gradient(180deg,#300707 0%,#6e1511 190px,#f6ded2 190px,#fff4ef 100%) !important;
+  background-size:20px 20px,auto !important;
+}
+.v16-home{max-width:680px !important;background:transparent !important;}
+.v16-brand-mark{
+  width:46px !important;
+  height:46px !important;
+  border-radius:11px !important;
+  background:#fff7ef !important;
+  color:var(--v23-dark) !important;
+  border:1px solid rgba(255,255,255,.75) !important;
+  box-shadow:0 12px 22px rgba(32,5,4,.24) !important;
+}
+.v16-brand-copy strong{color:#fffaf7 !important;font-size:20px !important;line-height:1.15 !important;}
+.v16-brand-copy small{color:rgba(255,250,247,.68) !important;font-size:10px !important;}
+.v16-logout,.home-nav-inline button,.bet-home-btn,.account-btn{
+  border:1px solid rgba(255,255,255,.22) !important;
+  background:rgba(49,8,7,.30) !important;
+  color:#fff7ef !important;
+  box-shadow:none !important;
+}
+.v16-wallet{
+  min-height:184px !important;
+  padding:22px !important;
+  border-radius:18px !important;
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.075) 1px,transparent 1px),
+    linear-gradient(135deg,#3b0a09 0%,#8b1d16 54%,#d54a31 100%) !important;
+  background-size:18px 18px,auto !important;
+  border:1px solid rgba(255,231,214,.34) !important;
+  box-shadow:0 22px 48px rgba(80,15,10,.28),inset 0 1px 0 rgba(255,255,255,.55) !important;
+}
+.v16-wallet:after{
+  display:block !important;
+  width:100%;
+  height:1px;
+  right:0;
+  left:0;
+  bottom:64px;
+  border-radius:0;
+  background:rgba(255,255,255,.16);
+}
+.v16-wallet-balance{margin-top:18px !important;font-size:clamp(38px,8vw,50px) !important;color:#fffaf7 !important;}
+.v16-wallet-balance span{font-weight:400 !important;color:#f2c678 !important;}
+.v16-wallet-label,.v16-wallet-sub{color:rgba(255,250,247,.72) !important;}
+.v16-wallet-user{
+  border-radius:8px !important;
+  border:1px solid rgba(255,255,255,.15) !important;
+  background:rgba(0,0,0,.18) !important;
+  color:#fff8f2 !important;
+}
+.v16-money-btn{
+  min-height:60px !important;
+  border-radius:13px !important;
+  font-size:16px !important;
+  box-shadow:var(--v23-shadow) !important;
+}
+.v16-money-btn.deposit{background:linear-gradient(135deg,var(--v23-dark),var(--v23-red2)) !important;color:#fffaf7 !important;}
+.v16-money-btn.withdraw{
+  background:#fffaf7 !important;
+  color:var(--v23-dark) !important;
+  border:1px solid var(--v23-line) !important;
+}
+.v16-section-title{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin:24px 0 10px !important;
+  color:#5d332b !important;
+  font-size:12px !important;
+}
+.v16-section-title:before{
+  content:"";
+  width:24px;
+  height:1px;
+  background:var(--v23-gold);
+}
+.v16-lotto-entry{
+  position:relative !important;
+  overflow:hidden !important;
+  padding:18px !important;
+  border-radius:16px !important;
+  color:var(--v23-ink) !important;
+  background:
+    linear-gradient(90deg,rgba(101,17,15,.035) 1px,transparent 1px),
+    linear-gradient(180deg,#fffdfb,#fff0e9) !important;
+  background-size:18px 18px,auto !important;
+  border:1px solid var(--v23-line) !important;
+  box-shadow:var(--v23-shadow),inset 0 1px 0 rgba(255,255,255,.55) !important;
+}
+.v16-lotto-entry:before{
+  content:"";
+  position:absolute;
+  left:0;top:0;bottom:0;width:5px;
+  background:linear-gradient(180deg,var(--v23-gold),var(--v23-red2));
+}
+.v16-lotto-badge{
+  border-radius:7px !important;
+  background:#2f1713 !important;
+  color:#f6c86d !important;
+  border:0 !important;
+}
+.v16-lotto-title{color:var(--v23-ink) !important;font-size:29px !important;}
+.v16-lotto-desc{color:var(--v23-muted) !important;}
+.v16-lotto-ball{
+  border-radius:14px !important;
+  background:#f6dfb1 !important;
+  color:#6d241b !important;
+  box-shadow:inset 0 0 0 1px rgba(101,17,15,.10) !important;
+}
+.v16-lotto-go{
+  min-height:50px !important;
+  border-radius:11px !important;
+  background:#2f1713 !important;
+  color:#fffaf7 !important;
+}
+.v16-shortcut{
+  min-height:88px !important;
+  border-radius:13px !important;
+  border:1px solid var(--v23-line) !important;
+  background:linear-gradient(180deg,#fffdfb,#fff5ef) !important;
+  color:#3d201a !important;
+  box-shadow:0 10px 22px rgba(91,18,12,.08) !important;
+}
+.v16-shortcut-icon,.v16-money-btn.withdraw .v16-money-icon{
+  border-radius:9px !important;
+  background:#f7e5da !important;
+  color:var(--v23-dark) !important;
+}
+
+.hero,.topbar,.admin-hero{
+  border-radius:0 !important;
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px),
+    linear-gradient(135deg,#3b0a09 0%,#8b1d16 58%,#d54a31 100%) !important;
+  background-size:18px 18px,auto !important;
+  box-shadow:0 14px 32px rgba(80,15,10,.22) !important;
+}
+.screen,.lotto-body,.history-body,.results-body,.summary-page,.admin-screen,
+.admin-content,.direct-bet-content,.bet-mode-wrap{
+  background:
+    linear-gradient(90deg,rgba(101,17,15,.025) 1px,transparent 1px),
+    linear-gradient(180deg,#fff8f5,#ffede5) !important;
+  background-size:18px 18px,auto !important;
+}
+.lotto,.card,.group,.history-card,.money-card,.summary-filter-card,.summary-table-card,
+.summary-stat,.admin-card,.direct-card,.result-card,.admin-table-wrap,.rate-editor-card,
+.bet-mode-tabs,.price-section,.direct-bottom,.bottom,.dialog,.confirm-card{
+  border:1px solid var(--v23-line) !important;
+  border-radius:13px !important;
+  background:linear-gradient(180deg,#fffdfb,#fff7f2) !important;
+  box-shadow:0 12px 28px rgba(91,18,12,.08),inset 0 1px 0 rgba(255,255,255,.55) !important;
+}
+.lotto{min-height:92px !important;border-left:5px solid var(--v23-gold) !important;}
+.lotto-name,.direct-title,.selected-label,.price-section-title,.summary-title,
+.admin-card h2,.admin-card h3{color:var(--v23-ink) !important;}
+.lotto-meta,.lotto-date,.card-help,.direct-help,.history-meta,.result-date,
+.money-note,.admin-muted,.submit-credit-note{color:var(--v23-muted) !important;}
+.countdown,.group-total b,.grand strong,.direct-grand strong,.result-num.main b,
+.money-card-head b.plus,.sum-positive{color:var(--v23-red) !important;}
+
+.login-field input,.login-field select,.history-toolbar input,.history-toolbar select,
+.results-toolbar input,.summary-filter-grid input,.summary-filter-grid select,
+.admin-field input,.admin-field select,.rate-input-grid input,.number-entry-input,
+.direct-price-input,.price-input,.float-price-input{
+  border:1px solid var(--v23-line) !important;
+  border-radius:11px !important;
+  background:#fffdfb !important;
+  color:var(--v23-ink) !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55) !important;
+}
+.login-submit,.primary,.send,.confirm,.direct-submit,.summary-filter-grid button,
+.results-toolbar button,.admin-btn.red,.admin-btn.dark,.admin-btn.green,
+.swal2-confirm,.swal2-styled.swal2-confirm{
+  background:linear-gradient(135deg,var(--v23-dark),var(--v23-red2)) !important;
+  color:#fffaf7 !important;
+  border:1px solid rgba(255,255,255,.08) !important;
+  box-shadow:0 12px 26px rgba(101,17,15,.22) !important;
+}
+.account-credit,.credit-mini{
+  border-radius:10px !important;
+  border:1px solid rgba(255,255,255,.20) !important;
+  background:rgba(0,0,0,.18) !important;
+}
+.account-btn.light,.direct-back-bottom,.direct-clear-all,.clear-numbers,.quick-tool,
+.secondary,.cancel,.admin-btn.soft,.summary-preset,.lotto-subtab,.admin-mini{
+  border:1px solid var(--v23-line) !important;
+  background:#fffaf7 !important;
+  color:var(--v23-dark) !important;
+  box-shadow:none !important;
+}
+.bet-mode-tab,.admin-tab{background:transparent !important;color:#5b342e !important;}
+.bet-mode-tab.active,.admin-tab.active,.summary-preset.active,.lotto-subtab.active,
+.quick-tool.active,.quick-tool.primary-tool{
+  background:#2f1713 !important;
+  color:#fffaf7 !important;
+  border-color:#2f1713 !important;
+  box-shadow:0 10px 20px rgba(47,23,19,.16) !important;
+}
+.number-chip-box{border-style:solid !important;}
+.bet-number-chip,.chip,.number-count-pill,.status-WIN,.status-WAITING,
+.status-CANCELLED,.lotto-status.on,.lotto-status.off{
+  border:1px solid #e8c3b2 !important;
+  background:#fff0e9 !important;
+  color:var(--v23-dark) !important;
+  font-weight:450 !important;
+}
+.bet-summary-item,.result-num,.admin-stat{
+  background:#fff3ed !important;
+  border:1px solid rgba(234,210,198,.72) !important;
+}
+.bet-summary-item.primary-summary,.result-num.main,.admin-stat.net{background:#f4ead2 !important;}
+.direct-grand,.grand{
+  border-radius:11px !important;
+  background:#2f1713 !important;
+  color:#fffaf7 !important;
+}
+.direct-submit:not(:disabled){animation:none !important;}
+.direct-bottom,.bottom{
+  background:rgba(255,250,247,.96) !important;
+  backdrop-filter:blur(16px) !important;
+}
+.empty{
+  border-color:var(--v23-line) !important;
+  background:#fffaf7 !important;
+  color:#9a7d73 !important;
+  font-weight:400 !important;
+}
+.toast{background:#2f1713 !important;color:#fffaf7 !important;font-weight:400 !important;}
+
+@media (min-width:600px){
+  body{padding-top:0 !important;}
+  .app{border:0 !important;border-radius:0 !important;}
+}
+@media(max-width:480px){
+  .v16-home-shell{
+    padding-left:12px !important;
+    padding-right:12px !important;
+    background:
+      linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px),
+      linear-gradient(180deg,#300707 0%,#6e1511 162px,#f6ded2 162px,#fff4ef 100%) !important;
+    background-size:20px 20px,auto !important;
+  }
+  .v16-wallet{min-height:176px !important;padding:19px !important;}
+  .v16-wallet-balance{font-size:39px !important;}
+  .v16-shortcuts{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
+  .v16-shortcut{min-height:80px !important;}
+}
+/* =====================================================
+   V24 — CONTRAST FIX
+   อ่านชัดขึ้น แต่ยังไม่ใช้ตัวหนาหนักแบบเดิม
+===================================================== */
+html,
+body,
+body *{
+  text-rendering:optimizeLegibility;
+}
+
+body,
+input,
+textarea,
+select,
+button{
+  color:#26110e !important;
+  font-weight:400 !important;
+}
+
+h1,h2,h3,strong,b,
+.login-card-credit h1,
+.hero h1,
+.admin-head-row h1,
+.direct-title,
+.selected-name,
+.lotto-name,
+.v16-brand-copy strong,
+.v16-wallet-balance,
+.v16-lotto-title,
+.card-title,
+.group-label,
+.summary-title,
+.admin-card h2,
+.admin-card h3{
+  font-weight:500 !important;
+  color:#24100d !important;
+}
+
+button,
+.login-submit,
+.auth-tab,
+.account-btn,
+.admin-btn,
+.admin-tab,
+.admin-mini,
+.summary-preset,
+.quick-tool,
+.direct-submit,
+.direct-clear-all,
+.clear-numbers,
+.bet-mode-tab,
+.v16-money-btn,
+.v16-shortcut,
+.v16-logout,
+.v16-lotto-go,
+.status-pill{
+  font-weight:500 !important;
+}
+
+small,
+label,
+.eyebrow,
+.login-field label,
+.v16-section-title,
+.v16-brand-copy small,
+.v16-wallet-label,
+.v16-wallet-sub,
+.v16-lotto-desc,
+.lotto-meta,
+.lotto-date,
+.selected-sub,
+.history-meta,
+.history-raw,
+.money-note,
+.result-date,
+.submit-credit-note,
+.admin-muted,
+.card-help,
+.direct-help,
+.admin-table,
+.admin-table th,
+.admin-table td,
+.summary-table,
+.summary-table th,
+.summary-table td{
+  font-weight:400 !important;
+  color:#5f463f !important;
+}
+
+.login-card-credit,
+.login-card-credit *,
+.direct-card,
+.direct-card *,
+.lotto,
+.lotto *,
+.history-card,
+.history-card *,
+.money-card,
+.money-card *,
+.result-card,
+.result-card *,
+.summary-filter-card,
+.summary-filter-card *,
+.summary-table-card,
+.summary-table-card *,
+.admin-card,
+.admin-card *,
+.dialog,
+.dialog *{
+  color:#26110e !important;
+}
+
+.login-field label,
+.card-help,
+.direct-help,
+.lotto-meta,
+.lotto-date,
+.history-meta,
+.history-raw,
+.money-note,
+.result-date,
+.submit-credit-note,
+.admin-muted,
+.dialog-sub,
+.source-note{
+  color:#60463f !important;
+}
+
+.hero,
+.hero *,
+.topbar,
+.topbar *,
+.admin-hero,
+.admin-hero *,
+.v16-wallet,
+.v16-wallet *,
+.v16-brand,
+.v16-brand *,
+.v16-money-btn.deposit,
+.v16-money-btn.deposit *,
+.v16-lotto-go,
+.v16-lotto-go *,
+.direct-grand,
+.direct-grand *,
+.grand,
+.grand *,
+.login-submit,
+.login-submit *,
+.direct-submit,
+.direct-submit *,
+.confirm,
+.confirm *,
+.primary,
+.primary *,
+.send,
+.send *,
+.results-toolbar button,
+.results-toolbar button *,
+.summary-filter-grid button,
+.summary-filter-grid button *,
+.admin-btn.red,
+.admin-btn.red *,
+.admin-btn.dark,
+.admin-btn.dark *,
+.admin-btn.green,
+.admin-btn.green *,
+.bet-mode-tab.active,
+.bet-mode-tab.active *,
+.admin-tab.active,
+.admin-tab.active *,
+.quick-tool.active,
+.quick-tool.active *,
+.quick-tool.primary-tool,
+.quick-tool.primary-tool *{
+  color:#fffaf4 !important;
+}
+
+.v16-brand-copy small,
+.v16-wallet-label,
+.v16-wallet-sub,
+.selected-sub,
+.hero p,
+.eyebrow{
+  color:rgba(255,250,244,.86) !important;
+}
+
+.v16-wallet-balance,
+.v16-wallet-balance b,
+.grand strong,
+.direct-grand strong{
+  color:#fffaf4 !important;
+}
+
+.v16-wallet-balance span{
+  color:#f7cf7b !important;
+}
+
+.account-credit small,
+.credit-mini small{
+  color:rgba(255,250,244,.78) !important;
+}
+
+.account-credit strong,
+.credit-mini b{
+  color:#fffaf4 !important;
+}
+
+.account-btn.light,
+.direct-back-bottom,
+.direct-clear-all,
+.clear-numbers,
+.quick-tool,
+.secondary,
+.cancel,
+.admin-btn.soft,
+.summary-preset,
+.lotto-subtab,
+.admin-mini,
+.v16-money-btn.withdraw,
+.v16-money-btn.withdraw *,
+.v16-shortcut,
+.v16-shortcut *{
+  color:#491913 !important;
+}
+
+input::placeholder,
+textarea::placeholder{
+  color:#9a8178 !important;
+  opacity:1 !important;
+}
+
+.countdown,
+.group-total b,
+.result-num.main b,
+.money-card-head b.plus,
+.sum-positive,
+.bet-detail-price{
+  color:#a9181b !important;
+}
+
+.error{
+  color:#9f1518 !important;
+  font-weight:500 !important;
+}
+/* =====================================================
+   V25 — PREMIUM WINE / GOLD EXPERIENCE
+===================================================== */
+:root{
+  --premium-night:#190303;
+  --premium-wine:#4c0b0b;
+  --premium-red:#9f1d18;
+  --premium-red2:#d94d36;
+  --premium-gold:#d8b46a;
+  --premium-gold2:#f3dc9c;
+  --premium-cream:#fff8ee;
+  --premium-soft:#f7eadc;
+  --premium-line:rgba(130,72,48,.24);
+  --premium-text:#24100c;
+  --premium-muted:#6c5148;
+  --premium-shadow:0 24px 58px rgba(58,10,6,.18);
+}
+
+html,
+body{
+  background:
+    radial-gradient(circle at 12% 0%,rgba(216,180,106,.20),transparent 30%),
+    radial-gradient(circle at 92% 10%,rgba(159,29,24,.16),transparent 28%),
+    linear-gradient(180deg,#fff9f0 0%,#f5e1d0 100%) !important;
+  color:var(--premium-text) !important;
+}
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  opacity:.42;
+  background:
+    linear-gradient(90deg,rgba(94,44,28,.05) 1px,transparent 1px),
+    linear-gradient(0deg,rgba(94,44,28,.035) 1px,transparent 1px);
+  background-size:24px 24px;
+}
+
+h1,h2,h3,strong,b,
+.login-card-credit h1,
+.hero h1,
+.admin-head-row h1,
+.direct-title,
+.selected-name,
+.lotto-name,
+.v16-brand-copy strong,
+.v16-wallet-balance,
+.v16-lotto-title{
+  font-weight:520 !important;
+}
+
+.app{
+  max-width:780px !important;
+}
+
+#loginScreen{
+  background:
+    radial-gradient(circle at 18% 14%,rgba(243,220,156,.20),transparent 28%),
+    radial-gradient(circle at 86% 12%,rgba(255,255,255,.14),transparent 26%),
+    linear-gradient(150deg,#160202 0%,#4c0b0b 48%,#b73527 100%) !important;
+}
+
+.login-card-credit{
+  width:min(480px,100%) !important;
+  padding:28px !important;
+  border-radius:22px !important;
+  background:
+    linear-gradient(145deg,rgba(255,252,247,.98),rgba(246,226,208,.96)) !important;
+  border:1px solid rgba(255,246,220,.75) !important;
+  box-shadow:
+    0 34px 90px rgba(12,2,1,.42),
+    inset 0 1px 0 rgba(255,255,255,.85) !important;
+}
+
+.login-card-credit:before{
+  height:4px !important;
+  background:linear-gradient(90deg,transparent,var(--premium-gold),#fff2ba,var(--premium-gold),transparent) !important;
+}
+
+.login-logo-credit{
+  width:56px !important;
+  height:56px !important;
+  border-radius:16px !important;
+  background:
+    linear-gradient(145deg,#2b0806,#7b1511) !important;
+  color:var(--premium-gold2) !important;
+  border:1px solid rgba(243,220,156,.46) !important;
+  box-shadow:0 16px 32px rgba(76,11,11,.24),inset 0 1px 0 rgba(255,255,255,.18) !important;
+}
+
+.auth-tabs{
+  background:rgba(76,11,11,.08) !important;
+  border-color:rgba(130,72,48,.20) !important;
+}
+
+.auth-tab.active{
+  background:linear-gradient(180deg,#fffdf8,#f7eadc) !important;
+  color:#4c0b0b !important;
+  box-shadow:0 10px 24px rgba(76,11,11,.10),inset 0 1px 0 rgba(255,255,255,.86) !important;
+}
+
+.v16-home-shell{
+  background:
+    radial-gradient(circle at 18% 8%,rgba(243,220,156,.20),transparent 24%),
+    radial-gradient(circle at 92% 0%,rgba(255,255,255,.13),transparent 24%),
+    linear-gradient(180deg,#160202 0%,#4c0b0b 214px,#f4dcc7 214px,#fff7ee 100%) !important;
+}
+
+.v16-home-head{
+  margin-bottom:18px !important;
+}
+
+.v16-brand-mark{
+  border-radius:15px !important;
+  background:linear-gradient(145deg,#fff6d8,#d8b46a) !important;
+  color:#4c0b0b !important;
+  border:1px solid rgba(255,255,255,.66) !important;
+  box-shadow:0 18px 34px rgba(12,2,1,.30),inset 0 1px 0 rgba(255,255,255,.72) !important;
+}
+
+.v16-brand-copy strong{
+  color:#fff8ee !important;
+  text-shadow:0 2px 18px rgba(0,0,0,.34) !important;
+}
+
+.v16-brand-copy small{
+  color:rgba(255,248,238,.78) !important;
+}
+
+.v16-logout,
+.home-nav-inline button,
+.bet-home-btn{
+  border-color:rgba(243,220,156,.28) !important;
+  background:rgba(255,248,238,.10) !important;
+  color:#fff8ee !important;
+  backdrop-filter:blur(14px);
+}
+
+.v16-wallet{
+  min-height:198px !important;
+  padding:24px !important;
+  border-radius:24px !important;
+  background:
+    linear-gradient(120deg,rgba(255,255,255,.11),transparent 34%),
+    radial-gradient(circle at 90% 8%,rgba(243,220,156,.20),transparent 32%),
+    linear-gradient(135deg,#250504 0%,#62100d 48%,#b73527 100%) !important;
+  border:1px solid rgba(243,220,156,.30) !important;
+  box-shadow:
+    0 30px 70px rgba(76,11,11,.30),
+    inset 0 1px 0 rgba(255,255,255,.20) !important;
+}
+
+.v16-wallet:before{
+  content:"";
+  position:absolute;
+  inset:12px;
+  border:1px solid rgba(243,220,156,.18);
+  border-radius:18px;
+  pointer-events:none;
+}
+
+.v16-wallet:after{
+  bottom:68px !important;
+  background:linear-gradient(90deg,transparent,rgba(243,220,156,.30),transparent) !important;
+}
+
+.v16-wallet-label,
+.v16-wallet-sub{
+  color:rgba(255,248,238,.80) !important;
+}
+
+.v16-wallet-user{
+  border-color:rgba(243,220,156,.22) !important;
+  background:rgba(25,3,3,.28) !important;
+}
+
+.v16-wallet-balance,
+.v16-wallet-balance b{
+  color:#fff8ee !important;
+  text-shadow:0 8px 30px rgba(0,0,0,.28);
+}
+
+.v16-wallet-balance span{
+  color:var(--premium-gold2) !important;
+}
+
+.v16-money-actions{
+  margin-top:14px !important;
+  gap:12px !important;
+}
+
+.v16-money-btn{
+  min-height:64px !important;
+  border-radius:18px !important;
+  box-shadow:0 18px 38px rgba(76,11,11,.18),inset 0 1px 0 rgba(255,255,255,.30) !important;
+}
+
+.v16-money-btn.deposit{
+  background:linear-gradient(135deg,#4c0b0b,#b73527 62%,#d8b46a) !important;
+  border:1px solid rgba(243,220,156,.26) !important;
+}
+
+.v16-money-btn.withdraw{
+  background:linear-gradient(180deg,#fffdf8,#f6e5d4) !important;
+  border:1px solid rgba(130,72,48,.18) !important;
+  color:#4c0b0b !important;
+}
+
+.v16-section-title{
+  margin-top:28px !important;
+  color:#4e2a21 !important;
+}
+
+.v16-section-title:before{
+  width:32px !important;
+  background:linear-gradient(90deg,var(--premium-gold),transparent) !important;
+}
+
+.v16-lotto-entry{
+  padding:22px !important;
+  border-radius:22px !important;
+  background:
+    linear-gradient(120deg,rgba(255,255,255,.72),rgba(255,255,255,0) 38%),
+    linear-gradient(180deg,#fffdf8,#f5e4d2) !important;
+  border:1px solid rgba(130,72,48,.20) !important;
+  box-shadow:var(--premium-shadow),inset 0 1px 0 rgba(255,255,255,.86) !important;
+}
+
+.v16-lotto-entry:before{
+  width:6px !important;
+  background:linear-gradient(180deg,#fff0b8,#d8b46a,#a0211c) !important;
+}
+
+.v16-lotto-badge{
+  background:linear-gradient(135deg,#27100c,#5c1712) !important;
+  color:#f3dc9c !important;
+  border:1px solid rgba(243,220,156,.20) !important;
+}
+
+.v16-lotto-ball{
+  border-radius:19px !important;
+  background:linear-gradient(145deg,#fff3bd,#d8b46a) !important;
+  color:#4c0b0b !important;
+  box-shadow:0 16px 28px rgba(76,11,11,.14),inset 0 1px 0 rgba(255,255,255,.72) !important;
+}
+
+.v16-lotto-go{
+  background:linear-gradient(135deg,#2a0806,#65110f) !important;
+  color:#fff8ee !important;
+  border:1px solid rgba(243,220,156,.18) !important;
+}
+
+.v16-shortcut{
+  min-height:94px !important;
+  border-radius:18px !important;
+  background:linear-gradient(180deg,#fffdf8,#f8e9d9) !important;
+  border:1px solid rgba(130,72,48,.18) !important;
+  box-shadow:0 14px 32px rgba(76,11,11,.10),inset 0 1px 0 rgba(255,255,255,.86) !important;
+}
+
+.v16-shortcut-icon,
+.v16-money-btn.withdraw .v16-money-icon{
+  background:linear-gradient(145deg,#fff4c9,#e2bd70) !important;
+  color:#4c0b0b !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.76) !important;
+}
+
+.hero,
+.topbar,
+.admin-hero{
+  background:
+    radial-gradient(circle at 12% 12%,rgba(243,220,156,.18),transparent 26%),
+    linear-gradient(135deg,#1a0303 0%,#5d0f0d 58%,#b73527 100%) !important;
+  border-bottom:1px solid rgba(243,220,156,.22) !important;
+  box-shadow:0 22px 48px rgba(76,11,11,.25) !important;
+}
+
+.screen,
+.lotto-body,
+.history-body,
+.results-body,
+.summary-page,
+.admin-screen,
+.admin-content,
+.direct-bet-content,
+.bet-mode-wrap{
+  background:
+    radial-gradient(circle at 8% 0%,rgba(216,180,106,.13),transparent 24%),
+    linear-gradient(180deg,#fff8ef,#f4dfce) !important;
+}
+
+.lotto,
+.card,
+.group,
+.history-card,
+.money-card,
+.summary-filter-card,
+.summary-table-card,
+.summary-stat,
+.admin-card,
+.direct-card,
+.result-card,
+.admin-table-wrap,
+.rate-editor-card,
+.bet-mode-tabs,
+.price-section,
+.direct-bottom,
+.bottom,
+.dialog,
+.confirm-card{
+  border:1px solid rgba(130,72,48,.18) !important;
+  border-radius:18px !important;
+  background:linear-gradient(180deg,#fffdf8,#f8eadb) !important;
+  box-shadow:0 18px 42px rgba(76,11,11,.11),inset 0 1px 0 rgba(255,255,255,.88) !important;
+}
+
+.lotto{
+  border-left:6px solid var(--premium-gold) !important;
+}
+
+.bet-mode-tab.active,
+.admin-tab.active,
+.summary-preset.active,
+.lotto-subtab.active,
+.quick-tool.active,
+.quick-tool.primary-tool{
+  background:linear-gradient(135deg,#2a0806,#65110f) !important;
+  color:#fff8ee !important;
+  border-color:rgba(243,220,156,.24) !important;
+}
+
+.login-submit,
+.primary,
+.send,
+.confirm,
+.direct-submit,
+.summary-filter-grid button,
+.results-toolbar button,
+.admin-btn.red,
+.admin-btn.dark,
+.admin-btn.green,
+.swal2-confirm,
+.swal2-styled.swal2-confirm{
+  background:linear-gradient(135deg,#4c0b0b,#b73527 72%,#d8b46a) !important;
+  color:#fff8ee !important;
+  border-color:rgba(243,220,156,.22) !important;
+}
+
+.direct-grand,
+.grand{
+  background:linear-gradient(135deg,#1a0303,#4c0b0b) !important;
+  border:1px solid rgba(243,220,156,.24) !important;
+}
+
+.account-credit,
+.credit-mini{
+  border-color:rgba(243,220,156,.24) !important;
+  background:rgba(25,3,3,.28) !important;
+}
+
+@media(max-width:480px){
+  .v16-home-shell{
+    background:
+      radial-gradient(circle at 18% 8%,rgba(243,220,156,.17),transparent 24%),
+      linear-gradient(180deg,#160202 0%,#4c0b0b 182px,#f4dcc7 182px,#fff7ee 100%) !important;
+  }
+  .v16-wallet{
+    min-height:188px !important;
+    padding:21px !important;
+  }
+  .v16-lotto-entry{
+    padding:20px !important;
+  }
+}
+/* =====================================================
+   V26 — PREMIUM RED FOCUS
+   โทนแดงพรีเมี่ยมชัดขึ้น ทองเป็นแค่ accent
+===================================================== */
+:root{
+  --pr-black:#130202;
+  --pr-burgundy:#2a0505;
+  --pr-wine:#5a0b0b;
+  --pr-red:#a71919;
+  --pr-red-hot:#d9362c;
+  --pr-red-soft:#fff0ec;
+  --pr-card:#fff8f5;
+  --pr-card2:#ffe8df;
+  --pr-line:rgba(120,24,18,.20);
+  --pr-gold:#cfa65a;
+  --pr-text:#250d0b;
+  --pr-muted:#684640;
+  --pr-shadow:0 22px 54px rgba(92,11,11,.18);
+}
+
+html,
+body{
+  background:
+    radial-gradient(circle at 18% 0%,rgba(217,54,44,.18),transparent 26%),
+    radial-gradient(circle at 92% 8%,rgba(90,11,11,.15),transparent 28%),
+    linear-gradient(180deg,#fff7f4 0%,#ffe3dc 100%) !important;
+  color:var(--pr-text) !important;
+}
+
+body:before{
+  opacity:.34 !important;
+  background:
+    linear-gradient(90deg,rgba(90,11,11,.055) 1px,transparent 1px),
+    linear-gradient(0deg,rgba(90,11,11,.035) 1px,transparent 1px) !important;
+  background-size:22px 22px !important;
+}
+
+#loginScreen{
+  background:
+    radial-gradient(circle at 18% 12%,rgba(255,255,255,.12),transparent 24%),
+    radial-gradient(circle at 86% 10%,rgba(217,54,44,.28),transparent 30%),
+    linear-gradient(145deg,#130202 0%,#4a0909 46%,#b51e1c 100%) !important;
+}
+
+.login-card-credit{
+  background:
+    linear-gradient(145deg,rgba(255,250,248,.98),rgba(255,229,221,.96)) !important;
+  border:1px solid rgba(255,196,184,.64) !important;
+  box-shadow:0 34px 90px rgba(19,2,2,.42),inset 0 1px 0 rgba(255,255,255,.85) !important;
+}
+
+.login-card-credit:before{
+  background:linear-gradient(90deg,transparent,#7b0f0f,#e24637,#7b0f0f,transparent) !important;
+}
+
+.login-logo-credit{
+  background:linear-gradient(145deg,#170202,#751010 58%,#c52b24) !important;
+  color:#fff5ef !important;
+  border-color:rgba(255,205,196,.28) !important;
+}
+
+.v16-home-shell{
+  background:
+    radial-gradient(circle at 18% 7%,rgba(255,255,255,.10),transparent 23%),
+    radial-gradient(circle at 92% 0%,rgba(217,54,44,.25),transparent 24%),
+    linear-gradient(180deg,#130202 0%,#4a0909 218px,#ffd9cf 218px,#fff5f0 100%) !important;
+}
+
+.v16-brand-mark{
+  background:linear-gradient(145deg,#fff3ee,#ffb0a4) !important;
+  color:#650b0b !important;
+  box-shadow:0 18px 34px rgba(19,2,2,.30),inset 0 1px 0 rgba(255,255,255,.72) !important;
+}
+
+.v16-wallet{
+  background:
+    linear-gradient(120deg,rgba(255,255,255,.12),transparent 34%),
+    radial-gradient(circle at 90% 8%,rgba(255,151,137,.25),transparent 32%),
+    linear-gradient(135deg,#170202 0%,#5a0b0b 48%,#b51e1c 100%) !important;
+  border:1px solid rgba(255,185,174,.30) !important;
+  box-shadow:0 30px 72px rgba(90,11,11,.34),inset 0 1px 0 rgba(255,255,255,.18) !important;
+}
+
+.v16-wallet:before{
+  border-color:rgba(255,214,205,.16) !important;
+}
+
+.v16-wallet:after{
+  background:linear-gradient(90deg,transparent,rgba(255,214,205,.28),transparent) !important;
+}
+
+.v16-money-btn.deposit{
+  background:linear-gradient(135deg,#4a0909 0%,#a71919 62%,#d9362c 100%) !important;
+  border-color:rgba(255,205,196,.28) !important;
+}
+
+.v16-money-btn.withdraw{
+  background:linear-gradient(180deg,#fffaf7,#ffe5dc) !important;
+  border-color:rgba(167,25,25,.20) !important;
+  color:#650b0b !important;
+}
+
+.v16-section-title{
+  color:#5c1712 !important;
+}
+
+.v16-section-title:before{
+  background:linear-gradient(90deg,#a71919,transparent) !important;
+}
+
+.v16-lotto-entry,
+.v16-shortcut,
+.lotto,
+.card,
+.group,
+.history-card,
+.money-card,
+.summary-filter-card,
+.summary-table-card,
+.summary-stat,
+.admin-card,
+.direct-card,
+.result-card,
+.admin-table-wrap,
+.rate-editor-card,
+.bet-mode-tabs,
+.price-section,
+.direct-bottom,
+.bottom,
+.dialog,
+.confirm-card{
+  background:linear-gradient(180deg,#fffaf7,#ffe9e1) !important;
+  border-color:rgba(167,25,25,.18) !important;
+  box-shadow:0 18px 42px rgba(90,11,11,.11),inset 0 1px 0 rgba(255,255,255,.88) !important;
+}
+
+.v16-lotto-entry:before{
+  background:linear-gradient(180deg,#ffb0a4,#d9362c,#6b0c0c) !important;
+}
+
+.v16-lotto-badge{
+  background:linear-gradient(135deg,#220404,#7d1111) !important;
+  color:#fff1ec !important;
+  border-color:rgba(255,205,196,.22) !important;
+}
+
+.v16-lotto-ball{
+  background:linear-gradient(145deg,#ffe3dc,#ff9f92) !important;
+  color:#5a0b0b !important;
+}
+
+.v16-lotto-go,
+.direct-grand,
+.grand,
+.bet-mode-tab.active,
+.admin-tab.active,
+.summary-preset.active,
+.lotto-subtab.active,
+.quick-tool.active,
+.quick-tool.primary-tool{
+  background:linear-gradient(135deg,#220404,#6b0c0c 58%,#a71919) !important;
+  color:#fff8f4 !important;
+  border-color:rgba(255,205,196,.22) !important;
+}
+
+.hero,
+.topbar,
+.admin-hero{
+  background:
+    radial-gradient(circle at 12% 12%,rgba(255,172,160,.16),transparent 26%),
+    linear-gradient(135deg,#130202 0%,#5a0b0b 58%,#b51e1c 100%) !important;
+  border-bottom-color:rgba(255,205,196,.22) !important;
+}
+
+.screen,
+.lotto-body,
+.history-body,
+.results-body,
+.summary-page,
+.admin-screen,
+.admin-content,
+.direct-bet-content,
+.bet-mode-wrap{
+  background:
+    radial-gradient(circle at 8% 0%,rgba(217,54,44,.12),transparent 24%),
+    linear-gradient(180deg,#fff7f4,#ffdeda) !important;
+}
+
+.login-submit,
+.primary,
+.send,
+.confirm,
+.direct-submit,
+.summary-filter-grid button,
+.results-toolbar button,
+.admin-btn.red,
+.admin-btn.dark,
+.admin-btn.green,
+.swal2-confirm,
+.swal2-styled.swal2-confirm{
+  background:linear-gradient(135deg,#5a0b0b,#a71919 70%,#d9362c) !important;
+  color:#fff8f4 !important;
+  border-color:rgba(255,205,196,.24) !important;
+}
+
+.account-credit,
+.credit-mini{
+  background:rgba(19,2,2,.30) !important;
+  border-color:rgba(255,205,196,.22) !important;
+}
+
+.account-btn.light,
+.direct-back-bottom,
+.direct-clear-all,
+.clear-numbers,
+.quick-tool,
+.secondary,
+.cancel,
+.admin-btn.soft,
+.summary-preset,
+.lotto-subtab,
+.admin-mini,
+.v16-money-btn.withdraw,
+.v16-money-btn.withdraw *,
+.v16-shortcut,
+.v16-shortcut *{
+  color:#5a0b0b !important;
+}
+
+.countdown,
+.group-total b,
+.result-num.main b,
+.money-card-head b.plus,
+.sum-positive,
+.bet-detail-price{
+  color:#a71919 !important;
+}
+
+@media(max-width:480px){
+  .v16-home-shell{
+    background:
+      radial-gradient(circle at 18% 7%,rgba(255,255,255,.10),transparent 23%),
+      linear-gradient(180deg,#130202 0%,#4a0909 184px,#ffd9cf 184px,#fff5f0 100%) !important;
+  }
+}
+/* =====================================================
+   V27 — DARK RED CONTRAST
+   แดงเข้ม อ่านง่ายขึ้น ลดพื้น/เส้นสีอ่อนที่มองไม่ออก
+===================================================== */
+:root{
+  --dr-bg:#3a0505;
+  --dr-bg2:#5c0808;
+  --dr-red:#8f1010;
+  --dr-red2:#bd211b;
+  --dr-panel:#fff7f2;
+  --dr-panel-strong:#ffe0d6;
+  --dr-line:#9b1b16;
+  --dr-line-soft:#c94a3f;
+  --dr-text:#200908;
+  --dr-muted:#56312c;
+}
+
+html,
+body{
+  background:
+    radial-gradient(circle at 16% 0%,rgba(143,16,16,.34),transparent 28%),
+    linear-gradient(180deg,#4a0707 0%,#260303 100%) !important;
+}
+
+.screen,
+.lotto-body,
+.history-body,
+.results-body,
+.summary-page,
+.admin-screen,
+.admin-content,
+.direct-bet-content,
+.bet-mode-wrap{
+  background:
+    linear-gradient(180deg,#5c0808 0%,#7c1110 130px,#3a0505 100%) !important;
+}
+
+.hero,
+.topbar,
+.admin-hero{
+  background:
+    linear-gradient(135deg,#160101 0%,#4b0707 52%,#981716 100%) !important;
+  border-bottom:1px solid rgba(255,210,200,.22) !important;
+  box-shadow:0 18px 42px rgba(16,1,1,.36) !important;
+}
+
+.direct-card,
+.card,
+.lotto,
+.group,
+.history-card,
+.money-card,
+.summary-filter-card,
+.summary-table-card,
+.summary-stat,
+.admin-card,
+.result-card,
+.admin-table-wrap,
+.rate-editor-card,
+.dialog,
+.confirm-card{
+  background:linear-gradient(180deg,#fff8f4,#ffd8cd) !important;
+  border:2px solid var(--dr-line) !important;
+  box-shadow:0 18px 40px rgba(28,2,2,.26),inset 0 1px 0 rgba(255,255,255,.78) !important;
+  color:var(--dr-text) !important;
+}
+
+.direct-card{
+  border-radius:20px !important;
+}
+
+.direct-title,
+.selected-label,
+.price-section-title,
+.lotto-name,
+.summary-title,
+.admin-card h2,
+.admin-card h3,
+.card-title,
+.group-label{
+  color:#1c0706 !important;
+  font-weight:560 !important;
+}
+
+.direct-help,
+.card-help,
+.lotto-meta,
+.lotto-date,
+.history-meta,
+.money-note,
+.result-date,
+.submit-credit-note,
+.admin-muted{
+  color:var(--dr-muted) !important;
+  font-weight:430 !important;
+}
+
+.number-entry-input,
+.number-chip-box,
+.direct-price-input,
+.price-input,
+.float-price-input,
+.login-field input,
+.login-field select,
+.history-toolbar input,
+.history-toolbar select,
+.results-toolbar input,
+.summary-filter-grid input,
+.summary-filter-grid select,
+.admin-field input,
+.admin-field select,
+.rate-input-grid input{
+  background:#fffdfb !important;
+  border:2px solid #b4372f !important;
+  color:#190504 !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.78),0 0 0 1px rgba(80,7,7,.05) !important;
+}
+
+.number-entry-input:focus,
+.direct-price-input:focus,
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:#6f0909 !important;
+  box-shadow:0 0 0 4px rgba(111,9,9,.22),inset 0 1px 0 rgba(255,255,255,.82) !important;
+}
+
+.number-chip-box{
+  background:#fffaf7 !important;
+  border-color:#ff9c92 !important;
+}
+
+.bet-number-chip,
+.bet-number-chip.generated,
+.bet-number-chip.generated.reverse-chip,
+.bet-number-chip.generated.gate-chip,
+.bet-number-chip.generated.six-chip,
+.bet-number-chip.run-chip,
+.chip,
+.number-count-pill{
+  background:linear-gradient(180deg,#fff2ec,#ffd1c7) !important;
+  border:2px solid #b7352d !important;
+  color:#210706 !important;
+  box-shadow:0 8px 18px rgba(91,8,8,.13) !important;
+  font-weight:560 !important;
+}
+
+.bet-number-chip button{
+  background:#fffaf7 !important;
+  color:#8f1010 !important;
+  font-weight:650 !important;
+}
+
+.bet-mode-tabs,
+.price-section,
+.direct-bottom,
+.bottom{
+  background:rgba(255,248,244,.98) !important;
+  border:2px solid #8f1010 !important;
+  box-shadow:0 16px 34px rgba(28,2,2,.28) !important;
+}
+
+.bet-mode-tab{
+  color:#3d0a08 !important;
+}
+
+.bet-mode-tab.active,
+.admin-tab.active,
+.summary-preset.active,
+.lotto-subtab.active,
+.quick-tool.active,
+.quick-tool.primary-tool{
+  background:linear-gradient(135deg,#180101,#5c0808 55%,#a71919) !important;
+  color:#fff7f2 !important;
+  border-color:#5c0808 !important;
+}
+
+.direct-grand,
+.grand{
+  background:linear-gradient(135deg,#150101,#4a0707 65%,#8f1010) !important;
+  border:1px solid rgba(255,210,200,.20) !important;
+  color:#fff7f2 !important;
+}
+
+.direct-submit,
+.login-submit,
+.primary,
+.send,
+.confirm,
+.summary-filter-grid button,
+.results-toolbar button,
+.admin-btn.red,
+.admin-btn.dark,
+.admin-btn.green,
+.swal2-confirm,
+.swal2-styled.swal2-confirm{
+  background:linear-gradient(135deg,#4a0707,#8f1010 58%,#bd211b) !important;
+  color:#fff7f2 !important;
+  border-color:#7a0d0d !important;
+  box-shadow:0 12px 28px rgba(74,7,7,.30) !important;
+}
+
+.direct-back-bottom,
+.direct-clear-all,
+.clear-numbers,
+.quick-tool,
+.secondary,
+.cancel,
+.admin-btn.soft,
+.summary-preset,
+.lotto-subtab,
+.admin-mini,
+.account-btn.light{
+  background:#fff7f2 !important;
+  border:2px solid #8f1010 !important;
+  color:#5c0808 !important;
+  box-shadow:0 8px 18px rgba(91,8,8,.10) !important;
+}
+
+.number-count-pill{
+  background:#fff1ec !important;
+}
+
+.error,
+.countdown,
+.group-total b,
+.result-num.main b,
+.money-card-head b.plus,
+.sum-positive,
+.bet-detail-price{
+  color:#7c0c0c !important;
+}
+
+.empty{
+  background:#fff8f4 !important;
+  border:2px solid #8f1010 !important;
+  color:#5c0808 !important;
+}
+
+@media(max-width:480px){
+  .screen,
+  .lotto-body,
+  .history-body,
+  .results-body,
+  .summary-page,
+  .admin-screen,
+  .admin-content,
+  .direct-bet-content,
+  .bet-mode-wrap{
+    background:linear-gradient(180deg,#5c0808 0%,#7c1110 105px,#3a0505 100%) !important;
+  }
+}
+/* =====================================================
+   V28 — BALANCED RED CONTRAST
+   แดงพรีเมี่ยมแต่ไม่มืด และหัวข้อบนพื้นแดงต้องเห็นชัด
+===================================================== */
+.hero,
+.topbar,
+.admin-hero{
+  background:
+    radial-gradient(circle at 12% 10%,rgba(255,205,196,.20),transparent 28%),
+    linear-gradient(135deg,#4b0707 0%,#8f1010 58%,#c82b22 100%) !important;
+  box-shadow:0 16px 36px rgba(74,7,7,.26) !important;
+}
+
+.hero,
+.hero *,
+.topbar,
+.topbar *,
+.admin-hero,
+.admin-hero *{
+  color:#fff7f2 !important;
+}
+
+.hero h1,
+.admin-head-row h1,
+.selected-name{
+  color:#fff7f2 !important;
+  text-shadow:0 3px 18px rgba(0,0,0,.22) !important;
+  opacity:1 !important;
+}
+
+.eyebrow,
+.hero p,
+.selected-sub,
+.selected-sub *,
+.lotto-selected small{
+  color:rgba(255,247,242,.86) !important;
+  opacity:1 !important;
+}
+
+.home-nav-inline button,
+.bet-home-btn,
+.back,
+.account-btn,
+.account-btn.light,
+.admin-head-btn{
+  background:rgba(255,247,242,.14) !important;
+  border:1px solid rgba(255,247,242,.34) !important;
+  color:#fff7f2 !important;
+  box-shadow:none !important;
+}
+
+.account-credit,
+.credit-mini{
+  background:rgba(35,2,2,.22) !important;
+  border:1px solid rgba(255,247,242,.24) !important;
+}
+
+.account-credit small,
+.credit-mini small{
+  color:rgba(255,247,242,.78) !important;
+}
+
+.account-credit strong,
+.credit-mini b{
+  color:#fff7f2 !important;
+}
+
+.screen,
+.lotto-body,
+.history-body,
+.results-body,
+.summary-page,
+.admin-screen,
+.admin-content,
+.direct-bet-content,
+.bet-mode-wrap{
+  background:
+    linear-gradient(180deg,#8f1010 0%,#b92b24 92px,#fff1ec 92px,#ffe0d7 100%) !important;
+}
+
+.lotto,
+.direct-card,
+.card,
+.group,
+.history-card,
+.money-card,
+.summary-filter-card,
+.summary-table-card,
+.summary-stat,
+.admin-card,
+.result-card,
+.admin-table-wrap,
+.rate-editor-card,
+.dialog,
+.confirm-card{
+  background:linear-gradient(180deg,#fffaf7,#ffe6dd) !important;
+  border:2px solid #b92b24 !important;
+  box-shadow:0 14px 30px rgba(120,16,16,.15),inset 0 1px 0 rgba(255,255,255,.82) !important;
+}
+
+.lotto-name,
+.direct-title,
+.selected-label,
+.price-section-title,
+.card-title,
+.group-label,
+.summary-title,
+.admin-card h2,
+.admin-card h3{
+  color:#220807 !important;
+}
+
+.lotto-meta,
+.lotto-date,
+.direct-help,
+.card-help,
+.history-meta,
+.money-note,
+.result-date,
+.admin-muted,
+.submit-credit-note{
+  color:#5c332d !important;
+}
+
+.number-entry-input,
+.number-chip-box,
+.direct-price-input,
+.price-input,
+.float-price-input{
+  border-color:#b92b24 !important;
+}
+
+.bet-mode-tabs,
+.price-section,
+.direct-bottom,
+.bottom{
+  border-color:#b92b24 !important;
+  background:rgba(255,250,247,.98) !important;
+}
+
+.direct-back-bottom,
+.direct-clear-all,
+.clear-numbers,
+.quick-tool,
+.secondary,
+.cancel,
+.admin-btn.soft,
+.summary-preset,
+.lotto-subtab,
+.admin-mini{
+  background:#fff7f2 !important;
+  border:2px solid #b92b24 !important;
+  color:#6a0b0b !important;
+}
+
+@media(max-width:480px){
+  .screen,
+  .lotto-body,
+  .history-body,
+  .results-body,
+  .summary-page,
+  .admin-screen,
+  .admin-content,
+  .direct-bet-content,
+  .bet-mode-wrap{
+    background:linear-gradient(180deg,#8f1010 0%,#b92b24 76px,#fff1ec 76px,#ffe0d7 100%) !important;
+  }
+}
 </style>
  </head>
  <body>
