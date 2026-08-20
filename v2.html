@@ -5237,6 +5237,106 @@ textarea:focus{
     background:linear-gradient(180deg,#8f1010 0%,#b92b24 76px,#fff1ec 76px,#ffe0d7 100%) !important;
   }
 }
+/* =====================================================
+   V29 — SCB DEPOSIT CARD + ADMIN BANK EDIT
+===================================================== */
+.deposit-bank-card{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  margin-bottom:14px;
+  padding:14px;
+  border:2px solid #d7c3ff;
+  border-radius:16px;
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.92),rgba(244,239,255,.96)),
+    #f5f3ff;
+  box-shadow:0 12px 28px rgba(83,47,145,.12),inset 0 1px 0 rgba(255,255,255,.82);
+}
+
+.deposit-bank-logo{
+  width:58px;
+  height:58px;
+  flex:0 0 58px;
+  border-radius:15px;
+  object-fit:cover;
+  box-shadow:0 10px 22px rgba(83,47,145,.22);
+}
+
+.deposit-bank-copy{
+  min-width:0;
+}
+
+.deposit-bank-label{
+  margin-bottom:5px;
+  color:#6d28d9 !important;
+  font-size:11px;
+  font-weight:600 !important;
+}
+
+.deposit-bank-number{
+  color:#4c1d95 !important;
+  font-size:18px;
+  line-height:1.2;
+  font-weight:600 !important;
+  word-break:break-word;
+}
+
+.deposit-bank-meta{
+  margin-top:4px;
+  color:#6d28d9 !important;
+  font-size:12px;
+  line-height:1.35;
+  font-weight:450 !important;
+}
+
+@media(max-width:420px){
+  .deposit-bank-card{
+    align-items:flex-start;
+    gap:11px;
+    padding:12px;
+  }
+
+  .deposit-bank-logo{
+    width:50px;
+    height:50px;
+    flex-basis:50px;
+    border-radius:13px;
+  }
+
+  .deposit-bank-number{
+    font-size:16px;
+  }
+}
+/* =====================================================
+   V30 — LOTTERY MENU IMAGE
+===================================================== */
+.v16-lotto-art{
+  width:112px !important;
+  height:96px !important;
+  flex:0 0 112px !important;
+  padding:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  overflow:visible !important;
+}
+
+.v16-lotto-art img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  filter:drop-shadow(0 16px 18px rgba(92,11,11,.22));
+}
+
+@media(max-width:480px){
+  .v16-lotto-art{
+    width:96px !important;
+    height:84px !important;
+    flex-basis:96px !important;
+  }
+}
 </style>
  </head>
  <body>
@@ -5330,7 +5430,7 @@ textarea:focus{
        </div>
        <div class="v16-wallet-balance"><b id="homeCredit">0.00</b><span>฿</span></div>
        <div class="v16-wallet-sub">
-        <span id="homeUsername">@user</span>
+        <span id="homeUsername">user</span>
         <span>พร้อมใช้งาน</span>
        </div>
       </section>
@@ -5352,7 +5452,9 @@ textarea:focus{
          <span class="v16-lotto-badge">ยอดนิยม</span>
          <div class="v16-lotto-title">แทงหวย</div>
         </div>
-        <div class="v16-lotto-ball">29</div>
+        <div class="v16-lotto-ball v16-lotto-art">
+         <img src="lottery-menu-cutout.png" alt="แทงหวย">
+        </div>
        </div>
        <div class="v16-lotto-go"><span>เข้าแทงหวย</span><span>›</span></div>
       </button>
@@ -6290,7 +6392,7 @@ function updateUserUI() {
       (state.user.displayName || state.user.username || "MEMBER").toUpperCase();
   }
   if (els.homeUsername) {
-    els.homeUsername.textContent = "@" + (state.user.username || "user");
+    els.homeUsername.textContent = state.user.username || "user";
   }
 
   els.accountName.textContent =
@@ -6386,11 +6488,14 @@ function openSelfDeposit() {
     title:"เติมเครดิตเดิมพัน",
     html:
       '<div style="text-align:left">' +
-        '<div style="margin-bottom:14px;padding:13px;border:1px solid #ddd6fe;border-radius:13px;background:#f5f3ff">' +
-          '<div style="font-size:10px;color:#6d28d9;font-weight:900;margin-bottom:5px">บัญชีสำหรับรับโอน</div>' +
-          '<div style="font-size:15px;font-weight:900;color:#4c1d95">SCB • 5054158114</div>' +
-          '<div style="font-size:11px;margin-top:3px;color:#6d28d9">ธนาคารไทยพาณิชย์</div>' +
-          '<div style="font-size:11px;margin-top:2px;color:#6d28d9">น.ส. ทิพวรรณ ฮุ่งเมือง</div>' +
+        '<div class="deposit-bank-card">' +
+          '<img class="deposit-bank-logo" src="scb-logo.png" alt="SCB">' +
+          '<div class="deposit-bank-copy">' +
+            '<div class="deposit-bank-label">บัญชีสำหรับรับโอน</div>' +
+            '<div class="deposit-bank-number">SCB • 5054158114</div>' +
+            '<div class="deposit-bank-meta">ธนาคารไทยพาณิชย์</div>' +
+            '<div class="deposit-bank-meta">น.ส. ทิพวรรณ ฮุ่งเมือง</div>' +
+          '</div>' +
         '</div>' +
         '<label style="display:block;font-size:11px;font-weight:800;margin:4px 0 6px">อัปโหลดสลิป</label>' +
         '<input id="swalDepositSlip" type="file" accept="image/jpeg,image/png,image/gif,image/webp" style="width:100%;padding:12px;border:1px dashed #fca5a5;border-radius:12px;background:#fef2f2">' +
@@ -8036,11 +8141,13 @@ async function loadAdminUsers() {
     state.adminUsers = users || [];
 
     els.adminUserTable.innerHTML = adminTable(
-      ["User","ชื่อ","เครดิต","สถานะ","เรท 3ตรง/โต๊ด/2บน/2ล่าง","จัดการ"],
+      ["User","ชื่อ","เลขบัญชี","ธนาคาร","เครดิต","สถานะ","เรท 3ตรง/โต๊ด/2บน/2ล่าง","จัดการ"],
       state.adminUsers.map(function(u){
         return [
           escapeHtml(u.username),
           escapeHtml(u.displayName || ""),
+          escapeHtml(u.bankAccountNo || "-"),
+          escapeHtml(u.bankName || "-"),
           money(u.credit),
           escapeHtml(u.status),
           [
@@ -8051,7 +8158,7 @@ async function loadAdminUsers() {
           ].join(" / "),
           '<div class="admin-actions-inline">' +
             '<button class="admin-mini credit" data-credit-user="' + escapeHtml(u.userId) + '">เครดิต</button>' +
-            '<button class="admin-mini edit" data-edit-user="' + escapeHtml(u.userId) + '">แก้ไข</button>' +
+            '<button class="admin-mini edit" data-edit-user="' + escapeHtml(u.userId) + '">แก้ไขบัญชี</button>' +
           '</div>'
         ];
       })
@@ -8088,7 +8195,7 @@ async function openCreateUser() {
       '<div class="swal-admin-field"><label>เบอร์โทร</label><input id="admNewPhone" inputmode="tel"></div>' +
       '<div class="swal-admin-field"><label>ธนาคาร</label><select id="admNewBank">' + bankOptionsHtml("") + '</select></div>' +
       '<div class="swal-admin-field"><label>ชื่อบัญชี</label><input id="admNewBankAccountName"></div>' +
-      '<div class="swal-admin-field"><label>หมายเลขบัญชี</label><input id="admNewBankAccountNo" inputmode="numeric"></div>' +
+      '<div class="swal-admin-field"><label>เลขบัญชีสำหรับถอน</label><input id="admNewBankAccountNo" inputmode="numeric" placeholder="แก้ไขได้ภายหลัง"></div>' +
     '</div>',
     showCancelButton:true,
     confirmButtonText:"สร้าง Member",
@@ -8172,7 +8279,7 @@ async function openEditUser(u) {
       '<div class="swal-admin-field"><label>เบอร์โทร</label><input id="admEditPhone" inputmode="tel" value="' + escapeAttr(u.phone || u.username || "") + '"></div>' +
       '<div class="swal-admin-field"><label>ธนาคาร</label><select id="admEditBank">' + bankOptionsHtml(u.bankName || "") + '</select></div>' +
       '<div class="swal-admin-field"><label>ชื่อบัญชี</label><input id="admEditBankAccountName" value="' + escapeAttr(u.bankAccountName || "") + '"></div>' +
-      '<div class="swal-admin-field"><label>หมายเลขบัญชี</label><input id="admEditBankAccountNo" inputmode="numeric" value="' + escapeAttr(u.bankAccountNo || "") + '"></div>' +
+      '<div class="swal-admin-field"><label>เลขบัญชีสำหรับถอน</label><input id="admEditBankAccountNo" inputmode="numeric" value="' + escapeAttr(u.bankAccountNo || "") + '" placeholder="กรอกเลขบัญชีใหม่"></div>' +
       '<div class="swal-admin-field full"><label>Password ใหม่ (ไม่เปลี่ยนให้เว้นว่าง)</label><input id="admEditPass" type="password"></div>' +
     '</div>',
     showCancelButton:true,
