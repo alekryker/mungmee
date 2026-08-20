@@ -5526,6 +5526,835 @@ textarea:focus{
     font-size:20px !important;
   }
 }
+/* =====================================================
+   V34 — COMPACT NUMBER ENTRY
+   เอาคำอธิบายและกล่องโล่งขนาดใหญ่ออก
+===================================================== */
+.number-entry{
+  margin-top:12px !important;
+}
+
+.number-entry-input{
+  min-height:54px !important;
+  height:54px !important;
+  resize:none !important;
+  border-width:2px !important;
+  border-radius:16px !important;
+  padding:10px 14px !important;
+  font-size:24px !important;
+  line-height:1.2 !important;
+  overflow:hidden !important;
+}
+
+.number-entry-input::placeholder{
+  color:transparent !important;
+}
+
+.number-chip-empty{
+  display:none !important;
+}
+
+.number-chip-box:empty,
+.number-chip-box:has(.number-chip-empty){
+  min-height:0 !important;
+  padding:0 !important;
+  border:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+}
+
+@media(max-width:430px){
+  .number-entry-input{
+    min-height:48px !important;
+    height:48px !important;
+    font-size:22px !important;
+  }
+}
+/* =====================================================
+   V35 — MULTI BILL UI
+===================================================== */
+.bill-stack{
+  margin-top:14px;
+  padding:12px;
+  border:2px solid #b92b24;
+  border-radius:16px;
+  background:linear-gradient(180deg,#fffaf7,#ffe8df);
+}
+
+.bill-stack-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  color:#5c0808;
+  font-size:13px;
+  font-weight:600;
+}
+
+.bill-stack-head b{
+  color:#8f1010 !important;
+  font-size:12px;
+}
+
+.bill-stack-list{
+  display:grid;
+  gap:8px;
+  margin-top:10px;
+}
+
+.bill-stack-item{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:10px;
+  padding:10px;
+  border:1px solid rgba(185,43,36,.35);
+  border-radius:13px;
+  background:#fffaf7;
+}
+
+.bill-stack-main{
+  min-width:0;
+}
+
+.bill-stack-main b,
+.bill-stack-side strong{
+  display:block;
+  color:#250807 !important;
+  font-size:13px;
+  font-weight:600 !important;
+}
+
+.bill-stack-main span{
+  display:block;
+  margin-top:4px;
+  color:#3b1110;
+  font-size:12px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.bill-stack-main small{
+  display:block;
+  margin-top:4px;
+  color:#6a3630 !important;
+  font-size:10px;
+}
+
+.bill-stack-side{
+  display:grid;
+  justify-items:end;
+  align-content:center;
+  gap:5px;
+}
+
+.bill-stack-side button{
+  min-height:26px;
+  border:1px solid #b92b24;
+  border-radius:8px;
+  background:#fff1ec;
+  color:#8f1010;
+  padding:0 8px;
+  font-size:10px;
+  font-weight:600;
+}
+
+.direct-action-row{
+  grid-template-columns:.7fr .9fr 1fr 1.25fr !important;
+}
+
+.direct-add-bill{
+  min-height:48px;
+  border:0;
+  border-radius:14px;
+  background:linear-gradient(135deg,#220404,#6b0c0c 58%,#a71919);
+  color:#fff7f2;
+  font-size:13px;
+  font-weight:600;
+  box-shadow:0 10px 24px rgba(92,11,11,.20);
+}
+
+.direct-add-bill:disabled{
+  background:#e2c6bd;
+  color:#8b6c65;
+  box-shadow:none;
+  cursor:not-allowed;
+}
+
+@media(max-width:430px){
+  .direct-action-row{
+    grid-template-columns:1fr 1fr !important;
+  }
+
+  .direct-add-bill,
+  .direct-submit{
+    grid-column:auto !important;
+  }
+}
+
+/* =====================================================
+   V36 — ADD BILL FLOW LIKE RECEIPT LIST
+===================================================== */
+.bill-price-panel{
+  margin-top:18px !important;
+  padding:16px !important;
+  border:2px solid #b92b24 !important;
+  border-radius:18px !important;
+  background:#fffaf7 !important;
+  box-shadow:0 12px 28px rgba(120,10,10,.08);
+}
+
+.bill-price-panel .direct-price-grid{
+  margin-top:10px;
+}
+
+.current-bill-total{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  min-height:58px;
+  margin-top:12px;
+  padding:0 16px;
+  border-radius:15px;
+  background:linear-gradient(90deg,#fff,#fff1f1);
+}
+
+.current-bill-total span{
+  color:#5f575b;
+  font-size:13px;
+  font-weight:600;
+}
+
+.current-bill-total strong{
+  color:#b20f1c !important;
+  font-size:24px;
+  font-weight:700 !important;
+  white-space:nowrap;
+}
+
+.bill-price-panel .direct-add-bill{
+  width:100%;
+  min-height:62px;
+  margin-top:12px;
+  border-radius:16px;
+  background:linear-gradient(135deg,#a20d19,#ee1236);
+  color:#fff;
+  font-size:20px;
+  font-weight:650;
+}
+
+.bill-stack{
+  margin-top:18px !important;
+  padding:0 !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+}
+
+.bill-stack-head{
+  padding:0 4px 9px;
+  color:#250807 !important;
+  font-size:22px;
+  font-weight:650;
+}
+
+.bill-stack-head b{
+  color:#6b666c !important;
+  font-size:17px;
+  font-weight:600 !important;
+}
+
+.bill-stack-list{
+  gap:12px !important;
+  margin-top:0 !important;
+}
+
+.bill-stack-item{
+  display:block !important;
+  padding:0 !important;
+  overflow:hidden;
+  border:1px solid #f0d8d8 !important;
+  border-radius:18px !important;
+  background:#fff !important;
+  box-shadow:0 10px 28px rgba(80,20,20,.08);
+}
+
+.bill-stack-main{
+  padding:16px 18px 10px;
+}
+
+.bill-stack-title-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin:-16px -18px 12px;
+  padding:15px 18px;
+  border-bottom:1px solid #ffe1e1;
+  background:linear-gradient(90deg,#fff1f1,#fff);
+}
+
+.bill-stack-title-row b{
+  color:#c11226 !important;
+  font-size:20px !important;
+  font-weight:700 !important;
+}
+
+.bill-stack-title-row strong{
+  color:#111114 !important;
+  font-size:22px !important;
+  font-weight:700 !important;
+  white-space:nowrap;
+}
+
+.bill-stack-main small{
+  color:#65616a !important;
+  font-size:15px !important;
+  font-weight:600 !important;
+}
+
+.bill-stack-main span{
+  margin-top:8px !important;
+  color:#27242b !important;
+  font-size:22px !important;
+  font-weight:650;
+  line-height:1.45;
+  white-space:normal !important;
+  overflow:visible !important;
+  text-overflow:clip !important;
+  word-break:break-word;
+}
+
+.bill-stack-side{
+  display:flex !important;
+  justify-content:flex-end !important;
+  padding:0 16px 16px;
+}
+
+.bill-stack-side button{
+  min-height:50px !important;
+  min-width:112px;
+  border:0 !important;
+  border-radius:14px !important;
+  background:#fff0f0 !important;
+  color:#c11226 !important;
+  font-size:17px !important;
+  font-weight:650 !important;
+}
+
+.bill-stack-summary{
+  margin-top:14px;
+}
+
+.bill-summary-pill{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  min-height:68px;
+  padding:0 20px;
+  border-radius:18px;
+  background:linear-gradient(135deg,#4a0505,#8b0d12 55%,#c91424);
+  color:#fff;
+  box-shadow:0 14px 32px rgba(99,9,12,.22);
+}
+
+.bill-summary-pill span{
+  color:rgba(255,255,255,.78);
+  font-size:15px;
+  font-weight:600;
+}
+
+.bill-summary-pill strong{
+  color:#fff !important;
+  font-size:28px;
+  font-weight:750 !important;
+  white-space:nowrap;
+}
+
+.bill-summary-meta{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:8px;
+  margin-top:8px;
+}
+
+.bill-summary-meta span{
+  min-height:44px;
+  display:grid;
+  place-items:center;
+  padding:6px;
+  border:1px solid #f1d7d0;
+  border-radius:13px;
+  background:#fff8f5;
+  color:#5d201c;
+  text-align:center;
+  font-size:13px;
+  font-weight:650;
+}
+
+.direct-bottom{
+  padding:10px !important;
+}
+
+.direct-bet-content{
+  padding-bottom:calc(190px + env(safe-area-inset-bottom)) !important;
+}
+
+.direct-action-row{
+  grid-template-columns:.75fr 1fr 1.45fr !important;
+}
+
+.direct-action-row .direct-submit{
+  min-height:56px;
+}
+
+@media(max-width:430px){
+  .bill-stack-head{
+    font-size:20px;
+  }
+
+  .current-bill-total strong{
+    font-size:22px;
+  }
+
+  .bill-price-panel .direct-add-bill{
+    min-height:58px;
+    font-size:18px;
+  }
+
+  .bill-summary-pill{
+    min-height:62px;
+    padding:0 15px;
+  }
+
+  .bill-summary-pill span{
+    font-size:13px;
+  }
+
+  .bill-summary-pill strong{
+    font-size:23px;
+  }
+
+  .bill-summary-meta{
+    grid-template-columns:1fr;
+  }
+
+  .direct-action-row{
+    grid-template-columns:1fr 1fr !important;
+  }
+
+  .direct-bet-content{
+    padding-bottom:calc(205px + env(safe-area-inset-bottom)) !important;
+  }
+
+  .direct-action-row .direct-submit{
+    grid-column:1 / -1 !important;
+  }
+}
+
+/* =====================================================
+   V37 — COMPACT BILLS + SEPARATE PRICE BOTTOM BAR
+===================================================== */
+.price-bottom-bar{
+  position:fixed;
+  left:50%;
+  bottom:calc(132px + env(safe-area-inset-bottom));
+  transform:translateX(-50%);
+  z-index:44;
+  width:min(calc(100% - 14px),706px);
+}
+
+.price-bottom-bar .bill-price-panel{
+  margin:0 !important;
+  padding:10px !important;
+  border-width:1.5px !important;
+  border-radius:18px !important;
+  background:rgba(255,250,247,.98) !important;
+  backdrop-filter:blur(16px);
+  box-shadow:0 12px 32px rgba(80,10,10,.16) !important;
+}
+
+.price-bottom-bar .price-section-title{
+  margin:0 0 7px !important;
+  color:#5b1512 !important;
+  font-size:14px !important;
+  font-weight:550 !important;
+}
+
+.price-bottom-bar .direct-price-grid{
+  gap:8px !important;
+  margin-top:0 !important;
+}
+
+.price-bottom-bar .direct-price-input{
+  height:48px !important;
+  padding:18px 8px 4px !important;
+  border-width:1.5px !important;
+  border-radius:13px !important;
+  font-size:20px !important;
+  font-weight:500 !important;
+}
+
+.price-bottom-bar .direct-price-label{
+  top:5px !important;
+  color:#6b5552 !important;
+  font-size:10px !important;
+  font-weight:500 !important;
+}
+
+.price-bottom-bar .current-bill-total{
+  min-height:40px !important;
+  margin-top:8px !important;
+  padding:0 12px !important;
+  border-radius:12px !important;
+}
+
+.price-bottom-bar .current-bill-total span{
+  font-size:12px !important;
+  font-weight:500 !important;
+}
+
+.price-bottom-bar .current-bill-total strong{
+  font-size:18px !important;
+  font-weight:550 !important;
+}
+
+.price-bottom-bar .direct-add-bill{
+  min-height:44px !important;
+  margin-top:8px !important;
+  border-radius:13px !important;
+  font-size:16px !important;
+  font-weight:550 !important;
+}
+
+.bill-stack{
+  margin-top:14px !important;
+}
+
+.bill-stack-head{
+  padding:0 2px 8px !important;
+  font-size:18px !important;
+  font-weight:550 !important;
+}
+
+.bill-stack-head b{
+  font-size:14px !important;
+  font-weight:500 !important;
+}
+
+.bill-stack-list{
+  gap:9px !important;
+}
+
+.bill-stack-item{
+  border-radius:14px !important;
+  box-shadow:0 6px 18px rgba(80,20,20,.06) !important;
+}
+
+.bill-stack-main{
+  padding:12px 14px 8px !important;
+}
+
+.bill-stack-title-row{
+  margin:-12px -14px 9px !important;
+  padding:11px 14px !important;
+}
+
+.bill-stack-title-row b{
+  font-size:16px !important;
+  font-weight:550 !important;
+}
+
+.bill-stack-title-row strong{
+  font-size:18px !important;
+  font-weight:550 !important;
+}
+
+.bill-stack-main small{
+  font-size:12px !important;
+  font-weight:450 !important;
+}
+
+.bill-stack-main span{
+  margin-top:6px !important;
+  font-size:16px !important;
+  font-weight:500 !important;
+  line-height:1.45 !important;
+}
+
+.bill-stack-side{
+  padding:0 12px 12px !important;
+}
+
+.bill-stack-side button{
+  min-height:38px !important;
+  min-width:84px !important;
+  border-radius:11px !important;
+  font-size:14px !important;
+  font-weight:500 !important;
+}
+
+.bill-summary-pill{
+  min-height:54px !important;
+  padding:0 15px !important;
+  border-radius:15px !important;
+}
+
+.bill-summary-pill span{
+  font-size:13px !important;
+  font-weight:500 !important;
+}
+
+.bill-summary-pill strong{
+  font-size:22px !important;
+  font-weight:600 !important;
+}
+
+.bill-summary-meta{
+  gap:6px !important;
+}
+
+.bill-summary-meta span{
+  min-height:34px !important;
+  border-radius:10px !important;
+  font-size:11px !important;
+  font-weight:500 !important;
+}
+
+.direct-bet-content{
+  padding-bottom:calc(355px + env(safe-area-inset-bottom)) !important;
+}
+
+.direct-grand{
+  min-height:48px !important;
+}
+
+.direct-grand small{
+  font-weight:500 !important;
+}
+
+.direct-grand strong{
+  font-size:22px !important;
+  font-weight:600 !important;
+}
+
+@media(max-width:430px){
+  .price-bottom-bar{
+    bottom:calc(154px + env(safe-area-inset-bottom));
+  }
+
+  .price-bottom-bar .bill-price-panel{
+    padding:9px !important;
+  }
+
+  .price-bottom-bar .direct-price-input{
+    height:44px !important;
+    font-size:18px !important;
+  }
+
+  .price-bottom-bar .direct-add-bill{
+    min-height:42px !important;
+    font-size:15px !important;
+  }
+
+  .direct-bet-content{
+    padding-bottom:calc(380px + env(safe-area-inset-bottom)) !important;
+  }
+}
+
+/* =====================================================
+   V38 — KEEP ADD BILL BUTTON VISIBLE
+===================================================== */
+.price-bottom-bar{
+  bottom:calc(150px + env(safe-area-inset-bottom)) !important;
+  z-index:52 !important;
+}
+
+.price-bottom-bar .bill-price-panel{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) 118px !important;
+  grid-template-areas:
+    "title total"
+    "prices add" !important;
+  gap:8px !important;
+}
+
+.price-bottom-bar .price-section-title{
+  grid-area:title;
+  align-self:center;
+  margin:0 !important;
+}
+
+.price-bottom-bar .price-section-title:after{
+  display:none !important;
+}
+
+.price-bottom-bar .direct-price-grid{
+  grid-area:prices;
+  min-width:0;
+}
+
+.price-bottom-bar .current-bill-total{
+  grid-area:total;
+  min-height:32px !important;
+  margin:0 !important;
+  padding:0 10px !important;
+}
+
+.price-bottom-bar .current-bill-total span{
+  display:none;
+}
+
+.price-bottom-bar .current-bill-total strong{
+  font-size:14px !important;
+  font-weight:500 !important;
+}
+
+.price-bottom-bar .direct-add-bill{
+  grid-area:add;
+  align-self:stretch;
+  min-height:48px !important;
+  height:auto !important;
+  margin:0 !important;
+}
+
+.direct-bottom{
+  z-index:50 !important;
+}
+
+.direct-grand{
+  min-height:44px !important;
+  padding:8px 14px !important;
+}
+
+.submit-credit-note{
+  margin-top:6px !important;
+  font-size:12px !important;
+}
+
+.direct-clear-all,
+.direct-submit,
+.direct-back-bottom{
+  min-height:44px !important;
+  font-weight:550 !important;
+}
+
+@media(max-width:430px){
+  .price-bottom-bar{
+    bottom:calc(168px + env(safe-area-inset-bottom)) !important;
+  }
+
+  .price-bottom-bar .bill-price-panel{
+    grid-template-columns:minmax(0,1fr) 104px !important;
+    gap:7px !important;
+  }
+
+  .price-bottom-bar .direct-price-grid{
+    gap:6px !important;
+  }
+
+  .price-bottom-bar .direct-add-bill{
+    min-height:44px !important;
+    font-size:14px !important;
+  }
+
+  .price-bottom-bar .current-bill-total strong{
+    font-size:12px !important;
+  }
+}
+
+/* =====================================================
+   V39 — READABLE SUMMARY TEXT + CLEAN CONFIRM BAR
+===================================================== */
+.bill-summary-pill span,
+.direct-grand small{
+  color:rgba(255,255,255,.86) !important;
+}
+
+.bill-summary-pill strong,
+.direct-grand strong{
+  color:#fff !important;
+}
+
+.bill-stack-summary .bill-summary-pill span{
+  color:#fff !important;
+}
+
+.bill-stack-summary .bill-summary-pill strong{
+  color:#fff !important;
+}
+
+.direct-bottom .submit-credit-note{
+  display:none !important;
+}
+
+.direct-bottom{
+  padding:8px !important;
+}
+
+.direct-action-row{
+  margin-top:8px !important;
+}
+
+.direct-clear-all,
+.direct-submit,
+.direct-back-bottom{
+  min-height:42px !important;
+}
+
+.price-bottom-bar{
+  bottom:calc(124px + env(safe-area-inset-bottom)) !important;
+}
+
+@media(max-width:430px){
+  .price-bottom-bar{
+    bottom:calc(138px + env(safe-area-inset-bottom)) !important;
+  }
+
+  .direct-bet-content{
+    padding-bottom:calc(330px + env(safe-area-inset-bottom)) !important;
+  }
+}
+
+/* V40 — MORE GAP BETWEEN PRICE BAR AND CONFIRM BAR */
+.price-bottom-bar{
+  bottom:calc(178px + env(safe-area-inset-bottom)) !important;
+}
+
+.direct-bet-content{
+  padding-bottom:calc(390px + env(safe-area-inset-bottom)) !important;
+}
+
+@media(max-width:430px){
+  .price-bottom-bar{
+    bottom:calc(192px + env(safe-area-inset-bottom)) !important;
+  }
+
+  .direct-bet-content{
+    padding-bottom:calc(420px + env(safe-area-inset-bottom)) !important;
+  }
+}
+
+/* V41 — PUSH PRICE BAR ABOVE CONFIRM BAR */
+.price-bottom-bar{
+  bottom:calc(228px + env(safe-area-inset-bottom)) !important;
+}
+
+.direct-bet-content{
+  padding-bottom:calc(500px + env(safe-area-inset-bottom)) !important;
+}
+
+@media(max-width:430px){
+  .price-bottom-bar{
+    bottom:calc(246px + env(safe-area-inset-bottom)) !important;
+  }
+
+  .direct-bet-content{
+    padding-bottom:calc(540px + env(safe-area-inset-bottom)) !important;
+  }
+}
 </style>
  </head>
  <body>
@@ -5754,12 +6583,21 @@ textarea:focus{
        <button class="clear-numbers" id="clearNumbersBtn">ล้างเลข</button>
       </div>
       <div class="number-chip-box" id="numberChipBox">
-       <div class="number-chip-empty">ยังไม่มีเลข</div>
+       <div class="number-chip-empty"></div>
       </div>
 
       <div class="quick-tools">
        <button class="quick-tool primary-tool" id="reverseBtn">↔ กลับเลข</button>
        <button class="quick-tool" id="doubleBtn">+ เลขเบิ้ล</button>
+      </div>
+
+      <div class="bill-stack hidden" id="billStack">
+       <div class="bill-stack-head">
+        <span>รายการบิล</span>
+        <b id="billStackCount">0 บิล</b>
+       </div>
+       <div class="bill-stack-list" id="billStackList"></div>
+       <div class="bill-stack-summary" id="billStackSummary"></div>
       </div>
 
       <div class="bet-summary">
@@ -5770,8 +6608,8 @@ textarea:focus{
      </section>
     </div>
 
-    <section class="direct-bottom">
-     <div class="price-section bottom-price-section">
+    <section class="price-bottom-bar">
+     <div class="price-section bill-price-panel">
       <div class="price-section-title">ใส่ราคา</div>
       <div class="direct-price-grid" id="directPriceGrid">
        <div class="direct-price-field">
@@ -5783,14 +6621,18 @@ textarea:focus{
         <input class="direct-price-input" id="priceB" type="number" inputmode="decimal" min="0" step="1" placeholder="0">
        </div>
       </div>
+      <div class="current-bill-total">
+       <span>ยอดรายการนี้</span>
+       <strong id="currentBillTotal">0.00 บาท</strong>
+      </div>
+      <button class="direct-add-bill" id="addBillBtn" type="button">เพิ่มบิล</button>
      </div>
+    </section>
+
+    <section class="direct-bottom">
      <div class="direct-grand">
       <small>รวมยอดแทงทั้งหมด</small>
       <strong id="grandTotal">0.00</strong>
-     </div>
-     <div class="submit-credit-note">
-      <span>ยอดจะถูกหักทันที</span>
-      <span id="bottomCredit">0.00</span>
      </div>
      <div class="direct-action-row">
       <button class="direct-back-bottom" id="bottomBackBtn" type="button">กลับ</button>
@@ -6127,6 +6969,7 @@ var state = {
   selectedLotto: null,
   betMode: "two",
   numbers: [],
+  billItems: [],
   reverse: false,
   priceA: 0,
   priceB: 0,
@@ -6157,7 +7000,7 @@ document.addEventListener("DOMContentLoaded", function () {
      "historyStatus","historyList","moneyBackBtn","moneyBalance","moneyFrom","moneyTo","moneyType","moneyList","memberSummaryBackBtn","memberSummaryBalance","memberSummaryFrom","memberSummaryTo","memberSummaryLotto","memberSummarySearchBtn","memberSummaryStats","memberSummaryTable","adminIdentity","adminLogoutBtn","syncResultsBtn","adminDashRange","adminDashFrom","adminDashTo","adminDashCustomBtn","adminDashSelectAll","adminDashClearAll","adminDashLottoChecks","adminDashStats","adminByUser","adminByLotto","adminBetFrom","adminBetTo","adminBetStatus","adminOpenUser","adminOpenLotto","adminOpenSearchBtn","adminOpenTable","adminCreateUserBtn","adminUserTable","adminWithdrawStatus","adminWithdrawReloadBtn","adminWithdrawTable","adminLottoToggleTable","adminLottoRulesTable","adminRateUser","adminRateLotto","adminRateModeNote","adminRate3Straight","adminRate3Tod","adminRate2Top","adminRate2Bottom","adminRateRunTop","adminRateRunBottom","adminRateSaveBtn","adminRateResetBtn","adminRateOverridesTable","directTitle","numberCount","numberInput",
     "clearNumbersBtn","numberChipBox","reverseBtn","doubleBtn",
     "priceA","priceB","priceALabel","priceBLabel","priceBField","directPriceGrid",
-    "sourceCount","betCount","grandTotal","clearAllBtn","submitBtn","error",
+    "sourceCount","betCount","currentBillTotal","grandTotal","clearAllBtn","addBillBtn","submitBtn","error","billStack","billStackList","billStackCount","billStackSummary",
     "loading","toast"
   ].forEach(function(id){ els[id] = document.getElementById(id); });
 
@@ -6351,6 +7194,7 @@ function bindEvents() {
   els.priceB.oninput = function(){ state.priceB = num(els.priceB.value); renderTotalsOnly(); };
 
   els.clearAllBtn.onclick = clearCurrentBet;
+  if (els.addBillBtn) els.addBillBtn.onclick = addCurrentBill;
   els.submitBtn.onclick = openConfirm;
 
 
@@ -6588,7 +7432,7 @@ function updateUserUI() {
     (state.user.role === "MEMBER" ? " • MEMBER" : "");
   els.heroCredit.textContent = credit;
   els.betCredit.textContent = credit;
-  els.bottomCredit.textContent = credit;
+  if (els.bottomCredit) els.bottomCredit.textContent = credit;
   els.summaryCredit.textContent = credit;
   els.historyCredit.textContent = credit;
   if (els.moneyBalance) els.moneyBalance.textContent = credit;
@@ -6919,23 +7763,29 @@ function setBetMode(mode) {
 }
 
 function getModeConfig() {
-  if (state.betMode === "three") {
-    return {title:"เลข 3 ตัว",placeholder:"พิมพ์เลข 3 ตัว เช่น 123 456",len:3,priceA:"ตรง",priceB:"โต๊ด"};
+  return getModeConfigForMode(state.betMode);
+}
+
+function getModeConfigForMode(mode) {
+  mode = String(mode || "two");
+
+  if (mode === "three") {
+    return {title:"เลข 3 ตัว",placeholder:"",len:3,priceA:"ตรง",priceB:"โต๊ด"};
   }
 
-  if (state.betMode === "six") {
-    return {title:"เลข 6 กลับ",placeholder:"พิมพ์เลข 3 ตัว เช่น 123",len:3,priceA:"6 กลับ",priceB:null};
+  if (mode === "six") {
+    return {title:"เลข 6 กลับ",placeholder:"",len:3,priceA:"6 กลับ",priceB:null};
   }
 
-  if (state.betMode === "gate") {
-    return {title:"รูด 19 ประตู",placeholder:"พิมพ์เลขหลักเดียว เช่น 5",len:1,priceA:"บน",priceB:"ล่าง"};
+  if (mode === "gate") {
+    return {title:"รูด 19 ประตู",placeholder:"",len:1,priceA:"บน",priceB:"ล่าง"};
   }
 
-  if (state.betMode === "run") {
-    return {title:"เลขวิ่ง",placeholder:"พิมพ์เลขวิ่ง เช่น 5 8 9",len:1,priceA:"บน",priceB:"ล่าง"};
+  if (mode === "run") {
+    return {title:"เลขวิ่ง",placeholder:"",len:1,priceA:"บน",priceB:"ล่าง"};
   }
 
-  return {title:"เลข 2 ตัว",placeholder:"พิมพ์เลข 2 ตัว เช่น 12 34 56",len:2,priceA:"บน",priceB:"ล่าง"};
+  return {title:"เลข 2 ตัว",placeholder:"",len:2,priceA:"บน",priceB:"ล่าง"};
 }
 
 function syncNumbersFromInput() {
@@ -7097,6 +7947,132 @@ function getTotalAmount() {
   return count * (num(state.priceA) + num(state.priceB));
 }
 
+function getBillEffectiveNumbers(bill) {
+  bill = bill || {};
+
+  if (bill.mode === "two" && bill.reverse) {
+    var out = [];
+    (bill.numbers || []).forEach(function(n){
+      out.push(n);
+      var r = n.charAt(1) + n.charAt(0);
+      if (r !== n) out.push(r);
+    });
+    return unique(out);
+  }
+
+  if (bill.mode === "six") {
+    var six = [];
+    (bill.numbers || []).forEach(function(n){
+      six = six.concat(getPermutations3(n));
+    });
+    return unique(six);
+  }
+
+  if (bill.mode === "gate") {
+    var gate = [];
+    (bill.numbers || []).forEach(function(d){
+      gate = gate.concat(get19GateNumbers(d));
+    });
+    return unique(gate);
+  }
+
+  return (bill.numbers || []).slice();
+}
+
+function getBillCount(bill) {
+  return getBillEffectiveNumbers(bill).length;
+}
+
+function getBillTotal(bill) {
+  var count = getBillCount(bill);
+  return count * (num(bill.priceA) + (bill.mode === "six" ? 0 : num(bill.priceB)));
+}
+
+function getCurrentBillSnapshot() {
+  return {
+    mode: state.betMode,
+    title: getModeConfig().title,
+    numbers: state.numbers.slice(),
+    reverse: state.betMode === "two" ? !!state.reverse : false,
+    priceA: num(state.priceA),
+    priceB: state.betMode === "six" ? 0 : num(state.priceB)
+  };
+}
+
+function hasCurrentBillInput() {
+  return !!(state.numbers.length || num(state.priceA) || num(state.priceB));
+}
+
+function getSubmissionBills() {
+  return state.billItems.slice();
+}
+
+function getCombinedBetCount() {
+  return getSubmissionBills().reduce(function(sum,bill){
+    return sum + getBillCount(bill);
+  }, 0);
+}
+
+function getCombinedTotalAmount() {
+  return getSubmissionBills().reduce(function(sum,bill){
+    return sum + getBillTotal(bill);
+  }, 0);
+}
+
+function validateBillItem(bill) {
+  if (!bill || !bill.numbers || !bill.numbers.length) throw new Error("กรุณาใส่เลข");
+  if (getBillTotal(bill) <= 0) throw new Error("กรุณาใส่ราคา");
+
+  var min = Number(state.selectedLotto.minPerNumber || 0);
+  var max = Number(state.selectedLotto.maxPerNumber || 0);
+  var prices = [num(bill.priceA), num(bill.priceB)].filter(function(x){ return x > 0; });
+
+  prices.forEach(function(p){
+    if (min > 0 && p < min) throw new Error("ราคาขั้นต่ำต่อเลข " + money(min));
+    if (max > 0 && p > max) throw new Error("ราคาสูงสุดต่อเลข " + money(max));
+  });
+}
+
+function clearCurrentEntry(render) {
+  state.numbers = [];
+  state.reverse = false;
+  state.priceA = 0;
+  state.priceB = 0;
+  if (els.numberInput) els.numberInput.value = "";
+  if (render !== false) renderDirectBet();
+  clearError();
+}
+
+function addCurrentBill() {
+  clearError();
+
+  try {
+    if (!state.selectedLotto) throw new Error("กรุณาเลือกหวย");
+    var close = getLottoCloseTarget(state.selectedLotto);
+    if (close && close.getTime() <= Date.now()) throw new Error("หวยนี้ปิดรับแล้ว");
+
+    var bill = getCurrentBillSnapshot();
+    validateBillItem(bill);
+
+    var nextTotal = state.billItems.reduce(function(sum,x){ return sum + getBillTotal(x); }, 0) + getBillTotal(bill);
+    var maxBill = Number(state.selectedLotto.maxPerBill || 0);
+    if (maxBill > 0 && nextTotal > maxBill) throw new Error("ยอดต่อบิลสูงสุด " + money(maxBill));
+    if (state.user && Number(state.user.credit || 0) < nextTotal) throw new Error("ยอดคงเหลือไม่เพียงพอ • มี " + money(state.user.credit));
+
+    state.billItems.push(bill);
+    clearCurrentEntry(false);
+    renderDirectBet();
+    showToast("เพิ่มบิลแล้ว");
+  } catch(e) {
+    showError(e.message || e);
+  }
+}
+
+function removeBillItem(index) {
+  state.billItems.splice(Number(index), 1);
+  renderDirectBet();
+}
+
 function chipHtml(number, cls, note, removable) {
   var html = '<span class="bet-number-chip ' + (cls || "") + '">' +
     '<span>' + escapeHtml(number) + '</span>';
@@ -7220,7 +8196,7 @@ function renderDirectBet() {
   els.reverseBtn.textContent = state.reverse ? "✓ กลับเลขแล้ว" : "↔ กลับเลข";
 
   if (!state.numbers.length) {
-    els.numberChipBox.innerHTML = '<div class="number-chip-empty">เลขที่พิมพ์จะแสดงตรงนี้</div>';
+    els.numberChipBox.innerHTML = '<div class="number-chip-empty"></div>';
   } else {
     els.numberChipBox.innerHTML = buildActualBetChips();
 
@@ -7230,26 +8206,77 @@ function renderDirectBet() {
     });
   }
 
+  renderBillStack();
   renderTotalsOnly();
 }
 
+function renderBillStack() {
+  if (!els.billStack || !els.billStackList) return;
+
+  els.billStack.classList.toggle("hidden", !state.billItems.length);
+  if (els.billStackCount) els.billStackCount.textContent = state.billItems.length + " บิล";
+  if (els.billStackSummary) {
+    els.billStackSummary.innerHTML = state.billItems.length
+      ? '<div class="bill-summary-pill"><span>รวมบิลที่เพิ่มไว้</span><strong>' + money(getCombinedTotalAmount()) + ' บาท</strong></div>' +
+        '<div class="bill-summary-meta">' +
+          '<span>' + state.billItems.length + ' บิล</span>' +
+          '<span>' + getCombinedBetCount() + ' รายการแทงจริง</span>' +
+          '<span>คงเหลือ ' + money(state.user ? state.user.credit : 0) + '</span>' +
+        '</div>'
+      : '';
+  }
+
+  els.billStackList.innerHTML = state.billItems.map(function(bill,index){
+    var nums = getBillEffectiveNumbers(bill);
+    var prices = [];
+    var cfg = getModeConfigForMode(bill.mode);
+    if (bill.priceA > 0) prices.push(cfg.priceA + " " + money(bill.priceA));
+    if (bill.priceB > 0 && cfg.priceB) prices.push(cfg.priceB + " " + money(bill.priceB));
+
+    return '<div class="bill-stack-item">' +
+      '<div class="bill-stack-main">' +
+        '<div class="bill-stack-title-row">' +
+          '<b>' + escapeHtml(cfg.title) + '</b>' +
+          '<strong>' + money(getBillTotal(bill)) + ' บาท</strong>' +
+        '</div>' +
+        '<small>' + getBillCount(bill) + ' ตัว • ' + escapeHtml(prices.join(" / ")) + '</small>' +
+        '<span>' + escapeHtml(nums.join(" ")) + '</span>' +
+      '</div>' +
+      '<div class="bill-stack-side">' +
+        '<button type="button" data-remove-bill="' + index + '">ลบบิล</button>' +
+      '</div>' +
+    '</div>';
+  }).join("");
+
+  els.billStackList.querySelectorAll("[data-remove-bill]").forEach(function(btn){
+    btn.onclick = function(){ removeBillItem(btn.dataset.removeBill); };
+  });
+}
+
 function renderTotalsOnly() {
-  var total = getTotalAmount();
-  var count = getBetCount();
+  var total = getCombinedTotalAmount();
+  var count = getCombinedBetCount();
+  var currentTotal = getTotalAmount();
 
   els.betCount.textContent = count + " รายการ";
   els.grandTotal.textContent = money(total);
+  if (els.currentBillTotal) els.currentBillTotal.textContent = money(currentTotal) + " บาท";
 
   if (state.user) {
-    els.bottomCredit.textContent = money(state.user.credit);
+    if (els.bottomCredit) els.bottomCredit.textContent = money(state.user.credit);
     els.summaryCredit.textContent = money(state.user.credit);
   }
 
-  els.submitBtn.disabled = !state.numbers.length || total <= 0;
+  if (els.addBillBtn) {
+    els.addBillBtn.disabled = !state.numbers.length || getTotalAmount() <= 0;
+  }
+
+  els.submitBtn.disabled = !state.billItems.length || total <= 0;
 }
 
 function clearCurrentBet(render) {
   state.numbers = [];
+  state.billItems = [];
   state.reverse = false;
   state.priceA = 0;
   state.priceB = 0;
@@ -7265,23 +8292,11 @@ function clearCurrentBet(render) {
 ===================================================== */
 function validateDirectBet() {
   if (!state.selectedLotto) throw new Error("กรุณาเลือกหวย");
-  if (!state.numbers.length) throw new Error("กรุณาใส่เลข");
+  if (!state.billItems.length) throw new Error("กรุณากดเพิ่มบิลก่อนยืนยันโพย");
+  state.billItems.forEach(validateBillItem);
 
-  var total = getTotalAmount();
+  var total = getCombinedTotalAmount();
   if (total <= 0) throw new Error("กรุณาใส่ราคา");
-
-  var min = Number(state.selectedLotto.minPerNumber || 0);
-  var max = Number(state.selectedLotto.maxPerNumber || 0);
-  var prices = [num(state.priceA), num(state.priceB)].filter(function(x){ return x > 0; });
-
-  prices.forEach(function(p){
-    if (min > 0 && p < min) {
-      throw new Error("ราคาขั้นต่ำต่อเลข " + money(min));
-    }
-    if (max > 0 && p > max) {
-      throw new Error("ราคาสูงสุดต่อเลข " + money(max));
-    }
-  });
 
   var maxBill = Number(state.selectedLotto.maxPerBill || 0);
   if (maxBill > 0 && total > maxBill) {
@@ -7301,22 +8316,30 @@ function validateDirectBet() {
 }
 
 function buildDirectBetPayload() {
+  return buildBillDirectPayload(getCurrentBillSnapshot());
+}
+
+function buildBillDirectPayload(bill) {
   return {
-    mode: state.betMode,
-    numbers: state.numbers.slice(),
-    reverse: state.betMode === "two" ? !!state.reverse : false,
-    priceA: num(state.priceA),
-    priceB: state.betMode === "six" ? 0 : num(state.priceB)
+    mode: bill.mode,
+    numbers: bill.numbers.slice(),
+    reverse: bill.mode === "two" ? !!bill.reverse : false,
+    priceA: num(bill.priceA),
+    priceB: bill.mode === "six" ? 0 : num(bill.priceB)
   };
 }
 
 function buildCanonicalRawText() {
-  var a = num(state.priceA);
-  var b = num(state.priceB);
+  return getSubmissionBills().map(buildBillRawText).filter(Boolean).join("\n");
+}
+
+function buildBillRawText(bill) {
+  var a = num(bill.priceA);
+  var b = num(bill.priceB);
   var lines = [];
 
-  if (state.betMode === "two") {
-    var nums = getEffectiveNumbers();
+  if (bill.mode === "two") {
+    var nums = getBillEffectiveNumbers(bill);
 
     if (a > 0 && b > 0) {
       lines.push(nums.join(" ") + " บล " + a + "*" + b);
@@ -7329,30 +8352,30 @@ function buildCanonicalRawText() {
     return lines.join("\n");
   }
 
-  if (state.betMode === "three") {
+  if (bill.mode === "three") {
     if (a > 0 && b > 0) {
-      lines.push(state.numbers.join(" ") + " ตรงโต๊ด " + a + "*" + b);
+      lines.push(bill.numbers.join(" ") + " ตรงโต๊ด " + a + "*" + b);
     } else if (a > 0) {
-      lines.push(state.numbers.join(" ") + " ตรง " + a);
+      lines.push(bill.numbers.join(" ") + " ตรง " + a);
     } else {
-      lines.push(state.numbers.join(" ") + " โต๊ด " + b);
+      lines.push(bill.numbers.join(" ") + " โต๊ด " + b);
     }
 
     return lines.join("\n");
   }
 
-  if (state.betMode === "six") {
-    state.numbers.forEach(function(n){
+  if (bill.mode === "six") {
+    bill.numbers.forEach(function(n){
       lines.push(n + " 6กลับ " + a);
     });
 
     return lines.join("\n");
   }
 
-  if (state.betMode === "run") {
-    state.numbers.forEach(function(d){
+  if (bill.mode === "run") {
+    bill.numbers.forEach(function(d){
       if (a > 0 && b > 0) {
-        lines.push("วิ่ง " + d + " บน " + a + " | ล่าง " + b);
+        lines.push("วิ่ง " + d + " บล " + a + "*" + b);
       } else if (a > 0) {
         lines.push("วิ่ง " + d + " บน " + a);
       } else {
@@ -7362,8 +8385,8 @@ function buildCanonicalRawText() {
     return lines.join("\n");
   }
 
-  if (state.betMode === "gate") {
-    state.numbers.forEach(function(d){
+  if (bill.mode === "gate") {
+    bill.numbers.forEach(function(d){
       if (a > 0 && b > 0) {
         lines.push("รูด " + d + " บล " + a + "*" + b);
       } else if (a > 0) {
@@ -7383,45 +8406,27 @@ function buildCanonicalRawText() {
    CONFIRM
 ===================================================== */
 function buildConfirmHtml() {
-  var cfg = getModeConfig();
-  var total = getTotalAmount();
-  var priceText = "";
-  var displayNumbers = "";
-
-  if (state.betMode === "six") {
-    priceText = cfg.priceA + " " + money(state.priceA);
-    displayNumbers = state.numbers.map(function(n){
-      return '<div style="margin:6px 0"><b>' + escapeHtml(n) + '</b><br>' +
-        '<span style="font-size:12px;color:#71717a">' +
-        escapeHtml(getPermutations3(n).join(" ")) +
-        '</span></div>';
-    }).join("");
-  }
-  else if (state.betMode === "gate") {
+  var bills = getSubmissionBills();
+  var total = getCombinedTotalAmount();
+  var billHtml = bills.map(function(bill,index){
+    var cfg = getModeConfigForMode(bill.mode);
     var prices = [];
-    if (state.priceA > 0) prices.push(cfg.priceA + " " + money(state.priceA));
-    if (state.priceB > 0) prices.push(cfg.priceB + " " + money(state.priceB));
-    priceText = prices.join("  |  ");
+    if (bill.priceA > 0) prices.push(cfg.priceA + " " + money(bill.priceA));
+    if (bill.priceB > 0 && cfg.priceB) prices.push(cfg.priceB + " " + money(bill.priceB));
 
-    displayNumbers = state.numbers.map(function(d){
-      return '<div style="margin:6px 0"><b>รูด ' + escapeHtml(d) + '</b><br>' +
-        '<span style="font-size:12px;color:#71717a">' +
-        escapeHtml(get19GateNumbers(d).join(" ")) +
-        '</span></div>';
-    }).join("");
-  }
-  else {
-    var ps = [];
-    if (state.priceA > 0) ps.push(cfg.priceA + " " + money(state.priceA));
-    if (state.priceB > 0 && cfg.priceB) ps.push(cfg.priceB + " " + money(state.priceB));
-    priceText = ps.join("  |  ");
-
-    var nums = state.betMode === "two" ? getEffectiveNumbers() : state.numbers;
-    displayNumbers =
-      '<div style="font-size:20px;font-weight:900;line-height:1.8;word-break:break-word">' +
-      escapeHtml(nums.join(" ")) +
-      '</div>';
-  }
+    return '<div style="margin-top:8px;padding:10px;border:1px solid #fecaca;border-radius:12px;background:#fff">' +
+      '<div style="display:flex;justify-content:space-between;gap:8px;align-items:center">' +
+        '<b>บิล ' + (index + 1) + ' • ' + escapeHtml(cfg.title) + '</b>' +
+        '<b style="color:#b91c1c">' + money(getBillTotal(bill)) + '</b>' +
+      '</div>' +
+      '<div style="margin-top:6px;font-size:13px;line-height:1.55;word-break:break-word">' +
+        escapeHtml(getBillEffectiveNumbers(bill).join(" ")) +
+      '</div>' +
+      '<div style="margin-top:6px;color:#71717a;font-size:12px">' +
+        escapeHtml(prices.join(" | ")) + ' • ' + getBillCount(bill) + ' รายการ' +
+      '</div>' +
+    '</div>';
+  }).join("");
 
   return '<div style="text-align:left">' +
     '<div style="padding:10px 12px;background:#fef2f2;border-radius:12px;margin-bottom:10px">' +
@@ -7429,14 +8434,11 @@ function buildConfirmHtml() {
       '<div style="font-size:24px;font-weight:950;color:#b91c1c;margin-top:2px">' +
         money(total) +
       '</div>' +
+      '<div style="font-size:12px;color:#71717a;margin-top:2px">' +
+        bills.length + ' บิล • ' + getCombinedBetCount() + ' รายการ' +
+      '</div>' +
     '</div>' +
-    '<div style="font-size:12px;font-weight:900;margin-bottom:6px">' +
-      escapeHtml(cfg.title.replace("กรอกเลข ","")) +
-    '</div>' +
-    displayNumbers +
-    '<div style="margin-top:10px;padding-top:10px;border-top:1px solid #eee;font-size:13px;font-weight:800">' +
-      escapeHtml(priceText) + ' • ' + getBetCount() + ' รายการ' +
-    '</div>' +
+    billHtml +
   '</div>';
 }
 
@@ -7494,8 +8496,10 @@ function confirmAndSend() {
     return;
   }
 
-  var totalBeforeSend = getTotalAmount();
+  var bills = getSubmissionBills();
+  var totalBeforeSend = getCombinedTotalAmount();
   var raw = buildCanonicalRawText();
+  var directBet = bills.length === 1 ? buildBillDirectPayload(bills[0]) : null;
 
   Swal.fire({
     title:"กำลังส่งโพย",
@@ -7504,11 +8508,13 @@ function confirmAndSend() {
     didOpen:function(){ Swal.showLoading(); }
   });
 
-  api("placeCreditBet", state.token, {
+  var payload = {
     lottoName: state.selectedLotto.name,
-    rawText: raw,
-    directBet: buildDirectBetPayload()
-  })
+    rawText: raw
+  };
+  if (directBet) payload.directBet = directBet;
+
+  api("placeCreditBet", state.token, payload)
   .then(function(r){
     if (state.user) state.user.credit = r.credit;
     updateUserUI();
