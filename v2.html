@@ -4,7 +4,7 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover" name="viewport"/>
   <meta content="#0c7146" name="theme-color"/>
-  <title>ตลาดหวย</title>
+  <title>ทรัพย์มั่งมี</title>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2988,6 +2988,122 @@ button:hover{
   .account-btn{min-height:36px}
 }
 
+/* =====================================================
+   V18 — BET SCREEN READABILITY
+===================================================== */
+.api-state{
+  display:none !important;
+}
+.topbar{
+  background:linear-gradient(135deg,#063525,#0b6f49 64%,#18a96c) !important;
+}
+.bet-mode-tabs{
+  background:#f9fcfa !important;
+  border-color:#d9e8df !important;
+}
+.bet-mode-tab{
+  color:#263b31 !important;
+}
+.bet-mode-tab.active{
+  background:linear-gradient(135deg,#075c39,#18a96c) !important;
+  box-shadow:0 9px 18px rgba(7,92,57,.18) !important;
+}
+.direct-bet-content{
+  background:#f4f8f5 !important;
+}
+.direct-card{
+  background:#fff !important;
+  border-color:#dbe9e1 !important;
+}
+.direct-title,
+.selected-label,
+.price-section-title{
+  color:#14211b !important;
+}
+.number-count-pill{
+  border-color:#bfead1 !important;
+  background:#f0fdf4 !important;
+  color:#087347 !important;
+}
+.number-entry-input{
+  border-color:#d8e5dd !important;
+  background:#fbfdfc !important;
+  color:#14211b !important;
+}
+.number-chip-box{
+  border-color:#dbe9e1 !important;
+  background:#fbfdfc !important;
+}
+.bet-number-chip{
+  border-color:#bfead1 !important;
+  background:#effbf4 !important;
+  color:#064e36 !important;
+}
+.bet-number-chip button{
+  background:#fff !important;
+  color:#0f7d4e !important;
+}
+.bet-number-chip.generated,
+.bet-number-chip.generated.reverse-chip,
+.bet-number-chip.generated.gate-chip,
+.bet-number-chip.generated.six-chip,
+.bet-number-chip.run-chip{
+  border-color:#bfead1 !important;
+  background:#effbf4 !important;
+  color:#064e36 !important;
+}
+.clear-numbers,
+.direct-clear-all,
+.quick-tool{
+  border-color:#cfe0d7 !important;
+  background:#fff !important;
+  color:#263b31 !important;
+}
+.quick-tool.primary-tool,
+.quick-tool.active{
+  border-color:#bfead1 !important;
+  background:#ecfdf5 !important;
+  color:#075c39 !important;
+}
+.direct-price-input{
+  border-color:#d8e5dd !important;
+  color:#14211b !important;
+}
+.direct-price-input:focus,
+.number-entry-input:focus{
+  border-color:#18a96c !important;
+  box-shadow:0 0 0 4px rgba(24,169,108,.12) !important;
+}
+.direct-grand{
+  background:linear-gradient(135deg,#075c39,#0f7d4e) !important;
+}
+.submit-credit-note{
+  color:#66776f !important;
+}
+.error{
+  color:#b42318 !important;
+}
+.direct-action-row{
+  grid-template-columns:.72fr .95fr 1.45fr !important;
+}
+.direct-back-bottom{
+  min-height:54px;
+  border:1.5px solid #cfe0d7;
+  border-radius:15px;
+  background:#f8fbf9;
+  color:#263b31;
+  font-size:14px;
+  font-weight:950;
+}
+@media(max-width:430px){
+  .direct-action-row{
+    grid-template-columns:1fr 1fr !important;
+  }
+  .direct-submit{
+    grid-column:1/-1;
+  }
+}
+
 </style>
  </head>
  <body>
@@ -2995,9 +3111,7 @@ button:hover{
   <section id="loginScreen">
     <div class="login-card-credit">
       <div class="login-logo-credit">฿</div>
-      <h1 class="login-title-inline">ตลาดหวย <span class="login-version" id="loginVersion">V15</span></h1>
-      
-      <div class="api-state" id="apiState">กำลังตรวจการเชื่อมต่อ...</div>
+      <h1 class="login-title-inline">ทรัพย์มั่งมี</h1>
 
       <div class="auth-tabs">
         <button class="auth-tab active" id="authLoginTab" type="button">เข้าสู่ระบบ</button>
@@ -3069,8 +3183,8 @@ button:hover{
        <div class="v16-brand">
         <div class="v16-brand-mark">◉</div>
         <div class="v16-brand-copy">
-         <strong>ตลาดหวย</strong>
-         <small>LOTTERY MEMBER</small>
+         <strong>ทรัพย์มั่งมี</strong>
+         <small>LOTTERY MUNGMEE</small>
         </div>
        </div>
        <button class="v16-logout" id="homeLogoutBtn" type="button">ออกจากระบบ</button>
@@ -3104,7 +3218,6 @@ button:hover{
         <div>
          <span class="v16-lotto-badge">ยอดนิยม</span>
          <div class="v16-lotto-title">แทงหวย</div>
-         <div class="v16-lotto-desc">เลือกหวยและเข้าใช้งานหน้าแทงหวยเดิมของระบบ</div>
         </div>
         <div class="v16-lotto-ball">29</div>
        </div>
@@ -3128,9 +3241,6 @@ button:hover{
        </button>
       </div>
 
-      <div class="v16-safe-note">
-       V16.5 BET • ตรวจสลิปผ่าน Thunder แล้วเพิ่มเครดิตสำหรับแทงหวยอัตโนมัติ
-      </div>
      </div>
     </div>
    </section>
@@ -3260,6 +3370,7 @@ button:hover{
       <span id="bottomCredit">0.00</span>
      </div>
      <div class="direct-action-row">
+      <button class="direct-back-bottom" id="bottomBackBtn" type="button">กลับ</button>
       <button class="direct-clear-all" id="clearAllBtn">ล้างทั้งหมด</button>
       <button class="direct-submit" disabled id="submitBtn">ยืนยันโพย</button>
      </div>
@@ -3350,8 +3461,8 @@ button:hover{
     </header>
     <div class="results-body">
      <div class="results-toolbar">
-      <input id="resultsDate" type="date">
-      <button id="resultsReloadBtn">ดูผล</button>
+      <input id="resultsDate" type="date" readonly aria-label="วันที่ผลหวยวันนี้">
+      <button id="resultsReloadBtn">รีเฟรชผลวันนี้</button>
      </div>
      <div id="resultsSource" style="margin:-3px 2px 10px;color:#71717a;font-size:9px;font-weight:800"></div>
      <div class="result-list" id="resultsList">
@@ -3581,7 +3692,7 @@ button:hover{
   
 
 <script>
-const APP_VERSION = "V16.5 BET";
+const APP_VERSION = "LOTTERY MUNGMEE";
 const API = "https://script.google.com/macros/s/AKfycbyDnjGnxA1CtMD1TWxUCE8ThyQ8nxRG2kXJ7-bEkmCKfyJ3SsgghHP9Qj1OmyshyUI/exec";
 const AFTER_MIDNIGHT_CUTOFF_HOUR = 6;
 
@@ -3616,7 +3727,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "loginScreen","mainApp","apiState","loginVersion","authLoginTab","authRegisterTab","loginPanel","registerPanel","loginUser","loginPass","loginBtn","regPhone","regPass","regPassConfirm","regBankNameAccount","regBankName","regBankAccountNo","registerBtn",
     "homeScreen","homeCredit","homeUserName","homeUsername","homeLogoutBtn","homeDepositBtn","homeWithdrawBtn","homeLottoBtn","homeHistoryBtn","homeResultsBtn","homeSummaryBtn","homeMoneyBtn","lottoHomeBtn","betHomeBtn",
     "lottoScreen","betScreen","historyScreen","moneyScreen","memberSummaryScreen","resultsScreen","adminScreen","lottoGrid","lottoEmpty",
-    "backBtn","selectedName","selectedRound","selectedClose","selectedCount",
+    "backBtn","bottomBackBtn","selectedName","selectedRound","selectedClose","selectedCount",
     "accountName","heroCredit","betCredit","bottomCredit","summaryCredit","adminBtn",
     "memberSummaryBtn","moneyBtn","resultsBtn","historyBtn","logoutBtn","resultsBackBtn","resultsBalance","resultsDate","resultsReloadBtn","resultsSource","resultsList","historyBackBtn","historyCredit","historyFrom","historyTo",
      "historyStatus","historyList","moneyBackBtn","moneyBalance","moneyFrom","moneyTo","moneyType","moneyList","memberSummaryBackBtn","memberSummaryBalance","memberSummaryFrom","memberSummaryTo","memberSummaryLotto","memberSummarySearchBtn","memberSummaryStats","memberSummaryTable","adminIdentity","adminLogoutBtn","syncResultsBtn","adminDashRange","adminDashFrom","adminDashTo","adminDashCustomBtn","adminDashSelectAll","adminDashClearAll","adminDashLottoChecks","adminDashStats","adminByUser","adminByLotto","adminBetFrom","adminBetTo","adminBetStatus","adminOpenUser","adminOpenLotto","adminOpenSearchBtn","adminOpenTable","adminCreateUserBtn","adminUserTable","adminWithdrawStatus","adminWithdrawReloadBtn","adminWithdrawTable","adminLottoToggleTable","adminLottoRulesTable","adminRateUser","adminRateLotto","adminRateModeNote","adminRate3Straight","adminRate3Tod","adminRate2Top","adminRate2Bottom","adminRateRunTop","adminRateRunBottom","adminRateSaveBtn","adminRateResetBtn","adminRateOverridesTable","directTitle","numberCount","numberInput",
@@ -3626,7 +3737,6 @@ document.addEventListener("DOMContentLoaded", function () {
     "loading","toast"
   ].forEach(function(id){ els[id] = document.getElementById(id); });
 
-  if (els.loginVersion) els.loginVersion.textContent = APP_VERSION;
   bindEvents();
   testApi();
 
@@ -3671,17 +3781,12 @@ function testApi() {
     .then(function(r){ return r.json(); })
     .then(function(j){
       if (!els.apiState) return;
-      if (els.loginVersion) {
-        els.loginVersion.textContent = (j && j.version) ? j.version : APP_VERSION;
-      }
-      els.apiState.textContent = j && j.ok
-        ? "● API พร้อมใช้งาน" + (j.huayCount ? " • หวย " + j.huayCount + " รายการ" : "")
-        : "● API ยังไม่พร้อม";
+      els.apiState.textContent = "";
       els.apiState.style.color = j && j.ok ? "#15803d" : "#b91c1c";
     })
     .catch(function(){
       if (!els.apiState) return;
-      els.apiState.textContent = "● เชื่อม API ไม่ได้";
+      els.apiState.textContent = "";
       els.apiState.style.color = "#b91c1c";
     });
 }
@@ -3711,6 +3816,7 @@ function bindEvents() {
   if (els.homeWithdrawBtn) els.homeWithdrawBtn.onclick = showWithdrawInfo;
 
   els.backBtn.onclick = backToLotto;
+  if (els.bottomBackBtn) els.bottomBackBtn.onclick = backToLotto;
   els.memberSummaryBtn.onclick = showMemberSummary;
   els.moneyBtn.onclick = showMoney;
   els.moneyBackBtn.onclick = showHome;
@@ -5127,16 +5233,18 @@ function showResults() {
 
   clearInterval(timer);
   scrollTo(0,0);
+  setResultsToday();
   loadMemberResults();
 }
 
 function loadMemberResults() {
   if (!state.token) return;
 
+  setResultsToday();
   els.resultsList.innerHTML = '<div class="empty">กำลังโหลดผล...</div>';
 
   api("getMemberResults", state.token, {
-    date:els.resultsDate.value || ""
+    date:todayDateValue()
   })
   .then(function(r){
     var rows = (r && r.results) || [];
@@ -5147,7 +5255,7 @@ function loadMemberResults() {
     }
 
     if (!rows.length) {
-      els.resultsList.innerHTML = '<div class="empty">ยังไม่มีผลหวย</div>';
+      els.resultsList.innerHTML = '<div class="empty">ยังไม่มีผลหวยที่ออกวันนี้</div>';
       return;
     }
 
@@ -5171,6 +5279,22 @@ function loadMemberResults() {
 function formatResultDate(v) {
   var m = String(v || "").match(/^(\d{4})-(\d{2})-(\d{2})$/);
   return m ? m[3] + "-" + m[2] + "-" + m[1] : String(v || "");
+}
+
+function todayDateValue() {
+  var now = new Date();
+  var y = now.getFullYear();
+  var m = String(now.getMonth() + 1).padStart(2, "0");
+  var d = String(now.getDate()).padStart(2, "0");
+  return y + "-" + m + "-" + d;
+}
+
+function setResultsToday() {
+  if (!els.resultsDate) return;
+  var today = todayDateValue();
+  els.resultsDate.value = today;
+  els.resultsDate.max = today;
+  els.resultsDate.min = today;
 }
 
 /* =====================================================
