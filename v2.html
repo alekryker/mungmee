@@ -6343,6 +6343,16 @@ textarea:focus{
     padding-bottom:calc(540px + env(safe-area-inset-bottom)) !important;
   }
 }
+
+/* V42 — QUICK TOOLS ABOVE SELECTED DETAILS */
+.number-entry + .quick-tools{
+  margin-top:12px !important;
+  margin-bottom:4px !important;
+}
+
+.number-entry + .quick-tools + .selected-label-row{
+  margin-top:12px !important;
+}
 </style>
  </head>
  <body>
@@ -6566,17 +6576,17 @@ textarea:focus{
        <textarea id="numberInput" class="number-entry-input" inputmode="numeric" autocomplete="off" placeholder=""></textarea>
       </div>
 
+      <div class="quick-tools">
+       <button class="quick-tool primary-tool" id="reverseBtn">↔ กลับเลข</button>
+       <button class="quick-tool" id="doubleBtn">+ เลขเบิ้ล</button>
+      </div>
+
       <div class="selected-label-row">
        <span class="selected-label">รายละเอียดโพย</span>
        <button class="clear-numbers" id="clearNumbersBtn">ล้างเลข</button>
       </div>
       <div class="number-chip-box" id="numberChipBox">
        <div class="number-chip-empty"></div>
-      </div>
-
-      <div class="quick-tools">
-       <button class="quick-tool primary-tool" id="reverseBtn">↔ กลับเลข</button>
-       <button class="quick-tool" id="doubleBtn">+ เลขเบิ้ล</button>
       </div>
 
       <div class="bill-stack hidden" id="billStack">
@@ -6587,10 +6597,6 @@ textarea:focus{
        <div class="bill-stack-list" id="billStackList"></div>
       </div>
 
-      <div class="bet-summary">
-       <div class="bet-summary-item primary-summary"><small>รายการแทงจริง</small><b id="betCount">0</b></div>
-       <div class="bet-summary-item"><small>ยอดคงเหลือ</small><b id="summaryCredit">0.00</b></div>
-      </div>
       <div class="error" id="error"></div>
      </section>
     </div>
@@ -7420,7 +7426,7 @@ function updateUserUI() {
   els.heroCredit.textContent = credit;
   els.betCredit.textContent = credit;
   if (els.bottomCredit) els.bottomCredit.textContent = credit;
-  els.summaryCredit.textContent = credit;
+  if (els.summaryCredit) els.summaryCredit.textContent = credit;
   els.historyCredit.textContent = credit;
   if (els.moneyBalance) els.moneyBalance.textContent = credit;
   if (els.memberSummaryBalance) els.memberSummaryBalance.textContent = credit;
@@ -8235,13 +8241,13 @@ function renderTotalsOnly() {
   var count = getCombinedBetCount();
   var currentTotal = getTotalAmount();
 
-  els.betCount.textContent = count + " รายการ";
+  if (els.betCount) els.betCount.textContent = count + " รายการ";
   els.grandTotal.textContent = money(total);
   if (els.currentBillTotal) els.currentBillTotal.textContent = money(currentTotal) + " บาท";
 
   if (state.user) {
     if (els.bottomCredit) els.bottomCredit.textContent = money(state.user.credit);
-    els.summaryCredit.textContent = money(state.user.credit);
+    if (els.summaryCredit) els.summaryCredit.textContent = money(state.user.credit);
   }
 
   if (els.addBillBtn) {
