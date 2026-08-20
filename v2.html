@@ -5666,7 +5666,7 @@ async function loadAdminWithdraws() {
           await api("adminApproveWithdraw", state.token, btn.dataset.approveWithdraw);
           Swal.close();
           await loadAdminWithdraws();
-          toast("อนุมัติรายการถอนแล้ว");
+          showToast("อนุมัติรายการถอนแล้ว");
         } catch(e) { Swal.close(); showAdminError(e); }
       };
     });
@@ -5681,7 +5681,7 @@ async function loadAdminWithdraws() {
           Swal.close();
           await loadAdminWithdraws();
           await loadAdminUsers();
-          toast("ยกเลิกและคืนเครดิตแล้ว");
+          showToast("ยกเลิกและคืนเครดิตแล้ว");
         } catch(e) { Swal.close(); showAdminError(e); }
       };
     });
@@ -5804,7 +5804,7 @@ async function loadAdminAllBets() {
         if (!bet) return;
         var ask = await Swal.fire({icon:"warning",title:"ยกเลิกโพย " + escapeHtml(bet.username),html:escapeHtml(bet.lottoName) + "<br>ยอดคืน <b>" + money(bet.totalAmount) + "</b>",showCancelButton:true,confirmButtonText:"ยืนยันยกเลิก",cancelButtonText:"ไม่ยกเลิก",confirmButtonColor:"#0d6f45"});
         if (!ask.isConfirmed) return;
-        try{adminBusy("กำลังยกเลิกโพย...");await api("adminCancelBet",state.token,bet.billId);Swal.close();await loadAdminAllBets();await loadAdminDashboard("day");await loadAdminUsers();toast("ยกเลิกโพยและคืนยอดแล้ว");}catch(e){Swal.close();showAdminError(e);}
+        try{adminBusy("กำลังยกเลิกโพย...");await api("adminCancelBet",state.token,bet.billId);Swal.close();await loadAdminAllBets();await loadAdminDashboard("day");await loadAdminUsers();showToast("ยกเลิกโพยและคืนยอดแล้ว");}catch(e){Swal.close();showAdminError(e);}
       };
     });
 
@@ -6002,7 +6002,7 @@ async function loadAdminLottoSettings() {
     state.adminLottos = await api("adminGetLottoSettings",state.token) || [];
     els.adminLottoToggleTable.innerHTML = adminTable(["หวย","ปิดรับ","สถานะ","เปิด / ปิด"],state.adminLottos.map(function(l){ return [escapeHtml(l.lottoName),escapeHtml(l.closeTime),l.enabled ? '<span class="lotto-status on">เปิด</span>' : '<span class="lotto-status off">ปิด</span>','<button class="admin-mini ' + (l.enabled ? 'danger' : 'green') + '" data-toggle-lotto="' + escapeAttr(l.lottoName) + '" data-enabled="' + (l.enabled ? '1':'0') + '">' + (l.enabled ? 'ปิดหวย':'เปิดหวย') + '</button>']; }));
     els.adminLottoRulesTable.innerHTML = adminTable(["หวย","ปิดรับ","ขั้นต่ำ","สูงสุด/เลข","สูงสุด/บิล","Alias","แก้ไข"],state.adminLottos.map(function(l){ return [escapeHtml(l.lottoName),escapeHtml(l.closeTime),money(l.minPerNumber),money(l.maxPerNumber),money(l.maxPerBill),escapeHtml(l.aliases || ""),'<button class="admin-mini edit" data-edit-rule="' + escapeAttr(l.lottoName) + '">แก้ไข</button>']; }));
-    els.adminLottoToggleTable.querySelectorAll("[data-toggle-lotto]").forEach(function(btn){ btn.onclick = async function(){ var enabled = btn.dataset.enabled !== "1"; try { adminBusy(enabled ? "กำลังเปิดหวย...":"กำลังปิดหวย..."); await api("adminSetLottoEnabled",state.token,{lottoName:btn.dataset.toggleLotto,enabled:enabled}); Swal.close(); await refreshBootData(); await loadAdminLottoSettings(); toast(enabled ? "เปิดหวยแล้ว":"ปิดหวยแล้ว"); } catch(e) { Swal.close(); showAdminError(e); } }; });
+    els.adminLottoToggleTable.querySelectorAll("[data-toggle-lotto]").forEach(function(btn){ btn.onclick = async function(){ var enabled = btn.dataset.enabled !== "1"; try { adminBusy(enabled ? "กำลังเปิดหวย...":"กำลังปิดหวย..."); await api("adminSetLottoEnabled",state.token,{lottoName:btn.dataset.toggleLotto,enabled:enabled}); Swal.close(); await refreshBootData(); await loadAdminLottoSettings(); showToast(enabled ? "เปิดหวยแล้ว":"ปิดหวยแล้ว"); } catch(e) { Swal.close(); showAdminError(e); } }; });
     els.adminLottoRulesTable.querySelectorAll("[data-edit-rule]").forEach(function(btn){ btn.onclick=function(){ var l=state.adminLottos.find(function(x){return x.lottoName===btn.dataset.editRule;}); if(l) openEditLottoRules(l); }; });
     showLottoSubTab(state.lottoSubTab || "enabled");
   } catch(e) { showAdminError(e); }
@@ -6016,7 +6016,7 @@ async function openEditLottoRules(l) {
     '<div class="swal-admin-field"><label>สูงสุด/บิล</label><input id="admLottoBill" type="number" value="' + Number(l.maxPerBill || 0) + '"></div>' +
     '<div class="swal-admin-field full"><label>Alias จาก AllHuay</label><input id="admLottoAlias" value="' + escapeAttr(l.aliases || "") + '"></div></div>',showCancelButton:true,confirmButtonText:"บันทึก",cancelButtonText:"ยกเลิก",preConfirm:function(){ return {lottoName:l.lottoName,enabled:l.enabled,closeTime:document.getElementById("admLottoClose").value,minPerNumber:num(document.getElementById("admLottoMin").value),maxPerNumber:num(document.getElementById("admLottoMax").value),maxPerBill:num(document.getElementById("admLottoBill").value),rate3Straight:l.rate3Straight,rate3Tod:l.rate3Tod,rate2Top:l.rate2Top,rate2Bottom:l.rate2Bottom,rateRunTop:l.rateRunTop,rateRunBottom:l.rateRunBottom,aliases:document.getElementById("admLottoAlias").value,sortOrder:l.sortOrder}; }});
   if(!r.isConfirmed)return;
-  try{adminBusy("กำลังบันทึก...");await api("adminSaveLottoSetting",state.token,r.value);Swal.close();await refreshBootData();await loadAdminLottoSettings();toast("บันทึกเงื่อนไขแล้ว");}catch(e){Swal.close();showAdminError(e);}
+  try{adminBusy("กำลังบันทึก...");await api("adminSaveLottoSetting",state.token,r.value);Swal.close();await refreshBootData();await loadAdminLottoSettings();showToast("บันทึกเงื่อนไขแล้ว");}catch(e){Swal.close();showAdminError(e);}
 }
 
 async function loadAdminPayoutRates() {
@@ -6034,8 +6034,8 @@ async function loadAdminPayoutRates() {
 
 function getAdminRateSelection(){var m=state.adminRateMatrix||{users:[],lottos:[],overrides:[]};var uid=els.adminRateUser.value||"",ln=els.adminRateLotto.value||"";return{userId:uid,user:(m.users||[]).find(function(x){return x.userId===uid;})||null,lottoName:ln,lotto:(m.lottos||[]).find(function(x){return x.lottoName===ln;})||null,override:uid?((m.overrides||[]).find(function(x){return x.userId===uid&&x.lottoName===ln;})||null):null};}
 function renderAdminRateEditor(){var s=getAdminRateSelection();if(!s.lotto)return;var r=s.override?s.override.rates:s.lotto.defaults;els.adminRate3Straight.value=r.threeStraight;els.adminRate3Tod.value=r.threeTod;els.adminRate2Top.value=r.twoTop;els.adminRate2Bottom.value=r.twoBottom;els.adminRateRunTop.value=r.runTop;els.adminRateRunBottom.value=r.runBottom;if(!s.userId){els.adminRateModeNote.textContent="ค่า Default • ใช้กับ Member ที่ไม่ได้กำหนดเรทเฉพาะ";els.adminRateResetBtn.disabled=true;}else if(s.override){els.adminRateModeNote.textContent="เรทเฉพาะ "+s.user.username+" • "+s.lottoName;els.adminRateResetBtn.disabled=false;}else{els.adminRateModeNote.textContent=s.user.username+" ยังใช้ค่า Default ของ "+s.lottoName;els.adminRateResetBtn.disabled=true;}}
-async function saveAdminPayoutRate(){var s=getAdminRateSelection();if(!s.lottoName)return;try{adminBusy("กำลังบันทึกเรท...");await api("adminSavePayoutRate",state.token,{userId:s.userId,lottoName:s.lottoName,rate3Straight:num(els.adminRate3Straight.value),rate3Tod:num(els.adminRate3Tod.value),rate2Top:num(els.adminRate2Top.value),rate2Bottom:num(els.adminRate2Bottom.value),rateRunTop:num(els.adminRateRunTop.value),rateRunBottom:num(els.adminRateRunBottom.value)});Swal.close();await loadAdminPayoutRates();toast("บันทึกเรทแล้ว");}catch(e){Swal.close();showAdminError(e);}}
-async function resetAdminPayoutRate(){var s=getAdminRateSelection();if(!s.userId||!s.override)return;var ask=await Swal.fire({icon:"question",title:"ใช้ค่า Default?",text:"ลบเรทเฉพาะของ "+s.user.username+" สำหรับ "+s.lottoName,showCancelButton:true,confirmButtonText:"ใช้ Default",cancelButtonText:"ยกเลิก",confirmButtonColor:"#52525b"});if(!ask.isConfirmed)return;try{adminBusy("กำลังคืนค่า Default...");await api("adminDeletePayoutRate",state.token,{userId:s.userId,lottoName:s.lottoName});Swal.close();await loadAdminPayoutRates();toast("กลับมาใช้ค่า Default แล้ว");}catch(e){Swal.close();showAdminError(e);}}
+async function saveAdminPayoutRate(){var s=getAdminRateSelection();if(!s.lottoName)return;try{adminBusy("กำลังบันทึกเรท...");await api("adminSavePayoutRate",state.token,{userId:s.userId,lottoName:s.lottoName,rate3Straight:num(els.adminRate3Straight.value),rate3Tod:num(els.adminRate3Tod.value),rate2Top:num(els.adminRate2Top.value),rate2Bottom:num(els.adminRate2Bottom.value),rateRunTop:num(els.adminRateRunTop.value),rateRunBottom:num(els.adminRateRunBottom.value)});Swal.close();await loadAdminPayoutRates();showToast("บันทึกเรทแล้ว");}catch(e){Swal.close();showAdminError(e);}}
+async function resetAdminPayoutRate(){var s=getAdminRateSelection();if(!s.userId||!s.override)return;var ask=await Swal.fire({icon:"question",title:"ใช้ค่า Default?",text:"ลบเรทเฉพาะของ "+s.user.username+" สำหรับ "+s.lottoName,showCancelButton:true,confirmButtonText:"ใช้ Default",cancelButtonText:"ยกเลิก",confirmButtonColor:"#52525b"});if(!ask.isConfirmed)return;try{adminBusy("กำลังคืนค่า Default...");await api("adminDeletePayoutRate",state.token,{userId:s.userId,lottoName:s.lottoName});Swal.close();await loadAdminPayoutRates();showToast("กลับมาใช้ค่า Default แล้ว");}catch(e){Swal.close();showAdminError(e);}}
 function renderAdminRateOverridesTable(){var m=state.adminRateMatrix||{overrides:[]};els.adminRateOverridesTable.innerHTML=adminTable(["Member","หวย","3ตรง","โต๊ด","2บน","2ล่าง","วิ่งบน","วิ่งล่าง"],(m.overrides||[]).map(function(x){return[escapeHtml(x.username),escapeHtml(x.lottoName),money(x.rates.threeStraight),money(x.rates.threeTod),money(x.rates.twoTop),money(x.rates.twoBottom),money(x.rates.runTop),money(x.rates.runBottom)];}));}
 
 function adminBusy(title) {
