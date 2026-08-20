@@ -5176,7 +5176,10 @@ function loadMoneyTransactions() {
       '</article>';
     }).join("");
   })
-  .catch(showErrorGlobal);
+  .catch(function(e){
+    els.moneyList.innerHTML = '<div class="empty">โหลดรายการเงินไม่สำเร็จ</div>';
+    showErrorGlobal(e);
+  });
 }
 
 /* =====================================================
@@ -5340,7 +5343,10 @@ function loadMemberResults() {
       '</article>';
     }).join("");
   })
-  .catch(showErrorGlobal);
+  .catch(function(e){
+    els.resultsList.innerHTML = '<div class="empty">โหลดผลหวยไม่สำเร็จ</div>';
+    showErrorGlobal(e);
+  });
 }
 
 function formatResultDate(v) {
@@ -5434,7 +5440,10 @@ function loadHistory() {
         };
       });
     })
-    .catch(showErrorGlobal);
+    .catch(function(e){
+      els.historyList.innerHTML = '<div class="empty">โหลดรายการโพยไม่สำเร็จ</div>';
+      showErrorGlobal(e);
+    });
 }
 
 function statusText(s) {
@@ -6337,6 +6346,11 @@ function showErrorGlobal(e) {
 
   if (els.error) els.error.textContent = msg;
 
+  if (isSilentApiError(msg)) {
+    showToast("โหลดข้อมูลไม่สำเร็จ");
+    return;
+  }
+
   Swal.fire({
     icon:"error",
     title:"เกิดข้อผิดพลาด",
@@ -6344,6 +6358,10 @@ function showErrorGlobal(e) {
     confirmButtonText:"ตกลง",
     confirmButtonColor:"#e11d48"
   });
+}
+
+function isSilentApiError(msg) {
+  return /เชื่อมต่อ API ไม่สำเร็จ|Apps Script ยังไม่ได้ Deploy|รูปสลิปอาจใหญ่เกินไป|failed to fetch|load failed|networkerror|cancelled/i.test(String(msg || ""));
 }
 
 function clearError() {
