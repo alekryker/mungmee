@@ -1,5 +1,6 @@
-<!-- ALL-IN-ONE: แนะนำเพื่อน + ถอนขั้นต่ำ 100 บาท + ประกาศหน้าเว็บ + Popup สูงสุด 2 รายการ -->
+<!-- ALL-IN-ONE: แนะนำเพื่อน + ถอนขั้นต่ำ 50 บาท + ประกาศหน้าเว็บ + Popup สูงสุด 2 รายการ -->
 <!-- RESULT HISTORY SHEET FINAL -->
+<!-- INDEX V9 WITHDRAW PANEL MIN50 + TOUCH-SAFE CONFIRM + STATELESS SESSION -->
 <!doctype html>
 <html lang="th">
  <head>
@@ -8503,19 +8504,58 @@ textarea:focus{
   
 
 <script>
-const APP_VERSION = "LOTTERY MUNGMEE • AFFILIATE";
+const APP_VERSION = "LOTTERY MUNGMEE • V5 STATELESS SESSION";
 const APPS_SCRIPT_API = "https://script.google.com/macros/s/AKfycbyDnjGnxA1CtMD1TWxUCE8ThyQ8nxRG2kXJ7-bEkmCKfyJ3SsgghHP9Qj1OmyshyUI/exec";
 const API = window.LOTTERY_API_URL || APPS_SCRIPT_API;
 const AFTER_MIDNIGHT_CUTOFF_HOUR = 6;
 const DEFAULT_LINE_CONTACT_URL = "https://lin.ee/9sjcPft";
 
+/**
+ * V5 CLIENT SESSION
+ * เก็บ token/user ทั้ง localStorage + sessionStorage
+ * เพื่อไม่ให้ iPhone/Safari คืนหน่วยความจำแล้วเด้งออกจากระบบง่าย ๆ
+ */
+function readClientSessionToken() {
+  try {
+    return localStorage.getItem("creditToken") ||
+      sessionStorage.getItem("creditToken") ||
+      "";
+  } catch(e) {
+    try {
+      return sessionStorage.getItem("creditToken") || "";
+    } catch(e2) {
+      return "";
+    }
+  }
+}
+
+function saveClientSessionToken(token) {
+  token = String(token || "");
+  try { localStorage.setItem("creditToken", token); } catch(e) {}
+  try { sessionStorage.setItem("creditToken", token); } catch(e) {}
+}
+
+function clearClientSessionStorage() {
+  try {
+    localStorage.removeItem("creditToken");
+    localStorage.removeItem("creditUser");
+  } catch(e) {}
+
+  try {
+    sessionStorage.removeItem("creditToken");
+    sessionStorage.removeItem("creditUser");
+  } catch(e) {}
+}
+
 var state = {
-  token: sessionStorage.getItem("creditToken") || "",
+  token: readClientSessionToken(),
   user: null,
   shopCredit: 0,
   lottos: [],
   depositAccount: null,
   lineContactUrl: DEFAULT_LINE_CONTACT_URL,
+  bootLoaded: false,
+  bootPromise: null,
   selectedLotto: null,
   betLayout: "modern",
   betMode: "two",
@@ -8572,10 +8612,21 @@ document.addEventListener("DOMContentLoaded", function () {
   captureAffiliateRef();
   bindEvents();
   bindRouteHistory();
-  testApi();
+  // ไม่ ping API ตอนเปิดหน้า เพื่อให้หน้า Login เบาที่สุด
 
   if (state.token) {
-    boot().catch(function(){ logout(false); });
+    var cachedLoginUser = readFastLoginUser();
+
+    if (cachedLoginUser) {
+      // รีเฟรชหน้าแล้วเข้า Home ทันทีจากข้อมูลที่เก็บไว้
+      // ไม่โหลดหวย/เรท/ประกาศ จนกว่าจะกดเมนูที่ต้องใช้
+      enterAppImmediately(cachedLoginUser);
+    } else {
+      // Session เก่าที่ไม่มี user cache ใช้ boot แบบเดิมครั้งเดียว
+      boot().catch(function(err){
+        if (!(err && (err.silentSession || err.message === "SESSION_EXPIRED"))) logout(false);
+      });
+    }
   }
 });
 
@@ -8603,6 +8654,13 @@ function api(action) {
     });
   }).catch(function(err){
     var msg = err && err.message ? String(err.message) : String(err || "");
+    if (/Session หมดอายุ/i.test(msg)) {
+      logout(false);
+      showToast("กรุณาเข้าสู่ระบบใหม่");
+      var sessionErr = new Error("SESSION_EXPIRED");
+      sessionErr.silentSession = true;
+      throw sessionErr;
+    }
     if (/load failed|failed to fetch|networkerror|cancelled/i.test(msg)) {
       throw new Error("เชื่อมต่อ API ไม่สำเร็จ: รูปสลิปอาจใหญ่เกินไป หรือ Apps Script ยังไม่ได้ Deploy เวอร์ชันล่าสุด");
     }
@@ -8704,7 +8762,9 @@ function bindEvents() {
   };
 
   // V16.1: สมาชิกอัปโหลดสลิปและตรวจสอบได้ด้วยตัวเอง
-  if (els.homeDepositBtn) els.homeDepositBtn.onclick = openSelfDeposit;
+  if (els.homeDepositBtn) els.homeDepositBtn.onclick = function(){
+    ensureBootLoaded().then(openSelfDeposit).catch(showErrorGlobal);
+  };
   if (els.homeWithdrawBtn) els.homeWithdrawBtn.onclick = showWithdrawInfo;
   if (els.homeAffiliateBtn) els.homeAffiliateBtn.onclick = showAffiliate;
   if (els.affiliateBackBtn) els.affiliateBackBtn.onclick = showHome;
@@ -8806,7 +8866,9 @@ function bindEvents() {
   els.submitBtn.onclick = openConfirm;
 
 
-  els.adminBtn.onclick = function(){ showAdmin("dashboard"); };
+  els.adminBtn.onclick = function(){
+    ensureBootLoaded().then(function(){ showAdmin("dashboard"); }).catch(showErrorGlobal);
+  };
   els.adminLogoutBtn.onclick = function(){ logout(true); };
 
   document.querySelectorAll(".admin-tab").forEach(function(btn){
@@ -8884,6 +8946,91 @@ function setAuthMode(mode) {
   clearError();
 }
 
+
+function saveFastLoginUser(user) {
+  if (!user) return;
+  var raw = "";
+  try { raw = JSON.stringify(user); } catch(e) { return; }
+
+  try { localStorage.setItem("creditUser", raw); } catch(e) {}
+  try { sessionStorage.setItem("creditUser", raw); } catch(e) {}
+}
+
+function readFastLoginUser() {
+  try {
+    var raw =
+      localStorage.getItem("creditUser") ||
+      sessionStorage.getItem("creditUser") ||
+      "";
+
+    if (!raw) return null;
+
+    var user = JSON.parse(raw);
+    return user && user.userId ? user : null;
+  } catch(e) {
+    return null;
+  }
+}
+
+/**
+ * แสดงหน้าหลักทันทีหลัง webLogin สำเร็จ
+ * ไม่รอหวย / เรท / Affiliate / ประกาศ / ผลหวย / บัญชีรับเงิน
+ */
+function enterAppImmediately(user) {
+  if (!user) return;
+
+  state.user = user;
+  state.shopCredit = Number(user.credit || 0);
+  state.isAdmin = String(user.role || "").toUpperCase() === "ADMIN";
+
+  saveFastLoginUser(user);
+  updateUserUI();
+
+  if (els.adminBtn) {
+    els.adminBtn.classList.toggle("hidden", !state.isAdmin);
+  }
+
+  els.loginScreen.classList.add("hidden");
+  els.mainApp.classList.remove("hidden");
+
+  // เข้า Home ก่อนทันที แม้เป็น Admin
+  // Admin ยังกดเมนูผู้ดูแลได้ตามปกติหลัง background boot
+  suppressRoutePush = true;
+  try {
+    showHome();
+  } finally {
+    suppressRoutePush = false;
+  }
+
+  pushAppRoute("home", true);
+}
+
+function startBackgroundBoot() {
+  // V4: ไม่โหลด Boot อัตโนมัติหลัง Login
+  // ข้อมูลหนักจะโหลดเมื่อผู้ใช้กดเมนูที่จำเป็นเท่านั้น
+  return Promise.resolve();
+}
+
+function ensureBootLoaded() {
+  if (state.bootLoaded && state.lottos && state.lottos.length) {
+    return Promise.resolve(true);
+  }
+
+  if (state.bootPromise) return state.bootPromise;
+  if (!state.token) return Promise.reject(new Error("ไม่มี session"));
+
+  state.bootPromise = boot(true)
+    .then(function(){
+      state.bootLoaded = true;
+      return true;
+    })
+    .finally(function(){
+      state.bootPromise = null;
+    });
+
+  return state.bootPromise;
+}
+
 function login() {
   var u = (els.loginUser.value || "").trim();
   var p = els.loginPass.value || "";
@@ -8894,14 +9041,25 @@ function login() {
   }
 
   setLoading(true);
+
   api("webLogin", u, p)
     .then(function(r){
       state.token = r.token;
-      sessionStorage.setItem("creditToken", state.token);
-      return boot();
+      saveClientSessionToken(state.token);
+
+      // เข้าระบบทันทีจากข้อมูลที่ webLogin คืนมา
+      enterAppImmediately(r.user);
+
+      // ปิดวงกลมโหลดทันที ไม่รอ getCreditBetBoot
+      setLoading(false);
+
+      // V4: ไม่โหลดข้อมูลหนักหลัง Login
+      // จะโหลดเมื่อผู้ใช้กดเมนูที่ต้องใช้เท่านั้น
     })
-    .catch(showErrorGlobal)
-    .finally(function(){ setLoading(false); });
+    .catch(function(err){
+      showErrorGlobal(err);
+      setLoading(false);
+    });
 }
 
 function registerMember() {
@@ -8936,11 +9094,13 @@ function registerMember() {
   api("webRegister", payload)
     .then(function(r){
       state.token = r.token;
-      sessionStorage.setItem("creditToken", state.token);
+      saveClientSessionToken(state.token);
       localStorage.removeItem("affiliateRef");
-      return boot();
-    })
-    .then(function(){
+
+      enterAppImmediately(r.user);
+      setLoading(false);
+      // V4: lazy boot เมื่อเปิดเมนูที่ต้องใช้
+
       Swal.fire({
         icon:"success",
         title:"สมัครสมาชิกสำเร็จ",
@@ -9068,8 +9228,11 @@ function logout(callServer) {
 
   state.token = "";
   state.user = null;
+  state.bootLoaded = false;
+  state.bootPromise = null;
+  state.lottos = [];
   state.announcementsShown = false;
-  sessionStorage.removeItem("creditToken");
+  clearClientSessionStorage();
 
   els.mainApp.classList.add("hidden");
   els.loginScreen.classList.remove("hidden");
@@ -9078,14 +9241,16 @@ function logout(callServer) {
   } catch(e) {}
 }
 
-function boot() {
+function boot(silent) {
+  silent = !!silent;
   if (!state.token) return Promise.reject(new Error("ไม่มี session"));
 
-  setLoading(true);
+  if (!silent) setLoading(true);
 
   return api("getCreditBetBoot", state.token)
     .then(function(data){
       state.user = data.user;
+      saveFastLoginUser(state.user);
       state.shopCredit = data.user ? Number(data.user.credit || 0) : Number(data.shopWalletBalance || 0);
       state.isAdmin = !!data.isAdmin;
       state.depositAccount = data.depositAccount || state.depositAccount;
@@ -9117,28 +9282,31 @@ function boot() {
       updateUserUI();
       renderLottos();
       fillAdminLottoFilter();
+      state.bootLoaded = true;
 
       els.adminBtn.classList.toggle("hidden", !state.isAdmin);
 
-      suppressRoutePush = true;
-      try {
-        if (state.isAdmin) {
-          showAdmin("dashboard");
-        } else {
-          showHome();
+      if (!silent) {
+        suppressRoutePush = true;
+        try {
+          if (state.isAdmin) {
+            showAdmin("dashboard");
+          } else {
+            showHome();
+          }
+        } finally {
+          suppressRoutePush = false;
         }
-      } finally {
-        suppressRoutePush = false;
-      }
 
-      pushAppRoute(state.isAdmin ? "admin" : "home", true);
+        pushAppRoute(state.isAdmin ? "admin" : "home", true);
+      }
 
       els.loginScreen.classList.add("hidden");
       els.mainApp.classList.remove("hidden");
       if (!state.isAdmin) setTimeout(loadAndShowActiveAnnouncements, 250);
       return data;
     })
-    .finally(function(){ setLoading(false); });
+    .finally(function(){ if (!silent) setLoading(false); });
 }
 
 function updateUserUI() {
@@ -9385,76 +9553,237 @@ function compressSlipImageV16(file) {
 }
 
 
+/* =====================================================
+   V9 WITHDRAW PANEL
+   แสดงยอดที่ถอนได้ + จำนวนเงินที่ต้องการถอน ชัดเจน
+   ถอนขั้นต่ำ 50 บาท
+   ไม่ใช้ SweetAlert เพื่อไม่ให้ CSS เก่าทับข้อความ
+===================================================== */
+function ensureWithdrawPanel() {
+  var layer = document.getElementById("withdrawPanelLayer");
+  if (layer) return layer;
+
+  var style = document.createElement("style");
+  style.id = "withdrawPanelV9Style";
+  style.textContent =
+    "#withdrawPanelLayer{" +
+      "position:fixed;inset:0;z-index:2147483100;" +
+      "display:none;align-items:center;justify-content:center;" +
+      "padding:16px;background:rgba(45,10,10,.58);" +
+      "backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);" +
+      "font-family:'Kanit','Noto Sans Thai',sans-serif;" +
+    "}" +
+    "#withdrawPanelLayer.show{display:flex!important;}" +
+    "#withdrawPanelCard{" +
+      "width:min(100%,560px);max-height:calc(100dvh - 30px);" +
+      "overflow:auto;-webkit-overflow-scrolling:touch;" +
+      "background:#fffdfa;border:1px solid #efb3ae;border-radius:26px;" +
+      "box-shadow:0 24px 80px rgba(60,5,5,.34);padding:22px;" +
+    "}" +
+    ".wd9-title{text-align:center;font-size:31px;font-weight:900;color:#3f1010;margin:4px 0 18px;}" +
+    ".wd9-box{padding:16px;border:1px solid #ead8d3;border-radius:18px;background:#f8f4f2;margin-bottom:14px;}" +
+    ".wd9-label{font-size:16px;font-weight:850;color:#4a1715;margin-bottom:8px;}" +
+    ".wd9-available{" +
+      "padding:14px;border-radius:14px;background:#fff;border:1px solid #e9dfdc;" +
+      "text-align:center;font-size:34px;font-weight:900;color:#159b2a;" +
+    "}" +
+    "#withdrawAmountV9{" +
+      "width:100%;height:60px;border:2px solid #d9cfcc;border-radius:14px;" +
+      "padding:0 16px;font:inherit;font-size:22px;font-weight:750;" +
+      "background:#fff;color:#27100f;outline:none;box-sizing:border-box;" +
+    "}" +
+    "#withdrawAmountV9:focus{border-color:#a51414;box-shadow:0 0 0 3px rgba(165,20,20,.10);}" +
+    ".wd9-min{" +
+      "padding:12px 14px;border-radius:14px;background:#fff4db;" +
+      "border:1px solid #f2cf7a;color:#744608;font-size:14px;font-weight:800;" +
+      "margin-bottom:14px;text-align:center;" +
+    "}" +
+    ".wd9-bank{" +
+      "padding:15px;border-radius:16px;background:#fff1f1;border:1px solid #f2bcbc;" +
+      "color:#6f1515;font-size:14px;line-height:1.75;" +
+    "}" +
+    ".wd9-bank-title{font-size:12px;font-weight:900;color:#b01414;margin-bottom:5px;}" +
+    "#withdrawErrorV9{min-height:22px;margin-top:10px;color:#c11414;font-size:13px;font-weight:800;text-align:center;}" +
+    ".wd9-actions{display:grid;grid-template-columns:1fr 1.35fr;gap:12px;margin-top:12px;}" +
+    ".wd9-actions button{" +
+      "min-height:58px;border-radius:14px;font:inherit;font-size:18px;font-weight:850;" +
+      "touch-action:manipulation;-webkit-tap-highlight-color:transparent;" +
+    "}" +
+    "#withdrawCancelV9{border:0;background:#fee2e2;color:#9a1717;}" +
+    "#withdrawConfirmV9{" +
+      "border:0;background:linear-gradient(135deg,#700909,#b51616);" +
+      "color:#fff;box-shadow:0 10px 24px rgba(112,9,9,.22);" +
+    "}" +
+    "#withdrawConfirmV9:disabled{opacity:.5;box-shadow:none;}" +
+    "@media(max-width:480px){" +
+      "#withdrawPanelLayer{padding:10px;}" +
+      "#withdrawPanelCard{padding:18px 15px;border-radius:22px;}" +
+      ".wd9-title{font-size:27px;margin-bottom:14px;}" +
+      ".wd9-box{padding:14px;}" +
+      ".wd9-available{font-size:31px;}" +
+      ".wd9-actions button{min-height:56px;font-size:17px;}" +
+    "}";
+
+  document.head.appendChild(style);
+
+  layer = document.createElement("div");
+  layer.id = "withdrawPanelLayer";
+  layer.setAttribute("role","dialog");
+  layer.setAttribute("aria-modal","true");
+  layer.innerHTML =
+    '<div id="withdrawPanelCard">' +
+      '<div class="wd9-title">ถอนเงิน</div>' +
+
+      '<div class="wd9-box">' +
+        '<div class="wd9-label">จำนวนเงินที่ถอนได้</div>' +
+        '<div class="wd9-available" id="withdrawAvailableV9">฿ 0.00</div>' +
+      '</div>' +
+
+      '<div class="wd9-box">' +
+        '<div class="wd9-label">จำนวนเงินที่ต้องการถอน</div>' +
+        '<input id="withdrawAmountV9" type="number" min="50" step="0.01" inputmode="decimal" placeholder="กรอกจำนวนเงิน">' +
+      '</div>' +
+
+      '<div class="wd9-min">ถอนเงินขั้นต่ำ 50 บาท</div>' +
+
+      '<div class="wd9-bank">' +
+        '<div class="wd9-bank-title">ข้อมูลธนาคารสำหรับถอนเงิน</div>' +
+        '<div><b>ชื่อบัญชี:</b> <span id="withdrawBankAccountNameV9">-</span></div>' +
+        '<div><b>ธนาคาร:</b> <span id="withdrawBankNameV9">-</span></div>' +
+        '<div><b>เลขบัญชี:</b> <span id="withdrawBankNoV9">-</span></div>' +
+      '</div>' +
+
+      '<div id="withdrawErrorV9"></div>' +
+
+      '<div class="wd9-actions">' +
+        '<button id="withdrawCancelV9" type="button">ยกเลิก</button>' +
+        '<button id="withdrawConfirmV9" type="button">ยืนยันถอนเงิน</button>' +
+      '</div>' +
+    '</div>';
+
+  document.body.appendChild(layer);
+
+  document.getElementById("withdrawCancelV9").onclick = function(){
+    closeWithdrawPanel();
+  };
+
+  document.getElementById("withdrawConfirmV9").onclick = function(){
+    submitWithdrawV9();
+  };
+
+  document.getElementById("withdrawAmountV9").addEventListener("input", function(){
+    var err = document.getElementById("withdrawErrorV9");
+    if (err) err.textContent = "";
+  });
+
+  document.getElementById("withdrawPanelCard").onclick = function(e){
+    e.stopPropagation();
+  };
+
+  layer.onclick = function(e){
+    if (e.target === layer) closeWithdrawPanel();
+  };
+
+  return layer;
+}
+
 function showWithdrawInfo() {
   var user = state.user || {};
   var available = Number(user.credit || 0);
-  var minWithdraw = 100;
-  var bankAccountName = user.bankAccountName || user.displayName || "";
-  var bankName = user.bankName || "";
-  var bankAccountNo = user.bankAccountNo || "";
 
-  Swal.fire({
-    icon:"info",
-    title:"ถอนเงิน",
-    width:560,
-    html:
-      '<div style="text-align:left;font-size:13px;line-height:1.65">' +
-        '<div style="margin-bottom:12px;padding:14px;border:1px solid #e6d7d2;border-radius:15px;background:#f4f2f1">' +
-          '<div style="font-size:14px;font-weight:700;margin-bottom:8px;color:#4a0707">จำนวนเงินที่ถอนได้</div>' +
-          '<div style="padding:14px 12px;border-radius:13px;background:#fff;border:1px solid #ece4e1;text-align:center;font-size:30px;font-weight:800;color:#0a9f24">฿ ' + money(available) + '</div>' +
-        '</div>' +
-        '<div style="margin-bottom:12px;padding:14px;border:1px solid #e6d7d2;border-radius:15px;background:#f4f2f1">' +
-          '<div style="font-size:14px;font-weight:700;margin-bottom:8px;color:#4a0707">จำนวนเงินที่ต้องการถอน</div>' +
-          '<input id="swalWithdrawAmount" type="number" min="100" max="' + escapeAttr(String(available)) + '" step="0.01" inputmode="decimal" placeholder="เช่น 500" style="margin:0;width:100%;height:56px;border:1px solid #d9cdca;border-radius:13px;padding:0 15px;font-size:20px;box-sizing:border-box;background:#fff;color:#2b1512">' +
-        '</div>' +
-        '<div style="margin:0 2px 13px;color:#5f514d;font-size:13px">ถอนเงินขั้นต่ำ <b>100 บาท</b></div>' +
-        '<div style="padding:13px;border:1px solid #fecaca;border-radius:13px;background:#fef2f2;color:#7f1d1d">' +
-          '<div style="font-size:10px;font-weight:900;margin-bottom:6px;color:#b91c1c">ข้อมูลธนาคารสำหรับถอนเงิน</div>' +
-          '<div><b>ชื่อบัญชี:</b> ' + escapeHtml(bankAccountName || "-") + '</div>' +
-          '<div><b>ธนาคาร:</b> ' + escapeHtml(bankName || "-") + '</div>' +
-          '<div><b>เลขบัญชี:</b> ' + escapeHtml(bankAccountNo || "-") + '</div>' +
-        '</div>' +
-      '</div>',
-    showCancelButton:true,
-    cancelButtonText:"ยกเลิก",
-    confirmButtonText:"ตกลง",
-    confirmButtonColor:"#b91c1c",
-    focusConfirm:false,
-    preConfirm:function(){
-      var input = document.getElementById("swalWithdrawAmount");
-      var amount = num(input ? input.value : 0);
-      if (!amount || amount <= 0) {
-        Swal.showValidationMessage("กรุณากรอกจำนวนเงินที่ต้องการถอน");
-        return false;
-      }
-      if (amount < minWithdraw) {
-        Swal.showValidationMessage("ถอนเงินขั้นต่ำ 100 บาท");
-        return false;
-      }
-      if (available < amount) {
-        Swal.showValidationMessage("ยอดเงินที่ถอนได้ไม่เพียงพอ");
-        return false;
-      }
-      return {amount:amount};
+  var layer = ensureWithdrawPanel();
+
+  document.getElementById("withdrawAvailableV9").textContent = "฿ " + money(available);
+
+  var input = document.getElementById("withdrawAmountV9");
+  input.value = "";
+  input.max = String(available);
+
+  document.getElementById("withdrawBankAccountNameV9").textContent =
+    user.bankAccountName || user.displayName || "-";
+
+  document.getElementById("withdrawBankNameV9").textContent =
+    user.bankName || "-";
+
+  document.getElementById("withdrawBankNoV9").textContent =
+    user.bankAccountNo || "-";
+
+  var err = document.getElementById("withdrawErrorV9");
+  err.textContent = available < 50
+    ? "ยอดเงินที่ถอนได้ยังไม่ถึงขั้นต่ำ 50 บาท"
+    : "";
+
+  var btn = document.getElementById("withdrawConfirmV9");
+  btn.disabled = available < 50;
+  btn.textContent = "ยืนยันถอนเงิน";
+
+  layer.classList.add("show");
+
+  setTimeout(function(){
+    if (available >= 50) {
+      try { input.focus(); } catch(e) {}
     }
-  }).then(function(result){
-    if (!result.isConfirmed || !result.value) return;
-    setLoading(true);
-    api("memberSubmitWithdraw", state.token, result.value)
-      .then(function(r){
-        if (state.user) state.user.credit = Number(r.credit || r.balanceAfter || 0);
-        updateUserUI();
-        Swal.fire({
-          icon:"success",
-          title:"ส่งรายการถอนแล้ว",
-          html:'<div style="font-size:13px;line-height:1.8">ยอดถอน <b>' + money(r.amount) + ' บาท</b><br>สถานะ <b>รออนุมัติ</b></div>',
-          confirmButtonText:"ตกลง",
-          confirmButtonColor:"#b91c1c"
-        });
-      })
-      .catch(showErrorGlobal)
-      .finally(function(){ setLoading(false); });
-  });
+  }, 80);
+}
+
+function closeWithdrawPanel() {
+  var layer = document.getElementById("withdrawPanelLayer");
+  if (layer) layer.classList.remove("show");
+}
+
+function submitWithdrawV9() {
+  var user = state.user || {};
+  var available = Number(user.credit || 0);
+  var input = document.getElementById("withdrawAmountV9");
+  var amount = num(input ? input.value : 0);
+  var err = document.getElementById("withdrawErrorV9");
+  var btn = document.getElementById("withdrawConfirmV9");
+
+  if (!amount || amount <= 0) {
+    err.textContent = "กรุณากรอกจำนวนเงินที่ต้องการถอน";
+    return;
+  }
+
+  if (amount < 50) {
+    err.textContent = "ถอนเงินขั้นต่ำ 50 บาท";
+    return;
+  }
+
+  if (amount > available) {
+    err.textContent = "ยอดเงินที่ถอนได้ไม่เพียงพอ";
+    return;
+  }
+
+  err.textContent = "";
+  btn.disabled = true;
+  btn.textContent = "กำลังส่ง...";
+
+  api("memberSubmitWithdraw", state.token, {amount:amount})
+    .then(function(r){
+      if (state.user) {
+        state.user.credit = Number(r.credit || r.balanceAfter || 0);
+      }
+
+      updateUserUI();
+      closeWithdrawPanel();
+
+      Swal.fire({
+        icon:"success",
+        title:"ส่งรายการถอนแล้ว",
+        html:
+          '<div style="font-size:13px;line-height:1.8">' +
+            'ยอดถอน <b>' + money(r.amount || amount) + ' บาท</b><br>' +
+            'สถานะ <b>รออนุมัติ</b>' +
+          '</div>',
+        confirmButtonText:"ตกลง",
+        confirmButtonColor:"#b91c1c"
+      });
+    })
+    .catch(function(e){
+      btn.disabled = false;
+      btn.textContent = "ยืนยันถอนเงิน";
+      err.textContent = (e && e.message) ? e.message : String(e || "ส่งคำขอถอนไม่สำเร็จ");
+    });
 }
 
 function showLotto() {
@@ -9467,8 +9796,32 @@ function showLotto() {
   els.adminScreen.classList.remove("active");
   els.lottoScreen.classList.add("active");
   pushAppRoute("lotto");
-  startTimer(updateLottoCountdowns);
   scrollTo(0,0);
+
+  // ถ้ามีข้อมูลแล้ว เปิดทันที
+  if (state.bootLoaded && state.lottos && state.lottos.length) {
+    renderLottos();
+    startTimer(updateLottoCountdowns);
+    return;
+  }
+
+  // แสดงหน้าเลือกหวยทันที แล้วโหลดข้อมูลเฉพาะเมนูนี้
+  if (els.lottoGrid) {
+    els.lottoGrid.innerHTML = '<div class="empty">กำลังโหลดรายการหวย…</div>';
+  }
+  if (els.lottoEmpty) els.lottoEmpty.classList.add("hidden");
+
+  ensureBootLoaded()
+    .then(function(){
+      renderLottos();
+      startTimer(updateLottoCountdowns);
+    })
+    .catch(function(err){
+      if (els.lottoGrid) {
+        els.lottoGrid.innerHTML = '<div class="empty">โหลดรายการหวยไม่สำเร็จ กรุณาลองใหม่</div>';
+      }
+      showErrorGlobal(err);
+    });
 }
 
 function showBet() {
@@ -10538,7 +10891,127 @@ function buildConfirmHtml() {
   '</div>';
 }
 
-async function openConfirm() {
+/* =====================================================
+   V7 TOUCH-SAFE BET CONFIRM
+   ไม่ใช้ SweetAlert ใน flow ยืนยันโพย เพื่อเลี่ยงปัญหา iOS Safari
+===================================================== */
+
+var betSubmitting = false;
+
+function ensureBetConfirmLayer() {
+  var layer = document.getElementById("betConfirmLayer");
+  if (layer) return layer;
+
+  var style = document.createElement("style");
+  style.id = "betConfirmTouchSafeStyle";
+  style.textContent =
+    "#betConfirmLayer{" +
+      "position:fixed;inset:0;z-index:2147483000;" +
+      "display:none;align-items:center;justify-content:center;" +
+      "padding:18px max(18px,env(safe-area-inset-right)) " +
+      "calc(18px + env(safe-area-inset-bottom)) max(18px,env(safe-area-inset-left));" +
+      "background:rgba(45,22,22,.48);backdrop-filter:blur(5px);" +
+      "-webkit-backdrop-filter:blur(5px);pointer-events:auto;touch-action:manipulation;" +
+    "}" +
+    "#betConfirmLayer.show{display:flex!important;}" +
+    "#betConfirmCard{" +
+      "width:min(100%,680px);max-height:calc(100dvh - 54px);" +
+      "display:flex;flex-direction:column;overflow:hidden;" +
+      "background:#fffdfb;border:1px solid #efb1ad;border-radius:24px;" +
+      "box-shadow:0 24px 70px rgba(67,10,10,.32);pointer-events:auto;" +
+    "}" +
+    "#betConfirmHead{padding:18px 18px 10px;text-align:center;flex:0 0 auto;}" +
+    "#betConfirmIcon{" +
+      "width:64px;height:64px;margin:0 auto 8px;border:4px solid #88b5c6;" +
+      "border-radius:50%;display:grid;place-items:center;color:#88b5c6;" +
+      "font-size:42px;line-height:1;font-weight:500;" +
+    "}" +
+    "#betConfirmTitle{font-size:27px;font-weight:900;color:#381111;}" +
+    "#betConfirmBody{" +
+      "padding:4px 18px 12px;overflow:auto;-webkit-overflow-scrolling:touch;" +
+      "overscroll-behavior:contain;flex:1 1 auto;min-height:0;" +
+    "}" +
+    "#betConfirmActions{" +
+      "display:grid;grid-template-columns:1fr 1.25fr;gap:12px;" +
+      "padding:14px 18px calc(16px + env(safe-area-inset-bottom));" +
+      "background:#fffdfb;border-top:1px solid #f3d6d3;flex:0 0 auto;" +
+    "}" +
+    "#betConfirmActions button{" +
+      "min-height:58px;border-radius:12px;font:inherit;font-size:18px;font-weight:850;" +
+      "touch-action:manipulation;-webkit-tap-highlight-color:transparent;" +
+      "pointer-events:auto;position:relative;z-index:1;" +
+    "}" +
+    "#betConfirmEdit{border:0;background:#fee2e2;color:#9f1d1d;}" +
+    "#betConfirmSend{" +
+      "border:0;background:linear-gradient(135deg,#780909,#c11d1d);" +
+      "color:#fff;box-shadow:0 10px 22px rgba(120,9,9,.22);" +
+    "}" +
+    "#betConfirmSend:disabled{opacity:.55;}" +
+    "#betConfirmLayer.success #betConfirmIcon{border-color:#16a34a;color:#16a34a;font-size:34px;}" +
+    "#betConfirmLayer.success #betConfirmActions{grid-template-columns:1fr;}" +
+    "#betConfirmLayer.success #betConfirmEdit{display:none;}" +
+    "@media(max-width:480px){" +
+      "#betConfirmLayer{padding:10px 12px calc(10px + env(safe-area-inset-bottom));align-items:center;}" +
+      "#betConfirmCard{max-height:calc(100dvh - 28px);border-radius:22px;}" +
+      "#betConfirmHead{padding:14px 14px 8px;}" +
+      "#betConfirmIcon{width:58px;height:58px;font-size:38px;}" +
+      "#betConfirmTitle{font-size:24px;}" +
+      "#betConfirmBody{padding:2px 14px 10px;}" +
+      "#betConfirmActions{padding:12px 14px calc(12px + env(safe-area-inset-bottom));gap:10px;}" +
+      "#betConfirmActions button{min-height:56px;font-size:17px;}" +
+    "}";
+
+  document.head.appendChild(style);
+
+  layer = document.createElement("div");
+  layer.id = "betConfirmLayer";
+  layer.setAttribute("role","dialog");
+  layer.setAttribute("aria-modal","true");
+  layer.innerHTML =
+    '<div id="betConfirmCard">' +
+      '<div id="betConfirmHead">' +
+        '<div id="betConfirmIcon">?</div>' +
+        '<div id="betConfirmTitle">ยืนยันโพย</div>' +
+      '</div>' +
+      '<div id="betConfirmBody"></div>' +
+      '<div id="betConfirmActions">' +
+        '<button id="betConfirmEdit" type="button">แก้ไข</button>' +
+        '<button id="betConfirmSend" type="button">ยืนยันแทง</button>' +
+      '</div>' +
+    '</div>';
+
+  document.body.appendChild(layer);
+
+  var editBtn = document.getElementById("betConfirmEdit");
+  var sendBtn = document.getElementById("betConfirmSend");
+
+  editBtn.addEventListener("click", function(ev){
+    ev.preventDefault();
+    ev.stopPropagation();
+    closeConfirm();
+  }, false);
+
+  sendBtn.addEventListener("click", function(ev){
+    ev.preventDefault();
+    ev.stopPropagation();
+
+    if (layer.classList.contains("success")) {
+      closeConfirm();
+      return;
+    }
+
+    if (betSubmitting) return;
+    confirmAndSend();
+  }, false);
+
+  document.getElementById("betConfirmCard").addEventListener("click", function(ev){
+    ev.stopPropagation();
+  }, false);
+
+  return layer;
+}
+
+function openConfirm() {
   clearError();
 
   try {
@@ -10548,43 +11021,64 @@ async function openConfirm() {
     return;
   }
 
-  var result = await Swal.fire({
-    title:"ยืนยันโพย",
-    html:buildConfirmHtml(),
-    icon:"question",
-    showCancelButton:true,
-    confirmButtonText:"ยืนยันแทง",
-    cancelButtonText:"แก้ไข",
-    reverseButtons:true,
-    confirmButtonColor:"#e11d48",
-    cancelButtonColor:"#71717a",
-    focusConfirm:false
-  });
+  try {
+    if (document.activeElement && typeof document.activeElement.blur === "function") {
+      document.activeElement.blur();
+    }
+  } catch(e) {}
 
-  if (result.isConfirmed) {
-    confirmAndSend();
-    return;
-  }
+  var layer = ensureBetConfirmLayer();
+  layer.classList.remove("success");
 
-  if (result.dismiss === Swal.DismissReason.cancel) {
-    // กลับไปหน้าแทงหวยตัวเดิมเพื่อแก้ไข
-    showBet();
+  document.getElementById("betConfirmIcon").textContent = "?";
+  document.getElementById("betConfirmTitle").textContent = "ยืนยันโพย";
+  document.getElementById("betConfirmBody").innerHTML = buildConfirmHtml();
 
-    setTimeout(function(){
-      try {
-        els.numberInput.focus();
-      } catch(e) {}
-    }, 120);
-  }
+  var editBtn = document.getElementById("betConfirmEdit");
+  var sendBtn = document.getElementById("betConfirmSend");
+  editBtn.style.display = "";
+  sendBtn.textContent = "ยืนยันแทง";
+  sendBtn.disabled = false;
+
+  layer.classList.add("show");
 }
 
 function closeConfirm() {
-  if (typeof Swal !== "undefined") Swal.close();
+  var layer = document.getElementById("betConfirmLayer");
+  if (layer) layer.classList.remove("show","success");
 }
 
 function renderConfirm() {}
 
+function showBetSuccessTouchSafe(total, billId) {
+  var layer = ensureBetConfirmLayer();
+  layer.classList.add("success");
+
+  document.getElementById("betConfirmIcon").textContent = "✓";
+  document.getElementById("betConfirmTitle").textContent = "แทงสำเร็จ";
+  document.getElementById("betConfirmBody").innerHTML =
+    '<div style="text-align:center;padding:10px 8px 18px">' +
+      '<div style="font-size:13px;color:#71717a">ยอดแทง</div>' +
+      '<div style="font-size:32px;font-weight:950;color:#b91c1c;margin-top:2px">' +
+        money(total) +
+      '</div>' +
+      (billId
+        ? '<div style="margin-top:8px;font-size:12px;color:#71717a">เลขที่โพย ' +
+            escapeHtml(billId) + '</div>'
+        : '') +
+    '</div>';
+
+  document.getElementById("betConfirmEdit").style.display = "none";
+  var sendBtn = document.getElementById("betConfirmSend");
+  sendBtn.disabled = false;
+  sendBtn.textContent = "ตกลง";
+
+  layer.classList.add("show");
+}
+
 function confirmAndSend() {
+  if (betSubmitting) return;
+
   try {
     validateDirectBet();
   } catch(e) {
@@ -10597,12 +11091,16 @@ function confirmAndSend() {
   var raw = buildCanonicalRawText();
   var directBet = bills.length === 1 ? buildBillDirectPayload(bills[0]) : null;
 
-  Swal.fire({
-    title:"กำลังส่งโพย",
-    allowOutsideClick:false,
-    allowEscapeKey:false,
-    didOpen:function(){ Swal.showLoading(); }
-  });
+  betSubmitting = true;
+
+  var sendBtn = document.getElementById("betConfirmSend");
+  if (sendBtn) {
+    sendBtn.disabled = true;
+    sendBtn.textContent = "กำลังส่ง...";
+  }
+
+  closeConfirm();
+  setLoading(true);
 
   var payload = {
     lottoName: state.selectedLotto.name,
@@ -10612,6 +11110,9 @@ function confirmAndSend() {
 
   api("placeCreditBet", state.token, payload)
   .then(function(r){
+    setLoading(false);
+    betSubmitting = false;
+
     if (state.user) state.user.credit = r.credit;
     updateUserUI();
 
@@ -10619,14 +11120,18 @@ function confirmAndSend() {
     var total = Number(r.totalAmount || totalBeforeSend);
     clearCurrentBet();
 
-    return Swal.fire({
-      icon:"success",
-      title:"แทงสำเร็จ",
-      confirmButtonText:"ตกลง",
-      confirmButtonColor:"#e11d48"
-    });
+    showBetSuccessTouchSafe(total, billId);
   })
   .catch(function(e){
+    setLoading(false);
+    betSubmitting = false;
+
+    var btn = document.getElementById("betConfirmSend");
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = "ยืนยันแทง";
+    }
+
     showErrorGlobal(e);
   });
 }
@@ -11113,21 +11618,21 @@ function copyAffiliateLink() {
 function requestAffiliateWithdraw() {
   var d = state.affiliate || {};
   var max = Number(d.availableCommission || 0);
-  var min = 100;
+  var min = 50;
   if (max <= 0) { showToast("ยังไม่มีค่าคอมที่ถอนได้"); return; }
-  if (max < min) { showToast("ถอนขั้นต่ำ 100 บาท"); return; }
+  if (max < min) { showToast("ถอนขั้นต่ำ 50 บาท"); return; }
   Swal.fire({
     title:"ถอนค่าคอม",
     html:'<div style="text-align:left">' +
       '<div style="margin-bottom:12px;padding:14px;border-radius:16px;background:#f5f1f0;border:1px solid #ead6d0">' +
-        '<div style="font-size:14px;font-weight:700;color:#4a0707;margin-bottom:8px">จำนวนที่ถอนได้</div>' +
+        '<div style="font-size:15px;font-weight:800;color:#4a0707;margin-bottom:8px">จำนวนเงินที่ถอนได้</div>' +
         '<div style="padding:14px 12px;border-radius:14px;background:#fff;border:1px solid #ece2de;text-align:center;font-size:32px;font-weight:800;color:#11a323">฿ ' + money(max) + '</div>' +
       '</div>' +
       '<div style="margin-bottom:10px;padding:14px;border-radius:16px;background:#f5f1f0;border:1px solid #ead6d0">' +
-        '<div style="font-size:14px;font-weight:700;color:#4a0707;margin-bottom:8px">จำนวนที่ต้องการถอน</div>' +
-        '<input id="affiliateWithdrawAmount" type="number" min="100" max="' + escapeAttr(String(max)) + '" step="0.01" value="' + escapeAttr(String(max.toFixed(2))) + '" style="width:100%;height:56px;border:1px solid #e1d1cb;border-radius:14px;padding:0 16px;font-size:20px;box-sizing:border-box;background:#fff;color:#2b1c1a">' +
+        '<div style="font-size:15px;font-weight:800;color:#4a0707;margin-bottom:8px">จำนวนเงินที่ต้องการถอน</div>' +
+        '<input id="affiliateWithdrawAmount" type="number" min="50" max="' + escapeAttr(String(max)) + '" step="0.01" value="' + escapeAttr(String(max.toFixed(2))) + '" style="width:100%;height:56px;border:1px solid #e1d1cb;border-radius:14px;padding:0 16px;font-size:20px;box-sizing:border-box;background:#fff;color:#2b1c1a">' +
       '</div>' +
-      '<div style="font-size:13px;color:#6f5149;line-height:1.6">ถอนขั้นต่ำ 100 บาท<br>โอนเข้าบัญชี: ' + escapeHtml(d.bankName||"") + ' ' + escapeHtml(d.bankAccountNo||"") + '</div>' +
+      '<div style="font-size:13px;color:#6f5149;line-height:1.6">ถอนขั้นต่ำ 50 บาท<br>โอนเข้าบัญชี: ' + escapeHtml(d.bankName||"") + ' ' + escapeHtml(d.bankAccountNo||"") + '</div>' +
     '</div>',
     showCancelButton:true, confirmButtonText:"ส่งคำขอถอน", cancelButtonText:"ยกเลิก",
     focusConfirm:false,
@@ -11135,7 +11640,7 @@ function requestAffiliateWithdraw() {
       var el = document.getElementById("affiliateWithdrawAmount");
       var n = Number((el && el.value) || 0);
       if (!(n > 0)) { Swal.showValidationMessage("กรุณากรอกยอดถอน"); return false; }
-      if (n < min) { Swal.showValidationMessage("ถอนขั้นต่ำ 100 บาท"); return false; }
+      if (n < min) { Swal.showValidationMessage("ถอนขั้นต่ำ 50 บาท"); return false; }
       if (n > max) { Swal.showValidationMessage("ยอดถอนไม่ถูกต้อง"); return false; }
       return n;
     }
@@ -12475,6 +12980,12 @@ function showErrorGlobal(e) {
     : (e && e.message ? e.message : "เกิดข้อผิดพลาด");
 
   if (els.error) els.error.textContent = msg;
+
+  if (msg === "SESSION_EXPIRED" || /Session หมดอายุ/i.test(msg)) {
+    logout(false);
+    showToast("กรุณาเข้าสู่ระบบใหม่");
+    return;
+  }
 
   if (isSilentApiError(msg)) {
     showToast("โหลดข้อมูลไม่สำเร็จ");
