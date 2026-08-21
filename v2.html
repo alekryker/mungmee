@@ -7681,13 +7681,63 @@ textarea:focus{
   object-fit:contain;
   border-radius:6px;
 }
+
+/* =====================================================
+   V47 — WEBSITE LOGO
+===================================================== */
+.login-logo-credit{
+  width:150px !important;
+  height:auto !important;
+  min-height:72px !important;
+  padding:0 !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  overflow:visible !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:flex-start !important;
+}
+.login-logo-credit img{
+  display:block !important;
+  width:100% !important;
+  height:auto !important;
+  object-fit:contain !important;
+  filter:drop-shadow(0 8px 18px rgba(0,0,0,.18));
+}
+.v16-brand-mark{
+  width:122px !important;
+  height:50px !important;
+  flex:0 0 122px !important;
+  padding:0 !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  overflow:visible !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:flex-start !important;
+}
+.v16-brand-mark img{
+  display:block !important;
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  filter:drop-shadow(0 7px 14px rgba(0,0,0,.20));
+}
+@media(max-width:430px){
+  .login-logo-credit{width:132px !important;min-height:62px !important;}
+  .v16-brand-mark{width:104px !important;height:44px !important;flex-basis:104px !important;}
+}
 </style>
  </head>
  <body>
   
   <section id="loginScreen">
     <div class="login-card-credit">
-      <div class="login-logo-credit">฿</div>
+      <div class="login-logo-credit"><img src="./supmangmee-logo.png" alt="ทรัพย์มั่งมี"></div>
       <h1 class="login-title-inline">ทรัพย์มั่งมี</h1>
 
       <div class="auth-tabs">
@@ -7774,7 +7824,7 @@ textarea:focus{
      <div class="v16-home">
       <div class="v16-home-head">
        <div class="v16-brand">
-        <div class="v16-brand-mark">◉</div>
+        <div class="v16-brand-mark"><img src="./supmangmee-logo.png" alt="ทรัพย์มั่งมี"></div>
         <div class="v16-brand-copy">
          <strong>ทรัพย์มั่งมี</strong>
          <small>LOTTERY MUNGMEE</small>
