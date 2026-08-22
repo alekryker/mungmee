@@ -7649,6 +7649,13 @@ textarea:focus{
   #authRegisterTab, #registerPanel { display:none !important; }
   .auth-tabs { grid-template-columns:1fr !important; }
   #authLoginTab { pointer-events:none; }
+
+/* LOTTO WEEKDAY SCHEDULE */
+.lotto-days-box{display:flex;flex-wrap:wrap;gap:4px;min-width:290px}
+.lotto-day-check{display:inline-flex;align-items:center;gap:3px;padding:4px 6px;border:1px solid #e4e4e7;border-radius:8px;background:#fff;font-size:9px;white-space:nowrap}
+.lotto-day-check input{margin:0;width:14px;height:14px;accent-color:#b91c1c}
+.lotto-day-save{margin-top:6px}
+@media(max-width:620px){.lotto-days-box{min-width:250px}.lotto-day-check{padding:4px 5px}}
 </style>
 </head>
  <body>
@@ -8340,7 +8347,7 @@ textarea:focus{
         <button class="lotto-subtab" data-lotto-subtab="limits">เลขปิดรับ</button>
        </div>
        <div class="lotto-subpanel active" id="lottoSub-enabled">
-        <div class="admin-muted">เปิดหรือปิดรับแทงแยกแต่ละหวย</div>
+        <div class="admin-muted">เปิด/ปิดหวย และกำหนดวันเปิดรับประจำสัปดาห์ จันทร์–อาทิตย์</div>
         <div class="admin-table-wrap" id="adminLottoToggleTable" style="margin-top:11px"></div>
        </div>
        <div class="lotto-subpanel" id="lottoSub-rules">
@@ -12520,7 +12527,7 @@ function renderAdminUsers() {
         ].join(" / "),
         '<div class="admin-actions-inline">' +
           '<button class="admin-mini green" data-login-member="' + escapeHtml(u.userId) + '">เข้าใช้งาน</button>' +
-          '<button class="admin-mini edit" data-view-member-id="' + escapeHtml(u.userId) + '">ดูรหัสสมาชิก</button>' +
+          '<button class="admin-mini edit" data-view-member-password="' + escapeHtml(u.userId) + '">ดูรหัสผ่าน</button>' +
           '<button class="admin-mini credit" data-credit-user="' + escapeHtml(u.userId) + '">เครดิต</button>' +
           '<button class="admin-mini edit" data-pass-user="' + escapeHtml(u.userId) + '">รหัส</button>' +
           '<button class="admin-mini edit" data-edit-user="' + escapeHtml(u.userId) + '">แก้ไขบัญชี</button>' +
@@ -12542,10 +12549,10 @@ function renderAdminUsers() {
       };
     });
 
-    els.adminUserTable.querySelectorAll("[data-view-member-id]").forEach(function(btn){
+    els.adminUserTable.querySelectorAll("[data-view-member-password]").forEach(function(btn){
       btn.onclick = function(){
-        var u = state.adminUsers.find(function(x){ return x.userId === btn.dataset.viewMemberId; });
-        if (u) openViewMemberId(u);
+        var u = state.adminUsers.find(function(x){ return x.userId === btn.dataset.viewMemberPassword; });
+        if (u) openViewMemberPassword(u);
       };
     });
 
@@ -12574,32 +12581,52 @@ function renderAdminUsers() {
   }
 }
 
-async function openViewMemberId(u) {
+async function openViewMemberPassword(u) {
   if (!u || !u.userId) return;
-  var fullId = String(u.userId || "");
-  var memberCode = String(u.memberCode || fullId.slice(0,8).toUpperCase());
+  var savedPassword = String(u.loginPassword || "");
+
+  if (!savedPassword) {
+    var ask = await Swal.fire({
+      icon:"info",
+      title:"ยังดูรหัสผ่านเดิมไม่ได้",
+      width:540,
+      html:
+        '<div style="text-align:left;font-size:13px;line-height:1.75">' +
+          '<div>Member: <b>' + escapeHtml(u.username || "-") + '</b></div>' +
+          '<div style="margin-top:10px">บัญชีนี้สร้างก่อนระบบเก็บรหัสสำหรับ Admin จึงมีเพียงรหัสแบบ Hash และไม่สามารถถอดกลับเป็นรหัสเดิมได้</div>' +
+          '<div style="margin-top:8px;color:#b91c1c;font-weight:600">กด “ตั้งรหัสใหม่” 1 ครั้ง หลังจากนั้นปุ่ม “ดูรหัสผ่าน” จะแสดงรหัสได้ทันที</div>' +
+        '</div>',
+      showCancelButton:true,
+      confirmButtonText:"ตั้งรหัสใหม่",
+      cancelButtonText:"ปิด",
+      confirmButtonColor:"#b91c1c"
+    });
+    if (ask.isConfirmed) openResetUserPassword(u);
+    return;
+  }
+
   await Swal.fire({
-    title:"รหัสสมาชิก",
+    title:"รหัสผ่านสมาชิก",
     width:560,
     html:
       '<div style="text-align:left">' +
         '<div style="font-size:12px;color:#71717a;margin-bottom:6px">สมาชิก</div>' +
         '<div style="font-size:16px;font-weight:700;margin-bottom:12px">' + escapeHtml(u.username || "-") + '</div>' +
-        '<div style="font-size:12px;color:#71717a;margin-bottom:5px">รหัสสมาชิก</div>' +
+        '<div style="font-size:12px;color:#71717a;margin-bottom:5px">รหัสผ่าน</div>' +
         '<div style="display:flex;gap:8px;align-items:center">' +
-          '<input id="memberIdViewInput" value="' + escapeAttr(fullId) + '" readonly style="flex:1;height:44px;border:1px solid #e4e4e7;border-radius:10px;padding:0 10px;font:inherit">' +
-          '<button id="memberIdCopyBtn" type="button" class="admin-btn soft" style="height:44px">คัดลอก</button>' +
+          '<input id="memberPasswordViewInput" value="' + escapeAttr(savedPassword) + '" readonly style="flex:1;height:44px;border:1px solid #e4e4e7;border-radius:10px;padding:0 10px;font:inherit;font-size:17px;font-weight:700">' +
+          '<button id="memberPasswordCopyBtn" type="button" class="admin-btn soft" style="height:44px">คัดลอก</button>' +
         '</div>' +
-        '<div style="font-size:10px;color:#a1a1aa;margin-top:8px">รหัสย่อ: ' + escapeHtml(memberCode) + '</div>' +
+        '<div style="font-size:10px;color:#a1a1aa;margin-top:8px">รหัสนี้ใช้ Login ที่ supmangmee.com</div>' +
       '</div>',
     confirmButtonText:"ปิด",
     didOpen:function(){
-      var copyBtn=document.getElementById("memberIdCopyBtn");
+      var copyBtn=document.getElementById("memberPasswordCopyBtn");
       if (copyBtn) copyBtn.onclick=function(){
-        copyTextToClipboard(fullId).then(function(){
-          showToast("คัดลอกรหัสสมาชิกแล้ว");
+        copyTextToClipboard(savedPassword).then(function(){
+          showToast("คัดลอกรหัสผ่านแล้ว");
         }).catch(function(){
-          var inp=document.getElementById("memberIdViewInput");
+          var inp=document.getElementById("memberPasswordViewInput");
           if (inp) { inp.focus(); inp.select(); }
         });
       };
@@ -12716,7 +12743,7 @@ async function openResetUserPassword(u) {
             '<button class="password-toggle" id="admResetPassCopy" type="button">คัดลอก</button>' +
           '</div>' +
         '</div>' +
-        '<div class="admin-muted" style="margin-top:8px">ระบบไม่สามารถดูรหัสเดิมได้ เพราะเก็บเป็นรหัสเข้ารหัสไว้ ให้ตั้งรหัสใหม่แล้วแจ้งลูกค้า</div>' +
+        '<div class="admin-muted" style="margin-top:8px">เมื่อตั้งรหัสใหม่นี้แล้ว Admin จะสามารถกด “ดูรหัสผ่าน” เพื่อดูและคัดลอกรหัสได้ภายหลัง</div>' +
       '</div>',
     showCancelButton:true,
     confirmButtonText:"บันทึกรหัสใหม่",
@@ -12863,9 +12890,15 @@ async function loadAdminLottoSettings() {
   try {
     state.adminLottos = await api("adminGetLottoSettings",state.token) || [];
     fillAdminLimitLottoOptions();
-    els.adminLottoToggleTable.innerHTML = adminTable(["หวย","ปิดรับ","สถานะ","เปิด / ปิด"],state.adminLottos.map(function(l){ return [escapeHtml(l.lottoName),escapeHtml(l.closeTime),l.enabled ? '<span class="lotto-status on">เปิด</span>' : '<span class="lotto-status off">ปิด</span>','<button class="admin-mini ' + (l.enabled ? 'danger' : 'green') + '" data-toggle-lotto="' + escapeAttr(l.lottoName) + '" data-enabled="' + (l.enabled ? '1':'0') + '">' + (l.enabled ? 'ปิดหวย':'เปิดหวย') + '</button>']; }));
+    var weekdayDefs=[{n:1,t:"จ"},{n:2,t:"อ"},{n:3,t:"พ"},{n:4,t:"พฤ"},{n:5,t:"ศ"},{n:6,t:"ส"},{n:7,t:"อา"}];
+    function lottoDaysHtml(l){
+      var days=Array.isArray(l.openDays)&&l.openDays.length?l.openDays.map(Number):[1,2,3,4,5,6,7];
+      return '<div class="lotto-days-box" data-days-for="'+escapeAttr(l.lottoName)+'">'+weekdayDefs.map(function(d){return '<label class="lotto-day-check"><input type="checkbox" data-lotto-day="'+d.n+'" '+(days.indexOf(d.n)>=0?'checked':'')+'><span>'+d.t+'</span></label>';}).join('')+'</div><button class="admin-mini edit lotto-day-save" data-save-lotto-days="'+escapeAttr(l.lottoName)+'">บันทึกวัน</button>';
+    }
+    els.adminLottoToggleTable.innerHTML = adminTable(["หวย","ปิดรับ","วันเปิดรับ","สถานะ","เปิด / ปิด"],state.adminLottos.map(function(l){ return [escapeHtml(l.lottoName),escapeHtml(l.closeTime),lottoDaysHtml(l),l.enabled ? '<span class="lotto-status on">เปิด</span>' : '<span class="lotto-status off">ปิด</span>','<button class="admin-mini ' + (l.enabled ? 'danger' : 'green') + '" data-toggle-lotto="' + escapeAttr(l.lottoName) + '" data-enabled="' + (l.enabled ? '1':'0') + '">' + (l.enabled ? 'ปิดหวย':'เปิดหวย') + '</button>']; }));
     els.adminLottoRulesTable.innerHTML = adminTable(["หวย","ปิดรับ","ขั้นต่ำ","สูงสุด/เลข","สูงสุด/บิล","Alias","แก้ไข"],state.adminLottos.map(function(l){ return [escapeHtml(l.lottoName),escapeHtml(l.closeTime),money(l.minPerNumber),money(l.maxPerNumber),money(l.maxPerBill),escapeHtml(l.aliases || ""),'<button class="admin-mini edit" data-edit-rule="' + escapeAttr(l.lottoName) + '">แก้ไข</button>']; }));
     els.adminLottoToggleTable.querySelectorAll("[data-toggle-lotto]").forEach(function(btn){ btn.onclick = async function(){ var enabled = btn.dataset.enabled !== "1"; try { adminBusy(enabled ? "กำลังเปิดหวย...":"กำลังปิดหวย..."); await api("adminSetLottoEnabled",state.token,{lottoName:btn.dataset.toggleLotto,enabled:enabled}); Swal.close(); await refreshBootData(); await loadAdminLottoSettings(); showToast(enabled ? "เปิดหวยแล้ว":"ปิดหวยแล้ว"); } catch(e) { Swal.close(); showAdminError(e); } }; });
+    els.adminLottoToggleTable.querySelectorAll("[data-save-lotto-days]").forEach(function(btn){ btn.onclick=async function(){ var name=btn.dataset.saveLottoDays,l=state.adminLottos.find(function(x){return x.lottoName===name;}); if(!l)return; var box=els.adminLottoToggleTable.querySelector('[data-days-for="'+CSS.escape(name)+'"]'); var days=[].slice.call(box.querySelectorAll('[data-lotto-day]:checked')).map(function(x){return Number(x.dataset.lottoDay);}); if(!days.length){Swal.fire({icon:"warning",title:"กรุณาเลือกอย่างน้อย 1 วัน",confirmButtonText:"ตกลง"});return;} var payload={lottoName:l.lottoName,enabled:l.enabled,closeTime:l.closeTime,minPerNumber:l.minPerNumber,maxPerNumber:l.maxPerNumber,maxPerBill:l.maxPerBill,rate3Straight:l.rate3Straight,rate3Tod:l.rate3Tod,rate2Top:l.rate2Top,rate2Bottom:l.rate2Bottom,rateRunTop:l.rateRunTop,rateRunBottom:l.rateRunBottom,aliases:l.aliases,sortOrder:l.sortOrder,numberLimits:l.numberLimits||[],openDays:days}; try{adminBusy("กำลังบันทึกวันเปิดรับ...");await api("adminSaveLottoSetting",state.token,payload);Swal.close();await refreshBootData();await loadAdminLottoSettings();showToast("บันทึกวันเปิดรับแล้ว");}catch(e){Swal.close();showAdminError(e);} }; });
     els.adminLottoRulesTable.querySelectorAll("[data-edit-rule]").forEach(function(btn){ btn.onclick=function(){ var l=state.adminLottos.find(function(x){return x.lottoName===btn.dataset.editRule;}); if(l) openEditLottoRules(l); }; });
     showLottoSubTab(state.lottoSubTab || "enabled");
   } catch(e) { showAdminError(e); }
@@ -12877,7 +12910,7 @@ async function openEditLottoRules(l) {
     '<div class="swal-admin-field"><label>ขั้นต่ำ/เลข</label><input id="admLottoMin" type="number" value="' + Number(l.minPerNumber || 0) + '"></div>' +
     '<div class="swal-admin-field"><label>สูงสุด/เลข</label><input id="admLottoMax" type="number" value="' + Number(l.maxPerNumber || 0) + '"></div>' +
     '<div class="swal-admin-field"><label>สูงสุด/บิล</label><input id="admLottoBill" type="number" value="' + Number(l.maxPerBill || 0) + '"></div>' +
-    '<div class="swal-admin-field full"><label>Alias จาก AllHuay</label><input id="admLottoAlias" value="' + escapeAttr(l.aliases || "") + '"></div></div>',showCancelButton:true,confirmButtonText:"บันทึก",cancelButtonText:"ยกเลิก",preConfirm:function(){ return {lottoName:l.lottoName,enabled:l.enabled,closeTime:document.getElementById("admLottoClose").value,minPerNumber:num(document.getElementById("admLottoMin").value),maxPerNumber:num(document.getElementById("admLottoMax").value),maxPerBill:num(document.getElementById("admLottoBill").value),rate3Straight:l.rate3Straight,rate3Tod:l.rate3Tod,rate2Top:l.rate2Top,rate2Bottom:l.rate2Bottom,rateRunTop:l.rateRunTop,rateRunBottom:l.rateRunBottom,aliases:document.getElementById("admLottoAlias").value,sortOrder:l.sortOrder}; }});
+    '<div class="swal-admin-field full"><label>Alias จาก AllHuay</label><input id="admLottoAlias" value="' + escapeAttr(l.aliases || "") + '"></div></div>',showCancelButton:true,confirmButtonText:"บันทึก",cancelButtonText:"ยกเลิก",preConfirm:function(){ return {lottoName:l.lottoName,enabled:l.enabled,closeTime:document.getElementById("admLottoClose").value,minPerNumber:num(document.getElementById("admLottoMin").value),maxPerNumber:num(document.getElementById("admLottoMax").value),maxPerBill:num(document.getElementById("admLottoBill").value),rate3Straight:l.rate3Straight,rate3Tod:l.rate3Tod,rate2Top:l.rate2Top,rate2Bottom:l.rate2Bottom,rateRunTop:l.rateRunTop,rateRunBottom:l.rateRunBottom,aliases:document.getElementById("admLottoAlias").value,sortOrder:l.sortOrder,numberLimits:l.numberLimits||[],openDays:l.openDays||[1,2,3,4,5,6,7]}; }});
   if(!r.isConfirmed)return;
   try{adminBusy("กำลังบันทึก...");await api("adminSaveLottoSetting",state.token,r.value);Swal.close();await refreshBootData();await loadAdminLottoSettings();showToast("บันทึกเงื่อนไขแล้ว");}catch(e){Swal.close();showAdminError(e);}
 }
