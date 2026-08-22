@@ -8377,6 +8377,7 @@ textarea:focus{
           <div class="admin-field"><label>ประเภท</label><select id="adminLimitBetType"><option value="two">2 ตัว</option><option value="three">3 ตัว</option></select></div>
           <div class="admin-field"><label>บน / ล่าง</label><select id="adminLimitSide"></select></div>
           <div class="admin-field full"><label>เลข</label><input id="adminLimitNumbers" inputmode="numeric" placeholder="12 34 หรือ 123"></div>
+          <div class="admin-field"><label>ใช้ถึงวันที่</label><input id="adminLimitEndDate" type="date"><div class="admin-muted">เว้นว่าง = ใช้ต่อเนื่อง</div></div>
          </div>
          <div class="rate-editor-actions">
           <button class="admin-btn soft" id="adminLimitReverseBtn" type="button">กลับเลข</button>
@@ -8524,6 +8525,21 @@ const DEFAULT_LINE_CONTACT_URL = "https://lin.ee/9sjcPft";
  */
 function readClientSessionToken() {
   try {
+    // ถ้าเคยกดเข้าใช้งานแทนสมาชิก ให้หน้า Admin ดึง session Admin เดิมกลับมาอัตโนมัติ
+    var adminReturnToken = sessionStorage.getItem("creditAdminReturnToken") || "";
+    if (adminReturnToken) {
+      localStorage.setItem("creditToken", adminReturnToken);
+      sessionStorage.setItem("creditToken", adminReturnToken);
+      var adminReturnUser = sessionStorage.getItem("creditAdminReturnUser") || "";
+      if (adminReturnUser) {
+        localStorage.setItem("creditUser", adminReturnUser);
+        sessionStorage.setItem("creditUser", adminReturnUser);
+      }
+      sessionStorage.removeItem("creditAdminReturnToken");
+      sessionStorage.removeItem("creditAdminReturnUser");
+      return adminReturnToken;
+    }
+
     return localStorage.getItem("creditToken") ||
       sessionStorage.getItem("creditToken") ||
       "";
@@ -8609,7 +8625,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "backBtn","bottomBackBtn","classicRuleBtn","selectedName","selectedRound","selectedClose","selectedCount","selectedLimitNote","selectedRateNote",
     "accountName","heroCredit","betCredit","modernBetCredit","bottomCredit","summaryCredit","adminBtn",
     "memberSummaryBtn","moneyBtn","resultsBtn","historyBtn","lineContactBtn","logoutBtn","affiliateBackBtn","affiliateAvailableTop","affiliateCode","affiliateLink","affiliateCopyBtn","affiliateStats","affiliateWithdrawBtn","affiliateCommissionList","affiliateWithdrawList","resultsBackBtn","resultsBalance","resultsDate","resultsReloadBtn","resultsPrevBtn","resultsNextBtn","resultsSource","resultsList","historyBackBtn","historyCredit","historyFrom","historyTo",
-     "historyStatus","historyList","moneyBackBtn","moneyBalance","moneyFrom","moneyTo","moneyType","moneyList","memberSummaryBackBtn","memberSummaryBalance","memberSummaryFrom","memberSummaryTo","memberSummaryLotto","memberSummarySearchBtn","memberSummaryStats","memberSummaryTable","adminIdentity","adminLogoutBtn","syncResultsBtn","adminAffiliateReloadBtn","adminAffiliateSearch","adminAffiliateStats","adminAffiliateTable","adminAffiliateWithdrawTable","adminResultsSyncBtn","adminResultsAddBtn","adminResultsFrom","adminResultsTo","adminResultsLotto","adminResultsReloadBtn","adminResultsTable","adminDashRange","adminDashFrom","adminDashTo","adminDashCustomBtn","adminDashSelectAll","adminDashClearAll","adminDashLottoChecks","adminDashStats","adminByUser","adminByLotto","adminBetFrom","adminBetTo","adminBetStatus","adminOpenUser","adminOpenLotto","adminOpenSearchBtn","adminOpenTable","adminCreateUserBtn","adminUserSearch","adminUserCount","adminUserTable","adminWithdrawStatus","adminWithdrawReloadBtn","adminWithdrawTable","adminLottoToggleTable","adminLottoRulesTable","adminRateUser","adminRateLotto","adminRateModeNote","adminRate3Straight","adminRate3Tod","adminRate2Top","adminRate2Bottom","adminRateRunTop","adminRateRunBottom","adminRateSaveBtn","adminRateResetBtn","adminRateOverridesTable","adminLimitLotto","adminLimitKind","adminLimitBetType","adminLimitSide","adminLimitNumbers","adminLimitReverseBtn","adminLimitAddBtn","adminLimitSaveBtn","adminNumberLimitsTable","adminAnnouncementAddBtn","adminAnnouncementReloadBtn","adminAnnouncementsTable","adminConnectionSaveBtn","adminTelegramToken","adminTelegramChatId","adminLineContactUrl","adminDepositBankShort","adminDepositBankName","adminDepositAccountNo","adminDepositAccountName","adminDepositLogoUrl","adminDepositBorderColor","adminDepositPreview","adminDepositPreviewLogo","adminDepositPreviewNumber","adminDepositPreviewBank","adminDepositPreviewName","modernBetPanel","modernBackBtn","modernRuleBtn","modernLottoSelect","modernLottoSelectText","modernSelectedTitle","modernDigitSlots","modernNumberChipBox","modernClearNumbersBtn","modernBillStack","modernBillStackList","modernBillStackCount","directTitle","numberCount","numberInput",
+     "historyStatus","historyList","moneyBackBtn","moneyBalance","moneyFrom","moneyTo","moneyType","moneyList","memberSummaryBackBtn","memberSummaryBalance","memberSummaryFrom","memberSummaryTo","memberSummaryLotto","memberSummarySearchBtn","memberSummaryStats","memberSummaryTable","adminIdentity","adminLogoutBtn","syncResultsBtn","adminAffiliateReloadBtn","adminAffiliateSearch","adminAffiliateStats","adminAffiliateTable","adminAffiliateWithdrawTable","adminResultsSyncBtn","adminResultsAddBtn","adminResultsFrom","adminResultsTo","adminResultsLotto","adminResultsReloadBtn","adminResultsTable","adminDashRange","adminDashFrom","adminDashTo","adminDashCustomBtn","adminDashSelectAll","adminDashClearAll","adminDashLottoChecks","adminDashStats","adminByUser","adminByLotto","adminBetFrom","adminBetTo","adminBetStatus","adminOpenUser","adminOpenLotto","adminOpenSearchBtn","adminOpenTable","adminCreateUserBtn","adminUserSearch","adminUserCount","adminUserTable","adminWithdrawStatus","adminWithdrawReloadBtn","adminWithdrawTable","adminLottoToggleTable","adminLottoRulesTable","adminRateUser","adminRateLotto","adminRateModeNote","adminRate3Straight","adminRate3Tod","adminRate2Top","adminRate2Bottom","adminRateRunTop","adminRateRunBottom","adminRateSaveBtn","adminRateResetBtn","adminRateOverridesTable","adminLimitLotto","adminLimitKind","adminLimitBetType","adminLimitSide","adminLimitNumbers","adminLimitEndDate","adminLimitReverseBtn","adminLimitAddBtn","adminLimitSaveBtn","adminNumberLimitsTable","adminAnnouncementAddBtn","adminAnnouncementReloadBtn","adminAnnouncementsTable","adminConnectionSaveBtn","adminTelegramToken","adminTelegramChatId","adminLineContactUrl","adminDepositBankShort","adminDepositBankName","adminDepositAccountNo","adminDepositAccountName","adminDepositLogoUrl","adminDepositBorderColor","adminDepositPreview","adminDepositPreviewLogo","adminDepositPreviewNumber","adminDepositPreviewBank","adminDepositPreviewName","modernBetPanel","modernBackBtn","modernRuleBtn","modernLottoSelect","modernLottoSelectText","modernSelectedTitle","modernDigitSlots","modernNumberChipBox","modernClearNumbersBtn","modernBillStack","modernBillStackList","modernBillStackCount","directTitle","numberCount","numberInput",
     "clearNumbersBtn","numberChipBox","reverseBtn","doubleBtn",
     "priceA","priceB","priceAField","priceALabel","priceBLabel","priceBField","directPriceGrid",
     "sourceCount","betCount","currentBillTotal","grandTotal","clearAllBtn","addBillBtn","submitBtn","error","billStack","billStackList","billStackCount",
@@ -12410,6 +12426,8 @@ async function loadAdminUsers() {
 
 function adminUserSearchText(u) {
   return [
+    u.memberCode,
+    u.userId,
     u.username,
     u.displayName,
     u.phone,
@@ -12433,9 +12451,10 @@ function renderAdminUsers() {
   }
 
   els.adminUserTable.innerHTML = adminTable(
-    ["User","ชื่อ","เลขบัญชี","ธนาคาร","เครดิต","สถานะ","เรท 3ตรง/โต๊ด/2บน/2ล่าง","จัดการ"],
+    ["รหัสสมาชิก","User","ชื่อ","เลขบัญชี","ธนาคาร","เครดิต","สถานะ","เรท 3ตรง/โต๊ด/2บน/2ล่าง","จัดการ"],
     users.map(function(u){
       return [
+        escapeHtml(u.memberCode || String(u.userId || "").slice(0,8).toUpperCase()),
         escapeHtml(u.username),
         escapeHtml(u.displayName || ""),
         escapeHtml(u.bankAccountNo || "-"),
@@ -12449,6 +12468,7 @@ function renderAdminUsers() {
           money(u.rates.twoBottom)
         ].join(" / "),
         '<div class="admin-actions-inline">' +
+          '<button class="admin-mini green" data-login-member="' + escapeHtml(u.userId) + '">เข้าใช้งาน</button>' +
           '<button class="admin-mini credit" data-credit-user="' + escapeHtml(u.userId) + '">เครดิต</button>' +
           '<button class="admin-mini edit" data-pass-user="' + escapeHtml(u.userId) + '">รหัส</button>' +
           '<button class="admin-mini edit" data-edit-user="' + escapeHtml(u.userId) + '">แก้ไขบัญชี</button>' +
@@ -12463,6 +12483,13 @@ function renderAdminUsers() {
   }
 
   try {
+    els.adminUserTable.querySelectorAll("[data-login-member]").forEach(function(btn){
+      btn.onclick = function(){
+        var u = state.adminUsers.find(function(x){ return x.userId === btn.dataset.loginMember; });
+        if (u) openMemberAsAdmin(u);
+      };
+    });
+
     els.adminUserTable.querySelectorAll("[data-credit-user]").forEach(function(btn){
       btn.onclick = function(){
         var u = state.adminUsers.find(function(x){ return x.userId === btn.dataset.creditUser; });
@@ -12484,6 +12511,47 @@ function renderAdminUsers() {
       };
     });
   } catch(e) {
+    showAdminError(e);
+  }
+}
+
+async function openMemberAsAdmin(user) {
+  if (!user || !user.userId) return;
+
+  var ask = await Swal.fire({
+    icon:"question",
+    title:"เข้าใช้งานเป็นสมาชิก?",
+    html:'คุณกำลังจะเข้าใช้งานบัญชี <b>' + escapeHtml(user.username || user.memberCode || 'Member') + '</b><br><span style="font-size:12px;color:#71717a">ระบบจะเปิดหน้าเว็บด้วยสิทธิ์ของสมาชิกคนนี้</span>',
+    showCancelButton:true,
+    confirmButtonText:"เข้าใช้งาน",
+    cancelButtonText:"ยกเลิก",
+    confirmButtonColor:"#b91c1c"
+  });
+  if (!ask.isConfirmed) return;
+
+  try {
+    adminBusy("กำลังเข้าสู่ระบบสมาชิก...");
+    var adminToken = state.token;
+    var adminUserRaw = "";
+    try { adminUserRaw = JSON.stringify(state.user || {}); } catch(e) {}
+
+    var r = await api("adminLoginAsMember", adminToken, user.userId);
+    if (!r || !r.token || !r.user) throw new Error("สร้าง Session สมาชิกไม่สำเร็จ");
+
+    // เก็บ Admin session ไว้เฉพาะ session ของแท็บ/เบราว์เซอร์นี้ เพื่อกลับหลังบ้านได้
+    try {
+      sessionStorage.setItem("creditAdminReturnToken", adminToken);
+      if (adminUserRaw) sessionStorage.setItem("creditAdminReturnUser", adminUserRaw);
+    } catch(e) {}
+
+    saveClientSessionToken(r.token);
+    saveFastLoginUser(r.user);
+    Swal.close();
+
+    // หน้า Member หลักอยู่ที่ root ของเว็บไซต์
+    location.href = location.origin + "/";
+  } catch(e) {
+    Swal.close();
     showAdminError(e);
   }
 }
@@ -12714,7 +12782,7 @@ async function openEditLottoRules(l) {
   try{adminBusy("กำลังบันทึก...");await api("adminSaveLottoSetting",state.token,r.value);Swal.close();await refreshBootData();await loadAdminLottoSettings();showToast("บันทึกเงื่อนไขแล้ว");}catch(e){Swal.close();showAdminError(e);}
 }
 
-function normalizeNumberLimits(limits){var seen={};return(Array.isArray(limits)?limits:[]).map(function(x){x=x||{};var betType=String(x.betType||"two")==="three"?"three":"two",len=betType==="three"?3:2,number=String(x.number||"").replace(/\D/g,"").slice(0,len),side=String(x.side||"both");if(!new RegExp("^\\d{"+len+"}$").test(number))return null;if(betType==="two"&&["top","bottom","both"].indexOf(side)===-1)side="both";if(betType==="three"&&["straight","tod","both"].indexOf(side)===-1)side="both";var item={kind:String(x.kind||"close")==="half"?"half":"close",betType:betType,side:side,number:number},key=[item.kind,item.betType,item.side,item.number].join("|");if(seen[key])return null;seen[key]=true;return item;}).filter(Boolean);}
+function normalizeNumberLimits(limits){var seen={};return(Array.isArray(limits)?limits:[]).map(function(x){x=x||{};var betType=String(x.betType||"two")==="three"?"three":"two",len=betType==="three"?3:2,number=String(x.number||"").replace(/\D/g,"").slice(0,len),side=String(x.side||"both"),endDate=String(x.endDate||"").trim();if(!new RegExp("^\\d{"+len+"}$").test(number))return null;if(betType==="two"&&["top","bottom","both"].indexOf(side)===-1)side="both";if(betType==="three"&&["straight","tod","both"].indexOf(side)===-1)side="both";if(endDate&&!/^\d{4}-\d{2}-\d{2}$/.test(endDate))endDate="";var item={kind:String(x.kind||"close")==="half"?"half":"close",betType:betType,side:side,number:number,endDate:endDate},key=[item.kind,item.betType,item.side,item.number,item.endDate].join("|");if(seen[key])return null;seen[key]=true;return item;}).filter(Boolean);}
 function limitSideText(x){return({top:"บน",bottom:"ล่าง",straight:"ตรง",tod:"โต๊ด",both:"บนล่าง"})[x]||x;}
 function limitKindText(x){return x==="half"?"จ่ายครึ่ง":"ปิดรับ";}
 function formatNumberLimitSummary(limits){limits=normalizeNumberLimits(limits);if(!limits.length)return"";var close=limits.filter(function(x){return x.kind==="close";}).map(function(x){return x.number+" "+limitSideText(x.side);});var half=limits.filter(function(x){return x.kind==="half";}).map(function(x){return x.number+" "+limitSideText(x.side);});var parts=[];if(close.length)parts.push("ปิดรับ: "+close.slice(0,8).join(", ")+(close.length>8?"...":""));if(half.length)parts.push("จ่ายครึ่ง: "+half.slice(0,8).join(", ")+(half.length>8?"...":""));return parts.join(" • ");}
@@ -12724,8 +12792,8 @@ function renderAdminLimitSideOptions(){if(!els.adminLimitSide||!els.adminLimitBe
 function getSelectedAdminLimitLotto(){var name=els.adminLimitLotto?els.adminLimitLotto.value:"";return(state.adminLottos||[]).find(function(x){return x.lottoName===name;})||null;}
 function parseLimitNumbers(raw,betType){var len=betType==="three"?3:2,digits=String(raw||"").replace(/\D/g,""),out=[];for(var i=0;i+len<=digits.length;i+=len)out.push(digits.slice(i,i+len));return unique(out);}
 function reverseAdminLimitNumbers(){var betType=els.adminLimitBetType.value==="three"?"three":"two",nums=parseLimitNumbers(els.adminLimitNumbers.value,betType),out=[];nums.forEach(function(n){out=out.concat(betType==="three"?getPermutations3(n):[n,n.charAt(1)+n.charAt(0)]);});els.adminLimitNumbers.value=unique(out).join(" ");}
-function renderAdminNumberLimits(){if(!els.adminNumberLimitsTable)return;fillAdminLimitLottoOptions();var lotto=getSelectedAdminLimitLotto(),limits=normalizeNumberLimits(lotto&&lotto.numberLimits);els.adminNumberLimitsTable.innerHTML=adminTable(["สถานะ","ประเภท","บน/ล่าง","เลข","ลบ"],limits.map(function(x,idx){return[limitKindText(x.kind),x.betType==="three"?"3 ตัว":"2 ตัว",limitSideText(x.side),escapeHtml(x.number),'<button class="admin-mini danger" data-remove-limit="'+idx+'">ลบ</button>'];}));els.adminNumberLimitsTable.querySelectorAll("[data-remove-limit]").forEach(function(btn){btn.onclick=function(){var lotto=getSelectedAdminLimitLotto();if(!lotto)return;var limits=normalizeNumberLimits(lotto.numberLimits);limits.splice(Number(btn.dataset.removeLimit),1);lotto.numberLimits=limits;renderAdminNumberLimits();};});}
-function addAdminNumberLimit(){var lotto=getSelectedAdminLimitLotto();if(!lotto)return;var betType=els.adminLimitBetType.value==="three"?"three":"two",nums=parseLimitNumbers(els.adminLimitNumbers.value,betType);if(!nums.length)return showToast("กรุณาใส่เลข");var limits=normalizeNumberLimits(lotto.numberLimits);nums.forEach(function(n){limits.push({kind:els.adminLimitKind.value==="half"?"half":"close",betType:betType,side:els.adminLimitSide.value||"both",number:n});});lotto.numberLimits=normalizeNumberLimits(limits);els.adminLimitNumbers.value="";renderAdminNumberLimits();}
+function renderAdminNumberLimits(){if(!els.adminNumberLimitsTable)return;fillAdminLimitLottoOptions();var lotto=getSelectedAdminLimitLotto(),limits=normalizeNumberLimits(lotto&&lotto.numberLimits);els.adminNumberLimitsTable.innerHTML=adminTable(["สถานะ","ประเภท","บน/ล่าง","เลข","ใช้ถึงวันที่","ลบ"],limits.map(function(x,idx){return[limitKindText(x.kind),x.betType==="three"?"3 ตัว":"2 ตัว",limitSideText(x.side),escapeHtml(x.number),escapeHtml(x.endDate||"ไม่กำหนด"),'<button class="admin-mini danger" data-remove-limit="'+idx+'">ลบ</button>'];}));els.adminNumberLimitsTable.querySelectorAll("[data-remove-limit]").forEach(function(btn){btn.onclick=function(){var lotto=getSelectedAdminLimitLotto();if(!lotto)return;var limits=normalizeNumberLimits(lotto.numberLimits);limits.splice(Number(btn.dataset.removeLimit),1);lotto.numberLimits=limits;renderAdminNumberLimits();};});}
+function addAdminNumberLimit(){var lotto=getSelectedAdminLimitLotto();if(!lotto)return;var betType=els.adminLimitBetType.value==="three"?"three":"two",nums=parseLimitNumbers(els.adminLimitNumbers.value,betType);if(!nums.length)return showToast("กรุณาใส่เลข");var endDate=String(els.adminLimitEndDate&&els.adminLimitEndDate.value||"").trim();var limits=normalizeNumberLimits(lotto.numberLimits);nums.forEach(function(n){limits.push({kind:els.adminLimitKind.value==="half"?"half":"close",betType:betType,side:els.adminLimitSide.value||"both",number:n,endDate:endDate});});lotto.numberLimits=normalizeNumberLimits(limits);els.adminLimitNumbers.value="";renderAdminNumberLimits();}
 async function saveAdminNumberLimits(){var lotto=getSelectedAdminLimitLotto();if(!lotto)return;try{adminBusy("กำลังบันทึกเลขปิดรับ...");await api("adminSaveNumberLimits",state.token,{lottoName:lotto.lottoName,numberLimits:normalizeNumberLimits(lotto.numberLimits)});Swal.close();await refreshBootData();await loadAdminLottoSettings();showToast("บันทึกเลขปิดรับแล้ว");}catch(e){Swal.close();showAdminError(e);}}
 
 async function loadAdminPayoutRates() {
