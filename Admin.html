@@ -8265,6 +8265,27 @@ textarea:focus{
         <div class="admin-table-wrap" id="adminByLotto"></div>
        </div>
       </div>
+
+      <div class="admin-grid-2">
+       <div class="admin-card">
+        <div class="admin-card-head">
+         <div>
+          <h3>อันดับยอดฝาก</h3>
+          <div class="admin-muted">เรียงจากยูสที่ฝากมากที่สุดในช่วงวันที่ที่เลือก</div>
+         </div>
+        </div>
+        <div class="admin-table-wrap" id="adminTopDeposits" style="margin-top:9px"></div>
+       </div>
+       <div class="admin-card">
+        <div class="admin-card-head">
+         <div>
+          <h3>อันดับยอดถอน</h3>
+          <div class="admin-muted">นับเฉพาะรายการถอนที่อนุมัติแล้ว เรียงจากมากที่สุด</div>
+         </div>
+        </div>
+        <div class="admin-table-wrap" id="adminTopWithdraws" style="margin-top:9px"></div>
+       </div>
+      </div>
      </section>
 
      <section class="admin-panel" id="adminPanel-openbets">
@@ -8685,7 +8706,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "backBtn","bottomBackBtn","classicRuleBtn","selectedName","selectedRound","selectedClose","selectedCount","selectedLimitNote","selectedRateNote",
     "accountName","heroCredit","betCredit","modernBetCredit","bottomCredit","summaryCredit","adminBtn",
     "memberSummaryBtn","moneyBtn","resultsBtn","historyBtn","lineContactBtn","logoutBtn","affiliateBackBtn","affiliateAvailableTop","affiliateCode","affiliateLink","affiliateCopyBtn","affiliateStats","affiliateWithdrawBtn","affiliateCommissionList","affiliateWithdrawList","resultsBackBtn","resultsBalance","resultsDate","resultsReloadBtn","resultsPrevBtn","resultsNextBtn","resultsSource","resultsList","historyBackBtn","historyCredit","historyFrom","historyTo",
-     "historyStatus","historyList","moneyBackBtn","moneyBalance","moneyFrom","moneyTo","moneyType","moneyList","memberSummaryBackBtn","memberSummaryBalance","memberSummaryFrom","memberSummaryTo","memberSummaryLotto","memberSummarySearchBtn","memberSummaryStats","memberSummaryTable","adminIdentity","adminLogoutBtn","syncResultsBtn","adminAffiliateReloadBtn","adminAffiliateSearch","adminAffiliateStats","adminAffiliateTable","adminAffiliateWithdrawTable","adminResultsSyncBtn","adminResultsAddBtn","adminResultsFrom","adminResultsTo","adminResultsLotto","adminResultsReloadBtn","adminResultsTable","adminDashRange","adminDashFrom","adminDashTo","adminDashCustomBtn","adminDashSelectAll","adminDashClearAll","adminDashLottoChecks","adminDashStats","adminByUser","adminByLotto","adminBetFrom","adminBetTo","adminBetStatus","adminOpenUser","adminOpenLotto","adminOpenSearchBtn","adminOpenTable","adminCreateUserBtn","adminUserSearch","adminUserCount","adminUserTable","adminWithdrawStatus","adminWithdrawReloadBtn","adminWithdrawTable","adminLottoToggleTable","adminLottoRulesTable","adminRateUser","adminRateLotto","adminRateModeNote","adminRate3Straight","adminRate3Tod","adminRate2Top","adminRate2Bottom","adminRateRunTop","adminRateRunBottom","adminRateSaveBtn","adminRateResetBtn","adminRateOverridesTable","adminLimitLotto","adminLimitKind","adminLimitBetType","adminLimitSide","adminLimitNumbers","adminLimitEndDate","adminLimitReverseBtn","adminLimitAddBtn","adminLimitSaveBtn","adminNumberLimitsTable","adminAnnouncementAddBtn","adminAnnouncementReloadBtn","adminAnnouncementsTable","adminConnectionSaveBtn","adminTelegramToken","adminTelegramChatId","adminLineContactUrl","adminDepositBankShort","adminDepositBankName","adminDepositAccountNo","adminDepositAccountName","adminDepositLogoUrl","adminDepositBorderColor","adminDepositPreview","adminDepositPreviewLogo","adminDepositPreviewNumber","adminDepositPreviewBank","adminDepositPreviewName","modernBetPanel","modernBackBtn","modernRuleBtn","modernLottoSelect","modernLottoSelectText","modernSelectedTitle","modernDigitSlots","modernNumberChipBox","modernClearNumbersBtn","modernBillStack","modernBillStackList","modernBillStackCount","directTitle","numberCount","numberInput",
+     "historyStatus","historyList","moneyBackBtn","moneyBalance","moneyFrom","moneyTo","moneyType","moneyList","memberSummaryBackBtn","memberSummaryBalance","memberSummaryFrom","memberSummaryTo","memberSummaryLotto","memberSummarySearchBtn","memberSummaryStats","memberSummaryTable","adminIdentity","adminLogoutBtn","syncResultsBtn","adminAffiliateReloadBtn","adminAffiliateSearch","adminAffiliateStats","adminAffiliateTable","adminAffiliateWithdrawTable","adminResultsSyncBtn","adminResultsAddBtn","adminResultsFrom","adminResultsTo","adminResultsLotto","adminResultsReloadBtn","adminResultsTable","adminDashRange","adminDashFrom","adminDashTo","adminDashCustomBtn","adminDashSelectAll","adminDashClearAll","adminDashLottoChecks","adminDashStats","adminByUser","adminByLotto","adminTopDeposits","adminTopWithdraws","adminBetFrom","adminBetTo","adminBetStatus","adminOpenUser","adminOpenLotto","adminOpenSearchBtn","adminOpenTable","adminCreateUserBtn","adminUserSearch","adminUserCount","adminUserTable","adminWithdrawStatus","adminWithdrawReloadBtn","adminWithdrawTable","adminLottoToggleTable","adminLottoRulesTable","adminRateUser","adminRateLotto","adminRateModeNote","adminRate3Straight","adminRate3Tod","adminRate2Top","adminRate2Bottom","adminRateRunTop","adminRateRunBottom","adminRateSaveBtn","adminRateResetBtn","adminRateOverridesTable","adminLimitLotto","adminLimitKind","adminLimitBetType","adminLimitSide","adminLimitNumbers","adminLimitEndDate","adminLimitReverseBtn","adminLimitAddBtn","adminLimitSaveBtn","adminNumberLimitsTable","adminAnnouncementAddBtn","adminAnnouncementReloadBtn","adminAnnouncementsTable","adminConnectionSaveBtn","adminTelegramToken","adminTelegramChatId","adminLineContactUrl","adminDepositBankShort","adminDepositBankName","adminDepositAccountNo","adminDepositAccountName","adminDepositLogoUrl","adminDepositBorderColor","adminDepositPreview","adminDepositPreviewLogo","adminDepositPreviewNumber","adminDepositPreviewBank","adminDepositPreviewName","modernBetPanel","modernBackBtn","modernRuleBtn","modernLottoSelect","modernLottoSelectText","modernSelectedTitle","modernDigitSlots","modernNumberChipBox","modernClearNumbersBtn","modernBillStack","modernBillStackList","modernBillStackCount","directTitle","numberCount","numberInput",
     "clearNumbersBtn","numberChipBox","reverseBtn","doubleBtn",
     "priceA","priceB","priceAField","priceALabel","priceBLabel","priceBField","directPriceGrid",
     "sourceCount","betCount","currentBillTotal","grandTotal","clearAllBtn","addBillBtn","submitBtn","error","billStack","billStackList","billStackCount",
@@ -12256,6 +12277,34 @@ async function loadAdminDashboard(mode) {
 
     els.adminByUser.innerHTML = adminTable(["User","ยอดแทง","จ่าย","แพ้/ชนะ","บิล"],(r.byUser || []).map(function(x){ return [escapeHtml(x.username),money(x.turnover),money(x.payout),money(x.net),money(x.bills)]; }));
     els.adminByLotto.innerHTML = adminTable(["หวย","ยอดแทง","จ่าย","แพ้/ชนะ","บิล"],(r.byLotto || []).map(function(x){ return [escapeHtml(x.lottoName),money(x.turnover),money(x.payout),money(x.net),money(x.bills)]; }));
+
+    if (els.adminTopDeposits) {
+      els.adminTopDeposits.innerHTML = adminTable(
+        ["#","User","ชื่อ","ฝากรวม"],
+        (r.topDepositors || []).slice(0,20).map(function(x,i){
+          return [
+            '<b>' + (i + 1) + '</b>',
+            escapeHtml(x.username || "-"),
+            escapeHtml(x.displayName || "-"),
+            '<b style="color:#15803d">' + money(x.depositAmount || 0) + '</b>'
+          ];
+        })
+      );
+    }
+
+    if (els.adminTopWithdraws) {
+      els.adminTopWithdraws.innerHTML = adminTable(
+        ["#","User","ชื่อ","ถอนรวม"],
+        (r.topWithdrawers || []).slice(0,20).map(function(x,i){
+          return [
+            '<b>' + (i + 1) + '</b>',
+            escapeHtml(x.username || "-"),
+            escapeHtml(x.displayName || "-"),
+            '<b style="color:#b91c1c">' + money(x.withdrawAmount || 0) + '</b>'
+          ];
+        })
+      );
+    }
   } catch(e) {
     showAdminError(e);
   }
@@ -12512,7 +12561,10 @@ function adminUserSearchText(u) {
     u.bankAccountName,
     u.bankName,
     u.status,
-    u.credit
+    u.credit,
+    u.depositTotal,
+    u.withdrawTotal,
+    u.depositWithdrawNet
   ].join(" ").toLowerCase();
 }
 
@@ -12528,8 +12580,9 @@ function renderAdminUsers() {
   }
 
   els.adminUserTable.innerHTML = adminTable(
-    ["รหัสสมาชิก","User","ชื่อ","เลขบัญชี","ธนาคาร","เครดิต","สถานะ","เรท 3ตรง/โต๊ด/2บน/2ล่าง","จัดการ"],
+    ["รหัสสมาชิก","User","ชื่อ","เลขบัญชี","ธนาคาร","เครดิต","ฝากรวม","ถอนรวม","สุทธิฝาก-ถอน","สถานะ","เรท 3ตรง/โต๊ด/2บน/2ล่าง","จัดการ"],
     users.map(function(u){
+      var cashNet = Number(u.depositWithdrawNet || 0);
       return [
         escapeHtml(u.memberCode || String(u.userId || "").slice(0,8).toUpperCase()),
         escapeHtml(u.username),
@@ -12537,6 +12590,9 @@ function renderAdminUsers() {
         escapeHtml(u.bankAccountNo || "-"),
         escapeHtml(u.bankName || "-"),
         money(u.credit),
+        '<b style="color:#15803d">' + money(u.depositTotal || 0) + '</b>',
+        '<b style="color:#b91c1c">' + money(u.withdrawTotal || 0) + '</b>',
+        '<b style="color:' + (cashNet >= 0 ? '#15803d' : '#b91c1c') + '">' + money(cashNet) + '</b>',
         escapeHtml(u.status),
         [
           money(u.rates.threeStraight),
