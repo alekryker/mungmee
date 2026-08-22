@@ -8583,7 +8583,9 @@ function readClientSessionToken() {
     } catch(e) {}
 
     var adminReturnToken = sessionStorage.getItem("creditAdminReturnToken") || "";
-    if (shouldRestoreAdmin && adminReturnToken) {
+    var isAdminPage = /(?:^|\/)Admin\.html$/i.test(location.pathname || "");
+    // เมื่อกลับเข้าหน้า Admin ใน Safari ให้คืน Admin token อัตโนมัติถ้ามี
+    if ((shouldRestoreAdmin || isAdminPage) && adminReturnToken) {
       localStorage.setItem("creditToken", adminReturnToken);
       sessionStorage.setItem("creditToken", adminReturnToken);
       var adminReturnUser = sessionStorage.getItem("creditAdminReturnUser") || "";
@@ -9067,8 +9069,17 @@ function enterAppImmediately(user) {
   saveFastLoginUser(user);
 
   // ADMIN PAGE: อนุญาตเฉพาะ ADMIN
+  // Safari อาจจำ Member session เดิมไว้ใน localStorage ทำให้ Admin.html เด้งออกทันที
+  // ถ้าพบว่า token ปัจจุบันเป็น Member ให้ล้าง session ฝั่ง GitHub แล้วแสดง Login Admin แทน
   if (!state.isAdmin) {
-    location.replace("Index.html");
+    state.token = "";
+    state.user = null;
+    state.isAdmin = false;
+    clearClientSessionStorage();
+    if (els.mainApp) els.mainApp.classList.add("hidden");
+    if (els.loginScreen) els.loginScreen.classList.remove("hidden");
+    try { history.replaceState({appRoute:"login"}, "", location.pathname + location.search + "#login"); } catch(e) {}
+    showToast("กรุณาเข้าสู่ระบบ Admin");
     return;
   }
   updateUserUI();
@@ -9340,7 +9351,15 @@ function boot(silent) {
       state.shopCredit = data.user ? Number(data.user.credit || 0) : Number(data.shopWalletBalance || 0);
       state.isAdmin = !!data.isAdmin;
       if (!state.isAdmin) {
-        location.replace("Index.html");
+        // อย่า redirect ไป Index.html เพราะ Safari จะวนกับ Member session เดิม
+        state.token = "";
+        state.user = null;
+        state.isAdmin = false;
+        clearClientSessionStorage();
+        if (els.mainApp) els.mainApp.classList.add("hidden");
+        if (els.loginScreen) els.loginScreen.classList.remove("hidden");
+        try { history.replaceState({appRoute:"login"}, "", location.pathname + location.search + "#login"); } catch(e) {}
+        showToast("กรุณาเข้าสู่ระบบ Admin");
         return data;
       }
       state.depositAccount = data.depositAccount || state.depositAccount;
