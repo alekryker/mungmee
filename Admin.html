@@ -12663,8 +12663,8 @@ async function openMemberAsAdmin(user) {
       if (adminUserRaw) sessionStorage.setItem("creditAdminReturnUser", adminUserRaw);
     } catch(e) {}
 
-    saveClientSessionToken(r.token);
-    saveFastLoginUser(r.user);
+    // สำคัญ: ห้ามเขียน Member token ทับ Session Admin บนโดเมน GitHub
+    // ให้เก็บ Admin token เดิมไว้ แล้วส่ง Member token ไปยัง supmangmee.com ผ่าน URL fragment เท่านั้น
     Swal.close();
 
     // เปิดหน้าเว็บสมาชิกจริง และส่ง Session ผ่าน URL fragment (#)
