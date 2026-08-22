@@ -8517,17 +8517,66 @@ const APPS_SCRIPT_API = "https://script.google.com/macros/s/AKfycbyDnjGnxA1CtMD1
 const API = window.LOTTERY_API_URL || APPS_SCRIPT_API;
 const AFTER_MIDNIGHT_CUTOFF_HOUR = 6;
 const DEFAULT_LINE_CONTACT_URL = "https://lin.ee/9sjcPft";
+const MEMBER_SITE_URL = "https://supmangmee.com/";
 
 /**
  * V5 CLIENT SESSION
  * เก็บ token/user ทั้ง localStorage + sessionStorage
  * เพื่อไม่ให้ iPhone/Safari คืนหน่วยความจำแล้วเด้งออกจากระบบง่าย ๆ
  */
+function consumeAdminMemberLoginFromUrl() {
+  try {
+    var rawHash = String(location.hash || "").replace(/^#/, "");
+    if (!rawHash) return "";
+
+    var params = new URLSearchParams(rawHash);
+    var memberToken = String(params.get("memberLogin") || "").trim();
+    if (!memberToken) return "";
+
+    var memberUserRaw = String(params.get("memberUser") || "").trim();
+
+    // Token จาก Admin มีลำดับความสำคัญสูงสุด เพื่อเข้า Member อัตโนมัติ
+    localStorage.setItem("creditToken", memberToken);
+    sessionStorage.setItem("creditToken", memberToken);
+    sessionStorage.setItem("creditImpersonatingMember", "1");
+
+    if (memberUserRaw) {
+      try {
+        var memberUser = JSON.parse(memberUserRaw);
+        if (memberUser && memberUser.userId) {
+          var cleanUser = JSON.stringify(memberUser);
+          localStorage.setItem("creditUser", cleanUser);
+          sessionStorage.setItem("creditUser", cleanUser);
+        }
+      } catch(e) {}
+    }
+
+    // ลบ Token ออกจาก Address Bar ทันที ไม่ให้ค้างใน URL / history
+    try {
+      history.replaceState(null, document.title, location.pathname + location.search);
+    } catch(e) {}
+
+    return memberToken;
+  } catch(e) {
+    return "";
+  }
+}
+
 function readClientSessionToken() {
   try {
-    // ถ้าเคยกดเข้าใช้งานแทนสมาชิก ให้หน้า Admin ดึง session Admin เดิมกลับมาอัตโนมัติ
+    // กรณี Admin กดเข้าใช้งานสมาชิกจากหลังบ้าน
+    var directMemberToken = consumeAdminMemberLoginFromUrl();
+    if (directMemberToken) return directMemberToken;
+
+    // จะคืนสิทธิ์ Admin เฉพาะเมื่อเรียก ?restoreAdmin=1 เท่านั้น
+    // ป้องกันหน้า supmangmee.com ดึง Admin token กลับมาทับ Member token
+    var shouldRestoreAdmin = false;
+    try {
+      shouldRestoreAdmin = new URLSearchParams(location.search).get("restoreAdmin") === "1";
+    } catch(e) {}
+
     var adminReturnToken = sessionStorage.getItem("creditAdminReturnToken") || "";
-    if (adminReturnToken) {
+    if (shouldRestoreAdmin && adminReturnToken) {
       localStorage.setItem("creditToken", adminReturnToken);
       sessionStorage.setItem("creditToken", adminReturnToken);
       var adminReturnUser = sessionStorage.getItem("creditAdminReturnUser") || "";
@@ -8537,6 +8586,8 @@ function readClientSessionToken() {
       }
       sessionStorage.removeItem("creditAdminReturnToken");
       sessionStorage.removeItem("creditAdminReturnUser");
+      sessionStorage.removeItem("creditImpersonatingMember");
+      try { history.replaceState(null, document.title, location.pathname); } catch(e) {}
       return adminReturnToken;
     }
 
@@ -12469,6 +12520,7 @@ function renderAdminUsers() {
         ].join(" / "),
         '<div class="admin-actions-inline">' +
           '<button class="admin-mini green" data-login-member="' + escapeHtml(u.userId) + '">เข้าใช้งาน</button>' +
+          '<button class="admin-mini edit" data-view-member-id="' + escapeHtml(u.userId) + '">ดูรหัสสมาชิก</button>' +
           '<button class="admin-mini credit" data-credit-user="' + escapeHtml(u.userId) + '">เครดิต</button>' +
           '<button class="admin-mini edit" data-pass-user="' + escapeHtml(u.userId) + '">รหัส</button>' +
           '<button class="admin-mini edit" data-edit-user="' + escapeHtml(u.userId) + '">แก้ไขบัญชี</button>' +
@@ -12487,6 +12539,13 @@ function renderAdminUsers() {
       btn.onclick = function(){
         var u = state.adminUsers.find(function(x){ return x.userId === btn.dataset.loginMember; });
         if (u) openMemberAsAdmin(u);
+      };
+    });
+
+    els.adminUserTable.querySelectorAll("[data-view-member-id]").forEach(function(btn){
+      btn.onclick = function(){
+        var u = state.adminUsers.find(function(x){ return x.userId === btn.dataset.viewMemberId; });
+        if (u) openViewMemberId(u);
       };
     });
 
@@ -12513,6 +12572,39 @@ function renderAdminUsers() {
   } catch(e) {
     showAdminError(e);
   }
+}
+
+async function openViewMemberId(u) {
+  if (!u || !u.userId) return;
+  var fullId = String(u.userId || "");
+  var memberCode = String(u.memberCode || fullId.slice(0,8).toUpperCase());
+  await Swal.fire({
+    title:"รหัสสมาชิก",
+    width:560,
+    html:
+      '<div style="text-align:left">' +
+        '<div style="font-size:12px;color:#71717a;margin-bottom:6px">สมาชิก</div>' +
+        '<div style="font-size:16px;font-weight:700;margin-bottom:12px">' + escapeHtml(u.username || "-") + '</div>' +
+        '<div style="font-size:12px;color:#71717a;margin-bottom:5px">รหัสสมาชิก</div>' +
+        '<div style="display:flex;gap:8px;align-items:center">' +
+          '<input id="memberIdViewInput" value="' + escapeAttr(fullId) + '" readonly style="flex:1;height:44px;border:1px solid #e4e4e7;border-radius:10px;padding:0 10px;font:inherit">' +
+          '<button id="memberIdCopyBtn" type="button" class="admin-btn soft" style="height:44px">คัดลอก</button>' +
+        '</div>' +
+        '<div style="font-size:10px;color:#a1a1aa;margin-top:8px">รหัสย่อ: ' + escapeHtml(memberCode) + '</div>' +
+      '</div>',
+    confirmButtonText:"ปิด",
+    didOpen:function(){
+      var copyBtn=document.getElementById("memberIdCopyBtn");
+      if (copyBtn) copyBtn.onclick=function(){
+        copyTextToClipboard(fullId).then(function(){
+          showToast("คัดลอกรหัสสมาชิกแล้ว");
+        }).catch(function(){
+          var inp=document.getElementById("memberIdViewInput");
+          if (inp) { inp.focus(); inp.select(); }
+        });
+      };
+    }
+  });
 }
 
 async function openMemberAsAdmin(user) {
@@ -12548,8 +12640,16 @@ async function openMemberAsAdmin(user) {
     saveFastLoginUser(r.user);
     Swal.close();
 
-    // หน้า Member หลักอยู่ที่ root ของเว็บไซต์
-    location.href = location.origin + "/";
+    // เปิดหน้าเว็บสมาชิกจริง และส่ง Session ผ่าน URL fragment (#)
+    // fragment จะไม่ถูกส่งไปที่ Web Server และหน้า Member จะลบทิ้งจาก Address Bar ทันที
+    var memberUserPayload = "";
+    try { memberUserPayload = JSON.stringify(r.user || {}); } catch(e) {}
+
+    var memberUrl = MEMBER_SITE_URL +
+      "#memberLogin=" + encodeURIComponent(r.token) +
+      "&memberUser=" + encodeURIComponent(memberUserPayload);
+
+    location.href = memberUrl;
   } catch(e) {
     Swal.close();
     showAdminError(e);
