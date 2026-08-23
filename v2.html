@@ -11230,6 +11230,188 @@ strong,b{
   }
 }
 
+
+/* =====================================================
+   V65 — FIX PRICE/ACTION OVERLAP COMPLETELY
+===================================================== */
+
+@media(max-width:768px){
+
+  /* price section อยู่ใน flow ปกติ */
+  #betScreen.modern-layout .price-bottom-bar{
+    position:static !important;
+    left:auto !important;
+    right:auto !important;
+    bottom:auto !important;
+    top:auto !important;
+    transform:none !important;
+    z-index:auto !important;
+    width:calc(100% - 8px) !important;
+    margin:10px auto 0 !important;
+    display:block !important;
+  }
+
+  #betScreen.modern-layout .price-bottom-bar .bill-price-panel{
+    position:relative !important;
+    z-index:1 !important;
+    width:100% !important;
+    margin:0 !important;
+    padding:10px !important;
+    border-radius:18px !important;
+    overflow:visible !important;
+  }
+
+  /* action buttons ห้าม sticky/fixed และต้องอยู่หลัง price box */
+  #betScreen.modern-layout .direct-bottom{
+    position:static !important;
+    left:auto !important;
+    right:auto !important;
+    top:auto !important;
+    bottom:auto !important;
+    transform:none !important;
+    z-index:auto !important;
+    width:calc(100% - 8px) !important;
+    margin:10px auto calc(92px + env(safe-area-inset-bottom)) !important;
+    display:block !important;
+    clear:both !important;
+    border-radius:18px !important;
+  }
+
+  #betScreen.modern-layout .direct-action-row{
+    position:static !important;
+    z-index:auto !important;
+    display:grid !important;
+    grid-template-columns:1fr 1.15fr 1.45fr !important;
+    gap:8px !important;
+    padding:10px !important;
+    margin:0 !important;
+  }
+
+  #betScreen.modern-layout .direct-back-bottom,
+  #betScreen.modern-layout .direct-clear-all,
+  #betScreen.modern-layout .direct-submit{
+    position:static !important;
+    transform:none !important;
+    width:100% !important;
+    min-width:0 !important;
+    min-height:50px !important;
+    margin:0 !important;
+    border-radius:14px !important;
+    font-size:13px !important;
+  }
+
+  /* price layout ไม่ให้ปุ่มเพิ่มบิลดัน/ซ้อน */
+  #betScreen.modern-layout .price-bottom-bar .bill-price-panel{
+    display:grid !important;
+    grid-template-columns:minmax(0,1fr) auto !important;
+    grid-template-areas:
+      "title total"
+      "prices prices"
+      "add add" !important;
+    gap:8px !important;
+    align-items:center !important;
+  }
+
+  #betScreen.modern-layout .price-bottom-bar .price-section-title{
+    grid-area:title !important;
+    margin:0 !important;
+    align-self:center !important;
+  }
+
+  #betScreen.modern-layout .price-bottom-bar .current-bill-total{
+    grid-area:total !important;
+    justify-self:end !important;
+    margin:0 !important;
+  }
+
+  #betScreen.modern-layout .price-bottom-bar .direct-price-grid{
+    grid-area:prices !important;
+    grid-column:auto !important;
+    grid-row:auto !important;
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:8px !important;
+    width:100% !important;
+  }
+
+  #betScreen.modern-layout .price-bottom-bar .direct-price-field{
+    min-width:0 !important;
+    width:100% !important;
+    margin:0 !important;
+  }
+
+  #betScreen.modern-layout .price-bottom-bar .direct-add-bill{
+    grid-area:add !important;
+    grid-column:auto !important;
+    grid-row:auto !important;
+    width:100% !important;
+    min-width:0 !important;
+    margin:0 !important;
+    min-height:50px !important;
+  }
+
+  /* bottom nav อยู่ล่างสุดอย่างเดียว */
+  #betScreen.modern-layout .bet-v61-bottom-nav{
+    z-index:95 !important;
+  }
+}
+
+@media(max-width:430px){
+  #betScreen.modern-layout .price-bottom-bar{
+    width:calc(100% - 6px) !important;
+  }
+
+  #betScreen.modern-layout .price-bottom-bar .bill-price-panel{
+    padding:9px !important;
+    gap:7px !important;
+  }
+
+  #betScreen.modern-layout .price-bottom-bar .current-bill-total{
+    min-width:108px !important;
+    min-height:36px !important;
+  }
+
+  #betScreen.modern-layout .price-bottom-bar .direct-price-grid{
+    gap:7px !important;
+  }
+
+  #betScreen.modern-layout .price-bottom-bar .direct-price-input{
+    height:58px !important;
+    padding:19px 6px 6px !important;
+    font-size:19px !important;
+  }
+
+  #betScreen.modern-layout .price-bottom-bar .direct-price-label{
+    top:6px !important;
+    font-size:10px !important;
+  }
+
+  #betScreen.modern-layout .price-bottom-bar .direct-add-bill{
+    min-height:48px !important;
+    border-radius:14px !important;
+    font-size:13px !important;
+  }
+
+  #betScreen.modern-layout .direct-bottom{
+    width:calc(100% - 6px) !important;
+    margin-top:8px !important;
+    margin-bottom:calc(86px + env(safe-area-inset-bottom)) !important;
+  }
+
+  #betScreen.modern-layout .direct-action-row{
+    gap:7px !important;
+    padding:9px !important;
+    grid-template-columns:1fr 1.1fr 1.35fr !important;
+  }
+
+  #betScreen.modern-layout .direct-back-bottom,
+  #betScreen.modern-layout .direct-clear-all,
+  #betScreen.modern-layout .direct-submit{
+    min-height:46px !important;
+    font-size:12px !important;
+  }
+}
+
 </style>
  </head>
  <body>
