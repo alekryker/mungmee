@@ -8047,89 +8047,627 @@ textarea:focus{
   }
 }
 
+
+/* =====================================================
+   V56 — LOGIN MATCH REFERENCE
+   ปรับเฉพาะ UX/UI หน้า Login / Register
+   ระบบเดิมและ ID เดิมทั้งหมด
+===================================================== */
+#loginScreen{
+  --lg-red:#b6000f;
+  --lg-red2:#df0017;
+  --lg-deep:#4c0005;
+  --lg-ink:#281313;
+  --lg-muted:#6f6565;
+  --lg-line:#e9e5e5;
+  --lg-soft:#fff6f6;
+  position:relative !important;
+  min-height:100svh !important;
+  display:block !important;
+  overflow-x:hidden !important;
+  padding:calc(26px + env(safe-area-inset-top)) 14px calc(22px + env(safe-area-inset-bottom)) !important;
+  background:
+    radial-gradient(circle at 88% 12%,rgba(255,46,57,.38),transparent 28%),
+    radial-gradient(circle at 5% 70%,rgba(255,0,23,.28),transparent 30%),
+    linear-gradient(155deg,#360003 0%,#680006 46%,#a0000c 74%,#5a0005 100%) !important;
+}
+
+#loginScreen:before,
+#loginScreen:after{
+  content:"";
+  position:absolute;
+  pointer-events:none;
+  opacity:.7;
+  filter:blur(.1px);
+}
+#loginScreen:before{
+  width:420px;
+  height:2px;
+  left:-170px;
+  bottom:26%;
+  transform:rotate(39deg);
+  background:linear-gradient(90deg,transparent,#ff132a,transparent);
+  box-shadow:0 18px 24px rgba(255,16,40,.42);
+}
+#loginScreen:after{
+  width:390px;
+  height:2px;
+  right:-190px;
+  bottom:19%;
+  transform:rotate(-38deg);
+  background:linear-gradient(90deg,transparent,#ff1830,transparent);
+  box-shadow:0 16px 24px rgba(255,16,40,.38);
+}
+
+#loginScreen.hidden{
+  display:none !important;
+}
+
+.login-v56-wrap{
+  position:relative;
+  z-index:2;
+  width:min(100%,440px);
+  margin:0 auto;
+}
+
+#loginScreen .login-logo-credit{
+  width:min(310px,74vw) !important;
+  height:auto !important;
+  min-height:0 !important;
+  margin:0 auto 18px !important;
+  padding:0 !important;
+  display:flex !important;
+  justify-content:center !important;
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+}
+#loginScreen .login-logo-credit img{
+  width:100% !important;
+  height:auto !important;
+  object-fit:contain !important;
+  filter:drop-shadow(0 13px 23px rgba(0,0,0,.36)) !important;
+}
+
+#loginScreen .login-card-credit{
+  position:relative !important;
+  overflow:visible !important;
+  width:100% !important;
+  margin:0 !important;
+  padding:25px 20px 18px !important;
+  border:1px solid rgba(255,255,255,.90) !important;
+  border-radius:24px !important;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(255,255,255,.98),rgba(255,255,255,.96) 48%,rgba(255,250,250,.97) 100%) !important;
+  box-shadow:0 28px 70px rgba(32,0,3,.36),inset 0 1px 0 rgba(255,255,255,.96) !important;
+  color:var(--lg-ink) !important;
+}
+#loginScreen .login-card-credit:before{
+  display:none !important;
+}
+
+.login-v56-title{
+  text-align:center;
+  margin:0 0 20px;
+}
+.login-v56-title h1{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  gap:14px;
+  margin:0 !important;
+  color:#83000b !important;
+  font-size:31px !important;
+  line-height:1.1 !important;
+  font-weight:850 !important;
+  text-shadow:none !important;
+}
+.login-v56-title h1:before,
+.login-v56-title h1:after{
+  content:"";
+  width:32px;
+  height:1px;
+  background:linear-gradient(90deg,transparent,#db0015);
+}
+.login-v56-title h1:after{
+  background:linear-gradient(90deg,#db0015,transparent);
+}
+.login-v56-title p{
+  margin:8px 0 0 !important;
+  color:#5c5757 !important;
+  font-size:15px !important;
+  font-weight:500 !important;
+}
+
+.login-v56-title-register{display:none;}
+#loginScreen .login-card-credit:has(#registerPanel.active) .login-v56-title-login{display:none;}
+#loginScreen .login-card-credit:has(#registerPanel.active) .login-v56-title-register{display:block;}
+
+#loginScreen .auth-tabs{
+  display:grid !important;
+  grid-template-columns:1fr 1fr !important;
+  gap:0 !important;
+  margin:0 0 21px !important;
+  padding:0 !important;
+  overflow:hidden;
+  border:1px solid #e5e1e1 !important;
+  border-radius:15px !important;
+  background:#fff !important;
+  box-shadow:0 8px 18px rgba(85,0,8,.05) !important;
+}
+#loginScreen .auth-tab{
+  min-height:58px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:9px !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:#fff !important;
+  color:#383535 !important;
+  box-shadow:none !important;
+  font-size:16px !important;
+  font-weight:700 !important;
+}
+#loginScreen .auth-tab .fi{
+  font-size:20px;
+  color:#555 !important;
+}
+#loginScreen .auth-tab.active{
+  background:linear-gradient(135deg,#a9000d,#d40015) !important;
+  color:#fff !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 10px 22px rgba(163,0,13,.17) !important;
+}
+#loginScreen .auth-tab.active .fi{color:#fff !important;}
+
+#loginScreen .auth-panel{display:none;}
+#loginScreen .auth-panel.active{display:block;}
+
+#loginScreen .login-field{
+  margin:0 0 15px !important;
+}
+#loginScreen .login-field label{
+  display:block !important;
+  margin:0 0 7px !important;
+  color:#252020 !important;
+  text-shadow:none !important;
+  font-size:14px !important;
+  font-weight:650 !important;
+}
+
+.login-v56-input-wrap{
+  position:relative;
+}
+.login-v56-input-wrap > .fi{
+  position:absolute;
+  left:15px;
+  top:50%;
+  z-index:2;
+  transform:translateY(-50%);
+  color:#b40011 !important;
+  font-size:19px;
+  pointer-events:none;
+}
+
+#loginScreen .login-field input,
+#loginScreen .login-field select{
+  width:100% !important;
+  height:58px !important;
+  margin:0 !important;
+  border:1.5px solid #dfdcdc !important;
+  border-radius:14px !important;
+  background:#fff !important;
+  color:#211d1d !important;
+  outline:none !important;
+  box-shadow:inset 0 1px 2px rgba(0,0,0,.02) !important;
+  font-size:16px !important;
+  font-weight:500 !important;
+}
+#loginScreen .login-v56-input-wrap input{
+  padding:0 48px 0 50px !important;
+}
+#loginScreen .login-field > input,
+#loginScreen .login-field > select{
+  padding:0 14px !important;
+}
+#loginScreen .login-field input::placeholder{
+  color:#aaa5a5 !important;
+  opacity:1 !important;
+}
+#loginScreen .login-field input:focus,
+#loginScreen .login-field select:focus{
+  border-color:#bd0012 !important;
+  box-shadow:0 0 0 4px rgba(189,0,18,.08) !important;
+}
+
+#loginScreen .password-wrap{
+  position:relative !important;
+}
+#loginScreen .password-toggle{
+  position:absolute !important;
+  right:9px !important;
+  top:50% !important;
+  transform:translateY(-50%) !important;
+  width:46px !important;
+  min-width:46px !important;
+  height:40px !important;
+  padding:0 !important;
+  border:0 !important;
+  border-radius:10px !important;
+  background:transparent !important;
+  color:#93000c !important;
+  font-size:11px !important;
+  font-weight:700 !important;
+  box-shadow:none !important;
+}
+#loginScreen .password-toggle:active{
+  transform:translateY(-50%) scale(.96) !important;
+}
+
+.login-v56-forgot-row{
+  display:flex;
+  justify-content:flex-end;
+  margin:-4px 2px 17px;
+}
+.login-v56-forgot-row a{
+  color:#9b000c !important;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:650;
+}
+
+#loginScreen .login-submit{
+  width:100% !important;
+  min-height:58px !important;
+  height:auto !important;
+  margin:2px 0 0 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:10px !important;
+  border:0 !important;
+  border-radius:14px !important;
+  background:linear-gradient(135deg,#9e000c 0%,#d20015 58%,#a9000d 100%) !important;
+  color:#fff !important;
+  box-shadow:0 14px 27px rgba(158,0,12,.22),inset 0 1px 0 rgba(255,255,255,.20) !important;
+  font-size:18px !important;
+  font-weight:800 !important;
+}
+#loginScreen .login-submit .fi{font-size:21px;color:#fff !important;}
+#loginScreen .login-submit:active{transform:scale(.985) !important;}
+
+#loginScreen .register-grid{
+  display:grid !important;
+  grid-template-columns:1fr 1fr !important;
+  gap:0 10px !important;
+}
+#loginScreen .register-grid .full{grid-column:1/-1 !important;}
+
+.login-v56-divider{
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin:20px 0 14px;
+  color:#777 !important;
+  font-size:13px;
+  font-weight:500;
+}
+.login-v56-divider:before,
+.login-v56-divider:after{
+  content:"";
+  flex:1;
+  height:1px;
+  background:#ddd8d8;
+}
+.login-v56-divider span{white-space:nowrap;}
+
+#loginScreen .login-line-contact-wrap{
+  margin:0 !important;
+  padding:0 !important;
+  border:0 !important;
+}
+#loginScreen .login-line-contact-label{display:none !important;}
+#loginScreen .login-line-contact{
+  width:100% !important;
+  min-height:56px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:11px !important;
+  border:0 !important;
+  border-radius:14px !important;
+  background:linear-gradient(135deg,#06b94d,#06c755) !important;
+  color:#fff !important;
+  box-shadow:0 12px 24px rgba(6,199,85,.20) !important;
+  font-size:17px !important;
+  font-weight:800 !important;
+}
+#loginScreen .login-line-contact img{
+  width:28px !important;
+  height:28px !important;
+  border-radius:7px !important;
+}
+
+.login-v56-affiliate{
+  width:100%;
+  min-height:74px;
+  margin-top:15px;
+  padding:10px 12px;
+  display:grid;
+  grid-template-columns:44px minmax(0,1fr) 48px 18px;
+  align-items:center;
+  gap:10px;
+  border:1px solid #efd5d5;
+  border-radius:15px;
+  background:
+    radial-gradient(circle at 88% 48%,rgba(255,48,62,.10),transparent 30%),
+    linear-gradient(135deg,#fffafa,#fff0f0);
+  color:#4b1115 !important;
+  text-align:left;
+  box-shadow:0 9px 20px rgba(128,0,12,.06);
+}
+.login-v56-affiliate-icon{
+  width:42px;
+  height:42px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:linear-gradient(135deg,#5b0007,#a9000d);
+  color:#fff !important;
+  font-size:20px;
+}
+.login-v56-affiliate-copy{min-width:0;}
+.login-v56-affiliate-copy strong{
+  display:block;
+  color:#761019 !important;
+  font-size:16px !important;
+  font-weight:800 !important;
+}
+.login-v56-affiliate-copy small{
+  display:block;
+  margin-top:2px;
+  color:#6d5a5a !important;
+  font-size:11px !important;
+  font-weight:500 !important;
+}
+.login-v56-gift{
+  width:46px;
+  height:46px;
+  display:grid;
+  place-items:center;
+  border-radius:13px;
+  background:linear-gradient(145deg,#fff,#ffe6e8);
+  color:#c50015 !important;
+  font-size:27px;
+  box-shadow:0 7px 15px rgba(160,0,14,.08);
+}
+.login-v56-arrow{
+  color:#8f000b !important;
+  font-size:31px;
+  line-height:1;
+}
+
+.login-v56-copyright{
+  padding:15px 4px 0;
+  color:rgba(255,255,255,.66);
+  text-align:center;
+  font-size:10px;
+  font-weight:500;
+}
+
+#loginScreen .affiliate-ref-hint{
+  margin-top:7px !important;
+  padding:8px 10px !important;
+  border-radius:9px !important;
+  background:#fff3cd !important;
+  color:#6b4710 !important;
+  font-size:9px !important;
+}
+
+@media(max-width:480px){
+  #loginScreen{
+    padding:calc(18px + env(safe-area-inset-top)) 12px calc(18px + env(safe-area-inset-bottom)) !important;
+  }
+  .login-v56-wrap{width:min(100%,410px);}
+  #loginScreen .login-logo-credit{
+    width:min(265px,72vw) !important;
+    margin-bottom:14px !important;
+  }
+  #loginScreen .login-card-credit{
+    padding:22px 17px 16px !important;
+    border-radius:22px !important;
+  }
+  .login-v56-title{margin-bottom:17px;}
+  .login-v56-title h1{font-size:28px !important;gap:10px;}
+  .login-v56-title h1:before,
+  .login-v56-title h1:after{width:24px;}
+  .login-v56-title p{font-size:14px !important;}
+  #loginScreen .auth-tab{
+    min-height:54px !important;
+    gap:7px !important;
+    font-size:15px !important;
+  }
+  #loginScreen .login-field input,
+  #loginScreen .login-field select{
+    height:55px !important;
+    font-size:15px !important;
+  }
+  #loginScreen .login-submit{min-height:56px !important;font-size:17px !important;}
+  #loginScreen .login-line-contact{min-height:54px !important;font-size:16px !important;}
+  .login-v56-affiliate{
+    min-height:70px;
+    grid-template-columns:40px minmax(0,1fr) 42px 15px;
+    gap:8px;
+    padding:9px 10px;
+  }
+  .login-v56-affiliate-icon{width:39px;height:39px;}
+  .login-v56-gift{width:41px;height:41px;font-size:24px;}
+}
+
+@media(max-width:390px){
+  #loginScreen .login-card-credit{padding-left:14px !important;padding-right:14px !important;}
+  #loginScreen .auth-tab{font-size:14px !important;}
+  #loginScreen .auth-tab .fi{font-size:18px;}
+  #loginScreen .register-grid{grid-template-columns:1fr !important;}
+  #loginScreen .register-grid .full{grid-column:auto !important;}
+  .login-v56-title h1{font-size:26px !important;}
+}
+
 </style>
  </head>
  <body>
-  
+
   <section id="loginScreen">
-    <div class="login-card-credit">
-      <div class="login-logo-credit"><img src="./supmangmee-logo.png" alt="ทรัพย์มั่งมี"></div>
-      <div class="auth-tabs">
-        <button class="auth-tab active" id="authLoginTab" type="button">เข้าสู่ระบบ</button>
-        <button class="auth-tab" id="authRegisterTab" type="button">สมัครสมาชิก</button>
+    <div class="login-v56-wrap">
+      <div class="login-logo-credit">
+        <img src="./supmangmee-logo.png" alt="ทรัพย์มั่งมี">
       </div>
 
-      <div class="auth-panel active" id="loginPanel">
-        <div class="login-field">
-          <label>เบอร์โทร</label>
-          <input id="loginUser" autocomplete="username" inputmode="tel" placeholder="0812345678">
+      <div class="login-card-credit">
+        <div class="login-v56-title login-v56-title-login">
+          <h1>เข้าสู่ระบบ</h1>
+          <p>ยินดีต้อนรับกลับมา</p>
         </div>
-        <div class="login-field">
-          <label>รหัสผ่าน</label>
-          <div class="password-wrap">
-            <input id="loginPass" type="password" autocomplete="current-password" placeholder="••••••">
-            <button class="password-toggle" id="loginPassToggle" type="button">แสดง</button>
-          </div>
+        <div class="login-v56-title login-v56-title-register">
+          <h1>สมัครสมาชิก</h1>
+          <p>สร้างบัญชีเพื่อเริ่มใช้งาน</p>
         </div>
-        <button class="login-submit" id="loginBtn">เข้าสู่ระบบ</button>
-      </div>
 
-      <div class="auth-panel" id="registerPanel">
-        <div class="register-grid">
-          <div class="login-field full">
-            <label>เบอร์โทร</label>
-            <input id="regPhone" autocomplete="tel" inputmode="tel" placeholder="0812345678">
+        <div class="auth-tabs">
+          <button class="auth-tab active" id="authLoginTab" type="button">
+            <i class="fi fi-sr-user"></i>
+            <span>เข้าสู่ระบบ</span>
+          </button>
+          <button class="auth-tab" id="authRegisterTab" type="button">
+            <i class="fi fi-sr-user-add"></i>
+            <span>สมัครสมาชิก</span>
+          </button>
+        </div>
+
+        <div class="auth-panel active" id="loginPanel">
+          <div class="login-field">
+            <label>เบอร์โทรศัพท์</label>
+            <div class="login-v56-input-wrap">
+              <i class="fi fi-sr-phone-call"></i>
+              <input id="loginUser" autocomplete="username" inputmode="tel" placeholder="เช่น 0812345678">
+            </div>
           </div>
+
           <div class="login-field">
             <label>รหัสผ่าน</label>
-            <input id="regPass" type="password" autocomplete="new-password" placeholder="6 ตัวขึ้นไป">
+            <div class="password-wrap login-v56-input-wrap">
+              <i class="fi fi-sr-lock"></i>
+              <input id="loginPass" type="password" autocomplete="current-password" placeholder="กรอกรหัสผ่านของคุณ">
+              <button class="password-toggle" id="loginPassToggle" type="button">แสดง</button>
+            </div>
           </div>
-          <div class="login-field">
-            <label>ยืนยันรหัสผ่าน</label>
-            <input id="regPassConfirm" type="password" autocomplete="new-password" placeholder="••••••">
+
+          <div class="login-v56-forgot-row">
+            <a href="https://lin.ee/9sjcPft" target="_blank" rel="noopener noreferrer">ลืมรหัสผ่าน?</a>
           </div>
-          <div class="login-field full">
-            <label>ชื่อ - นามสกุล</label>
-            <input id="regBankNameAccount" autocomplete="name" placeholder="ชื่อบัญชีธนาคาร">
-          </div>
-          <div class="login-field">
-            <label>ธนาคาร</label>
-            <select id="regBankName">
-              <option value="">เลือกธนาคาร</option>
-              <option value="ธนาคารกสิกรไทย">ธนาคารกสิกรไทย</option>
-              <option value="ธนาคารไทยพาณิชย์">ธนาคารไทยพาณิชย์</option>
-              <option value="ธนาคารกรุงเทพ">ธนาคารกรุงเทพ</option>
-              <option value="ธนาคารกรุงไทย">ธนาคารกรุงไทย</option>
-              <option value="ธนาคารกรุงศรีอยุธยา">ธนาคารกรุงศรีอยุธยา</option>
-              <option value="ธนาคารทหารไทยธนชาต">ธนาคารทหารไทยธนชาต</option>
-              <option value="ธนาคารออมสิน">ธนาคารออมสิน</option>
-              <option value="ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร">ธ.ก.ส.</option>
-              <option value="ธนาคารซีไอเอ็มบีไทย">ธนาคารซีไอเอ็มบีไทย</option>
-              <option value="ธนาคารยูโอบี">ธนาคารยูโอบี</option>
-            </select>
-          </div>
-          <div class="login-field">
-            <label>หมายเลขบัญชี</label>
-            <input id="regBankAccountNo" inputmode="numeric" placeholder="เลขบัญชี">
-          </div>
-          <div class="login-field full">
-            <label>รหัสแนะนำ Affiliate (ถ้ามี)</label>
-            <input id="regReferralCode" autocomplete="off" placeholder="เช่น AFF-A001">
-            <div class="affiliate-ref-hint hidden" id="regReferralHint">สมัครผ่านลิงก์แนะนำ ระบบจะผูกผู้แนะนำให้บัญชีนี้ถาวร</div>
-          </div>
+
+          <button class="login-submit" id="loginBtn">
+            <i class="fi fi-sr-sign-in-alt"></i>
+            <span>เข้าสู่ระบบ</span>
+          </button>
         </div>
-        <button class="login-submit" id="registerBtn">สมัครสมาชิก</button>
+
+        <div class="auth-panel" id="registerPanel">
+          <div class="register-grid">
+            <div class="login-field full">
+              <label>เบอร์โทรศัพท์</label>
+              <div class="login-v56-input-wrap">
+                <i class="fi fi-sr-phone-call"></i>
+                <input id="regPhone" autocomplete="tel" inputmode="tel" placeholder="เช่น 0812345678">
+              </div>
+            </div>
+
+            <div class="login-field">
+              <label>รหัสผ่าน</label>
+              <div class="login-v56-input-wrap">
+                <i class="fi fi-sr-lock"></i>
+                <input id="regPass" type="password" autocomplete="new-password" placeholder="6 ตัวขึ้นไป">
+              </div>
+            </div>
+
+            <div class="login-field">
+              <label>ยืนยันรหัสผ่าน</label>
+              <div class="login-v56-input-wrap">
+                <i class="fi fi-sr-lock"></i>
+                <input id="regPassConfirm" type="password" autocomplete="new-password" placeholder="กรอกรหัสผ่านอีกครั้ง">
+              </div>
+            </div>
+
+            <div class="login-field full">
+              <label>ชื่อ - นามสกุล</label>
+              <div class="login-v56-input-wrap">
+                <i class="fi fi-sr-user"></i>
+                <input id="regBankNameAccount" autocomplete="name" placeholder="ชื่อบัญชีธนาคาร">
+              </div>
+            </div>
+
+            <div class="login-field">
+              <label>ธนาคาร</label>
+              <select id="regBankName">
+                <option value="">เลือกธนาคาร</option>
+                <option value="ธนาคารกสิกรไทย">ธนาคารกสิกรไทย</option>
+                <option value="ธนาคารไทยพาณิชย์">ธนาคารไทยพาณิชย์</option>
+                <option value="ธนาคารกรุงเทพ">ธนาคารกรุงเทพ</option>
+                <option value="ธนาคารกรุงไทย">ธนาคารกรุงไทย</option>
+                <option value="ธนาคารกรุงศรีอยุธยา">ธนาคารกรุงศรีอยุธยา</option>
+                <option value="ธนาคารทหารไทยธนชาต">ธนาคารทหารไทยธนชาต</option>
+                <option value="ธนาคารออมสิน">ธนาคารออมสิน</option>
+                <option value="ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร">ธ.ก.ส.</option>
+                <option value="ธนาคารซีไอเอ็มบีไทย">ธนาคารซีไอเอ็มบีไทย</option>
+                <option value="ธนาคารยูโอบี">ธนาคารยูโอบี</option>
+              </select>
+            </div>
+
+            <div class="login-field">
+              <label>หมายเลขบัญชี</label>
+              <input id="regBankAccountNo" inputmode="numeric" placeholder="เลขบัญชี">
+            </div>
+
+            <div class="login-field full">
+              <label>รหัสแนะนำ Affiliate (ถ้ามี)</label>
+              <input id="regReferralCode" autocomplete="off" placeholder="เช่น AFF-A001">
+              <div class="affiliate-ref-hint hidden" id="regReferralHint">สมัครผ่านลิงก์แนะนำ ระบบจะผูกผู้แนะนำให้บัญชีนี้ถาวร</div>
+            </div>
+          </div>
+
+          <button class="login-submit" id="registerBtn">
+            <i class="fi fi-sr-user-add"></i>
+            <span>สมัครสมาชิก</span>
+          </button>
+        </div>
+
+        <div class="login-v56-divider">
+          <span>หรือเข้าสู่ระบบด้วย</span>
+        </div>
+
+        <div class="login-line-contact-wrap">
+          <a class="login-line-contact" href="https://lin.ee/9sjcPft" target="_blank" rel="noopener noreferrer">
+            <img src="line-logo.png" alt="LINE">
+            <span>ติดต่อเราทาง LINE</span>
+          </a>
+        </div>
+
+        <button class="login-v56-affiliate" type="button" onclick="document.getElementById('authRegisterTab')?.click()">
+          <span class="login-v56-affiliate-icon"><i class="fi fi-sr-users-alt"></i></span>
+          <span class="login-v56-affiliate-copy">
+            <strong>แนะนำเพื่อน</strong>
+            <small>ชวนเพื่อนมาเล่น รับค่าคอมมิชชั่น</small>
+          </span>
+          <span class="login-v56-gift"><i class="fi fi-sr-gift"></i></span>
+          <span class="login-v56-arrow">›</span>
+        </button>
       </div>
 
-      <div class="login-line-contact-wrap">
-        <div class="login-line-contact-label">ต้องการความช่วยเหลือ?</div>
-        <a class="login-line-contact" href="https://lin.ee/9sjcPft" target="_blank" rel="noopener noreferrer">
-          <img src="line-logo.png" alt="LINE">
-          <span>ติดต่อเราทาง LINE</span>
-        </a>
-      </div>
+      <div class="login-v56-copyright">© 2026 ทรัพย์มั่งมี สงวนลิขสิทธิ์</div>
     </div>
   </section>
+
 
   <main class="app hidden" id="mainApp">
 
