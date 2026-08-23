@@ -12860,6 +12860,342 @@ strong,b{
   }
 }
 
+
+/* =====================================================
+   V70 — REMOVE CREDIT FRAME + MOVE TOTAL SUMMARY
+===================================================== */
+
+/* ลบกรอบ/กรอบทองของยอดคงเหลือใน classic header */
+#betScreen.classic-layout .credit-mini{
+  border:none !important;
+  box-shadow:none !important;
+  background:rgba(255,255,255,.96) !important;
+}
+
+#betScreen.classic-layout .credit-mini::before{
+  box-shadow:none !important;
+}
+
+#betScreen.classic-layout .bet-rules-classic-btn{
+  box-shadow:none !important;
+}
+
+/* ย้าย logic การแสดงยอดรวมออกจาก price area */
+#betScreen.classic-layout .price-bottom-bar .current-bill-total{
+  display:none !important;
+}
+
+/* ปรับ price panel ใหม่เมื่อไม่มีกล่องยอดรายการนี้ */
+#betScreen.classic-layout .price-bottom-bar .bill-price-panel{
+  grid-template-columns:minmax(0,1fr) 220px !important;
+  grid-template-areas:
+    "title title"
+    "prices add" !important;
+  align-items:end !important;
+}
+
+#betScreen.classic-layout .price-bottom-bar .price-section-title{
+  grid-area:title !important;
+  grid-column:auto !important;
+  margin:0 !important;
+}
+
+#betScreen.classic-layout .price-bottom-bar .direct-price-grid{
+  grid-area:prices !important;
+  grid-column:auto !important;
+  width:100% !important;
+}
+
+#betScreen.classic-layout .price-bottom-bar .direct-add-bill{
+  grid-area:add !important;
+  width:100% !important;
+}
+
+/* เน้นยอดรวมทุกรายการในแถบล่างแทน */
+#betScreen.classic-layout .direct-bottom{
+  overflow:visible !important;
+}
+
+#betScreen.classic-layout .direct-grand{
+  border-bottom:1px solid #f1e1e1 !important;
+  padding:16px 18px !important;
+  background:linear-gradient(180deg,#fff 0%, #fff9f9 100%) !important;
+}
+
+#betScreen.classic-layout .direct-grand small{
+  color:#8b6767 !important;
+  font-size:13px !important;
+  font-weight:600 !important;
+  letter-spacing:.2px !important;
+}
+
+#betScreen.classic-layout .direct-grand strong{
+  color:#c00012 !important;
+  font-size:26px !important;
+  font-weight:800 !important;
+}
+
+/* mobile */
+@media(max-width:768px){
+  #betScreen.classic-layout .credit-mini{
+    padding:10px 12px !important;
+    background:rgba(255,255,255,.96) !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .bill-price-panel{
+    grid-template-columns:1fr !important;
+    grid-template-areas:
+      "title"
+      "prices"
+      "add" !important;
+    gap:10px !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .direct-price-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:10px !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .direct-price-grid.one{
+    grid-template-columns:1fr !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .direct-add-bill{
+    min-height:54px !important;
+  }
+
+  #betScreen.classic-layout .direct-grand{
+    padding:12px !important;
+    border-bottom:1px solid #f1e1e1 !important;
+  }
+
+  #betScreen.classic-layout .direct-grand small{
+    font-size:11px !important;
+  }
+
+  #betScreen.classic-layout .direct-grand strong{
+    font-size:18px !important;
+  }
+}
+
+@media(max-width:430px){
+  #betScreen.classic-layout .price-bottom-bar .bill-price-panel{
+    padding:10px !important;
+    gap:8px !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .direct-price-grid{
+    gap:8px !important;
+  }
+
+  #betScreen.classic-layout .direct-grand strong{
+    font-size:17px !important;
+  }
+}
+
+
+/* =====================================================
+   V71 — SMALLER BALANCE + HOME SHOW CLOSE TIME ONLY + BET LABELS
+===================================================== */
+
+/* หน้าหลัก: เครดิตคงเหลือเล็กลง */
+#homeScreen .v16-wallet-balance{
+  font-size:clamp(40px,10.6vw,56px) !important;
+  margin-top:18px !important;
+}
+
+#homeScreen .v16-wallet-balance b{
+  font-weight:680 !important;
+}
+
+#homeScreen .v16-wallet-balance span{
+  font-size:.31em !important;
+  margin-left:5px !important;
+}
+
+#homeScreen .home-v54-wallet-label{
+  font-size:14px !important;
+}
+
+@media(max-width:768px){
+  #homeScreen .v16-wallet-balance{
+    font-size:42px !important;
+    margin-top:16px !important;
+  }
+
+  #homeScreen .home-v54-wallet-label{
+    font-size:12px !important;
+  }
+}
+
+@media(max-width:430px){
+  #homeScreen .v16-wallet-balance{
+    font-size:38px !important;
+    margin-top:14px !important;
+  }
+
+  #homeScreen .v16-wallet-balance span{
+    font-size:.29em !important;
+  }
+
+  #homeScreen .home-v54-wallet-label{
+    font-size:11.5px !important;
+  }
+}
+
+/* หน้าเลือกหวย/หน้าแทง: ยอดเงินคงเหลือเล็กลง */
+#betScreen .modern-credit-card b{
+  font-size:20px !important;
+}
+
+#betScreen .modern-credit-card b::after{
+  font-size:12px !important;
+  margin-left:4px !important;
+}
+
+#betScreen.classic-layout .credit-mini b{
+  font-size:22px !important;
+}
+
+#betScreen.classic-layout .credit-mini b::after{
+  font-size:13px !important;
+  margin-left:5px !important;
+}
+
+#betScreen.classic-layout .credit-mini small,
+#betScreen .modern-credit-card small{
+  font-size:12px !important;
+}
+
+@media(max-width:768px){
+  #betScreen .modern-credit-card b{
+    font-size:18px !important;
+  }
+
+  #betScreen .modern-credit-card b::after{
+    font-size:11px !important;
+  }
+
+  #betScreen.classic-layout .credit-mini b{
+    font-size:18px !important;
+  }
+
+  #betScreen.classic-layout .credit-mini b::after{
+    font-size:11px !important;
+  }
+
+  #betScreen.classic-layout .credit-mini small,
+  #betScreen .modern-credit-card small{
+    font-size:11px !important;
+  }
+}
+
+@media(max-width:430px){
+  #betScreen .modern-credit-card b{
+    font-size:17px !important;
+  }
+
+  #betScreen.classic-layout .credit-mini b{
+    font-size:17px !important;
+  }
+
+  #betScreen.classic-layout .credit-mini b::after,
+  #betScreen .modern-credit-card b::after{
+    font-size:10px !important;
+  }
+}
+
+
+/* =====================================================
+   V72 — SHOW GRAND TOTAL ON BET STYLE 1
+===================================================== */
+
+/* แบบแทงที่ 1: แสดงยอดรวมทุกรายการกลับมา */
+#betScreen.modern-layout .direct-grand{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  gap:12px !important;
+  min-height:58px !important;
+  padding:10px 14px !important;
+  margin:0 !important;
+  border-radius:16px 16px 0 0 !important;
+  background:linear-gradient(180deg,#fffafa 0%,#fff 100%) !important;
+  border-bottom:1px solid #f0dada !important;
+}
+
+#betScreen.modern-layout .direct-grand small{
+  color:#6f5d5d !important;
+  font-size:12px !important;
+  font-weight:450 !important;
+}
+
+#betScreen.modern-layout .direct-grand small::before{
+  content:"ยอดรวมทุกรายการ";
+  font-size:14px;
+  color:#4c1a1a;
+  font-weight:600;
+}
+
+#betScreen.modern-layout .direct-grand small{
+  font-size:0 !important;
+}
+
+#betScreen.modern-layout .direct-grand strong{
+  color:#bd0012 !important;
+  font-size:22px !important;
+  font-weight:750 !important;
+  font-variant-numeric:tabular-nums;
+}
+
+#betScreen.modern-layout .direct-grand strong::after{
+  content:" บาท";
+  color:#7a5c5c;
+  font-size:12px;
+  font-weight:400;
+  margin-left:4px;
+}
+
+/* แถบปุ่มต่ออยู่ด้านล่างยอดรวม */
+#betScreen.modern-layout .direct-action-row{
+  border-radius:0 0 16px 16px !important;
+}
+
+/* มือถือ */
+@media(max-width:768px){
+  #betScreen.modern-layout .direct-grand{
+    min-height:52px !important;
+    padding:8px 11px !important;
+  }
+
+  #betScreen.modern-layout .direct-grand small::before{
+    font-size:12px !important;
+  }
+
+  #betScreen.modern-layout .direct-grand strong{
+    font-size:18px !important;
+  }
+
+  #betScreen.modern-layout .direct-grand strong::after{
+    font-size:10px !important;
+  }
+}
+
+@media(max-width:430px){
+  #betScreen.modern-layout .direct-grand{
+    min-height:48px !important;
+    padding:7px 10px !important;
+  }
+
+  #betScreen.modern-layout .direct-grand small::before{
+    font-size:11px !important;
+  }
+
+  #betScreen.modern-layout .direct-grand strong{
+    font-size:17px !important;
+  }
+}
+
 </style>
  </head>
  <body>
@@ -13206,8 +13542,8 @@ strong,b{
 
     <div class="bet-mode-wrap">
      <div class="bet-layout-switch">
-      <button class="bet-layout-btn active" data-bet-layout="modern" type="button">ตัวเลือกที่ 1</button>
-      <button class="bet-layout-btn" data-bet-layout="classic" type="button">ตัวเลือกที่ 2</button>
+      <button class="bet-layout-btn active" data-bet-layout="modern" type="button">แบบแทงที่ 1</button>
+      <button class="bet-layout-btn" data-bet-layout="classic" type="button">แบบแทงที่ 2</button>
      </div>
      <div class="bet-mode-tabs">
       <button class="bet-mode-tab active" data-mode="two">2 ตัว</button>
@@ -13358,7 +13694,7 @@ strong,b{
 
     <section class="direct-bottom">
      <div class="direct-grand">
-      <small>รวมยอดแทงทั้งหมด</small>
+      <small>ยอดรวมทุกรายการ</small>
       <strong id="grandTotal">0.00</strong>
      </div>
      <div class="direct-action-row">
@@ -14768,7 +15104,7 @@ function renderHomeLottoPreview(list) {
   }
   box.innerHTML = rows.map(function(lotto, idx){
     var name = escapeHtml(lotto.name || "-");
-    var closeText = escapeHtml(getActualCloseText(lotto) || "-");
+    var closeText = escapeHtml((lotto && lotto.closeTime) ? lotto.closeTime : (getActualCloseText(lotto) || "-"));
     var flag = getHomeLottoFlag(lotto.name);
     return '<div class="home-v54-lotto-item">' +
       (idx === 0 ? '<span class="home-v54-lotto-hot">เปิดรับ</span>' : '') +
