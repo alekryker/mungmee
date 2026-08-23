@@ -9240,6 +9240,88 @@ strong,b{
   }
 }
 
+
+/* =====================================================
+   V59 — LOTTO GROUP FIX + LIGHTER TYPOGRAPHY
+===================================================== */
+
+/* หัวข้อใหญ่ */
+#lottoScreen .lotto-v58-title-wrap h1{
+  font-weight:560 !important;
+}
+
+/* ยอดเงิน */
+#lottoScreen .lotto-v58-credit-box span{
+  font-weight:500 !important;
+}
+#lottoScreen .lotto-v58-credit-box strong{
+  font-weight:580 !important;
+}
+
+/* ปุ่มกลับ */
+#lottoScreen .lotto-v58-home-btn{
+  font-weight:430 !important;
+}
+
+/* ชื่อกลุ่ม */
+#lottoScreen .lotto-v58-group-head h2{
+  font-weight:520 !important;
+}
+
+/* ชื่อหวย */
+#lottoScreen .lotto-name{
+  font-weight:520 !important;
+}
+
+/* รายละเอียดหวย */
+#lottoScreen .lotto-meta{
+  font-weight:350 !important;
+  color:#675d5d !important;
+}
+
+/* รอบหวย */
+#lottoScreen .lotto-date{
+  font-weight:400 !important;
+  color:#615757 !important;
+}
+
+/* ตัวนับเวลายังเด่น แต่ไม่หนาเกิน */
+#lottoScreen .countdown{
+  font-weight:560 !important;
+}
+
+/* bottom bar */
+#lottoScreen .lotto-v58-bottom-nav button{
+  font-weight:400 !important;
+}
+
+/* ตัวหนังสือรองทั้งหมด */
+#lottoScreen .lotto-v58-title-wrap p,
+#lottoScreen .lotto-v58-empty{
+  font-weight:350 !important;
+}
+
+/* VIP group icon ให้ต่างจากกลุ่มอื่นเล็กน้อย */
+#lottoScreen .lotto-v58-group[data-group="vip"] .lotto-v58-group-icon{
+  background:linear-gradient(145deg,#6c0008,#b30012) !important;
+}
+
+/* ลดความหนักของตัวอักษรบนมือถืออีกเล็กน้อย */
+@media(max-width:480px){
+  #lottoScreen .lotto-v58-title-wrap h1{
+    font-weight:540 !important;
+  }
+
+  #lottoScreen .lotto-v58-group-head h2,
+  #lottoScreen .lotto-name{
+    font-weight:500 !important;
+  }
+
+  #lottoScreen .countdown{
+    font-weight:540 !important;
+  }
+}
+
 </style>
  </head>
  <body>
@@ -11059,6 +11141,10 @@ function updateUserUI() {
 function getHomeLottoFlag(name) {
   name = String(name || "");
   if (/ฮานอย|เวียดนาม/i.test(name)) return "🇻🇳";
+  if (/อียิปต์/i.test(name)) return "🇪🇬";
+  if (/อังกฤษ/i.test(name)) return "🇬🇧";
+  if (/เยอรมัน/i.test(name)) return "🇩🇪";
+  if (/รัสเซีย/i.test(name)) return "🇷🇺";
   if (/ลาว/i.test(name)) return "🇱🇦";
   if (/นิเคอิ|ญี่ปุ่น/i.test(name)) return "🇯🇵";
   if (/ฮั่งเส็ง|ฮ่องกง/i.test(name)) return "🇭🇰";
@@ -11075,14 +11161,22 @@ function getHomeLottoFlag(name) {
 
 function getLottoCategoryKey(name) {
   name = String(name || "");
+
+  // กลุ่ม VIP เฉพาะที่กำหนด
+  if (/อังกฤษ\s*VIP|เยอรมัน\s*VIP|รัสเซีย\s*VIP/i.test(name)) return "vip";
+
   if (/ลาว/i.test(name)) return "lao";
   if (/ฮานอย|เวียดนาม/i.test(name)) return "hanoi";
-  if (/นิเคอิ|หุ้นไทย|ไทยเย็น|ฮั่งเส็ง|จีน|เกาหลี|สิงคโปร์|ไต้หวัน|อินเดีย|ดาวโจนส์|ดาวโจน|หุ้น/i.test(name)) return "stock";
+
+  // อียิปต์ให้อยู่กลุ่มหวยหุ้น
+  if (/อียิปต์|นิเคอิ|หุ้นไทย|ไทยเย็น|ฮั่งเส็ง|จีน|เกาหลี|สิงคโปร์|ไต้หวัน|อินเดีย|ดาวโจนส์|ดาวโจน|หุ้น/i.test(name)) return "stock";
+
   return "other";
 }
 
 function getLottoCategoryConfig(key) {
   if (key === "stock") return { label:"หวยหุ้น", icon:"fi fi-sr-chart-simple" };
+  if (key === "vip") return { label:"หวย VIP", icon:"fi fi-sr-crown" };
   if (key === "lao") return { label:"หวยลาว", icon:"fi fi-sr-flag" };
   if (key === "hanoi") return { label:"ฮานอย", icon:"fi fi-sr-badge-check" };
   return { label:"อื่นๆ", icon:"fi fi-sr-apps" };
@@ -11122,8 +11216,8 @@ function renderLottos() {
     return;
   }
 
-  var order = ["stock","lao","hanoi","other"];
-  var groups = { stock:[], lao:[], hanoi:[], other:[] };
+  var order = ["stock","vip","lao","hanoi","other"];
+  var groups = { stock:[], vip:[], lao:[], hanoi:[], other:[] };
 
   open.forEach(function(lotto){
     var key = getLottoCategoryKey(lotto.name);
@@ -11139,6 +11233,7 @@ function renderLottos() {
 
     var section = document.createElement("section");
     section.className = "lotto-v58-group";
+    section.setAttribute("data-group", key);
 
     var head = document.createElement("div");
     head.className = "lotto-v58-group-head";
