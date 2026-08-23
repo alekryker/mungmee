@@ -8836,6 +8836,410 @@ strong,b{
   }
 }
 
+
+/* =====================================================
+   V58 — LOTTO SELECT REDESIGN
+   หน้าเลือกหวยใหม่: ย้ายเมนูไป bottom bar + แยกกลุ่มหวย
+===================================================== */
+#lottoScreen{
+  background:#f8f6f6 !important;
+  min-height:100svh !important;
+  padding-bottom:108px !important;
+}
+#lottoScreen.active{
+  display:block !important;
+}
+#lottoScreen .lotto-v58-hero{
+  position:relative;
+  overflow:hidden;
+  padding:calc(20px + env(safe-area-inset-top)) 14px 18px !important;
+  background:
+    radial-gradient(circle at 100% 20%,rgba(255,74,84,.28),transparent 28%),
+    linear-gradient(135deg,#5d0007 0%,#9d000d 48%,#cf0015 100%) !important;
+  border-bottom-left-radius:28px;
+  border-bottom-right-radius:28px;
+  box-shadow:0 14px 30px rgba(102,0,8,.22);
+}
+#lottoScreen .lotto-v58-hero:after{
+  content:"";
+  position:absolute;
+  inset:auto -80px -70px auto;
+  width:240px;
+  height:140px;
+  border-radius:50%;
+  background:rgba(255,255,255,.08);
+  transform:rotate(-8deg);
+  pointer-events:none;
+}
+#lottoScreen .lotto-v58-back-row{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  margin-bottom:14px;
+}
+#lottoScreen .lotto-v58-home-btn{
+  min-height:44px;
+  padding:0 16px;
+  border:1px solid rgba(255,255,255,.20);
+  border-radius:16px;
+  background:rgba(255,255,255,.08);
+  color:#fff !important;
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  font-size:15px;
+  font-weight:550 !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12);
+}
+#lottoScreen .lotto-v58-home-btn i{
+  color:#fff !important;
+  font-size:16px;
+}
+#lottoScreen .lotto-v58-head-row{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:14px;
+  align-items:end;
+}
+#lottoScreen .lotto-v58-title-wrap h1{
+  margin:0 !important;
+  color:#fff !important;
+  font-size:34px !important;
+  line-height:1.08 !important;
+  font-weight:650 !important;
+}
+#lottoScreen .lotto-v58-title-wrap p{
+  margin:8px 0 0 !important;
+  color:rgba(255,255,255,.90) !important;
+  font-size:14px !important;
+  font-weight:450 !important;
+}
+#lottoScreen .lotto-v58-credit-box{
+  min-width:168px;
+  min-height:84px;
+  padding:0 18px;
+  border-radius:20px;
+  background:rgba(255,255,255,.97);
+  color:#b10010 !important;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  box-shadow:0 16px 30px rgba(70,0,5,.16);
+}
+#lottoScreen .lotto-v58-credit-box span{
+  color:#c20013 !important;
+  font-size:24px;
+  font-weight:600 !important;
+}
+#lottoScreen .lotto-v58-credit-box strong{
+  color:#b10010 !important;
+  font-size:28px;
+  font-weight:700 !important;
+  font-variant-numeric:tabular-nums;
+}
+#lottoScreen .lotto-v58-hidden-actions{
+  display:none !important;
+}
+
+#lottoScreen .lotto-v58-body{
+  padding:18px 12px 18px !important;
+}
+#lottoScreen .lotto-v58-grid{
+  display:grid !important;
+  gap:18px !important;
+}
+#lottoScreen .lotto-v58-group{
+  padding-top:2px;
+}
+#lottoScreen .lotto-v58-group + .lotto-v58-group{
+  border-top:1px solid #ece7e7;
+  padding-top:20px;
+}
+#lottoScreen .lotto-v58-group-head{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  margin-bottom:12px;
+}
+#lottoScreen .lotto-v58-group-icon{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:linear-gradient(145deg,#870008,#be0012);
+  color:#fff !important;
+  display:grid;
+  place-items:center;
+  box-shadow:0 8px 18px rgba(143,0,10,.16);
+}
+#lottoScreen .lotto-v58-group-icon i{
+  color:#fff !important;
+  font-size:18px;
+}
+#lottoScreen .lotto-v58-group-head h2{
+  margin:0 !important;
+  color:#4b0d11 !important;
+  font-size:17px !important;
+  font-weight:650 !important;
+}
+#lottoScreen .lotto-v58-group-list{
+  display:grid;
+  gap:12px;
+}
+#lottoScreen .lotto{
+  width:100% !important;
+  min-height:104px !important;
+  padding:14px 14px 14px 12px !important;
+  border:1px solid #e9e4e4 !important;
+  border-radius:20px !important;
+  background:#fff !important;
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) auto 20px !important;
+  gap:11px !important;
+  align-items:center !important;
+  text-align:left !important;
+  box-shadow:0 8px 22px rgba(39,0,4,.06) !important;
+}
+#lottoScreen .lotto.closed{
+  opacity:.52 !important;
+  filter:saturate(.65) !important;
+}
+#lottoScreen .lotto-v58-main{
+  display:grid;
+  grid-template-columns:56px minmax(0,1fr);
+  gap:12px;
+  align-items:center;
+  min-width:0;
+}
+#lottoScreen .lotto-v58-flag{
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  border:1px solid #ebebeb;
+  background:#fff;
+  display:grid;
+  place-items:center;
+  font-size:31px;
+  box-shadow:0 5px 12px rgba(0,0,0,.06);
+}
+#lottoScreen .lotto-v58-copy{
+  min-width:0;
+}
+#lottoScreen .lotto-name{
+  color:#211515 !important;
+  font-size:18px !important;
+  font-weight:650 !important;
+  line-height:1.25 !important;
+}
+#lottoScreen .lotto-meta{
+  margin-top:4px !important;
+  color:#5c5050 !important;
+  font-size:11px !important;
+  font-weight:420 !important;
+  line-height:1.5 !important;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+#lottoScreen .lotto-right{
+  min-width:132px;
+  text-align:right !important;
+}
+#lottoScreen .lotto-date{
+  color:#5b4f4f !important;
+  font-size:11px !important;
+  font-weight:520 !important;
+}
+#lottoScreen .countdown-wrap{
+  margin-top:10px;
+  padding:8px 11px;
+  border-radius:13px;
+  background:#fff1f2;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+}
+#lottoScreen .countdown-wrap i{
+  color:#c10011 !important;
+  font-size:14px;
+}
+#lottoScreen .countdown{
+  margin-top:0 !important;
+  color:#b40012 !important;
+  font-size:15px !important;
+  font-weight:650 !important;
+  font-variant-numeric:tabular-nums;
+}
+#lottoScreen .lotto-v58-arrow{
+  display:grid;
+  place-items:center;
+}
+#lottoScreen .lotto-v58-arrow i{
+  color:#6f1b1e !important;
+  font-size:18px;
+}
+#lottoScreen .lotto-v58-empty{
+  background:#fff !important;
+  border:1px dashed #e0d8d8 !important;
+  color:#7d7474 !important;
+}
+
+#lottoScreen .lotto-v58-bottom-nav{
+  position:fixed;
+  left:50%;
+  bottom:calc(8px + env(safe-area-inset-bottom));
+  transform:translateX(-50%);
+  z-index:95;
+  width:min(calc(100% - 12px),520px);
+  min-height:86px;
+  padding:8px 10px;
+  border:1px solid #ece7e7;
+  border-radius:22px;
+  background:rgba(154,0,10,.98);
+  box-shadow:0 18px 38px rgba(66,0,4,.26);
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:4px;
+  align-items:center;
+}
+#lottoScreen .lotto-v58-bottom-nav button{
+  min-height:66px;
+  padding:5px 2px;
+  border:0;
+  border-radius:16px;
+  background:transparent;
+  color:rgba(255,255,255,.92) !important;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  font-size:10px;
+  font-weight:500 !important;
+  box-shadow:none !important;
+}
+#lottoScreen .lotto-v58-bottom-nav button i{
+  color:#fff !important;
+  font-size:24px;
+}
+#lottoScreen .lotto-v58-bottom-nav button:active{
+  transform:scale(.98);
+}
+@media(max-width:480px){
+  #lottoScreen{
+    padding-bottom:104px !important;
+  }
+  #lottoScreen .lotto-v58-hero{
+    padding:calc(18px + env(safe-area-inset-top)) 12px 17px !important;
+    border-bottom-left-radius:24px;
+    border-bottom-right-radius:24px;
+  }
+  #lottoScreen .lotto-v58-head-row{
+    grid-template-columns:minmax(0,1fr) 146px;
+    gap:12px;
+  }
+  #lottoScreen .lotto-v58-title-wrap h1{
+    font-size:30px !important;
+  }
+  #lottoScreen .lotto-v58-title-wrap p{
+    font-size:13px !important;
+  }
+  #lottoScreen .lotto-v58-credit-box{
+    min-width:0;
+    min-height:74px;
+    padding:0 14px;
+    border-radius:18px;
+  }
+  #lottoScreen .lotto-v58-credit-box span{
+    font-size:22px;
+  }
+  #lottoScreen .lotto-v58-credit-box strong{
+    font-size:24px;
+  }
+  #lottoScreen .lotto-v58-home-btn{
+    min-height:40px;
+    padding:0 13px;
+    font-size:13px;
+    border-radius:15px;
+  }
+  #lottoScreen .lotto-v58-body{
+    padding:16px 10px 16px !important;
+  }
+  #lottoScreen .lotto-v58-group + .lotto-v58-group{
+    padding-top:18px;
+  }
+  #lottoScreen .lotto-v58-group-icon{
+    width:34px;
+    height:34px;
+  }
+  #lottoScreen .lotto-v58-group-head h2{
+    font-size:16px !important;
+  }
+  #lottoScreen .lotto{
+    min-height:96px !important;
+    padding:12px 12px 12px 10px !important;
+    grid-template-columns:minmax(0,1fr) 126px 16px !important;
+    gap:9px !important;
+    border-radius:18px !important;
+  }
+  #lottoScreen .lotto-v58-main{
+    grid-template-columns:46px minmax(0,1fr);
+    gap:10px;
+  }
+  #lottoScreen .lotto-v58-flag{
+    width:44px;
+    height:44px;
+    font-size:25px;
+  }
+  #lottoScreen .lotto-name{
+    font-size:17px !important;
+  }
+  #lottoScreen .lotto-meta,
+  #lottoScreen .lotto-date{
+    font-size:10px !important;
+  }
+  #lottoScreen .countdown-wrap{
+    margin-top:8px;
+    padding:7px 9px;
+    border-radius:12px;
+    gap:6px;
+  }
+  #lottoScreen .countdown-wrap i{
+    font-size:13px;
+  }
+  #lottoScreen .countdown{
+    font-size:14px !important;
+  }
+  #lottoScreen .lotto-v58-bottom-nav{
+    width:calc(100% - 10px);
+    min-height:82px;
+    padding:7px 8px;
+    border-radius:20px;
+  }
+  #lottoScreen .lotto-v58-bottom-nav button{
+    min-height:62px;
+    font-size:9px;
+  }
+  #lottoScreen .lotto-v58-bottom-nav button i{
+    font-size:22px;
+  }
+}
+@media(max-width:390px){
+  #lottoScreen .lotto-v58-head-row{
+    grid-template-columns:minmax(0,1fr) 132px;
+  }
+  #lottoScreen .lotto-v58-title-wrap h1{
+    font-size:28px !important;
+  }
+  #lottoScreen .lotto{
+    grid-template-columns:minmax(0,1fr) 114px 14px !important;
+  }
+  #lottoScreen .lotto-v58-home-btn span{
+    white-space:nowrap;
+  }
+}
+
 </style>
  </head>
  <body>
@@ -9081,44 +9485,70 @@ strong,b{
    </section>
 
 
+   
    <section class="screen" id="lottoScreen">
-    <header class="hero">
-     <div class="eyebrow">
-      LOTTERY
+    <header class="lotto-v58-hero hero">
+     <div class="lotto-v58-back-row">
+      <button class="lotto-v58-home-btn" id="lottoHomeBtn" type="button">
+       <i class="fi fi-sr-arrow-left"></i>
+       <span>กลับหน้าหลัก</span>
+      </button>
      </div>
-     <h1>
-      เลือกหวย
-     </h1>
-     <div class="home-nav-inline">
-      <button id="lottoHomeBtn" type="button">⌂ หน้าหลัก</button>
-     </div>
-     
-     <div class="account-row">
-      <div class="account-credit">
-       <small id="accountName">USER</small>
+
+     <div class="lotto-v58-head-row">
+      <div class="lotto-v58-title-wrap">
+       <h1>เลือกหวย</h1>
+       <p>ยอดเงินคงเหลือ</p>
+      </div>
+      <div class="lotto-v58-credit-box">
+       <span>฿</span>
        <strong id="heroCredit">0.00</strong>
       </div>
+     </div>
+
+     <div class="lotto-v58-hidden-actions" hidden>
+      <small id="accountName">MEMBER</small>
       <div class="account-actions">
-       <button class="account-btn light hidden" id="adminBtn">หลังบ้าน</button>
-       <button class="account-btn light" id="memberSummaryBtn">สรุปแพ้-ชนะ</button>
-       <button class="account-btn light" id="moneyBtn">รายการเงิน</button>
-       <button class="account-btn light" id="resultsBtn">ผลหวย</button>
-       <button class="account-btn light" id="historyBtn">รายการโพย</button>
+       <button class="account-btn light hidden" id="adminBtn" type="button">หลังบ้าน</button>
+       <button class="account-btn light" id="memberSummaryBtn" type="button">สรุปแพ้-ชนะ</button>
+       <button class="account-btn light" id="moneyBtn" type="button">รายการเงิน</button>
+       <button class="account-btn light" id="resultsBtn" type="button">ผลหวย</button>
+       <button class="account-btn light" id="historyBtn" type="button">รายการโพย</button>
        <button class="account-btn line-contact-btn" id="lineContactBtn" type="button">
         <img class="line-contact-logo" src="line-logo.png" alt="">ติดต่อ
        </button>
-       <button class="account-btn" id="logoutBtn">ออก</button>
+       <button class="account-btn" id="logoutBtn" type="button">ออก</button>
       </div>
      </div>
     </header>
-    <div class="lotto-body">
-     <div class="lotto-grid" id="lottoGrid">
-     </div>
-     <div class="empty" id="lottoEmpty" style="display:none">
+
+    <div class="lotto-body lotto-v58-body">
+     <div class="lotto-grid lotto-v58-grid" id="lottoGrid"></div>
+     <div class="empty lotto-v58-empty" id="lottoEmpty" style="display:none">
       ยังไม่มีหวยที่เปิดรับ • รอบใหม่เปิดเวลา 05:00 น.
      </div>
     </div>
+
+    <nav class="lotto-v58-bottom-nav" aria-label="เมนูด้านล่าง">
+     <button type="button" onclick="showHome()">
+      <i class="fi fi-sr-home"></i>
+      <span>หน้าหลัก</span>
+     </button>
+     <button type="button" onclick="showHistory()">
+      <i class="fi fi-sr-receipt"></i>
+      <span>โพยของฉัน</span>
+     </button>
+     <button type="button" onclick="showResults()">
+      <i class="fi fi-sr-trophy-star"></i>
+      <span>ผลหวย</span>
+     </button>
+     <button type="button" onclick="showMemberSummary()">
+      <i class="fi fi-sr-user"></i>
+      <span>บัญชีของฉัน</span>
+     </button>
+    </nav>
    </section>
+
 
    <section class="screen" id="betScreen">
     <header class="topbar">
@@ -10606,9 +11036,7 @@ function updateUserUI() {
     els.homeUsername.textContent = state.user.username || "user";
   }
 
-  els.accountName.textContent =
-    (state.user.displayName || state.user.username || "MEMBER").toUpperCase() +
-    (state.user.role === "MEMBER" ? " • MEMBER" : "");
+  els.accountName.textContent = "ยอดเงินคงเหลือ";
   els.heroCredit.textContent = credit;
   els.betCredit.textContent = credit;
   if (els.modernBetCredit) els.modernBetCredit.textContent = credit;
@@ -10644,6 +11072,22 @@ function getHomeLottoFlag(name) {
   return "🎯";
 }
 
+
+function getLottoCategoryKey(name) {
+  name = String(name || "");
+  if (/ลาว/i.test(name)) return "lao";
+  if (/ฮานอย|เวียดนาม/i.test(name)) return "hanoi";
+  if (/นิเคอิ|หุ้นไทย|ไทยเย็น|ฮั่งเส็ง|จีน|เกาหลี|สิงคโปร์|ไต้หวัน|อินเดีย|ดาวโจนส์|ดาวโจน|หุ้น/i.test(name)) return "stock";
+  return "other";
+}
+
+function getLottoCategoryConfig(key) {
+  if (key === "stock") return { label:"หวยหุ้น", icon:"fi fi-sr-chart-simple" };
+  if (key === "lao") return { label:"หวยลาว", icon:"fi fi-sr-flag" };
+  if (key === "hanoi") return { label:"ฮานอย", icon:"fi fi-sr-badge-check" };
+  return { label:"อื่นๆ", icon:"fi fi-sr-apps" };
+}
+
 function renderHomeLottoPreview(list) {
   var box = document.getElementById("homeLottoPreview");
   if (!box) return;
@@ -10665,6 +11109,7 @@ function renderHomeLottoPreview(list) {
   }).join('');
 }
 
+
 function renderLottos() {
   els.lottoGrid.innerHTML = "";
 
@@ -10672,37 +11117,84 @@ function renderLottos() {
   renderHomeLottoPreview(open);
   els.lottoEmpty.style.display = open.length ? "none" : "block";
 
+  if (!open.length) {
+    startTimer(updateLottoCountdowns);
+    return;
+  }
+
+  var order = ["stock","lao","hanoi","other"];
+  var groups = { stock:[], lao:[], hanoi:[], other:[] };
+
   open.forEach(function(lotto){
-    var b = document.createElement("button");
-    b.className = "lotto";
-    b.type = "button";
-    b._lotto = lotto;
+    var key = getLottoCategoryKey(lotto.name);
+    if (!groups[key]) key = "other";
+    groups[key].push(lotto);
+  });
 
-    b.innerHTML =
-      '<div><div class="lotto-name"></div><div class="lotto-meta"></div><div class="lotto-limit-note"></div></div>' +
-      '<div class="lotto-right"><div class="lotto-date"></div><div class="countdown"></div></div>';
+  order.forEach(function(key){
+    var rows = groups[key] || [];
+    if (!rows.length) return;
 
-    b.querySelector(".lotto-name").textContent = lotto.name || "-";
-    b.querySelector(".lotto-meta").textContent =
-      "ปิดรับ " + getActualCloseText(lotto);
-    var limitText = formatNumberLimitSummary(lotto.numberLimits);
-    b.querySelector(".lotto-limit-note").textContent = limitText;
-    b.querySelector(".lotto-limit-note").style.display = limitText ? "block" : "none";
+    var cfg = getLottoCategoryConfig(key);
 
-    b.querySelector(".lotto-date").textContent = "รอบ " + getRoundDateText(lotto);
-    b.querySelector(".countdown")._lotto = lotto;
+    var section = document.createElement("section");
+    section.className = "lotto-v58-group";
 
-    b.onclick = function(){
-      var t = getLottoCloseTarget(lotto);
-      if (t && t.getTime() <= Date.now()) return;
-      chooseLotto(lotto);
-    };
+    var head = document.createElement("div");
+    head.className = "lotto-v58-group-head";
+    head.innerHTML =
+      '<span class="lotto-v58-group-icon"><i class="' + cfg.icon + '"></i></span>' +
+      '<h2>' + escapeHtml(cfg.label) + '</h2>';
+    section.appendChild(head);
 
-    els.lottoGrid.appendChild(b);
+    var list = document.createElement("div");
+    list.className = "lotto-v58-group-list";
+
+    rows.forEach(function(lotto){
+      var b = document.createElement("button");
+      b.className = "lotto lotto-v58-card";
+      b.type = "button";
+      b._lotto = lotto;
+
+      b.innerHTML =
+        '<div class="lotto-v58-main">' +
+          '<div class="lotto-v58-flag">' + getHomeLottoFlag(lotto.name) + '</div>' +
+          '<div class="lotto-v58-copy">' +
+            '<div class="lotto-name"></div>' +
+            '<div class="lotto-meta"></div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="lotto-right">' +
+          '<div class="lotto-date"></div>' +
+          '<div class="countdown-wrap"><i class="fi fi-sr-time-quarter-to"></i><div class="countdown"></div></div>' +
+        '</div>' +
+        '<div class="lotto-v58-arrow"><i class="fi fi-sr-angle-right"></i></div>';
+
+      b.querySelector(".lotto-name").textContent = lotto.name || "-";
+      b.querySelector(".lotto-meta").textContent =
+        "ปิดรับ " + getRoundDateText(lotto) + " " + getActualCloseText(lotto);
+      var limitText = formatNumberLimitSummary(lotto.numberLimits);
+      if (limitText) {
+        b.querySelector(".lotto-meta").textContent += " • " + limitText;
+      }
+      b.querySelector(".lotto-date").textContent = "รอบ " + getRoundDateText(lotto);
+
+      b.onclick = function(){
+        var t = getLottoCloseTarget(lotto);
+        if (t && t.getTime() <= Date.now()) return;
+        chooseLotto(lotto);
+      };
+
+      list.appendChild(b);
+    });
+
+    section.appendChild(list);
+    els.lottoGrid.appendChild(section);
   });
 
   startTimer(updateLottoCountdowns);
 }
+
 
 function chooseLotto(lotto) {
   state.selectedLotto = lotto;
