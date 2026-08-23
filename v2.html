@@ -11633,6 +11633,43 @@ strong,b{
   }
 }
 
+
+/* =====================================================
+   V67 — DYNAMIC PRICE FIELDS BY TOP/BOTTOM SELECTION
+===================================================== */
+
+/* ให้ hidden ชนะกฎ display:block เดิมเสมอ */
+#betScreen.modern-layout .price-bottom-bar .direct-price-field.hidden,
+#betScreen.modern-layout .price-bottom-bar #priceAField.hidden,
+#betScreen.modern-layout .price-bottom-bar #priceBField.hidden{
+  display:none !important;
+}
+
+/* ถ้าเหลือช่องเดียว ให้กว้างเต็ม */
+#betScreen.modern-layout .price-bottom-bar .direct-price-grid.one{
+  grid-template-columns:1fr !important;
+}
+
+/* ถ้าเหลือช่องเดียว ไม่ให้มีช่องว่างด้านข้าง */
+#betScreen.modern-layout .price-bottom-bar .direct-price-grid.one .direct-price-field{
+  width:100% !important;
+  min-width:0 !important;
+}
+
+/* มือถือ */
+@media(max-width:768px){
+  #betScreen.modern-layout .price-bottom-bar .direct-price-grid.one{
+    grid-template-columns:1fr !important;
+  }
+}
+
+/* มือถือเล็ก */
+@media(max-width:430px){
+  #betScreen.modern-layout .price-bottom-bar .direct-price-grid.one{
+    grid-template-columns:1fr !important;
+  }
+}
+
 </style>
  </head>
  <body>
@@ -14279,10 +14316,16 @@ function modernKeyPress(key) {
 
 function getPriceVisibility() {
   if (state.betLayout === "modern" && state.betMode === "two") {
-    return {a:!!state.modernTwoTop,b:!!state.modernTwoBottom};
+    return {
+      a: !!state.modernTwoTop,
+      b: !!state.modernTwoBottom
+    };
   }
   if (state.betLayout === "modern" && state.betMode === "three") {
-    return {a:!!state.modernThreeStraight,b:!!state.modernThreeTod};
+    return {
+      a: !!state.modernThreeStraight,
+      b: !!state.modernThreeTod
+    };
   }
   var variant = getActiveBetVariant();
   if (variant === "twoTop" || variant === "threeStraight" || variant === "six") return {a:true,b:false};
