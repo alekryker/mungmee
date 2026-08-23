@@ -9322,6 +9322,105 @@ strong,b{
   }
 }
 
+
+/* =====================================================
+   V60 — ALL FIRST + HORIZONTAL LOTTO GROUP FILTERS
+===================================================== */
+#lottoScreen .lotto-v60-filter-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  width:100%;
+  margin:0 0 14px;
+}
+
+#lottoScreen .lotto-v60-filter-label{
+  flex:0 0 auto;
+  color:#4d2222 !important;
+  font-size:13px !important;
+  font-weight:450 !important;
+  white-space:nowrap;
+}
+
+#lottoScreen .lotto-v60-filter-tabs{
+  min-width:0;
+  flex:1;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+  padding:2px 1px 4px;
+}
+
+#lottoScreen .lotto-v60-filter-tabs::-webkit-scrollbar{
+  display:none;
+}
+
+#lottoScreen .lotto-v60-filter-tabs button{
+  flex:0 0 auto;
+  min-height:38px;
+  padding:0 13px;
+  border:1px solid #eadede;
+  border-radius:999px;
+  background:#fff;
+  color:#5f4545 !important;
+  font:inherit;
+  font-size:12px !important;
+  font-weight:400 !important;
+  box-shadow:0 4px 12px rgba(60,0,5,.035);
+}
+
+#lottoScreen .lotto-v60-filter-tabs button.active{
+  border-color:#a70010;
+  background:linear-gradient(135deg,#8d000b,#c60016);
+  color:#fff !important;
+  box-shadow:0 7px 16px rgba(140,0,10,.15);
+}
+
+#lottoScreen .lotto-v58-grid{
+  display:grid !important;
+  gap:11px !important;
+}
+
+/* V60 ใช้ tab กรองแทนหัวข้อกลุ่มแบบแยก section */
+#lottoScreen .lotto-v58-group,
+#lottoScreen .lotto-v58-group-head{
+  display:contents;
+}
+
+/* รายละเอียดปิดรับไม่ให้ดูหนา */
+#lottoScreen .lotto-meta{
+  font-weight:350 !important;
+}
+
+/* รอบหวยบางลง */
+#lottoScreen .lotto-date{
+  font-weight:380 !important;
+}
+
+@media(max-width:480px){
+  #lottoScreen .lotto-v60-filter-row{
+    gap:8px;
+    margin-bottom:12px;
+  }
+
+  #lottoScreen .lotto-v60-filter-label{
+    font-size:12px !important;
+  }
+
+  #lottoScreen .lotto-v60-filter-tabs{
+    gap:6px;
+  }
+
+  #lottoScreen .lotto-v60-filter-tabs button{
+    min-height:35px;
+    padding:0 11px;
+    font-size:11px !important;
+  }
+}
+
 </style>
  </head>
  <body>
@@ -9605,6 +9704,18 @@ strong,b{
     </header>
 
     <div class="lotto-body lotto-v58-body">
+     <div class="lotto-v60-filter-row">
+      <span class="lotto-v60-filter-label">กลุ่มหวย</span>
+      <div class="lotto-v60-filter-tabs" id="lottoCategoryTabs">
+       <button class="active" data-lotto-filter="all" type="button">ทั้งหมด</button>
+       <button data-lotto-filter="stock" type="button">หวยหุ้น</button>
+       <button data-lotto-filter="vip" type="button">หวย VIP</button>
+       <button data-lotto-filter="lao" type="button">หวยลาว</button>
+       <button data-lotto-filter="hanoi" type="button">ฮานอย</button>
+       <button data-lotto-filter="other" type="button">อื่นๆ</button>
+      </div>
+     </div>
+
      <div class="lotto-grid lotto-v58-grid" id="lottoGrid"></div>
      <div class="empty lotto-v58-empty" id="lottoEmpty" style="display:none">
       ยังไม่มีหวยที่เปิดรับ • รอบใหม่เปิดเวลา 05:00 น.
@@ -11211,82 +11322,88 @@ function renderLottos() {
   renderHomeLottoPreview(open);
   els.lottoEmpty.style.display = open.length ? "none" : "block";
 
-  if (!open.length) {
-    startTimer(updateLottoCountdowns);
-    return;
+  var tabs = document.getElementById("lottoCategoryTabs");
+
+  function applyLottoFilter(filterKey) {
+    filterKey = filterKey || "all";
+
+    if (tabs) {
+      tabs.querySelectorAll("[data-lotto-filter]").forEach(function(btn){
+        btn.classList.toggle("active", btn.getAttribute("data-lotto-filter") === filterKey);
+      });
+    }
+
+    var visibleCount = 0;
+    els.lottoGrid.querySelectorAll(".lotto-v58-card").forEach(function(card){
+      var show = filterKey === "all" || card.getAttribute("data-category") === filterKey;
+      card.style.display = show ? "" : "none";
+      if (show) visibleCount++;
+    });
+
+    els.lottoEmpty.style.display = visibleCount ? "none" : "block";
+    if (!visibleCount) {
+      els.lottoEmpty.textContent = "ยังไม่มีหวยในกลุ่มนี้ที่เปิดรับ";
+    } else {
+      els.lottoEmpty.textContent = "ยังไม่มีหวยที่เปิดรับ • รอบใหม่เปิดเวลา 05:00 น.";
+    }
   }
 
-  var order = ["stock","vip","lao","hanoi","other"];
-  var groups = { stock:[], vip:[], lao:[], hanoi:[], other:[] };
+  if (tabs) {
+    tabs.querySelectorAll("[data-lotto-filter]").forEach(function(btn){
+      btn.onclick = function(){
+        applyLottoFilter(btn.getAttribute("data-lotto-filter"));
+      };
+    });
+  }
 
   open.forEach(function(lotto){
     var key = getLottoCategoryKey(lotto.name);
-    if (!groups[key]) key = "other";
-    groups[key].push(lotto);
+
+    var b = document.createElement("button");
+    b.className = "lotto lotto-v58-card";
+    b.type = "button";
+    b._lotto = lotto;
+    b.setAttribute("data-category", key);
+
+    b.innerHTML =
+      '<div class="lotto-v58-main">' +
+        '<div class="lotto-v58-flag">' + getHomeLottoFlag(lotto.name) + '</div>' +
+        '<div class="lotto-v58-copy">' +
+          '<div class="lotto-name"></div>' +
+          '<div class="lotto-meta"></div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="lotto-right">' +
+        '<div class="lotto-date"></div>' +
+        '<div class="countdown-wrap"><i class="fi fi-sr-time-quarter-to"></i><div class="countdown"></div></div>' +
+      '</div>' +
+      '<div class="lotto-v58-arrow"><i class="fi fi-sr-angle-right"></i></div>';
+
+    b.querySelector(".lotto-name").textContent = lotto.name || "-";
+
+    // getActualCloseText() มีวันที่อยู่แล้ว จึงไม่เติม getRoundDateText() ซ้ำ
+    b.querySelector(".lotto-meta").textContent =
+      "ปิดรับ " + getActualCloseText(lotto);
+
+    var limitText = formatNumberLimitSummary(lotto.numberLimits);
+    if (limitText) {
+      b.querySelector(".lotto-meta").textContent += " • " + limitText;
+    }
+
+    b.querySelector(".lotto-date").textContent =
+      "รอบ " + getRoundDateText(lotto);
+
+    b.onclick = function(){
+      var t = getLottoCloseTarget(lotto);
+      if (t && t.getTime() <= Date.now()) return;
+      chooseLotto(lotto);
+    };
+
+    els.lottoGrid.appendChild(b);
   });
 
-  order.forEach(function(key){
-    var rows = groups[key] || [];
-    if (!rows.length) return;
-
-    var cfg = getLottoCategoryConfig(key);
-
-    var section = document.createElement("section");
-    section.className = "lotto-v58-group";
-    section.setAttribute("data-group", key);
-
-    var head = document.createElement("div");
-    head.className = "lotto-v58-group-head";
-    head.innerHTML =
-      '<span class="lotto-v58-group-icon"><i class="' + cfg.icon + '"></i></span>' +
-      '<h2>' + escapeHtml(cfg.label) + '</h2>';
-    section.appendChild(head);
-
-    var list = document.createElement("div");
-    list.className = "lotto-v58-group-list";
-
-    rows.forEach(function(lotto){
-      var b = document.createElement("button");
-      b.className = "lotto lotto-v58-card";
-      b.type = "button";
-      b._lotto = lotto;
-
-      b.innerHTML =
-        '<div class="lotto-v58-main">' +
-          '<div class="lotto-v58-flag">' + getHomeLottoFlag(lotto.name) + '</div>' +
-          '<div class="lotto-v58-copy">' +
-            '<div class="lotto-name"></div>' +
-            '<div class="lotto-meta"></div>' +
-          '</div>' +
-        '</div>' +
-        '<div class="lotto-right">' +
-          '<div class="lotto-date"></div>' +
-          '<div class="countdown-wrap"><i class="fi fi-sr-time-quarter-to"></i><div class="countdown"></div></div>' +
-        '</div>' +
-        '<div class="lotto-v58-arrow"><i class="fi fi-sr-angle-right"></i></div>';
-
-      b.querySelector(".lotto-name").textContent = lotto.name || "-";
-      b.querySelector(".lotto-meta").textContent =
-        "ปิดรับ " + getRoundDateText(lotto) + " " + getActualCloseText(lotto);
-      var limitText = formatNumberLimitSummary(lotto.numberLimits);
-      if (limitText) {
-        b.querySelector(".lotto-meta").textContent += " • " + limitText;
-      }
-      b.querySelector(".lotto-date").textContent = "รอบ " + getRoundDateText(lotto);
-
-      b.onclick = function(){
-        var t = getLottoCloseTarget(lotto);
-        if (t && t.getTime() <= Date.now()) return;
-        chooseLotto(lotto);
-      };
-
-      list.appendChild(b);
-    });
-
-    section.appendChild(list);
-    els.lottoGrid.appendChild(section);
-  });
-
+  // ค่าเริ่มต้น: แสดงรายการหวยทั้งหมด
+  applyLottoFilter("all");
   startTimer(updateLottoCountdowns);
 }
 
