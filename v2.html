@@ -13,6 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
   <style>
 :root {
   --red: #b91c1c;
@@ -7766,768 +7767,214 @@ textarea:focus{
 }
 
 
+
 /* =====================================================
-   V52 — HOME UI MATCH REFERENCE (CSS ONLY)
-   ปรับเฉพาะหน้า Home ให้ใกล้ภาพตัวอย่างมากที่สุด
-   โค้ด HTML / JavaScript / ฟังก์ชันเดิมไม่เปลี่ยน
+   V53 — HOME REFERENCE MATCH + FLATICON UICONS
+   ปรับเฉพาะ UX/UI หน้า Home / mobile bottom bar
+   ฟังก์ชันเดิมพัน ฝาก ถอน ประวัติ ผลหวย และ admin เดิมทั้งหมด
 ===================================================== */
 #homeScreen{
-  --home-red-950:#520003;
-  --home-red-900:#720006;
-  --home-red-800:#94000a;
-  --home-red-700:#b40012;
-  --home-red-600:#d10a1e;
-  --home-ink:#261517;
-  --home-muted:#76696b;
-  --home-line:#f0e3e4;
-  --home-soft:#fff6f6;
-  --home-shadow:0 14px 34px rgba(88,0,8,.10);
-  --home-shadow-strong:0 22px 48px rgba(86,0,8,.20);
+  --r-red:#d9000f;
+  --r-red2:#b6000d;
+  --r-deep:#4c0004;
+  --r-ink:#151515;
+  --r-muted:#777;
+  --r-line:#ece8e8;
+  --r-soft:#fff7f7;
+  --r-shadow:0 14px 36px rgba(91,0,5,.12);
   background:#fff !important;
-  color:var(--home-ink) !important;
-}
-
-#homeScreen,
-#homeScreen *{
-  letter-spacing:0 !important;
-}
-
-/* ข้อความทั่วไปใช้ตัวบาง อ่านสบาย */
-#homeScreen .v16-home,
-#homeScreen button,
-#homeScreen small,
-#homeScreen span{
-  font-weight:400 !important;
-}
-
-#homeScreen .v16-home-shell{
+  color:var(--r-ink) !important;
   min-height:100svh !important;
-  padding:calc(16px + env(safe-area-inset-top)) 16px calc(34px + env(safe-area-inset-bottom)) !important;
+}
+#homeScreen *{box-sizing:border-box !important;}
+#homeScreen .fi{display:inline-flex;align-items:center;justify-content:center;line-height:1;}
+#homeScreen .home-ref-shell{
+  min-height:100svh !important;
+  padding:calc(14px + env(safe-area-inset-top)) 14px calc(128px + env(safe-area-inset-bottom)) !important;
   background:
-    radial-gradient(circle at 92% 8%,rgba(255,70,83,.34),transparent 24%),
-    radial-gradient(circle at 8% 20%,rgba(255,255,255,.10),transparent 28%),
-    linear-gradient(180deg,#5b0003 0,#8f0009 170px,#b90016 410px,#ffffff 410px,#ffffff 100%) !important;
-  background-size:auto !important;
+    radial-gradient(circle at 94% 8%,rgba(255,67,73,.34),transparent 22%),
+    radial-gradient(circle at 2% 24%,rgba(255,0,15,.23),transparent 28%),
+    linear-gradient(180deg,#620006 0,#9b000a 245px,#c90013 470px,#fff 470px,#fff 100%) !important;
 }
+#homeScreen .home-ref-page{width:100% !important;max-width:720px !important;margin:0 auto !important;background:transparent !important;}
 
-#homeScreen .v16-home{
-  width:100% !important;
-  max-width:720px !important;
-  margin:0 auto !important;
-  padding:0 0 24px !important;
-  background:transparent !important;
-}
+/* header */
+#homeScreen .home-ref-header{display:flex !important;align-items:center !important;justify-content:space-between !important;gap:10px !important;min-height:68px !important;margin:0 0 16px !important;}
+#homeScreen .home-ref-brand{min-width:0 !important;flex:1 1 auto !important;}
+#homeScreen .v16-brand-mark{width:clamp(150px,37vw,245px) !important;height:58px !important;padding:0 !important;border:0 !important;border-radius:0 !important;background:transparent !important;box-shadow:none !important;}
+#homeScreen .v16-brand-mark img{display:block !important;width:100% !important;height:100% !important;object-fit:contain !important;object-position:left center !important;filter:drop-shadow(0 7px 13px rgba(0,0,0,.25));}
+#homeScreen .home-ref-head-actions{display:flex !important;align-items:center !important;gap:8px !important;flex:0 0 auto !important;}
+#homeScreen .home-ref-line,#homeScreen .home-ref-icon-btn,#homeScreen .home-ref-logout{height:44px !important;min-height:44px !important;border:1px solid rgba(255,255,255,.35) !important;border-radius:14px !important;background:rgba(55,0,4,.18) !important;color:#fff !important;box-shadow:none !important;backdrop-filter:blur(8px);}
+#homeScreen .home-ref-line{padding:0 12px !important;gap:7px !important;font-size:12px !important;}
+#homeScreen .home-ref-line .line-contact-logo{width:20px !important;height:20px !important;border-radius:6px !important;object-fit:contain !important;}
+#homeScreen .home-ref-line span{color:#fff !important;font-weight:500 !important;}
+#homeScreen .home-ref-icon-btn{position:relative;width:44px !important;min-width:44px !important;padding:0 !important;font-size:19px !important;}
+#homeScreen .home-ref-notice-dot{position:absolute;right:8px;top:8px;width:7px;height:7px;border-radius:50%;background:#ff1b2d;border:2px solid #6b0006;}
+#homeScreen .home-ref-logout{padding:0 13px !important;display:inline-flex;align-items:center;gap:8px;font-size:12px !important;font-weight:500 !important;}
+#homeScreen .home-ref-logout span,#homeScreen .home-ref-logout i{color:#fff !important;}
 
-/* ===== Header ===== */
-#homeScreen .v16-home-head{
-  min-height:76px !important;
-  margin:0 0 20px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:space-between !important;
-  gap:12px !important;
-}
+/* wallet white card */
+#homeScreen .home-ref-wallet{position:relative !important;overflow:hidden !important;min-height:224px !important;padding:22px 24px !important;border:1px solid rgba(255,255,255,.96) !important;border-radius:25px !important;background:linear-gradient(135deg,#fff 0%,#fff 64%,#fffafa 100%) !important;color:#141414 !important;box-shadow:0 26px 50px rgba(79,0,5,.22) !important;}
+#homeScreen .home-ref-wallet::before,#homeScreen .home-ref-wallet::after{display:none !important;}
+#homeScreen .home-ref-wallet-mark{position:absolute;right:24px;top:27px;font-size:126px;color:#f7bfc4;opacity:.55;transform:rotate(7deg);pointer-events:none;}
+#homeScreen .home-ref-wallet-top{position:relative;z-index:2;display:flex !important;align-items:center !important;justify-content:space-between !important;gap:10px !important;}
+#homeScreen .v16-wallet-label{display:flex !important;align-items:center !important;gap:10px !important;color:#151515 !important;font-size:15px !important;font-weight:600 !important;letter-spacing:0 !important;}
+#homeScreen .v16-wallet-label i{font-size:20px;color:#111;}
+#homeScreen .v16-wallet-user{display:none !important;}
+#homeScreen .v16-wallet-balance{position:relative !important;z-index:2;margin:25px 0 0 !important;color:#dc0012 !important;font-size:clamp(46px,11vw,68px) !important;line-height:.95 !important;letter-spacing:0 !important;text-shadow:none !important;}
+#homeScreen .v16-wallet-balance b{color:#dc0012 !important;font-weight:700 !important;}
+#homeScreen .v16-wallet-balance span{margin-left:6px !important;color:#111 !important;font-size:.36em !important;font-weight:600 !important;}
+#homeScreen .home-ref-wallet-foot{position:relative;z-index:2;margin-top:28px;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+#homeScreen .home-ref-member-id{min-width:0;color:#242424;font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+#homeScreen .home-ref-member-id span{color:#242424 !important;font-weight:500 !important;}
+#homeScreen .home-ref-history-btn{min-height:42px;padding:0 14px;border:1.5px solid #e10014;border-radius:13px;background:#fff;color:#b70010;display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;white-space:nowrap;}
+#homeScreen .home-ref-history-btn i{color:#c50012;font-size:16px;}
 
-#homeScreen .v16-brand{
-  min-width:0 !important;
-  flex:1 1 auto !important;
-}
+/* deposit / withdraw */
+#homeScreen .home-ref-money-actions{position:relative;z-index:3;display:grid !important;grid-template-columns:1fr 1fr !important;gap:0 !important;margin-top:17px !important;padding:0 !important;border:1px solid rgba(255,255,255,.60);border-radius:20px;background:#fff;overflow:hidden;box-shadow:0 16px 34px rgba(88,0,7,.13);}
+#homeScreen .home-ref-money-actions .v16-money-btn{min-height:66px !important;border-radius:0 !important;border:0 !important;box-shadow:none !important;font-size:17px !important;font-weight:600 !important;}
+#homeScreen .home-ref-money-actions .deposit{background:linear-gradient(135deg,#eb0013,#b8000e) !important;color:#fff !important;}
+#homeScreen .home-ref-money-actions .withdraw{background:#fff !important;color:#8f000a !important;border-left:1px solid #f1d7d9 !important;}
+#homeScreen .v16-money-icon{width:36px !important;height:36px !important;border-radius:50% !important;background:#fff !important;color:#d00012 !important;border:1px solid rgba(210,0,18,.25) !important;font-size:17px !important;}
+#homeScreen .deposit .v16-money-icon{border-color:#fff !important;}
+#homeScreen .v16-money-icon i{color:inherit !important;}
 
-#homeScreen .v16-brand-mark{
-  width:clamp(168px,45vw,270px) !important;
-  height:70px !important;
-  flex:0 1 auto !important;
-  margin:0 !important;
-  padding:0 !important;
-  border:0 !important;
-  background:transparent !important;
-  box-shadow:none !important;
-}
+/* lottery banner */
+#homeScreen .home-ref-lotto{position:relative !important;width:100% !important;min-height:205px !important;margin-top:26px !important;padding:24px !important;overflow:hidden !important;border:1px solid rgba(190,0,12,.16) !important;border-radius:24px !important;background:radial-gradient(circle at 73% 50%,rgba(255,31,42,.45),transparent 30%),linear-gradient(135deg,#670005 0%,#9e000b 50%,#c90013 100%) !important;color:#fff !important;box-shadow:0 18px 38px rgba(93,0,6,.19) !important;text-align:left !important;}
+#homeScreen .home-ref-lotto::before{content:"" !important;position:absolute !important;inset:auto -60px -120px auto !important;width:270px !important;height:270px !important;border-radius:50% !important;background:radial-gradient(circle,rgba(255,60,69,.32),transparent 65%) !important;display:block !important;}
+#homeScreen .home-ref-lotto .v16-lotto-row{position:relative;z-index:2;display:flex !important;align-items:center !important;justify-content:space-between !important;gap:12px !important;min-height:155px !important;}
+#homeScreen .home-ref-lotto-copy{min-width:0 !important;flex:1 1 50% !important;}
+#homeScreen .v16-lotto-badge{display:inline-flex !important;align-items:center !important;min-height:24px !important;padding:0 9px !important;border:0 !important;border-radius:8px !important;background:#7b0008 !important;color:#fff !important;font-size:10px !important;font-weight:500 !important;}
+#homeScreen .v16-lotto-title{margin-top:12px !important;color:#fff !important;font-size:32px !important;line-height:1.05 !important;font-weight:700 !important;}
+#homeScreen .v16-lotto-desc{margin-top:8px !important;color:rgba(255,255,255,.82) !important;font-size:12px !important;font-weight:400 !important;}
+#homeScreen .home-ref-lotto-cta{display:inline-flex;align-items:center;gap:7px;min-height:45px;margin-top:18px;padding:0 18px;border-radius:12px;background:#fff;color:#b80010 !important;font-size:13px;font-weight:650 !important;box-shadow:0 9px 20px rgba(61,0,4,.18);}
+#homeScreen .home-ref-lotto-cta i{color:#b80010 !important;font-size:18px;}
+#homeScreen .v16-lotto-art{width:47% !important;max-width:270px !important;height:150px !important;flex:0 0 47% !important;padding:0 !important;border:0 !important;background:transparent !important;box-shadow:none !important;}
+#homeScreen .v16-lotto-art img{width:100% !important;height:100% !important;object-fit:contain !important;filter:drop-shadow(0 16px 17px rgba(31,0,2,.34));}
+#homeScreen .v16-lotto-go{display:none !important;}
 
-#homeScreen .v16-brand-mark img{
-  width:100% !important;
-  height:100% !important;
-  object-fit:contain !important;
-  object-position:left center !important;
-  filter:drop-shadow(0 7px 14px rgba(35,0,3,.24)) !important;
-}
+/* menu */
+#homeScreen .home-ref-title{margin:24px 0 10px !important;min-height:28px !important;color:#161616 !important;font-size:16px !important;font-weight:650 !important;display:flex !important;align-items:center !important;gap:10px !important;letter-spacing:0 !important;}
+#homeScreen .home-ref-title::before{content:"" !important;width:5px !important;height:21px !important;border-radius:3px !important;background:#e40016 !important;}
+#homeScreen .home-ref-shortcuts{display:grid !important;grid-template-columns:repeat(5,minmax(0,1fr)) !important;gap:9px !important;}
+#homeScreen .home-ref-shortcuts .v16-shortcut{min-width:0 !important;min-height:116px !important;padding:12px 5px !important;border:1px solid var(--r-line) !important;border-radius:18px !important;background:#fff !important;color:#151515 !important;box-shadow:0 10px 24px rgba(70,0,4,.07) !important;display:flex !important;flex-direction:column !important;align-items:center !important;justify-content:center !important;gap:9px !important;font-size:11px !important;font-weight:600 !important;}
+#homeScreen .home-ref-shortcuts .v16-shortcut-affiliate{grid-column:auto !important;min-height:116px !important;padding:12px 5px !important;background:#fff !important;border:1px solid var(--r-line) !important;box-shadow:0 10px 24px rgba(70,0,4,.07) !important;flex-direction:column !important;}
+#homeScreen .home-ref-shortcuts .v16-shortcut-icon,#homeScreen .home-ref-shortcuts .v16-shortcut-affiliate .v16-shortcut-icon{width:45px !important;height:45px !important;flex:0 0 45px !important;border:0 !important;border-radius:13px !important;background:#fff !important;color:#db0013 !important;box-shadow:none !important;font-size:28px !important;}
+#homeScreen .home-ref-shortcuts .v16-shortcut-icon i{color:#db0013 !important;}
+#homeScreen .home-ref-shortcuts .v16-shortcut > span:last-child,#homeScreen .home-ref-shortcuts .v16-shortcut-affiliate > span:last-child{color:#171717 !important;font-size:11px !important;line-height:1.25 !important;text-align:center !important;font-weight:600 !important;}
+#homeScreen .home-ref-shortcuts .v16-shortcut-affiliate > span:last-child::after{display:none !important;content:none !important;}
 
-#homeScreen .v16-head-actions{
-  display:flex !important;
-  align-items:center !important;
-  gap:10px !important;
-  flex:0 0 auto !important;
-}
+/* security */
+#homeScreen .home-ref-security{width:100%;min-height:96px;margin-top:20px;padding:0;overflow:hidden;border:1px solid #eee4e4;border-radius:20px;background:#fff;box-shadow:0 10px 27px rgba(71,0,4,.06);display:grid;grid-template-columns:36% 1fr 54px;align-items:stretch;text-align:left;}
+#homeScreen .home-ref-security-art{display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 72% 35%,rgba(255,63,72,.48),transparent 25%),linear-gradient(135deg,#750006,#c80014);clip-path:polygon(0 0,92% 0,100% 100%,0 100%);}
+#homeScreen .home-ref-security-art i{font-size:54px;color:#fff;filter:drop-shadow(0 7px 14px rgba(44,0,3,.30));}
+#homeScreen .home-ref-security-copy{min-width:0;padding:15px 12px;display:flex;flex-direction:column;justify-content:center;}
+#homeScreen .home-ref-security-copy strong{color:#8f000b !important;font-size:19px !important;line-height:1.1 !important;font-weight:700 !important;}
+#homeScreen .home-ref-security-copy small{margin-top:6px;color:#444 !important;font-size:11px !important;line-height:1.35 !important;font-weight:400 !important;}
+#homeScreen .home-ref-security-arrow{align-self:center;width:42px;height:42px;border-radius:12px;background:#d60013;display:grid;place-items:center;margin-right:12px;}
+#homeScreen .home-ref-security-arrow i{color:#fff;font-size:23px;}
 
-/* ปุ่มติดต่อคงฟังก์ชัน LINE เดิม แต่ย่อให้เป็นไอคอน */
-#homeScreen .v16-head-actions .line-contact-btn{
-  position:relative !important;
-  width:48px !important;
-  min-width:48px !important;
-  height:48px !important;
-  min-height:48px !important;
-  padding:0 !important;
-  border:1px solid rgba(255,255,255,.30) !important;
-  border-radius:15px !important;
-  background:rgba(60,0,4,.24) !important;
-  box-shadow:none !important;
-  color:transparent !important;
-  font-size:0 !important;
-  overflow:visible !important;
-}
+/* news */
+#homeScreen .home-ref-news-head{margin:22px 0 9px;display:flex;align-items:center;justify-content:space-between;gap:10px;}
+#homeScreen .home-ref-news-title{display:flex;align-items:center;gap:10px;color:#161616;font-size:16px;font-weight:650;}
+#homeScreen .home-ref-news-title::before{content:"";width:5px;height:21px;border-radius:3px;background:#e40016;}
+#homeScreen .home-ref-news-head button{border:0;background:transparent;color:#d20013;font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:4px;}
+#homeScreen .home-ref-news-card{position:relative;width:100%;min-height:84px;padding:12px 15px;border:1px solid #eee3e4;border-radius:18px;background:#fff;box-shadow:0 10px 26px rgba(74,0,5,.06);display:grid;grid-template-columns:55px 1fr 16px;align-items:center;gap:12px;text-align:left;}
+#homeScreen .home-ref-news-icon{width:55px;height:55px;border-radius:15px;background:linear-gradient(135deg,#e20015,#a5000b);display:grid;place-items:center;}
+#homeScreen .home-ref-news-icon i{font-size:26px;color:#fff;}
+#homeScreen .home-ref-news-copy{min-width:0;display:flex;flex-direction:column;}
+#homeScreen .home-ref-news-copy strong{color:#1a1a1a !important;font-size:13px !important;font-weight:650 !important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+#homeScreen .home-ref-news-copy small{margin-top:4px;color:#888 !important;font-size:10px !important;font-weight:400 !important;}
+#homeScreen .home-ref-news-dot{width:8px;height:8px;border-radius:50%;background:#e20015;justify-self:end;}
+#homeScreen .home-ref-flaticon-credit{margin:14px 0 0;text-align:center;color:#aaa;font-size:9px;}
+#homeScreen .home-ref-flaticon-credit a{color:#888;text-decoration:none;}
 
-#homeScreen .v16-head-actions .line-contact-btn::after{
-  content:"";
-  position:absolute;
-  top:7px;
-  right:7px;
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:#ff1c2f;
-  border:2px solid #760007;
-  box-shadow:0 0 0 2px rgba(255,255,255,.08);
-}
+/* fixed bottom bar */
+#homeScreen .home-ref-bottom-nav{position:fixed;left:50%;bottom:calc(8px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:80;width:min(calc(100% - 18px),720px);height:76px;padding:7px 8px;border:1px solid rgba(238,229,230,.96);border-radius:24px;background:rgba(255,255,255,.97);backdrop-filter:blur(18px);box-shadow:0 18px 42px rgba(66,0,5,.17);display:grid;grid-template-columns:repeat(5,1fr);align-items:center;}
+#homeScreen .home-ref-bottom-nav button{position:relative;min-width:0;height:62px;padding:6px 2px;border:0;background:transparent;color:#3f3f3f;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:10px;font-weight:500;box-shadow:none !important;}
+#homeScreen .home-ref-bottom-nav button>i{font-size:22px;color:#3b3b3b;}
+#homeScreen .home-ref-bottom-nav button.active,#homeScreen .home-ref-bottom-nav button.active>i{color:#d50013 !important;}
+#homeScreen .home-ref-bottom-main{margin-top:-34px !important;gap:2px !important;}
+#homeScreen .home-ref-main-circle{width:66px;height:66px;border:6px solid #fff;border-radius:50%;background:linear-gradient(135deg,#eb0016,#b4000d);display:grid;place-items:center;box-shadow:0 10px 24px rgba(184,0,14,.30);}
+#homeScreen .home-ref-main-circle i{font-size:28px;color:#fff !important;}
+#homeScreen .home-ref-bottom-main>span:last-child{color:#d50013 !important;font-weight:650 !important;}
 
-#homeScreen .v16-head-actions .line-contact-logo{
-  width:23px !important;
-  height:23px !important;
-  margin:0 !important;
-  border-radius:6px !important;
-  filter:grayscale(1) brightness(0) invert(1) !important;
-  opacity:.96 !important;
-}
+#homeScreen button:active{transform:scale(.985);}
 
-#homeScreen .v16-head-actions .v16-logout:not(.line-contact-btn){
-  min-width:112px !important;
-  height:48px !important;
-  padding:0 17px !important;
-  border:1px solid rgba(255,255,255,.42) !important;
-  border-radius:15px !important;
-  background:rgba(76,0,5,.28) !important;
-  color:#fff !important;
-  box-shadow:none !important;
-  font-size:14px !important;
-  font-weight:500 !important;
-}
-
-/* ===== Wallet ===== */
-#homeScreen .v16-wallet{
-  position:relative !important;
-  min-height:220px !important;
-  padding:22px 24px 24px !important;
-  border:1px solid rgba(255,255,255,.18) !important;
-  border-radius:24px !important;
-  overflow:hidden !important;
-  color:#fff !important;
-  background:
-    radial-gradient(circle at 85% 38%,rgba(255,39,55,.26),transparent 28%),
-    radial-gradient(circle at 105% 105%,rgba(228,0,25,.46),transparent 42%),
-    linear-gradient(135deg,#530004 0%,#820008 46%,#a80011 100%) !important;
-  box-shadow:0 22px 46px rgba(58,0,5,.32),inset 0 1px 0 rgba(255,255,255,.14) !important;
-}
-
-#homeScreen .v16-wallet::before{
-  content:"" !important;
-  position:absolute !important;
-  right:-20px !important;
-  bottom:-22px !important;
-  width:190px !important;
-  height:150px !important;
-  border:0 !important;
-  border-radius:46% 46% 22% 22% !important;
-  background:
-    radial-gradient(circle at 48% 25%,rgba(255,84,93,.22) 0 24%,transparent 25%),
-    linear-gradient(145deg,rgba(238,24,42,.20),rgba(92,0,8,.52)) !important;
-  transform:rotate(-8deg) !important;
-  opacity:.68 !important;
-  pointer-events:none !important;
-}
-
-#homeScreen .v16-wallet::after{
-  content:"" !important;
-  position:absolute !important;
-  inset:auto 24px 112px 24px !important;
-  height:1px !important;
-  width:auto !important;
-  border-radius:0 !important;
-  background:linear-gradient(90deg,rgba(255,255,255,.40),rgba(255,255,255,.03)) !important;
-}
-
-#homeScreen .v16-wallet-top{
-  position:relative !important;
-  z-index:2 !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:space-between !important;
-  gap:12px !important;
-}
-
-#homeScreen .v16-wallet-label{
-  color:rgba(255,255,255,.92) !important;
-  font-size:15px !important;
-  line-height:1.2 !important;
-  font-weight:400 !important;
-}
-
-#homeScreen .v16-wallet-user{
-  max-width:46% !important;
-  padding:7px 11px !important;
-  border:1px solid rgba(255,255,255,.16) !important;
-  border-radius:10px !important;
-  background:rgba(62,0,5,.28) !important;
-  color:rgba(255,255,255,.82) !important;
-  font-size:10px !important;
-  font-weight:400 !important;
-  box-shadow:none !important;
-}
-
-#homeScreen .v16-wallet-balance{
-  position:relative !important;
-  z-index:2 !important;
-  margin-top:22px !important;
-  color:#fff !important;
-  font-size:clamp(42px,10vw,62px) !important;
-  line-height:1 !important;
-  font-variant-numeric:tabular-nums !important;
-  text-shadow:0 8px 24px rgba(35,0,4,.28) !important;
-}
-
-#homeScreen .v16-wallet-balance b{
-  color:#fff !important;
-  font-weight:700 !important;
-}
-
-#homeScreen .v16-wallet-balance span{
-  margin-left:8px !important;
-  color:#fff !important;
-  font-size:.48em !important;
-  font-weight:400 !important;
-}
-
-#homeScreen .v16-wallet-sub{
-  position:relative !important;
-  z-index:2 !important;
-  margin-top:25px !important;
-  display:flex !important;
-  align-items:flex-end !important;
-  justify-content:space-between !important;
-  gap:12px !important;
-  color:rgba(255,255,255,.90) !important;
-  font-size:13px !important;
-  font-weight:400 !important;
-}
-
-#homeScreen #homeUsername{
-  color:#fff !important;
-  font-size:15px !important;
-  line-height:1.3 !important;
-  font-weight:400 !important;
-}
-
-#homeScreen #homeUsername::before{
-  content:"เลขสมาชิก";
-  display:block;
-  margin-bottom:4px;
-  color:rgba(255,255,255,.72) !important;
-  font-size:11px !important;
-  font-weight:400 !important;
-}
-
-#homeScreen .v16-wallet-sub > span:last-child{
-  color:rgba(255,255,255,.78) !important;
-  font-size:11px !important;
-  font-weight:400 !important;
-}
-
-/* ===== Deposit / Withdraw ===== */
-#homeScreen .v16-money-actions{
-  position:relative !important;
-  z-index:4 !important;
-  display:grid !important;
-  grid-template-columns:1fr 1fr !important;
-  gap:14px !important;
-  margin-top:18px !important;
-  padding:0 4px !important;
-}
-
-#homeScreen .v16-money-btn{
-  min-height:68px !important;
-  border-radius:18px !important;
-  font-size:18px !important;
-  font-weight:600 !important;
-  box-shadow:0 14px 30px rgba(93,0,8,.15) !important;
-}
-
-#homeScreen .v16-money-btn.deposit{
-  border:1px solid rgba(255,255,255,.16) !important;
-  background:linear-gradient(135deg,#8d000a,#c40018 58%,#670006) !important;
-  color:#fff !important;
-}
-
-#homeScreen .v16-money-btn.withdraw{
-  border:1px solid #f3e4e5 !important;
-  background:#fff !important;
-  color:#7b0008 !important;
-}
-
-#homeScreen .v16-money-icon{
-  width:38px !important;
-  height:38px !important;
-  border-radius:50% !important;
-  display:grid !important;
-  place-items:center !important;
-  font-size:25px !important;
-  line-height:1 !important;
-  font-weight:400 !important;
-}
-
-#homeScreen .v16-money-btn.deposit .v16-money-icon{
-  background:#fff !important;
-  color:#a90012 !important;
-}
-
-#homeScreen .v16-money-btn.withdraw .v16-money-icon{
-  background:#fffafa !important;
-  border:1px solid #f2d5d8 !important;
-  color:#a0000d !important;
-}
-
-/* ===== Section titles ===== */
-#homeScreen .v16-section-title{
-  min-height:30px !important;
-  margin:30px 2px 12px !important;
-  display:flex !important;
-  align-items:center !important;
-  gap:9px !important;
-  color:#241719 !important;
-  font-size:0 !important;
-  line-height:1.2 !important;
-  font-weight:600 !important;
-}
-
-#homeScreen .v16-section-title::before{
-  width:auto !important;
-  height:auto !important;
-  background:none !important;
-}
-
-#homeScreen .v16-money-actions + .v16-section-title::before{
-  content:"★  แทงหวย" !important;
-  color:#261517 !important;
-  font-size:22px !important;
-  font-weight:650 !important;
-}
-
-#homeScreen .v16-money-actions + .v16-section-title::after{
-  content:"" !important;
-  margin-left:auto !important;
-}
-
-#homeScreen .v16-lotto-entry + .v16-section-title::before{
-  content:"⚡  เมนูลัด" !important;
-  color:#261517 !important;
-  font-size:22px !important;
-  font-weight:650 !important;
-}
-
-/* ===== Lottery card ===== */
-#homeScreen .v16-lotto-entry{
-  position:relative !important;
-  width:100% !important;
-  min-height:210px !important;
-  padding:20px !important;
-  overflow:hidden !important;
-  border:1px solid #f0e5e6 !important;
-  border-radius:24px !important;
-  background:#fff !important;
-  color:var(--home-ink) !important;
-  box-shadow:var(--home-shadow) !important;
-}
-
-#homeScreen .v16-lotto-entry::before{
-  display:none !important;
-}
-
-#homeScreen .v16-lotto-row{
-  min-height:116px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:space-between !important;
-  gap:18px !important;
-  padding:0 4px !important;
-}
-
-#homeScreen .v16-lotto-row > div:first-child{
-  min-width:0 !important;
-  flex:1 1 auto !important;
-}
-
-#homeScreen .v16-lotto-badge{
-  min-height:27px !important;
-  padding:0 12px !important;
-  border:0 !important;
-  border-radius:999px !important;
-  background:linear-gradient(135deg,#bd0014,#8d000a) !important;
-  color:#fff !important;
-  font-size:10px !important;
-  font-weight:500 !important;
-  box-shadow:0 7px 16px rgba(131,0,9,.14) !important;
-}
-
-#homeScreen .v16-lotto-title{
-  margin-top:11px !important;
-  color:#251718 !important;
-  font-size:29px !important;
-  line-height:1.15 !important;
-  font-weight:650 !important;
-}
-
-#homeScreen .v16-lotto-desc{
-  color:var(--home-muted) !important;
-  font-weight:400 !important;
-}
-
-#homeScreen .v16-lotto-art{
-  width:154px !important;
-  height:112px !important;
-  flex:0 0 154px !important;
-  border:0 !important;
-  background:transparent !important;
-  box-shadow:none !important;
-}
-
-#homeScreen .v16-lotto-art img{
-  width:100% !important;
-  height:100% !important;
-  object-fit:contain !important;
-  filter:drop-shadow(0 14px 18px rgba(109,0,8,.18)) !important;
-}
-
-#homeScreen .v16-lotto-go{
-  min-height:58px !important;
-  margin-top:12px !important;
-  padding:0 22px !important;
-  border:0 !important;
-  border-radius:16px !important;
-  background:linear-gradient(100deg,#c6001a 0%,#9a000b 55%,#650005 100%) !important;
-  color:#fff !important;
-  font-size:16px !important;
-  font-weight:600 !important;
-  box-shadow:0 11px 22px rgba(119,0,8,.15) !important;
-}
-
-#homeScreen .v16-lotto-go span{
-  color:#fff !important;
-  font-weight:600 !important;
-}
-
-#homeScreen .v16-lotto-go span:last-child{
-  font-size:34px !important;
-  line-height:1 !important;
-  font-weight:300 !important;
-}
-
-/* ===== Quick menu ===== */
-#homeScreen .v16-shortcuts{
-  display:grid !important;
-  grid-template-columns:repeat(4,minmax(0,1fr)) !important;
-  gap:10px !important;
-  align-items:stretch !important;
-}
-
-#homeScreen .v16-shortcut{
-  position:relative !important;
-  min-width:0 !important;
-  min-height:124px !important;
-  padding:14px 8px 13px !important;
-  border:1px solid #eee5e6 !important;
-  border-radius:22px !important;
-  background:#fff !important;
-  color:#2a1a1c !important;
-  box-shadow:0 12px 30px rgba(67,0,6,.08) !important;
-  display:flex !important;
-  flex-direction:column !important;
-  align-items:center !important;
-  justify-content:center !important;
-  gap:11px !important;
-  font-size:13px !important;
-  font-weight:500 !important;
-}
-
-#homeScreen .v16-shortcut-icon{
-  width:48px !important;
-  height:48px !important;
-  border:0 !important;
-  border-radius:14px !important;
-  display:grid !important;
-  place-items:center !important;
-  background:#fff !important;
-  color:#9b000c !important;
-  box-shadow:inset 0 0 0 2px #b40012 !important;
-  font-size:23px !important;
-  font-weight:400 !important;
-}
-
-#homeScreen .v16-shortcut > span:last-child{
-  color:#261719 !important;
-  font-size:13px !important;
-  line-height:1.25 !important;
-  text-align:center !important;
-  font-weight:500 !important;
-}
-
-/* แนะนำเพื่อนเป็นแบนเนอร์เต็มแถวแบบภาพตัวอย่าง */
-#homeScreen .v16-shortcut-affiliate{
-  grid-column:1 / -1 !important;
-  min-height:102px !important;
-  padding:17px 24px !important;
-  border:0 !important;
-  border-radius:22px !important;
-  background:
-    radial-gradient(circle at 88% 22%,rgba(255,95,104,.36),transparent 28%),
-    linear-gradient(100deg,#760006 0%,#ae0011 58%,#e00820 100%) !important;
-  color:#fff !important;
-  box-shadow:0 15px 32px rgba(113,0,8,.18) !important;
-  display:flex !important;
-  flex-direction:row-reverse !important;
-  align-items:center !important;
-  justify-content:space-between !important;
-  gap:18px !important;
-}
-
-#homeScreen .v16-shortcut-affiliate .v16-shortcut-icon{
-  width:70px !important;
-  height:70px !important;
-  flex:0 0 70px !important;
-  border:0 !important;
-  border-radius:18px !important;
-  background:rgba(255,255,255,.14) !important;
-  color:#fff !important;
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.22) !important;
-  font-size:38px !important;
-}
-
-#homeScreen .v16-shortcut-affiliate > span:last-child{
-  flex:1 1 auto !important;
-  min-width:0 !important;
-  color:#fff !important;
-  font-size:21px !important;
-  line-height:1.2 !important;
-  text-align:left !important;
-  font-weight:600 !important;
-}
-
-#homeScreen .v16-shortcut-affiliate > span:last-child::after{
-  content:"ชวนเพื่อนมาเล่น รับค่าคอมมิชชั่น";
-  display:block;
-  margin-top:7px;
-  color:rgba(255,255,255,.82) !important;
-  font-size:12px !important;
-  line-height:1.35 !important;
-  font-weight:400 !important;
-}
-
-#homeScreen button:active{
-  transform:scale(.985) !important;
-}
-
-/* ===== Mobile tuning ===== */
+/* phone first */
 @media(max-width:560px){
-  #homeScreen .v16-home-shell{
-    padding-left:12px !important;
-    padding-right:12px !important;
-    background:
-      radial-gradient(circle at 92% 8%,rgba(255,70,83,.28),transparent 24%),
-      linear-gradient(180deg,#5b0003 0,#8f0009 150px,#b90016 385px,#ffffff 385px,#ffffff 100%) !important;
-  }
+  #homeScreen .home-ref-shell{padding-left:10px !important;padding-right:10px !important;padding-bottom:calc(120px + env(safe-area-inset-bottom)) !important;background:radial-gradient(circle at 94% 7%,rgba(255,67,73,.32),transparent 23%),linear-gradient(180deg,#5c0005 0,#98000a 210px,#c40013 410px,#fff 410px,#fff 100%) !important;}
+  #homeScreen .home-ref-header{min-height:57px !important;margin-bottom:12px !important;gap:7px !important;}
+  #homeScreen .v16-brand-mark{width:clamp(125px,39vw,165px) !important;height:48px !important;}
+  #homeScreen .home-ref-head-actions{gap:5px !important;}
+  #homeScreen .home-ref-line{width:39px !important;min-width:39px !important;height:39px !important;min-height:39px !important;padding:0 !important;border-radius:12px !important;}
+  #homeScreen .home-ref-line span{display:none !important;}
+  #homeScreen .home-ref-line .line-contact-logo{width:20px !important;height:20px !important;}
+  #homeScreen .home-ref-icon-btn{width:39px !important;min-width:39px !important;height:39px !important;min-height:39px !important;border-radius:12px !important;font-size:17px !important;}
+  #homeScreen .home-ref-logout{height:39px !important;min-height:39px !important;padding:0 9px !important;border-radius:12px !important;font-size:0 !important;gap:0 !important;}
+  #homeScreen .home-ref-logout i{font-size:18px !important;}
+  #homeScreen .home-ref-logout span{display:none !important;}
 
-  #homeScreen .v16-home-head{
-    min-height:64px !important;
-    margin-bottom:14px !important;
-  }
+  #homeScreen .home-ref-wallet{min-height:205px !important;padding:19px 18px !important;border-radius:21px !important;}
+  #homeScreen .home-ref-wallet-mark{right:16px;top:35px;font-size:100px;}
+  #homeScreen .v16-wallet-label{font-size:13px !important;gap:8px !important;}
+  #homeScreen .v16-wallet-label i{font-size:18px;}
+  #homeScreen .v16-wallet-balance{margin-top:24px !important;font-size:48px !important;}
+  #homeScreen .home-ref-wallet-foot{margin-top:28px;gap:8px;}
+  #homeScreen .home-ref-member-id{font-size:12px;}
+  #homeScreen .home-ref-history-btn{min-height:38px;padding:0 11px;font-size:10px;gap:6px;border-radius:11px;}
+  #homeScreen .home-ref-history-btn i{font-size:14px;}
 
-  #homeScreen .v16-brand-mark{
-    width:clamp(145px,43vw,190px) !important;
-    height:58px !important;
-  }
+  #homeScreen .home-ref-money-actions{margin-top:12px !important;border-radius:17px;}
+  #homeScreen .home-ref-money-actions .v16-money-btn{min-height:58px !important;font-size:15px !important;gap:7px !important;}
+  #homeScreen .v16-money-icon{width:33px !important;height:33px !important;font-size:15px !important;}
 
-  #homeScreen .v16-head-actions{
-    gap:7px !important;
-  }
+  #homeScreen .home-ref-lotto{min-height:183px !important;margin-top:21px !important;padding:18px 16px !important;border-radius:20px !important;}
+  #homeScreen .home-ref-lotto .v16-lotto-row{min-height:145px !important;gap:5px !important;}
+  #homeScreen .v16-lotto-title{font-size:27px !important;}
+  #homeScreen .v16-lotto-desc{font-size:10px !important;margin-top:6px !important;}
+  #homeScreen .home-ref-lotto-cta{min-height:40px;margin-top:14px;padding:0 14px;font-size:11px;border-radius:10px;}
+  #homeScreen .v16-lotto-art{width:48% !important;flex-basis:48% !important;height:125px !important;}
 
-  #homeScreen .v16-head-actions .line-contact-btn{
-    width:43px !important;
-    min-width:43px !important;
-    height:43px !important;
-    min-height:43px !important;
-    border-radius:13px !important;
-  }
+  #homeScreen .home-ref-title{margin-top:20px !important;font-size:14px !important;}
+  #homeScreen .home-ref-shortcuts{grid-template-columns:repeat(5,minmax(0,1fr)) !important;gap:6px !important;}
+  #homeScreen .home-ref-shortcuts .v16-shortcut,#homeScreen .home-ref-shortcuts .v16-shortcut-affiliate{min-height:94px !important;padding:8px 2px !important;border-radius:15px !important;gap:6px !important;}
+  #homeScreen .home-ref-shortcuts .v16-shortcut-icon,#homeScreen .home-ref-shortcuts .v16-shortcut-affiliate .v16-shortcut-icon{width:36px !important;height:36px !important;flex-basis:36px !important;font-size:23px !important;}
+  #homeScreen .home-ref-shortcuts .v16-shortcut > span:last-child,#homeScreen .home-ref-shortcuts .v16-shortcut-affiliate > span:last-child{font-size:9px !important;}
 
-  #homeScreen .v16-head-actions .line-contact-logo{
-    width:20px !important;
-    height:20px !important;
-  }
+  #homeScreen .home-ref-security{min-height:83px;margin-top:16px;border-radius:17px;grid-template-columns:34% 1fr 45px;}
+  #homeScreen .home-ref-security-art i{font-size:44px;}
+  #homeScreen .home-ref-security-copy{padding:11px 8px;}
+  #homeScreen .home-ref-security-copy strong{font-size:16px !important;}
+  #homeScreen .home-ref-security-copy small{font-size:9px !important;margin-top:4px;}
+  #homeScreen .home-ref-security-arrow{width:34px;height:34px;border-radius:10px;margin-right:8px;}
+  #homeScreen .home-ref-security-arrow i{font-size:19px;}
 
-  #homeScreen .v16-head-actions .v16-logout:not(.line-contact-btn){
-    min-width:94px !important;
-    height:43px !important;
-    padding:0 12px !important;
-    border-radius:13px !important;
-    font-size:12px !important;
-  }
+  #homeScreen .home-ref-news-head{margin-top:18px;}
+  #homeScreen .home-ref-news-title{font-size:14px;}
+  #homeScreen .home-ref-news-card{min-height:72px;padding:10px 11px;border-radius:15px;grid-template-columns:47px 1fr 12px;gap:9px;}
+  #homeScreen .home-ref-news-icon{width:47px;height:47px;border-radius:13px;}
+  #homeScreen .home-ref-news-icon i{font-size:23px;}
+  #homeScreen .home-ref-news-copy strong{font-size:11px !important;}
+  #homeScreen .home-ref-news-copy small{font-size:9px !important;}
 
-  #homeScreen .v16-wallet{
-    min-height:202px !important;
-    padding:19px 18px 21px !important;
-    border-radius:21px !important;
-  }
-
-  #homeScreen .v16-wallet-label{
-    font-size:13px !important;
-  }
-
-  #homeScreen .v16-wallet-user{
-    max-width:43% !important;
-    padding:6px 9px !important;
-    font-size:9px !important;
-  }
-
-  #homeScreen .v16-wallet-balance{
-    margin-top:20px !important;
-    font-size:44px !important;
-  }
-
-  #homeScreen .v16-wallet-sub{
-    margin-top:23px !important;
-  }
-
-  #homeScreen #homeUsername{
-    font-size:13px !important;
-  }
-
-  #homeScreen .v16-money-actions{
-    gap:10px !important;
-    margin-top:13px !important;
-    padding:0 2px !important;
-  }
-
-  #homeScreen .v16-money-btn{
-    min-height:60px !important;
-    border-radius:16px !important;
-    font-size:16px !important;
-  }
-
-  #homeScreen .v16-money-icon{
-    width:34px !important;
-    height:34px !important;
-    font-size:22px !important;
-  }
-
-  #homeScreen .v16-section-title{
-    margin-top:25px !important;
-    margin-bottom:10px !important;
-  }
-
-  #homeScreen .v16-money-actions + .v16-section-title::before,
-  #homeScreen .v16-lotto-entry + .v16-section-title::before{
-    font-size:20px !important;
-  }
-
-  #homeScreen .v16-lotto-entry{
-    min-height:194px !important;
-    padding:17px !important;
-    border-radius:21px !important;
-  }
-
-  #homeScreen .v16-lotto-row{
-    min-height:104px !important;
-    gap:9px !important;
-  }
-
-  #homeScreen .v16-lotto-title{
-    font-size:24px !important;
-  }
-
-  #homeScreen .v16-lotto-art{
-    width:112px !important;
-    height:92px !important;
-    flex-basis:112px !important;
-  }
-
-  #homeScreen .v16-lotto-go{
-    min-height:54px !important;
-    padding:0 17px !important;
-    font-size:15px !important;
-    border-radius:14px !important;
-  }
-
-  #homeScreen .v16-shortcuts{
-    grid-template-columns:repeat(4,minmax(0,1fr)) !important;
-    gap:7px !important;
-  }
-
-  #homeScreen .v16-shortcut{
-    min-height:104px !important;
-    padding:12px 4px 10px !important;
-    border-radius:18px !important;
-    gap:8px !important;
-  }
-
-  #homeScreen .v16-shortcut-icon{
-    width:40px !important;
-    height:40px !important;
-    border-radius:12px !important;
-    font-size:19px !important;
-  }
-
-  #homeScreen .v16-shortcut > span:last-child{
-    font-size:11px !important;
-  }
-
-  #homeScreen .v16-shortcut-affiliate{
-    min-height:94px !important;
-    padding:15px 18px !important;
-    border-radius:19px !important;
-  }
-
-  #homeScreen .v16-shortcut-affiliate .v16-shortcut-icon{
-    width:58px !important;
-    height:58px !important;
-    flex-basis:58px !important;
-    font-size:32px !important;
-  }
-
-  #homeScreen .v16-shortcut-affiliate > span:last-child{
-    font-size:18px !important;
-  }
-
-  #homeScreen .v16-shortcut-affiliate > span:last-child::after{
-    margin-top:5px !important;
-    font-size:10px !important;
-  }
+  #homeScreen .home-ref-bottom-nav{width:calc(100% - 12px);height:72px;bottom:calc(5px + env(safe-area-inset-bottom));border-radius:22px;padding:6px;}
+  #homeScreen .home-ref-bottom-nav button{height:58px;font-size:9px;}
+  #homeScreen .home-ref-bottom-nav button>i{font-size:20px;}
+  #homeScreen .home-ref-main-circle{width:60px;height:60px;border-width:5px;}
+  #homeScreen .home-ref-main-circle i{font-size:25px;}
 }
 
-@media(max-width:370px){
-  #homeScreen .v16-brand-mark{
-    width:136px !important;
-    height:52px !important;
-  }
-
-  #homeScreen .v16-head-actions .v16-logout:not(.line-contact-btn){
-    min-width:82px !important;
-    padding:0 9px !important;
-    font-size:11px !important;
-  }
-
-  #homeScreen .v16-wallet{
-    padding-left:16px !important;
-    padding-right:16px !important;
-  }
-
-  #homeScreen .v16-shortcut > span:last-child{
-    font-size:10px !important;
-  }
+@media(max-width:375px){
+  #homeScreen .v16-brand-mark{width:120px !important;}
+  #homeScreen .home-ref-wallet{padding-left:15px !important;padding-right:15px !important;}
+  #homeScreen .v16-wallet-balance{font-size:43px !important;}
+  #homeScreen .home-ref-history-btn span{display:none;}
+  #homeScreen .home-ref-history-btn{width:39px;padding:0;justify-content:center;}
+  #homeScreen .home-ref-lotto{padding-left:14px !important;padding-right:10px !important;}
+  #homeScreen .v16-lotto-title{font-size:24px !important;}
+  #homeScreen .v16-lotto-art{height:110px !important;}
+  #homeScreen .home-ref-shortcuts .v16-shortcut > span:last-child,#homeScreen .home-ref-shortcuts .v16-shortcut-affiliate > span:last-child{font-size:8px !important;}
 }
 
 </style>
@@ -8617,78 +8064,107 @@ textarea:focus{
   <main class="app hidden" id="mainApp">
 
    <section class="screen" id="homeScreen">
-    <div class="v16-home-shell">
-     <div class="v16-home">
-      <div class="v16-home-head">
-       <div class="v16-brand">
+    <div class="v16-home-shell home-ref-shell">
+     <div class="v16-home home-ref-page">
+      <div class="v16-home-head home-ref-header">
+       <div class="v16-brand home-ref-brand">
         <div class="v16-brand-mark"><img src="./supmangmee-logo.png" alt="ทรัพย์มั่งมี"></div>
        </div>
-       <div class="v16-head-actions">
-        <button class="v16-logout line-contact-btn" id="homeLineContactBtn" type="button">
-         <img class="line-contact-logo" src="line-logo.png" alt="">ติดต่อ
+       <div class="v16-head-actions home-ref-head-actions">
+        <button class="v16-logout line-contact-btn home-ref-line" id="homeLineContactBtn" type="button" aria-label="ติดต่อ LINE">
+         <img class="line-contact-logo" src="line-logo.png" alt=""><span>ติดต่อเรา</span>
         </button>
-        <button class="v16-logout" id="homeLogoutBtn" type="button">ออกจากระบบ</button>
+        <button class="home-ref-icon-btn" type="button" aria-label="ประกาศ" onclick="try{state.announcementsShown=false;loadAndShowActiveAnnouncements();}catch(e){}">
+         <i class="fi fi-sr-bell"></i><span class="home-ref-notice-dot"></span>
+        </button>
+        <button class="v16-logout home-ref-logout" id="homeLogoutBtn" type="button"><i class="fi fi-sr-sign-out-alt"></i><span>ออกจากระบบ</span></button>
        </div>
       </div>
 
-      <section class="v16-wallet">
-       <div class="v16-wallet-top">
-        <div class="v16-wallet-label">เครดิตพร้อมเดิมพัน</div>
+      <section class="v16-wallet home-ref-wallet">
+       <i class="fi fi-sr-wallet home-ref-wallet-mark" aria-hidden="true"></i>
+       <div class="v16-wallet-top home-ref-wallet-top">
+        <div class="v16-wallet-label">ยอดเครดิตคงเหลือ <i class="fi fi-sr-eye"></i></div>
         <div class="v16-wallet-user" id="homeUserName">MEMBER</div>
        </div>
        <div class="v16-wallet-balance"><b id="homeCredit">0.00</b><span>฿</span></div>
-       <div class="v16-wallet-sub">
-        <span id="homeUsername">user</span>
-        <span>พร้อมใช้งาน</span>
+       <div class="home-ref-wallet-foot">
+        <div class="home-ref-member-id">ID : <span id="homeUsername">user</span></div>
+        <button class="home-ref-history-btn" type="button" onclick="showMoney()"><i class="fi fi-sr-time-past"></i><span>ประวัติธุรกรรม</span><i class="fi fi-sr-angle-small-right"></i></button>
        </div>
       </section>
 
-      <div class="v16-money-actions">
+      <div class="v16-money-actions home-ref-money-actions">
        <button class="v16-money-btn deposit" id="homeDepositBtn" type="button">
-        <span class="v16-money-icon">＋</span><span>ฝากเงิน</span>
+        <span class="v16-money-icon"><i class="fi fi-sr-plus"></i></span><span>ฝากเงิน</span>
        </button>
        <button class="v16-money-btn withdraw" id="homeWithdrawBtn" type="button">
-        <span class="v16-money-icon">−</span><span>ถอนเงิน</span>
+        <span class="v16-money-icon"><i class="fi fi-sr-minus"></i></span><span>ถอนเงิน</span>
        </button>
       </div>
 
-      <div class="v16-section-title">เมนูหลัก</div>
-
-      <button class="v16-lotto-entry" id="homeLottoBtn" type="button">
+      <button class="v16-lotto-entry home-ref-lotto" id="homeLottoBtn" type="button">
        <div class="v16-lotto-row">
-        <div>
+        <div class="home-ref-lotto-copy">
          <span class="v16-lotto-badge">ยอดนิยม</span>
          <div class="v16-lotto-title">แทงหวย</div>
+         <div class="v16-lotto-desc">เลือกหวยที่คุณต้องการแทง</div>
+         <span class="home-ref-lotto-cta">เข้าแทงหวย <i class="fi fi-sr-angle-small-right"></i></span>
         </div>
         <div class="v16-lotto-ball v16-lotto-art">
          <img src="lottery-menu-cutout.png" alt="แทงหวย">
         </div>
        </div>
-       <div class="v16-lotto-go"><span>เข้าแทงหวย</span><span>›</span></div>
       </button>
 
-      <div class="v16-section-title">บัญชีของฉัน</div>
+      <div class="v16-section-title home-ref-title">เมนูใช้งาน</div>
 
-      <div class="v16-shortcuts">
+      <div class="v16-shortcuts home-ref-shortcuts">
        <button class="v16-shortcut" id="homeHistoryBtn" type="button">
-        <span class="v16-shortcut-icon">⌁</span><span>รายการโพย</span>
+        <span class="v16-shortcut-icon"><i class="fi fi-sr-document"></i></span><span>รายการโพย</span>
        </button>
        <button class="v16-shortcut" id="homeResultsBtn" type="button">
-        <span class="v16-shortcut-icon">✓</span><span>ผลหวย</span>
+        <span class="v16-shortcut-icon"><i class="fi fi-sr-chart-histogram"></i></span><span>ผลหวย</span>
        </button>
        <button class="v16-shortcut" id="homeSummaryBtn" type="button">
-        <span class="v16-shortcut-icon">∿</span><span>สรุปแพ้-ชนะ</span>
+        <span class="v16-shortcut-icon"><i class="fi fi-sr-chart-pie"></i></span><span>สถิติหวย</span>
        </button>
        <button class="v16-shortcut" id="homeMoneyBtn" type="button">
-        <span class="v16-shortcut-icon">฿</span><span>รายการเงิน</span>
+        <span class="v16-shortcut-icon"><i class="fi fi-sr-wallet"></i></span><span>รายการเงิน</span>
        </button>
        <button class="v16-shortcut v16-shortcut-affiliate" id="homeAffiliateBtn" type="button">
-        <span class="v16-shortcut-icon">🎁</span><span>แนะนำเพื่อน</span>
+        <span class="v16-shortcut-icon"><i class="fi fi-sr-user-add"></i></span><span>แนะนำเพื่อน</span>
        </button>
       </div>
 
+      <button class="home-ref-security" type="button" aria-label="ความปลอดภัย">
+       <span class="home-ref-security-art"><i class="fi fi-sr-shield-check"></i></span>
+       <span class="home-ref-security-copy"><strong>มั่นใจ ปลอดภัย</strong><small>ระบบมาตรฐาน ปกป้องข้อมูลผู้ใช้งาน</small></span>
+       <span class="home-ref-security-arrow"><i class="fi fi-sr-angle-small-right"></i></span>
+      </button>
+
+      <div class="home-ref-news-head">
+       <div class="home-ref-news-title">ข่าวสาร / ประกาศ</div>
+       <button type="button" onclick="try{state.announcementsShown=false;loadAndShowActiveAnnouncements();}catch(e){}">ดูทั้งหมด <i class="fi fi-sr-angle-small-right"></i></button>
+      </div>
+
+      <button class="home-ref-news-card" type="button" onclick="try{state.announcementsShown=false;loadAndShowActiveAnnouncements();}catch(e){}">
+       <span class="home-ref-news-icon"><i class="fi fi-sr-megaphone"></i></span>
+       <span class="home-ref-news-copy"><strong>อัปเดตเวลาเปิด-ปิดรับหวย</strong><small>แตะเพื่อดูข่าวสารและประกาศล่าสุด</small></span>
+       <span class="home-ref-news-dot"></span>
+      </button>
+
+      <div class="home-ref-flaticon-credit">Icons by <a href="https://www.flaticon.com/uicons" target="_blank" rel="noopener noreferrer">Flaticon UIcons</a></div>
      </div>
     </div>
+
+    <nav class="home-ref-bottom-nav" aria-label="เมนูด้านล่าง">
+     <button class="active" type="button" onclick="showHome()"><i class="fi fi-sr-home"></i><span>หน้าหลัก</span></button>
+     <button type="button" onclick="showLotto()"><i class="fi fi-sr-ticket"></i><span>แทงหวย</span></button>
+     <button class="home-ref-bottom-main" type="button" onclick="showLotto()"><span class="home-ref-main-circle"><i class="fi fi-sr-ticket"></i></span><span>แทงเลย</span></button>
+     <button type="button" onclick="showResults()"><i class="fi fi-sr-chart-histogram"></i><span>ผลหวย</span></button>
+     <button type="button" onclick="showMoney()"><i class="fi fi-sr-user"></i><span>บัญชี</span></button>
+    </nav>
    </section>
 
    <section class="screen" id="lottoScreen">
