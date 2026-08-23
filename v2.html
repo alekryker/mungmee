@@ -8,42 +8,7 @@
   <meta content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover" name="viewport"/>
   <meta content="#b91c1c" name="theme-color"/>
   <title>ทรัพย์มั่งมี</title>
-  <script src="./config.js">
-
-/* =====================================================
-   V50 — EXTRA UI BINDINGS
-===================================================== */
-function setActiveBottomNav(key) {
-  document.querySelectorAll('.app-bottom-nav').forEach(function(nav){ nav.querySelectorAll('.bottom-nav-btn').forEach(function(btn){ btn.classList.remove('active'); }); });
-  var maps = { home:['navHomeBtn'], deposit:['navDepositBtn'], bet:['navBetBtn','lottoNavBetBtn'], history:['navHistoryBtn','lottoNavBillBtn'], me:['navMeBtn','lottoNavAccountBtn'], lotto:['lottoNavBetBtn'] };
-  (maps[key] || []).forEach(function(id){ var el = document.getElementById(id); if (el) el.classList.add('active'); });
-}
-(function(){
-  var __showHome = showHome; showHome = function(){ __showHome(); setActiveBottomNav('home'); };
-  var __showLotto = showLotto; showLotto = function(){ __showLotto(); setActiveBottomNav('bet'); };
-  var __showHistory = showHistory; showHistory = function(){ __showHistory(); setActiveBottomNav('history'); };
-  var __showMoney = showMoney; showMoney = function(){ __showMoney(); setActiveBottomNav('me'); };
-  var __showBet = showBet; showBet = function(){ __showBet(); setActiveBottomNav('bet'); };
-})();
-document.addEventListener('DOMContentLoaded', function(){
-  var id = function(x){ return document.getElementById(x); };
-  if (id('homeHistoryInlineBtn')) id('homeHistoryInlineBtn').onclick = function(){ if (els.homeHistoryBtn) els.homeHistoryBtn.click(); };
-  if (id('homeLottoSeeAllBtn')) id('homeLottoSeeAllBtn').onclick = function(){ if (els.homeLottoBtn) els.homeLottoBtn.click(); };
-  if (id('navHomeBtn')) id('navHomeBtn').onclick = function(){ showHome(); };
-  if (id('navDepositBtn')) id('navDepositBtn').onclick = function(){ openSelfDeposit(); setActiveBottomNav('deposit'); };
-  if (id('navBetBtn')) id('navBetBtn').onclick = function(){ showLotto(); };
-  if (id('navHistoryBtn')) id('navHistoryBtn').onclick = function(){ showHistory(); };
-  if (id('navMeBtn')) id('navMeBtn').onclick = function(){ showMoney(); };
-  if (id('lottoNavHomeBtn')) id('lottoNavHomeBtn').onclick = function(){ showHome(); };
-  if (id('lottoNavBillBtn')) id('lottoNavBillBtn').onclick = function(){ showHistory(); };
-  if (id('lottoNavBetBtn')) id('lottoNavBetBtn').onclick = function(){ showLotto(); };
-  if (id('lottoNavResultBtn')) id('lottoNavResultBtn').onclick = function(){ showResults(); };
-  if (id('lottoNavAccountBtn')) id('lottoNavAccountBtn').onclick = function(){ showMoney(); };
-  if (id('loginAffiliateBanner')) id('loginAffiliateBanner').onclick = function(){ var regTab = document.getElementById('authRegisterTab'); if (regTab) regTab.click(); };
-  if (id('forgotPassLink')) id('forgotPassLink').onclick = function(){ Swal.fire({icon:'info',title:'ติดต่อแอดมิน',text:'กรุณาติดต่อเราทาง LINE เพื่อขอรีเซ็ตรหัสผ่าน',confirmButtonColor:'#b91c1c'}); };
-});
-
-</script>
+  <script src="./config.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -7959,6 +7924,157 @@ button.lotto.closed{opacity:.78;}
 @media (max-width:760px){ .login-card-credit.login-card-redesign{padding:24px 18px 18px;border-radius:28px;} #loginScreen .register-grid{grid-template-columns:1fr;gap:14px;} .home-hero-red{padding-bottom:26px;} .home-wallet-card{padding:20px 20px 22px;} .home-wallet-art{font-size:86px;right:14px;bottom:14px;} .home-lotto-preview{grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;} .home-lotto-flag{width:56px;height:56px;font-size:29px;} .home-lotto-name{font-size:12px;min-height:32px;} .home-lotto-time{font-size:12px;} .home-shortcuts{gap:12px;} #homeScreen .v16-shortcut{min-height:108px;padding:16px 8px;} #homeScreen .v16-shortcut span:last-child{font-size:15px;} .home-affiliate-gift{font-size:60px;} .lotto-top-row{align-items:flex-end;} .lotto-balance-box{min-width:136px;padding:16px 16px;} }
 @media (max-width:560px){ .login-page-shell{width:100%;} .login-top-logo img{width:min(92vw,300px);} .login-card-credit.login-card-redesign{padding:22px 16px 16px;} .login-title-line{gap:10px;font-size:16px;} .login-big-title{font-size:32px;} .login-subtitle{font-size:16px;margin-bottom:14px;} #loginScreen .auth-tab{height:68px;font-size:18px;gap:10px;} #loginScreen .auth-tab::before{font-size:25px;} #loginScreen .login-field label{font-size:16px;margin-bottom:8px;} #loginScreen .login-field input,#loginScreen .login-field select{height:62px;border-radius:18px;padding:0 18px 0 62px;font-size:17px;} .login-input-icon{left:20px;font-size:28px;} .login-pass-icon{font-size:26px;} .login-forgot-link{font-size:16px;} #loginScreen .login-submit,.login-line-contact{height:64px;border-radius:18px;font-size:19px;} #loginScreen .login-submit::before{font-size:30px;} .login-affiliate-banner{gap:12px;padding:14px 14px;border-radius:18px;} .login-affiliate-icon{width:56px;height:56px;font-size:29px;flex-basis:56px;} .login-affiliate-copy strong{font-size:19px;} .login-affiliate-copy small{font-size:13px;} .login-affiliate-gift{font-size:52px;} .login-affiliate-arrow{font-size:28px;} #homeScreen .v16-home{padding:14px 14px 120px;} .home-hero-red{margin:-14px -14px 0;padding:16px 14px 26px;border-bottom-left-radius:22px;border-bottom-right-radius:22px;} .home-brand-logo img{width:min(44vw,168px);} .home-icon-btn{width:44px;height:44px;font-size:22px;border-radius:14px;} .home-ghost-btn{height:44px;padding:0 14px;font-size:15px;border-radius:14px;} .home-wallet-card{border-radius:24px;padding:18px 16px 20px;} .home-wallet-label{font-size:16px;gap:8px;} .home-inline-history{height:40px;padding:0 14px;font-size:14px;border-radius:14px;} .home-balance{font-size:54px;} .home-balance-currency{font-size:21px;} .home-member-line .cap,.home-member-line .num{font-size:15px;} .home-wallet-art{font-size:72px;right:10px;bottom:12px;} .home-money-actions{gap:12px;margin-top:-18px;} #homeScreen .v16-money-btn{height:82px;border-radius:20px;font-size:18px;gap:12px;} #homeScreen .v16-money-icon{width:40px;height:40px;font-size:30px;} .home-section-head{margin:24px 2px 12px;} .home-section-head h3{font-size:20px;gap:10px;} .home-see-all{font-size:15px;} .home-lotto-card{border-radius:22px;padding:14px;} .home-lotto-preview{grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;} .home-lotto-pill{min-width:0;} .home-lotto-flag{width:46px;height:46px;font-size:25px;margin-bottom:6px;} .home-lotto-name{font-size:11px;min-height:30px;} .home-lotto-time{font-size:11px;} .home-enter-lotto{height:64px;border-radius:18px;font-size:20px;} .home-enter-lotto .arrow{font-size:28px;} .home-shortcuts{grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;} #homeScreen .v16-shortcut{min-height:94px;border-radius:18px;padding:12px 5px;gap:8px;} #homeScreen .v16-shortcut-icon{width:48px;height:48px;border-radius:15px;font-size:25px;} #homeScreen .v16-shortcut span:last-child{font-size:12px;} .home-affiliate-banner{border-radius:20px;padding:14px;gap:12px;} .home-affiliate-left{width:54px;height:54px;flex-basis:54px;font-size:28px;} .home-affiliate-copy strong{font-size:20px;} .home-affiliate-copy small{font-size:13px;} .home-affiliate-gift{font-size:50px;} .app-bottom-nav{width:calc(100% - 14px);bottom:6px;padding:10px 10px calc(10px + env(safe-area-inset-bottom,0px));border-radius:24px;} .bottom-nav-btn{font-size:12px;gap:4px;} .bottom-nav-btn .icon{font-size:23px;min-height:24px;} .bottom-nav-btn.bottom-center .icon{width:60px;height:60px;font-size:28px;border-width:6px;margin-top:-28px;} .lotto-screen-shell{padding-bottom:118px;} .lotto-top-hero{padding:14px 14px 22px;border-bottom-left-radius:22px;border-bottom-right-radius:22px;} .lotto-top-row{gap:10px;align-items:flex-end;} .lotto-top-left{gap:14px;} .modern-back-home{height:46px;padding:0 14px;border-radius:15px;font-size:15px;gap:8px;} .modern-back-home .arr{font-size:22px;} .lotto-page-title{font-size:30px;} .lotto-page-sub{font-size:16px;} .lotto-balance-box{padding:12px 16px;min-width:110px;border-radius:18px;} .lotto-balance-box strong{font-size:28px;} .lotto-body{padding:18px 14px 0;} .lotto-group-head{font-size:20px;gap:10px;margin-bottom:12px;padding-bottom:12px;} .lotto-group-head .mark{width:38px;height:38px;font-size:20px;} button.lotto.lotto-card-new{padding:14px 12px;gap:10px;grid-template-columns:auto 1fr auto auto;border-radius:18px;} .lotto-flag-badge{width:46px;height:46px;font-size:24px;} .lotto-main .lotto-name{font-size:17px;} .lotto-main .lotto-meta{font-size:14px;} .lotto-main .lotto-limit-note{font-size:11px;} .lotto-side{min-width:110px;gap:6px;} .lotto-side .lotto-date{font-size:12px;} .lotto-side .countdown{min-width:92px;padding:8px 8px;border-radius:12px;font-size:12px;} .lotto-chevron{font-size:28px;} }
 
+
+
+/* =====================================================
+   V100 — REFERENCE MATCH TUNE
+===================================================== */
+html,body{font-family:'Kanit',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;}
+#loginScreen{min-height:100dvh;display:flex;align-items:flex-start;justify-content:center;overflow:hidden;position:relative;}
+#loginScreen::before,#loginScreen::after{content:"";position:absolute;inset:auto;pointer-events:none;}
+#loginScreen::before{left:-14%;bottom:10%;width:56%;height:3px;background:linear-gradient(90deg,transparent,rgba(255,80,80,.85),transparent);box-shadow:0 0 18px rgba(255,80,80,.45);transform:rotate(32deg);}
+#loginScreen::after{right:-18%;bottom:18%;width:58%;height:3px;background:linear-gradient(90deg,transparent,rgba(255,80,80,.85),transparent);box-shadow:0 0 18px rgba(255,80,80,.35);transform:rotate(-28deg);}
+.login-page-shell{position:relative;z-index:2;padding-top:12px;padding-bottom:4px;}
+.login-top-logo{margin:20px 0 18px;}
+.login-top-logo img{width:min(88vw,390px);}
+.login-card-credit.login-card-redesign{border-radius:34px 34px 38px 38px;padding:34px 28px 24px;max-width:840px;}
+.login-title-line span:not(.line){font-size:22px;color:#d41818;}
+.login-big-title{letter-spacing:-.5px;}
+#loginScreen .auth-tabs{height:84px;}
+#loginScreen .auth-tab{height:82px;box-shadow:none;border-radius:0;}
+#loginScreen .auth-tab.active{background:linear-gradient(180deg,#d52b2b 0%, #8e1106 100%);}
+#loginScreen .login-field input,#loginScreen .login-field select{border-color:#ded8d8;color:#484848;background:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.8);}
+#loginScreen .login-field input::placeholder{color:#b7b7b7;font-weight:600;}
+#loginScreen .password-toggle{font-size:22px;}
+.login-line-contact{background:#2fbf3b;border-radius:18px;}
+.login-affiliate-banner{background:linear-gradient(90deg,#fbefef 0%,#fff8f8 55%,#fbefef 100%);border-radius:20px;padding:16px 18px;}
+.login-affiliate-copy strong{font-size:clamp(22px,3vw,30px);}
+.login-affiliate-copy small{font-size:clamp(14px,2vw,18px);}
+.login-footer{margin-top:10px;font-size:15px;}
+
+#homeScreen{background:#f8f6f6;}
+#homeScreen .v16-home-shell{position:relative;overflow:hidden;}
+#homeScreen .v16-home{padding-bottom:138px;}
+.home-hero-red{position:relative;background:radial-gradient(circle at 14% 12%, rgba(255,255,255,.04) 0, rgba(255,255,255,0) 28%),linear-gradient(180deg,#620000 0%,#8e0000 34%,#bf0000 72%,#c70000 100%);padding-top:10px;padding-bottom:34px;border-bottom-left-radius:0;border-bottom-right-radius:0;overflow:hidden;}
+.home-hero-red::after{content:"";position:absolute;left:-10%;right:-10%;bottom:-72px;height:140px;background:#f8f6f6;border-radius:0 0 52% 48%/0 0 100% 100%;}
+.fake-statusbar{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;color:#fff;font-weight:700;font-size:18px;padding:2px 2px 10px;}
+.fake-statusbar .fake-signal{letter-spacing:.2px;font-size:17px;}
+.fake-statusbar b{display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:22px;padding:0 6px;border-radius:7px;background:rgba(255,255,255,.92);color:#4a302f;font-size:15px;margin-left:6px;}
+.home-topbar,.home-wallet-card,.home-money-actions,.home-section-head,.home-lotto-card,.home-shortcuts,.home-affiliate-banner{position:relative;z-index:2;}
+.home-topbar{margin-bottom:22px;}
+.home-brand-logo img{width:min(42vw,250px);}
+.home-icon-btn,.home-ghost-btn{border-color:rgba(255,255,255,.38);background:rgba(255,255,255,.04);backdrop-filter:blur(2px);}
+.home-wallet-card{background:linear-gradient(135deg,#c6000e 0%,#970004 55%,#6f0000 100%);border-radius:28px;padding:22px 24px 20px;min-height:280px;border:1px solid rgba(255,255,255,.14);}
+.home-wallet-card::before{content:"";position:absolute;inset:10px;border:1px solid rgba(255,255,255,.08);border-radius:24px;pointer-events:none;}
+.home-wallet-label{font-size:18px;}
+.home-inline-history{border-radius:14px;font-size:15px;padding:0 16px;color:#7d140d;}
+.home-balance{font-size:clamp(70px,13vw,90px);letter-spacing:-2px;}
+.home-member-line{max-width:180px;margin-top:26px;padding-top:16px;}
+.home-wallet-art{right:22px;bottom:36px;font-size:130px;opacity:.09;filter:grayscale(1) brightness(2);}
+.home-wallet-ready{position:absolute;right:18px;bottom:18px;font-size:18px;font-weight:700;color:rgba(255,255,255,.88);}
+.home-money-actions{margin-top:-18px;gap:20px;}
+#homeScreen .v16-money-btn{height:88px;border-radius:24px;font-size:22px;}
+#homeScreen .v16-money-btn.deposit{background:linear-gradient(180deg,#df0011,#710000);box-shadow:0 12px 22px rgba(50,0,0,.22);}
+#homeScreen .v16-money-btn.withdraw{box-shadow:0 12px 22px rgba(70,0,0,.10);}
+#homeScreen .v16-money-icon{width:52px;height:52px;font-size:34px;}
+.home-section-head{margin-top:26px;margin-bottom:14px;}
+.home-section-head h3{font-size:26px;font-weight:900;}
+.home-section-head h3 .mark{font-size:24px;}
+.home-lotto-card{padding:18px 18px 20px;border-radius:24px;box-shadow:0 10px 25px rgba(0,0,0,.06);}
+.home-open-chip{height:30px;font-size:14px;padding:0 16px;margin-bottom:14px;}
+.home-lotto-preview{gap:12px;margin-bottom:18px;}
+.home-lotto-flag{width:70px;height:70px;font-size:36px;box-shadow:none;border-color:#e7e1e1;}
+.home-lotto-name{font-size:13px;font-weight:800;min-height:36px;}
+.home-lotto-time{font-size:13px;}
+.home-enter-lotto{height:72px;border-radius:16px;background:linear-gradient(180deg,#d1000e 0%,#720000 100%);}
+.home-shortcuts{gap:18px;}
+#homeScreen .v16-shortcut{min-height:118px;border-radius:22px;box-shadow:0 8px 20px rgba(0,0,0,.05);}
+#homeScreen .v16-shortcut-icon{border-radius:16px;border-width:1.6px;}
+.home-affiliate-banner{margin-top:22px;padding:18px 20px;border-radius:24px;background:linear-gradient(90deg,#8d0006 0%,#d10009 62%,#a30008 100%);}
+.home-affiliate-left{width:64px;height:64px;}
+.home-affiliate-copy strong{font-size:22px;}
+.home-affiliate-copy small{font-size:15px;}
+.home-affiliate-gift{font-size:74px;}
+.app-bottom-nav{bottom:8px;border-radius:28px;padding-top:14px;padding-bottom:14px;box-shadow:0 18px 34px rgba(34,0,0,.14);}
+.bottom-nav-btn{font-size:13px;}
+.bottom-nav-btn .icon{font-size:26px;}
+.bottom-nav-btn.bottom-center .icon{margin-top:-40px;width:78px;height:78px;border-width:8px;box-shadow:0 10px 22px rgba(80,0,0,.24);}
+.bottom-nav-btn.active .label{color:#d40012;}
+
+#lottoScreen{background:#f6f4f4;}
+.lotto-screen-shell{padding-bottom:108px;}
+.lotto-top-hero{background:radial-gradient(circle at 18% 14%, rgba(255,255,255,.08) 0, rgba(255,255,255,0) 18%),linear-gradient(180deg,#b20000 0%,#db0000 100%);padding:22px 24px 28px;border-bottom-left-radius:0;border-bottom-right-radius:0;}
+.lotto-top-row{align-items:flex-start;}
+.modern-back-home{height:62px;padding:0 24px;border-radius:22px;background:rgba(255,255,255,.06);}
+.lotto-page-title{font-size:66px;line-height:.96;letter-spacing:-1.4px;}
+.lotto-page-sub{font-size:28px;line-height:1.1;}
+.lotto-balance-box{min-width:210px;padding:18px 24px;border-radius:24px;margin-top:12px;}
+.lotto-balance-box strong{font-size:56px;line-height:1.05;}
+.lotto-body{padding:24px;}
+.lotto-group{margin-bottom:28px;padding-top:2px;}
+.lotto-group + .lotto-group{border-top:1px solid #e3dddd;padding-top:22px;}
+.lotto-group-head{border:0;padding-bottom:0;margin-bottom:16px;font-size:28px;}
+.lotto-group-head .mark{width:44px;height:44px;background:linear-gradient(180deg,#9e0000,#660000);font-size:22px;}
+button.lotto.lotto-card-new{border-radius:24px;padding:18px 20px;box-shadow:0 8px 18px rgba(0,0,0,.06);}
+.lotto-flag-badge{width:68px;height:68px;font-size:32px;}
+.lotto-main .lotto-name{font-size:26px;}
+.lotto-main .lotto-meta{font-size:15px;color:#535353;}
+.lotto-side .lotto-date{font-size:14px;color:#5e5353;}
+.lotto-side .countdown{background:#ffe8e8;color:#bc1818;border-radius:12px;min-width:148px;font-size:18px;}
+.lotto-chevron{font-size:40px;color:#491313;}
+.lotto-bottom-nav{position:fixed;left:0;right:0;bottom:0;z-index:44;display:grid;grid-template-columns:repeat(4,1fr);background:linear-gradient(180deg,#cb0000,#940000);padding:12px 10px calc(14px + env(safe-area-inset-bottom,0px));box-shadow:0 -10px 24px rgba(50,0,0,.16);}
+.lotto-nav-btn{border:0;background:none;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:0 4px;font-family:inherit;}
+.lotto-nav-btn .icon{font-size:33px;line-height:1;display:flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:18px;}
+.lotto-nav-btn .label{font-size:15px;font-weight:700;white-space:nowrap;}
+.lotto-nav-btn.active .icon{background:rgba(255,255,255,.18);}
+.lotto-nav-btn.active .label{text-decoration:underline;text-underline-offset:8px;text-decoration-thickness:3px;}
+@media (max-width:560px){
+  .login-top-logo{margin-top:10px;margin-bottom:16px;}
+  .login-card-credit.login-card-redesign{padding:24px 16px 18px;border-radius:28px;}
+  #loginScreen .auth-tabs{height:70px;}
+  #loginScreen .auth-tab{height:68px;}
+  .fake-statusbar{font-size:14px;padding-bottom:8px;}
+  .fake-statusbar .fake-signal{font-size:13px;}
+  .fake-statusbar b{min-width:24px;height:19px;font-size:12px;border-radius:6px;}
+  .home-wallet-card{min-height:244px;padding:18px 16px;}
+  .home-wallet-art{font-size:96px;right:10px;bottom:34px;}
+  .home-wallet-ready{font-size:14px;right:14px;bottom:14px;}
+  .home-balance{font-size:74px;}
+  .home-inline-history{font-size:13px;}
+  #homeScreen .v16-money-btn{height:84px;font-size:18px;}
+  #homeScreen .v16-money-icon{width:44px;height:44px;font-size:30px;}
+  .home-lotto-preview{gap:6px;}
+  .home-lotto-flag{width:54px;height:54px;font-size:28px;}
+  .home-lotto-name{font-size:12px;min-height:32px;}
+  .home-lotto-time{font-size:11px;}
+  .home-shortcuts{gap:10px;}
+  #homeScreen .v16-shortcut{min-height:100px;padding:14px 6px;}
+  #homeScreen .v16-shortcut span:last-child{font-size:13px;}
+  .app-bottom-nav{padding-left:10px;padding-right:10px;}
+  .bottom-nav-btn.bottom-center .icon{width:64px;height:64px;margin-top:-30px;border-width:6px;}
+  .lotto-top-hero{padding:18px 16px 24px;}
+  .modern-back-home{height:48px;padding:0 16px;border-radius:18px;font-size:16px;}
+  .lotto-page-title{font-size:48px;}
+  .lotto-page-sub{font-size:18px;}
+  .lotto-balance-box{min-width:120px;padding:14px 14px;border-radius:18px;}
+  .lotto-balance-box strong{font-size:28px;}
+  .lotto-body{padding:18px 14px 0;}
+  .lotto-group{margin-bottom:22px;}
+  .lotto-group-head{font-size:22px;margin-bottom:12px;}
+  .lotto-group-head .mark{width:38px;height:38px;font-size:18px;}
+  button.lotto.lotto-card-new{padding:14px 12px;border-radius:18px;grid-template-columns:auto 1fr auto auto;gap:10px;}
+  .lotto-flag-badge{width:52px;height:52px;font-size:25px;}
+  .lotto-main .lotto-name{font-size:19px;}
+  .lotto-main .lotto-meta{font-size:12px;}
+  .lotto-side{min-width:104px;}
+  .lotto-side .lotto-date{font-size:11px;}
+  .lotto-side .countdown{min-width:88px;font-size:12px;padding:8px 6px;}
+  .lotto-chevron{font-size:28px;}
+  .lotto-bottom-nav{padding:10px 6px calc(10px + env(safe-area-inset-bottom,0px));}
+  .lotto-nav-btn .icon{width:46px;height:46px;font-size:24px;border-radius:14px;}
+  .lotto-nav-btn .label{font-size:12px;}
+}
+
 </style>
  </head>
  <body>
@@ -8014,6 +8130,7 @@ button.lotto.closed{opacity:.78;}
     <div class="v16-home-shell">
       <div class="v16-home">
         <div class="home-hero-red">
+          <div class="fake-statusbar"><span class="fake-time">07:09 ☾</span><span class="fake-signal">◔◔◔ 4G <b>52</b></span></div>
           <div class="home-topbar">
             <div class="home-brand-logo"><img src="./supmangmee-logo.png" alt="ทรัพย์มั่งมี"></div>
             <div class="home-top-actions">
@@ -8028,7 +8145,7 @@ button.lotto.closed{opacity:.78;}
             </div>
             <div class="home-balance-wrap"><div class="home-balance"><b id="homeCredit">0.00</b> <span class="home-balance-currency">฿</span></div></div>
             <div class="home-member-line"><div class="cap">เลขสมาชิก</div><div class="num" id="homeUsername">user</div></div>
-            <div class="home-wallet-art">👛</div>
+            <div class="home-wallet-art">👛</div><div class="home-wallet-ready">พร้อมใช้งาน</div>
             <div id="homeUserName" style="display:none">MEMBER</div>
           </section>
         </div>
@@ -8065,7 +8182,7 @@ button.lotto.closed{opacity:.78;}
         <div class="lotto-utility-strip account-row"><div class="account-actions"><button class="account-btn light hidden" id="adminBtn">หลังบ้าน</button><button class="account-btn light" id="memberSummaryBtn">สรุปแพ้-ชนะ</button><button class="account-btn light" id="moneyBtn">รายการเงิน</button><button class="account-btn light" id="resultsBtn">ผลหวย</button><button class="account-btn light" id="historyBtn">รายการโพย</button><button class="account-btn line-contact-btn" id="lineContactBtn" type="button"><img class="line-contact-logo" src="line-logo.png" alt="">ติดต่อ</button><button class="account-btn" id="logoutBtn">ออก</button></div></div>
       </div>
       <div class="lotto-body"><div class="lotto-grid" id="lottoGrid"></div><div class="empty" id="lottoEmpty" style="display:none">ยังไม่มีหวยที่เปิดรับ • รอบใหม่เปิดเวลา 05:00 น.</div></div>
-      <nav class="app-bottom-nav" data-bottom-nav="lotto"><button class="bottom-nav-btn" id="lottoNavHomeBtn" type="button"><span class="icon">🏠</span><span class="label">หน้าหลัก</span></button><button class="bottom-nav-btn" id="lottoNavBillBtn" type="button"><span class="icon">🧾</span><span class="label">โพยของฉัน</span></button><button class="bottom-nav-btn bottom-center active" id="lottoNavBetBtn" type="button"><span class="icon">🎟</span><span class="label">แทงหวย</span></button><button class="bottom-nav-btn" id="lottoNavResultBtn" type="button"><span class="icon">🎯</span><span class="label">ผลหวย</span></button><button class="bottom-nav-btn" id="lottoNavAccountBtn" type="button"><span class="icon">👤</span><span class="label">บัญชีของฉัน</span></button></nav>
+      <nav class="lotto-bottom-nav" data-bottom-nav="lotto"><button class="lotto-nav-btn active" id="lottoNavHomeBtn" type="button"><span class="icon">🏠</span><span class="label">หน้าหลัก</span></button><button class="lotto-nav-btn" id="lottoNavBillBtn" type="button"><span class="icon">🧾</span><span class="label">โพยของฉัน</span></button><button class="lotto-nav-btn" id="lottoNavResultBtn" type="button"><span class="icon">🎯</span><span class="label">ผลหวย</span></button><button class="lotto-nav-btn" id="lottoNavAccountBtn" type="button"><span class="icon">👤</span><span class="label">บัญชีของฉัน</span></button></nav>
     </div>
    </section>
 
@@ -13512,5 +13629,60 @@ function openAdminAnnouncementEditor(item) {
 </script>
 
 
- </body>
+ 
+<script>
+/* =====================================================
+   V100 — UI NAV / HELPERS
+===================================================== */
+function setActiveBottomNav(key) {
+  document.querySelectorAll('.app-bottom-nav .bottom-nav-btn').forEach(function(btn){ btn.classList.remove('active'); });
+  document.querySelectorAll('.lotto-bottom-nav .lotto-nav-btn').forEach(function(btn){ btn.classList.remove('active'); });
+  var maps = {
+    home:['navHomeBtn'],
+    deposit:['navDepositBtn'],
+    bet:['navBetBtn'],
+    history:['navHistoryBtn','lottoNavBillBtn'],
+    me:['navMeBtn','lottoNavAccountBtn'],
+    lottohome:['lottoNavHomeBtn'],
+    lottoresult:['lottoNavResultBtn']
+  };
+  (maps[key] || []).forEach(function(id){ var el = document.getElementById(id); if (el) el.classList.add('active'); });
+}
+(function(){
+  if (typeof showHome === 'function') {
+    var _showHome = showHome; showHome = function(){ _showHome(); setActiveBottomNav('home'); };
+  }
+  if (typeof showLotto === 'function') {
+    var _showLotto = showLotto; showLotto = function(){ _showLotto(); setActiveBottomNav('lottohome'); };
+  }
+  if (typeof showHistory === 'function') {
+    var _showHistory = showHistory; showHistory = function(){ _showHistory(); setActiveBottomNav('history'); };
+  }
+  if (typeof showMoney === 'function') {
+    var _showMoney = showMoney; showMoney = function(){ _showMoney(); setActiveBottomNav('me'); };
+  }
+  if (typeof showResults === 'function') {
+    var _showResults = showResults; showResults = function(){ _showResults(); setActiveBottomNav('lottoresult'); };
+  }
+})();
+document.addEventListener('DOMContentLoaded', function(){
+  var id = function(x){ return document.getElementById(x); };
+  if (id('homeHistoryInlineBtn')) id('homeHistoryInlineBtn').onclick = function(){ if (id('homeHistoryBtn')) id('homeHistoryBtn').click(); };
+  if (id('homeLottoSeeAllBtn')) id('homeLottoSeeAllBtn').onclick = function(){ if (id('homeLottoBtn')) id('homeLottoBtn').click(); };
+  if (id('navHomeBtn')) id('navHomeBtn').onclick = function(){ showHome(); };
+  if (id('navDepositBtn')) id('navDepositBtn').onclick = function(){ if (typeof openSelfDeposit==='function') openSelfDeposit(); setActiveBottomNav('deposit'); };
+  if (id('navBetBtn')) id('navBetBtn').onclick = function(){ if (typeof showLotto==='function') showLotto(); };
+  if (id('navHistoryBtn')) id('navHistoryBtn').onclick = function(){ if (typeof showHistory==='function') showHistory(); };
+  if (id('navMeBtn')) id('navMeBtn').onclick = function(){ if (typeof showMoney==='function') showMoney(); };
+  if (id('lottoNavHomeBtn')) id('lottoNavHomeBtn').onclick = function(){ if (typeof showHome==='function') showHome(); };
+  if (id('lottoNavBillBtn')) id('lottoNavBillBtn').onclick = function(){ if (typeof showHistory==='function') showHistory(); };
+  if (id('lottoNavResultBtn')) id('lottoNavResultBtn').onclick = function(){ if (typeof showResults==='function') showResults(); };
+  if (id('lottoNavAccountBtn')) id('lottoNavAccountBtn').onclick = function(){ if (typeof showMoney==='function') showMoney(); };
+  if (id('loginAffiliateBanner')) id('loginAffiliateBanner').onclick = function(){ var regTab = document.getElementById('authRegisterTab'); if (regTab) regTab.click(); };
+  if (id('forgotPassLink')) id('forgotPassLink').onclick = function(){ if (window.Swal) Swal.fire({icon:'info',title:'ติดต่อแอดมิน',text:'กรุณาติดต่อเราทาง LINE เพื่อขอรีเซ็ตรหัสผ่าน',confirmButtonColor:'#b91c1c'}); };
+  if (id('homeBellBtn')) id('homeBellBtn').onclick = function(){ var fn = window.renderNoticePopup || window.showNoticePopup || null; if (typeof fn === 'function') fn(); else if (window.Swal) Swal.fire({title:'ประกาศ',text:'ไม่มีประกาศใหม่ในขณะนี้',confirmButtonColor:'#b91c1c'}); };
+});
+</script>
+
+</body>
 </html>
