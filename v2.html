@@ -7766,313 +7766,696 @@ textarea:focus{
 }
 
 
-
 /* =====================================================
-   V50 — UX/UI REDESIGN (LOGIN / HOME / LOTTO)
-   ปรับเฉพาะหน้าตาให้ใกล้ภาพตัวอย่างมากที่สุด
+   V50 — MOBILE UX MATCH 2026-08-23
+   ปรับเฉพาะ UX/UI: Login / Home / Lottery list
+   โครงสร้าง HTML + JavaScript + ระบบเดิมคงเดิมทั้งหมด
 ===================================================== */
 :root{
-  --ux-red-1:#5c0000;
-  --ux-red-2:#8d0000;
-  --ux-red-3:#ca0000;
-  --ux-red-4:#f7dede;
-  --ux-text:#3d0909;
-  --ux-card:#ffffff;
-  --ux-soft:#fff6f6;
-  --ux-shadow:0 14px 30px rgba(70,0,0,.12);
-  --ux-radius-xl:28px;
-  --ux-radius-lg:22px;
-  --ux-radius-md:18px;
+  --ux-red:#b90d16;
+  --ux-red-dark:#710006;
+  --ux-red-deep:#3b0003;
+  --ux-red-soft:#fff1f2;
+  --ux-pink:#ffe7e9;
+  --ux-ink:#251314;
+  --ux-muted:#726265;
+  --ux-line:#eadbdd;
+  --ux-shadow:0 12px 30px rgba(89,0,8,.12);
 }
-body{ background:#6f0000; }
-#loginScreen{ background: radial-gradient(circle at 18% 86%, rgba(255,80,80,.28) 0, rgba(255,80,80,0) 18%), radial-gradient(circle at 92% 82%, rgba(255,110,110,.20) 0, rgba(255,110,110,0) 18%), linear-gradient(180deg,#5c0000 0%, #8f0000 38%, #be0000 100%) !important; padding:22px 14px 28px !important; }
-.login-page-shell{width:min(100%,780px);margin:0 auto;text-align:center;}
-.login-top-logo{display:flex;justify-content:center;margin:2px 0 14px;}
-.login-top-logo img{width:min(92vw,410px);height:auto;display:block;filter:drop-shadow(0 6px 16px rgba(0,0,0,.2));}
-.login-card-credit.login-card-redesign{width:min(100%,740px);margin:0 auto;background:linear-gradient(180deg,#fff 0%, #fcfcfc 100%);border-radius:34px;padding:28px 24px 22px;border:1px solid rgba(255,255,255,.55);box-shadow:0 25px 60px rgba(45,0,0,.24);}
-.login-head-copy{margin-bottom:20px;}
-.login-title-line{display:flex;align-items:center;justify-content:center;gap:14px;font-size:18px;font-weight:900;color:#7a0000;}
-.login-title-line span.line{display:block;width:58px;max-width:15vw;height:2px;background:linear-gradient(90deg,transparent,#d33,transparent);}
-.login-big-title{font-size:clamp(36px,6vw,52px);line-height:1.08;font-weight:900;color:#7a0000;margin:12px 0 6px;}
-.login-subtitle{margin:0 0 16px;font-size:clamp(18px,3vw,24px);font-weight:700;color:#666;}
-#loginScreen .auth-tabs{display:grid;grid-template-columns:1fr 1fr;gap:0;background:#fff;border:1px solid #ece5e5;border-radius:22px;padding:0;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(130,0,0,.03);}
-#loginScreen .auth-tab{height:78px;border:0;background:transparent;font-size:clamp(22px,3vw,26px);font-weight:900;color:#333;display:flex;align-items:center;justify-content:center;gap:14px;}
-#loginScreen .auth-tab::before{font-size:30px;line-height:1;}
-#authLoginTab::before{content:"👤";}
-#authRegisterTab::before{content:"➕";font-size:26px;}
-#loginScreen .auth-tab.active{background:linear-gradient(180deg,#ea0000 0%, #7f0000 100%);color:#fff;box-shadow:0 12px 22px rgba(120,0,0,.16) inset;}
-#loginScreen .auth-panel{padding-top:22px;text-align:left;}
-#loginScreen .login-field{margin-bottom:18px;}
-#loginScreen .login-field label{display:block;font-size:18px;font-weight:800;color:#371010;margin:0 0 10px;}
-#loginScreen .login-field input,#loginScreen .login-field select{height:74px;width:100%;border:1.5px solid #e5dede;border-radius:22px;padding:0 22px 0 76px;background:#fff;font-size:clamp(20px,2.8vw,24px);font-weight:700;color:#333;box-sizing:border-box;}
-#loginScreen .register-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-#loginScreen .register-grid .full{grid-column:1/-1;}
-#loginScreen .password-wrap{position:relative;}
-#loginScreen .password-wrap input{padding-right:74px;}
-#loginScreen .password-toggle{position:absolute;right:10px;top:50%;transform:translateY(-50%);height:54px;min-width:54px;border:0;background:transparent;color:#a00000;font-size:15px;font-weight:900;border-radius:14px;}
-.login-input-box{position:relative;}
-.login-input-icon{position:absolute;left:25px;top:50%;transform:translateY(-50%);font-size:33px;line-height:1;color:#be0000;pointer-events:none;}
-.login-pass-icon{font-size:31px;}
-.login-meta-row{display:flex;justify-content:flex-end;margin:-4px 2px 10px;}
-.login-forgot-link{border:0;background:none;padding:0;color:#8e0000;font-size:18px;font-weight:900;cursor:pointer;}
-#loginScreen .login-submit{height:84px;width:100%;border:0;border-radius:24px;background:linear-gradient(180deg,#ee0000 0%, #7a0000 100%);color:#fff;font-size:clamp(24px,3vw,30px);font-weight:900;box-shadow:0 16px 30px rgba(115,0,0,.18);margin-top:8px;display:flex;align-items:center;justify-content:center;gap:14px;}
-#loginScreen .login-submit::before{content:"⇥";font-size:40px;line-height:1;}
-#registerPanel .login-submit::before{content:"✚";font-size:28px;}
-.login-divider{display:flex;align-items:center;gap:16px;color:#777;font-size:17px;font-weight:700;margin:22px 0 14px;}
-.login-divider::before,.login-divider::after{content:"";flex:1;height:1px;background:#dfd7d7;}
-.login-line-contact-wrap{margin-top:0;}
-.login-line-contact{height:78px;border-radius:22px;background:#17be33;color:#fff !important;font-size:clamp(22px,3vw,28px);font-weight:900;display:flex;align-items:center;justify-content:center;gap:16px;text-decoration:none;box-shadow:0 14px 24px rgba(18,138,48,.18);}
-.login-line-contact img{width:44px;height:44px;object-fit:contain;background:#fff;border-radius:50%;padding:4px;}
-.login-line-contact-label{display:none;}
-.login-affiliate-banner{margin-top:18px;width:100%;border:1px solid #f1dddd;background:linear-gradient(90deg,#fff5f5 0%,#fffafa 45%,#fff5f5 100%);border-radius:22px;padding:18px 18px;display:flex;align-items:center;gap:16px;text-align:left;box-sizing:border-box;}
-.login-affiliate-icon{width:72px;height:72px;border-radius:50%;background:linear-gradient(180deg,#8a0000,#5a0000);color:#fff;display:flex;align-items:center;justify-content:center;font-size:36px;flex:0 0 72px;box-shadow:0 10px 18px rgba(90,0,0,.16);}
-.login-affiliate-copy strong{display:block;font-size:clamp(26px,3.2vw,34px);line-height:1.1;color:#7a0000;}
-.login-affiliate-copy small{display:block;margin-top:4px;font-size:clamp(16px,2.2vw,20px);font-weight:700;color:#666;}
-.login-affiliate-gift{margin-left:auto;font-size:68px;line-height:1;}
-.login-affiliate-arrow{font-size:38px;color:#7a0000;font-weight:900;}
-.login-footer{margin-top:12px;font-size:14px;color:rgba(255,255,255,.82);font-weight:500;}
-#homeScreen{ background:linear-gradient(180deg,#8b0000 0%,#d40000 34%,#f7f4f4 34.1%,#f7f4f4 100%); min-height:100dvh; }
-#homeScreen .v16-home-shell{padding:0 !important;max-width:860px;margin:0 auto;}
-#homeScreen .v16-home{padding:18px 18px 120px;}
-.home-hero-red{background:linear-gradient(180deg,#780000 0%,#b10000 54%,#d60000 100%);margin:-18px -18px 0;padding:22px 18px 28px;border-bottom-left-radius:26px;border-bottom-right-radius:26px;box-shadow:0 16px 30px rgba(90,0,0,.2);}
-.home-topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px;}
-.home-brand-logo img{width:min(46vw,250px);height:auto;display:block;filter:drop-shadow(0 4px 12px rgba(0,0,0,.18));}
-.home-top-actions{display:flex;align-items:center;gap:10px;}
-.home-icon-btn,.home-ghost-btn{height:48px;border-radius:16px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.08);color:#fff;font-weight:800;}
-.home-icon-btn{width:48px;position:relative;font-size:25px;}
-.home-icon-btn.has-dot::after{content:"";position:absolute;right:9px;top:9px;width:9px;height:9px;border-radius:50%;background:#ff2942;box-shadow:0 0 0 3px rgba(255,255,255,.1);}
-.home-ghost-btn{padding:0 18px;font-size:18px;}
-.home-wallet-card{position:relative;background:linear-gradient(135deg,#bb0000 0%,#890000 100%);border:1px solid rgba(255,255,255,.12);border-radius:30px;padding:22px 24px 24px;color:#fff;box-shadow:0 18px 34px rgba(65,0,0,.22);overflow:hidden;}
-.home-wallet-card::after{content:"";position:absolute;right:-18px;bottom:-24px;width:188px;height:188px;border-radius:50%;background:radial-gradient(circle at 40% 40%, rgba(255,255,255,.14), rgba(255,255,255,0) 62%);}
-.home-wallet-top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;}
-.home-wallet-label{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:800;opacity:.98;}
-.home-wallet-eye{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.12);font-size:15px;}
-.home-inline-history{height:48px;padding:0 18px;border:0;background:#fff;color:#7a0000;border-radius:16px;font-size:18px;font-weight:800;box-shadow:0 10px 18px rgba(0,0,0,.08);}
-.home-balance-wrap{display:grid;grid-template-columns:1fr auto;align-items:end;gap:10px;margin-top:10px;}
-.home-balance{font-size:clamp(54px,9vw,84px);line-height:1;font-weight:900;letter-spacing:-1.5px;}
-.home-balance-currency{font-size:clamp(24px,4vw,34px);font-weight:900;margin-left:8px;}
-.home-member-line{margin-top:18px;padding-top:12px;border-top:1px solid rgba(255,255,255,.22);max-width:180px;}
-.home-member-line .cap{font-size:17px;font-weight:700;opacity:.96;}
-.home-member-line .num{font-size:17px;font-weight:800;margin-top:4px;word-break:break-all;}
-.home-wallet-art{position:absolute;right:22px;bottom:14px;font-size:106px;opacity:.16;filter:saturate(.8);}
-.home-money-actions{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:-20px;position:relative;z-index:2;}
-#homeScreen .v16-money-btn{height:96px;border-radius:24px;border:1px solid #f0e6e6;display:flex;align-items:center;justify-content:center;gap:16px;font-size:clamp(21px,3vw,28px);font-weight:900;box-shadow:var(--ux-shadow);}
-#homeScreen .v16-money-btn.deposit{background:linear-gradient(180deg,#de0000,#670000);color:#fff;}
-#homeScreen .v16-money-btn.withdraw{background:#fff;color:#4a0b0b;}
-#homeScreen .v16-money-icon{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#fff;color:#940000;font-size:36px;font-weight:800;box-shadow:0 8px 16px rgba(145,0,0,.12);}
-.home-section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:30px 2px 14px;}
-.home-section-head h3{margin:0;font-size:clamp(22px,4vw,34px);color:#3d0909;display:flex;align-items:center;gap:12px;}
-.home-section-head h3 .mark{font-size:26px;color:#ca0000;}
-.home-see-all{border:0;background:none;color:#ca0000;font-size:18px;font-weight:900;padding:0;}
-.home-lotto-card{background:#fff;border-radius:26px;padding:18px;border:1px solid #eee4e4;box-shadow:var(--ux-shadow);}
-.home-lotto-preview{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-bottom:18px;}
-.home-lotto-pill{text-align:center;}
-.home-lotto-flag{width:66px;height:66px;border-radius:50%;margin:0 auto 8px;background:linear-gradient(180deg,#fff,#f5f5f5);border:1px solid #e4d9d9;display:flex;align-items:center;justify-content:center;font-size:34px;box-shadow:0 8px 16px rgba(45,0,0,.06);}
-.home-lotto-name{font-size:14px;font-weight:800;color:#2f1111;line-height:1.25;min-height:34px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-.home-lotto-time{font-size:14px;color:#666;font-weight:700;margin-top:3px;}
-.home-open-chip{display:inline-flex;align-items:center;justify-content:center;min-width:72px;height:32px;border-radius:999px;background:linear-gradient(180deg,#df1111,#8d0000);color:#fff;font-size:15px;font-weight:800;padding:0 14px;margin-bottom:12px;}
-#homeScreen .v16-lotto-entry{display:block;width:100%;border:0;background:transparent;padding:0;box-shadow:none;}
-.home-enter-lotto{height:76px;border-radius:20px;background:linear-gradient(180deg,#ca0000 0%,#730000 100%);color:#fff;font-size:clamp(24px,3vw,30px);font-weight:900;display:flex;align-items:center;justify-content:center;gap:16px;box-shadow:0 12px 24px rgba(100,0,0,.18);}
-.home-enter-lotto .arrow{font-size:38px;line-height:1;}
-.home-shortcuts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;}
-#homeScreen .v16-shortcut{border-radius:22px;border:1px solid #eee5e5;background:#fff;min-height:120px;padding:18px 10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;box-shadow:0 10px 24px rgba(40,0,0,.08);color:#3d0909;}
-#homeScreen .v16-shortcut-icon{width:58px;height:58px;border-radius:18px;border:2px solid #b31919;display:flex;align-items:center;justify-content:center;font-size:31px;color:#a50000;background:#fff;}
-#homeScreen .v16-shortcut span:last-child{font-size:17px;font-weight:800;line-height:1.25;}
-.home-affiliate-banner{margin-top:18px;border:0;background:linear-gradient(135deg,#830000 0%,#ce0000 58%,#9e0000 100%);border-radius:24px;padding:18px 20px;color:#fff;display:flex;align-items:center;gap:16px;box-shadow:0 16px 28px rgba(90,0,0,.15);width:100%;text-align:left;}
-.home-affiliate-left{width:68px;height:68px;border-radius:50%;border:2px solid rgba(255,255,255,.66);display:flex;align-items:center;justify-content:center;font-size:35px;flex:0 0 68px;}
-.home-affiliate-copy strong{display:block;font-size:clamp(24px,3vw,30px);line-height:1.05;}
-.home-affiliate-copy small{display:block;margin-top:4px;font-size:16px;font-weight:700;opacity:.92;}
-.home-affiliate-gift{margin-left:auto;font-size:78px;line-height:1;}
-.app-bottom-nav{position:fixed;left:50%;bottom:10px;transform:translateX(-50%);width:min(calc(100% - 18px),820px);background:rgba(255,255,255,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid #eee3e3;border-radius:30px;padding:12px 14px calc(12px + env(safe-area-inset-bottom,0px));box-shadow:0 18px 36px rgba(55,0,0,.14);display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:end;z-index:40;}
-.bottom-nav-btn{border:0;background:none;color:#8e8e8e;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font:inherit;font-weight:800;padding:4px 2px;font-size:14px;}
-.bottom-nav-btn .icon{font-size:28px;line-height:1;display:flex;align-items:center;justify-content:center;min-height:30px;}
-.bottom-nav-btn.active{color:#ca0000;}
-.bottom-nav-btn.bottom-center .icon{width:72px;height:72px;border-radius:50%;background:radial-gradient(circle at 34% 28%, #ef3535 0%, #9e0000 44%, #470000 100%);box-shadow:0 10px 20px rgba(80,0,0,.2);color:#fff;border:7px solid #fff;font-size:34px;margin-top:-36px;}
-.bottom-nav-btn.bottom-center.active .icon{box-shadow:0 14px 24px rgba(80,0,0,.22);}
-.bottom-nav-btn .label{white-space:nowrap;}
-#lottoScreen{ background:linear-gradient(180deg,#940000 0%,#e10000 19%,#f7f4f4 19.1%,#f7f4f4 100%); min-height:100dvh; }
-.lotto-screen-shell{max-width:860px;margin:0 auto;padding-bottom:120px;}
-.lotto-top-hero{background:linear-gradient(180deg,#9b0000 0%,#e10000 100%);padding:18px 18px 28px;color:#fff;border-bottom-left-radius:26px;border-bottom-right-radius:26px;box-shadow:0 16px 28px rgba(90,0,0,.18);}
-.lotto-top-row{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;}
-.lotto-top-left{display:flex;flex-direction:column;gap:18px;}
-.modern-back-home{height:56px;padding:0 20px;border-radius:18px;border:1.2px solid rgba(255,255,255,.28);background:rgba(255,255,255,.08);color:#fff;font-size:20px;font-weight:800;display:inline-flex;align-items:center;gap:10px;align-self:flex-start;}
-.modern-back-home .arr{font-size:28px;line-height:1;}
-.lotto-page-title{font-size:clamp(36px,6vw,56px);line-height:1.03;font-weight:900;margin:0;}
-.lotto-page-sub{font-size:20px;font-weight:800;opacity:.95;margin-top:6px;}
-.lotto-balance-box{background:#fff;color:#980000;border-radius:22px;padding:18px 22px;min-width:170px;box-shadow:0 12px 22px rgba(0,0,0,.1);align-self:flex-end;}
-.lotto-balance-box .cap{font-size:17px;font-weight:800;opacity:.85;display:none;}
-.lotto-balance-box strong{display:block;font-size:clamp(34px,4vw,50px);font-weight:900;line-height:1.05;text-align:center;}
-.lotto-utility-strip{display:none;}
-.lotto-body{padding:20px 18px 0;max-width:none;}
-.lotto-group{margin-bottom:22px;}
-.lotto-group-head{display:flex;align-items:center;gap:12px;font-size:clamp(22px,4vw,34px);font-weight:900;color:#490b0b;margin:0 0 14px;padding-bottom:14px;border-bottom:1px solid #e7dddd;}
-.lotto-group-head .mark{width:46px;height:46px;border-radius:50%;background:linear-gradient(180deg,#a30000,#670000);color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 8px 16px rgba(80,0,0,.16);}
-.lotto-group-list{display:grid;grid-template-columns:1fr;gap:14px;}
-button.lotto.lotto-card-new{width:100%;border:1px solid #eee4e4;background:#fff;border-radius:22px;padding:18px 18px 18px 16px;display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:14px;box-shadow:0 12px 24px rgba(45,0,0,.08);text-align:left;}
-.lotto-flag-badge{width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;background:linear-gradient(180deg,#fff,#f6f6f6);border:1px solid #e4d8d8;box-shadow:0 8px 14px rgba(40,0,0,.05);}
-.lotto-main .lotto-name{font-size:clamp(22px,3.4vw,31px);font-weight:900;color:#2f1111;line-height:1.15;}
-.lotto-main .lotto-meta{margin-top:5px;font-size:18px;font-weight:700;color:#666;}
-.lotto-main .lotto-limit-note{margin-top:4px;font-size:13px;color:#b10c0c;font-weight:700;}
-.lotto-side{display:flex;flex-direction:column;align-items:flex-end;gap:8px;min-width:160px;}
-.lotto-side .lotto-date{font-size:17px;font-weight:800;color:#666;}
-.lotto-side .countdown{min-width:130px;padding:10px 16px;border-radius:14px;background:#ffe7e7;color:#bf1717;font-size:17px;font-weight:900;text-align:center;}
-.lotto-chevron{font-size:42px;color:#5f1818;font-weight:400;line-height:1;}
-button.lotto.closed .countdown{background:#f0ecec;color:#8f8f8f;}
-button.lotto.closed .lotto-name{color:#777;}
-button.lotto.closed{opacity:.78;}
-.lotto-screen-shell .account-actions,.lotto-screen-shell .account-row .account-btn.light.hidden{display:none !important;}
-@media (max-width:760px){ .login-card-credit.login-card-redesign{padding:24px 18px 18px;border-radius:28px;} #loginScreen .register-grid{grid-template-columns:1fr;gap:14px;} .home-hero-red{padding-bottom:26px;} .home-wallet-card{padding:20px 20px 22px;} .home-wallet-art{font-size:86px;right:14px;bottom:14px;} .home-lotto-preview{grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;} .home-lotto-flag{width:56px;height:56px;font-size:29px;} .home-lotto-name{font-size:12px;min-height:32px;} .home-lotto-time{font-size:12px;} .home-shortcuts{gap:12px;} #homeScreen .v16-shortcut{min-height:108px;padding:16px 8px;} #homeScreen .v16-shortcut span:last-child{font-size:15px;} .home-affiliate-gift{font-size:60px;} .lotto-top-row{align-items:flex-end;} .lotto-balance-box{min-width:136px;padding:16px 16px;} }
-@media (max-width:560px){ .login-page-shell{width:100%;} .login-top-logo img{width:min(92vw,300px);} .login-card-credit.login-card-redesign{padding:22px 16px 16px;} .login-title-line{gap:10px;font-size:16px;} .login-big-title{font-size:32px;} .login-subtitle{font-size:16px;margin-bottom:14px;} #loginScreen .auth-tab{height:68px;font-size:18px;gap:10px;} #loginScreen .auth-tab::before{font-size:25px;} #loginScreen .login-field label{font-size:16px;margin-bottom:8px;} #loginScreen .login-field input,#loginScreen .login-field select{height:62px;border-radius:18px;padding:0 18px 0 62px;font-size:17px;} .login-input-icon{left:20px;font-size:28px;} .login-pass-icon{font-size:26px;} .login-forgot-link{font-size:16px;} #loginScreen .login-submit,.login-line-contact{height:64px;border-radius:18px;font-size:19px;} #loginScreen .login-submit::before{font-size:30px;} .login-affiliate-banner{gap:12px;padding:14px 14px;border-radius:18px;} .login-affiliate-icon{width:56px;height:56px;font-size:29px;flex-basis:56px;} .login-affiliate-copy strong{font-size:19px;} .login-affiliate-copy small{font-size:13px;} .login-affiliate-gift{font-size:52px;} .login-affiliate-arrow{font-size:28px;} #homeScreen .v16-home{padding:14px 14px 120px;} .home-hero-red{margin:-14px -14px 0;padding:16px 14px 26px;border-bottom-left-radius:22px;border-bottom-right-radius:22px;} .home-brand-logo img{width:min(44vw,168px);} .home-icon-btn{width:44px;height:44px;font-size:22px;border-radius:14px;} .home-ghost-btn{height:44px;padding:0 14px;font-size:15px;border-radius:14px;} .home-wallet-card{border-radius:24px;padding:18px 16px 20px;} .home-wallet-label{font-size:16px;gap:8px;} .home-inline-history{height:40px;padding:0 14px;font-size:14px;border-radius:14px;} .home-balance{font-size:54px;} .home-balance-currency{font-size:21px;} .home-member-line .cap,.home-member-line .num{font-size:15px;} .home-wallet-art{font-size:72px;right:10px;bottom:12px;} .home-money-actions{gap:12px;margin-top:-18px;} #homeScreen .v16-money-btn{height:82px;border-radius:20px;font-size:18px;gap:12px;} #homeScreen .v16-money-icon{width:40px;height:40px;font-size:30px;} .home-section-head{margin:24px 2px 12px;} .home-section-head h3{font-size:20px;gap:10px;} .home-see-all{font-size:15px;} .home-lotto-card{border-radius:22px;padding:14px;} .home-lotto-preview{grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;} .home-lotto-pill{min-width:0;} .home-lotto-flag{width:46px;height:46px;font-size:25px;margin-bottom:6px;} .home-lotto-name{font-size:11px;min-height:30px;} .home-lotto-time{font-size:11px;} .home-enter-lotto{height:64px;border-radius:18px;font-size:20px;} .home-enter-lotto .arrow{font-size:28px;} .home-shortcuts{grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;} #homeScreen .v16-shortcut{min-height:94px;border-radius:18px;padding:12px 5px;gap:8px;} #homeScreen .v16-shortcut-icon{width:48px;height:48px;border-radius:15px;font-size:25px;} #homeScreen .v16-shortcut span:last-child{font-size:12px;} .home-affiliate-banner{border-radius:20px;padding:14px;gap:12px;} .home-affiliate-left{width:54px;height:54px;flex-basis:54px;font-size:28px;} .home-affiliate-copy strong{font-size:20px;} .home-affiliate-copy small{font-size:13px;} .home-affiliate-gift{font-size:50px;} .app-bottom-nav{width:calc(100% - 14px);bottom:6px;padding:10px 10px calc(10px + env(safe-area-inset-bottom,0px));border-radius:24px;} .bottom-nav-btn{font-size:12px;gap:4px;} .bottom-nav-btn .icon{font-size:23px;min-height:24px;} .bottom-nav-btn.bottom-center .icon{width:60px;height:60px;font-size:28px;border-width:6px;margin-top:-28px;} .lotto-screen-shell{padding-bottom:118px;} .lotto-top-hero{padding:14px 14px 22px;border-bottom-left-radius:22px;border-bottom-right-radius:22px;} .lotto-top-row{gap:10px;align-items:flex-end;} .lotto-top-left{gap:14px;} .modern-back-home{height:46px;padding:0 14px;border-radius:15px;font-size:15px;gap:8px;} .modern-back-home .arr{font-size:22px;} .lotto-page-title{font-size:30px;} .lotto-page-sub{font-size:16px;} .lotto-balance-box{padding:12px 16px;min-width:110px;border-radius:18px;} .lotto-balance-box strong{font-size:28px;} .lotto-body{padding:18px 14px 0;} .lotto-group-head{font-size:20px;gap:10px;margin-bottom:12px;padding-bottom:12px;} .lotto-group-head .mark{width:38px;height:38px;font-size:20px;} button.lotto.lotto-card-new{padding:14px 12px;gap:10px;grid-template-columns:auto 1fr auto auto;border-radius:18px;} .lotto-flag-badge{width:46px;height:46px;font-size:24px;} .lotto-main .lotto-name{font-size:17px;} .lotto-main .lotto-meta{font-size:14px;} .lotto-main .lotto-limit-note{font-size:11px;} .lotto-side{min-width:110px;gap:6px;} .lotto-side .lotto-date{font-size:12px;} .lotto-side .countdown{min-width:92px;padding:8px 8px;border-radius:12px;font-size:12px;} .lotto-chevron{font-size:28px;} }
 
+html,body{
+  background:#f7f7f8 !important;
+  color:var(--ux-ink) !important;
+  font-family:"Kanit","Noto Sans Thai",sans-serif !important;
+}
 
+.app{
+  width:100% !important;
+  max-width:440px !important;
+  min-height:100svh !important;
+  margin:0 auto !important;
+  overflow-x:hidden !important;
+  background:#fff !important;
+}
 
-/* =====================================================
-   V100 — REFERENCE MATCH TUNE
-===================================================== */
-html,body{font-family:'Kanit',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;}
-#loginScreen{min-height:100dvh;display:flex;align-items:flex-start;justify-content:center;overflow:hidden;position:relative;}
-#loginScreen::before,#loginScreen::after{content:"";position:absolute;inset:auto;pointer-events:none;}
-#loginScreen::before{left:-14%;bottom:10%;width:56%;height:3px;background:linear-gradient(90deg,transparent,rgba(255,80,80,.85),transparent);box-shadow:0 0 18px rgba(255,80,80,.45);transform:rotate(32deg);}
-#loginScreen::after{right:-18%;bottom:18%;width:58%;height:3px;background:linear-gradient(90deg,transparent,rgba(255,80,80,.85),transparent);box-shadow:0 0 18px rgba(255,80,80,.35);transform:rotate(-28deg);}
-.login-page-shell{position:relative;z-index:2;padding-top:12px;padding-bottom:4px;}
-.login-top-logo{margin:20px 0 18px;}
-.login-top-logo img{width:min(88vw,390px);}
-.login-card-credit.login-card-redesign{border-radius:34px 34px 38px 38px;padding:34px 28px 24px;max-width:840px;}
-.login-title-line span:not(.line){font-size:22px;color:#d41818;}
-.login-big-title{letter-spacing:-.5px;}
-#loginScreen .auth-tabs{height:84px;}
-#loginScreen .auth-tab{height:82px;box-shadow:none;border-radius:0;}
-#loginScreen .auth-tab.active{background:linear-gradient(180deg,#d52b2b 0%, #8e1106 100%);}
-#loginScreen .login-field input,#loginScreen .login-field select{border-color:#ded8d8;color:#484848;background:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.8);}
-#loginScreen .login-field input::placeholder{color:#b7b7b7;font-weight:600;}
-#loginScreen .password-toggle{font-size:22px;}
-.login-line-contact{background:#2fbf3b;border-radius:18px;}
-.login-affiliate-banner{background:linear-gradient(90deg,#fbefef 0%,#fff8f8 55%,#fbefef 100%);border-radius:20px;padding:16px 18px;}
-.login-affiliate-copy strong{font-size:clamp(22px,3vw,30px);}
-.login-affiliate-copy small{font-size:clamp(14px,2vw,18px);}
-.login-footer{margin-top:10px;font-size:15px;}
+button{ -webkit-tap-highlight-color:transparent; }
 
-#homeScreen{background:#f8f6f6;}
-#homeScreen .v16-home-shell{position:relative;overflow:hidden;}
-#homeScreen .v16-home{padding-bottom:138px;}
-.home-hero-red{position:relative;background:radial-gradient(circle at 14% 12%, rgba(255,255,255,.04) 0, rgba(255,255,255,0) 28%),linear-gradient(180deg,#620000 0%,#8e0000 34%,#bf0000 72%,#c70000 100%);padding-top:10px;padding-bottom:34px;border-bottom-left-radius:0;border-bottom-right-radius:0;overflow:hidden;}
-.home-hero-red::after{content:"";position:absolute;left:-10%;right:-10%;bottom:-72px;height:140px;background:#f8f6f6;border-radius:0 0 52% 48%/0 0 100% 100%;}
-.fake-statusbar{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;color:#fff;font-weight:700;font-size:18px;padding:2px 2px 10px;}
-.fake-statusbar .fake-signal{letter-spacing:.2px;font-size:17px;}
-.fake-statusbar b{display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:22px;padding:0 6px;border-radius:7px;background:rgba(255,255,255,.92);color:#4a302f;font-size:15px;margin-left:6px;}
-.home-topbar,.home-wallet-card,.home-money-actions,.home-section-head,.home-lotto-card,.home-shortcuts,.home-affiliate-banner{position:relative;z-index:2;}
-.home-topbar{margin-bottom:22px;}
-.home-brand-logo img{width:min(42vw,250px);}
-.home-icon-btn,.home-ghost-btn{border-color:rgba(255,255,255,.38);background:rgba(255,255,255,.04);backdrop-filter:blur(2px);}
-.home-wallet-card{background:linear-gradient(135deg,#c6000e 0%,#970004 55%,#6f0000 100%);border-radius:28px;padding:22px 24px 20px;min-height:280px;border:1px solid rgba(255,255,255,.14);}
-.home-wallet-card::before{content:"";position:absolute;inset:10px;border:1px solid rgba(255,255,255,.08);border-radius:24px;pointer-events:none;}
-.home-wallet-label{font-size:18px;}
-.home-inline-history{border-radius:14px;font-size:15px;padding:0 16px;color:#7d140d;}
-.home-balance{font-size:clamp(70px,13vw,90px);letter-spacing:-2px;}
-.home-member-line{max-width:180px;margin-top:26px;padding-top:16px;}
-.home-wallet-art{right:22px;bottom:36px;font-size:130px;opacity:.09;filter:grayscale(1) brightness(2);}
-.home-wallet-ready{position:absolute;right:18px;bottom:18px;font-size:18px;font-weight:700;color:rgba(255,255,255,.88);}
-.home-money-actions{margin-top:-18px;gap:20px;}
-#homeScreen .v16-money-btn{height:88px;border-radius:24px;font-size:22px;}
-#homeScreen .v16-money-btn.deposit{background:linear-gradient(180deg,#df0011,#710000);box-shadow:0 12px 22px rgba(50,0,0,.22);}
-#homeScreen .v16-money-btn.withdraw{box-shadow:0 12px 22px rgba(70,0,0,.10);}
-#homeScreen .v16-money-icon{width:52px;height:52px;font-size:34px;}
-.home-section-head{margin-top:26px;margin-bottom:14px;}
-.home-section-head h3{font-size:26px;font-weight:900;}
-.home-section-head h3 .mark{font-size:24px;}
-.home-lotto-card{padding:18px 18px 20px;border-radius:24px;box-shadow:0 10px 25px rgba(0,0,0,.06);}
-.home-open-chip{height:30px;font-size:14px;padding:0 16px;margin-bottom:14px;}
-.home-lotto-preview{gap:12px;margin-bottom:18px;}
-.home-lotto-flag{width:70px;height:70px;font-size:36px;box-shadow:none;border-color:#e7e1e1;}
-.home-lotto-name{font-size:13px;font-weight:800;min-height:36px;}
-.home-lotto-time{font-size:13px;}
-.home-enter-lotto{height:72px;border-radius:16px;background:linear-gradient(180deg,#d1000e 0%,#720000 100%);}
-.home-shortcuts{gap:18px;}
-#homeScreen .v16-shortcut{min-height:118px;border-radius:22px;box-shadow:0 8px 20px rgba(0,0,0,.05);}
-#homeScreen .v16-shortcut-icon{border-radius:16px;border-width:1.6px;}
-.home-affiliate-banner{margin-top:22px;padding:18px 20px;border-radius:24px;background:linear-gradient(90deg,#8d0006 0%,#d10009 62%,#a30008 100%);}
-.home-affiliate-left{width:64px;height:64px;}
-.home-affiliate-copy strong{font-size:22px;}
-.home-affiliate-copy small{font-size:15px;}
-.home-affiliate-gift{font-size:74px;}
-.app-bottom-nav{bottom:8px;border-radius:28px;padding-top:14px;padding-bottom:14px;box-shadow:0 18px 34px rgba(34,0,0,.14);}
-.bottom-nav-btn{font-size:13px;}
-.bottom-nav-btn .icon{font-size:26px;}
-.bottom-nav-btn.bottom-center .icon{margin-top:-40px;width:78px;height:78px;border-width:8px;box-shadow:0 10px 22px rgba(80,0,0,.24);}
-.bottom-nav-btn.active .label{color:#d40012;}
+/* ---------- LOGIN ---------- */
+#loginScreen{
+  min-height:100svh !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  padding:112px 16px 30px !important;
+  background:
+    radial-gradient(circle at 82% 15%,rgba(255,54,54,.30),transparent 26%),
+    radial-gradient(circle at 8% 76%,rgba(255,43,43,.20),transparent 32%),
+    linear-gradient(145deg,#300002 0%,#700006 50%,#b90d16 100%) !important;
+  overflow:auto !important;
+}
 
-#lottoScreen{background:#f6f4f4;}
-.lotto-screen-shell{padding-bottom:108px;}
-.lotto-top-hero{background:radial-gradient(circle at 18% 14%, rgba(255,255,255,.08) 0, rgba(255,255,255,0) 18%),linear-gradient(180deg,#b20000 0%,#db0000 100%);padding:22px 24px 28px;border-bottom-left-radius:0;border-bottom-right-radius:0;}
-.lotto-top-row{align-items:flex-start;}
-.modern-back-home{height:62px;padding:0 24px;border-radius:22px;background:rgba(255,255,255,.06);}
-.lotto-page-title{font-size:66px;line-height:.96;letter-spacing:-1.4px;}
-.lotto-page-sub{font-size:28px;line-height:1.1;}
-.lotto-balance-box{min-width:210px;padding:18px 24px;border-radius:24px;margin-top:12px;}
-.lotto-balance-box strong{font-size:56px;line-height:1.05;}
-.lotto-body{padding:24px;}
-.lotto-group{margin-bottom:28px;padding-top:2px;}
-.lotto-group + .lotto-group{border-top:1px solid #e3dddd;padding-top:22px;}
-.lotto-group-head{border:0;padding-bottom:0;margin-bottom:16px;font-size:28px;}
-.lotto-group-head .mark{width:44px;height:44px;background:linear-gradient(180deg,#9e0000,#660000);font-size:22px;}
-button.lotto.lotto-card-new{border-radius:24px;padding:18px 20px;box-shadow:0 8px 18px rgba(0,0,0,.06);}
-.lotto-flag-badge{width:68px;height:68px;font-size:32px;}
-.lotto-main .lotto-name{font-size:26px;}
-.lotto-main .lotto-meta{font-size:15px;color:#535353;}
-.lotto-side .lotto-date{font-size:14px;color:#5e5353;}
-.lotto-side .countdown{background:#ffe8e8;color:#bc1818;border-radius:12px;min-width:148px;font-size:18px;}
-.lotto-chevron{font-size:40px;color:#491313;}
-.lotto-bottom-nav{position:fixed;left:0;right:0;bottom:0;z-index:44;display:grid;grid-template-columns:repeat(4,1fr);background:linear-gradient(180deg,#cb0000,#940000);padding:12px 10px calc(14px + env(safe-area-inset-bottom,0px));box-shadow:0 -10px 24px rgba(50,0,0,.16);}
-.lotto-nav-btn{border:0;background:none;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:0 4px;font-family:inherit;}
-.lotto-nav-btn .icon{font-size:33px;line-height:1;display:flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:18px;}
-.lotto-nav-btn .label{font-size:15px;font-weight:700;white-space:nowrap;}
-.lotto-nav-btn.active .icon{background:rgba(255,255,255,.18);}
-.lotto-nav-btn.active .label{text-decoration:underline;text-underline-offset:8px;text-decoration-thickness:3px;}
-@media (max-width:560px){
-  .login-top-logo{margin-top:10px;margin-bottom:16px;}
-  .login-card-credit.login-card-redesign{padding:24px 16px 18px;border-radius:28px;}
-  #loginScreen .auth-tabs{height:70px;}
-  #loginScreen .auth-tab{height:68px;}
-  .fake-statusbar{font-size:14px;padding-bottom:8px;}
-  .fake-statusbar .fake-signal{font-size:13px;}
-  .fake-statusbar b{min-width:24px;height:19px;font-size:12px;border-radius:6px;}
-  .home-wallet-card{min-height:244px;padding:18px 16px;}
-  .home-wallet-art{font-size:96px;right:10px;bottom:34px;}
-  .home-wallet-ready{font-size:14px;right:14px;bottom:14px;}
-  .home-balance{font-size:74px;}
-  .home-inline-history{font-size:13px;}
-  #homeScreen .v16-money-btn{height:84px;font-size:18px;}
-  #homeScreen .v16-money-icon{width:44px;height:44px;font-size:30px;}
-  .home-lotto-preview{gap:6px;}
-  .home-lotto-flag{width:54px;height:54px;font-size:28px;}
-  .home-lotto-name{font-size:12px;min-height:32px;}
-  .home-lotto-time{font-size:11px;}
-  .home-shortcuts{gap:10px;}
-  #homeScreen .v16-shortcut{min-height:100px;padding:14px 6px;}
-  #homeScreen .v16-shortcut span:last-child{font-size:13px;}
-  .app-bottom-nav{padding-left:10px;padding-right:10px;}
-  .bottom-nav-btn.bottom-center .icon{width:64px;height:64px;margin-top:-30px;border-width:6px;}
-  .lotto-top-hero{padding:18px 16px 24px;}
-  .modern-back-home{height:48px;padding:0 16px;border-radius:18px;font-size:16px;}
-  .lotto-page-title{font-size:48px;}
-  .lotto-page-sub{font-size:18px;}
-  .lotto-balance-box{min-width:120px;padding:14px 14px;border-radius:18px;}
-  .lotto-balance-box strong{font-size:28px;}
-  .lotto-body{padding:18px 14px 0;}
-  .lotto-group{margin-bottom:22px;}
-  .lotto-group-head{font-size:22px;margin-bottom:12px;}
-  .lotto-group-head .mark{width:38px;height:38px;font-size:18px;}
-  button.lotto.lotto-card-new{padding:14px 12px;border-radius:18px;grid-template-columns:auto 1fr auto auto;gap:10px;}
-  .lotto-flag-badge{width:52px;height:52px;font-size:25px;}
-  .lotto-main .lotto-name{font-size:19px;}
-  .lotto-main .lotto-meta{font-size:12px;}
-  .lotto-side{min-width:104px;}
-  .lotto-side .lotto-date{font-size:11px;}
-  .lotto-side .countdown{min-width:88px;font-size:12px;padding:8px 6px;}
-  .lotto-chevron{font-size:28px;}
-  .lotto-bottom-nav{padding:10px 6px calc(10px + env(safe-area-inset-bottom,0px));}
-  .lotto-nav-btn .icon{width:46px;height:46px;font-size:24px;border-radius:14px;}
-  .lotto-nav-btn .label{font-size:12px;}
+.login-card-credit{
+  position:relative !important;
+  overflow:visible !important;
+  width:min(100%,390px) !important;
+  margin:0 auto !important;
+  padding:24px 18px 20px !important;
+  border:1px solid rgba(255,255,255,.88) !important;
+  border-radius:24px !important;
+  background:#fff !important;
+  box-shadow:0 24px 70px rgba(28,0,3,.34) !important;
+  color:var(--ux-ink) !important;
+}
+
+.login-card-credit:before{
+  display:none !important;
+}
+
+.login-logo-credit{
+  position:absolute !important;
+  left:50% !important;
+  top:-91px !important;
+  transform:translateX(-50%) !important;
+  width:210px !important;
+  height:74px !important;
+  min-height:0 !important;
+  margin:0 !important;
+  padding:0 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+  z-index:3 !important;
+}
+.login-logo-credit img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  filter:drop-shadow(0 9px 14px rgba(0,0,0,.28)) !important;
+}
+
+.auth-tabs{
+  display:grid !important;
+  grid-template-columns:1fr 1fr !important;
+  gap:8px !important;
+  margin:0 0 18px !important;
+  padding:0 !important;
+  border:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+}
+.auth-tabs:before{
+  content:"เข้าสู่ระบบ";
+  grid-column:1/-1;
+  order:-2;
+  margin:2px 0 1px;
+  color:#8f0a12 !important;
+  text-align:center;
+  font-size:27px;
+  line-height:1.18;
+  font-weight:800 !important;
+}
+.auth-tabs:after{
+  content:"ยินดีต้อนรับกลับมา";
+  grid-column:1/-1;
+  order:-1;
+  margin:0 0 14px;
+  color:#736669 !important;
+  text-align:center;
+  font-size:13px;
+  font-weight:450 !important;
+}
+@supports selector(.login-card-credit:has(#authRegisterTab.active)){
+  .login-card-credit:has(#authRegisterTab.active) .auth-tabs:before{content:"สมัครสมาชิก";}
+  .login-card-credit:has(#authRegisterTab.active) .auth-tabs:after{content:"สร้างบัญชีเพื่อเริ่มใช้งาน";}
+}
+
+.auth-tab{
+  min-height:48px !important;
+  border:1px solid #ece5e6 !important;
+  border-radius:13px !important;
+  background:#fff !important;
+  color:#4c4446 !important;
+  box-shadow:0 4px 12px rgba(0,0,0,.03) !important;
+  font-size:14px !important;
+  font-weight:650 !important;
+}
+.auth-tab.active{
+  border-color:#b90d16 !important;
+  background:linear-gradient(135deg,#a70710,#d51520) !important;
+  color:#fff !important;
+  box-shadow:0 9px 20px rgba(185,13,22,.22) !important;
+}
+
+.login-field{ margin:12px 0 !important; }
+.login-field label{
+  margin-bottom:7px !important;
+  color:#31292b !important;
+  font-size:12px !important;
+  font-weight:600 !important;
+}
+.login-field input,
+.login-field select{
+  width:100% !important;
+  height:50px !important;
+  padding:0 14px !important;
+  border:1.5px solid #ded8d9 !important;
+  border-radius:13px !important;
+  background:#fff !important;
+  color:#261d1f !important;
+  font-size:15px !important;
+  box-shadow:inset 0 1px 0 rgba(0,0,0,.01) !important;
+}
+.login-field input:focus,
+.login-field select:focus{
+  border-color:#c81019 !important;
+  box-shadow:0 0 0 3px rgba(185,13,22,.10) !important;
+}
+.password-wrap input{ padding-right:66px !important; }
+.password-toggle{
+  right:7px !important;
+  top:7px !important;
+  height:36px !important;
+  min-width:50px !important;
+  border:0 !important;
+  background:#fff1f2 !important;
+  color:#a20d15 !important;
+  font-size:10px !important;
+  font-weight:650 !important;
+}
+.login-submit{
+  width:100% !important;
+  height:54px !important;
+  margin-top:9px !important;
+  border:0 !important;
+  border-radius:13px !important;
+  background:linear-gradient(135deg,#9d070f,#d40f1b) !important;
+  color:#fff !important;
+  font-size:17px !important;
+  font-weight:750 !important;
+  box-shadow:0 12px 25px rgba(157,7,15,.22) !important;
+}
+
+.login-line-contact-wrap{
+  margin-top:18px !important;
+  padding-top:16px !important;
+  border-top:1px solid #ece7e8 !important;
+}
+.login-line-contact-label{
+  position:relative;
+  margin:0 0 10px !important;
+  color:#7b6e70 !important;
+  font-size:11px !important;
+  font-weight:450 !important;
+}
+.login-line-contact{
+  min-height:51px !important;
+  border:0 !important;
+  border-radius:13px !important;
+  background:linear-gradient(135deg,#08b94e,#03a943) !important;
+  color:#fff !important;
+  font-size:14px !important;
+  font-weight:700 !important;
+  box-shadow:0 10px 22px rgba(6,199,85,.20) !important;
+}
+.login-line-contact img{width:24px !important;height:24px !important;}
+
+/* ---------- HOME ---------- */
+#homeScreen{
+  background:#f7f7f8 !important;
+}
+.v16-home-shell{
+  min-height:100svh !important;
+  padding:calc(12px + env(safe-area-inset-top)) 14px calc(28px + env(safe-area-inset-bottom)) !important;
+  background:
+    radial-gradient(circle at 90% 2%,rgba(255,46,46,.25),transparent 24%),
+    linear-gradient(180deg,#570004 0,#9e0710 225px,#f7f7f8 225px,#f7f7f8 100%) !important;
+}
+.v16-home{
+  width:100% !important;
+  max-width:412px !important;
+  margin:0 auto !important;
+  background:transparent !important;
+}
+.v16-home-head{
+  min-height:52px !important;
+  margin:0 0 12px !important;
+  align-items:center !important;
+}
+.v16-brand-mark{
+  width:154px !important;
+  height:48px !important;
+  flex:0 0 154px !important;
+  padding:0 !important;
+  border:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+}
+.v16-brand-mark img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  filter:drop-shadow(0 5px 9px rgba(0,0,0,.24)) !important;
+}
+.v16-head-actions{gap:6px !important;}
+.v16-logout{
+  min-width:0 !important;
+  height:38px !important;
+  padding:0 10px !important;
+  border:1px solid rgba(255,255,255,.30) !important;
+  border-radius:11px !important;
+  background:rgba(78,0,5,.32) !important;
+  color:#fff !important;
+  font-size:10px !important;
+  font-weight:650 !important;
+  box-shadow:none !important;
+}
+.v16-head-actions .line-contact-btn{
+  background:#08b94e !important;
+  border-color:#08b94e !important;
+}
+.line-contact-logo{width:16px !important;height:16px !important;}
+
+.v16-wallet{
+  min-height:166px !important;
+  padding:18px !important;
+  border:1px solid rgba(255,255,255,.20) !important;
+  border-radius:20px !important;
+  background:
+    radial-gradient(circle at 88% 28%,rgba(255,65,65,.26),transparent 29%),
+    linear-gradient(135deg,#3e0003 0%,#790007 54%,#a70a12 100%) !important;
+  box-shadow:0 17px 38px rgba(92,0,7,.27) !important;
+}
+.v16-wallet:before{
+  inset:10px !important;
+  border-color:rgba(255,255,255,.08) !important;
+  border-radius:15px !important;
+}
+.v16-wallet:after{display:none !important;}
+.v16-wallet-label{
+  color:rgba(255,255,255,.85) !important;
+  font-size:11px !important;
+  font-weight:550 !important;
+}
+.v16-wallet-user{
+  padding:6px 9px !important;
+  border:1px solid rgba(255,255,255,.14) !important;
+  border-radius:999px !important;
+  background:rgba(0,0,0,.16) !important;
+  color:#fff !important;
+  font-size:9px !important;
+}
+.v16-wallet-balance{
+  margin-top:16px !important;
+  color:#fff !important;
+  font-size:40px !important;
+  font-weight:800 !important;
+}
+.v16-wallet-balance b{color:#fff !important;font-weight:800 !important;}
+.v16-wallet-balance span{color:#fff !important;font-size:19px !important;}
+.v16-wallet-sub{
+  margin-top:15px !important;
+  color:rgba(255,255,255,.82) !important;
+  font-size:10px !important;
+}
+
+.v16-money-actions{
+  position:relative !important;
+  z-index:3 !important;
+  grid-template-columns:1fr 1fr !important;
+  gap:10px !important;
+  margin:-8px 5px 0 !important;
+}
+.v16-money-btn{
+  min-height:56px !important;
+  border-radius:15px !important;
+  font-size:15px !important;
+  font-weight:700 !important;
+  box-shadow:0 10px 24px rgba(99,0,8,.14) !important;
+}
+.v16-money-btn.deposit{
+  background:linear-gradient(135deg,#92070f,#c90d18) !important;
+  color:#fff !important;
+  border:1px solid #90040c !important;
+}
+.v16-money-btn.withdraw{
+  background:#fff !important;
+  color:#8d0710 !important;
+  border:1px solid #eadbdd !important;
+}
+.v16-money-icon{
+  width:30px !important;
+  height:30px !important;
+  border-radius:50% !important;
+  font-size:18px !important;
+}
+.v16-money-btn.deposit .v16-money-icon{background:#fff !important;color:#9d0710 !important;}
+.v16-money-btn.withdraw .v16-money-icon{background:#fff1f2 !important;color:#a30b14 !important;}
+
+.v16-section-title{
+  margin:22px 2px 10px !important;
+  color:#301d1f !important;
+  font-size:16px !important;
+  font-weight:750 !important;
+  letter-spacing:0 !important;
+}
+.v16-section-title:before{display:none !important;}
+
+.v16-lotto-entry{
+  padding:16px !important;
+  border:1px solid #ece4e5 !important;
+  border-radius:18px !important;
+  background:#fff !important;
+  color:var(--ux-ink) !important;
+  box-shadow:var(--ux-shadow) !important;
+}
+.v16-lotto-entry:before{display:none !important;}
+.v16-lotto-row{align-items:center !important;}
+.v16-lotto-badge{
+  min-height:23px !important;
+  padding:0 9px !important;
+  border:0 !important;
+  border-radius:999px !important;
+  background:#bd111b !important;
+  color:#fff !important;
+  font-size:9px !important;
+}
+.v16-lotto-title{
+  margin-top:7px !important;
+  color:#251314 !important;
+  font-size:24px !important;
+  font-weight:800 !important;
+}
+.v16-lotto-art{
+  width:86px !important;
+  height:72px !important;
+  flex:0 0 86px !important;
+}
+.v16-lotto-go{
+  min-height:46px !important;
+  margin-top:12px !important;
+  border-radius:12px !important;
+  background:linear-gradient(135deg,#8f0710,#b80c16) !important;
+  color:#fff !important;
+  font-size:13px !important;
+  font-weight:700 !important;
+}
+
+.v16-shortcuts{
+  display:grid !important;
+  grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+  gap:8px !important;
+}
+.v16-shortcut{
+  min-height:80px !important;
+  padding:9px 4px !important;
+  border:1px solid #ece5e6 !important;
+  border-radius:15px !important;
+  background:#fff !important;
+  color:#4d3639 !important;
+  box-shadow:0 7px 18px rgba(72,0,7,.06) !important;
+  font-size:9px !important;
+  font-weight:600 !important;
+}
+.v16-shortcut-icon{
+  width:34px !important;
+  height:34px !important;
+  border-radius:11px !important;
+  background:#fff1f2 !important;
+  color:#a40a13 !important;
+  font-size:17px !important;
+  box-shadow:none !important;
+}
+.v16-shortcut-affiliate{
+  grid-column:1/-1 !important;
+  min-height:76px !important;
+  margin-top:4px !important;
+  padding:12px 16px !important;
+  flex-direction:row !important;
+  justify-content:flex-start !important;
+  gap:13px !important;
+  border:0 !important;
+  border-radius:16px !important;
+  background:
+    radial-gradient(circle at 90% 45%,rgba(255,255,255,.18),transparent 28%),
+    linear-gradient(135deg,#790006,#a90b14 58%,#d0121e) !important;
+  color:#fff !important;
+  box-shadow:0 11px 25px rgba(111,0,8,.18) !important;
+  font-size:15px !important;
+  text-align:left !important;
+}
+.v16-shortcut-affiliate .v16-shortcut-icon{
+  width:42px !important;
+  height:42px !important;
+  flex:0 0 42px !important;
+  border-radius:50% !important;
+  background:rgba(255,255,255,.14) !important;
+  color:#fff !important;
+}
+.v16-shortcut-affiliate span:last-child{color:#fff !important;font-weight:700 !important;}
+
+/* ---------- LOTTERY SELECTION ---------- */
+#lottoScreen{
+  min-height:100svh !important;
+  background:#f6f6f7 !important;
+}
+#lottoScreen .hero{
+  position:relative !important;
+  min-height:174px !important;
+  padding:calc(14px + env(safe-area-inset-top)) 16px 18px !important;
+  border:0 !important;
+  border-radius:0 0 22px 22px !important;
+  background:
+    radial-gradient(circle at 89% 20%,rgba(255,40,40,.28),transparent 26%),
+    linear-gradient(135deg,#5b0005 0%,#920810 58%,#bd121c 100%) !important;
+  box-shadow:0 10px 25px rgba(91,0,5,.20) !important;
+  color:#fff !important;
+}
+#lottoScreen .eyebrow{display:none !important;}
+#lottoScreen .hero h1{
+  margin:58px 0 0 !important;
+  color:#fff !important;
+  font-size:29px !important;
+  line-height:1.1 !important;
+  font-weight:800 !important;
+  text-shadow:none !important;
+}
+#lottoScreen .hero h1:after{
+  content:"เลือกตลาดหวยที่ต้องการ";
+  display:block;
+  margin-top:7px;
+  color:rgba(255,255,255,.78);
+  font-size:11px;
+  font-weight:450;
+}
+#lottoScreen .home-nav-inline{
+  position:absolute !important;
+  top:calc(13px + env(safe-area-inset-top)) !important;
+  left:16px !important;
+  margin:0 !important;
+}
+#lottoScreen .home-nav-inline button{
+  min-height:38px !important;
+  padding:0 13px !important;
+  border:1px solid rgba(255,255,255,.32) !important;
+  border-radius:12px !important;
+  background:rgba(63,0,4,.25) !important;
+  color:#fff !important;
+  font-size:11px !important;
+  font-weight:650 !important;
+}
+#lottoScreen .account-row{
+  position:absolute !important;
+  right:16px !important;
+  bottom:18px !important;
+  margin:0 !important;
+  display:block !important;
+}
+#lottoScreen .account-credit{
+  min-width:112px !important;
+  padding:10px 13px !important;
+  border:1px solid rgba(255,255,255,.94) !important;
+  border-radius:14px !important;
+  background:#fff !important;
+  text-align:center !important;
+  box-shadow:0 9px 20px rgba(74,0,5,.16) !important;
+}
+#lottoScreen .account-credit:before{
+  content:"ยอดคงเหลือ";
+  display:block;
+  margin-bottom:2px;
+  color:#80676b;
+  font-size:9px;
+  font-weight:550;
+}
+#lottoScreen .account-credit small{display:none !important;}
+#lottoScreen .account-credit strong{
+  color:#a20913 !important;
+  font-size:20px !important;
+  line-height:1.1 !important;
+  font-weight:800 !important;
+}
+#lottoScreen .account-credit strong:after{
+  content:" ฿";
+  font-size:13px;
+  font-weight:650;
+}
+#lottoScreen .account-actions{display:none !important;}
+
+#lottoScreen .lotto-body{
+  padding:16px 12px calc(24px + env(safe-area-inset-bottom)) !important;
+  background:#f6f6f7 !important;
+}
+#lottoScreen .lotto-grid{
+  display:grid !important;
+  grid-template-columns:1fr !important;
+  gap:9px !important;
+}
+#lottoScreen .lotto{
+  position:relative !important;
+  width:100% !important;
+  min-height:78px !important;
+  margin:0 !important;
+  padding:11px 34px 11px 10px !important;
+  display:grid !important;
+  grid-template-columns:43px minmax(0,1fr) 102px !important;
+  gap:10px !important;
+  align-items:center !important;
+  border:1px solid #e9e2e3 !important;
+  border-left:1px solid #e9e2e3 !important;
+  border-radius:15px !important;
+  background:#fff !important;
+  color:var(--ux-ink) !important;
+  box-shadow:0 5px 13px rgba(31,0,3,.07) !important;
+  text-align:left !important;
+}
+#lottoScreen .lotto:before{
+  content:"◆";
+  grid-column:1;
+  width:39px;
+  height:39px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:linear-gradient(135deg,#9f0710,#c7131d);
+  color:#fff;
+  font-size:15px;
+  box-shadow:0 6px 14px rgba(159,7,16,.17);
+}
+#lottoScreen .lotto:after{
+  content:"›";
+  position:absolute;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  color:#65070c;
+  font-size:28px;
+  line-height:1;
+  font-weight:400;
+}
+#lottoScreen .lotto > div:first-child{
+  grid-column:2 !important;
+  min-width:0 !important;
+}
+#lottoScreen .lotto-right{
+  grid-column:3 !important;
+  min-width:0 !important;
+  padding-right:1px !important;
+  text-align:right !important;
+}
+#lottoScreen .lotto-name{
+  color:#241719 !important;
+  font-size:15px !important;
+  line-height:1.25 !important;
+  font-weight:750 !important;
+  white-space:normal !important;
+}
+#lottoScreen .lotto-meta{
+  margin-top:4px !important;
+  color:#746669 !important;
+  font-size:10px !important;
+  font-weight:450 !important;
+}
+#lottoScreen .lotto-date{
+  color:#6f6265 !important;
+  font-size:9px !important;
+  font-weight:500 !important;
+}
+#lottoScreen .countdown{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  min-height:26px !important;
+  margin-top:5px !important;
+  padding:0 8px !important;
+  border-radius:8px !important;
+  background:#ffe6e8 !important;
+  color:#ae0b15 !important;
+  font-size:11px !important;
+  font-weight:750 !important;
+  font-variant-numeric:tabular-nums !important;
+}
+#lottoScreen .lotto-limit-note{
+  margin-top:4px !important;
+  color:#9a1d24 !important;
+  font-size:8px !important;
+  line-height:1.35 !important;
+}
+#lottoScreen .lotto.closed{opacity:.46 !important;filter:grayscale(.15) !important;}
+#lottoScreen .empty{
+  margin-top:8px !important;
+  padding:22px 12px !important;
+  border:1px dashed #d9cdd0 !important;
+  border-radius:14px !important;
+  background:#fff !important;
+  color:#817477 !important;
+  font-size:11px !important;
+}
+
+/* ---------- MOBILE SCALE ---------- */
+@media(max-width:430px){
+  #loginScreen{padding:106px 13px 24px !important;}
+  .login-card-credit{width:min(100%,370px) !important;padding:22px 15px 17px !important;border-radius:22px !important;}
+  .login-logo-credit{top:-82px !important;width:188px !important;height:68px !important;}
+  .auth-tabs:before{font-size:24px !important;}
+  .auth-tabs:after{font-size:12px !important;margin-bottom:12px !important;}
+  .auth-tab{min-height:45px !important;font-size:13px !important;}
+  .login-field input,.login-field select{height:48px !important;font-size:14px !important;}
+  .login-submit{height:51px !important;font-size:16px !important;}
+
+  .v16-home-shell{padding-left:11px !important;padding-right:11px !important;background:linear-gradient(180deg,#570004 0,#9e0710 205px,#f7f7f8 205px,#f7f7f8 100%) !important;}
+  .v16-brand-mark{width:138px !important;height:44px !important;flex-basis:138px !important;}
+  .v16-logout{height:36px !important;padding:0 8px !important;font-size:9px !important;}
+  .v16-wallet{min-height:154px !important;padding:16px !important;}
+  .v16-wallet-balance{font-size:36px !important;}
+  .v16-money-btn{min-height:53px !important;font-size:14px !important;}
+  .v16-lotto-entry{padding:14px !important;}
+  .v16-lotto-title{font-size:22px !important;}
+  .v16-lotto-art{width:76px !important;height:64px !important;flex-basis:76px !important;}
+  .v16-shortcuts{grid-template-columns:repeat(4,minmax(0,1fr)) !important;gap:6px !important;}
+  .v16-shortcut{min-height:74px !important;font-size:8px !important;}
+  .v16-shortcut-icon{width:31px !important;height:31px !important;font-size:15px !important;}
+  .v16-shortcut-affiliate{min-height:70px !important;font-size:14px !important;padding:10px 13px !important;}
+
+  #lottoScreen .hero{min-height:164px !important;padding-left:13px !important;padding-right:13px !important;}
+  #lottoScreen .hero h1{margin-top:54px !important;font-size:27px !important;}
+  #lottoScreen .home-nav-inline{left:13px !important;}
+  #lottoScreen .account-row{right:13px !important;bottom:16px !important;}
+  #lottoScreen .account-credit{min-width:104px !important;padding:9px 11px !important;}
+  #lottoScreen .account-credit strong{font-size:18px !important;}
+  #lottoScreen .lotto-body{padding-left:10px !important;padding-right:10px !important;}
+  #lottoScreen .lotto{min-height:74px !important;grid-template-columns:40px minmax(0,1fr) 92px !important;gap:8px !important;padding-left:9px !important;padding-right:30px !important;}
+  #lottoScreen .lotto:before{width:36px !important;height:36px !important;}
+  #lottoScreen .lotto-name{font-size:14px !important;}
+  #lottoScreen .lotto-meta{font-size:9px !important;}
+  #lottoScreen .countdown{min-height:24px !important;font-size:10px !important;padding:0 7px !important;}
+}
+
+@media(min-width:441px){
+  body{padding:0 !important;}
+  #mainApp{box-shadow:0 0 0 1px rgba(0,0,0,.04),0 20px 60px rgba(0,0,0,.12);}
 }
 
 </style>
@@ -8080,47 +8463,82 @@ button.lotto.lotto-card-new{border-radius:24px;padding:18px 20px;box-shadow:0 8p
  <body>
   
   <section id="loginScreen">
-    <div class="login-page-shell">
-      <div class="login-top-logo"><img src="./supmangmee-logo.png" alt="ทรัพย์มั่งมี"></div>
-      <div class="login-card-credit login-card-redesign">
-        <div class="login-head-copy">
-          <div class="login-title-line"><span class="line"></span><span>♦</span><span class="line"></span></div>
-          <div class="login-big-title">เข้าสู่ระบบ</div>
-          <p class="login-subtitle">ยินดีต้อนรับกลับมา</p>
+    <div class="login-card-credit">
+      <div class="login-logo-credit"><img src="./supmangmee-logo.png" alt="ทรัพย์มั่งมี"></div>
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="authLoginTab" type="button">เข้าสู่ระบบ</button>
+        <button class="auth-tab" id="authRegisterTab" type="button">สมัครสมาชิก</button>
+      </div>
+
+      <div class="auth-panel active" id="loginPanel">
+        <div class="login-field">
+          <label>เบอร์โทร</label>
+          <input id="loginUser" autocomplete="username" inputmode="tel" placeholder="0812345678">
         </div>
-        <div class="auth-tabs">
-          <button class="auth-tab active" id="authLoginTab" type="button">เข้าสู่ระบบ</button>
-          <button class="auth-tab" id="authRegisterTab" type="button">สมัครสมาชิก</button>
+        <div class="login-field">
+          <label>รหัสผ่าน</label>
+          <div class="password-wrap">
+            <input id="loginPass" type="password" autocomplete="current-password" placeholder="••••••">
+            <button class="password-toggle" id="loginPassToggle" type="button">แสดง</button>
+          </div>
         </div>
-        <div class="auth-panel active" id="loginPanel">
-          <div class="login-field">
-            <label>เบอร์โทรศัพท์</label>
-            <div class="login-input-box"><span class="login-input-icon">☎</span><input id="loginUser" autocomplete="username" inputmode="tel" placeholder="เช่น 0812345678"></div>
+        <button class="login-submit" id="loginBtn">เข้าสู่ระบบ</button>
+      </div>
+
+      <div class="auth-panel" id="registerPanel">
+        <div class="register-grid">
+          <div class="login-field full">
+            <label>เบอร์โทร</label>
+            <input id="regPhone" autocomplete="tel" inputmode="tel" placeholder="0812345678">
           </div>
           <div class="login-field">
             <label>รหัสผ่าน</label>
-            <div class="password-wrap login-input-box"><span class="login-input-icon login-pass-icon">🔒</span><input id="loginPass" type="password" autocomplete="current-password" placeholder="กรอกรหัสผ่านของคุณ"><button class="password-toggle" id="loginPassToggle" type="button">👁</button></div>
+            <input id="regPass" type="password" autocomplete="new-password" placeholder="6 ตัวขึ้นไป">
           </div>
-          <div class="login-meta-row"><button class="login-forgot-link" id="forgotPassLink" type="button">ลืมรหัสผ่าน?</button></div>
-          <button class="login-submit" id="loginBtn">เข้าสู่ระบบ</button>
-        </div>
-        <div class="auth-panel" id="registerPanel">
-          <div class="register-grid">
-            <div class="login-field full"><label>เบอร์โทรศัพท์</label><div class="login-input-box"><span class="login-input-icon">☎</span><input id="regPhone" autocomplete="tel" inputmode="tel" placeholder="0812345678"></div></div>
-            <div class="login-field"><label>รหัสผ่าน</label><div class="login-input-box"><span class="login-input-icon login-pass-icon">🔒</span><input id="regPass" type="password" autocomplete="new-password" placeholder="6 ตัวขึ้นไป"></div></div>
-            <div class="login-field"><label>ยืนยันรหัสผ่าน</label><div class="login-input-box"><span class="login-input-icon login-pass-icon">🔐</span><input id="regPassConfirm" type="password" autocomplete="new-password" placeholder="••••••"></div></div>
-            <div class="login-field full"><label>ชื่อ - นามสกุล</label><div class="login-input-box"><span class="login-input-icon">👤</span><input id="regBankNameAccount" autocomplete="name" placeholder="ชื่อบัญชีธนาคาร"></div></div>
-            <div class="login-field"><label>ธนาคาร</label><div class="login-input-box"><span class="login-input-icon">🏦</span><select id="regBankName"><option value="">เลือกธนาคาร</option><option value="ธนาคารกสิกรไทย">ธนาคารกสิกรไทย</option><option value="ธนาคารไทยพาณิชย์">ธนาคารไทยพาณิชย์</option><option value="ธนาคารกรุงเทพ">ธนาคารกรุงเทพ</option><option value="ธนาคารกรุงไทย">ธนาคารกรุงไทย</option><option value="ธนาคารกรุงศรีอยุธยา">ธนาคารกรุงศรีอยุธยา</option><option value="ธนาคารทหารไทยธนชาต">ธนาคารทหารไทยธนชาต</option><option value="ธนาคารออมสิน">ธนาคารออมสิน</option><option value="ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร">ธ.ก.ส.</option><option value="ธนาคารซีไอเอ็มบีไทย">ธนาคารซีไอเอ็มบีไทย</option><option value="ธนาคารยูโอบี">ธนาคารยูโอบี</option></select></div></div>
-            <div class="login-field"><label>หมายเลขบัญชี</label><div class="login-input-box"><span class="login-input-icon">💳</span><input id="regBankAccountNo" inputmode="numeric" placeholder="เลขบัญชี"></div></div>
-            <div class="login-field full"><label>รหัสแนะนำ Affiliate (ถ้ามี)</label><div class="login-input-box"><span class="login-input-icon">🎁</span><input id="regReferralCode" autocomplete="off" placeholder="เช่น AFF-A001"></div><div class="affiliate-ref-hint hidden" id="regReferralHint">สมัครผ่านลิงก์แนะนำ ระบบจะผูกผู้แนะนำให้บัญชีนี้ถาวร</div></div>
+          <div class="login-field">
+            <label>ยืนยันรหัสผ่าน</label>
+            <input id="regPassConfirm" type="password" autocomplete="new-password" placeholder="••••••">
           </div>
-          <button class="login-submit" id="registerBtn">สมัครสมาชิก</button>
+          <div class="login-field full">
+            <label>ชื่อ - นามสกุล</label>
+            <input id="regBankNameAccount" autocomplete="name" placeholder="ชื่อบัญชีธนาคาร">
+          </div>
+          <div class="login-field">
+            <label>ธนาคาร</label>
+            <select id="regBankName">
+              <option value="">เลือกธนาคาร</option>
+              <option value="ธนาคารกสิกรไทย">ธนาคารกสิกรไทย</option>
+              <option value="ธนาคารไทยพาณิชย์">ธนาคารไทยพาณิชย์</option>
+              <option value="ธนาคารกรุงเทพ">ธนาคารกรุงเทพ</option>
+              <option value="ธนาคารกรุงไทย">ธนาคารกรุงไทย</option>
+              <option value="ธนาคารกรุงศรีอยุธยา">ธนาคารกรุงศรีอยุธยา</option>
+              <option value="ธนาคารทหารไทยธนชาต">ธนาคารทหารไทยธนชาต</option>
+              <option value="ธนาคารออมสิน">ธนาคารออมสิน</option>
+              <option value="ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร">ธ.ก.ส.</option>
+              <option value="ธนาคารซีไอเอ็มบีไทย">ธนาคารซีไอเอ็มบีไทย</option>
+              <option value="ธนาคารยูโอบี">ธนาคารยูโอบี</option>
+            </select>
+          </div>
+          <div class="login-field">
+            <label>หมายเลขบัญชี</label>
+            <input id="regBankAccountNo" inputmode="numeric" placeholder="เลขบัญชี">
+          </div>
+          <div class="login-field full">
+            <label>รหัสแนะนำ Affiliate (ถ้ามี)</label>
+            <input id="regReferralCode" autocomplete="off" placeholder="เช่น AFF-A001">
+            <div class="affiliate-ref-hint hidden" id="regReferralHint">สมัครผ่านลิงก์แนะนำ ระบบจะผูกผู้แนะนำให้บัญชีนี้ถาวร</div>
+          </div>
         </div>
-        <div class="login-divider">หรือเข้าสู่ระบบด้วย</div>
-        <div class="login-line-contact-wrap"><a class="login-line-contact" href="https://lin.ee/9sjcPft" target="_blank" rel="noopener noreferrer"><img src="line-logo.png" alt="LINE"><span>ติดต่อเราทาง LINE</span></a></div>
-        <button class="login-affiliate-banner" id="loginAffiliateBanner" type="button"><span class="login-affiliate-icon">🛡</span><span class="login-affiliate-copy"><strong>แนะนำเพื่อน</strong><small>ชวนเพื่อนมาเล่น รับค่าคอมมิชชั่น</small></span><span class="login-affiliate-gift">🎁</span><span class="login-affiliate-arrow">›</span></button>
+        <button class="login-submit" id="registerBtn">สมัครสมาชิก</button>
       </div>
-      <div class="login-footer">© 2024 ทรัพย์มั่งมี สงวนลิขสิทธิ์</div>
+
+      <div class="login-line-contact-wrap">
+        <div class="login-line-contact-label">ต้องการความช่วยเหลือ?</div>
+        <a class="login-line-contact" href="https://lin.ee/9sjcPft" target="_blank" rel="noopener noreferrer">
+          <img src="line-logo.png" alt="LINE">
+          <span>ติดต่อเราทาง LINE</span>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -8128,61 +8546,115 @@ button.lotto.lotto-card-new{border-radius:24px;padding:18px 20px;box-shadow:0 8p
 
    <section class="screen" id="homeScreen">
     <div class="v16-home-shell">
-      <div class="v16-home">
-        <div class="home-hero-red">
-          <div class="fake-statusbar"><span class="fake-time">07:09 ☾</span><span class="fake-signal">◔◔◔ 4G <b>52</b></span></div>
-          <div class="home-topbar">
-            <div class="home-brand-logo"><img src="./supmangmee-logo.png" alt="ทรัพย์มั่งมี"></div>
-            <div class="home-top-actions">
-              <button class="home-icon-btn has-dot" id="homeBellBtn" type="button">🔔</button>
-              <button class="home-ghost-btn" id="homeLogoutBtn" type="button">ออกจากระบบ</button>
-            </div>
-          </div>
-          <section class="home-wallet-card">
-            <div class="home-wallet-top">
-              <div><div class="home-wallet-label">เครดิตคงเหลือ <span class="home-wallet-eye">👁</span></div></div>
-              <button class="home-inline-history" id="homeHistoryInlineBtn" type="button">ประวัติการทำรายการ ›</button>
-            </div>
-            <div class="home-balance-wrap"><div class="home-balance"><b id="homeCredit">0.00</b> <span class="home-balance-currency">฿</span></div></div>
-            <div class="home-member-line"><div class="cap">เลขสมาชิก</div><div class="num" id="homeUsername">user</div></div>
-            <div class="home-wallet-art">👛</div><div class="home-wallet-ready">พร้อมใช้งาน</div>
-            <div id="homeUserName" style="display:none">MEMBER</div>
-          </section>
-        </div>
-        <div class="home-money-actions">
-          <button class="v16-money-btn deposit" id="homeDepositBtn" type="button"><span class="v16-money-icon">＋</span><span>ฝากเงิน</span></button>
-          <button class="v16-money-btn withdraw" id="homeWithdrawBtn" type="button"><span class="v16-money-icon">－</span><span>ถอนเงิน</span></button>
-        </div>
-        <div class="home-section-head"><h3><span class="mark">★</span> แทงหวย</h3><button class="home-see-all" id="homeLottoSeeAllBtn" type="button">ดูทั้งหมด ›</button></div>
-        <div class="home-lotto-card"><div class="home-open-chip">เปิดรับ</div><div class="home-lotto-preview" id="homeLottoPreview"></div><button class="v16-lotto-entry" id="homeLottoBtn" type="button"><div class="home-enter-lotto"><span>เข้าแทงหวย</span><span class="arrow">›</span></div></button></div>
-        <div class="home-section-head"><h3><span class="mark">⚡</span> เมนูลัด</h3></div>
-        <div class="home-shortcuts v16-shortcuts">
-          <button class="v16-shortcut" id="homeHistoryBtn" type="button"><span class="v16-shortcut-icon">🧾</span><span>รายการโพย</span></button>
-          <button class="v16-shortcut" id="homeResultsBtn" type="button"><span class="v16-shortcut-icon">🏆</span><span>ผลหวย</span></button>
-          <button class="v16-shortcut" id="homeSummaryBtn" type="button"><span class="v16-shortcut-icon">📈</span><span>สรุปแพ้-ชนะ</span></button>
-          <button class="v16-shortcut" id="homeMoneyBtn" type="button"><span class="v16-shortcut-icon">👛</span><span>รายการเงิน</span></button>
-        </div>
-        <button class="home-affiliate-banner v16-shortcut-affiliate" id="homeAffiliateBtn" type="button"><span class="home-affiliate-left">👥</span><span class="home-affiliate-copy"><strong>แนะนำเพื่อน</strong><small>ชวนเพื่อนมาเล่น รับค่าคอมมิชชั่น</small></span><span class="home-affiliate-gift">🎁</span></button>
-        <button id="homeLineContactBtn" type="button" style="display:none"></button>
+     <div class="v16-home">
+      <div class="v16-home-head">
+       <div class="v16-brand">
+        <div class="v16-brand-mark"><img src="./supmangmee-logo.png" alt="ทรัพย์มั่งมี"></div>
+       </div>
+       <div class="v16-head-actions">
+        <button class="v16-logout line-contact-btn" id="homeLineContactBtn" type="button">
+         <img class="line-contact-logo" src="line-logo.png" alt="">ติดต่อ
+        </button>
+        <button class="v16-logout" id="homeLogoutBtn" type="button">ออกจากระบบ</button>
+       </div>
       </div>
-      <nav class="app-bottom-nav" data-bottom-nav="home"><button class="bottom-nav-btn active" id="navHomeBtn" type="button"><span class="icon">🏠</span><span class="label">หน้าหลัก</span></button><button class="bottom-nav-btn" id="navDepositBtn" type="button"><span class="icon">💵</span><span class="label">ฝากเงิน</span></button><button class="bottom-nav-btn bottom-center" id="navBetBtn" type="button"><span class="icon">🎟</span><span class="label">แทงหวย</span></button><button class="bottom-nav-btn" id="navHistoryBtn" type="button"><span class="icon">📋</span><span class="label">ประวัติ</span></button><button class="bottom-nav-btn" id="navMeBtn" type="button"><span class="icon">👤</span><span class="label">ฉัน</span></button></nav>
+
+      <section class="v16-wallet">
+       <div class="v16-wallet-top">
+        <div class="v16-wallet-label">เครดิตพร้อมเดิมพัน</div>
+        <div class="v16-wallet-user" id="homeUserName">MEMBER</div>
+       </div>
+       <div class="v16-wallet-balance"><b id="homeCredit">0.00</b><span>฿</span></div>
+       <div class="v16-wallet-sub">
+        <span id="homeUsername">user</span>
+        <span>พร้อมใช้งาน</span>
+       </div>
+      </section>
+
+      <div class="v16-money-actions">
+       <button class="v16-money-btn deposit" id="homeDepositBtn" type="button">
+        <span class="v16-money-icon">＋</span><span>ฝากเงิน</span>
+       </button>
+       <button class="v16-money-btn withdraw" id="homeWithdrawBtn" type="button">
+        <span class="v16-money-icon">−</span><span>ถอนเงิน</span>
+       </button>
+      </div>
+
+      <div class="v16-section-title">เมนูหลัก</div>
+
+      <button class="v16-lotto-entry" id="homeLottoBtn" type="button">
+       <div class="v16-lotto-row">
+        <div>
+         <span class="v16-lotto-badge">ยอดนิยม</span>
+         <div class="v16-lotto-title">แทงหวย</div>
+        </div>
+        <div class="v16-lotto-ball v16-lotto-art">
+         <img src="lottery-menu-cutout.png" alt="แทงหวย">
+        </div>
+       </div>
+       <div class="v16-lotto-go"><span>เข้าแทงหวย</span><span>›</span></div>
+      </button>
+
+      <div class="v16-section-title">บัญชีของฉัน</div>
+
+      <div class="v16-shortcuts">
+       <button class="v16-shortcut" id="homeHistoryBtn" type="button">
+        <span class="v16-shortcut-icon">⌁</span><span>รายการโพย</span>
+       </button>
+       <button class="v16-shortcut" id="homeResultsBtn" type="button">
+        <span class="v16-shortcut-icon">✓</span><span>ผลหวย</span>
+       </button>
+       <button class="v16-shortcut" id="homeSummaryBtn" type="button">
+        <span class="v16-shortcut-icon">∿</span><span>สรุปแพ้-ชนะ</span>
+       </button>
+       <button class="v16-shortcut" id="homeMoneyBtn" type="button">
+        <span class="v16-shortcut-icon">฿</span><span>รายการเงิน</span>
+       </button>
+       <button class="v16-shortcut v16-shortcut-affiliate" id="homeAffiliateBtn" type="button">
+        <span class="v16-shortcut-icon">🎁</span><span>แนะนำเพื่อน</span>
+       </button>
+      </div>
+
+     </div>
     </div>
    </section>
 
    <section class="screen" id="lottoScreen">
-    <div class="lotto-screen-shell">
-      <div class="lotto-top-hero">
-        <div class="lotto-top-row">
-          <div class="lotto-top-left">
-            <button class="modern-back-home" id="lottoHomeBtn" type="button"><span class="arr">‹</span><span>กลับหน้าหลัก</span></button>
-            <div><h1 class="lotto-page-title">เลือกหวย</h1><div class="lotto-page-sub">ยอดเงินคงเหลือ</div></div>
-          </div>
-          <div class="lotto-balance-box"><div class="cap" id="accountName">USER</div><strong>฿ <span id="heroCredit">0.00</span></strong></div>
-        </div>
-        <div class="lotto-utility-strip account-row"><div class="account-actions"><button class="account-btn light hidden" id="adminBtn">หลังบ้าน</button><button class="account-btn light" id="memberSummaryBtn">สรุปแพ้-ชนะ</button><button class="account-btn light" id="moneyBtn">รายการเงิน</button><button class="account-btn light" id="resultsBtn">ผลหวย</button><button class="account-btn light" id="historyBtn">รายการโพย</button><button class="account-btn line-contact-btn" id="lineContactBtn" type="button"><img class="line-contact-logo" src="line-logo.png" alt="">ติดต่อ</button><button class="account-btn" id="logoutBtn">ออก</button></div></div>
+    <header class="hero">
+     <div class="eyebrow">
+      LOTTERY
+     </div>
+     <h1>
+      เลือกหวย
+     </h1>
+     <div class="home-nav-inline">
+      <button id="lottoHomeBtn" type="button">⌂ หน้าหลัก</button>
+     </div>
+     
+     <div class="account-row">
+      <div class="account-credit">
+       <small id="accountName">USER</small>
+       <strong id="heroCredit">0.00</strong>
       </div>
-      <div class="lotto-body"><div class="lotto-grid" id="lottoGrid"></div><div class="empty" id="lottoEmpty" style="display:none">ยังไม่มีหวยที่เปิดรับ • รอบใหม่เปิดเวลา 05:00 น.</div></div>
-      <nav class="lotto-bottom-nav" data-bottom-nav="lotto"><button class="lotto-nav-btn active" id="lottoNavHomeBtn" type="button"><span class="icon">🏠</span><span class="label">หน้าหลัก</span></button><button class="lotto-nav-btn" id="lottoNavBillBtn" type="button"><span class="icon">🧾</span><span class="label">โพยของฉัน</span></button><button class="lotto-nav-btn" id="lottoNavResultBtn" type="button"><span class="icon">🎯</span><span class="label">ผลหวย</span></button><button class="lotto-nav-btn" id="lottoNavAccountBtn" type="button"><span class="icon">👤</span><span class="label">บัญชีของฉัน</span></button></nav>
+      <div class="account-actions">
+       <button class="account-btn light hidden" id="adminBtn">หลังบ้าน</button>
+       <button class="account-btn light" id="memberSummaryBtn">สรุปแพ้-ชนะ</button>
+       <button class="account-btn light" id="moneyBtn">รายการเงิน</button>
+       <button class="account-btn light" id="resultsBtn">ผลหวย</button>
+       <button class="account-btn light" id="historyBtn">รายการโพย</button>
+       <button class="account-btn line-contact-btn" id="lineContactBtn" type="button">
+        <img class="line-contact-logo" src="line-logo.png" alt="">ติดต่อ
+       </button>
+       <button class="account-btn" id="logoutBtn">ออก</button>
+      </div>
+     </div>
+    </header>
+    <div class="lotto-body">
+     <div class="lotto-grid" id="lottoGrid">
+     </div>
+     <div class="empty" id="lottoEmpty" style="display:none">
+      ยังไม่มีหวยที่เปิดรับ • รอบใหม่เปิดเวลา 05:00 น.
+     </div>
     </div>
    </section>
 
@@ -9694,78 +10166,41 @@ function updateUserUI() {
 /* =====================================================
    LOTTO
 ===================================================== */
-function getLottoVisualMeta(name) {
-  var n = String(name || '');
-  var meta = { group:'อื่นๆ', groupIcon:'🎯', icon:'🎟' };
-  if (/หุ้นไทย|นิเคอิ|ฮั่งเส็ง|ไต้หวัน|เกาหลี|สิงคโปร์|ดาวโจนส์|อินเดีย/i.test(n)) { meta.group = 'หวยหุ้น'; meta.groupIcon = '📊'; }
-  if (/ลาว/i.test(n)) { meta.group = 'หวยลาว'; meta.groupIcon = '🇱🇦'; meta.icon = '🇱🇦'; }
-  if (/ฮานอย/i.test(n)) { meta.group = 'ฮานอย'; meta.groupIcon = '🇻🇳'; meta.icon = '🇻🇳'; }
-  if (/นิเคอิ|ญี่ปุ่น/i.test(n)) meta.icon = '🇯🇵';
-  else if (/ฮั่งเส็ง/i.test(n)) meta.icon = '🇭🇰';
-  else if (/สิงคโปร์/i.test(n)) meta.icon = '🇸🇬';
-  else if (/จีน/i.test(n)) meta.icon = '🇨🇳';
-  else if (/หุ้นไทย/i.test(n)) meta.icon = '🇹🇭';
-  else if (/เกาหลี/i.test(n)) meta.icon = '🇰🇷';
-  else if (/ไต้หวัน/i.test(n)) meta.icon = '🇹🇼';
-  else if (/ดาวโจนส์/i.test(n)) meta.icon = '🇺🇸';
-  else if (/อินเดีย/i.test(n)) meta.icon = '🇮🇳';
-  if (/ฮานอย/i.test(n)) { meta.group = 'ฮานอย'; meta.groupIcon = '🇻🇳'; }
-  else if (/ลาว/i.test(n)) { meta.group = 'หวยลาว'; meta.groupIcon = '🇱🇦'; }
-  else if (/หุ้นไทย/i.test(n)) { meta.group = 'หวยหุ้น'; meta.groupIcon = '🇹🇭'; }
-  else if (/นิเคอิ|ฮั่งเส็ง|ไต้หวัน|เกาหลี|สิงคโปร์|ดาวโจนส์|อินเดีย/i.test(n)) { meta.group = 'หวยหุ้น'; meta.groupIcon = '📈'; }
-  return meta;
-}
-function renderHomeLottoPreview() {
-  var host = document.getElementById('homeLottoPreview');
-  if (!host) return;
-  var open = (state.lottos || []).filter(function(l){ return l.open !== false; }).slice(0,5);
-  if (!open.length) { host.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:12px 8px;color:#777;font-weight:700">ยังไม่มีหวยที่เปิดรับ</div>'; return; }
-  host.innerHTML = open.map(function(l){
-    var meta = getLottoVisualMeta(l.name);
-    var shortName = String(l.name || '-').replace(/^หวย/, '');
-    return '<div class="home-lotto-pill"><div class="home-lotto-flag">' + escapeHtml(meta.icon) + '</div><div class="home-lotto-name">' + escapeHtml(shortName) + '</div><div class="home-lotto-time">ปิดรับ ' + escapeHtml(getActualCloseText(l).replace(/^\d{2}-\d{2}-\d{4}\s*/, '')) + '</div></div>';
-  }).join('');
-}
 function renderLottos() {
-  els.lottoGrid.innerHTML = '';
+  els.lottoGrid.innerHTML = "";
+
   var open = state.lottos.filter(function(l){ return l.open !== false; });
-  els.lottoEmpty.style.display = open.length ? 'none' : 'block';
-  renderHomeLottoPreview();
-  var order = ['หวยหุ้น','หวยลาว','ฮานอย','อื่นๆ'];
-  var groups = {};
+  els.lottoEmpty.style.display = open.length ? "none" : "block";
+
   open.forEach(function(lotto){
-    var meta = getLottoVisualMeta(lotto.name);
-    var group = meta.group || 'อื่นๆ';
-    if (!groups[group]) groups[group] = [];
-    groups[group].push({ lotto:lotto, meta:meta });
+    var b = document.createElement("button");
+    b.className = "lotto";
+    b.type = "button";
+    b._lotto = lotto;
+
+    b.innerHTML =
+      '<div><div class="lotto-name"></div><div class="lotto-meta"></div><div class="lotto-limit-note"></div></div>' +
+      '<div class="lotto-right"><div class="lotto-date"></div><div class="countdown"></div></div>';
+
+    b.querySelector(".lotto-name").textContent = lotto.name || "-";
+    b.querySelector(".lotto-meta").textContent =
+      "ปิดรับ " + getActualCloseText(lotto);
+    var limitText = formatNumberLimitSummary(lotto.numberLimits);
+    b.querySelector(".lotto-limit-note").textContent = limitText;
+    b.querySelector(".lotto-limit-note").style.display = limitText ? "block" : "none";
+
+    b.querySelector(".lotto-date").textContent = "รอบ " + getRoundDateText(lotto);
+    b.querySelector(".countdown")._lotto = lotto;
+
+    b.onclick = function(){
+      var t = getLottoCloseTarget(lotto);
+      if (t && t.getTime() <= Date.now()) return;
+      chooseLotto(lotto);
+    };
+
+    els.lottoGrid.appendChild(b);
   });
-  order.forEach(function(groupName){
-    var list = groups[groupName] || [];
-    if (!list.length) return;
-    var groupWrap = document.createElement('section');
-    groupWrap.className = 'lotto-group';
-    var mark = (list[0].meta && list[0].meta.groupIcon) || '🎯';
-    groupWrap.innerHTML = '<div class="lotto-group-head"><span class="mark">' + escapeHtml(mark) + '</span><span>' + escapeHtml(groupName) + '</span></div><div class="lotto-group-list"></div>';
-    var listHost = groupWrap.querySelector('.lotto-group-list');
-    list.forEach(function(item){
-      var lotto = item.lotto;
-      var b = document.createElement('button');
-      b.className = 'lotto lotto-card-new';
-      b.type = 'button';
-      b._lotto = lotto;
-      b.innerHTML = '<div class="lotto-flag-badge">' + escapeHtml(item.meta.icon || '🎟') + '</div><div class="lotto-main"><div class="lotto-name"></div><div class="lotto-meta"></div><div class="lotto-limit-note"></div></div><div class="lotto-side"><div class="lotto-date"></div><div class="countdown"></div></div><div class="lotto-chevron">›</div>';
-      b.querySelector('.lotto-name').textContent = lotto.name || '-';
-      b.querySelector('.lotto-meta').textContent = 'ปิดรับ ' + getActualCloseText(lotto);
-      var limitText = formatNumberLimitSummary(lotto.numberLimits);
-      b.querySelector('.lotto-limit-note').textContent = limitText;
-      b.querySelector('.lotto-limit-note').style.display = limitText ? 'block' : 'none';
-      b.querySelector('.lotto-date').textContent = 'รอบ ' + getRoundDateText(lotto);
-      b.querySelector('.countdown')._lotto = lotto;
-      b.onclick = function(){ var t = getLottoCloseTarget(lotto); if (t && t.getTime() <= Date.now()) return; chooseLotto(lotto); };
-      listHost.appendChild(b);
-    });
-    els.lottoGrid.appendChild(groupWrap);
-  });
+
   startTimer(updateLottoCountdowns);
 }
 
@@ -13629,60 +14064,5 @@ function openAdminAnnouncementEditor(item) {
 </script>
 
 
- 
-<script>
-/* =====================================================
-   V100 — UI NAV / HELPERS
-===================================================== */
-function setActiveBottomNav(key) {
-  document.querySelectorAll('.app-bottom-nav .bottom-nav-btn').forEach(function(btn){ btn.classList.remove('active'); });
-  document.querySelectorAll('.lotto-bottom-nav .lotto-nav-btn').forEach(function(btn){ btn.classList.remove('active'); });
-  var maps = {
-    home:['navHomeBtn'],
-    deposit:['navDepositBtn'],
-    bet:['navBetBtn'],
-    history:['navHistoryBtn','lottoNavBillBtn'],
-    me:['navMeBtn','lottoNavAccountBtn'],
-    lottohome:['lottoNavHomeBtn'],
-    lottoresult:['lottoNavResultBtn']
-  };
-  (maps[key] || []).forEach(function(id){ var el = document.getElementById(id); if (el) el.classList.add('active'); });
-}
-(function(){
-  if (typeof showHome === 'function') {
-    var _showHome = showHome; showHome = function(){ _showHome(); setActiveBottomNav('home'); };
-  }
-  if (typeof showLotto === 'function') {
-    var _showLotto = showLotto; showLotto = function(){ _showLotto(); setActiveBottomNav('lottohome'); };
-  }
-  if (typeof showHistory === 'function') {
-    var _showHistory = showHistory; showHistory = function(){ _showHistory(); setActiveBottomNav('history'); };
-  }
-  if (typeof showMoney === 'function') {
-    var _showMoney = showMoney; showMoney = function(){ _showMoney(); setActiveBottomNav('me'); };
-  }
-  if (typeof showResults === 'function') {
-    var _showResults = showResults; showResults = function(){ _showResults(); setActiveBottomNav('lottoresult'); };
-  }
-})();
-document.addEventListener('DOMContentLoaded', function(){
-  var id = function(x){ return document.getElementById(x); };
-  if (id('homeHistoryInlineBtn')) id('homeHistoryInlineBtn').onclick = function(){ if (id('homeHistoryBtn')) id('homeHistoryBtn').click(); };
-  if (id('homeLottoSeeAllBtn')) id('homeLottoSeeAllBtn').onclick = function(){ if (id('homeLottoBtn')) id('homeLottoBtn').click(); };
-  if (id('navHomeBtn')) id('navHomeBtn').onclick = function(){ showHome(); };
-  if (id('navDepositBtn')) id('navDepositBtn').onclick = function(){ if (typeof openSelfDeposit==='function') openSelfDeposit(); setActiveBottomNav('deposit'); };
-  if (id('navBetBtn')) id('navBetBtn').onclick = function(){ if (typeof showLotto==='function') showLotto(); };
-  if (id('navHistoryBtn')) id('navHistoryBtn').onclick = function(){ if (typeof showHistory==='function') showHistory(); };
-  if (id('navMeBtn')) id('navMeBtn').onclick = function(){ if (typeof showMoney==='function') showMoney(); };
-  if (id('lottoNavHomeBtn')) id('lottoNavHomeBtn').onclick = function(){ if (typeof showHome==='function') showHome(); };
-  if (id('lottoNavBillBtn')) id('lottoNavBillBtn').onclick = function(){ if (typeof showHistory==='function') showHistory(); };
-  if (id('lottoNavResultBtn')) id('lottoNavResultBtn').onclick = function(){ if (typeof showResults==='function') showResults(); };
-  if (id('lottoNavAccountBtn')) id('lottoNavAccountBtn').onclick = function(){ if (typeof showMoney==='function') showMoney(); };
-  if (id('loginAffiliateBanner')) id('loginAffiliateBanner').onclick = function(){ var regTab = document.getElementById('authRegisterTab'); if (regTab) regTab.click(); };
-  if (id('forgotPassLink')) id('forgotPassLink').onclick = function(){ if (window.Swal) Swal.fire({icon:'info',title:'ติดต่อแอดมิน',text:'กรุณาติดต่อเราทาง LINE เพื่อขอรีเซ็ตรหัสผ่าน',confirmButtonColor:'#b91c1c'}); };
-  if (id('homeBellBtn')) id('homeBellBtn').onclick = function(){ var fn = window.renderNoticePopup || window.showNoticePopup || null; if (typeof fn === 'function') fn(); else if (window.Swal) Swal.fire({title:'ประกาศ',text:'ไม่มีประกาศใหม่ในขณะนี้',confirmButtonColor:'#b91c1c'}); };
-});
-</script>
-
-</body>
+ </body>
 </html>
