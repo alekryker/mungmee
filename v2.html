@@ -10672,6 +10672,460 @@ strong,b{
   }
 }
 
+
+/* =====================================================
+   V63 — COMPACT MOBILE BET + 3-ROW KEYPAD + NO PRICE OVERLAP
+===================================================== */
+
+/* ปรับหน้าแทงหวยให้เล็กลงและเหมาะกับมือถือมากขึ้น */
+@media(max-width:768px){
+  #betScreen.modern-layout{
+    padding-bottom:92px !important;
+  }
+
+  #betScreen.modern-layout .modern-bet-panel{
+    width:calc(100% - 10px) !important;
+    padding-top:4px !important;
+  }
+
+  #betScreen.modern-layout .modern-bet-head{
+    gap:8px 6px !important;
+    margin-bottom:8px !important;
+  }
+
+  #betScreen.modern-layout .modern-bet-head::before{
+    font-size:20px !important;
+  }
+
+  #betScreen.modern-layout .modern-back-btn,
+  #betScreen.modern-layout .modern-rule-btn{
+    min-height:40px !important;
+    padding:0 10px !important;
+    border-radius:14px !important;
+    font-size:12px !important;
+  }
+
+  #betScreen.modern-layout .modern-credit-card{
+    width:min(100%, 340px) !important;
+    min-height:74px !important;
+    padding:10px 14px !important;
+    border-radius:18px !important;
+    gap:10px !important;
+  }
+
+  #betScreen.modern-layout .modern-credit-card::before{
+    width:40px !important;
+    height:40px !important;
+    flex-basis:40px !important;
+    border-radius:12px !important;
+  }
+
+  #betScreen.modern-layout .modern-credit-card small{
+    font-size:12px !important;
+    margin-bottom:2px !important;
+  }
+
+  #betScreen.modern-layout .modern-credit-card b{
+    font-size:22px !important;
+  }
+
+  #betScreen.modern-layout .modern-credit-card b::after{
+    font-size:12px !important;
+    margin-left:4px !important;
+  }
+
+  #betScreen.modern-layout .modern-lotto-select{
+    min-height:92px !important;
+    padding:12px !important;
+    grid-template-columns:44px minmax(0,1fr) 96px !important;
+    gap:10px !important;
+    border-radius:18px !important;
+  }
+
+  #betScreen.modern-layout .modern-lotto-select-flag{
+    width:42px !important;
+    height:42px !important;
+    border-radius:12px !important;
+    font-size:24px !important;
+  }
+
+  #betScreen.modern-layout .modern-lotto-select-info strong{
+    font-size:16px !important;
+  }
+
+  #betScreen.modern-layout .modern-lotto-select-info small{
+    font-size:11px !important;
+    margin-top:4px !important;
+  }
+
+  #betScreen.modern-layout .modern-lotto-timer small{
+    font-size:10px !important;
+    margin-bottom:5px !important;
+  }
+
+  #betScreen.modern-layout .modern-lotto-timer b{
+    min-height:34px !important;
+    padding:0 9px !important;
+    border-radius:12px !important;
+    font-size:13px !important;
+  }
+
+  #betScreen.modern-layout .modern-preset-grid{
+    gap:8px 8px !important;
+    margin-top:8px !important;
+    padding:12px 10px !important;
+    border-radius:18px !important;
+  }
+
+  #betScreen.modern-layout .modern-preset-title{
+    font-size:12px !important;
+  }
+
+  #betScreen.modern-layout .modern-preset{
+    min-height:46px !important;
+    border-radius:12px !important;
+    font-size:13px !important;
+  }
+
+  #betScreen.modern-layout .modern-preset small{
+    font-size:9px !important;
+  }
+
+  #betScreen.modern-layout .modern-preset.active:after{
+    right:8px !important;
+    width:22px !important;
+    height:22px !important;
+    font-size:14px !important;
+  }
+
+  #betScreen.modern-layout .modern-selected-card{
+    margin-top:8px !important;
+    padding:10px 12px !important;
+    border-radius:16px !important;
+  }
+
+  #betScreen.modern-layout .modern-selected-card::before{
+    width:34px !important;
+    height:34px !important;
+    flex-basis:34px !important;
+    border-radius:10px !important;
+  }
+
+  #betScreen.modern-layout .modern-selected-card small{
+    font-size:11px !important;
+  }
+
+  #betScreen.modern-layout .modern-selected-card strong{
+    font-size:16px !important;
+  }
+
+  #betScreen.modern-layout .modern-entry-card{
+    margin-top:8px !important;
+    padding:10px !important;
+    border-radius:16px !important;
+  }
+
+  #betScreen.modern-layout .modern-entry-label{
+    margin-bottom:8px !important;
+    font-size:14px !important;
+  }
+
+  #betScreen.modern-layout .modern-digit-slots{
+    gap:10px !important;
+    min-height:54px !important;
+    margin-bottom:10px !important;
+  }
+
+  #betScreen.modern-layout .modern-digit-slot{
+    width:50px !important;
+    height:50px !important;
+    border-radius:14px !important;
+    font-size:26px !important;
+  }
+
+  /* ช่องกดเลขให้เป็น 3 แถวชัดเจน: 4 คอลัมน์ x 3 แถว */
+  #betScreen.modern-layout .modern-keypad{
+    grid-template-columns:repeat(4, minmax(0,1fr)) !important;
+    gap:8px !important;
+  }
+
+  #betScreen.modern-layout .modern-keypad button{
+    min-height:48px !important;
+    border-radius:12px !important;
+    font-size:18px !important;
+  }
+
+  #betScreen.modern-layout .modern-keypad button[data-modern-key="clear"]{
+    font-size:13px !important;
+  }
+
+  #betScreen.modern-layout .modern-keypad button[data-modern-key="back"]{
+    font-size:13px !important;
+  }
+
+  #betScreen.modern-layout .modern-number-panel{
+    margin-top:8px !important;
+    padding:10px !important;
+    border-radius:16px !important;
+  }
+
+  #betScreen.modern-layout .modern-number-panel .selected-label{
+    font-size:13px !important;
+  }
+
+  #betScreen.modern-layout .modern-number-panel .clear-numbers{
+    min-height:38px !important;
+    padding:0 12px !important;
+    border-radius:12px !important;
+    font-size:12px !important;
+  }
+
+  #betScreen.modern-layout .modern-number-panel .number-chip-box{
+    min-height:42px !important;
+    margin-top:6px !important;
+  }
+
+  /* price section เล็กลง */
+  #betScreen.modern-layout .price-bottom-bar{
+    width:calc(100% - 4px) !important;
+    margin-top:8px !important;
+  }
+
+  #betScreen.modern-layout .price-bottom-bar .bill-price-panel{
+    padding:10px !important;
+    border-radius:18px !important;
+  }
+
+  #betScreen.modern-layout .price-bottom-bar .price-section-title{
+    font-size:14px !important;
+  }
+
+  #betScreen.modern-layout .price-bottom-bar .current-bill-total{
+    min-height:40px !important;
+    padding:0 10px !important;
+    border-radius:12px !important;
+  }
+
+  #betScreen.modern-layout .price-bottom-bar .current-bill-total strong{
+    font-size:14px !important;
+  }
+
+  #betScreen.modern-layout .price-bottom-bar .direct-price-input{
+    height:64px !important;
+    padding:22px 8px 8px !important;
+    border-radius:14px !important;
+    font-size:22px !important;
+  }
+
+  #betScreen.modern-layout .price-bottom-bar .direct-price-label{
+    top:8px !important;
+    font-size:12px !important;
+  }
+
+  #betScreen.modern-layout .price-bottom-bar .direct-add-bill{
+    min-height:64px !important;
+    border-radius:16px !important;
+    font-size:14px !important;
+  }
+
+  /* ปุ่มล่างเล็กลง */
+  #betScreen.modern-layout .direct-bottom{
+    width:calc(100% - 4px) !important;
+    margin-top:8px !important;
+    margin-bottom:calc(86px + env(safe-area-inset-bottom)) !important;
+    border-radius:18px !important;
+  }
+
+  #betScreen.modern-layout .direct-action-row{
+    gap:8px !important;
+    padding:10px !important;
+  }
+
+  #betScreen.modern-layout .direct-back-bottom,
+  #betScreen.modern-layout .direct-clear-all,
+  #betScreen.modern-layout .direct-submit{
+    min-height:54px !important;
+    border-radius:14px !important;
+    font-size:14px !important;
+  }
+
+  /* bottom bar เล็กลง */
+  #betScreen.modern-layout .bet-v61-bottom-nav{
+    width:calc(100% - 8px) !important;
+    min-height:72px !important;
+    padding:6px !important;
+    border-radius:18px !important;
+  }
+
+  #betScreen.modern-layout .bet-v61-bottom-nav button{
+    min-height:52px !important;
+    gap:4px !important;
+    font-size:9px !important;
+  }
+
+  #betScreen.modern-layout .bet-v61-bottom-nav button i{
+    font-size:20px !important;
+  }
+}
+
+/* มือถือจอเล็กมาก: กันส่วนใส่ราคาซ้อนกัน */
+@media(max-width:430px){
+  #betScreen.modern-layout .modern-bet-panel{
+    width:calc(100% - 8px) !important;
+  }
+
+  #betScreen.modern-layout .modern-bet-head::before{
+    font-size:18px !important;
+  }
+
+  #betScreen.modern-layout .modern-credit-card{
+    width:min(100%, 300px) !important;
+    min-height:68px !important;
+    padding:9px 12px !important;
+  }
+
+  #betScreen.modern-layout .modern-credit-card b{
+    font-size:20px !important;
+  }
+
+  #betScreen.modern-layout .modern-lotto-select{
+    min-height:84px !important;
+    padding:10px !important;
+    grid-template-columns:40px minmax(0,1fr) 88px !important;
+    gap:8px !important;
+  }
+
+  #betScreen.modern-layout .modern-lotto-select-flag{
+    width:38px !important;
+    height:38px !important;
+    font-size:22px !important;
+  }
+
+  #betScreen.modern-layout .modern-lotto-select-info strong{
+    font-size:15px !important;
+  }
+
+  #betScreen.modern-layout .modern-lotto-timer b{
+    min-height:32px !important;
+    font-size:12px !important;
+  }
+
+  #betScreen.modern-layout .modern-preset-grid{
+    gap:7px !important;
+    padding:10px 8px !important;
+  }
+
+  #betScreen.modern-layout .modern-preset{
+    min-height:42px !important;
+    font-size:12px !important;
+  }
+
+  #betScreen.modern-layout .modern-selected-card strong{
+    font-size:15px !important;
+  }
+
+  #betScreen.modern-layout .modern-digit-slot{
+    width:44px !important;
+    height:44px !important;
+    font-size:22px !important;
+  }
+
+  #betScreen.modern-layout .modern-keypad{
+    gap:7px !important;
+  }
+
+  #betScreen.modern-layout .modern-keypad button{
+    min-height:42px !important;
+    font-size:16px !important;
+  }
+
+  /* ใส่ราคาไม่ให้ซ้อนกัน: ใช้ grid-area แบบเรียงลง */
+  #betScreen.modern-layout .price-bottom-bar .bill-price-panel{
+    grid-template-columns:1fr auto !important;
+    grid-template-areas:
+      "title total"
+      "prices prices"
+      "add add" !important;
+    gap:8px !important;
+    padding:8px !important;
+  }
+
+  #betScreen.modern-layout .price-bottom-bar .price-section-title{
+    grid-area:title !important;
+    align-self:center !important;
+    font-size:13px !important;
+  }
+
+  #betScreen.modern-layout .price-bottom-bar .current-bill-total{
+    grid-area:total !important;
+    justify-self:end !important;
+    min-width:110px !important;
+    min-height:36px !important;
+  }
+
+  #betScreen.modern-layout .price-bottom-bar .current-bill-total strong{
+    font-size:13px !important;
+  }
+
+  #betScreen.modern-layout .price-bottom-bar .direct-price-grid{
+    grid-area:prices !important;
+    grid-column:auto !important;
+    display:grid !important;
+    grid-template-columns:repeat(2, minmax(0,1fr)) !important;
+    gap:8px !important;
+  }
+
+  #betScreen.modern-layout .price-bottom-bar .direct-price-field{
+    min-height:62px !important;
+  }
+
+  #betScreen.modern-layout .price-bottom-bar .direct-price-input{
+    height:62px !important;
+    padding:20px 6px 7px !important;
+    font-size:20px !important;
+  }
+
+  #betScreen.modern-layout .price-bottom-bar .direct-price-label{
+    top:7px !important;
+    font-size:11px !important;
+  }
+
+  #betScreen.modern-layout .price-bottom-bar .direct-add-bill{
+    grid-area:add !important;
+    grid-column:auto !important;
+    grid-row:auto !important;
+    width:100% !important;
+    min-width:0 !important;
+    min-height:52px !important;
+    font-size:14px !important;
+  }
+
+  #betScreen.modern-layout .direct-bottom{
+    margin-bottom:calc(82px + env(safe-area-inset-bottom)) !important;
+  }
+
+  #betScreen.modern-layout .direct-action-row{
+    grid-template-columns:1fr 1.1fr 1.4fr !important;
+  }
+
+  #betScreen.modern-layout .direct-back-bottom,
+  #betScreen.modern-layout .direct-clear-all,
+  #betScreen.modern-layout .direct-submit{
+    min-height:48px !important;
+    font-size:13px !important;
+  }
+
+  #betScreen.modern-layout .bet-v61-bottom-nav{
+    min-height:68px !important;
+    padding:5px !important;
+  }
+
+  #betScreen.modern-layout .bet-v61-bottom-nav button{
+    min-height:48px !important;
+    font-size:8.5px !important;
+  }
+}
+
 </style>
  </head>
  <body>
