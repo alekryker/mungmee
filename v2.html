@@ -7937,6 +7937,116 @@ textarea:focus{
   #homeScreen .home-v54-page{border-left:1px solid #eee;border-right:1px solid #eee;box-shadow:0 0 55px rgba(60,0,5,.08);}
 }
 
+
+/* =====================================================
+   V55 — HOME COMPACT + AFFILIATE CONTRAST
+   - ซ่อนเลขสมาชิก / พร้อมใช้งาน
+   - ดันส่วนแทงหวยขึ้น
+   - แนะนำเพื่อนให้เห็นชัด
+   - ซ่อนข้อความเครดิตไอคอน
+===================================================== */
+#homeScreen .home-v54-member,
+#homeScreen .home-v54-ready,
+#homeScreen .home-v54-flaticon-credit{
+  display:none !important;
+}
+
+/* ลดความสูงส่วนเครดิตหลังเอาเลขสมาชิกออก */
+#homeScreen .home-v54-wallet{
+  min-height:170px !important;
+  padding-bottom:18px !important;
+}
+#homeScreen .v16-wallet-balance{
+  margin-top:27px !important;
+}
+
+/* ลดพื้นที่โค้ง/ช่องว่างใต้ฝาก-ถอน เพื่อให้แทงหวยขึ้นมา */
+#homeScreen .home-v54-top{
+  padding-bottom:46px !important;
+}
+#homeScreen .home-v54-top:after{
+  bottom:-28px !important;
+  height:58px !important;
+}
+#homeScreen .home-v54-money-actions{
+  margin-top:14px !important;
+  margin-bottom:-32px !important;
+}
+#homeScreen .home-v54-body{
+  padding-top:22px !important;
+}
+#homeScreen .home-v54-body > .home-v54-section-head:first-child{
+  margin-top:4px !important;
+}
+
+/* แนะนำเพื่อน — บังคับสีใหม่เพื่อไม่ให้ CSS รุ่นก่อนหน้าทับ */
+#homeScreen button.home-v54-affiliate,
+#homeScreen .v16-shortcut-affiliate.home-v54-affiliate{
+  opacity:1 !important;
+  min-height:92px !important;
+  border:1px solid #8f000b !important;
+  background:
+    radial-gradient(circle at 88% 34%,rgba(255,255,255,.16),transparent 30%),
+    linear-gradient(105deg,#5b0006 0%,#a70010 48%,#e0001b 100%) !important;
+  color:#fff !important;
+  box-shadow:0 16px 32px rgba(104,0,9,.24) !important;
+}
+#homeScreen button.home-v54-affiliate:before{
+  background:rgba(255,255,255,.10) !important;
+}
+#homeScreen .home-v54-affiliate-copy,
+#homeScreen .home-v54-affiliate-copy strong,
+#homeScreen .home-v54-affiliate-copy small,
+#homeScreen .home-v54-affiliate-copy i{
+  opacity:1 !important;
+  color:#fff !important;
+}
+#homeScreen .home-v54-affiliate-copy strong{
+  font-weight:700 !important;
+  text-shadow:0 2px 10px rgba(50,0,4,.28) !important;
+}
+#homeScreen .home-v54-affiliate-copy small{
+  color:rgba(255,255,255,.92) !important;
+}
+#homeScreen .home-v54-gift{
+  background:rgba(255,255,255,.16) !important;
+  border:1px solid rgba(255,255,255,.32) !important;
+}
+#homeScreen .home-v54-gift,
+#homeScreen .home-v54-gift i,
+#homeScreen .v16-shortcut-affiliate.home-v54-affiliate span:last-child{
+  color:#fff !important;
+}
+
+@media(max-width:430px){
+  #homeScreen .home-v54-wallet{
+    min-height:158px !important;
+    padding-top:18px !important;
+    padding-bottom:16px !important;
+  }
+  #homeScreen .v16-wallet-balance{
+    margin-top:25px !important;
+  }
+  #homeScreen .home-v54-top{
+    padding-bottom:42px !important;
+  }
+  #homeScreen .home-v54-money-actions{
+    margin-bottom:-30px !important;
+  }
+  #homeScreen .home-v54-body{
+    padding-top:18px !important;
+  }
+  #homeScreen .home-v54-body > .home-v54-section-head:first-child{
+    margin-top:2px !important;
+  }
+  #homeScreen button.home-v54-affiliate,
+  #homeScreen .v16-shortcut-affiliate.home-v54-affiliate{
+    min-height:88px !important;
+    padding-left:16px !important;
+    padding-right:92px !important;
+  }
+}
+
 </style>
  </head>
  <body>
@@ -8048,8 +8158,6 @@ textarea:focus{
          <div class="v16-wallet-user" id="homeUserName">MEMBER</div>
         </div>
         <div class="v16-wallet-balance"><b id="homeCredit">0.00</b><span>฿</span></div>
-        <div class="home-v54-member"><small>เลขสมาชิก</small><strong id="homeUsername">user</strong></div>
-        <div class="home-v54-ready">พร้อมใช้งาน</div>
        </section>
 
        <div class="v16-money-actions home-v54-money-actions">
@@ -8099,7 +8207,6 @@ textarea:focus{
         <span class="home-v54-gift"><i class="fi fi-sr-gift"></i></span>
        </button>
 
-       <div class="home-v54-flaticon-credit">Icons by <a href="https://www.flaticon.com/uicons" target="_blank" rel="noopener noreferrer">Flaticon UIcons</a></div>
       </div>
      </div>
     </div>
