@@ -8514,6 +8514,328 @@ textarea:focus{
   .login-v56-title h1{font-size:26px !important;}
 }
 
+
+/* =====================================================
+   V57 — TEXT CONTRAST + LIGHTER TYPOGRAPHY
+   ปรับเฉพาะน้ำหนัก/สีตัวหนังสือ หน้า Login + หน้าหลัก
+===================================================== */
+
+/* ---------- GLOBAL TYPOGRAPHY ---------- */
+body,
+button,
+input,
+select,
+textarea{
+  font-weight:400 !important;
+}
+
+h1,h2,h3,
+strong,b{
+  font-weight:600 !important;
+}
+
+/* ---------- LOGIN: LIGHTER + BETTER CONTRAST ---------- */
+#loginScreen,
+#loginScreen *{
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+.login-v56-title h1{
+  color:#8c0010 !important;
+  font-weight:650 !important;
+}
+
+.login-v56-title p{
+  color:#4f4646 !important;
+  font-weight:400 !important;
+}
+
+#loginScreen .auth-tab{
+  color:#343030 !important;
+  font-weight:500 !important;
+}
+
+#loginScreen .auth-tab.active{
+  color:#ffffff !important;
+  font-weight:600 !important;
+}
+
+#loginScreen .auth-tab .fi{
+  color:#555151 !important;
+}
+
+#loginScreen .auth-tab.active .fi{
+  color:#ffffff !important;
+}
+
+#loginScreen .login-field label{
+  color:#201b1b !important;
+  font-weight:500 !important;
+}
+
+#loginScreen .login-field input,
+#loginScreen .login-field select{
+  color:#211d1d !important;
+  font-weight:400 !important;
+}
+
+#loginScreen .login-field input::placeholder{
+  color:#8c8787 !important;
+  font-weight:350 !important;
+}
+
+#loginScreen .password-toggle{
+  color:#8d0010 !important;
+  font-weight:500 !important;
+}
+
+.login-v56-forgot-row a{
+  color:#94000f !important;
+  font-weight:500 !important;
+}
+
+#loginScreen .login-submit{
+  color:#ffffff !important;
+  font-weight:600 !important;
+}
+
+.login-v56-divider{
+  color:#585151 !important;
+  font-weight:400 !important;
+}
+
+#loginScreen .login-line-contact{
+  color:#ffffff !important;
+  font-weight:600 !important;
+}
+
+.login-v56-affiliate{
+  color:#351113 !important;
+}
+
+.login-v56-affiliate-copy strong{
+  color:#7f0710 !important;
+  font-weight:600 !important;
+}
+
+.login-v56-affiliate-copy small{
+  color:#564949 !important;
+  font-weight:400 !important;
+}
+
+.login-v56-copyright{
+  color:rgba(255,255,255,.76) !important;
+  font-weight:350 !important;
+}
+
+/* ---------- HOME: LIGHTER TYPE ---------- */
+.v16-brand-copy strong{
+  font-weight:600 !important;
+}
+
+.v16-brand-copy small{
+  font-weight:350 !important;
+}
+
+.v16-logout,
+.line-contact-btn{
+  font-weight:500 !important;
+}
+
+.v16-wallet-label{
+  font-weight:400 !important;
+}
+
+.v16-wallet-user{
+  font-weight:400 !important;
+}
+
+.v16-wallet-balance{
+  font-weight:650 !important;
+}
+
+.v16-wallet-balance span{
+  font-weight:450 !important;
+}
+
+.v16-wallet-sub{
+  font-weight:350 !important;
+}
+
+.v16-money-btn{
+  font-weight:550 !important;
+}
+
+.v16-section-title{
+  color:#421010 !important;
+  font-weight:500 !important;
+}
+
+.v16-lotto-badge{
+  font-weight:500 !important;
+}
+
+.v16-lotto-title{
+  color:#231414 !important;
+  font-weight:600 !important;
+}
+
+.v16-lotto-desc{
+  color:#5e4b49 !important;
+  font-weight:350 !important;
+}
+
+.v16-lotto-go{
+  color:#ffffff !important;
+  font-weight:550 !important;
+}
+
+.v16-shortcut{
+  color:#321818 !important;
+  font-weight:450 !important;
+}
+
+.v16-shortcut span:last-child{
+  color:#321818 !important;
+  font-weight:450 !important;
+}
+
+.v16-shortcut-affiliate,
+.v16-shortcut-affiliate span:last-child{
+  color:#5a0b0b !important;
+  font-weight:500 !important;
+}
+
+/* หน้าแทงหวย / หัวข้อย่อย ให้บางลงด้วย */
+.hero h1,
+.selected-name,
+.direct-title,
+.card-title,
+.groups-title,
+.group-label,
+.lotto-name{
+  font-weight:600 !important;
+}
+
+.hero p,
+.eyebrow,
+.selected-sub,
+.lotto-meta,
+.lotto-date,
+.direct-help,
+.card-help,
+.submit-credit-note{
+  font-weight:350 !important;
+}
+
+/* ปุ่มทั่วไป */
+.account-btn,
+.bet-mode-tab,
+.quick-tool,
+.direct-back-bottom,
+.direct-clear-all,
+.direct-submit,
+.admin-btn,
+.admin-tab{
+  font-weight:500 !important;
+}
+
+/* ยอดเงิน/ตัวเลขหลักยังเด่น */
+.account-credit strong,
+.credit-mini b,
+.grand strong,
+.direct-grand strong,
+.current-bill-total strong,
+.bill-summary-pill strong{
+  font-weight:650 !important;
+}
+
+/* ---------- CONTRAST RULES ---------- */
+
+/* ข้อความบนพื้นแดง/เข้ม */
+.hero *,
+.topbar *,
+.admin-hero *,
+.v16-wallet *,
+.v16-money-btn.deposit *,
+.v16-lotto-go *,
+.direct-grand *,
+.grand *,
+.login-submit *,
+.direct-submit *{
+  color:#ffffff !important;
+}
+
+/* ข้อความบนการ์ดขาว */
+.v16-lotto-entry,
+.v16-lotto-entry *,
+.v16-shortcut,
+.v16-shortcut *,
+.direct-card,
+.direct-card *,
+.card,
+.card *{
+  color:#2b1717;
+}
+
+/* ข้อความรองบนพื้นขาว */
+.v16-lotto-desc,
+.card-help,
+.direct-help,
+.lotto-meta,
+.lotto-date{
+  color:#675554 !important;
+}
+
+/* ปุ่มถอนสีขาว */
+.v16-money-btn.withdraw,
+.v16-money-btn.withdraw *{
+  color:#7a0810 !important;
+}
+
+/* LINE ต้องขาวชัด */
+.line-contact-btn,
+.line-contact-btn *,
+#loginScreen .login-line-contact,
+#loginScreen .login-line-contact *{
+  color:#ffffff !important;
+}
+
+/* แนะนำเพื่อนหน้า Home ให้ชัดแต่ไม่หนา */
+.v16-shortcut-affiliate{
+  background:linear-gradient(135deg,#fff1c6,#ffd36a 55%,#ffbd45) !important;
+}
+.v16-shortcut-affiliate span:last-child{
+  color:#5a0b0b !important;
+  font-weight:550 !important;
+}
+
+/* ---------- MOBILE ---------- */
+@media(max-width:480px){
+  .login-v56-title h1{
+    font-weight:650 !important;
+  }
+
+  #loginScreen .auth-tab,
+  #loginScreen .login-submit,
+  #loginScreen .login-line-contact{
+    font-weight:550 !important;
+  }
+
+  .v16-wallet-balance{
+    font-weight:650 !important;
+  }
+
+  .v16-money-btn{
+    font-weight:550 !important;
+  }
+
+  .v16-lotto-title{
+    font-weight:600 !important;
+  }
+}
+
 </style>
  </head>
  <body>
