@@ -7767,708 +7767,767 @@ textarea:focus{
 
 
 /* =====================================================
-   V50 — MOBILE RED UI REFRESH (CSS ONLY)
-   Reference: login / member home / lottery list supplied by user
-   Scope: visual only. No HTML / JS / business logic changes.
+   V52 — HOME UI MATCH REFERENCE (CSS ONLY)
+   ปรับเฉพาะหน้า Home ให้ใกล้ภาพตัวอย่างมากที่สุด
+   โค้ด HTML / JavaScript / ฟังก์ชันเดิมไม่เปลี่ยน
 ===================================================== */
-:root{
-  --ui50-red:#b60912;
-  --ui50-red2:#e11922;
-  --ui50-red3:#8b050b;
-  --ui50-deep:#420103;
-  --ui50-soft:#fff4f4;
-  --ui50-pink:#ffe5e7;
-  --ui50-line:#ead9d9;
-  --ui50-text:#241b1b;
-  --ui50-muted:#706767;
-  --ui50-green:#08b94e;
-  --ui50-shadow:0 10px 28px rgba(76,0,4,.12);
-  --ui50-shadow-lg:0 22px 60px rgba(67,0,4,.25);
+#homeScreen{
+  --home-red-950:#520003;
+  --home-red-900:#720006;
+  --home-red-800:#94000a;
+  --home-red-700:#b40012;
+  --home-red-600:#d10a1e;
+  --home-ink:#261517;
+  --home-muted:#76696b;
+  --home-line:#f0e3e4;
+  --home-soft:#fff6f6;
+  --home-shadow:0 14px 34px rgba(88,0,8,.10);
+  --home-shadow-strong:0 22px 48px rgba(86,0,8,.20);
+  background:#fff !important;
+  color:var(--home-ink) !important;
 }
 
-html,body{
-  background:#f7f5f5 !important;
-  color:var(--ui50-text) !important;
+#homeScreen,
+#homeScreen *{
+  letter-spacing:0 !important;
 }
-body,input,select,textarea,button{
-  font-family:"Kanit","Noto Sans Thai",sans-serif !important;
+
+/* ข้อความทั่วไปใช้ตัวบาง อ่านสบาย */
+#homeScreen .v16-home,
+#homeScreen button,
+#homeScreen small,
+#homeScreen span{
   font-weight:400 !important;
 }
-button{ -webkit-tap-highlight-color:transparent; }
 
-/* ---------- LOGIN ---------- */
-#loginScreen{
-  min-height:100dvh !important;
+#homeScreen .v16-home-shell{
+  min-height:100svh !important;
+  padding:calc(16px + env(safe-area-inset-top)) 16px calc(34px + env(safe-area-inset-bottom)) !important;
+  background:
+    radial-gradient(circle at 92% 8%,rgba(255,70,83,.34),transparent 24%),
+    radial-gradient(circle at 8% 20%,rgba(255,255,255,.10),transparent 28%),
+    linear-gradient(180deg,#5b0003 0,#8f0009 170px,#b90016 410px,#ffffff 410px,#ffffff 100%) !important;
+  background-size:auto !important;
+}
+
+#homeScreen .v16-home{
+  width:100% !important;
+  max-width:720px !important;
+  margin:0 auto !important;
+  padding:0 0 24px !important;
+  background:transparent !important;
+}
+
+/* ===== Header ===== */
+#homeScreen .v16-home-head{
+  min-height:76px !important;
+  margin:0 0 20px !important;
   display:flex !important;
   align-items:center !important;
-  justify-content:center !important;
-  padding:118px 16px 28px !important;
-  background:
-    radial-gradient(circle at 12% 82%,rgba(255,38,48,.24),transparent 26%),
-    radial-gradient(circle at 88% 18%,rgba(255,50,60,.16),transparent 24%),
-    linear-gradient(150deg,#250001 0%,#5d0004 44%,#b6000c 100%) !important;
-  overflow:auto !important;
+  justify-content:space-between !important;
+  gap:12px !important;
 }
-#loginScreen:before,
-#loginScreen:after{
-  content:"";
-  position:fixed;
-  pointer-events:none;
-  width:58vw;
-  height:1px;
-  background:linear-gradient(90deg,transparent,rgba(255,40,48,.72),transparent);
-  filter:drop-shadow(0 0 5px rgba(255,30,40,.65));
-  transform:rotate(-32deg);
-  opacity:.75;
-}
-#loginScreen:before{left:-18vw;bottom:15vh;}
-#loginScreen:after{right:-20vw;bottom:8vh;transform:rotate(-28deg);}
 
-.login-card-credit{
-  position:relative !important;
-  overflow:visible !important;
-  width:min(100%,430px) !important;
-  margin:0 auto !important;
-  padding:28px 24px 24px !important;
-  border:1px solid rgba(255,255,255,.92) !important;
-  border-radius:28px !important;
-  background:#fff !important;
-  color:var(--ui50-text) !important;
-  box-shadow:var(--ui50-shadow-lg) !important;
+#homeScreen .v16-brand{
+  min-width:0 !important;
+  flex:1 1 auto !important;
 }
-.login-card-credit:before{display:none !important;}
-.login-logo-credit{
-  position:absolute !important;
-  left:50% !important;
-  top:-104px !important;
-  transform:translateX(-50%) !important;
-  width:250px !important;
-  height:82px !important;
-  min-height:0 !important;
+
+#homeScreen .v16-brand-mark{
+  width:clamp(168px,45vw,270px) !important;
+  height:70px !important;
+  flex:0 1 auto !important;
   margin:0 !important;
   padding:0 !important;
   border:0 !important;
   background:transparent !important;
   box-shadow:none !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  z-index:2 !important;
 }
-.login-logo-credit img{
+
+#homeScreen .v16-brand-mark img{
   width:100% !important;
   height:100% !important;
   object-fit:contain !important;
-  filter:drop-shadow(0 9px 15px rgba(0,0,0,.24)) !important;
+  object-position:left center !important;
+  filter:drop-shadow(0 7px 14px rgba(35,0,3,.24)) !important;
 }
-.auth-tabs{
-  display:grid !important;
-  grid-template-columns:1fr 1fr !important;
-  gap:0 !important;
-  margin:0 0 20px !important;
+
+#homeScreen .v16-head-actions{
+  display:flex !important;
+  align-items:center !important;
+  gap:10px !important;
+  flex:0 0 auto !important;
+}
+
+/* ปุ่มติดต่อคงฟังก์ชัน LINE เดิม แต่ย่อให้เป็นไอคอน */
+#homeScreen .v16-head-actions .line-contact-btn{
+  position:relative !important;
+  width:48px !important;
+  min-width:48px !important;
+  height:48px !important;
+  min-height:48px !important;
   padding:0 !important;
-  border:1px solid #e4e0e0 !important;
+  border:1px solid rgba(255,255,255,.30) !important;
   border-radius:15px !important;
-  background:#fff !important;
-  box-shadow:0 7px 20px rgba(0,0,0,.05) !important;
+  background:rgba(60,0,4,.24) !important;
+  box-shadow:none !important;
+  color:transparent !important;
+  font-size:0 !important;
   overflow:visible !important;
 }
-.auth-tabs:before{
-  content:"เข้าสู่ระบบ";
-  grid-column:1/-1;
-  margin:2px 0 2px;
-  padding:0 0 0;
-  transform:translateY(-6px);
-  color:#8e1117;
-  text-align:center;
-  font-size:27px;
-  line-height:1.15;
-  font-weight:650 !important;
-  pointer-events:none;
-}
-.auth-tabs:after{
-  content:"ยินดีต้อนรับกลับมา";
-  grid-column:1/-1;
-  margin:0 0 16px;
-  color:#696161;
-  text-align:center;
-  font-size:13px;
-  font-weight:400 !important;
-  pointer-events:none;
-}
-.login-card-credit:has(#authRegisterTab.active) .auth-tabs:before{content:"สมัครสมาชิก";}
-.login-card-credit:has(#authRegisterTab.active) .auth-tabs:after{content:"สร้างบัญชีเพื่อเริ่มใช้งาน";}
-.auth-tab{
-  min-height:50px !important;
-  border:0 !important;
-  border-radius:13px !important;
-  background:#fff !important;
-  color:#3e3838 !important;
-  font-size:15px !important;
-  font-weight:500 !important;
-  box-shadow:none !important;
-}
-.auth-tab.active{
-  margin:-1px !important;
-  background:linear-gradient(135deg,#a90008,#d90e18) !important;
-  color:#fff !important;
-  box-shadow:0 9px 18px rgba(173,0,9,.22) !important;
-}
-.login-field{margin:13px 0 !important;}
-.login-field label{
-  margin-bottom:7px !important;
-  color:#302b2b !important;
-  font-size:13px !important;
-  font-weight:500 !important;
-  text-shadow:none !important;
-}
-.login-field input,
-.login-field select{
-  width:100% !important;
-  height:52px !important;
-  border:1px solid #ddd9d9 !important;
-  border-radius:13px !important;
-  padding:0 14px !important;
-  background:#fff !important;
-  color:#241b1b !important;
-  font-size:15px !important;
-  font-weight:400 !important;
-  box-shadow:inset 0 1px 1px rgba(0,0,0,.015) !important;
-}
-.login-field input:focus,
-.login-field select:focus{
-  border-color:#c80c15 !important;
-  box-shadow:0 0 0 3px rgba(200,12,21,.10) !important;
-}
-.password-toggle{
-  top:8px !important;
-  right:8px !important;
-  min-width:52px !important;
-  height:36px !important;
-  border:0 !important;
-  background:#fff !important;
-  color:#aa0d14 !important;
-  font-size:11px !important;
-  font-weight:500 !important;
-}
-.login-submit{
-  width:100% !important;
-  height:54px !important;
-  margin-top:12px !important;
-  border:0 !important;
-  border-radius:13px !important;
-  background:linear-gradient(90deg,#b00009,#d20a14 55%,#9e0008) !important;
-  color:#fff !important;
-  font-size:17px !important;
-  font-weight:600 !important;
-  box-shadow:0 10px 22px rgba(166,0,8,.20) !important;
-}
-.login-line-contact-wrap{
-  margin-top:20px !important;
-  padding-top:16px !important;
-  border-top:1px solid #e7e2e2 !important;
-}
-.login-line-contact-label{
-  margin-bottom:10px !important;
-  color:#736b6b !important;
-  font-size:12px !important;
-  font-weight:400 !important;
-}
-.login-line-contact{
-  min-height:52px !important;
-  border:0 !important;
-  border-radius:13px !important;
-  background:linear-gradient(90deg,#06a944,#08c556) !important;
-  color:#fff !important;
-  font-size:15px !important;
-  font-weight:600 !important;
-  box-shadow:0 9px 20px rgba(6,174,72,.18) !important;
-}
-.login-line-contact img{width:25px !important;height:25px !important;}
 
-/* ---------- MEMBER HOME ---------- */
-#homeScreen{
-  background:#fff !important;
-}
-#homeScreen .v16-home-shell{
-  min-height:100dvh !important;
-  padding:calc(14px + env(safe-area-inset-top)) 14px calc(28px + env(safe-area-inset-bottom)) !important;
-  background:
-    radial-gradient(circle at 100% 0,rgba(255,60,70,.18),transparent 24%),
-    linear-gradient(180deg,#4a0003 0,#96000a 280px,#fff 280px,#fff 100%) !important;
-}
-#homeScreen .v16-home{max-width:520px !important;margin:0 auto !important;}
-#homeScreen .v16-home-head{
-  min-height:68px !important;
-  margin:0 0 12px !important;
-  align-items:center !important;
-}
-#homeScreen .v16-brand{min-width:0 !important;}
-#homeScreen .v16-brand-mark{
-  width:185px !important;
-  height:58px !important;
-  flex:0 0 185px !important;
-  margin:0 !important;
-  background:transparent !important;
-  border:0 !important;
-  box-shadow:none !important;
-}
-#homeScreen .v16-brand-mark img{filter:drop-shadow(0 7px 12px rgba(0,0,0,.18)) !important;}
-#homeScreen .v16-head-actions{gap:7px !important;}
-#homeScreen .v16-logout{
-  height:40px !important;
-  min-width:0 !important;
-  padding:0 11px !important;
-  border:1px solid rgba(255,255,255,.35) !important;
-  border-radius:12px !important;
-  background:rgba(70,0,3,.30) !important;
-  color:#fff !important;
-  font-size:10px !important;
-  font-weight:500 !important;
-  box-shadow:none !important;
-}
-#homeScreen .line-contact-btn{
-  background:#06b74d !important;
-  border-color:#06b74d !important;
-  box-shadow:none !important;
-}
-#homeScreen .line-contact-logo{width:16px !important;height:16px !important;flex-basis:16px !important;}
-
-#homeScreen .v16-wallet{
-  min-height:174px !important;
-  padding:20px !important;
-  border:1px solid rgba(255,255,255,.20) !important;
-  border-radius:22px !important;
-  background:
-    radial-gradient(circle at 82% 52%,rgba(255,255,255,.08),transparent 25%),
-    linear-gradient(135deg,#8b0008 0%,#b6000d 54%,#5d0004 100%) !important;
-  box-shadow:0 18px 34px rgba(79,0,4,.25) !important;
-  color:#fff !important;
-}
-#homeScreen .v16-wallet:before,
-#homeScreen .v16-wallet:after{display:none !important;}
-#homeScreen .v16-wallet-label{
-  color:rgba(255,255,255,.90) !important;
-  font-size:14px !important;
-  font-weight:400 !important;
-}
-#homeScreen .v16-wallet-user{
-  max-width:50% !important;
-  padding:6px 10px !important;
-  border:1px solid rgba(255,255,255,.18) !important;
-  border-radius:999px !important;
-  background:rgba(66,0,3,.28) !important;
-  color:#fff !important;
-  font-size:10px !important;
-  font-weight:400 !important;
-}
-#homeScreen .v16-wallet-balance{
-  margin-top:19px !important;
-  color:#fff !important;
-  font-size:44px !important;
-  line-height:1 !important;
-  font-weight:650 !important;
-}
-#homeScreen .v16-wallet-balance b{color:#fff !important;font-weight:650 !important;}
-#homeScreen .v16-wallet-balance span{color:#fff !important;font-size:20px !important;font-weight:400 !important;}
-#homeScreen .v16-wallet-sub{
-  margin-top:19px !important;
-  color:rgba(255,255,255,.86) !important;
-  font-size:11px !important;
-  font-weight:400 !important;
-}
-#homeScreen .v16-money-actions{gap:10px !important;margin-top:12px !important;}
-#homeScreen .v16-money-btn{
-  min-height:58px !important;
-  border-radius:17px !important;
-  font-size:17px !important;
-  font-weight:600 !important;
-  box-shadow:0 8px 18px rgba(91,0,5,.10) !important;
-}
-#homeScreen .v16-money-btn.deposit{
-  background:linear-gradient(135deg,#af000a,#6d0005) !important;
-  color:#fff !important;
-  border:1px solid #910008 !important;
-}
-#homeScreen .v16-money-btn.withdraw{
-  background:#fff !important;
-  color:#8e070d !important;
-  border:1px solid #ead8d8 !important;
-}
-#homeScreen .v16-money-icon{
-  width:32px !important;
-  height:32px !important;
-  border-radius:50% !important;
-  background:rgba(255,255,255,.94) !important;
-  color:#a40008 !important;
-  font-size:19px !important;
-  font-weight:500 !important;
-}
-#homeScreen .v16-money-btn.withdraw .v16-money-icon{
-  background:#fff7f7 !important;
-  color:#a40008 !important;
-}
-#homeScreen .v16-section-title{
-  margin:24px 2px 11px !important;
-  color:#2d2020 !important;
-  font-size:18px !important;
-  font-weight:600 !important;
-  letter-spacing:0 !important;
-}
-#homeScreen .v16-section-title:before{display:none !important;}
-#homeScreen .v16-lotto-entry{
-  padding:16px !important;
-  border:1px solid #ece3e3 !important;
-  border-radius:20px !important;
-  background:#fff !important;
-  color:#241b1b !important;
-  box-shadow:0 8px 26px rgba(0,0,0,.08) !important;
-}
-#homeScreen .v16-lotto-entry:before{display:none !important;}
-#homeScreen .v16-lotto-row{align-items:center !important;}
-#homeScreen .v16-lotto-badge{
-  min-height:23px !important;
-  padding:0 10px !important;
-  border:0 !important;
-  border-radius:999px !important;
-  background:#b6000d !important;
-  color:#fff !important;
-  font-size:9px !important;
-  font-weight:500 !important;
-}
-#homeScreen .v16-lotto-title{
-  margin-top:9px !important;
-  color:#2a2020 !important;
-  font-size:25px !important;
-  font-weight:650 !important;
-}
-#homeScreen .v16-lotto-art{
-  width:105px !important;
-  height:78px !important;
-  flex:0 0 105px !important;
-}
-#homeScreen .v16-lotto-go{
-  min-height:50px !important;
-  margin-top:12px !important;
-  border:0 !important;
-  border-radius:13px !important;
-  background:linear-gradient(90deg,#c60010,#650005) !important;
-  color:#fff !important;
-  font-size:14px !important;
-  font-weight:600 !important;
-}
-#homeScreen .v16-shortcuts{
-  display:grid !important;
-  grid-template-columns:repeat(4,minmax(0,1fr)) !important;
-  gap:8px !important;
-}
-#homeScreen .v16-shortcut{
-  min-height:92px !important;
-  padding:10px 5px !important;
-  border:1px solid #ece4e4 !important;
-  border-radius:17px !important;
-  background:#fff !important;
-  color:#322727 !important;
-  box-shadow:0 7px 18px rgba(0,0,0,.055) !important;
-  font-size:10px !important;
-  font-weight:500 !important;
-}
-#homeScreen .v16-shortcut-icon{
-  width:38px !important;
-  height:38px !important;
-  border-radius:12px !important;
-  background:#fff5f5 !important;
-  color:#9a0710 !important;
-  font-size:18px !important;
-  font-weight:500 !important;
-  box-shadow:none !important;
-}
-#homeScreen .v16-shortcut-affiliate{
-  grid-column:1/-1 !important;
-  min-height:82px !important;
-  display:grid !important;
-  grid-template-columns:52px minmax(0,1fr) !important;
-  justify-items:start !important;
-  align-items:center !important;
-  gap:12px !important;
-  padding:14px 16px !important;
-  border:0 !important;
-  border-radius:19px !important;
-  background:linear-gradient(100deg,#770005,#b6000d 64%,#ef1620) !important;
-  color:#fff !important;
-  box-shadow:0 10px 22px rgba(124,0,7,.16) !important;
-  font-size:16px !important;
-  text-align:left !important;
-}
-#homeScreen .v16-shortcut-affiliate .v16-shortcut-icon{
-  grid-row:1 !important;
-  width:46px !important;
-  height:46px !important;
-  background:rgba(255,255,255,.13) !important;
-  color:#fff !important;
-  font-size:22px !important;
-}
-#homeScreen .v16-shortcut-affiliate span:last-child{
-  color:#fff !important;
-  font-size:16px !important;
-  font-weight:600 !important;
-}
-
-/* ---------- LOTTERY LIST ---------- */
-#lottoScreen{
-  min-height:100dvh !important;
-  background:#f7f5f5 !important;
-}
-#lottoScreen .hero{
-  position:relative !important;
-  padding:calc(16px + env(safe-area-inset-top)) 16px 22px !important;
-  border:0 !important;
-  border-radius:0 !important;
-  background:
-    radial-gradient(circle at 86% 16%,rgba(255,255,255,.14),transparent 28%),
-    linear-gradient(135deg,#6c0005,#b4000d 68%,#d60e18) !important;
-  box-shadow:none !important;
-  color:#fff !important;
-}
-#lottoScreen .eyebrow{display:none !important;}
-#lottoScreen .hero h1{
-  margin:66px 0 0 !important;
-  color:#fff !important;
-  font-size:30px !important;
-  line-height:1.05 !important;
-  font-weight:650 !important;
-  text-shadow:none !important;
-}
-#lottoScreen .hero h1:after{
-  content:"ยอดเงินคงเหลือ";
-  display:block;
-  margin-top:8px;
-  color:rgba(255,255,255,.86);
-  font-size:12px;
-  font-weight:400;
-}
-#lottoScreen .home-nav-inline{
-  position:absolute !important;
-  top:calc(15px + env(safe-area-inset-top)) !important;
-  left:16px !important;
-  margin:0 !important;
-}
-#lottoScreen .home-nav-inline button{
-  min-height:42px !important;
-  padding:0 13px !important;
-  border:1px solid rgba(255,255,255,.36) !important;
-  border-radius:13px !important;
-  background:rgba(88,0,5,.30) !important;
-  color:#fff !important;
-  font-size:12px !important;
-  font-weight:500 !important;
-  box-shadow:none !important;
-}
-#lottoScreen .account-row{
-  position:absolute !important;
-  right:16px !important;
-  bottom:24px !important;
-  margin:0 !important;
-  display:block !important;
-}
-#lottoScreen .account-actions{display:none !important;}
-#lottoScreen .account-credit{
-  min-width:124px !important;
-  padding:11px 14px !important;
-  border:1px solid rgba(255,255,255,.62) !important;
-  border-radius:14px !important;
-  background:#fff !important;
-  text-align:center !important;
-  box-shadow:0 8px 20px rgba(78,0,4,.16) !important;
-}
-#lottoScreen .account-credit small{
-  display:block !important;
-  height:0 !important;
-  overflow:hidden !important;
-  font-size:0 !important;
-  color:transparent !important;
-}
-#lottoScreen .account-credit strong{
-  color:#a3070f !important;
-  font-size:21px !important;
-  line-height:1.1 !important;
-  font-weight:650 !important;
-}
-#lottoScreen .account-credit strong:before{content:"฿ ";font-weight:500;}
-#lottoScreen .lotto-body{
-  padding:20px 12px calc(24px + env(safe-area-inset-bottom)) !important;
-  background:#f7f5f5 !important;
-}
-#lottoScreen .lotto-grid{
-  display:grid !important;
-  grid-template-columns:1fr !important;
-  gap:10px !important;
-  max-width:540px !important;
-  margin:0 auto !important;
-}
-#lottoScreen .lotto-grid:before{
-  content:"รายการหวยที่เปิดรับ";
-  display:block;
-  margin:4px 2px 2px;
-  color:#2b2020;
-  font-size:18px;
-  font-weight:600;
-}
-#lottoScreen .lotto{
-  position:relative !important;
-  min-height:88px !important;
-  width:100% !important;
-  padding:13px 14px 13px 12px !important;
-  display:grid !important;
-  grid-template-columns:48px minmax(0,1fr) auto !important;
-  gap:10px !important;
-  align-items:center !important;
-  border:1px solid #e7dddd !important;
-  border-radius:16px !important;
-  background:#fff !important;
-  color:#241b1b !important;
-  box-shadow:0 5px 15px rgba(0,0,0,.075) !important;
-  text-align:left !important;
-  overflow:hidden !important;
-}
-#lottoScreen .lotto:before{
-  content:"★";
-  width:46px;
-  height:46px;
-  display:grid;
-  place-items:center;
+#homeScreen .v16-head-actions .line-contact-btn::after{
+  content:"";
+  position:absolute;
+  top:7px;
+  right:7px;
+  width:7px;
+  height:7px;
   border-radius:50%;
-  background:linear-gradient(145deg,#d20b15,#950008);
-  color:#fff;
-  font-size:19px;
-  font-weight:500;
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.24);
+  background:#ff1c2f;
+  border:2px solid #760007;
+  box-shadow:0 0 0 2px rgba(255,255,255,.08);
 }
-#lottoScreen .lotto>div:first-of-type{min-width:0 !important;}
-#lottoScreen .lotto-name{
-  color:#221a1a !important;
-  font-size:16px !important;
-  line-height:1.25 !important;
-  font-weight:600 !important;
+
+#homeScreen .v16-head-actions .line-contact-logo{
+  width:23px !important;
+  height:23px !important;
+  margin:0 !important;
+  border-radius:6px !important;
+  filter:grayscale(1) brightness(0) invert(1) !important;
+  opacity:.96 !important;
 }
-#lottoScreen .lotto-meta{
-  margin-top:5px !important;
-  color:#706868 !important;
-  font-size:11px !important;
-  line-height:1.3 !important;
-  font-weight:400 !important;
+
+#homeScreen .v16-head-actions .v16-logout:not(.line-contact-btn){
+  min-width:112px !important;
+  height:48px !important;
+  padding:0 17px !important;
+  border:1px solid rgba(255,255,255,.42) !important;
+  border-radius:15px !important;
+  background:rgba(76,0,5,.28) !important;
+  color:#fff !important;
+  box-shadow:none !important;
+  font-size:14px !important;
+  font-weight:500 !important;
 }
-#lottoScreen .lotto-limit-note{
-  margin-top:4px !important;
-  color:#9d151b !important;
-  font-size:9px !important;
-  line-height:1.3 !important;
-  font-weight:400 !important;
+
+/* ===== Wallet ===== */
+#homeScreen .v16-wallet{
+  position:relative !important;
+  min-height:220px !important;
+  padding:22px 24px 24px !important;
+  border:1px solid rgba(255,255,255,.18) !important;
+  border-radius:24px !important;
+  overflow:hidden !important;
+  color:#fff !important;
+  background:
+    radial-gradient(circle at 85% 38%,rgba(255,39,55,.26),transparent 28%),
+    radial-gradient(circle at 105% 105%,rgba(228,0,25,.46),transparent 42%),
+    linear-gradient(135deg,#530004 0%,#820008 46%,#a80011 100%) !important;
+  box-shadow:0 22px 46px rgba(58,0,5,.32),inset 0 1px 0 rgba(255,255,255,.14) !important;
 }
-#lottoScreen .lotto-right{
-  min-width:94px !important;
-  text-align:right !important;
+
+#homeScreen .v16-wallet::before{
+  content:"" !important;
+  position:absolute !important;
+  right:-20px !important;
+  bottom:-22px !important;
+  width:190px !important;
+  height:150px !important;
+  border:0 !important;
+  border-radius:46% 46% 22% 22% !important;
+  background:
+    radial-gradient(circle at 48% 25%,rgba(255,84,93,.22) 0 24%,transparent 25%),
+    linear-gradient(145deg,rgba(238,24,42,.20),rgba(92,0,8,.52)) !important;
+  transform:rotate(-8deg) !important;
+  opacity:.68 !important;
+  pointer-events:none !important;
 }
-#lottoScreen .lotto-date{
-  color:#5d5656 !important;
-  font-size:9px !important;
+
+#homeScreen .v16-wallet::after{
+  content:"" !important;
+  position:absolute !important;
+  inset:auto 24px 112px 24px !important;
+  height:1px !important;
+  width:auto !important;
+  border-radius:0 !important;
+  background:linear-gradient(90deg,rgba(255,255,255,.40),rgba(255,255,255,.03)) !important;
+}
+
+#homeScreen .v16-wallet-top{
+  position:relative !important;
+  z-index:2 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  gap:12px !important;
+}
+
+#homeScreen .v16-wallet-label{
+  color:rgba(255,255,255,.92) !important;
+  font-size:15px !important;
   line-height:1.2 !important;
   font-weight:400 !important;
 }
-#lottoScreen .countdown{
-  display:inline-flex !important;
+
+#homeScreen .v16-wallet-user{
+  max-width:46% !important;
+  padding:7px 11px !important;
+  border:1px solid rgba(255,255,255,.16) !important;
+  border-radius:10px !important;
+  background:rgba(62,0,5,.28) !important;
+  color:rgba(255,255,255,.82) !important;
+  font-size:10px !important;
+  font-weight:400 !important;
+  box-shadow:none !important;
+}
+
+#homeScreen .v16-wallet-balance{
+  position:relative !important;
+  z-index:2 !important;
+  margin-top:22px !important;
+  color:#fff !important;
+  font-size:clamp(42px,10vw,62px) !important;
+  line-height:1 !important;
+  font-variant-numeric:tabular-nums !important;
+  text-shadow:0 8px 24px rgba(35,0,4,.28) !important;
+}
+
+#homeScreen .v16-wallet-balance b{
+  color:#fff !important;
+  font-weight:700 !important;
+}
+
+#homeScreen .v16-wallet-balance span{
+  margin-left:8px !important;
+  color:#fff !important;
+  font-size:.48em !important;
+  font-weight:400 !important;
+}
+
+#homeScreen .v16-wallet-sub{
+  position:relative !important;
+  z-index:2 !important;
+  margin-top:25px !important;
+  display:flex !important;
+  align-items:flex-end !important;
+  justify-content:space-between !important;
+  gap:12px !important;
+  color:rgba(255,255,255,.90) !important;
+  font-size:13px !important;
+  font-weight:400 !important;
+}
+
+#homeScreen #homeUsername{
+  color:#fff !important;
+  font-size:15px !important;
+  line-height:1.3 !important;
+  font-weight:400 !important;
+}
+
+#homeScreen #homeUsername::before{
+  content:"เลขสมาชิก";
+  display:block;
+  margin-bottom:4px;
+  color:rgba(255,255,255,.72) !important;
+  font-size:11px !important;
+  font-weight:400 !important;
+}
+
+#homeScreen .v16-wallet-sub > span:last-child{
+  color:rgba(255,255,255,.78) !important;
+  font-size:11px !important;
+  font-weight:400 !important;
+}
+
+/* ===== Deposit / Withdraw ===== */
+#homeScreen .v16-money-actions{
+  position:relative !important;
+  z-index:4 !important;
+  display:grid !important;
+  grid-template-columns:1fr 1fr !important;
+  gap:14px !important;
+  margin-top:18px !important;
+  padding:0 4px !important;
+}
+
+#homeScreen .v16-money-btn{
+  min-height:68px !important;
+  border-radius:18px !important;
+  font-size:18px !important;
+  font-weight:600 !important;
+  box-shadow:0 14px 30px rgba(93,0,8,.15) !important;
+}
+
+#homeScreen .v16-money-btn.deposit{
+  border:1px solid rgba(255,255,255,.16) !important;
+  background:linear-gradient(135deg,#8d000a,#c40018 58%,#670006) !important;
+  color:#fff !important;
+}
+
+#homeScreen .v16-money-btn.withdraw{
+  border:1px solid #f3e4e5 !important;
+  background:#fff !important;
+  color:#7b0008 !important;
+}
+
+#homeScreen .v16-money-icon{
+  width:38px !important;
+  height:38px !important;
+  border-radius:50% !important;
+  display:grid !important;
+  place-items:center !important;
+  font-size:25px !important;
+  line-height:1 !important;
+  font-weight:400 !important;
+}
+
+#homeScreen .v16-money-btn.deposit .v16-money-icon{
+  background:#fff !important;
+  color:#a90012 !important;
+}
+
+#homeScreen .v16-money-btn.withdraw .v16-money-icon{
+  background:#fffafa !important;
+  border:1px solid #f2d5d8 !important;
+  color:#a0000d !important;
+}
+
+/* ===== Section titles ===== */
+#homeScreen .v16-section-title{
+  min-height:30px !important;
+  margin:30px 2px 12px !important;
+  display:flex !important;
+  align-items:center !important;
+  gap:9px !important;
+  color:#241719 !important;
+  font-size:0 !important;
+  line-height:1.2 !important;
+  font-weight:600 !important;
+}
+
+#homeScreen .v16-section-title::before{
+  width:auto !important;
+  height:auto !important;
+  background:none !important;
+}
+
+#homeScreen .v16-money-actions + .v16-section-title::before{
+  content:"★  แทงหวย" !important;
+  color:#261517 !important;
+  font-size:22px !important;
+  font-weight:650 !important;
+}
+
+#homeScreen .v16-money-actions + .v16-section-title::after{
+  content:"" !important;
+  margin-left:auto !important;
+}
+
+#homeScreen .v16-lotto-entry + .v16-section-title::before{
+  content:"⚡  เมนูลัด" !important;
+  color:#261517 !important;
+  font-size:22px !important;
+  font-weight:650 !important;
+}
+
+/* ===== Lottery card ===== */
+#homeScreen .v16-lotto-entry{
+  position:relative !important;
+  width:100% !important;
+  min-height:210px !important;
+  padding:20px !important;
+  overflow:hidden !important;
+  border:1px solid #f0e5e6 !important;
+  border-radius:24px !important;
+  background:#fff !important;
+  color:var(--home-ink) !important;
+  box-shadow:var(--home-shadow) !important;
+}
+
+#homeScreen .v16-lotto-entry::before{
+  display:none !important;
+}
+
+#homeScreen .v16-lotto-row{
+  min-height:116px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  gap:18px !important;
+  padding:0 4px !important;
+}
+
+#homeScreen .v16-lotto-row > div:first-child{
+  min-width:0 !important;
+  flex:1 1 auto !important;
+}
+
+#homeScreen .v16-lotto-badge{
+  min-height:27px !important;
+  padding:0 12px !important;
+  border:0 !important;
+  border-radius:999px !important;
+  background:linear-gradient(135deg,#bd0014,#8d000a) !important;
+  color:#fff !important;
+  font-size:10px !important;
+  font-weight:500 !important;
+  box-shadow:0 7px 16px rgba(131,0,9,.14) !important;
+}
+
+#homeScreen .v16-lotto-title{
+  margin-top:11px !important;
+  color:#251718 !important;
+  font-size:29px !important;
+  line-height:1.15 !important;
+  font-weight:650 !important;
+}
+
+#homeScreen .v16-lotto-desc{
+  color:var(--home-muted) !important;
+  font-weight:400 !important;
+}
+
+#homeScreen .v16-lotto-art{
+  width:154px !important;
+  height:112px !important;
+  flex:0 0 154px !important;
+  border:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+}
+
+#homeScreen .v16-lotto-art img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  filter:drop-shadow(0 14px 18px rgba(109,0,8,.18)) !important;
+}
+
+#homeScreen .v16-lotto-go{
+  min-height:58px !important;
+  margin-top:12px !important;
+  padding:0 22px !important;
+  border:0 !important;
+  border-radius:16px !important;
+  background:linear-gradient(100deg,#c6001a 0%,#9a000b 55%,#650005 100%) !important;
+  color:#fff !important;
+  font-size:16px !important;
+  font-weight:600 !important;
+  box-shadow:0 11px 22px rgba(119,0,8,.15) !important;
+}
+
+#homeScreen .v16-lotto-go span{
+  color:#fff !important;
+  font-weight:600 !important;
+}
+
+#homeScreen .v16-lotto-go span:last-child{
+  font-size:34px !important;
+  line-height:1 !important;
+  font-weight:300 !important;
+}
+
+/* ===== Quick menu ===== */
+#homeScreen .v16-shortcuts{
+  display:grid !important;
+  grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+  gap:10px !important;
+  align-items:stretch !important;
+}
+
+#homeScreen .v16-shortcut{
+  position:relative !important;
+  min-width:0 !important;
+  min-height:124px !important;
+  padding:14px 8px 13px !important;
+  border:1px solid #eee5e6 !important;
+  border-radius:22px !important;
+  background:#fff !important;
+  color:#2a1a1c !important;
+  box-shadow:0 12px 30px rgba(67,0,6,.08) !important;
+  display:flex !important;
+  flex-direction:column !important;
   align-items:center !important;
   justify-content:center !important;
-  min-width:88px !important;
-  min-height:30px !important;
-  margin-top:7px !important;
-  padding:0 8px !important;
-  border-radius:9px !important;
-  background:#ffe5e7 !important;
-  color:#ad0a12 !important;
-  font-size:12px !important;
-  line-height:1 !important;
-  font-weight:600 !important;
-  font-variant-numeric:tabular-nums !important;
+  gap:11px !important;
+  font-size:13px !important;
+  font-weight:500 !important;
 }
-#lottoScreen .countdown:before{content:"◷ ";margin-right:4px;font-size:12px;}
-#lottoScreen .empty{
-  max-width:540px !important;
-  margin:0 auto !important;
-  border:1px dashed #d9caca !important;
-  border-radius:16px !important;
+
+#homeScreen .v16-shortcut-icon{
+  width:48px !important;
+  height:48px !important;
+  border:0 !important;
+  border-radius:14px !important;
+  display:grid !important;
+  place-items:center !important;
   background:#fff !important;
-  color:#756a6a !important;
+  color:#9b000c !important;
+  box-shadow:inset 0 0 0 2px #b40012 !important;
+  font-size:23px !important;
+  font-weight:400 !important;
+}
+
+#homeScreen .v16-shortcut > span:last-child{
+  color:#261719 !important;
+  font-size:13px !important;
+  line-height:1.25 !important;
+  text-align:center !important;
+  font-weight:500 !important;
+}
+
+/* แนะนำเพื่อนเป็นแบนเนอร์เต็มแถวแบบภาพตัวอย่าง */
+#homeScreen .v16-shortcut-affiliate{
+  grid-column:1 / -1 !important;
+  min-height:102px !important;
+  padding:17px 24px !important;
+  border:0 !important;
+  border-radius:22px !important;
+  background:
+    radial-gradient(circle at 88% 22%,rgba(255,95,104,.36),transparent 28%),
+    linear-gradient(100deg,#760006 0%,#ae0011 58%,#e00820 100%) !important;
+  color:#fff !important;
+  box-shadow:0 15px 32px rgba(113,0,8,.18) !important;
+  display:flex !important;
+  flex-direction:row-reverse !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  gap:18px !important;
+}
+
+#homeScreen .v16-shortcut-affiliate .v16-shortcut-icon{
+  width:70px !important;
+  height:70px !important;
+  flex:0 0 70px !important;
+  border:0 !important;
+  border-radius:18px !important;
+  background:rgba(255,255,255,.14) !important;
+  color:#fff !important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.22) !important;
+  font-size:38px !important;
+}
+
+#homeScreen .v16-shortcut-affiliate > span:last-child{
+  flex:1 1 auto !important;
+  min-width:0 !important;
+  color:#fff !important;
+  font-size:21px !important;
+  line-height:1.2 !important;
+  text-align:left !important;
+  font-weight:600 !important;
+}
+
+#homeScreen .v16-shortcut-affiliate > span:last-child::after{
+  content:"ชวนเพื่อนมาเล่น รับค่าคอมมิชชั่น";
+  display:block;
+  margin-top:7px;
+  color:rgba(255,255,255,.82) !important;
   font-size:12px !important;
+  line-height:1.35 !important;
   font-weight:400 !important;
 }
 
-/* ---------- typography: only important words are bold ---------- */
-#loginScreen p,
-#loginScreen small,
-#loginScreen label,
-#homeScreen small,
-#homeScreen .v16-wallet-label,
-#homeScreen .v16-wallet-sub,
-#lottoScreen .lotto-meta,
-#lottoScreen .lotto-date,
-#lottoScreen .lotto-limit-note{
-  font-weight:400 !important;
+#homeScreen button:active{
+  transform:scale(.985) !important;
 }
 
-@media(max-width:430px){
-  #loginScreen{padding:108px 12px 22px !important;}
-  .login-card-credit{width:100% !important;padding:24px 18px 20px !important;border-radius:24px !important;}
-  .login-logo-credit{top:-92px !important;width:218px !important;height:72px !important;}
-  .auth-tabs:before{font-size:24px !important;}
-  .auth-tabs:after{font-size:12px !important;margin-bottom:13px !important;}
-  .auth-tab{min-height:47px !important;font-size:14px !important;}
-  .login-field input,.login-field select{height:50px !important;font-size:14px !important;}
-  .login-submit,.login-line-contact{min-height:50px !important;height:50px !important;}
+/* ===== Mobile tuning ===== */
+@media(max-width:560px){
+  #homeScreen .v16-home-shell{
+    padding-left:12px !important;
+    padding-right:12px !important;
+    background:
+      radial-gradient(circle at 92% 8%,rgba(255,70,83,.28),transparent 24%),
+      linear-gradient(180deg,#5b0003 0,#8f0009 150px,#b90016 385px,#ffffff 385px,#ffffff 100%) !important;
+  }
 
-  #homeScreen .v16-home-shell{padding-left:11px !important;padding-right:11px !important;background:linear-gradient(180deg,#4a0003 0,#96000a 245px,#fff 245px,#fff 100%) !important;}
-  #homeScreen .v16-brand-mark{width:145px !important;height:48px !important;flex-basis:145px !important;}
-  #homeScreen .v16-logout{padding:0 8px !important;font-size:9px !important;}
-  #homeScreen .line-contact-btn{gap:4px !important;}
-  #homeScreen .v16-wallet{min-height:160px !important;padding:17px !important;}
-  #homeScreen .v16-wallet-balance{font-size:38px !important;}
-  #homeScreen .v16-money-btn{min-height:54px !important;font-size:15px !important;}
-  #homeScreen .v16-section-title{font-size:17px !important;margin-top:21px !important;}
-  #homeScreen .v16-lotto-entry{padding:14px !important;}
-  #homeScreen .v16-lotto-title{font-size:22px !important;}
-  #homeScreen .v16-lotto-art{width:88px !important;height:68px !important;flex-basis:88px !important;}
-  #homeScreen .v16-shortcuts{gap:7px !important;}
-  #homeScreen .v16-shortcut{min-height:82px !important;font-size:9px !important;}
-  #homeScreen .v16-shortcut-icon{width:34px !important;height:34px !important;font-size:16px !important;}
-  #homeScreen .v16-shortcut-affiliate{min-height:74px !important;grid-template-columns:46px 1fr !important;}
-  #homeScreen .v16-shortcut-affiliate .v16-shortcut-icon{width:42px !important;height:42px !important;}
-  #homeScreen .v16-shortcut-affiliate span:last-child{font-size:14px !important;}
+  #homeScreen .v16-home-head{
+    min-height:64px !important;
+    margin-bottom:14px !important;
+  }
 
-  #lottoScreen .hero{padding-left:12px !important;padding-right:12px !important;}
-  #lottoScreen .hero h1{margin-top:62px !important;font-size:28px !important;}
-  #lottoScreen .home-nav-inline{left:12px !important;}
-  #lottoScreen .account-row{right:12px !important;bottom:20px !important;}
-  #lottoScreen .account-credit{min-width:112px !important;padding:10px 12px !important;}
-  #lottoScreen .account-credit strong{font-size:19px !important;}
-  #lottoScreen .lotto-body{padding-left:9px !important;padding-right:9px !important;}
-  #lottoScreen .lotto{min-height:82px !important;padding:11px 10px !important;grid-template-columns:42px minmax(0,1fr) auto !important;gap:9px !important;border-radius:14px !important;}
-  #lottoScreen .lotto:before{width:40px !important;height:40px !important;font-size:16px !important;}
-  #lottoScreen .lotto-name{font-size:15px !important;}
-  #lottoScreen .lotto-meta{font-size:10px !important;}
-  #lottoScreen .lotto-right{min-width:82px !important;}
-  #lottoScreen .countdown{min-width:78px !important;min-height:28px !important;font-size:11px !important;}
+  #homeScreen .v16-brand-mark{
+    width:clamp(145px,43vw,190px) !important;
+    height:58px !important;
+  }
+
+  #homeScreen .v16-head-actions{
+    gap:7px !important;
+  }
+
+  #homeScreen .v16-head-actions .line-contact-btn{
+    width:43px !important;
+    min-width:43px !important;
+    height:43px !important;
+    min-height:43px !important;
+    border-radius:13px !important;
+  }
+
+  #homeScreen .v16-head-actions .line-contact-logo{
+    width:20px !important;
+    height:20px !important;
+  }
+
+  #homeScreen .v16-head-actions .v16-logout:not(.line-contact-btn){
+    min-width:94px !important;
+    height:43px !important;
+    padding:0 12px !important;
+    border-radius:13px !important;
+    font-size:12px !important;
+  }
+
+  #homeScreen .v16-wallet{
+    min-height:202px !important;
+    padding:19px 18px 21px !important;
+    border-radius:21px !important;
+  }
+
+  #homeScreen .v16-wallet-label{
+    font-size:13px !important;
+  }
+
+  #homeScreen .v16-wallet-user{
+    max-width:43% !important;
+    padding:6px 9px !important;
+    font-size:9px !important;
+  }
+
+  #homeScreen .v16-wallet-balance{
+    margin-top:20px !important;
+    font-size:44px !important;
+  }
+
+  #homeScreen .v16-wallet-sub{
+    margin-top:23px !important;
+  }
+
+  #homeScreen #homeUsername{
+    font-size:13px !important;
+  }
+
+  #homeScreen .v16-money-actions{
+    gap:10px !important;
+    margin-top:13px !important;
+    padding:0 2px !important;
+  }
+
+  #homeScreen .v16-money-btn{
+    min-height:60px !important;
+    border-radius:16px !important;
+    font-size:16px !important;
+  }
+
+  #homeScreen .v16-money-icon{
+    width:34px !important;
+    height:34px !important;
+    font-size:22px !important;
+  }
+
+  #homeScreen .v16-section-title{
+    margin-top:25px !important;
+    margin-bottom:10px !important;
+  }
+
+  #homeScreen .v16-money-actions + .v16-section-title::before,
+  #homeScreen .v16-lotto-entry + .v16-section-title::before{
+    font-size:20px !important;
+  }
+
+  #homeScreen .v16-lotto-entry{
+    min-height:194px !important;
+    padding:17px !important;
+    border-radius:21px !important;
+  }
+
+  #homeScreen .v16-lotto-row{
+    min-height:104px !important;
+    gap:9px !important;
+  }
+
+  #homeScreen .v16-lotto-title{
+    font-size:24px !important;
+  }
+
+  #homeScreen .v16-lotto-art{
+    width:112px !important;
+    height:92px !important;
+    flex-basis:112px !important;
+  }
+
+  #homeScreen .v16-lotto-go{
+    min-height:54px !important;
+    padding:0 17px !important;
+    font-size:15px !important;
+    border-radius:14px !important;
+  }
+
+  #homeScreen .v16-shortcuts{
+    grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+    gap:7px !important;
+  }
+
+  #homeScreen .v16-shortcut{
+    min-height:104px !important;
+    padding:12px 4px 10px !important;
+    border-radius:18px !important;
+    gap:8px !important;
+  }
+
+  #homeScreen .v16-shortcut-icon{
+    width:40px !important;
+    height:40px !important;
+    border-radius:12px !important;
+    font-size:19px !important;
+  }
+
+  #homeScreen .v16-shortcut > span:last-child{
+    font-size:11px !important;
+  }
+
+  #homeScreen .v16-shortcut-affiliate{
+    min-height:94px !important;
+    padding:15px 18px !important;
+    border-radius:19px !important;
+  }
+
+  #homeScreen .v16-shortcut-affiliate .v16-shortcut-icon{
+    width:58px !important;
+    height:58px !important;
+    flex-basis:58px !important;
+    font-size:32px !important;
+  }
+
+  #homeScreen .v16-shortcut-affiliate > span:last-child{
+    font-size:18px !important;
+  }
+
+  #homeScreen .v16-shortcut-affiliate > span:last-child::after{
+    margin-top:5px !important;
+    font-size:10px !important;
+  }
 }
 
-@media(max-width:365px){
-  #homeScreen .v16-brand-mark{width:125px !important;height:43px !important;flex-basis:125px !important;}
-  #homeScreen .v16-head-actions{gap:4px !important;}
-  #homeScreen .v16-logout{height:36px !important;padding:0 6px !important;}
-  #homeScreen .line-contact-logo{display:none !important;}
-  #homeScreen .v16-shortcuts{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
-  #homeScreen .v16-shortcut-affiliate{grid-column:1/-1 !important;}
-  #lottoScreen .lotto{grid-template-columns:38px minmax(0,1fr) auto !important;}
-  #lottoScreen .lotto:before{width:36px !important;height:36px !important;}
-  #lottoScreen .lotto-name{font-size:14px !important;}
+@media(max-width:370px){
+  #homeScreen .v16-brand-mark{
+    width:136px !important;
+    height:52px !important;
+  }
+
+  #homeScreen .v16-head-actions .v16-logout:not(.line-contact-btn){
+    min-width:82px !important;
+    padding:0 9px !important;
+    font-size:11px !important;
+  }
+
+  #homeScreen .v16-wallet{
+    padding-left:16px !important;
+    padding-right:16px !important;
+  }
+
+  #homeScreen .v16-shortcut > span:last-child{
+    font-size:10px !important;
+  }
 }
 
 </style>
