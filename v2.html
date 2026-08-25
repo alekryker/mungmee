@@ -14944,6 +14944,127 @@ strong,b{
   }
 }
 
+
+/* =====================================================
+   V79 — KEEP OPTION 2 ORIGINAL / QUICK PRICE ONLY STYLE 1
+===================================================== */
+
+/* แบบแทงที่ 2: ไม่แสดง จำนวน + 5/10/20/50/100 */
+#betScreen.classic-layout .bottom-quick-wrap{
+  display:none !important;
+}
+
+/* แบบแทงที่ 2: ใช้ส่วนใส่ราคาเดิม */
+#betScreen.classic-layout .price-bottom-bar{
+  position:static !important;
+  left:auto !important;
+  bottom:auto !important;
+  transform:none !important;
+  width:min(calc(100% - 18px),720px) !important;
+  margin:12px auto 0 !important;
+}
+
+#betScreen.classic-layout .price-bottom-bar .bill-price-panel{
+  display:grid !important;
+  grid-template-columns:1fr !important;
+  gap:10px !important;
+  padding:12px !important;
+  border-radius:18px !important;
+  background:#fff !important;
+  border:1px solid #f0dddd !important;
+  box-shadow:0 10px 24px rgba(80,10,10,.08) !important;
+}
+
+/* แบบแทงที่ 2 ให้ปุ่มเพิ่มบิลกลับมา */
+#betScreen.classic-layout .direct-add-bill,
+#betScreen.classic-layout .visually-hidden-addbill{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:100% !important;
+  min-height:52px !important;
+  border:0 !important;
+  border-radius:14px !important;
+  background:linear-gradient(135deg,#ff1730,#bd0012) !important;
+  color:#fff !important;
+  font-size:15px !important;
+  font-weight:800 !important;
+  visibility:visible !important;
+  opacity:1 !important;
+}
+
+/* แบบแทงที่ 2 ใช้ bottom action เดิม ไม่เอา total banner แบบแทงที่ 1 */
+#betScreen.classic-layout .modern-total-banner{
+  display:none !important;
+}
+
+#betScreen.classic-layout .direct-grand{
+  display:flex !important;
+}
+
+#betScreen.classic-layout .direct-bottom{
+  position:static !important;
+  left:auto !important;
+  bottom:auto !important;
+  transform:none !important;
+  width:min(calc(100% - 18px),720px) !important;
+  margin:10px auto calc(92px + env(safe-area-inset-bottom)) !important;
+}
+
+/* แบบแทงที่ 2 ปุ่ม กลับ / ล้างทั้งหมด / ยืนยันโพย เหมือนเดิม */
+#betScreen.classic-layout .direct-action-row{
+  display:grid !important;
+  grid-template-columns:1fr 1fr 1.2fr !important;
+  gap:8px !important;
+}
+
+#betScreen.classic-layout .direct-back-bottom{
+  display:flex !important;
+}
+
+/* แบบแทงที่ 1 ยังใช้ปุ่มราคาด่วน */
+#betScreen.modern-layout .bottom-quick-wrap{
+  display:block !important;
+}
+
+@media(max-width:430px){
+  #betScreen.classic-layout .price-bottom-bar,
+  #betScreen.classic-layout .direct-bottom{
+    width:calc(100% - 10px) !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .bill-price-panel{
+    padding:10px !important;
+  }
+
+  #betScreen.classic-layout .direct-add-bill,
+  #betScreen.classic-layout .visually-hidden-addbill{
+    min-height:48px !important;
+    font-size:14px !important;
+  }
+
+  #betScreen.classic-layout .direct-action-row{
+    grid-template-columns:1fr 1fr 1.15fr !important;
+  }
+}
+
+
+/* =====================================================
+   V80 — STYLE 1 DIRECT TO SLIP TABLE (NO CHIP PREVIEW)
+===================================================== */
+#betScreen.modern-layout .modern-number-panel{
+  display:none !important;
+}
+#betScreen.modern-layout #modernBillStack{
+  display:block !important;
+}
+#betScreen.modern-layout #modernBillStack.hidden{
+  display:block !important;
+}
+#betScreen.modern-layout .bill-stack-head{
+  margin-top:6px !important;
+}
+
 </style>
  </head>
  <body>
@@ -21176,6 +21297,415 @@ function openAdminAnnouncementEditor(item) {
     }catch(e){Swal.close();showAdminError(e);}
   });
 }
+
+
+/* =====================================================
+   V80 OVERRIDE — STYLE 1 CLICK -> SHOW SLIP TABLE DIRECTLY
+===================================================== */
+(function(){
+  function cloneRowPrices(src){
+    src = src || {};
+    return {
+      A: Object.assign({}, src.A || {}),
+      B: Object.assign({}, src.B || {})
+    };
+  }
+
+  function ensureCurrentRowStore(){
+    if (!state.currentRowPrices || typeof state.currentRowPrices !== "object") {
+      state.currentRowPrices = { A:{}, B:{} };
+    }
+    if (!state.currentRowPrices.A) state.currentRowPrices.A = {};
+    if (!state.currentRowPrices.B) state.currentRowPrices.B = {};
+    return state.currentRowPrices;
+  }
+
+  function resetCurrentRowStore(){
+    state.currentRowPrices = { A:{}, B:{} };
+  }
+
+  function reindexCurrentRowStore(removeIndex){
+    removeIndex = Number(removeIndex || 0);
+    var old = ensureCurrentRowStore();
+    var next = { A:{}, B:{} };
+
+    ["A","B"].forEach(function(side){
+      Object.keys(old[side] || {}).forEach(function(key){
+        var idx = Number(key);
+        if (idx === removeIndex) return;
+        if (idx > removeIndex) next[side][String(idx - 1)] = old[side][key];
+        else next[side][String(idx)] = old[side][key];
+      });
+    });
+
+    state.currentRowPrices = next;
+  }
+
+  function getCurrentDraftBill(){
+    var bill = {
+      mode: state.betMode,
+      title: getModeConfig().title,
+      numbers: state.numbers.slice(),
+      reverse: state.betMode === "two" ? !!(state.betLayout === "modern" ? state.modernTwoReverse : state.reverse) : false,
+      priceA: num(state.priceA),
+      priceB: state.betMode === "six" ? 0 : num(state.priceB),
+      rowPrices: cloneRowPrices(ensureCurrentRowStore()),
+      __draft: true
+    };
+    return bill;
+  }
+
+  function hasDraftNumbers(){
+    return !!(state.betLayout === "modern" && state.numbers && state.numbers.length);
+  }
+
+  function getDisplayBillsForModern(){
+    if (hasDraftNumbers()) return [getCurrentDraftBill()];
+    return (state.billItems || []).slice();
+  }
+
+  function setCurrentRowPrice(side, rowIndex, value){
+    side = side === "B" ? "B" : "A";
+    rowIndex = Number(rowIndex || 0);
+    var store = ensureCurrentRowStore()
+    store[side][String(rowIndex)] = Math.max(0, num(value));
+    renderTotalsOnly();
+  }
+
+  function removeCurrentRow(rowIndex){
+    rowIndex = Number(rowIndex || 0);
+    if (state.betMode === "gate") {
+      // รูด/19 ประตู: ลบเลขรูดต้นทางตัวแรกที่สัมพันธ์กับแถวนี้แบบง่าย
+      if (state.numbers.length) state.numbers.splice(0, 1);
+      resetCurrentRowStore();
+      renderDirectBet();
+      return;
+    }
+
+    if (state.betMode === "six") {
+      // 6/3 กลับ: ลบชุดเลขต้นทางตาม index ถ้ามี
+      if (state.numbers[rowIndex] != null) {
+        state.numbers.splice(rowIndex, 1);
+      } else if (state.numbers.length) {
+        state.numbers.splice(0, 1);
+      }
+      resetCurrentRowStore();
+      renderDirectBet();
+      return;
+    }
+
+    if (state.numbers[rowIndex] != null) {
+      state.numbers.splice(rowIndex, 1);
+      reindexCurrentRowStore(rowIndex);
+      renderDirectBet();
+    }
+  }
+
+  var _origSetBetMode = setBetMode;
+  setBetMode = function(mode){
+    resetCurrentRowStore();
+    _origSetBetMode(mode);
+  };
+
+  var _origSetModernBetPreset = setModernBetPreset;
+  setModernBetPreset = function(presetKey){
+    // ถ้าเปลี่ยน preset ให้ reset ราคาแถวเดิมก่อน
+    resetCurrentRowStore();
+    _origSetModernBetPreset(presetKey);
+  };
+
+  var _origClearCurrentBet = clearCurrentBet;
+  clearCurrentBet = function(render){
+    resetCurrentRowStore();
+    return _origClearCurrentBet(render);
+  };
+
+  var _origClearCurrentEntry = clearCurrentEntry;
+  clearCurrentEntry = function(render){
+    resetCurrentRowStore();
+    return _origClearCurrentEntry(render);
+  };
+
+  var _origRemoveNumber = removeNumber;
+  removeNumber = function(n){
+    var idx = state.numbers.indexOf(String(n));
+    _origRemoveNumber(n);
+    if (idx >= 0) reindexCurrentRowStore(idx);
+  };
+
+  getCurrentBillSnapshot = function() {
+    return getCurrentDraftBill();
+  };
+
+  getSubmissionBills = function() {
+    if (state.betLayout === "modern") {
+      return getDisplayBillsForModern().filter(function(b){
+        return b && b.numbers && b.numbers.length;
+      });
+    }
+    return state.billItems.slice();
+  };
+
+  buildModernSlipGroupsHtml = function() {
+    var srcBills = getDisplayBillsForModern();
+    var rows = [];
+
+    srcBills.forEach(function(bill,billIndex){
+      getModernBillSectionDefs(bill).forEach(function(section){
+        rows.push({
+          billIndex: bill.__draft ? "draft" : billIndex,
+          sectionKey: section.key,
+          title: section.title,
+          numbers: section.numbers.slice(),
+          draft: !!bill.__draft,
+          bill: bill
+        });
+      });
+    });
+
+    if (!rows.length) {
+      return {
+        count:0,
+        html:'<div class="modern-slip-empty">ยังไม่มีรายการ<br>กรุณาเลือกเลขและใส่ราคา</div>'
+      };
+    }
+
+    var html = rows.map(function(group){
+      var bill = group.bill;
+
+      var body = group.numbers.map(function(n,i){
+        var amount = getBillRowPrice(bill,group.sectionKey,i);
+
+        var removeHtml = group.draft
+          ? '<button type="button" data-remove-current-row="' + i + '" title="ลบเลข">⌫</button>'
+          : '<button type="button" data-remove-bill="' + group.billIndex + '" title="ลบบิล">⌫</button>';
+
+        return '' +
+        '<div class="modern-slip-row">' +
+          '<div class="modern-slip-no">' + (i + 1) + '.</div>' +
+          '<div class="modern-slip-num">' + escapeHtml(n) + '</div>' +
+          '<div class="modern-slip-price">' +
+            '<input type="number" inputmode="decimal" min="0" step="1" ' +
+              'value="' + escapeHtml(String(amount)) + '" ' +
+              'data-row-price="1" ' +
+              'data-bill-index="' + group.billIndex + '" ' +
+              'data-side="' + group.sectionKey + '" ' +
+              'data-row-index="' + i + '">' +
+          '</div>' +
+          '<div class="modern-slip-remove">' +
+            removeHtml +
+          '</div>' +
+        '</div>';
+      }).join("");
+
+      return '' +
+      '<section class="modern-slip-group">' +
+        '<div class="modern-slip-group-head">' +
+          '<strong>' + escapeHtml(group.title) + '</strong>' +
+          '<span class="modern-slip-group-count">' + group.numbers.length + ' รายการ</span>' +
+        '</div>' +
+        '<div class="modern-slip-table">' +
+          '<div class="modern-slip-head">' +
+            '<span>##</span><span>ตัวเลข</span><span>เงินแทง</span><span>ลบ</span>' +
+          '</div>' +
+          body +
+        '</div>' +
+      '</section>';
+    }).join("");
+
+    return {
+      count: rows.reduce(function(sum,g){ return sum + g.numbers.length; },0),
+      html: html
+    };
+  };
+
+  bindModernRowPriceInputs = function() {
+    if (!els.modernBillStackList) return;
+
+    els.modernBillStackList.querySelectorAll("[data-row-price]").forEach(function(input){
+      input.oninput = function(){
+        if (input.dataset.billIndex === "draft") {
+          setCurrentRowPrice(
+            input.dataset.side,
+            input.dataset.rowIndex,
+            input.value
+          );
+          return;
+        }
+
+        setBillRowPrice(
+          input.dataset.billIndex,
+          input.dataset.side,
+          input.dataset.rowIndex,
+          input.value
+        );
+      };
+
+      input.onblur = function(){
+        var v = Math.max(0,num(input.value));
+        input.value = String(v);
+
+        if (input.dataset.billIndex === "draft") {
+          setCurrentRowPrice(
+            input.dataset.side,
+            input.dataset.rowIndex,
+            v
+          );
+          return;
+        }
+
+        setBillRowPrice(
+          input.dataset.billIndex,
+          input.dataset.side,
+          input.dataset.rowIndex,
+          v
+        );
+      };
+    });
+  };
+
+  renderBillStack = function() {
+    if (!els.billStack || !els.billStackList) return;
+
+    var displayBills = getSubmissionBills();
+    var hasDisplayBills = !!displayBills.length;
+
+    els.billStack.classList.toggle("hidden", !state.billItems.length);
+    if (els.modernBillStack) els.modernBillStack.classList.toggle("hidden", !hasDisplayBills);
+
+    if (els.billStackCount) els.billStackCount.textContent = state.billItems.length + " บิล";
+
+    var classicHtml = state.billItems.map(function(bill,index){
+      var nums = getBillRawEffectiveNumbers(bill);
+      var prices = [];
+      var cfg = getModeConfigForMode(bill.mode);
+      if (bill.priceA > 0) prices.push(cfg.priceA + " " + money(bill.priceA));
+      if (bill.priceB > 0 && cfg.priceB) prices.push(cfg.priceB + " " + money(bill.priceB));
+
+      return '<div class="bill-stack-item">' +
+        '<div class="bill-stack-main">' +
+          '<div class="bill-stack-title-row">' +
+            '<b>' + escapeHtml(cfg.title) + '</b>' +
+            '<strong>' + money(getBillTotal(bill)) + ' บาท</strong>' +
+          '</div>' +
+          '<small>' + getBillCount(bill) + ' ตัวรับแทง • ' + nums.length + ' ตัวในโพย • ' + escapeHtml(prices.join(" / ")) + '</small>' +
+          '<span>' + escapeHtml(nums.join(" ")) + '</span>' +
+        '</div>' +
+        '<div class="bill-stack-side">' +
+          '<button type="button" data-remove-bill="' + index + '">ลบบิล</button>' +
+        '</div>' +
+      '</div>';
+    }).join("");
+
+    els.billStackList.innerHTML = classicHtml;
+
+    if (els.modernBillStackList) {
+      var modernGroups = buildModernSlipGroupsHtml();
+      els.modernBillStackList.innerHTML = modernGroups.html;
+      if (els.modernBillStackCount) {
+        els.modernBillStackCount.textContent = modernGroups.count + " รายการ";
+      }
+    }
+
+    els.billStackList.querySelectorAll("[data-remove-bill]").forEach(function(btn){
+      btn.onclick = function(){ removeBillItem(btn.dataset.removeBill); };
+    });
+
+    if (els.modernBillStackList) {
+      els.modernBillStackList.querySelectorAll("[data-remove-bill]").forEach(function(btn){
+        btn.onclick = function(){ removeBillItem(btn.dataset.removeBill); };
+      });
+
+      els.modernBillStackList.querySelectorAll("[data-remove-current-row]").forEach(function(btn){
+        btn.onclick = function(){ removeCurrentRow(btn.dataset.removeCurrentRow); };
+      });
+
+      bindModernRowPriceInputs();
+    }
+  };
+
+  renderModernBetPanel = function(cfg) {
+    if (!els.modernDigitSlots) return;
+    var len = Number(cfg.len || 2);
+    var partial = String(els.numberInput && els.numberInput.value || "").replace(/\D/g,"").slice(0, len);
+    var slots = [];
+    for (var i=0;i<len;i++) {
+      var d = partial.charAt(i);
+      slots.push('<span class="modern-digit-slot ' + (d ? "" : "empty") + '">' + escapeHtml(d || "•") + '</span>');
+    }
+    els.modernDigitSlots.innerHTML = slots.join("");
+  };
+
+  renderTotalsOnly = function() {
+    var total = getCombinedTotalAmount();
+    var count = getCombinedBetCount();
+    var currentTotal = getTotalAmount();
+
+    if (els.betCount) els.betCount.textContent = count + " รายการ";
+    if (els.grandTotal) els.grandTotal.textContent = money(total);
+    if (els.grandTotalHidden) els.grandTotalHidden.textContent = money(total);
+    if (els.currentBillTotal) els.currentBillTotal.textContent = money(currentTotal) + " บาท";
+
+    if (state.user) {
+      if (els.bottomCredit) els.bottomCredit.textContent = money(state.user.credit);
+      if (els.summaryCredit) els.summaryCredit.textContent = money(state.user.credit);
+    }
+
+    if (els.addBillBtn) {
+      els.addBillBtn.disabled = !state.numbers.length || getBillInputTotal(getCurrentBillSnapshot()) <= 0;
+    }
+
+    if (els.submitBtn) {
+      els.submitBtn.disabled = !getSubmissionBills().length || total <= 0;
+    }
+  };
+
+  validateDirectBet = function() {
+    if (!state.selectedLotto) throw new Error("กรุณาเลือกหวย");
+
+    var bills = getSubmissionBills();
+    if (!bills.length) throw new Error("กรุณาใส่เลข");
+    bills.forEach(validateBillItem);
+
+    var total = getCombinedTotalAmount();
+    if (total <= 0) throw new Error("กรุณาใส่ราคา");
+
+    var maxBill = Number(state.selectedLotto.maxPerBill || 0);
+    if (maxBill > 0 && total > maxBill) {
+      throw new Error("ยอดต่อบิลสูงสุด " + money(maxBill));
+    }
+
+    if (state.user && Number(state.user.credit || 0) < total) {
+      throw new Error("ยอดคงเหลือไม่เพียงพอ • มี " + money(state.user.credit));
+    }
+
+    var close = getLottoCloseTarget(state.selectedLotto);
+    if (close && close.getTime() <= Date.now()) {
+      throw new Error("หวยนี้ปิดรับแล้ว");
+    }
+
+    return true;
+  };
+
+  // ให้ปุ่มล้างเลขในหัวส่วนรายการ ทำงานกับตารางทันที
+  if (els.modernClearNumbersBtn) {
+    els.modernClearNumbersBtn.onclick = function(){
+      state.numbers = [];
+      if (els.numberInput) els.numberInput.value = "";
+      resetCurrentRowStore();
+      renderDirectBet();
+    };
+  }
+
+  if (els.clearNumbersBtn) {
+    els.clearNumbersBtn.onclick = function(){
+      state.numbers = [];
+      if (els.numberInput) els.numberInput.value = "";
+      resetCurrentRowStore();
+      renderDirectBet();
+    };
+  }
+})();
 
 </script>
 
