@@ -17375,6 +17375,274 @@ strong,b{
   }
 }
 
+
+
+/* =====================================================
+   V92 — MEMBER PROFILE / "ฉัน"
+===================================================== */
+#profileScreen{
+  min-height:100vh;
+  background:#f7f7f8;
+  padding-bottom:calc(105px + env(safe-area-inset-bottom));
+}
+#profileScreen .profile-hero{
+  padding:calc(18px + env(safe-area-inset-top)) 16px 24px;
+  background:linear-gradient(145deg,#6d0008 0%,#a90012 50%,#dd1028 100%);
+  color:#fff;
+  border-radius:0 0 28px 28px;
+  box-shadow:0 12px 30px rgba(80,0,5,.18);
+}
+#profileScreen .profile-top-row{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+#profileScreen .profile-back{
+  width:42px;
+  height:42px;
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:13px;
+  background:rgba(255,255,255,.10);
+  color:#fff;
+  display:grid;
+  place-items:center;
+  font-size:18px;
+}
+#profileScreen .profile-head-copy{min-width:0;flex:1}
+#profileScreen .profile-head-copy small{
+  display:block;
+  color:rgba(255,255,255,.64);
+  font-size:10px;
+  font-weight:400;
+  letter-spacing:.06em;
+}
+#profileScreen .profile-head-copy h1{
+  margin:2px 0 0;
+  font-size:25px;
+  line-height:1.15;
+  font-weight:550;
+}
+#profileScreen .profile-avatar{
+  width:54px;
+  height:54px;
+  border-radius:18px;
+  display:grid;
+  place-items:center;
+  background:#fff;
+  color:#b00014;
+  box-shadow:0 8px 22px rgba(0,0,0,.13);
+}
+#profileScreen .profile-avatar i{font-size:24px}
+#profileScreen .profile-name{
+  margin-top:18px;
+  font-size:15px;
+  font-weight:450;
+}
+#profileScreen .profile-username{
+  margin-top:2px;
+  color:rgba(255,255,255,.67);
+  font-size:11px;
+  font-weight:350;
+}
+#profileScreen .profile-body{
+  width:min(calc(100% - 20px),690px);
+  margin:14px auto 0;
+  display:grid;
+  gap:12px;
+}
+#profileScreen .profile-card{
+  background:#fff;
+  border:1px solid #ece7e7;
+  border-radius:20px;
+  padding:15px;
+  box-shadow:0 6px 20px rgba(35,0,3,.045);
+}
+#profileScreen .profile-card-title{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#78121b;
+  font-size:14px;
+  font-weight:520;
+  margin-bottom:10px;
+}
+#profileScreen .profile-info-list{display:grid;gap:8px}
+#profileScreen .profile-info-row{
+  min-height:58px;
+  display:grid;
+  grid-template-columns:38px minmax(0,1fr) auto;
+  gap:10px;
+  align-items:center;
+  padding:9px 10px;
+  border:1px solid #eee9e9;
+  border-radius:15px;
+  background:#fbfbfc;
+}
+#profileScreen .profile-info-icon{
+  width:36px;
+  height:36px;
+  border-radius:11px;
+  display:grid;
+  place-items:center;
+  background:#fff0f1;
+  color:#b00014;
+}
+#profileScreen .profile-info-icon i{font-size:16px}
+#profileScreen .profile-info-text{min-width:0}
+#profileScreen .profile-info-text small{
+  display:block;
+  color:#8a8080;
+  font-size:9px;
+  font-weight:350;
+}
+#profileScreen .profile-info-text strong,
+#profileScreen .profile-info-text input{
+  display:block;
+  width:100%;
+  margin-top:2px;
+  border:0;
+  padding:0;
+  outline:none;
+  background:transparent;
+  color:#2a2020;
+  font:inherit;
+  font-size:14px;
+  font-weight:450;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+#profileScreen .profile-password-toggle{
+  min-width:56px;
+  height:34px;
+  padding:0 9px;
+  border:1px solid #f1cdd1;
+  border-radius:10px;
+  background:#fff;
+  color:#a90012;
+  font-size:10px;
+  font-weight:450;
+}
+#profileScreen .profile-bank-sub{
+  margin-top:2px;
+  color:#8a8080;
+  font-size:9px;
+  font-weight:350;
+  white-space:normal;
+}
+#profileScreen .profile-change-grid{
+  display:grid;
+  gap:9px;
+}
+#profileScreen .profile-field label{
+  display:block;
+  margin:0 0 5px 2px;
+  color:#746868;
+  font-size:10px;
+  font-weight:400;
+}
+#profileScreen .profile-input-wrap{position:relative}
+#profileScreen .profile-field input{
+  width:100%;
+  height:48px;
+  border:1px solid #e5dddd;
+  border-radius:13px;
+  padding:0 46px 0 12px;
+  outline:none;
+  background:#fff;
+  color:#251d1d;
+  font-size:14px;
+  font-weight:400;
+}
+#profileScreen .profile-field input:focus{
+  border-color:#bc2637;
+  box-shadow:0 0 0 3px rgba(188,38,55,.07);
+}
+#profileScreen .profile-eye-btn{
+  position:absolute;
+  right:6px;
+  top:6px;
+  width:36px;
+  height:36px;
+  border:0;
+  border-radius:10px;
+  background:#faf2f3;
+  color:#9f1423;
+  display:grid;
+  place-items:center;
+}
+#profileScreen .profile-eye-btn i{font-size:15px}
+#profileScreen .profile-password-help{
+  margin-top:7px;
+  color:#8b7e7e;
+  font-size:9px;
+  line-height:1.55;
+  font-weight:350;
+}
+#profileScreen .profile-save-password{
+  width:100%;
+  min-height:49px;
+  margin-top:10px;
+  border:0;
+  border-radius:14px;
+  background:linear-gradient(135deg,#92000c,#d30a23);
+  color:#fff;
+  font-size:13px;
+  font-weight:500;
+  box-shadow:0 8px 18px rgba(145,0,12,.15);
+}
+#profileScreen .profile-save-password:disabled{opacity:.55}
+#profileScreen .profile-status{
+  min-height:18px;
+  margin-top:7px;
+  text-align:center;
+  color:#b00014;
+  font-size:10px;
+  font-weight:400;
+}
+#profileScreen .profile-bottom-nav{
+  position:fixed;
+  left:50%;
+  bottom:calc(5px + env(safe-area-inset-bottom));
+  transform:translateX(-50%);
+  z-index:95;
+  width:min(calc(100% - 12px),510px);
+  height:76px;
+  padding:6px 8px;
+  border:1px solid #eee;
+  border-radius:25px;
+  background:rgba(255,255,255,.98);
+  backdrop-filter:blur(18px);
+  box-shadow:0 16px 38px rgba(50,0,4,.16);
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  align-items:center;
+}
+#profileScreen .profile-bottom-nav button{
+  height:60px;
+  border:0;
+  background:transparent;
+  color:#8b8b8b;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  font-size:8px;
+  font-weight:400;
+}
+#profileScreen .profile-bottom-nav button i{font-size:20px;color:#939393}
+#profileScreen .profile-bottom-nav button.active,
+#profileScreen .profile-bottom-nav button.active i{color:#c60016}
+@media(max-width:430px){
+  #profileScreen .profile-body{width:calc(100% - 14px)}
+  #profileScreen .profile-card{padding:12px;border-radius:17px}
+  #profileScreen .profile-info-row{min-height:54px}
+  #profileScreen .profile-head-copy h1{font-size:22px}
+  #profileScreen .profile-bottom-nav{width:calc(100% - 8px);height:72px;border-radius:22px}
+  #profileScreen .profile-bottom-nav button{height:56px}
+}
+
 </style>
  </head>
  <body>
@@ -17679,7 +17947,7 @@ strong,b{
      <button type="button" onclick="document.getElementById('homeDepositBtn').click()"><i class="fi fi-sr-wallet"></i><span>ฝากเงิน</span></button>
      <button class="home-v54-main home-v85-main" type="button" onclick="showLotto()"><span class="home-v54-main-circle"><i class="fi fi-sr-ticket"></i></span><span>แทงหวย</span></button>
      <button type="button" onclick="showHistory()"><i class="fi fi-sr-time-past"></i><span>ประวัติ</span></button>
-     <button type="button" onclick="showMemberSummary()"><i class="fi fi-sr-user"></i><span>ฉัน</span></button>
+     <button type="button" onclick="showProfile()"><i class="fi fi-sr-user"></i><span>ฉัน</span></button>
     </nav>
    </section>
 
@@ -17753,7 +18021,7 @@ strong,b{
       <i class="fi fi-sr-trophy-star"></i>
       <span>ผลหวย</span>
      </button>
-     <button type="button" onclick="showMemberSummary()">
+     <button type="button" onclick="showProfile()">
       <i class="fi fi-sr-user"></i>
       <span>บัญชีของฉัน</span>
      </button>
@@ -17978,7 +18246,7 @@ strong,b{
       <i class="fi fi-sr-trophy-star"></i>
       <span>ผลหวย</span>
      </button>
-     <button type="button" onclick="showMemberSummary()">
+     <button type="button" onclick="showProfile()">
       <i class="fi fi-sr-user"></i>
       <span>บัญชีของฉัน</span>
      </button>
@@ -18017,6 +18285,77 @@ strong,b{
       <div class="empty">กำลังโหลดรายการ...</div>
      </div>
     </div>
+   </section>
+
+   <section class="screen" id="profileScreen">
+    <header class="profile-hero">
+     <div class="profile-top-row">
+      <button class="profile-back" id="profileBackBtn" type="button" aria-label="กลับหน้าหลัก"><i class="fi fi-sr-arrow-left"></i></button>
+      <div class="profile-head-copy">
+       <small>MY ACCOUNT</small>
+       <h1>ข้อมูลส่วนตัว</h1>
+      </div>
+      <div class="profile-avatar"><i class="fi fi-sr-user"></i></div>
+     </div>
+     <div class="profile-name" id="profileDisplayName">-</div>
+     <div class="profile-username" id="profileUsername">-</div>
+    </header>
+
+    <div class="profile-body">
+     <section class="profile-card">
+      <div class="profile-card-title"><i class="fi fi-sr-id-card-clip-alt"></i><span>ข้อมูลบัญชี</span></div>
+      <div class="profile-info-list">
+       <div class="profile-info-row">
+        <div class="profile-info-icon"><i class="fi fi-sr-phone-call"></i></div>
+        <div class="profile-info-text"><small>เบอร์โทร</small><strong id="profilePhone">-</strong></div>
+        <span></span>
+       </div>
+       <div class="profile-info-row">
+        <div class="profile-info-icon"><i class="fi fi-sr-bank"></i></div>
+        <div class="profile-info-text">
+         <small>เลขบัญชี</small>
+         <strong id="profileBankAccountNo">-</strong>
+         <div class="profile-bank-sub" id="profileBankDetail">-</div>
+        </div>
+        <span></span>
+       </div>
+       <div class="profile-info-row">
+        <div class="profile-info-icon"><i class="fi fi-sr-lock"></i></div>
+        <div class="profile-info-text"><small>รหัสผ่านปัจจุบัน</small><input id="profileCurrentPasswordDisplay" type="password" readonly value=""></div>
+        <button class="profile-password-toggle" id="profilePasswordToggle" type="button">แสดง</button>
+       </div>
+      </div>
+     </section>
+
+     <section class="profile-card">
+      <div class="profile-card-title"><i class="fi fi-sr-key"></i><span>เปลี่ยนรหัสผ่าน</span></div>
+      <div class="profile-change-grid">
+       <div class="profile-field">
+        <label>รหัสผ่านเดิม</label>
+        <div class="profile-input-wrap"><input id="profileOldPassword" type="password" autocomplete="current-password" placeholder="กรอกรหัสผ่านเดิม"><button class="profile-eye-btn" type="button" data-profile-eye="profileOldPassword"><i class="fi fi-sr-eye"></i></button></div>
+       </div>
+       <div class="profile-field">
+        <label>รหัสผ่านใหม่</label>
+        <div class="profile-input-wrap"><input id="profileNewPassword" type="password" autocomplete="new-password" placeholder="อย่างน้อย 6 ตัวอักษร"><button class="profile-eye-btn" type="button" data-profile-eye="profileNewPassword"><i class="fi fi-sr-eye"></i></button></div>
+       </div>
+       <div class="profile-field">
+        <label>ยืนยันรหัสผ่านใหม่</label>
+        <div class="profile-input-wrap"><input id="profileConfirmPassword" type="password" autocomplete="new-password" placeholder="กรอกรหัสผ่านใหม่อีกครั้ง"><button class="profile-eye-btn" type="button" data-profile-eye="profileConfirmPassword"><i class="fi fi-sr-eye"></i></button></div>
+       </div>
+      </div>
+      <div class="profile-password-help">หลังเปลี่ยนรหัสผ่าน ระบบจะใช้รหัสใหม่ในการเข้าสู่ระบบครั้งถัดไป</div>
+      <button class="profile-save-password" id="profileChangePasswordBtn" type="button">บันทึกรหัสผ่านใหม่</button>
+      <div class="profile-status" id="profileStatus"></div>
+     </section>
+    </div>
+
+    <nav class="profile-bottom-nav" aria-label="เมนูด้านล่าง">
+     <button type="button" onclick="showHome()"><i class="fi fi-sr-home"></i><span>หน้าหลัก</span></button>
+     <button type="button" onclick="document.getElementById('homeDepositBtn').click()"><i class="fi fi-sr-wallet"></i><span>ฝากเงิน</span></button>
+     <button type="button" onclick="showLotto()"><i class="fi fi-sr-ticket"></i><span>แทงหวย</span></button>
+     <button type="button" onclick="showHistory()"><i class="fi fi-sr-time-past"></i><span>ประวัติ</span></button>
+     <button class="active" type="button" onclick="showProfile()"><i class="fi fi-sr-user"></i><span>ฉัน</span></button>
+    </nav>
    </section>
 
    <section class="screen" id="memberSummaryScreen">
@@ -18563,11 +18902,11 @@ document.addEventListener("DOMContentLoaded", function () {
   [
     "loginScreen","mainApp","apiState","loginVersion","authLoginTab","authRegisterTab","loginPanel","registerPanel","loginUser","loginPass","loginPassToggle","loginBtn","regPhone","regPass","regPassConfirm","regBankNameAccount","regBankName","regBankAccountNo","regReferralCode","regReferralHint","registerBtn",
     "homeScreen","homeCredit","homeUserName","homeUsername","homeLineContactBtn","homeLogoutBtn","homeDepositBtn","homeWithdrawBtn","homeLottoBtn","homeHistoryBtn","homeResultsBtn","homeSummaryBtn","homeMoneyBtn","homeAffiliateBtn","lottoHomeBtn","betHomeBtn",
-    "lottoScreen","betScreen","historyScreen","moneyScreen","memberSummaryScreen","resultsScreen","affiliateScreen","adminScreen","lottoGrid","lottoEmpty",
+    "lottoScreen","betScreen","historyScreen","moneyScreen","profileScreen","memberSummaryScreen","resultsScreen","affiliateScreen","adminScreen","lottoGrid","lottoEmpty",
     "backBtn","bottomBackBtn","classicRuleBtn","selectedName","selectedRound","selectedClose","selectedCount","selectedLimitNote","selectedRateNote",
     "accountName","heroCredit","betCredit","modernBetCredit","bottomCredit","summaryCredit","adminBtn",
     "memberSummaryBtn","moneyBtn","resultsBtn","historyBtn","lineContactBtn","logoutBtn","affiliateBackBtn","affiliateAvailableTop","affiliateCode","affiliateLink","affiliateCopyBtn","affiliateStats","affiliateWithdrawBtn","affiliateCommissionList","affiliateWithdrawList","resultsBackBtn","resultsBalance","resultsDate","resultsReloadBtn","resultsPrevBtn","resultsNextBtn","resultsSource","resultsList","historyBackBtn","historyCredit","historyFrom","historyTo",
-     "historyStatus","historyList","moneyBackBtn","moneyBalance","moneyFrom","moneyTo","moneyType","moneyList","memberSummaryBackBtn","memberSummaryBalance","memberSummaryFrom","memberSummaryTo","memberSummaryLotto","memberSummarySearchBtn","memberSummaryStats","memberSummaryTable","adminIdentity","adminLogoutBtn","syncResultsBtn","adminAffiliateReloadBtn","adminAffiliateSearch","adminAffiliateStats","adminAffiliateTable","adminAffiliateWithdrawTable","adminResultsSyncBtn","adminResultsAddBtn","adminResultsFrom","adminResultsTo","adminResultsLotto","adminResultsReloadBtn","adminResultsTable","adminDashRange","adminDashFrom","adminDashTo","adminDashCustomBtn","adminDashSelectAll","adminDashClearAll","adminDashLottoChecks","adminDashStats","adminByUser","adminByLotto","adminBetFrom","adminBetTo","adminBetStatus","adminOpenUser","adminOpenLotto","adminOpenSearchBtn","adminOpenTable","adminCreateUserBtn","adminUserSearch","adminUserCount","adminUserTable","adminWithdrawStatus","adminWithdrawReloadBtn","adminWithdrawTable","adminLottoToggleTable","adminLottoRulesTable","adminRateUser","adminRateLotto","adminRateModeNote","adminRate3Straight","adminRate3Tod","adminRate2Top","adminRate2Bottom","adminRateRunTop","adminRateRunBottom","adminRateSaveBtn","adminRateResetBtn","adminRateOverridesTable","adminLimitLotto","adminLimitKind","adminLimitBetType","adminLimitSide","adminLimitNumbers","adminLimitReverseBtn","adminLimitAddBtn","adminLimitSaveBtn","adminNumberLimitsTable","adminAnnouncementAddBtn","adminAnnouncementReloadBtn","adminAnnouncementsTable","adminConnectionSaveBtn","adminTelegramToken","adminTelegramChatId","adminLineContactUrl","adminDepositBankShort","adminDepositBankName","adminDepositAccountNo","adminDepositAccountName","adminDepositLogoUrl","adminDepositBorderColor","adminDepositPreview","adminDepositPreviewLogo","adminDepositPreviewNumber","adminDepositPreviewBank","adminDepositPreviewName","modernBetPanel","modernBackBtn","modernRuleBtn","modernLottoSelect","modernLottoSelectText","modernSelectedTitle","modernDigitSlots","modernNumberChipBox","modernClearNumbersBtn","modernBillStack","modernBillStackList","modernBillStackCount","directTitle","numberCount","numberInput",
+     "historyStatus","historyList","moneyBackBtn","moneyBalance","moneyFrom","moneyTo","moneyType","moneyList","profileBackBtn","profileDisplayName","profileUsername","profilePhone","profileBankAccountNo","profileBankDetail","profileCurrentPasswordDisplay","profilePasswordToggle","profileOldPassword","profileNewPassword","profileConfirmPassword","profileChangePasswordBtn","profileStatus","memberSummaryBackBtn","memberSummaryBalance","memberSummaryFrom","memberSummaryTo","memberSummaryLotto","memberSummarySearchBtn","memberSummaryStats","memberSummaryTable","adminIdentity","adminLogoutBtn","syncResultsBtn","adminAffiliateReloadBtn","adminAffiliateSearch","adminAffiliateStats","adminAffiliateTable","adminAffiliateWithdrawTable","adminResultsSyncBtn","adminResultsAddBtn","adminResultsFrom","adminResultsTo","adminResultsLotto","adminResultsReloadBtn","adminResultsTable","adminDashRange","adminDashFrom","adminDashTo","adminDashCustomBtn","adminDashSelectAll","adminDashClearAll","adminDashLottoChecks","adminDashStats","adminByUser","adminByLotto","adminBetFrom","adminBetTo","adminBetStatus","adminOpenUser","adminOpenLotto","adminOpenSearchBtn","adminOpenTable","adminCreateUserBtn","adminUserSearch","adminUserCount","adminUserTable","adminWithdrawStatus","adminWithdrawReloadBtn","adminWithdrawTable","adminLottoToggleTable","adminLottoRulesTable","adminRateUser","adminRateLotto","adminRateModeNote","adminRate3Straight","adminRate3Tod","adminRate2Top","adminRate2Bottom","adminRateRunTop","adminRateRunBottom","adminRateSaveBtn","adminRateResetBtn","adminRateOverridesTable","adminLimitLotto","adminLimitKind","adminLimitBetType","adminLimitSide","adminLimitNumbers","adminLimitReverseBtn","adminLimitAddBtn","adminLimitSaveBtn","adminNumberLimitsTable","adminAnnouncementAddBtn","adminAnnouncementReloadBtn","adminAnnouncementsTable","adminConnectionSaveBtn","adminTelegramToken","adminTelegramChatId","adminLineContactUrl","adminDepositBankShort","adminDepositBankName","adminDepositAccountNo","adminDepositAccountName","adminDepositLogoUrl","adminDepositBorderColor","adminDepositPreview","adminDepositPreviewLogo","adminDepositPreviewNumber","adminDepositPreviewBank","adminDepositPreviewName","modernBetPanel","modernBackBtn","modernRuleBtn","modernLottoSelect","modernLottoSelectText","modernSelectedTitle","modernDigitSlots","modernNumberChipBox","modernClearNumbersBtn","modernBillStack","modernBillStackList","modernBillStackCount","directTitle","numberCount","numberInput",
     "clearNumbersBtn","numberChipBox","reverseBtn","doubleBtn",
     "priceA","priceB","priceAField","priceALabel","priceBLabel","priceBField","directPriceGrid",
     "sourceCount","betCount","currentBillTotal","grandTotal","grandTotalHidden","quickPriceInput","clearAllBtn","addBillBtn","submitBtn","error","billStack","billStackList","billStackCount",
@@ -18690,6 +19029,7 @@ function openAppRoute(route) {
   if (route === "bet" && state.selectedLotto) return showBet();
   if (route === "history") return showHistory();
   if (route === "money") return showMoney();
+  if (route === "profile") return showProfile();
   if (route === "summary") return showMemberSummary();
   if (route === "results") return showResults();
   if (route === "affiliate") return showAffiliate();
@@ -18716,6 +19056,12 @@ function bindEvents() {
   if (els.homeHistoryBtn) els.homeHistoryBtn.onclick = showHistory;
   if (els.homeResultsBtn) els.homeResultsBtn.onclick = showResults;
   if (els.homeSummaryBtn) els.homeSummaryBtn.onclick = showMemberSummary;
+  if (els.profileBackBtn) els.profileBackBtn.onclick = showHome;
+  if (els.profileChangePasswordBtn) els.profileChangePasswordBtn.onclick = submitMyPasswordChange;
+  if (els.profilePasswordToggle) els.profilePasswordToggle.onclick = toggleDisplayedProfilePassword;
+  document.querySelectorAll("[data-profile-eye]").forEach(function(btn){
+    btn.onclick = function(){ toggleProfilePasswordField(btn.dataset.profileEye, btn); };
+  });
   if (els.homeMoneyBtn) els.homeMoneyBtn.onclick = showMoney;
   if (els.homeLineContactBtn) els.homeLineContactBtn.onclick = openLineContact;
   if (els.homeLogoutBtn) els.homeLogoutBtn.onclick = function(){ logout(true); };
@@ -19566,7 +19912,7 @@ function chooseLotto(lotto) {
 function hideMemberScreensV16() {
   [
     "homeScreen","lottoScreen","betScreen","historyScreen",
-    "moneyScreen","memberSummaryScreen","resultsScreen","affiliateScreen","adminScreen"
+    "moneyScreen","profileScreen","memberSummaryScreen","resultsScreen","affiliateScreen","adminScreen"
   ].forEach(function(id){
     if (els[id]) els[id].classList.remove("active");
   });
@@ -19953,6 +20299,7 @@ function showLotto() {
   els.historyScreen.classList.remove("active");
   els.moneyScreen.classList.remove("active");
   els.memberSummaryScreen.classList.remove("active");
+  hideProfileScreen();
   els.resultsScreen.classList.remove("active");
   els.adminScreen.classList.remove("active");
   els.lottoScreen.classList.add("active");
@@ -19991,6 +20338,7 @@ function showBet() {
   els.historyScreen.classList.remove("active");
   els.moneyScreen.classList.remove("active");
   els.memberSummaryScreen.classList.remove("active");
+  hideProfileScreen();
   els.resultsScreen.classList.remove("active");
   if (els.affiliateScreen) els.affiliateScreen.classList.remove("active");
   els.adminScreen.classList.remove("active");
@@ -21607,6 +21955,7 @@ function showMoney() {
   els.betScreen.classList.remove("active");
   els.historyScreen.classList.remove("active");
   els.memberSummaryScreen.classList.remove("active");
+  hideProfileScreen();
   els.resultsScreen.classList.remove("active");
   if (els.affiliateScreen) els.affiliateScreen.classList.remove("active");
   els.adminScreen.classList.remove("active");
@@ -21680,6 +22029,131 @@ function loadMoneyTransactions() {
 }
 
 /* =====================================================
+   MEMBER PROFILE / MY ACCOUNT
+===================================================== */
+function hideProfileScreen() {
+  if (els.profileScreen) els.profileScreen.classList.remove("active");
+}
+
+function showProfile() {
+  if (els.homeScreen) els.homeScreen.classList.remove("active");
+  els.lottoScreen.classList.remove("active");
+  els.betScreen.classList.remove("active");
+  els.historyScreen.classList.remove("active");
+  els.moneyScreen.classList.remove("active");
+  els.memberSummaryScreen.classList.remove("active");
+  hideProfileScreen();
+  els.resultsScreen.classList.remove("active");
+  if (els.affiliateScreen) els.affiliateScreen.classList.remove("active");
+  els.adminScreen.classList.remove("active");
+  if (els.profileScreen) els.profileScreen.classList.add("active");
+  pushAppRoute("profile");
+  clearInterval(timer);
+  scrollTo(0,0);
+  loadMyProfile();
+}
+
+function loadMyProfile() {
+  if (!state.token) return;
+  if (els.profileStatus) els.profileStatus.textContent = "";
+
+  api("getMyProfile", state.token)
+    .then(function(p){
+      p = p || {};
+      if (state.user) {
+        state.user.phone = p.phone || state.user.phone || "";
+        state.user.bankAccountName = p.bankAccountName || state.user.bankAccountName || "";
+        state.user.bankName = p.bankName || state.user.bankName || "";
+        state.user.bankAccountNo = p.bankAccountNo || state.user.bankAccountNo || "";
+      }
+
+      if (els.profileDisplayName) els.profileDisplayName.textContent = p.displayName || p.username || "สมาชิก";
+      if (els.profileUsername) els.profileUsername.textContent = p.username ? ("USER: " + p.username) : "";
+      if (els.profilePhone) els.profilePhone.textContent = p.phone || "-";
+      if (els.profileBankAccountNo) els.profileBankAccountNo.textContent = p.bankAccountNo || "-";
+      if (els.profileBankDetail) {
+        var bankParts = [p.bankName || "", p.bankAccountName || ""].filter(Boolean);
+        els.profileBankDetail.textContent = bankParts.length ? bankParts.join(" • ") : "-";
+      }
+      if (els.profileCurrentPasswordDisplay) {
+        els.profileCurrentPasswordDisplay.type = "password";
+        els.profileCurrentPasswordDisplay.value = p.loginPassword || "";
+      }
+      if (els.profilePasswordToggle) els.profilePasswordToggle.textContent = "แสดง";
+    })
+    .catch(function(e){
+      if (els.profileStatus) els.profileStatus.textContent = e && e.message ? e.message : "โหลดข้อมูลส่วนตัวไม่สำเร็จ";
+    });
+}
+
+function toggleDisplayedProfilePassword() {
+  if (!els.profileCurrentPasswordDisplay) return;
+  var hidden = els.profileCurrentPasswordDisplay.type === "password";
+  els.profileCurrentPasswordDisplay.type = hidden ? "text" : "password";
+  if (els.profilePasswordToggle) els.profilePasswordToggle.textContent = hidden ? "ซ่อน" : "แสดง";
+}
+
+function toggleProfilePasswordField(id, btn) {
+  var input = document.getElementById(id);
+  if (!input) return;
+  var hidden = input.type === "password";
+  input.type = hidden ? "text" : "password";
+  var icon = btn && btn.querySelector("i");
+  if (icon) icon.className = hidden ? "fi fi-sr-eye-crossed" : "fi fi-sr-eye";
+}
+
+function submitMyPasswordChange() {
+  var oldPassword = String(els.profileOldPassword ? els.profileOldPassword.value : "");
+  var newPassword = String(els.profileNewPassword ? els.profileNewPassword.value : "");
+  var confirmPassword = String(els.profileConfirmPassword ? els.profileConfirmPassword.value : "");
+
+  if (els.profileStatus) els.profileStatus.textContent = "";
+  if (!oldPassword) {
+    if (els.profileStatus) els.profileStatus.textContent = "กรุณากรอกรหัสผ่านเดิม";
+    return;
+  }
+  if (newPassword.length < 6) {
+    if (els.profileStatus) els.profileStatus.textContent = "รหัสผ่านใหม่ต้องอย่างน้อย 6 ตัวอักษร";
+    return;
+  }
+  if (newPassword !== confirmPassword) {
+    if (els.profileStatus) els.profileStatus.textContent = "ยืนยันรหัสผ่านใหม่ไม่ตรงกัน";
+    return;
+  }
+  if (oldPassword === newPassword) {
+    if (els.profileStatus) els.profileStatus.textContent = "รหัสผ่านใหม่ต้องไม่ซ้ำรหัสเดิม";
+    return;
+  }
+
+  var btn = els.profileChangePasswordBtn;
+  if (btn) { btn.disabled = true; btn.textContent = "กำลังบันทึก..."; }
+
+  api("changeMyPassword", state.token, {
+    currentPassword:oldPassword,
+    newPassword:newPassword,
+    confirmPassword:confirmPassword
+  })
+  .then(function(r){
+    if (els.profileOldPassword) els.profileOldPassword.value = "";
+    if (els.profileNewPassword) els.profileNewPassword.value = "";
+    if (els.profileConfirmPassword) els.profileConfirmPassword.value = "";
+    if (els.profileCurrentPasswordDisplay) {
+      els.profileCurrentPasswordDisplay.type = "password";
+      els.profileCurrentPasswordDisplay.value = (r && r.loginPassword) || newPassword;
+    }
+    if (els.profilePasswordToggle) els.profilePasswordToggle.textContent = "แสดง";
+    if (els.profileStatus) els.profileStatus.textContent = "เปลี่ยนรหัสผ่านเรียบร้อยแล้ว";
+    showToast("เปลี่ยนรหัสผ่านเรียบร้อยแล้ว");
+  })
+  .catch(function(e){
+    if (els.profileStatus) els.profileStatus.textContent = e && e.message ? e.message : "เปลี่ยนรหัสผ่านไม่สำเร็จ";
+  })
+  .finally(function(){
+    if (btn) { btn.disabled = false; btn.textContent = "บันทึกรหัสผ่านใหม่"; }
+  });
+}
+
+/* =====================================================
    MEMBER WIN / LOSS
 ===================================================== */
 function showMemberSummary() {
@@ -21688,6 +22162,7 @@ function showMemberSummary() {
   els.betScreen.classList.remove("active");
   els.historyScreen.classList.remove("active");
   els.moneyScreen.classList.remove("active");
+  hideProfileScreen();
   els.resultsScreen.classList.remove("active");
   els.adminScreen.classList.remove("active");
   els.memberSummaryScreen.classList.add("active");
@@ -21794,6 +22269,7 @@ function showResults() {
   els.historyScreen.classList.remove("active");
   els.moneyScreen.classList.remove("active");
   els.memberSummaryScreen.classList.remove("active");
+  hideProfileScreen();
   if (els.affiliateScreen) els.affiliateScreen.classList.remove("active");
   els.adminScreen.classList.remove("active");
   els.resultsScreen.classList.add("active");
@@ -21912,6 +22388,7 @@ function showHistory() {
   els.lottoScreen.classList.remove("active");
   els.betScreen.classList.remove("active");
   els.resultsScreen.classList.remove("active");
+  hideProfileScreen();
   if (els.affiliateScreen) els.affiliateScreen.classList.remove("active");
   els.adminScreen.classList.remove("active");
   els.historyScreen.classList.add("active");
@@ -22329,6 +22806,7 @@ function showAdmin(tab) {
   els.historyScreen.classList.remove("active");
   els.moneyScreen.classList.remove("active");
   els.memberSummaryScreen.classList.remove("active");
+  hideProfileScreen();
   els.resultsScreen.classList.remove("active");
   if (els.affiliateScreen) els.affiliateScreen.classList.remove("active");
   els.adminScreen.classList.add("active");
