@@ -15420,6 +15420,266 @@ strong,b{
   }
 }
 
+
+/* ==========================================================
+   V82 — STYLE 1 TABLE: NUMBER / STAKE / PAY / WIN / DELETE
+   BASE: V81
+========================================================== */
+
+#betScreen.modern-layout .modern-slip-group{
+  overflow:hidden !important;
+  border:1px solid #d7d7da !important;
+  border-radius:16px !important;
+  background:#e7e7e8 !important;
+  box-shadow:0 4px 12px rgba(24,24,27,.07) !important;
+}
+
+#betScreen.modern-layout .modern-slip-group-head{
+  min-height:48px !important;
+  padding:11px 12px !important;
+  background:linear-gradient(90deg,#fff1f2,#fff) !important;
+  border-bottom:1px solid #d7d7da !important;
+}
+
+#betScreen.modern-layout .modern-slip-group-head strong{
+  color:#991b1b !important;
+  font-size:17px !important;
+  font-weight:900 !important;
+}
+
+#betScreen.modern-layout .modern-slip-group-count{
+  min-height:28px !important;
+  padding:0 9px !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  border-radius:999px !important;
+  background:#fff !important;
+  border:1px solid #e4e4e7 !important;
+  color:#52525b !important;
+  font-size:10px !important;
+  font-weight:800 !important;
+}
+
+#betScreen.modern-layout .modern-slip-table{
+  width:100% !important;
+  padding:3px !important;
+  background:#d8d8da !important;
+}
+
+#betScreen.modern-layout .modern-slip-head,
+#betScreen.modern-layout .modern-slip-row{
+  display:grid !important;
+  grid-template-columns:
+    34px
+    minmax(54px,.85fr)
+    minmax(58px,1.1fr)
+    minmax(56px,.9fr)
+    minmax(62px,1fr)
+    42px !important;
+  gap:3px !important;
+  align-items:stretch !important;
+}
+
+#betScreen.modern-layout .modern-slip-head{
+  min-height:34px !important;
+  margin-bottom:3px !important;
+}
+
+#betScreen.modern-layout .modern-slip-head span{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  padding:4px 2px !important;
+  background:#ededee !important;
+  color:#18181b !important;
+  font-size:10px !important;
+  font-weight:900 !important;
+  text-align:center !important;
+}
+
+#betScreen.modern-layout .modern-slip-head .modern-slip-head-number{
+  border-radius:6px !important;
+  background:#454545 !important;
+  color:#fff !important;
+}
+
+#betScreen.modern-layout .modern-slip-row{
+  min-height:54px !important;
+  margin-bottom:3px !important;
+  border:0 !important;
+  background:transparent !important;
+}
+
+#betScreen.modern-layout .modern-slip-row:last-child{
+  margin-bottom:0 !important;
+}
+
+#betScreen.modern-layout .modern-slip-no,
+#betScreen.modern-layout .modern-slip-num,
+#betScreen.modern-layout .modern-slip-price,
+#betScreen.modern-layout .modern-slip-rate,
+#betScreen.modern-layout .modern-slip-win,
+#betScreen.modern-layout .modern-slip-remove{
+  min-width:0 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  background:#fff !important;
+}
+
+#betScreen.modern-layout .modern-slip-no{
+  border-radius:7px 0 0 7px !important;
+  color:#18181b !important;
+  font-size:14px !important;
+  font-weight:850 !important;
+}
+
+#betScreen.modern-layout .modern-slip-num{
+  border-radius:5px !important;
+  background:linear-gradient(180deg,#08b60d,#02a408) !important;
+  color:#fff !important;
+  font-size:20px !important;
+  font-weight:950 !important;
+  line-height:1 !important;
+  text-shadow:0 1px 1px rgba(0,0,0,.13) !important;
+  font-variant-numeric:tabular-nums !important;
+}
+
+#betScreen.modern-layout .modern-slip-price{
+  padding:4px !important;
+}
+
+#betScreen.modern-layout .modern-slip-price input{
+  width:100% !important;
+  min-width:0 !important;
+  height:42px !important;
+  padding:0 4px !important;
+  border:0 !important;
+  border-radius:5px !important;
+  background:#fff !important;
+  color:#18181b !important;
+  font-size:16px !important;
+  font-weight:650 !important;
+  text-align:center !important;
+  outline:none !important;
+  box-shadow:none !important;
+}
+
+#betScreen.modern-layout .modern-slip-price input:focus{
+  box-shadow:inset 0 0 0 2px #dc2626 !important;
+  background:#fffafa !important;
+}
+
+#betScreen.modern-layout .modern-slip-rate{
+  color:#2196e5 !important;
+  font-size:15px !important;
+  font-weight:600 !important;
+  font-variant-numeric:tabular-nums !important;
+}
+
+#betScreen.modern-layout .modern-slip-win{
+  color:#111 !important;
+  font-size:15px !important;
+  font-weight:900 !important;
+  font-variant-numeric:tabular-nums !important;
+}
+
+#betScreen.modern-layout .modern-slip-remove{
+  border-radius:0 7px 7px 0 !important;
+  background:#ef0b0b !important;
+}
+
+#betScreen.modern-layout .modern-slip-remove button{
+  width:100% !important;
+  min-width:0 !important;
+  height:100% !important;
+  min-height:48px !important;
+  padding:0 !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  color:#fff !important;
+  font-size:19px !important;
+  font-weight:900 !important;
+}
+
+#betScreen.modern-layout .modern-slip-empty{
+  min-height:90px !important;
+  border-radius:12px !important;
+  background:#fff !important;
+}
+
+@media(max-width:430px){
+  #betScreen.modern-layout .modern-slip-group{
+    border-radius:14px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-group-head{
+    padding:10px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-group-head strong{
+    font-size:15px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-head,
+  #betScreen.modern-layout .modern-slip-row{
+    grid-template-columns:
+      29px
+      minmax(48px,.9fr)
+      minmax(50px,1.05fr)
+      minmax(48px,.9fr)
+      minmax(54px,1fr)
+      38px !important;
+    gap:2px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-head{
+    min-height:31px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-head span{
+    font-size:9px !important;
+    padding:3px 1px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-row{
+    min-height:49px !important;
+    margin-bottom:2px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-no{
+    font-size:12px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-num{
+    font-size:17px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-price{
+    padding:2px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-price input{
+    height:39px !important;
+    font-size:14px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-rate{
+    font-size:13px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-win{
+    font-size:13px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-remove button{
+    min-height:45px !important;
+    font-size:17px !important;
+  }
+}
+
 </style>
  </head>
  <body>
@@ -21958,6 +22218,74 @@ function openAdminAnnouncementEditor(item) {
     return sections;
   };
 
+
+  function modernPickRate(a,b,c){
+    if (a !== undefined && a !== null && a !== "") return Number(a) || 0;
+    if (b !== undefined && b !== null && b !== "") return Number(b) || 0;
+    return Number(c || 0) || 0;
+  }
+
+  function getModernRowPayoutRate(bill,side,number){
+    var rates = getSelectedPayoutRates();
+    var rate = 0;
+
+    if (bill.mode === "two" || bill.mode === "gate") {
+      rate = side === "B"
+        ? modernPickRate(rates.twoBottom,rates.rate2Bottom)
+        : modernPickRate(rates.twoTop,rates.rate2Top);
+
+      var twoSide = side === "B" ? "bottom" : "top";
+      if (
+        limitHits(
+          state.selectedLotto && state.selectedLotto.numberLimits,
+          "half",
+          "two",
+          twoSide,
+          String(number)
+        )
+      ) {
+        rate = rate / 2;
+      }
+    }
+
+    else if (bill.mode === "three" || bill.mode === "six") {
+      var isTod = bill.mode !== "six" && side === "B";
+
+      rate = isTod
+        ? modernPickRate(rates.threeTod,rates.rate3Tod)
+        : modernPickRate(rates.threeStraight,rates.rate3Straight);
+
+      var threeSide = isTod ? "tod" : "straight";
+      if (
+        limitHits(
+          state.selectedLotto && state.selectedLotto.numberLimits,
+          "half",
+          "three",
+          threeSide,
+          String(number)
+        )
+      ) {
+        rate = rate / 2;
+      }
+    }
+
+    else if (bill.mode === "run") {
+      rate = side === "B"
+        ? modernPickRate(rates.runBottom,rates.rateRunBottom)
+        : modernPickRate(rates.runTop,rates.rateRunTop);
+    }
+
+    return Number(rate || 0);
+  }
+
+  function modernRateText(rate){
+    return Number(rate || 0).toFixed(2);
+  }
+
+  function modernWinText(stake,rate){
+    return (Number(stake || 0) * Number(rate || 0)).toFixed(2);
+  }
+
   buildModernSlipGroupsHtml = function(){
     var rows = [];
 
@@ -21998,16 +22326,26 @@ function openAdminAnnouncementEditor(item) {
           index
         );
 
+        var payoutRate = getModernRowPayoutRate(
+          group.bill,
+          group.side,
+          number
+        );
+
         var removeButton = group.draft
           ? (
             '<button type="button" ' +
-            'data-draft-remove="' + index + '">' +
-            '⌫</button>'
+            'data-draft-remove="' + index + '" ' +
+            'aria-label="ลบเลข ' + escapeHtml(number) + '">' +
+            '🗑' +
+            '</button>'
           )
           : (
             '<button type="button" ' +
-            'data-remove-bill="' + group.billIndex + '">' +
-            '⌫</button>'
+            'data-remove-bill="' + group.billIndex + '" ' +
+            'aria-label="ลบบิล">' +
+            '🗑' +
+            '</button>'
           );
 
         return (
@@ -22022,21 +22360,28 @@ function openAdminAnnouncementEditor(item) {
             '</div>' +
 
             '<div class="modern-slip-price">' +
-
               '<input ' +
               'type="number" ' +
               'inputmode="numeric" ' +
               'min="0" step="1" ' +
               'value="' + escapeHtml(String(amount)) + '" ' +
               'data-row-stake="1" ' +
+              'data-rate="' + escapeHtml(String(payoutRate)) + '" ' +
               'data-bill-index="' + group.billIndex + '" ' +
               'data-side="' + group.side + '" ' +
               'data-row-index="' + index + '">' +
+            '</div>' +
 
+            '<div class="modern-slip-rate">' +
+              modernRateText(payoutRate) +
+            '</div>' +
+
+            '<div class="modern-slip-win">' +
+              modernWinText(amount,payoutRate) +
             '</div>' +
 
             '<div class="modern-slip-remove">' +
-            removeButton +
+              removeButton +
             '</div>' +
 
           '</div>'
@@ -22060,8 +22405,10 @@ function openAdminAnnouncementEditor(item) {
 
             '<div class="modern-slip-head">' +
               '<span>##</span>' +
-              '<span>ตัวเลข</span>' +
+              '<span class="modern-slip-head-number">ตัวเลข</span>' +
               '<span>เงินแทง</span>' +
+              '<span>จ่าย</span>' +
+              '<span>ชนะ</span>' +
               '<span>ลบ</span>' +
             '</div>' +
 
@@ -22086,8 +22433,23 @@ function openAdminAnnouncementEditor(item) {
       .querySelectorAll("[data-row-stake]")
       .forEach(function(input){
 
+        function updateWinCell(){
+          var row = input.closest(".modern-slip-row");
+          if (!row) return;
+
+          var win = row.querySelector(".modern-slip-win");
+          if (!win) return;
+
+          win.textContent = modernWinText(
+            input.value,
+            input.dataset.rate
+          );
+        }
+
         input.oninput = function(){
           var value = input.value;
+
+          updateWinCell();
 
           if (input.dataset.billIndex === "draft") {
             setDraftRowPrice(
@@ -22108,6 +22470,8 @@ function openAdminAnnouncementEditor(item) {
         input.onblur = function(){
           input.value =
             String(Math.max(0,num(input.value)));
+
+          updateWinCell();
         };
       });
 
