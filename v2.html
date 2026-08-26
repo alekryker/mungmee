@@ -20505,7 +20505,7 @@ strong,b{
 
         <div class="home-v85-account-line">
          <i class="fi fi-sr-wallet"></i>
-         <span>บัญชีหลัก <small class="home-app-version">V110</small></span>
+         <span>บัญชีหลัก <small class="home-app-version">V111</small></span>
         </div>
        </section>
 
@@ -27979,6 +27979,101 @@ function openAdminAnnouncementEditor(item) {
   }
 
   window.syncStyle2LayoutStable = syncStyle2LayoutStable;
+})();
+</script>
+
+
+
+<script>
+/* =====================================================
+   V111 — SEPARATE BET LAYOUTS
+   สลับแบบแทง = เริ่มโพยใหม่ทั้งหมด ไม่แชร์ state ข้ามกัน
+===================================================== */
+(function(){
+  function resetBetForLayoutSwitch(){
+    // ล้างโพย/เลข/ราคาหลัก โดยคงหวยที่เลือกไว้
+    try{
+      if(typeof clearCurrentBet === 'function'){
+        clearCurrentBet(false);
+      }else{
+        state.numbers = [];
+        state.billItems = [];
+        state.reverse = false;
+        state.priceA = 0;
+        state.priceB = 0;
+      }
+    }catch(e){
+      state.numbers = [];
+      state.billItems = [];
+      state.reverse = false;
+      state.priceA = 0;
+      state.priceB = 0;
+    }
+
+    // reset mode/preset ให้หน้าใหม่เริ่มจากค่าเริ่มต้น
+    state.betMode = 'two';
+    state.betVariant = 'twoTop';
+    state.modernTwoTop = true;
+    state.modernTwoBottom = false;
+    state.modernTwoReverse = false;
+    state.modernThreeStraight = true;
+    state.modernThreeTod = false;
+    state.reverse = false;
+    state.priceA = 0;
+    state.priceB = 0;
+
+    // row-price ของแบบแทงที่ 1 (ถ้ามี)
+    if(typeof clearCurrentRows === 'function'){
+      try{ clearCurrentRows(); }catch(e){}
+    }
+
+    // ล้าง input ที่ผู้ใช้เห็น
+    if(typeof els !== 'undefined'){
+      if(els.numberInput) els.numberInput.value = '';
+      if(els.priceA) els.priceA.value = '';
+      if(els.priceB) els.priceB.value = '';
+      if(els.quickPriceInput) els.quickPriceInput.value = '';
+    }
+
+    // เอาสถานะปุ่มราคาด่วนออก
+    document.querySelectorAll('#betScreen [data-quick-price]').forEach(function(btn){
+      btn.classList.remove('active');
+    });
+
+    // ล้างข้อความ error เดิม
+    try{ if(typeof clearError === 'function') clearError(); }catch(e){}
+  }
+
+  if(typeof setBetLayout === 'function'){
+    var setBetLayoutBeforeV111 = setBetLayout;
+
+    setBetLayout = function(layout){
+      var nextLayout = layout === 'classic' ? 'classic' : 'modern';
+      var currentLayout = state.betLayout === 'classic' ? 'classic' : 'modern';
+
+      // กดปุ่มแบบเดิมซ้ำ ไม่ต้องล้าง
+      if(nextLayout === currentLayout){
+        return setBetLayoutBeforeV111.apply(this, arguments);
+      }
+
+      /*
+        สำคัญ: ล้างก่อนเรียก wrapper เก่า
+        เพื่อกันโค้ดรุ่นก่อนที่เคย auto-commit เลขจากแบบ 1 ไปแบบ 2
+      */
+      resetBetForLayoutSwitch();
+
+      var result = setBetLayoutBeforeV111.apply(this, arguments);
+
+      // render ซ้ำหลัง layout เปลี่ยน เพื่อให้ทุกช่องเป็นศูนย์/ว่างจริง
+      try{
+        if(typeof renderDirectBet === 'function') renderDirectBet();
+      }catch(e){}
+
+      return result;
+    };
+  }
+
+  window.resetBetForLayoutSwitch = resetBetForLayoutSwitch;
 })();
 </script>
 
