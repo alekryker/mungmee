@@ -17833,6 +17833,755 @@ strong,b{
   #betScreen.modern-layout .style1-action-arrow{font-size:15px !important;}
 }
 
+
+
+/* =====================================================
+   V94 — CLASSIC LAYOUT HEADER + PRICE PANEL REDESIGN
+   แบบแทงที่ 2 ให้หัวคล้ายแบบแทงที่ 1 และใส่ราคาแบบอ้างอิง
+===================================================== */
+#betScreen.classic-layout .topbar{
+  padding:18px 14px 8px !important;
+  background:linear-gradient(180deg,#c00013 0%, #d90016 45%, #c90014 100%) !important;
+  border-bottom:1px solid rgba(255,255,255,.16) !important;
+}
+
+#betScreen.classic-layout .toprow{
+  display:grid !important;
+  grid-template-columns:72px minmax(0,1fr) auto !important;
+  align-items:start !important;
+  gap:12px !important;
+  padding:0 !important;
+  max-width:1180px !important;
+  margin:0 auto !important;
+}
+
+#betScreen.classic-layout #backBtn{
+  width:72px !important;
+  height:72px !important;
+  min-height:72px !important;
+  border-radius:24px !important;
+  border:2px solid rgba(255,255,255,.18) !important;
+  background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.09)) !important;
+  color:#fff !important;
+  font-size:36px !important;
+  box-shadow:0 10px 26px rgba(105,0,10,.20) !important;
+}
+
+#betScreen.classic-layout #betHomeBtn,
+#betScreen.classic-layout .credit-mini{
+  display:none !important;
+}
+
+#betScreen.classic-layout .lotto-selected{
+  min-width:0 !important;
+  width:100% !important;
+  padding:0 !important;
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+}
+
+#betScreen.classic-layout .lotto-selected small{
+  display:block !important;
+  margin-bottom:4px !important;
+  color:rgba(255,255,255,.72) !important;
+  font-size:14px !important;
+  font-weight:500 !important;
+}
+
+#betScreen.classic-layout .lotto-selected .selected-name{
+  color:#fff !important;
+  font-size:24px !important;
+  font-weight:800 !important;
+  line-height:1.18 !important;
+}
+
+#betScreen.classic-layout .lotto-selected .selected-sub{
+  gap:8px !important;
+}
+
+#betScreen.classic-layout .lotto-selected .selected-meta-line{
+  color:#fff !important;
+  font-size:15px !important;
+  font-weight:600 !important;
+  line-height:1.45 !important;
+}
+
+#betScreen.classic-layout .lotto-selected .selected-count{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  min-height:40px !important;
+  padding:0 16px !important;
+  border-radius:999px !important;
+  background:rgba(120,0,12,.30) !important;
+  border:1px solid rgba(255,255,255,.18) !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08) !important;
+}
+
+#betScreen.classic-layout #selectedLimitNote{
+  gap:8px !important;
+  margin-top:2px !important;
+}
+
+#betScreen.classic-layout .limit-badge{
+  border-radius:18px !important;
+  padding:12px 16px !important;
+  font-size:13px !important;
+  font-weight:700 !important;
+  box-shadow:0 10px 22px rgba(105,0,10,.12) !important;
+}
+
+#betScreen.classic-layout .limit-badge.close{
+  background:#fffaf0 !important;
+  border-color:#ead3ac !important;
+  color:#70471d !important;
+}
+
+#betScreen.classic-layout .limit-badge.half{
+  background:#fff8bf !important;
+  border-color:#ebd95c !important;
+  color:#75590f !important;
+}
+
+#betScreen.classic-layout #selectedRateNote{
+  display:none !important;
+}
+
+#betScreen.classic-layout .bet-rules-classic-btn{
+  align-self:end !important;
+  min-height:76px !important;
+  padding:14px 18px !important;
+  border-radius:22px !important;
+  background:#fff !important;
+  border:1px solid rgba(255,255,255,.16) !important;
+  color:#6d1c24 !important;
+  font-size:14px !important;
+  font-weight:800 !important;
+  line-height:1.15 !important;
+  box-shadow:0 12px 24px rgba(105,0,10,.16) !important;
+  white-space:normal !important;
+}
+
+#betScreen.classic-layout .bet-mode-wrap,
+#betScreen.classic-layout .direct-bet-content,
+#betScreen.classic-layout .price-bottom-bar,
+#betScreen.classic-layout .direct-bottom{
+  max-width:1180px !important;
+  width:calc(100% - 28px) !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+
+#betScreen.classic-layout .bet-mode-wrap{
+  margin-top:10px !important;
+}
+
+#betScreen.classic-layout .price-bottom-bar{
+  position:static !important;
+  padding:0 !important;
+  margin-top:18px !important;
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+}
+
+#betScreen.classic-layout .price-bottom-bar .bill-price-panel{
+  display:grid !important;
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  gap:18px !important;
+  padding:0 24px 26px !important;
+  border-radius:34px !important;
+  border:1px solid #f0dfe2 !important;
+  background:linear-gradient(180deg,#ffffff 0%,#fffdfd 100%) !important;
+  box-shadow:0 16px 34px rgba(124,0,16,.10) !important;
+  overflow:hidden !important;
+}
+
+#betScreen.classic-layout .price-bottom-bar .price-top-head{
+  grid-column:1 / -1 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  gap:16px !important;
+  margin:0 -24px !important;
+  padding:20px 28px !important;
+  background:linear-gradient(135deg,#ff1532 0%, #d40019 58%, #b70012 100%) !important;
+}
+
+#betScreen.classic-layout .price-bottom-bar .price-section-title{
+  display:flex !important;
+  align-items:center !important;
+  gap:16px !important;
+  margin:0 !important;
+  color:#fff !important;
+  font-size:34px !important;
+  font-weight:800 !important;
+  line-height:1.15 !important;
+}
+
+#betScreen.classic-layout .price-bottom-bar .price-section-title::before{
+  content:"" !important;
+  width:62px !important;
+  height:62px !important;
+  border-radius:999px !important;
+  background:rgba(255,255,255,.10) !important;
+  border:2px solid rgba(255,255,255,.32) !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18) !important;
+  flex:0 0 62px !important;
+}
+
+#betScreen.classic-layout .price-bottom-bar .price-section-title::after{
+  content:"\f4f4" !important;
+  font-family:"uicons-solid-rounded" !important;
+  position:absolute !important;
+}
+
+#betScreen.classic-layout .price-bottom-bar .price-top-head{ position:relative !important; }
+#betScreen.classic-layout .price-bottom-bar .price-top-head .price-section-title{ position:relative !important; }
+#betScreen.classic-layout .price-bottom-bar .price-top-head .price-section-title::after{
+  left:16px !important;
+  top:50% !important;
+  transform:translateY(-50%) !important;
+  width:62px !important;
+  text-align:center !important;
+  color:#fff !important;
+  font-size:28px !important;
+  font-weight:400 !important;
+}
+
+#betScreen.classic-layout .price-bottom-bar .current-bill-total{
+  display:none !important;
+}
+
+#betScreen.classic-layout .price-bottom-bar .price-section-subnote{
+  color:#fff !important;
+  font-size:15px !important;
+  font-weight:500 !important;
+  text-align:right !important;
+  margin-left:auto !important;
+}
+
+#betScreen.classic-layout .price-bottom-bar .direct-price-grid{
+  grid-column:1 / span 2 !important;
+  display:grid !important;
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  gap:18px !important;
+}
+
+#betScreen.classic-layout .price-bottom-bar .direct-price-field{
+  position:relative !important;
+  min-height:248px !important;
+  padding:28px 18px 22px !important;
+  border-radius:28px !important;
+  border:2px solid #f3c3ca !important;
+  background:linear-gradient(180deg,#ffffff 0%,#fffefe 100%) !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:10px !important;
+  box-shadow:0 10px 24px rgba(0,0,0,.04) !important;
+}
+
+#betScreen.classic-layout .price-bottom-bar .direct-price-label{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  gap:10px !important;
+  color:#252525 !important;
+  font-size:30px !important;
+  font-weight:800 !important;
+  line-height:1.1 !important;
+}
+
+#betScreen.classic-layout .price-bottom-bar .direct-price-label::before{
+  display:grid !important;
+  place-items:center !important;
+  width:54px !important;
+  height:54px !important;
+  border-radius:999px !important;
+  background:#fff1f3 !important;
+  color:#d80019 !important;
+  font-family:"uicons-solid-rounded" !important;
+  font-size:24px !important;
+}
+
+#betScreen.classic-layout .price-bottom-bar #priceALabel::before{ content:"\f13a" !important; }
+#betScreen.classic-layout .price-bottom-bar #priceBLabel::before{ content:"\f138" !important; }
+
+#betScreen.classic-layout .price-bottom-bar .direct-price-input{
+  width:100% !important;
+  border:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  outline:none !important;
+  color:#e1001a !important;
+  text-align:center !important;
+  font-size:84px !important;
+  font-weight:800 !important;
+  line-height:1 !important;
+  padding:0 !important;
+  margin:0 !important;
+}
+
+#betScreen.classic-layout .price-bottom-bar .direct-price-input::placeholder{
+  color:#e8a0aa !important;
+}
+
+#betScreen.classic-layout .price-bottom-bar .direct-price-field::after{
+  content:"บาท" !important;
+  color:#767676 !important;
+  font-size:26px !important;
+  font-weight:500 !important;
+  line-height:1 !important;
+}
+
+#betScreen.classic-layout .price-bottom-bar .direct-add-bill{
+  grid-column:3 !important;
+  align-self:stretch !important;
+  min-height:248px !important;
+  border:0 !important;
+  border-radius:28px !important;
+  background:linear-gradient(180deg,#ff1532 0%,#d60018 68%,#c00013 100%) !important;
+  color:#fff !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:16px !important;
+  padding:20px !important;
+  box-shadow:0 16px 30px rgba(156,0,18,.18) !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  pointer-events:auto !important;
+}
+
+#betScreen.classic-layout .price-bottom-bar .direct-add-bill .addbill-icon{
+  width:74px !important;
+  height:74px !important;
+  border-radius:20px !important;
+  background:rgba(255,255,255,.14) !important;
+  border:1px solid rgba(255,255,255,.18) !important;
+  display:grid !important;
+  place-items:center !important;
+  font-size:40px !important;
+}
+
+#betScreen.classic-layout .price-bottom-bar .direct-add-bill .addbill-text{
+  font-size:42px !important;
+  font-weight:800 !important;
+  line-height:1.1 !important;
+}
+
+#betScreen.classic-layout .direct-bottom{
+  position:static !important;
+  padding:0 0 26px !important;
+  margin-top:0 !important;
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+}
+
+#betScreen.classic-layout .style1-summary-panel,
+#betScreen.classic-layout .style1-summary-head,
+#betScreen.classic-layout .bottom-quick-wrap,
+#betScreen.classic-layout .modern-total-banner,
+#betScreen.classic-layout .direct-grand{
+  display:none !important;
+}
+
+#betScreen.classic-layout .direct-action-row{
+  display:grid !important;
+  grid-template-columns:1.5fr .85fr !important;
+  gap:24px !important;
+  padding:0 24px 26px !important;
+  border:1px solid #f0dfe2 !important;
+  border-top:0 !important;
+  border-radius:0 0 34px 34px !important;
+  background:#fff !important;
+  box-shadow:0 16px 34px rgba(124,0,16,.10) !important;
+}
+
+#betScreen.classic-layout .direct-back-bottom{ display:none !important; }
+
+#betScreen.classic-layout .direct-submit,
+#betScreen.classic-layout .direct-clear-all{
+  min-height:128px !important;
+  border-radius:24px !important;
+  border:2px solid #f3d7dc !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:18px !important;
+  padding:18px 22px !important;
+}
+
+#betScreen.classic-layout .direct-submit{
+  background:linear-gradient(180deg,#ff1532 0%,#d40018 74%,#bc0011 100%) !important;
+  border-color:#d40018 !important;
+  color:#fff !important;
+  box-shadow:0 16px 30px rgba(156,0,18,.16) !important;
+}
+
+#betScreen.classic-layout .direct-submit .style1-action-icon,
+#betScreen.classic-layout .direct-clear-all .style1-action-icon{
+  width:56px !important;
+  height:56px !important;
+  border-radius:999px !important;
+  display:grid !important;
+  place-items:center !important;
+  font-size:28px !important;
+  flex:0 0 56px !important;
+}
+
+#betScreen.classic-layout .direct-submit .style1-action-icon{
+  background:#fff !important;
+  color:#d40018 !important;
+}
+
+#betScreen.classic-layout .direct-clear-all{
+  background:#fff !important;
+  color:#d12736 !important;
+}
+
+#betScreen.classic-layout .direct-clear-all .style1-action-icon{
+  background:#fff1f3 !important;
+  color:#db2435 !important;
+}
+
+#betScreen.classic-layout .direct-submit .style1-action-copy strong,
+#betScreen.classic-layout .direct-clear-all .style1-action-copy strong{
+  font-size:28px !important;
+  font-weight:800 !important;
+  line-height:1.1 !important;
+}
+
+#betScreen.classic-layout .direct-submit .style1-action-copy small{
+  display:none !important;
+}
+
+#betScreen.classic-layout .direct-clear-all .style1-action-copy small{
+  display:none !important;
+}
+
+#betScreen.classic-layout .direct-submit .style1-action-arrow,
+#betScreen.classic-layout .direct-clear-all .style1-action-arrow{
+  display:none !important;
+}
+
+#betScreen.classic-layout .direct-submit:disabled{
+  opacity:.58 !important;
+}
+
+@media (max-width: 900px){
+  #betScreen.classic-layout .toprow{
+    grid-template-columns:60px minmax(0,1fr) 132px !important;
+    gap:10px !important;
+  }
+
+  #betScreen.classic-layout #backBtn{
+    width:60px !important;
+    height:60px !important;
+    min-height:60px !important;
+    border-radius:20px !important;
+    font-size:30px !important;
+  }
+
+  #betScreen.classic-layout .bet-rules-classic-btn{
+    min-height:64px !important;
+    padding:10px 12px !important;
+    border-radius:18px !important;
+    font-size:12px !important;
+  }
+
+  #betScreen.classic-layout .lotto-selected .selected-name{
+    font-size:22px !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .bill-price-panel,
+  #betScreen.classic-layout .direct-action-row{
+    padding-left:18px !important;
+    padding-right:18px !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .bill-price-panel{
+    grid-template-columns:1fr !important;
+    gap:14px !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .price-top-head{
+    grid-column:1 !important;
+    margin:0 -18px !important;
+    padding:16px 18px !important;
+    flex-wrap:wrap !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .price-section-title{
+    font-size:26px !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .price-section-title::before,
+  #betScreen.classic-layout .price-bottom-bar .price-top-head .price-section-title::after{
+    width:50px !important;
+    height:50px !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .price-top-head .price-section-title::after{
+    left:13px !important;
+    font-size:22px !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .price-section-subnote{
+    width:100% !important;
+    text-align:left !important;
+    font-size:13px !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .direct-price-grid{
+    grid-column:1 !important;
+    grid-template-columns:1fr 1fr !important;
+    gap:14px !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .direct-add-bill{
+    grid-column:1 !important;
+    min-height:132px !important;
+    border-radius:22px !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .direct-add-bill .addbill-icon{
+    width:56px !important;
+    height:56px !important;
+    border-radius:16px !important;
+    font-size:28px !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .direct-add-bill .addbill-text{
+    font-size:26px !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .direct-price-field{
+    min-height:164px !important;
+    border-radius:22px !important;
+    padding:18px 12px 14px !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .direct-price-label{
+    font-size:22px !important;
+    gap:8px !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .direct-price-label::before{
+    width:42px !important;
+    height:42px !important;
+    font-size:18px !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .direct-price-input{
+    font-size:54px !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .direct-price-field::after{
+    font-size:18px !important;
+  }
+
+  #betScreen.classic-layout .direct-action-row{
+    grid-template-columns:1fr 1fr !important;
+    gap:14px !important;
+    padding-bottom:18px !important;
+    border-radius:0 0 28px 28px !important;
+  }
+
+  #betScreen.classic-layout .direct-submit,
+  #betScreen.classic-layout .direct-clear-all{
+    min-height:96px !important;
+    border-radius:18px !important;
+    gap:12px !important;
+    padding:14px !important;
+  }
+
+  #betScreen.classic-layout .direct-submit .style1-action-icon,
+  #betScreen.classic-layout .direct-clear-all .style1-action-icon{
+    width:42px !important;
+    height:42px !important;
+    font-size:20px !important;
+    flex-basis:42px !important;
+  }
+
+  #betScreen.classic-layout .direct-submit .style1-action-copy strong,
+  #betScreen.classic-layout .direct-clear-all .style1-action-copy strong{
+    font-size:18px !important;
+  }
+}
+
+@media (max-width: 520px){
+  #betScreen.classic-layout .topbar{
+    padding:12px 10px 6px !important;
+  }
+
+  #betScreen.classic-layout .toprow{
+    grid-template-columns:52px minmax(0,1fr) 116px !important;
+    gap:8px !important;
+  }
+
+  #betScreen.classic-layout #backBtn{
+    width:52px !important;
+    height:52px !important;
+    min-height:52px !important;
+    border-radius:18px !important;
+    font-size:26px !important;
+  }
+
+  #betScreen.classic-layout .lotto-selected small{
+    font-size:12px !important;
+    margin-bottom:2px !important;
+  }
+
+  #betScreen.classic-layout .lotto-selected .selected-name{
+    font-size:19px !important;
+  }
+
+  #betScreen.classic-layout .lotto-selected .selected-meta-line{
+    font-size:12px !important;
+  }
+
+  #betScreen.classic-layout .lotto-selected .selected-count{
+    min-height:32px !important;
+    padding:0 12px !important;
+  }
+
+  #betScreen.classic-layout .limit-badge{
+    padding:10px 12px !important;
+    border-radius:14px !important;
+    font-size:12px !important;
+  }
+
+  #betScreen.classic-layout .bet-rules-classic-btn{
+    min-height:52px !important;
+    padding:8px 10px !important;
+    border-radius:16px !important;
+    font-size:11px !important;
+  }
+
+  #betScreen.classic-layout .bet-mode-wrap,
+  #betScreen.classic-layout .direct-bet-content,
+  #betScreen.classic-layout .price-bottom-bar,
+  #betScreen.classic-layout .direct-bottom{
+    width:calc(100% - 16px) !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar,
+  #betScreen.classic-layout .direct-bottom{
+    margin-top:12px !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .bill-price-panel{
+    padding:0 12px 16px !important;
+    border-radius:24px !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .price-top-head{
+    margin:0 -12px !important;
+    padding:14px 12px !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .price-section-title{
+    font-size:19px !important;
+    gap:12px !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .price-section-title::before,
+  #betScreen.classic-layout .price-bottom-bar .price-top-head .price-section-title::after{
+    width:42px !important;
+    height:42px !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .price-top-head .price-section-title::after{
+    left:10px !important;
+    font-size:18px !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .price-section-subnote{
+    font-size:12px !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .direct-price-grid{
+    grid-template-columns:1fr 1fr !important;
+    gap:10px !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .direct-price-field{
+    min-height:136px !important;
+    border-radius:18px !important;
+    padding:14px 8px 12px !important;
+    gap:6px !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .direct-price-label{
+    font-size:18px !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .direct-price-label::before{
+    width:34px !important;
+    height:34px !important;
+    font-size:16px !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .direct-price-input{
+    font-size:44px !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .direct-price-field::after{
+    font-size:14px !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .direct-add-bill{
+    min-height:116px !important;
+    border-radius:18px !important;
+    gap:10px !important;
+    padding:14px !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .direct-add-bill .addbill-icon{
+    width:46px !important;
+    height:46px !important;
+    border-radius:14px !important;
+    font-size:24px !important;
+  }
+
+  #betScreen.classic-layout .price-bottom-bar .direct-add-bill .addbill-text{
+    font-size:18px !important;
+  }
+
+  #betScreen.classic-layout .direct-action-row{
+    gap:10px !important;
+    padding:0 12px 14px !important;
+    border-radius:0 0 24px 24px !important;
+  }
+
+  #betScreen.classic-layout .direct-submit,
+  #betScreen.classic-layout .direct-clear-all{
+    min-height:84px !important;
+    border-radius:16px !important;
+    gap:8px !important;
+    padding:12px 10px !important;
+  }
+
+  #betScreen.classic-layout .direct-submit .style1-action-icon,
+  #betScreen.classic-layout .direct-clear-all .style1-action-icon{
+    width:36px !important;
+    height:36px !important;
+    font-size:18px !important;
+    flex-basis:36px !important;
+  }
+
+  #betScreen.classic-layout .direct-submit .style1-action-copy strong,
+  #betScreen.classic-layout .direct-clear-all .style1-action-copy strong{
+    font-size:15px !important;
+  }
+}
+
 </style>
  </head>
  <body>
@@ -18392,7 +19141,7 @@ strong,b{
         <input class="direct-price-input" id="priceB" type="number" inputmode="decimal" min="0" step="1" placeholder="0">
        </div>
       </div>
-      <button class="direct-add-bill visually-hidden-addbill" id="addBillBtn" type="button" tabindex="-1" aria-hidden="true">เพิ่มบิล</button>
+      <button class="direct-add-bill visually-hidden-addbill" id="addBillBtn" type="button" tabindex="-1" aria-hidden="true"><span class="addbill-icon"><i class="fi fi-sr-file-circle-plus"></i></span><span class="addbill-text">เพิ่มบิล</span></button>
      </div>
     </section>
 
