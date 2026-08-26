@@ -17643,6 +17643,196 @@ strong,b{
   #profileScreen .profile-bottom-nav button{height:56px}
 }
 
+
+
+/* ==========================================================
+   V93 — STYLE 1 SUMMARY PANEL FROM REFERENCE + FLATICON UICONS
+   modern layout only; classic layout keeps original behavior
+========================================================== */
+#betScreen.modern-layout .direct-bottom{
+  position:static !important;
+  left:auto !important;
+  right:auto !important;
+  top:auto !important;
+  bottom:auto !important;
+  transform:none !important;
+  z-index:auto !important;
+  width:min(calc(100% - 16px),980px) !important;
+  max-width:980px !important;
+  margin:18px auto calc(98px + env(safe-area-inset-bottom)) !important;
+  padding:0 !important;
+  border:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  overflow:visible !important;
+}
+#betScreen.modern-layout .style1-summary-panel{
+  width:100% !important;
+  padding:20px !important;
+  border:1px solid #f0e5e7 !important;
+  border-radius:28px !important;
+  background:#fff !important;
+  box-shadow:0 10px 28px rgba(126,0,11,.08) !important;
+}
+#betScreen.modern-layout .style1-summary-head{
+  display:flex !important;
+  align-items:center !important;
+  gap:14px !important;
+  margin:0 0 18px !important;
+}
+#betScreen.modern-layout .style1-summary-head-icon{
+  width:44px !important;height:44px !important;flex:0 0 44px !important;
+  display:grid !important;place-items:center !important;
+  border-radius:50% !important;
+  background:linear-gradient(180deg,#d40016 0%,#a70010 100%) !important;
+  color:#fff !important;font-size:20px !important;
+}
+#betScreen.modern-layout .style1-summary-head h3{
+  margin:0 !important;color:#171717 !important;font-size:20px !important;font-weight:650 !important;
+}
+#betScreen.modern-layout .bottom-quick-wrap.style1-amount-row{
+  display:grid !important;
+  grid-template-columns:minmax(0,1.25fr) minmax(0,1fr) !important;
+  gap:16px !important;
+  margin:0 0 18px !important;
+}
+#betScreen.modern-layout .style1-amount-card{
+  min-height:138px !important;
+  display:grid !important;
+  grid-template-columns:68px minmax(0,1fr) auto !important;
+  align-items:center !important;
+  gap:16px !important;
+  padding:20px 22px !important;
+  border:1px solid #e9e5e6 !important;
+  border-radius:24px !important;
+  background:#fff !important;
+  box-shadow:0 8px 20px rgba(0,0,0,.04) !important;
+}
+#betScreen.modern-layout .style1-amount-icon{
+  width:68px !important;height:68px !important;display:grid !important;place-items:center !important;
+  border:1px solid #f1d8dc !important;border-radius:18px !important;background:#fff !important;
+  color:#b50d1d !important;font-size:32px !important;
+}
+#betScreen.modern-layout .style1-amount-copy strong{
+  display:block !important;color:#202020 !important;font-size:18px !important;font-weight:650 !important;line-height:1.2 !important;
+}
+#betScreen.modern-layout .style1-amount-copy small{
+  display:block !important;margin-top:5px !important;color:#616161 !important;font-size:14px !important;font-weight:350 !important;
+}
+#betScreen.modern-layout .style1-amount-input-wrap{display:flex !important;align-items:flex-end !important;gap:8px !important;}
+#betScreen.modern-layout .style1-amount-input{
+  width:115px !important;height:auto !important;min-height:0 !important;
+  padding:0 !important;border:0 !important;border-radius:0 !important;background:transparent !important;
+  box-shadow:none !important;outline:none !important;text-align:right !important;
+  color:#b9b9b9 !important;font-size:64px !important;font-weight:250 !important;line-height:1 !important;
+  -moz-appearance:textfield;
+}
+#betScreen.modern-layout .style1-amount-input::-webkit-outer-spin-button,
+#betScreen.modern-layout .style1-amount-input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
+#betScreen.modern-layout .style1-amount-input::placeholder{color:#c7c7c7 !important;opacity:1 !important;}
+#betScreen.modern-layout .style1-amount-unit{padding-bottom:10px !important;color:#858585 !important;font-size:16px !important;font-weight:400 !important;}
+#betScreen.modern-layout .style1-quick-grid{
+  display:grid !important;grid-template-columns:repeat(5,minmax(0,1fr)) !important;gap:10px !important;margin:0 !important;
+}
+#betScreen.modern-layout .style1-quick-btn{
+  min-width:0 !important;min-height:138px !important;height:auto !important;
+  display:flex !important;flex-direction:column !important;align-items:center !important;justify-content:center !important;gap:4px !important;
+  padding:10px 6px !important;border:1px solid #efebec !important;border-radius:22px !important;
+  background:#fff !important;color:#181818 !important;box-shadow:0 8px 20px rgba(0,0,0,.04) !important;
+  font-size:28px !important;font-weight:650 !important;line-height:1 !important;
+}
+#betScreen.modern-layout .style1-quick-btn span{display:block !important;color:#444 !important;font-size:13px !important;font-weight:350 !important;line-height:1.1 !important;}
+#betScreen.modern-layout .style1-quick-btn.active{
+  border-color:#dc0017 !important;background:linear-gradient(180deg,#ff2537 0%,#d50016 100%) !important;
+  color:#fff !important;box-shadow:0 12px 22px rgba(193,0,18,.20) !important;
+}
+#betScreen.modern-layout .style1-quick-btn.active span{color:#fff !important;}
+#betScreen.modern-layout .modern-total-banner.style1-total-banner{
+  min-height:156px !important;
+  display:grid !important;grid-template-columns:98px minmax(0,1fr) auto !important;align-items:center !important;gap:20px !important;
+  margin:0 0 18px !important;padding:22px 28px !important;border:0 !important;border-radius:28px !important;
+  background:radial-gradient(circle at 78% 60%,rgba(255,255,255,.12),transparent 28%),linear-gradient(135deg,#b70012 0%,#dc0017 55%,#ff2437 100%) !important;
+  box-shadow:0 16px 28px rgba(172,0,12,.18) !important;color:#fff !important;
+}
+#betScreen.modern-layout .style1-total-icon{
+  width:98px !important;height:98px !important;display:grid !important;place-items:center !important;
+  border:1px solid rgba(255,255,255,.22) !important;border-radius:24px !important;background:rgba(255,255,255,.14) !important;
+  color:#fff !important;font-size:46px !important;
+}
+#betScreen.modern-layout .style1-total-copy strong{display:block !important;color:#fff !important;font-size:22px !important;font-weight:650 !important;line-height:1.2 !important;}
+#betScreen.modern-layout .style1-total-copy small{display:block !important;margin-top:8px !important;color:rgba(255,255,255,.88) !important;font-size:15px !important;font-weight:350 !important;}
+#betScreen.modern-layout .style1-total-value{display:flex !important;align-items:flex-end !important;justify-content:flex-end !important;gap:10px !important;color:#fff !important;white-space:nowrap !important;}
+#betScreen.modern-layout .style1-total-value #grandTotal{font-size:76px !important;font-weight:720 !important;line-height:.95 !important;color:#fff !important;}
+#betScreen.modern-layout .style1-total-value small{padding-bottom:10px !important;color:#fff !important;font-size:18px !important;font-weight:400 !important;}
+#betScreen.modern-layout .direct-grand{display:none !important;}
+#betScreen.modern-layout .style1-action-row{
+  display:grid !important;grid-template-columns:1fr 1fr !important;gap:18px !important;margin:0 !important;padding:0 !important;
+}
+#betScreen.modern-layout .style1-action-row .direct-back-bottom{display:none !important;}
+#betScreen.modern-layout .style1-action-card{
+  width:100% !important;min-height:150px !important;
+  display:grid !important;grid-template-columns:78px minmax(0,1fr) auto !important;align-items:center !important;gap:18px !important;
+  padding:20px 22px !important;border-radius:26px !important;text-align:left !important;
+  box-shadow:0 10px 24px rgba(0,0,0,.05) !important;
+}
+#betScreen.modern-layout .style1-action-card.confirm{
+  border:1px solid #d40016 !important;background:linear-gradient(180deg,#ff1528 0%,#d70016 100%) !important;color:#fff !important;
+}
+#betScreen.modern-layout .style1-action-card.clear{
+  border:1px solid #efe2e4 !important;background:#fff !important;color:#a20b1a !important;
+}
+#betScreen.modern-layout .style1-action-icon{
+  width:78px !important;height:78px !important;display:grid !important;place-items:center !important;border-radius:50% !important;font-size:34px !important;
+}
+#betScreen.modern-layout .style1-action-card.confirm .style1-action-icon{background:#fff !important;color:#c30014 !important;}
+#betScreen.modern-layout .style1-action-card.clear .style1-action-icon{border:1px solid #f2dfe2 !important;background:#fff6f7 !important;color:#d12736 !important;}
+#betScreen.modern-layout .style1-action-copy strong{display:block !important;font-size:22px !important;font-weight:650 !important;line-height:1.2 !important;}
+#betScreen.modern-layout .style1-action-copy small{display:block !important;margin-top:7px !important;font-size:14px !important;font-weight:350 !important;line-height:1.3 !important;}
+#betScreen.modern-layout .style1-action-card.clear .style1-action-copy small{color:#666 !important;}
+#betScreen.modern-layout .style1-action-arrow{display:grid !important;place-items:center !important;font-size:26px !important;}
+#betScreen.modern-layout .style1-action-card.confirm:disabled{opacity:.5 !important;filter:saturate(.5) !important;}
+
+@media(max-width:768px){
+  #betScreen.modern-layout .style1-summary-panel{padding:16px !important;border-radius:24px !important;}
+  #betScreen.modern-layout .bottom-quick-wrap.style1-amount-row{grid-template-columns:1fr !important;gap:12px !important;}
+  #betScreen.modern-layout .style1-amount-card{min-height:112px !important;}
+  #betScreen.modern-layout .style1-quick-btn{min-height:90px !important;}
+  #betScreen.modern-layout .modern-total-banner.style1-total-banner{grid-template-columns:72px minmax(0,1fr) !important;gap:14px !important;padding:16px !important;}
+  #betScreen.modern-layout .style1-total-icon{width:72px !important;height:72px !important;border-radius:18px !important;font-size:34px !important;}
+  #betScreen.modern-layout .style1-total-value{grid-column:1/-1 !important;}
+  #betScreen.modern-layout .style1-action-card{min-height:122px !important;grid-template-columns:60px minmax(0,1fr) auto !important;gap:12px !important;padding:14px !important;}
+  #betScreen.modern-layout .style1-action-icon{width:60px !important;height:60px !important;font-size:28px !important;}
+}
+@media(max-width:430px){
+  #betScreen.modern-layout .direct-bottom{width:calc(100% - 10px) !important;margin-top:12px !important;margin-bottom:calc(92px + env(safe-area-inset-bottom)) !important;}
+  #betScreen.modern-layout .style1-summary-panel{padding:12px !important;border-radius:20px !important;}
+  #betScreen.modern-layout .style1-summary-head{gap:10px !important;margin-bottom:12px !important;}
+  #betScreen.modern-layout .style1-summary-head-icon{width:34px !important;height:34px !important;flex-basis:34px !important;font-size:15px !important;}
+  #betScreen.modern-layout .style1-summary-head h3{font-size:15px !important;}
+  #betScreen.modern-layout .style1-amount-card{min-height:92px !important;grid-template-columns:46px minmax(0,1fr) auto !important;gap:9px !important;padding:12px !important;border-radius:16px !important;}
+  #betScreen.modern-layout .style1-amount-icon{width:46px !important;height:46px !important;border-radius:12px !important;font-size:21px !important;}
+  #betScreen.modern-layout .style1-amount-copy strong{font-size:14px !important;font-weight:600 !important;}
+  #betScreen.modern-layout .style1-amount-copy small{font-size:11px !important;}
+  #betScreen.modern-layout .style1-amount-input{width:64px !important;font-size:42px !important;font-weight:250 !important;}
+  #betScreen.modern-layout .style1-amount-unit{padding-bottom:6px !important;font-size:12px !important;}
+  #betScreen.modern-layout .style1-quick-grid{gap:6px !important;}
+  #betScreen.modern-layout .style1-quick-btn{min-height:72px !important;padding:7px 3px !important;border-radius:14px !important;font-size:17px !important;font-weight:600 !important;}
+  #betScreen.modern-layout .style1-quick-btn span{font-size:9px !important;}
+  #betScreen.modern-layout .modern-total-banner.style1-total-banner{min-height:auto !important;margin-bottom:12px !important;padding:12px !important;border-radius:18px !important;grid-template-columns:52px minmax(0,1fr) !important;gap:10px !important;}
+  #betScreen.modern-layout .style1-total-icon{width:52px !important;height:52px !important;border-radius:14px !important;font-size:24px !important;}
+  #betScreen.modern-layout .style1-total-copy strong{font-size:16px !important;font-weight:600 !important;}
+  #betScreen.modern-layout .style1-total-copy small{margin-top:4px !important;font-size:10px !important;}
+  #betScreen.modern-layout .style1-total-value{gap:6px !important;margin-top:2px !important;}
+  #betScreen.modern-layout .style1-total-value #grandTotal{font-size:42px !important;font-weight:700 !important;}
+  #betScreen.modern-layout .style1-total-value small{padding-bottom:5px !important;font-size:12px !important;}
+  #betScreen.modern-layout .style1-action-row{gap:8px !important;}
+  #betScreen.modern-layout .style1-action-card{min-height:96px !important;grid-template-columns:46px minmax(0,1fr) 18px !important;gap:9px !important;padding:10px !important;border-radius:17px !important;}
+  #betScreen.modern-layout .style1-action-icon{width:46px !important;height:46px !important;font-size:20px !important;}
+  #betScreen.modern-layout .style1-action-copy strong{font-size:14px !important;font-weight:600 !important;}
+  #betScreen.modern-layout .style1-action-copy small{margin-top:3px !important;font-size:9px !important;}
+  #betScreen.modern-layout .style1-action-arrow{font-size:15px !important;}
+}
+
 </style>
  </head>
  <body>
@@ -18207,29 +18397,54 @@ strong,b{
     </section>
 
     <section class="direct-bottom">
-     <div class="bottom-quick-wrap">
-      <div class="bottom-quick-label">ราคาเท่ากันทั้งหมด</div>
-      <div class="price-quick-grid bottom-price-quick-grid">
-       <input class="price-quick-input" id="quickPriceInput" type="number" inputmode="decimal" min="0" step="1" placeholder="จำนวนเงิน">
-       <button class="price-quick-btn" data-quick-price="5" type="button">5</button>
-       <button class="price-quick-btn" data-quick-price="10" type="button">10</button>
-       <button class="price-quick-btn" data-quick-price="20" type="button">20</button>
-       <button class="price-quick-btn" data-quick-price="50" type="button">50</button>
-       <button class="price-quick-btn" data-quick-price="100" type="button">100</button>
+     <div class="style1-summary-panel">
+      <div class="style1-summary-head">
+       <span class="style1-summary-head-icon"><i class="fi fi-sr-wallet"></i></span>
+       <h3>ราคาเท่ากันทั้งหมด</h3>
       </div>
-     </div>
-     <div class="modern-total-banner">
-      <span>รวมยอดแทง</span>
-      <strong><span id="grandTotal">0.00</span> ฿</strong>
-     </div>
-     <div class="direct-grand">
-      <small>ยอดรวมทุกรายการ</small>
-      <strong id="grandTotalHidden">0.00</strong>
-     </div>
-     <div class="direct-action-row">
-      <button class="direct-back-bottom" id="bottomBackBtn" type="button">กลับ</button>
-      <button class="direct-submit" disabled id="submitBtn">ยืนยันโพย</button>
-      <button class="direct-clear-all" id="clearAllBtn">ล้างทั้งหมด</button>
+
+      <div class="bottom-quick-wrap style1-amount-row">
+       <div class="style1-amount-card">
+        <div class="style1-amount-icon"><i class="fi fi-sr-wallet"></i></div>
+        <div class="style1-amount-copy"><strong>จำนวนเงิน</strong><small>บาท</small></div>
+        <div class="style1-amount-input-wrap">
+         <input class="price-quick-input style1-amount-input" id="quickPriceInput" type="number" inputmode="decimal" min="0" step="1" placeholder="0">
+         <span class="style1-amount-unit">บาท</span>
+        </div>
+       </div>
+       <div class="price-quick-grid bottom-price-quick-grid style1-quick-grid">
+        <button class="price-quick-btn style1-quick-btn" data-quick-price="5" type="button">5<span>บาท</span></button>
+        <button class="price-quick-btn style1-quick-btn" data-quick-price="10" type="button">10<span>บาท</span></button>
+        <button class="price-quick-btn style1-quick-btn" data-quick-price="20" type="button">20<span>บาท</span></button>
+        <button class="price-quick-btn style1-quick-btn" data-quick-price="50" type="button">50<span>บาท</span></button>
+        <button class="price-quick-btn style1-quick-btn" data-quick-price="100" type="button">100<span>บาท</span></button>
+       </div>
+      </div>
+
+      <div class="modern-total-banner style1-total-banner">
+       <div class="style1-total-icon"><i class="fi fi-sr-receipt"></i></div>
+       <div class="style1-total-copy"><strong>รวมยอดแทง</strong><small>ยอดรวมทั้งหมดของโพย</small></div>
+       <div class="style1-total-value"><span id="grandTotal">0.00</span><small>บาท</small></div>
+      </div>
+
+      <div class="direct-grand">
+       <small>ยอดรวมทุกรายการ</small>
+       <strong id="grandTotalHidden">0.00</strong>
+      </div>
+
+      <div class="direct-action-row style1-action-row">
+       <button class="direct-back-bottom" id="bottomBackBtn" type="button">กลับ</button>
+       <button class="direct-submit style1-action-card confirm" disabled id="submitBtn" type="button">
+        <span class="style1-action-icon"><i class="fi fi-sr-document"></i></span>
+        <span class="style1-action-copy"><strong>ยืนยันโพย</strong><small>ตรวจสอบและยืนยันการส่งโพย</small></span>
+        <span class="style1-action-arrow"><i class="fi fi-sr-angle-right"></i></span>
+       </button>
+       <button class="direct-clear-all style1-action-card clear" id="clearAllBtn" type="button">
+        <span class="style1-action-icon"><i class="fi fi-sr-trash"></i></span>
+        <span class="style1-action-copy"><strong>ล้างทั้งหมด</strong><small>ลบข้อมูลทั้งหมด</small></span>
+        <span class="style1-action-arrow"><i class="fi fi-sr-angle-right"></i></span>
+       </button>
+      </div>
      </div>
     </section>
 
@@ -25120,6 +25335,22 @@ function openAdminAnnouncementEditor(item) {
       }
     }
   );
+
+
+  /* V93: quick-price active state for new Style 1 panel */
+  document.addEventListener("click", function(e){
+    var btn = e.target.closest("#betScreen.modern-layout .style1-quick-btn[data-quick-price]");
+    if (!btn) return;
+    document.querySelectorAll("#betScreen.modern-layout .style1-quick-btn").forEach(function(x){ x.classList.remove("active"); });
+    btn.classList.add("active");
+  });
+  document.addEventListener("input", function(e){
+    if (!e.target || e.target.id !== "quickPriceInput") return;
+    var v = String(e.target.value || "");
+    document.querySelectorAll("#betScreen.modern-layout .style1-quick-btn").forEach(function(x){
+      x.classList.toggle("active", String(x.dataset.quickPrice || "") === v);
+    });
+  });
 
 })();
 
