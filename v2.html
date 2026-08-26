@@ -16903,6 +16903,182 @@ strong,b{
     font-size:12px !important;
   }
 }
+
+
+/* ==========================================================
+   V89 — STYLE 1 TRUE ROW DELETE + THIN TYPOGRAPHY
+   - ลบแถวจริงจากตาราง/ยอด/payload
+   - ตัวเลขและข้อความบางลงทั้งหมด
+   - ช่องตัวเลขแคบและเบาขึ้น
+========================================================== */
+#betScreen.modern-layout #modernBillStack,
+#betScreen.modern-layout #modernBillStack *{
+  font-weight:400 !important;
+  letter-spacing:0 !important;
+}
+
+#betScreen.modern-layout .modern-slip-group{
+  border-radius:12px !important;
+  box-shadow:0 3px 10px rgba(24,24,27,.045) !important;
+}
+
+#betScreen.modern-layout .modern-slip-group-head{
+  min-height:38px !important;
+  padding:7px 9px !important;
+}
+
+#betScreen.modern-layout .modern-slip-group-head strong{
+  font-size:13px !important;
+  font-weight:500 !important;
+}
+
+#betScreen.modern-layout .modern-slip-group-count{
+  min-height:24px !important;
+  padding:0 8px !important;
+  font-size:9px !important;
+  font-weight:400 !important;
+}
+
+#betScreen.modern-layout .modern-slip-head,
+#betScreen.modern-layout .modern-slip-row{
+  grid-template-columns:28px 66px minmax(58px,.92fr) minmax(52px,.82fr) minmax(66px,1fr) 36px !important;
+  gap:2px !important;
+}
+
+#betScreen.modern-layout .modern-slip-head span{
+  min-height:31px !important;
+  padding:2px !important;
+  border-radius:7px !important;
+  font-size:9px !important;
+  font-weight:500 !important;
+}
+
+#betScreen.modern-layout .modern-slip-row{
+  min-height:42px !important;
+  margin-bottom:2px !important;
+}
+
+#betScreen.modern-layout .modern-slip-no,
+#betScreen.modern-layout .modern-slip-num,
+#betScreen.modern-layout .modern-slip-price,
+#betScreen.modern-layout .modern-slip-rate,
+#betScreen.modern-layout .modern-slip-win,
+#betScreen.modern-layout .modern-slip-remove{
+  min-height:42px !important;
+  border-radius:8px !important;
+  font-weight:400 !important;
+}
+
+#betScreen.modern-layout .modern-slip-no{
+  font-size:10px !important;
+}
+
+#betScreen.modern-layout .modern-slip-num{
+  padding:3px 2px !important;
+  font-size:14px !important;
+  line-height:1.1 !important;
+  font-weight:500 !important;
+  border-radius:8px !important;
+  box-shadow:none !important;
+}
+
+#betScreen.modern-layout .modern-slip-num > span{
+  font-weight:500 !important;
+}
+
+#betScreen.modern-layout .modern-slip-status{
+  margin-top:2px !important;
+  padding:2px 5px !important;
+  border-radius:999px !important;
+  font-size:7px !important;
+  font-weight:500 !important;
+}
+
+#betScreen.modern-layout .modern-slip-price{
+  padding:2px !important;
+}
+
+#betScreen.modern-layout .modern-slip-price input{
+  height:32px !important;
+  min-height:32px !important;
+  padding:0 4px !important;
+  border-width:1px !important;
+  border-radius:7px !important;
+  font-size:11px !important;
+  font-weight:400 !important;
+  box-shadow:none !important;
+}
+
+#betScreen.modern-layout .modern-slip-rate,
+#betScreen.modern-layout .modern-slip-win{
+  font-size:10.5px !important;
+  font-weight:500 !important;
+}
+
+#betScreen.modern-layout .modern-slip-remove{
+  padding:3px !important;
+}
+
+#betScreen.modern-layout .modern-slip-remove button{
+  width:29px !important;
+  height:29px !important;
+  min-height:29px !important;
+  padding:0 !important;
+  border:1px solid #fecaca !important;
+  border-radius:8px !important;
+  background:#fff7f7 !important;
+  color:#dc2626 !important;
+  box-shadow:none !important;
+}
+
+#betScreen.modern-layout .modern-slip-remove button i{
+  font-size:12px !important;
+  line-height:1 !important;
+  font-weight:400 !important;
+}
+
+#betScreen.modern-layout .modern-slip-row.row-half .modern-slip-num{
+  color:#6b4b00 !important;
+}
+
+@media(max-width:430px){
+  #betScreen.modern-layout .modern-slip-head,
+  #betScreen.modern-layout .modern-slip-row{
+    grid-template-columns:25px 58px minmax(52px,.92fr) minmax(48px,.8fr) minmax(60px,1fr) 32px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-row,
+  #betScreen.modern-layout .modern-slip-no,
+  #betScreen.modern-layout .modern-slip-num,
+  #betScreen.modern-layout .modern-slip-price,
+  #betScreen.modern-layout .modern-slip-rate,
+  #betScreen.modern-layout .modern-slip-win,
+  #betScreen.modern-layout .modern-slip-remove{
+    min-height:39px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-num{
+    font-size:13px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-price input{
+    height:29px !important;
+    min-height:29px !important;
+    font-size:10.5px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-rate,
+  #betScreen.modern-layout .modern-slip-win{
+    font-size:10px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-remove button{
+    width:27px !important;
+    height:27px !important;
+    min-height:27px !important;
+  }
+}
+
 </style>
  </head>
  <body>
@@ -19945,10 +20121,13 @@ function isClosedNumberForBill(bill, number) {
 
 function ensureBillRowPrices(bill) {
   if (!bill.rowPrices || typeof bill.rowPrices !== "object") {
-    bill.rowPrices = { A:{}, B:{} };
+    bill.rowPrices = { A:{}, B:{}, D:{A:{},B:{}} };
   }
   if (!bill.rowPrices.A) bill.rowPrices.A = {};
   if (!bill.rowPrices.B) bill.rowPrices.B = {};
+  if (!bill.rowPrices.D || typeof bill.rowPrices.D !== "object") bill.rowPrices.D = {A:{},B:{}};
+  if (!bill.rowPrices.D.A) bill.rowPrices.D.A = {};
+  if (!bill.rowPrices.D.B) bill.rowPrices.D.B = {};
   return bill.rowPrices;
 }
 
@@ -19959,6 +20138,11 @@ function getBillRowPrice(bill, side, rowIndex) {
 
   var store = ensureBillRowPrices(bill);
   var key = String(rowIndex);
+
+  // V89: แถวที่กดลบต้องไม่ถูกนำกลับมาคิดยอดหรือส่งแทงอีก
+  if (store.D && store.D[side] && store.D[side][key]) {
+    return 0;
+  }
 
   if (Object.prototype.hasOwnProperty.call(store[side], key)) {
     return Math.max(0, num(store[side][key]));
@@ -19988,8 +20172,12 @@ function billHasRowOverrides(bill) {
 
   var a = bill.rowPrices.A || {};
   var b = bill.rowPrices.B || {};
+  var d = bill.rowPrices.D || {A:{},B:{}};
 
-  return Object.keys(a).length > 0 || Object.keys(b).length > 0;
+  return Object.keys(a).length > 0 ||
+    Object.keys(b).length > 0 ||
+    Object.keys(d.A || {}).length > 0 ||
+    Object.keys(d.B || {}).length > 0;
 }
 
 function getBillRowStake(bill, number, rowIndex) {
@@ -23207,14 +23395,19 @@ function openAdminAnnouncementEditor(item) {
 (function(){
 
   function freshRowPrices(){
-    return { A:{}, B:{} };
+    return { A:{}, B:{}, D:{A:{},B:{}} };
   }
 
   function cloneRows(rows){
     rows = rows || freshRowPrices();
+    var deleted = rows.D || {A:{},B:{}};
     return {
       A:Object.assign({},rows.A || {}),
-      B:Object.assign({},rows.B || {})
+      B:Object.assign({},rows.B || {}),
+      D:{
+        A:Object.assign({},deleted.A || {}),
+        B:Object.assign({},deleted.B || {})
+      }
     };
   }
 
@@ -23222,6 +23415,9 @@ function openAdminAnnouncementEditor(item) {
     if (!state.modernRowPrices) state.modernRowPrices = freshRowPrices();
     if (!state.modernRowPrices.A) state.modernRowPrices.A = {};
     if (!state.modernRowPrices.B) state.modernRowPrices.B = {};
+    if (!state.modernRowPrices.D) state.modernRowPrices.D = {A:{},B:{}};
+    if (!state.modernRowPrices.D.A) state.modernRowPrices.D.A = {};
+    if (!state.modernRowPrices.D.B) state.modernRowPrices.D.B = {};
     return state.modernRowPrices;
   }
 
@@ -23352,6 +23548,25 @@ function openAdminAnnouncementEditor(item) {
     renderDirectBet();
   }
 
+  // V89: ลบทีละแถวจริง ทั้งจากหน้าจอ ยอดรวม และ payload ที่ส่งแทง
+  function deleteModernSlipRow(billIndex, side, rowIndex){
+    side = side === "B" ? "B" : "A";
+    rowIndex = Number(rowIndex);
+    if (!Number.isFinite(rowIndex) || rowIndex < 0) return;
+
+    if (String(billIndex) === "draft") {
+      var draftStore = currentRows();
+      draftStore.D[side][String(rowIndex)] = true;
+    } else {
+      var bill = state.billItems[Number(billIndex)];
+      if (!bill) return;
+      var store = ensureBillRowPrices(bill);
+      store.D[side][String(rowIndex)] = true;
+    }
+
+    renderDirectBet();
+  }
+
   function setDraftRowPrice(side,rowIndex,value){
     side = side === "B" ? "B" : "A";
     currentRows()[side][String(Number(rowIndex))] =
@@ -23363,8 +23578,10 @@ function openAdminAnnouncementEditor(item) {
   function applyBulkPrice(amount){
     amount = Math.max(0,num(amount));
 
-    /* ให้ราคาเท่ากันหมด = reset override ทุกแถว */
-    clearCurrentRows();
+    /* ให้ราคาเท่ากันหมด = reset เฉพาะราคา แต่คงแถวที่ผู้ใช้กดลบไว้ */
+    var currentDeleted = cloneRows(currentRows()).D;
+    state.modernRowPrices = freshRowPrices();
+    state.modernRowPrices.D = currentDeleted;
 
     var vis = modernVisibility();
 
@@ -23380,7 +23597,13 @@ function openAdminAnnouncementEditor(item) {
         ? bill.showB
         : num(bill.priceB) > 0;
 
+      var oldStore = ensureBillRowPrices(bill);
+      var keepDeleted = {
+        A:Object.assign({},(oldStore.D && oldStore.D.A) || {}),
+        B:Object.assign({},(oldStore.D && oldStore.D.B) || {})
+      };
       bill.rowPrices = freshRowPrices();
+      bill.rowPrices.D = keepDeleted;
       bill.priceA = a ? amount : 0;
       bill.priceB =
         bill.mode !== "six" && b
@@ -23610,6 +23833,11 @@ function openAdminAnnouncementEditor(item) {
       totalRows += group.numbers.length;
 
       var body = group.numbers.map(function(number,index){
+        var rowStore = ensureBillRowPrices(group.bill);
+        if (rowStore.D && rowStore.D[group.side] && rowStore.D[group.side][String(index)]) {
+          return "";
+        }
+
         var amount = getBillRowPrice(
           group.bill,
           group.side,
@@ -23644,21 +23872,15 @@ function openAdminAnnouncementEditor(item) {
               ? '<small class="modern-slip-status">จ่ายครึ่ง</small>'
               : '');
 
-        var removeButton = group.draft
-          ? (
-            '<button type="button" ' +
-            'data-draft-remove="' + index + '" ' +
-            'aria-label="ลบเลข ' + escapeHtml(number) + '">' +
-            '<i class="fi fi-sr-trash-plus" aria-hidden="true"></i>' +
-            '</button>'
-          )
-          : (
-            '<button type="button" ' +
-            'data-remove-bill="' + group.billIndex + '" ' +
-            'aria-label="ลบบิล">' +
-            '<i class="fi fi-sr-trash-plus" aria-hidden="true"></i>' +
-            '</button>'
-          );
+        var removeButton =
+          '<button type="button" ' +
+          'data-modern-delete-row="1" ' +
+          'data-bill-index="' + group.billIndex + '" ' +
+          'data-side="' + group.side + '" ' +
+          'data-row-index="' + index + '" ' +
+          'aria-label="ลบเลข ' + escapeHtml(number) + '">' +
+          '<i class="fi fi-sr-trash" aria-hidden="true"></i>' +
+          '</button>';
 
         return (
           '<div class="modern-slip-row' + rowClass + '">' +
@@ -23701,6 +23923,14 @@ function openAdminAnnouncementEditor(item) {
         );
       }).join("");
 
+      var deleteStore = ensureBillRowPrices(group.bill);
+      var visibleCount = group.numbers.filter(function(_,rowIndex){
+        return !(deleteStore.D && deleteStore.D[group.side] && deleteStore.D[group.side][String(rowIndex)]);
+      }).length;
+      totalRows -= (group.numbers.length - visibleCount);
+
+      if (!visibleCount) return "";
+
       return (
         '<section class="modern-slip-group">' +
 
@@ -23710,7 +23940,7 @@ function openAdminAnnouncementEditor(item) {
             '</strong>' +
 
             '<span class="modern-slip-group-count">' +
-            group.numbers.length +
+            visibleCount +
             ' รายการ</span>' +
           '</div>' +
 
@@ -23789,21 +24019,13 @@ function openAdminAnnouncementEditor(item) {
       });
 
     els.modernBillStackList
-      .querySelectorAll("[data-draft-remove]")
+      .querySelectorAll("[data-modern-delete-row]")
       .forEach(function(button){
         button.onclick = function(){
-          removeDraftSource(
-            button.dataset.draftRemove
-          );
-        };
-      });
-
-    els.modernBillStackList
-      .querySelectorAll("[data-remove-bill]")
-      .forEach(function(button){
-        button.onclick = function(){
-          removeBillItem(
-            button.dataset.removeBill
+          deleteModernSlipRow(
+            button.dataset.billIndex,
+            button.dataset.side,
+            button.dataset.rowIndex
           );
         };
       });
