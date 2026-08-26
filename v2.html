@@ -23139,7 +23139,7 @@ strong,b{
 
 <style id="v124-final-adjustments">
 /* =====================================================
-   V126 — Lotto group spacing + Style 1 compact presets + visible confirm icon
+   V127 — Lotto group spacing + Style 1 compact presets + visible confirm icon
 ===================================================== */
 
 /* หน้าเลือกหวย: ขยับหัวกลุ่มหวยหุ้นลงมาอีก */
@@ -23234,8 +23234,10 @@ strong,b{
 </style>
 
 
-<style id="v126-circle-flags-final">
-/* V126 — unified circular flag set for lotto select + style 1 */
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css">
+
+<style id="v127-flag-icons-circle-final">
+/* V127 — reliable unified SVG flags via lipis/flag-icons */
 #lottoScreen .lotto-v107-flaticon-credit{
   display:none !important;
 }
@@ -23248,20 +23250,24 @@ strong,b{
   padding:0 !important;
   background:#ffffff !important;
   border-radius:50% !important;
-  box-shadow:0 8px 18px rgba(0,0,0,.08) !important;
   border:1px solid rgba(0,0,0,.06) !important;
+  box-shadow:0 8px 18px rgba(0,0,0,.08) !important;
+  flex:0 0 auto !important;
 }
 
-#lottoScreen .lotto-circle-flag-img,
-#betScreen.modern-layout .modern-lotto-select-flag .lotto-circle-flag-img,
-#lottoScreen .lotto-flaticon-flag-img,
-#betScreen.modern-layout .modern-lotto-select-flag .lotto-flaticon-flag-img{
+#lottoScreen .lotto-circle-flag-icon,
+#betScreen.modern-layout .modern-lotto-select-flag .lotto-circle-flag-icon{
+  display:block !important;
   width:100% !important;
   height:100% !important;
-  display:block !important;
-  object-fit:cover !important;
+  min-width:100% !important;
+  min-height:100% !important;
+  margin:0 !important;
   border-radius:50% !important;
-  background:#fff !important;
+  background-size:cover !important;
+  background-position:center !important;
+  background-repeat:no-repeat !important;
+  box-shadow:none !important;
 }
 
 #lottoScreen .lotto-flaticon-fallback,
@@ -23275,9 +23281,12 @@ strong,b{
   border-radius:50% !important;
 }
 
-/* kill native emoji flag rendering from V120 */
 #lottoScreen .lotto-native-flag,
-#betScreen .modern-lotto-select-flag .lotto-native-flag{
+#betScreen .modern-lotto-select-flag .lotto-native-flag,
+#lottoScreen .lotto-circle-flag-img,
+#betScreen.modern-layout .modern-lotto-select-flag .lotto-circle-flag-img,
+#lottoScreen .lotto-flaticon-flag-img,
+#betScreen.modern-layout .modern-lotto-select-flag .lotto-flaticon-flag-img{
   display:none !important;
 }
 </style>
@@ -23488,7 +23497,7 @@ strong,b{
 
         <div class="home-v85-account-line">
          <i class="fi fi-sr-wallet"></i>
-         <span>บัญชีหลัก <small class="home-app-version">V126</small></span>
+         <span>บัญชีหลัก <small class="home-app-version">V127</small></span>
         </div>
        </section>
 
@@ -25425,37 +25434,39 @@ function getCountryFlagEmoji(name) {
   return "🏳️";
 }
 
-function getFlaticonFlagUrl(name) {
+function getFlagCountryCode(name) {
   name = String(name || "");
-  var code = "";
+  if (/ฮานอย|เวียดนาม/i.test(name)) return "vn";
+  if (/ลาว/i.test(name)) return "la";
+  if (/นิเคอิ|ญี่ปุ่น/i.test(name)) return "jp";
+  if (/ฮั่งเส็ง|ฮ่องกง/i.test(name)) return "hk";
+  if (/จีน/i.test(name)) return "cn";
+  if (/หุ้นไทย|ไทยเย็น/i.test(name)) return "th";
+  if (/เกาหลี/i.test(name)) return "kr";
+  if (/สิงคโปร์/i.test(name)) return "sg";
+  if (/ไต้หวัน/i.test(name)) return "tw";
+  if (/อินเดีย/i.test(name)) return "in";
+  if (/ดาวโจนส์|ดาวโจน/i.test(name)) return "us";
+  if (/มาเลย์|มาเลเซีย|malaysia/i.test(name)) return "my";
+  if (/อียิปต์/i.test(name)) return "eg";
+  if (/อังกฤษ/i.test(name)) return "gb";
+  if (/เยอรมัน/i.test(name)) return "de";
+  if (/รัสเซีย/i.test(name)) return "ru";
+  return "";
+}
 
-  if (/ฮานอย|เวียดนาม/i.test(name)) code = "vn";
-  else if (/ลาว/i.test(name)) code = "la";
-  else if (/นิเคอิ|ญี่ปุ่น/i.test(name)) code = "jp";
-  else if (/ฮั่งเส็ง|ฮ่องกง/i.test(name)) code = "hk";
-  else if (/จีน/i.test(name)) code = "cn";
-  else if (/หุ้นไทย|ไทยเย็น/i.test(name)) code = "th";
-  else if (/เกาหลี/i.test(name)) code = "kr";
-  else if (/สิงคโปร์/i.test(name)) code = "sg";
-  else if (/ไต้หวัน/i.test(name)) code = "tw";
-  else if (/อินเดีย/i.test(name)) code = "in";
-  else if (/ดาวโจนส์|ดาวโจน/i.test(name)) code = "us";
-  else if (/มาเลย์|มาเลเซีย|malaysia/i.test(name)) code = "my";
-  else if (/อียิปต์/i.test(name)) code = "eg";
-  else if (/อังกฤษ/i.test(name)) code = "gb";
-  else if (/เยอรมัน/i.test(name)) code = "de";
-  else if (/รัสเซีย/i.test(name)) code = "ru";
-
-  if (!code) return "";
-  return "https://cdn.jsdelivr.net/npm/circle-flags@1.4.0/flags/" + code + ".svg";
+function getFlaticonFlagUrl(name) {
+  // Kept for backward compatibility. V127 renders flags via CSS classes instead of direct image URLs.
+  var code = getFlagCountryCode(name);
+  return code ? ("flag-icons:" + code) : "";
 }
 
 function getFlaticonFlagHtml(name) {
-  var url = getFlaticonFlagUrl(name);
-  if (!url) {
+  var code = getFlagCountryCode(name);
+  if (!code) {
     return '<span class="lotto-flaticon-fallback" aria-hidden="true"><i class="fi fi-sr-flag"></i></span>';
   }
-  return '<img class="lotto-circle-flag-img" src="' + url + '" alt="" loading="lazy" referrerpolicy="no-referrer">';
+  return '<span class="fi fi-' + code + ' fis lotto-circle-flag-icon" aria-hidden="true"></span>';
 }
 
 
