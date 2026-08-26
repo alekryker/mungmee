@@ -15845,6 +15845,497 @@ strong,b{
   }
 }
 
+
+/* ==========================================================
+   V85 — HOME REBUILD FROM USER REFERENCE
+   ใช้ Flaticon UIcons + asset เดิม / ระบบและ ID เดิมทั้งหมด
+========================================================== */
+#homeScreen{
+  --v85-red:#d20a22;
+  --v85-red2:#a60015;
+  --v85-deep:#59000b;
+  --v85-dark:#250006;
+  --v85-ink:#171717;
+  --v85-muted:#858189;
+  --v85-line:#ece8e9;
+  --v85-card:#ffffff;
+  background:#f7f4f5 !important;
+}
+#homeScreen .home-v85-shell{
+  padding-bottom:calc(92px + env(safe-area-inset-bottom)) !important;
+  background:#f7f4f5 !important;
+}
+#homeScreen .home-v85-page{
+  max-width:560px !important;
+  min-height:100svh !important;
+  background:#f7f4f5 !important;
+  overflow:hidden !important;
+}
+
+/* HERO / HEADER */
+#homeScreen .home-v85-top{
+  padding:calc(16px + env(safe-area-inset-top)) 18px 26px !important;
+  background:
+    radial-gradient(circle at 94% 8%,rgba(255,58,74,.34),transparent 30%),
+    radial-gradient(circle at 4% 28%,rgba(174,0,20,.40),transparent 36%),
+    linear-gradient(145deg,#4a0008 0%,#83000d 46%,#d00b22 100%) !important;
+  overflow:hidden !important;
+}
+#homeScreen .home-v85-top:after{display:none !important;}
+#homeScreen .home-v85-header{
+  min-height:68px !important;
+  margin:0 0 15px !important;
+  gap:12px !important;
+}
+#homeScreen .home-v85-brand{display:flex !important;align-items:center !important;}
+#homeScreen .home-v85-brand .v16-brand-mark{
+  width:clamp(170px,46vw,235px) !important;
+  height:58px !important;
+}
+#homeScreen .home-v85-head-actions{gap:9px !important;}
+#homeScreen .home-v85-icon-btn,
+#homeScreen .home-v85-logout{
+  height:46px !important;
+  border:1px solid rgba(255,255,255,.30) !important;
+  border-radius:13px !important;
+  background:rgba(67,0,7,.28) !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06) !important;
+}
+#homeScreen .home-v85-icon-btn{
+  width:46px !important;
+  min-width:46px !important;
+  font-size:20px !important;
+}
+#homeScreen .home-v85-logout{
+  padding:0 14px !important;
+  gap:8px !important;
+  font-size:12px !important;
+  font-weight:600 !important;
+}
+
+/* WALLET */
+#homeScreen .home-v85-wallet{
+  min-height:190px !important;
+  padding:20px 22px 19px !important;
+  border:1px solid rgba(255,255,255,.28) !important;
+  border-radius:24px !important;
+  background:
+    radial-gradient(circle at 103% 10%,rgba(255,65,82,.54),transparent 33%),
+    linear-gradient(145deg,#8d0010 0%,#bc061c 60%,#8b000f 100%) !important;
+  box-shadow:
+    0 20px 40px rgba(45,0,6,.28),
+    inset 0 1px 0 rgba(255,255,255,.14) !important;
+}
+#homeScreen .home-v85-wallet-mark{
+  display:block !important;
+  right:22px !important;
+  bottom:-13px !important;
+  font-size:128px !important;
+  color:#ff5869 !important;
+  opacity:.22 !important;
+  transform:rotate(-10deg) !important;
+}
+#homeScreen .home-v85-wallet-top{align-items:center !important;}
+#homeScreen .home-v85-wallet-label{
+  font-size:14px !important;
+  font-weight:500 !important;
+  gap:8px !important;
+}
+#homeScreen .home-v85-wallet-label i{font-size:17px !important;}
+#homeScreen .home-v85-history{
+  min-height:40px !important;
+  padding:0 13px !important;
+  border-radius:12px !important;
+  font-size:10px !important;
+  font-weight:600 !important;
+}
+#homeScreen .home-v85-balance{
+  margin:26px 0 0 !important;
+  font-size:clamp(44px,12.8vw,64px) !important;
+  line-height:1 !important;
+  text-shadow:0 8px 20px rgba(40,0,5,.18) !important;
+}
+#homeScreen .home-v85-balance b{font-weight:760 !important;}
+#homeScreen .home-v85-balance span{font-size:.31em !important;margin-left:7px !important;}
+#homeScreen .home-v85-account-line{
+  position:relative;
+  z-index:2;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:24px;
+  color:rgba(255,255,255,.86);
+  font-size:11px;
+  font-weight:500;
+}
+#homeScreen .home-v85-account-line i{font-size:15px;color:rgba(255,255,255,.9) !important;}
+
+/* DEPOSIT / WITHDRAW */
+#homeScreen .home-v85-money-actions{
+  display:grid !important;
+  grid-template-columns:1fr 1fr !important;
+  gap:12px !important;
+  margin:14px 0 0 !important;
+}
+#homeScreen .home-v85-money-actions .home-v85-money-btn{
+  position:relative;
+  min-width:0;
+  min-height:76px !important;
+  padding:10px 33px 10px 12px !important;
+  border-radius:17px !important;
+  display:grid !important;
+  grid-template-columns:42px minmax(0,1fr) !important;
+  align-items:center !important;
+  column-gap:10px !important;
+  text-align:left !important;
+  box-shadow:0 12px 26px rgba(47,0,5,.18) !important;
+}
+#homeScreen .home-v85-money-actions .deposit{
+  background:linear-gradient(135deg,#ef1530 0%,#bd0018 56%,#83000d 100%) !important;
+  border:1px solid rgba(255,255,255,.20) !important;
+}
+#homeScreen .home-v85-money-actions .withdraw{
+  background:#fff !important;
+  border:1px solid rgba(255,255,255,.70) !important;
+  box-shadow:0 12px 25px rgba(34,0,3,.13) !important;
+}
+#homeScreen .home-v85-money-actions .v16-money-icon{
+  width:42px !important;
+  height:42px !important;
+  border-radius:50% !important;
+  font-size:18px !important;
+  grid-row:1 !important;
+}
+#homeScreen .home-v85-money-copy{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+#homeScreen .home-v85-money-copy strong{
+  font-size:17px;
+  line-height:1.2;
+  font-weight:700;
+  color:inherit;
+}
+#homeScreen .home-v85-money-copy small{
+  font-size:9px;
+  line-height:1.35;
+  font-weight:450;
+  opacity:.74;
+  color:inherit;
+  white-space:nowrap;
+}
+#homeScreen .home-v85-money-arrow{
+  position:absolute;
+  right:11px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:18px;
+  color:inherit !important;
+}
+
+/* WHITE BODY */
+#homeScreen .home-v85-body{
+  position:relative;
+  z-index:2;
+  margin-top:0 !important;
+  padding:24px 18px 22px !important;
+  border-radius:27px 27px 0 0 !important;
+  background:#fff !important;
+  box-shadow:0 -5px 20px rgba(34,0,3,.04);
+}
+#homeScreen .home-v85-lotto-heading{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  margin-bottom:13px;
+}
+#homeScreen .home-v85-title-icon{
+  width:34px;
+  height:34px;
+  border-radius:10px;
+  display:grid;
+  place-items:center;
+  background:#fff4f5;
+  color:#b50017;
+  font-size:20px;
+}
+#homeScreen .home-v85-title-icon i{color:#b50017 !important;}
+#homeScreen .home-v85-lotto-heading > span:last-child{display:flex;flex-direction:column;gap:1px;}
+#homeScreen .home-v85-lotto-heading strong{
+  color:#191516;
+  font-size:19px;
+  line-height:1.2;
+  font-weight:760;
+}
+#homeScreen .home-v85-lotto-heading small{
+  color:#8b8588;
+  font-size:10px;
+  font-weight:450;
+}
+
+/* LOTTO CTA */
+#homeScreen .home-v85-lotto-card{
+  position:relative !important;
+  overflow:hidden !important;
+  width:100% !important;
+  min-height:132px !important;
+  padding:0 !important;
+  border:0 !important;
+  border-radius:19px !important;
+  display:grid !important;
+  grid-template-columns:minmax(130px,.95fr) minmax(125px,1fr) 42px !important;
+  align-items:center !important;
+  gap:4px !important;
+  background:
+    radial-gradient(circle at 19% 88%,rgba(255,75,87,.45),transparent 30%),
+    linear-gradient(110deg,#b80a21 0%,#86000f 50%,#4d0008 100%) !important;
+  box-shadow:0 12px 26px rgba(102,0,12,.18) !important;
+}
+#homeScreen .home-v85-hidden-preview{display:none !important;}
+#homeScreen .home-v85-lotto-art{
+  align-self:stretch;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  padding:10px 0 0 8px;
+}
+#homeScreen .home-v85-lotto-art img{
+  width:100%;
+  max-width:170px;
+  height:116px;
+  object-fit:contain;
+  object-position:center bottom;
+  filter:drop-shadow(0 10px 13px rgba(40,0,4,.24));
+}
+#homeScreen .home-v85-lotto-copy{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  padding-left:4px;
+  text-align:left;
+}
+#homeScreen .home-v85-lotto-copy strong{
+  color:#fff !important;
+  font-size:21px;
+  line-height:1.15;
+  font-weight:780;
+}
+#homeScreen .home-v85-lotto-copy small{
+  color:rgba(255,255,255,.78) !important;
+  font-size:10px;
+  font-weight:450;
+}
+#homeScreen .home-v85-lotto-arrow{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(255,255,255,.24);
+  background:rgba(255,255,255,.06);
+  margin-right:12px;
+}
+#homeScreen .home-v85-lotto-arrow i{color:#fff !important;font-size:20px;}
+
+/* SHORTCUTS */
+#homeScreen .home-v85-shortcut-head{margin:22px 0 11px !important;}
+#homeScreen .home-v85-section-title{
+  margin:0 !important;
+  font-size:15px !important;
+  font-weight:700 !important;
+}
+#homeScreen .home-v85-seeall{
+  color:#858085 !important;
+  font-size:10px !important;
+  font-weight:500 !important;
+}
+#homeScreen .home-v85-seeall i{color:#858085 !important;}
+#homeScreen .home-v85-shortcuts{
+  grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+  gap:8px !important;
+}
+#homeScreen .home-v85-shortcuts .v16-shortcut{
+  min-width:0 !important;
+  min-height:116px !important;
+  padding:12px 5px 10px !important;
+  border:1px solid #eee9eb !important;
+  border-radius:17px !important;
+  background:#fff !important;
+  gap:7px !important;
+  box-shadow:0 7px 18px rgba(35,0,4,.045) !important;
+}
+#homeScreen .home-v85-shortcuts .v16-shortcut-icon{
+  width:42px !important;
+  height:42px !important;
+  font-size:27px !important;
+  color:#b60017 !important;
+}
+#homeScreen .home-v85-shortcuts .v16-shortcut-icon i{color:#b60017 !important;}
+#homeScreen .home-v85-shortcut-copy{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:2px;
+}
+#homeScreen .home-v85-shortcut-copy strong{
+  color:#262123;
+  font-size:10px;
+  line-height:1.25;
+  font-weight:650;
+  white-space:nowrap;
+}
+#homeScreen .home-v85-shortcut-copy small{
+  color:#9a9598;
+  font-size:7.5px;
+  line-height:1.25;
+  font-weight:400;
+  white-space:nowrap;
+}
+
+/* AFFILIATE */
+#homeScreen button.home-v85-affiliate{
+  min-height:112px !important;
+  margin-top:22px !important;
+  padding:16px 130px 15px 17px !important;
+  border:0 !important;
+  border-radius:18px !important;
+  background:
+    radial-gradient(circle at 82% 20%,rgba(255,114,73,.38),transparent 27%),
+    linear-gradient(110deg,#4a0007 0%,#8d0010 48%,#dd0b22 100%) !important;
+  box-shadow:0 13px 28px rgba(79,0,8,.18) !important;
+}
+#homeScreen .home-v85-affiliate-copy strong{
+  font-size:18px !important;
+  font-weight:720 !important;
+}
+#homeScreen .home-v85-affiliate-copy small{
+  margin-top:5px !important;
+  font-size:10px !important;
+}
+#homeScreen .home-v85-detail-pill{
+  width:max-content;
+  min-height:31px;
+  margin-top:11px;
+  padding:0 11px;
+  border-radius:999px;
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  background:#fff;
+  color:#9c0013;
+  font-size:10px;
+  font-weight:650;
+}
+#homeScreen .home-v85-detail-pill i{color:#9c0013 !important;font-size:13px;}
+#homeScreen .home-v85-gift{
+  right:19px !important;
+  width:90px !important;
+  height:90px !important;
+  border-radius:24px !important;
+  background:rgba(255,255,255,.10) !important;
+}
+#homeScreen .home-v85-gift i{
+  font-size:58px !important;
+  color:#ffd45f !important;
+  filter:drop-shadow(0 7px 11px rgba(47,0,4,.25)) !important;
+}
+
+/* BOTTOM NAV */
+#homeScreen .home-v85-bottom-nav{
+  width:min(calc(100% - 10px),550px) !important;
+  height:82px !important;
+  bottom:calc(5px + env(safe-area-inset-bottom)) !important;
+  border:1px solid #eee8ea !important;
+  border-radius:28px !important;
+  background:rgba(255,255,255,.985) !important;
+  box-shadow:0 13px 34px rgba(48,0,5,.15) !important;
+}
+#homeScreen .home-v85-bottom-nav button{
+  height:64px !important;
+  font-size:9px !important;
+  gap:4px !important;
+}
+#homeScreen .home-v85-bottom-nav button i{font-size:22px !important;}
+#homeScreen .home-v85-bottom-nav .home-v85-main{
+  transform:translateY(-16px) !important;
+}
+#homeScreen .home-v85-bottom-nav .home-v54-main-circle{
+  width:62px !important;
+  height:62px !important;
+  background:linear-gradient(145deg,#e2182e,#8e0010) !important;
+  border:5px solid #fff !important;
+  box-shadow:0 9px 22px rgba(111,0,12,.25),0 0 0 1px rgba(148,0,17,.15) !important;
+}
+
+@media(max-width:430px){
+  #homeScreen .home-v85-top{padding-left:12px !important;padding-right:12px !important;}
+  #homeScreen .home-v85-header{min-height:58px !important;margin-bottom:12px !important;}
+  #homeScreen .home-v85-brand .v16-brand-mark{width:145px !important;height:49px !important;}
+  #homeScreen .home-v85-head-actions{gap:6px !important;}
+  #homeScreen .home-v85-icon-btn{width:40px !important;min-width:40px !important;height:40px !important;border-radius:11px !important;}
+  #homeScreen .home-v85-logout{height:40px !important;padding:0 9px !important;font-size:9px !important;border-radius:11px !important;}
+
+  #homeScreen .home-v85-wallet{min-height:174px !important;padding:17px 16px 15px !important;border-radius:20px !important;}
+  #homeScreen .home-v85-wallet-label{font-size:12px !important;}
+  #homeScreen .home-v85-history{min-height:34px !important;padding:0 8px !important;font-size:8px !important;}
+  #homeScreen .home-v85-balance{margin-top:23px !important;font-size:43px !important;}
+  #homeScreen .home-v85-account-line{margin-top:20px !important;font-size:9px !important;}
+  #homeScreen .home-v85-wallet-mark{font-size:110px !important;right:12px !important;}
+
+  #homeScreen .home-v85-money-actions{gap:8px !important;margin-top:11px !important;}
+  #homeScreen .home-v85-money-actions .home-v85-money-btn{
+    min-height:68px !important;
+    padding:8px 26px 8px 9px !important;
+    grid-template-columns:36px minmax(0,1fr) !important;
+    column-gap:7px !important;
+    border-radius:15px !important;
+  }
+  #homeScreen .home-v85-money-actions .v16-money-icon{width:36px !important;height:36px !important;font-size:15px !important;}
+  #homeScreen .home-v85-money-copy strong{font-size:14px !important;}
+  #homeScreen .home-v85-money-copy small{font-size:7.2px !important;}
+  #homeScreen .home-v85-money-arrow{right:7px !important;font-size:16px !important;}
+
+  #homeScreen .home-v85-body{padding:20px 12px 18px !important;border-radius:23px 23px 0 0 !important;}
+  #homeScreen .home-v85-lotto-heading{gap:8px !important;margin-bottom:10px !important;}
+  #homeScreen .home-v85-title-icon{width:30px !important;height:30px !important;font-size:17px !important;}
+  #homeScreen .home-v85-lotto-heading strong{font-size:17px !important;}
+  #homeScreen .home-v85-lotto-heading small{font-size:9px !important;}
+
+  #homeScreen .home-v85-lotto-card{
+    min-height:116px !important;
+    grid-template-columns:minmax(108px,.92fr) minmax(105px,1fr) 38px !important;
+    border-radius:17px !important;
+  }
+  #homeScreen .home-v85-lotto-art{padding-left:3px !important;}
+  #homeScreen .home-v85-lotto-art img{max-width:145px !important;height:104px !important;}
+  #homeScreen .home-v85-lotto-copy strong{font-size:18px !important;}
+  #homeScreen .home-v85-lotto-copy small{font-size:8.5px !important;}
+  #homeScreen .home-v85-lotto-arrow{width:34px !important;height:34px !important;margin-right:7px !important;}
+
+  #homeScreen .home-v85-shortcut-head{margin:19px 0 9px !important;}
+  #homeScreen .home-v85-shortcuts{gap:6px !important;}
+  #homeScreen .home-v85-shortcuts .v16-shortcut{min-height:101px !important;padding:10px 2px 8px !important;border-radius:14px !important;}
+  #homeScreen .home-v85-shortcuts .v16-shortcut-icon{width:35px !important;height:35px !important;font-size:23px !important;}
+  #homeScreen .home-v85-shortcut-copy strong{font-size:8.8px !important;}
+  #homeScreen .home-v85-shortcut-copy small{font-size:6.4px !important;}
+
+  #homeScreen button.home-v85-affiliate{min-height:100px !important;padding:13px 105px 13px 14px !important;border-radius:16px !important;}
+  #homeScreen .home-v85-affiliate-copy strong{font-size:16px !important;}
+  #homeScreen .home-v85-affiliate-copy small{font-size:8.5px !important;}
+  #homeScreen .home-v85-detail-pill{min-height:28px !important;margin-top:8px !important;padding:0 9px !important;font-size:8.5px !important;}
+  #homeScreen .home-v85-gift{right:10px !important;width:78px !important;height:78px !important;}
+  #homeScreen .home-v85-gift i{font-size:49px !important;}
+
+  #homeScreen .home-v85-bottom-nav{width:calc(100% - 6px) !important;height:76px !important;border-radius:24px !important;}
+  #homeScreen .home-v85-bottom-nav button{height:58px !important;font-size:8px !important;}
+  #homeScreen .home-v85-bottom-nav button i{font-size:20px !important;}
+  #homeScreen .home-v85-bottom-nav .home-v54-main-circle{width:57px !important;height:57px !important;}
+}
+
 </style>
  </head>
  <body>
@@ -16003,92 +16494,155 @@ strong,b{
   <main class="app hidden" id="mainApp">
 
    <section class="screen" id="homeScreen">
-    <div class="v16-home-shell home-v54-shell">
-     <div class="v16-home home-v54-page">
-      <div class="home-v54-top">
-       <div class="v16-home-head home-v54-header">
-        <div class="v16-brand home-v54-brand">
+    <div class="v16-home-shell home-v54-shell home-v85-shell">
+     <div class="v16-home home-v54-page home-v85-page">
+
+      <div class="home-v54-top home-v85-top">
+       <div class="v16-home-head home-v54-header home-v85-header">
+        <div class="v16-brand home-v54-brand home-v85-brand">
          <div class="v16-brand-mark"><img src="./supmangmee-logo.png" alt="ทรัพย์มั่งมี"></div>
         </div>
-        <div class="v16-head-actions home-v54-head-actions">
-         <button class="home-v54-bell" type="button" aria-label="ประกาศ" onclick="try{state.announcementsShown=false;loadAndShowActiveAnnouncements();}catch(e){}">
-          <i class="fi fi-sr-bell"></i><span class="home-v54-notice-dot"></span>
+
+        <div class="v16-head-actions home-v54-head-actions home-v85-head-actions">
+         <button class="home-v54-bell home-v85-icon-btn" type="button" aria-label="ประกาศ" onclick="try{state.announcementsShown=false;loadAndShowActiveAnnouncements();}catch(e){}">
+          <i class="fi fi-sr-bell"></i>
+          <span class="home-v54-notice-dot"></span>
          </button>
-         <button class="v16-logout home-v54-logout" id="homeLogoutBtn" type="button"><i class="fi fi-sr-sign-out-alt"></i><span>ออกจากระบบ</span></button>
-         <button class="v16-logout line-contact-btn home-v54-line-hidden" id="homeLineContactBtn" type="button"><img class="line-contact-logo" src="line-logo.png" alt="LINE"><span>ติดต่อ</span></button>
+
+         <button class="v16-logout home-v54-logout home-v85-logout" id="homeLogoutBtn" type="button">
+          <i class="fi fi-sr-sign-out-alt"></i>
+          <span>ออกจากระบบ</span>
+         </button>
+
+         <button class="v16-logout line-contact-btn home-v54-line-hidden" id="homeLineContactBtn" type="button">
+          <img class="line-contact-logo" src="line-logo.png" alt="LINE"><span>ติดต่อ</span>
+         </button>
         </div>
        </div>
 
-       <section class="v16-wallet home-v54-wallet">
-        <i class="fi fi-sr-wallet home-v54-wallet-mark" aria-hidden="true"></i>
-        <div class="v16-wallet-top home-v54-wallet-top">
-         <div class="v16-wallet-label home-v54-wallet-label">เครดิตคงเหลือ <i class="fi fi-sr-eye"></i></div>
-         <button class="home-v54-history" type="button" onclick="showMoney()"><span>ประวัติการทำรายการ</span><i class="fi fi-sr-angle-small-right"></i></button>
+       <section class="v16-wallet home-v54-wallet home-v85-wallet">
+        <i class="fi fi-sr-wallet home-v54-wallet-mark home-v85-wallet-mark" aria-hidden="true"></i>
+
+        <div class="v16-wallet-top home-v54-wallet-top home-v85-wallet-top">
+         <div class="v16-wallet-label home-v54-wallet-label home-v85-wallet-label">
+          <span>ยอดเงินคงเหลือ</span>
+          <i class="fi fi-sr-eye"></i>
+         </div>
+
+         <button class="home-v54-history home-v85-history" type="button" onclick="showMoney()">
+          <span>ประวัติการทำรายการ</span>
+          <i class="fi fi-sr-angle-small-right"></i>
+         </button>
+
          <div class="v16-wallet-user" id="homeUserName">MEMBER</div>
         </div>
-        <div class="v16-wallet-balance"><b id="homeCredit">0.00</b><span>฿</span></div>
+
+        <div class="v16-wallet-balance home-v85-balance">
+         <b id="homeCredit">0.00</b><span>฿</span>
+        </div>
+
+        <div class="home-v85-account-line">
+         <i class="fi fi-sr-wallet"></i>
+         <span>บัญชีหลัก</span>
+        </div>
        </section>
 
-       <div class="v16-money-actions home-v54-money-actions">
-        <button class="v16-money-btn deposit" id="homeDepositBtn" type="button">
-         <span class="v16-money-icon"><i class="fi fi-sr-plus"></i></span><span>ฝากเงิน</span>
+       <div class="v16-money-actions home-v54-money-actions home-v85-money-actions">
+        <button class="v16-money-btn deposit home-v85-money-btn" id="homeDepositBtn" type="button">
+         <span class="v16-money-icon"><i class="fi fi-sr-plus"></i></span>
+         <span class="home-v85-money-copy">
+          <strong>ฝากเงิน</strong>
+          <small>เติมเครดิตเข้าบัญชี</small>
+         </span>
+         <i class="fi fi-sr-angle-small-right home-v85-money-arrow"></i>
         </button>
-        <button class="v16-money-btn withdraw" id="homeWithdrawBtn" type="button">
-         <span class="v16-money-icon"><i class="fi fi-sr-minus"></i></span><span>ถอนเงิน</span>
+
+        <button class="v16-money-btn withdraw home-v85-money-btn" id="homeWithdrawBtn" type="button">
+         <span class="v16-money-icon"><i class="fi fi-sr-minus"></i></span>
+         <span class="home-v85-money-copy">
+          <strong>ถอนเงิน</strong>
+          <small>ถอนเครดิตเข้าบัญชี</small>
+         </span>
+         <i class="fi fi-sr-angle-small-right home-v85-money-arrow"></i>
         </button>
        </div>
       </div>
 
-      <div class="home-v54-body">
-       <div class="home-v54-section-head">
-        <div class="home-v54-section-title"><i class="fi fi-sr-star"></i><span>แทงหวย</span></div>
-        <button class="home-v54-seeall" type="button" onclick="showLotto()"><span>ดูทั้งหมด</span><i class="fi fi-sr-angle-small-right"></i></button>
+      <div class="home-v54-body home-v85-body">
+       <div class="home-v85-lotto-heading">
+        <span class="home-v85-title-icon"><i class="fi fi-sr-ticket"></i></span>
+        <span>
+         <strong>เข้าแทงหวย</strong>
+         <small>เลือกประเภทการแทง</small>
+        </span>
        </div>
 
-       <button class="v16-lotto-entry home-v54-lotto-card" id="homeLottoBtn" type="button">
-        <div class="home-v54-lotto-preview" id="homeLottoPreview">
+       <button class="v16-lotto-entry home-v54-lotto-card home-v85-lotto-card" id="homeLottoBtn" type="button">
+        <div class="home-v54-lotto-preview home-v85-hidden-preview" id="homeLottoPreview">
          <div class="home-v54-lotto-empty">กำลังโหลดหวยที่เปิดรับ...</div>
         </div>
-        <div class="home-v54-enter"><span>เข้าแทงหวย</span><i class="fi fi-sr-angle-small-right"></i></div>
+
+        <span class="home-v85-lotto-art">
+         <img src="lottery-menu-cutout.png" alt="">
+        </span>
+
+        <span class="home-v85-lotto-copy">
+         <strong>เข้าแทงหวย</strong>
+         <small>เริ่มต้นเดิมพันของคุณ</small>
+        </span>
+
+        <span class="home-v85-lotto-arrow"><i class="fi fi-sr-angle-small-right"></i></span>
        </button>
 
-       <div class="home-v54-section-head">
-        <div class="home-v54-section-title"><i class="fi fi-sr-bolt"></i><span>เมนูลัด</span></div>
+       <div class="home-v54-section-head home-v85-shortcut-head">
+        <div class="home-v54-section-title home-v85-section-title"><span>เมนูลัด</span></div>
+        <button class="home-v54-seeall home-v85-seeall" type="button" onclick="showHistory()">
+         <span>ดูทั้งหมด</span><i class="fi fi-sr-angle-small-right"></i>
+        </button>
        </div>
 
-       <div class="v16-shortcuts home-v54-shortcuts">
+       <div class="v16-shortcuts home-v54-shortcuts home-v85-shortcuts">
         <button class="v16-shortcut" id="homeHistoryBtn" type="button">
-         <span class="v16-shortcut-icon"><i class="fi fi-sr-document"></i></span><span>รายการโพย</span>
+         <span class="v16-shortcut-icon"><i class="fi fi-sr-document"></i></span>
+         <span class="home-v85-shortcut-copy"><strong>รายการโพย</strong><small>ดูรายการโพยทั้งหมด</small></span>
         </button>
+
         <button class="v16-shortcut" id="homeResultsBtn" type="button">
-         <span class="v16-shortcut-icon"><i class="fi fi-sr-chart-histogram"></i></span><span>ผลหวย</span>
+         <span class="v16-shortcut-icon"><i class="fi fi-sr-chart-histogram"></i></span>
+         <span class="home-v85-shortcut-copy"><strong>ผลหวย</strong><small>ตรวจผลรางวัล</small></span>
         </button>
+
         <button class="v16-shortcut" id="homeSummaryBtn" type="button">
-         <span class="v16-shortcut-icon"><i class="fi fi-sr-chart-pie"></i></span><span>สรุปแพ้-ชนะ</span>
+         <span class="v16-shortcut-icon"><i class="fi fi-sr-chart-pie"></i></span>
+         <span class="home-v85-shortcut-copy"><strong>สรุปแพ้-ชนะ</strong><small>สถิติการเล่น</small></span>
         </button>
+
         <button class="v16-shortcut" id="homeMoneyBtn" type="button">
-         <span class="v16-shortcut-icon"><i class="fi fi-sr-wallet"></i></span><span>รายการเงิน</span>
+         <span class="v16-shortcut-icon"><i class="fi fi-sr-wallet"></i></span>
+         <span class="home-v85-shortcut-copy"><strong>รายการเงิน</strong><small>ประวัติการเงิน</small></span>
         </button>
        </div>
 
-       <button class="v16-shortcut v16-shortcut-affiliate home-v54-affiliate" id="homeAffiliateBtn" type="button">
-        <span class="home-v54-affiliate-copy"><strong><i class="fi fi-sr-user-add"></i>แนะนำเพื่อน</strong><small>ชวนเพื่อนมาเล่น รับค่าคอมมิชชั่น</small></span>
-        <span class="home-v54-gift"><i class="fi fi-sr-gift"></i></span>
+       <button class="v16-shortcut v16-shortcut-affiliate home-v54-affiliate home-v85-affiliate" id="homeAffiliateBtn" type="button">
+        <span class="home-v54-affiliate-copy home-v85-affiliate-copy">
+         <strong><i class="fi fi-sr-user-add"></i>แนะนำเพื่อน</strong>
+         <small>รับค่าคอมมิชชั่นจากยอดแทงเพื่อน</small>
+         <span class="home-v85-detail-pill">ดูรายละเอียด <i class="fi fi-sr-angle-small-right"></i></span>
+        </span>
+        <span class="home-v54-gift home-v85-gift"><i class="fi fi-sr-gift"></i></span>
        </button>
-
       </div>
      </div>
     </div>
 
-    <nav class="home-v54-bottom-nav" aria-label="เมนูด้านล่าง">
+    <nav class="home-v54-bottom-nav home-v85-bottom-nav" aria-label="เมนูด้านล่าง">
      <button class="active" type="button" onclick="showHome()"><i class="fi fi-sr-home"></i><span>หน้าหลัก</span></button>
      <button type="button" onclick="document.getElementById('homeDepositBtn').click()"><i class="fi fi-sr-wallet"></i><span>ฝากเงิน</span></button>
-     <button class="home-v54-main" type="button" onclick="showLotto()"><span class="home-v54-main-circle"><i class="fi fi-sr-ticket"></i></span><span>แทงหวย</span></button>
+     <button class="home-v54-main home-v85-main" type="button" onclick="showLotto()"><span class="home-v54-main-circle"><i class="fi fi-sr-ticket"></i></span><span>แทงหวย</span></button>
      <button type="button" onclick="showHistory()"><i class="fi fi-sr-time-past"></i><span>ประวัติ</span></button>
      <button type="button" onclick="showMemberSummary()"><i class="fi fi-sr-user"></i><span>ฉัน</span></button>
     </nav>
    </section>
-
 
    
    <section class="screen" id="lottoScreen">
