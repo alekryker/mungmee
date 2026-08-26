@@ -16336,6 +16336,349 @@ strong,b{
   #homeScreen .home-v85-bottom-nav .home-v54-main-circle{width:57px !important;height:57px !important;}
 }
 
+
+
+/* ==========================================================
+   V86 — STYLE 1 SLIP REDESIGN + LIMIT STATUS
+   ปกติ=เขียว | จ่ายครึ่ง=เหลือง | เลขอั้น=แดง/จ่าย 0
+========================================================== */
+#betScreen.modern-layout .modern-slip-group{
+  overflow:hidden !important;
+  border:1px solid #e5e7eb !important;
+  border-radius:18px !important;
+  background:#fff !important;
+  box-shadow:0 8px 22px rgba(24,24,27,.07) !important;
+}
+
+#betScreen.modern-layout .modern-slip-group + .modern-slip-group{
+  margin-top:12px !important;
+}
+
+#betScreen.modern-layout .modern-slip-group-head{
+  min-height:54px !important;
+  padding:11px 13px !important;
+  border-bottom:1px solid #fee2e2 !important;
+  background:linear-gradient(90deg,#fff1f2 0%,#fff 72%) !important;
+}
+
+#betScreen.modern-layout .modern-slip-group-head strong{
+  color:#991b1b !important;
+  font-size:15px !important;
+  font-weight:900 !important;
+}
+
+#betScreen.modern-layout .modern-slip-group-count{
+  min-height:30px !important;
+  padding:0 10px !important;
+  border:1px solid #e5e7eb !important;
+  border-radius:999px !important;
+  background:#fff !important;
+  color:#52525b !important;
+  font-size:10px !important;
+  font-weight:850 !important;
+}
+
+#betScreen.modern-layout .modern-slip-table{
+  padding:4px !important;
+  background:#e5e7eb !important;
+}
+
+#betScreen.modern-layout .modern-slip-head,
+#betScreen.modern-layout .modern-slip-row{
+  grid-template-columns:36px minmax(72px,.95fr) minmax(70px,.95fr) minmax(66px,.86fr) minmax(82px,1fr) 46px !important;
+  gap:2px !important;
+}
+
+#betScreen.modern-layout .modern-slip-head{
+  margin-bottom:2px !important;
+}
+
+#betScreen.modern-layout .modern-slip-head span{
+  min-height:38px !important;
+  padding:4px 3px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  border-radius:8px !important;
+  background:#f8fafc !important;
+  color:#27272a !important;
+  font-size:10px !important;
+  font-weight:900 !important;
+}
+
+#betScreen.modern-layout .modern-slip-head .modern-slip-head-number{
+  background:#3f3f46 !important;
+  color:#fff !important;
+}
+
+#betScreen.modern-layout .modern-slip-row{
+  min-height:64px !important;
+  margin:0 0 2px !important;
+  background:transparent !important;
+}
+
+#betScreen.modern-layout .modern-slip-row:last-child{
+  margin-bottom:0 !important;
+}
+
+#betScreen.modern-layout .modern-slip-no,
+#betScreen.modern-layout .modern-slip-price,
+#betScreen.modern-layout .modern-slip-rate,
+#betScreen.modern-layout .modern-slip-win,
+#betScreen.modern-layout .modern-slip-remove{
+  min-height:64px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  border-radius:8px !important;
+  background:#fff !important;
+}
+
+#betScreen.modern-layout .modern-slip-no{
+  color:#27272a !important;
+  font-size:11px !important;
+  font-weight:900 !important;
+}
+
+#betScreen.modern-layout .modern-slip-num{
+  position:relative !important;
+  min-height:64px !important;
+  padding:6px 4px !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:3px !important;
+  border-radius:9px !important;
+  background:linear-gradient(180deg,#19d313 0%,#08b900 100%) !important;
+  color:#fff !important;
+  font-size:19px !important;
+  font-weight:950 !important;
+  line-height:1 !important;
+  text-shadow:0 1px 1px rgba(0,0,0,.15) !important;
+}
+
+#betScreen.modern-layout .modern-slip-num.limit-half{
+  background:linear-gradient(180deg,#ffe66b 0%,#f8c928 100%) !important;
+  color:#5b3a00 !important;
+  text-shadow:none !important;
+}
+
+#betScreen.modern-layout .modern-slip-num.limit-close{
+  background:linear-gradient(180deg,#ff4d55 0%,#e50012 100%) !important;
+  color:#fff !important;
+}
+
+#betScreen.modern-layout .modern-slip-status{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  min-height:17px !important;
+  padding:0 5px !important;
+  border-radius:999px !important;
+  background:rgba(255,255,255,.82) !important;
+  color:#7c2d12 !important;
+  font-size:7px !important;
+  font-weight:950 !important;
+  line-height:1 !important;
+  text-shadow:none !important;
+  white-space:nowrap !important;
+}
+
+#betScreen.modern-layout .modern-slip-num.limit-close .modern-slip-status{
+  color:#b91c1c !important;
+}
+
+#betScreen.modern-layout .modern-slip-price{
+  padding:5px !important;
+}
+
+#betScreen.modern-layout .modern-slip-price input{
+  width:100% !important;
+  height:42px !important;
+  min-width:0 !important;
+  border:1px solid #d4d4d8 !important;
+  border-radius:10px !important;
+  background:#fff !important;
+  color:#18181b !important;
+  text-align:center !important;
+  font-size:13px !important;
+  font-weight:900 !important;
+  outline:none !important;
+}
+
+#betScreen.modern-layout .modern-slip-price input:focus{
+  border-color:#e11d48 !important;
+  box-shadow:0 0 0 2px rgba(225,29,72,.08) !important;
+}
+
+#betScreen.modern-layout .modern-slip-row.row-half .modern-slip-price input{
+  border-color:#f6c94c !important;
+  background:#fffdf4 !important;
+}
+
+#betScreen.modern-layout .modern-slip-row.row-close .modern-slip-price input{
+  border-color:#fecaca !important;
+  background:#fff7f7 !important;
+  color:#b91c1c !important;
+}
+
+#betScreen.modern-layout .modern-slip-rate{
+  color:#249ad6 !important;
+  font-size:13px !important;
+  font-weight:950 !important;
+}
+
+#betScreen.modern-layout .modern-slip-rate.limit-half{
+  color:#b77900 !important;
+  background:#fff9df !important;
+}
+
+#betScreen.modern-layout .modern-slip-rate.limit-close{
+  color:#dc2626 !important;
+  background:#fff1f2 !important;
+}
+
+#betScreen.modern-layout .modern-slip-win{
+  color:#111827 !important;
+  font-size:13px !important;
+  font-weight:950 !important;
+  font-variant-numeric:tabular-nums !important;
+}
+
+#betScreen.modern-layout .modern-slip-row.row-half .modern-slip-win{
+  background:#fffdf5 !important;
+}
+
+#betScreen.modern-layout .modern-slip-row.row-close .modern-slip-win{
+  color:#dc2626 !important;
+  background:#fff7f7 !important;
+}
+
+#betScreen.modern-layout .modern-slip-remove{
+  padding:2px !important;
+}
+
+#betScreen.modern-layout .modern-slip-remove button{
+  width:100% !important;
+  height:100% !important;
+  min-height:60px !important;
+  border:0 !important;
+  border-radius:8px !important;
+  background:linear-gradient(180deg,#ff232b 0%,#ed0010 100%) !important;
+  color:#fff !important;
+  font-size:17px !important;
+  font-weight:900 !important;
+}
+
+@media(max-width:430px){
+  #betScreen.modern-layout .modern-slip-table{padding:3px !important}
+
+  #betScreen.modern-layout .modern-slip-head,
+  #betScreen.modern-layout .modern-slip-row{
+    grid-template-columns:28px minmax(58px,.9fr) minmax(58px,.92fr) minmax(54px,.82fr) minmax(65px,1fr) 36px !important;
+    gap:1.5px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-head span{
+    min-height:34px !important;
+    padding:3px 1px !important;
+    font-size:8.5px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-row,
+  #betScreen.modern-layout .modern-slip-no,
+  #betScreen.modern-layout .modern-slip-num,
+  #betScreen.modern-layout .modern-slip-price,
+  #betScreen.modern-layout .modern-slip-rate,
+  #betScreen.modern-layout .modern-slip-win,
+  #betScreen.modern-layout .modern-slip-remove{
+    min-height:56px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-num{
+    padding:4px 2px !important;
+    font-size:16px !important;
+    border-radius:7px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-status{
+    min-height:15px !important;
+    padding:0 4px !important;
+    font-size:6px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-price{padding:3px !important}
+  #betScreen.modern-layout .modern-slip-price input{
+    height:38px !important;
+    padding:0 2px !important;
+    border-radius:8px !important;
+    font-size:11px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-rate,
+  #betScreen.modern-layout .modern-slip-win{
+    font-size:10.5px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-no{
+    font-size:9.5px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-remove button{
+    min-height:52px !important;
+    border-radius:7px !important;
+    font-size:15px !important;
+  }
+}
+
+
+
+/* =====================================================
+   V87 — HOME BALANCE COMFORT SIZE
+   ลดเฉพาะยอดเงินคงเหลือหน้าหลักให้สบายตา
+===================================================== */
+#homeScreen .v16-wallet-balance,
+#homeScreen .home-v85-balance{
+  font-size:clamp(34px,8.7vw,44px) !important;
+  line-height:1.05 !important;
+  margin-top:15px !important;
+  letter-spacing:-.4px !important;
+}
+
+#homeScreen .v16-wallet-balance b,
+#homeScreen .home-v85-balance b{
+  font-weight:650 !important;
+}
+
+#homeScreen .v16-wallet-balance span,
+#homeScreen .home-v85-balance span{
+  font-size:.28em !important;
+  margin-left:4px !important;
+  font-weight:550 !important;
+}
+
+@media(max-width:768px){
+  #homeScreen .v16-wallet-balance,
+  #homeScreen .home-v85-balance{
+    font-size:35px !important;
+    margin-top:14px !important;
+  }
+}
+
+@media(max-width:430px){
+  #homeScreen .v16-wallet-balance,
+  #homeScreen .home-v85-balance{
+    font-size:31px !important;
+    margin-top:12px !important;
+  }
+
+  #homeScreen .v16-wallet-balance span,
+  #homeScreen .home-v85-balance span{
+    font-size:.27em !important;
+  }
+}
+
 </style>
  </head>
  <body>
@@ -22944,27 +23287,41 @@ function openAdminAnnouncementEditor(item) {
     return Number(c || 0) || 0;
   }
 
+  function getModernRowLimitState(bill,side,number){
+    var limits = state.selectedLotto && state.selectedLotto.numberLimits;
+    var numText = String(number || "");
+    var betType = "";
+    var limitSide = "";
+
+    if (bill.mode === "two" || bill.mode === "gate") {
+      betType = "two";
+      limitSide = side === "B" ? "bottom" : "top";
+    }
+    else if (bill.mode === "three" || bill.mode === "six") {
+      betType = "three";
+      limitSide = (bill.mode !== "six" && side === "B") ? "tod" : "straight";
+    }
+    else {
+      return "normal";
+    }
+
+    if (limitHits(limits,"close",betType,limitSide,numText)) return "close";
+    if (limitHits(limits,"half",betType,limitSide,numText)) return "half";
+    return "normal";
+  }
+
   function getModernRowPayoutRate(bill,side,number){
     var rates = getSelectedPayoutRates();
     var rate = 0;
+    var limitState = getModernRowLimitState(bill,side,number);
+
+    /* เลขอั้นต้องแสดงจ่าย 0 ในตารางทันที */
+    if (limitState === "close") return 0;
 
     if (bill.mode === "two" || bill.mode === "gate") {
       rate = side === "B"
         ? modernPickRate(rates.twoBottom,rates.rate2Bottom)
         : modernPickRate(rates.twoTop,rates.rate2Top);
-
-      var twoSide = side === "B" ? "bottom" : "top";
-      if (
-        limitHits(
-          state.selectedLotto && state.selectedLotto.numberLimits,
-          "half",
-          "two",
-          twoSide,
-          String(number)
-        )
-      ) {
-        rate = rate / 2;
-      }
     }
 
     else if (bill.mode === "three" || bill.mode === "six") {
@@ -22973,19 +23330,6 @@ function openAdminAnnouncementEditor(item) {
       rate = isTod
         ? modernPickRate(rates.threeTod,rates.rate3Tod)
         : modernPickRate(rates.threeStraight,rates.rate3Straight);
-
-      var threeSide = isTod ? "tod" : "straight";
-      if (
-        limitHits(
-          state.selectedLotto && state.selectedLotto.numberLimits,
-          "half",
-          "three",
-          threeSide,
-          String(number)
-        )
-      ) {
-        rate = rate / 2;
-      }
     }
 
     else if (bill.mode === "run") {
@@ -22993,6 +23337,9 @@ function openAdminAnnouncementEditor(item) {
         ? modernPickRate(rates.runBottom,rates.rateRunBottom)
         : modernPickRate(rates.runTop,rates.rateRunTop);
     }
+
+    /* จ่ายครึ่งใช้เรทของสมาชิก/หวยนั้นจริง แล้วหาร 2 */
+    if (limitState === "half") rate = rate / 2;
 
     return Number(rate || 0);
   }
@@ -23045,11 +23392,33 @@ function openAdminAnnouncementEditor(item) {
           index
         );
 
+        var limitState = getModernRowLimitState(
+          group.bill,
+          group.side,
+          number
+        );
+
         var payoutRate = getModernRowPayoutRate(
           group.bill,
           group.side,
           number
         );
+
+        var rowClass = limitState === "close"
+          ? " row-close"
+          : (limitState === "half" ? " row-half" : "");
+
+        var numberClass = limitState === "close"
+          ? " limit-close"
+          : (limitState === "half" ? " limit-half" : "");
+
+        var rateClass = numberClass;
+
+        var statusHtml = limitState === "close"
+          ? '<small class="modern-slip-status">เลขอั้น</small>'
+          : (limitState === "half"
+              ? '<small class="modern-slip-status">จ่ายครึ่ง</small>'
+              : '');
 
         var removeButton = group.draft
           ? (
@@ -23068,14 +23437,15 @@ function openAdminAnnouncementEditor(item) {
           );
 
         return (
-          '<div class="modern-slip-row">' +
+          '<div class="modern-slip-row' + rowClass + '">' +
 
             '<div class="modern-slip-no">' +
             (index + 1) + '.' +
             '</div>' +
 
-            '<div class="modern-slip-num">' +
-            escapeHtml(number) +
+            '<div class="modern-slip-num' + numberClass + '">' +
+              '<span>' + escapeHtml(number) + '</span>' +
+              statusHtml +
             '</div>' +
 
             '<div class="modern-slip-price">' +
@@ -23091,7 +23461,7 @@ function openAdminAnnouncementEditor(item) {
               'data-row-index="' + index + '">' +
             '</div>' +
 
-            '<div class="modern-slip-rate">' +
+            '<div class="modern-slip-rate' + rateClass + '">' +
               modernRateText(payoutRate) +
             '</div>' +
 
@@ -23511,5 +23881,6 @@ function openAdminAnnouncementEditor(item) {
 </script>
 
 
- </body>
+ <!-- V86: STYLE 1 STATUS COLORS + PAYOUT 0 FOR CLOSED NUMBERS -->
+</body>
 </html>
