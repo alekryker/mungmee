@@ -16679,6 +16679,230 @@ strong,b{
   }
 }
 
+
+
+/* ==========================================================
+   V88 — STYLE 1 COMPACT / CLEAN TABLE + FLATICON DELETE
+   ลดขนาดแถวให้ดูข้อมูลได้มากขึ้น โดยคงสถานะสีเดิม
+========================================================== */
+#betScreen.modern-layout .modern-slip-group{
+  border-radius:14px !important;
+  box-shadow:0 5px 14px rgba(24,24,27,.055) !important;
+}
+
+#betScreen.modern-layout .modern-slip-group + .modern-slip-group{
+  margin-top:8px !important;
+}
+
+#betScreen.modern-layout .modern-slip-group-head{
+  min-height:43px !important;
+  padding:8px 10px !important;
+}
+
+#betScreen.modern-layout .modern-slip-group-head strong{
+  font-size:13px !important;
+  line-height:1.15 !important;
+}
+
+#betScreen.modern-layout .modern-slip-group-count{
+  min-height:25px !important;
+  padding:0 8px !important;
+  font-size:8.5px !important;
+}
+
+#betScreen.modern-layout .modern-slip-table{
+  padding:3px !important;
+}
+
+#betScreen.modern-layout .modern-slip-head,
+#betScreen.modern-layout .modern-slip-row{
+  grid-template-columns:30px minmax(58px,.92fr) minmax(58px,.94fr) minmax(52px,.82fr) minmax(66px,1fr) 38px !important;
+  gap:1.5px !important;
+}
+
+#betScreen.modern-layout .modern-slip-head{
+  margin-bottom:1.5px !important;
+}
+
+#betScreen.modern-layout .modern-slip-head span{
+  min-height:30px !important;
+  padding:2px 2px !important;
+  border-radius:7px !important;
+  font-size:8.5px !important;
+  letter-spacing:-.05px !important;
+}
+
+#betScreen.modern-layout .modern-slip-row{
+  min-height:48px !important;
+  margin-bottom:1.5px !important;
+}
+
+#betScreen.modern-layout .modern-slip-no,
+#betScreen.modern-layout .modern-slip-price,
+#betScreen.modern-layout .modern-slip-rate,
+#betScreen.modern-layout .modern-slip-win,
+#betScreen.modern-layout .modern-slip-remove{
+  min-height:48px !important;
+  border-radius:7px !important;
+}
+
+#betScreen.modern-layout .modern-slip-no{
+  font-size:9.5px !important;
+}
+
+#betScreen.modern-layout .modern-slip-num{
+  min-height:48px !important;
+  padding:3px 2px !important;
+  gap:2px !important;
+  border-radius:7px !important;
+  font-size:15px !important;
+  line-height:1 !important;
+}
+
+#betScreen.modern-layout .modern-slip-status{
+  min-height:13px !important;
+  padding:0 4px !important;
+  font-size:5.7px !important;
+}
+
+#betScreen.modern-layout .modern-slip-price{
+  padding:3px !important;
+}
+
+#betScreen.modern-layout .modern-slip-price input{
+  height:32px !important;
+  padding:0 3px !important;
+  border-radius:8px !important;
+  font-size:10.5px !important;
+  border-width:1px !important;
+}
+
+#betScreen.modern-layout .modern-slip-rate,
+#betScreen.modern-layout .modern-slip-win{
+  font-size:10.5px !important;
+  letter-spacing:-.08px !important;
+}
+
+/* ปุ่มลบใหม่: ไม่ใช้ก้อนแดงเต็มช่องแล้ว เพื่อให้ตารางเบาและอ่านง่าย */
+#betScreen.modern-layout .modern-slip-remove{
+  padding:0 !important;
+  background:#fff !important;
+}
+
+#betScreen.modern-layout .modern-slip-remove button{
+  width:30px !important;
+  height:30px !important;
+  min-height:30px !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  border:1px solid #fecdd3 !important;
+  border-radius:9px !important;
+  background:#fff1f2 !important;
+  color:#e11d48 !important;
+  box-shadow:none !important;
+  padding:0 !important;
+  font-size:0 !important;
+}
+
+#betScreen.modern-layout .modern-slip-remove button i{
+  display:block !important;
+  font-size:14px !important;
+  line-height:1 !important;
+  color:#e11d48 !important;
+}
+
+#betScreen.modern-layout .modern-slip-remove button:active{
+  transform:scale(.94) !important;
+  background:#ffe4e6 !important;
+}
+
+@media(max-width:430px){
+  #betScreen.modern-layout .modern-slip-group-head{
+    min-height:39px !important;
+    padding:7px 8px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-group-head strong{
+    font-size:12px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-group-count{
+    min-height:23px !important;
+    padding:0 7px !important;
+    font-size:7.8px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-table{
+    padding:2px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-head,
+  #betScreen.modern-layout .modern-slip-row{
+    grid-template-columns:24px minmax(50px,.90fr) minmax(52px,.94fr) minmax(46px,.82fr) minmax(58px,1fr) 32px !important;
+    gap:1px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-head span{
+    min-height:27px !important;
+    padding:1px !important;
+    border-radius:6px !important;
+    font-size:7.5px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-row,
+  #betScreen.modern-layout .modern-slip-no,
+  #betScreen.modern-layout .modern-slip-num,
+  #betScreen.modern-layout .modern-slip-price,
+  #betScreen.modern-layout .modern-slip-rate,
+  #betScreen.modern-layout .modern-slip-win,
+  #betScreen.modern-layout .modern-slip-remove{
+    min-height:43px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-no{
+    font-size:8.5px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-num{
+    min-height:43px !important;
+    padding:2px 1px !important;
+    border-radius:6px !important;
+    font-size:14px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-status{
+    min-height:11px !important;
+    padding:0 3px !important;
+    font-size:5.1px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-price{
+    padding:2px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-price input{
+    height:29px !important;
+    border-radius:7px !important;
+    font-size:9.5px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-rate,
+  #betScreen.modern-layout .modern-slip-win{
+    font-size:9.3px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-remove button{
+    width:26px !important;
+    height:26px !important;
+    min-height:26px !important;
+    border-radius:8px !important;
+  }
+
+  #betScreen.modern-layout .modern-slip-remove button i{
+    font-size:12px !important;
+  }
+}
 </style>
  </head>
  <body>
@@ -23425,14 +23649,14 @@ function openAdminAnnouncementEditor(item) {
             '<button type="button" ' +
             'data-draft-remove="' + index + '" ' +
             'aria-label="ลบเลข ' + escapeHtml(number) + '">' +
-            '🗑' +
+            '<i class="fi fi-sr-trash-plus" aria-hidden="true"></i>' +
             '</button>'
           )
           : (
             '<button type="button" ' +
             'data-remove-bill="' + group.billIndex + '" ' +
             'aria-label="ลบบิล">' +
-            '🗑' +
+            '<i class="fi fi-sr-trash-plus" aria-hidden="true"></i>' +
             '</button>'
           );
 
