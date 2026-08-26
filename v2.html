@@ -21936,6 +21936,183 @@ strong,b{
 }
 </style>
 <!-- V116: fixed V115 raw CSS accidentally rendered as page text -->
+
+<style id="v117-final-ui-fixes">
+/* =====================================================
+   V117 — STYLE2 white modes + price up/no quick buttons
+          STYLE1 Flaticon flag + wider countdown
+===================================================== */
+
+/* ---------- แบบแทงที่ 2 ---------- */
+#betScreen.style2-isolated,
+#betScreen.style2-isolated *{
+  font-family:'Kanit',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif !important;
+}
+
+/* การ์ด 2 ตัว / 3 ตัว / ... ให้พื้นหลังขาวชัดเจน */
+#betScreen.style2-isolated .topbar > .bet-mode-tabs{
+  background:#fff !important;
+  border:1px solid #f0d7db !important;
+  border-radius:14px !important;
+  padding:6px !important;
+  gap:6px !important;
+  box-shadow:0 6px 16px rgba(93,0,10,.06) !important;
+}
+#betScreen.style2-isolated .topbar > .bet-mode-tabs .bet-mode-tab{
+  background:#fff !important;
+  color:#8d1821 !important;
+  border:1px solid #edd3d7 !important;
+  min-height:38px !important;
+  border-radius:10px !important;
+  font-size:11px !important;
+  font-weight:350 !important;
+  box-shadow:none !important;
+}
+#betScreen.style2-isolated .topbar > .bet-mode-tabs .bet-mode-tab.active{
+  background:linear-gradient(135deg,#ef1730,#b60013) !important;
+  color:#fff !important;
+  border-color:#d80e24 !important;
+  font-weight:450 !important;
+}
+
+/* เพิ่มฟอนต์ขึ้นนิดเดียว แต่ยังบาง */
+#betScreen.style2-isolated .direct-title{font-size:17px !important;font-weight:400 !important;}
+#betScreen.style2-isolated .selected-label{font-size:14px !important;font-weight:400 !important;}
+#betScreen.style2-isolated .number-count-pill{font-size:11px !important;font-weight:350 !important;}
+#betScreen.style2-isolated .quick-tool,
+#betScreen.style2-isolated .clear-numbers{font-size:11px !important;font-weight:350 !important;}
+#betScreen.style2-isolated .price-section-title{font-size:14px !important;font-weight:400 !important;}
+#betScreen.style2-isolated .price-section-subnote{font-size:10px !important;font-weight:300 !important;}
+#betScreen.style2-isolated .direct-price-label{font-size:10px !important;font-weight:350 !important;}
+#betScreen.style2-isolated .direct-price-input{font-size:21px !important;font-weight:450 !important;}
+#betScreen.style2-isolated .direct-add-bill,
+#betScreen.style2-isolated .visually-hidden-addbill{font-size:13px !important;font-weight:450 !important;}
+
+/* ตัดปุ่ม 5/10/20/50/100 ของแบบแทงที่ 2 ออกทั้งหมด */
+#betScreen.style2-isolated .price-bottom-bar .bottom-quick-wrap,
+#betScreen.style2-isolated .price-bottom-bar .style1-quick-grid,
+#betScreen.style2-isolated .price-bottom-bar .style1-quick-btn{
+  display:none !important;
+}
+
+/* บล็อกใส่ราคาให้ขึ้นมาชิดรายละเอียดโพย และไม่บังราคาทั้งหมด */
+#betScreen.style2-isolated .direct-card{
+  display:block !important;
+  min-height:0 !important;
+  height:auto !important;
+  padding-bottom:10px !important;
+}
+#betScreen.style2-isolated .number-chip-box,
+#betScreen.style2-isolated .number-chip-box:empty,
+#betScreen.style2-isolated .number-chip-box:has(.number-chip-empty){
+  min-height:46px !important;
+}
+#betScreen.style2-isolated .price-bottom-bar{
+  position:static !important;
+  inset:auto !important;
+  margin:6px 0 0 !important;
+  padding:0 !important;
+  transform:none !important;
+  z-index:auto !important;
+}
+#betScreen.style2-isolated .price-bottom-bar .bill-price-panel{
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(104px,.9fr) !important;
+  grid-template-areas:
+    'head head head'
+    'sub sub sub'
+    'prices prices add' !important;
+  gap:7px !important;
+  padding:9px !important;
+  overflow:visible !important;
+}
+#betScreen.style2-isolated .price-bottom-bar .direct-price-grid{
+  grid-area:prices !important;
+}
+#betScreen.style2-isolated .price-bottom-bar .direct-add-bill,
+#betScreen.style2-isolated .price-bottom-bar .visually-hidden-addbill{
+  grid-area:add !important;
+}
+#betScreen.style2-isolated .direct-bottom{
+  position:static !important;
+  inset:auto !important;
+  margin:6px 0 0 !important;
+  padding:0 !important;
+  transform:none !important;
+  z-index:auto !important;
+  clear:both !important;
+}
+#betScreen.style2-isolated .direct-bottom .style1-summary-panel{
+  padding:8px !important;
+  border-radius:12px !important;
+}
+#betScreen.style2-isolated .direct-grand{
+  min-height:42px !important;
+  padding:8px 10px !important;
+}
+#betScreen.style2-isolated .direct-grand small{font-size:11px !important;font-weight:300 !important;}
+#betScreen.style2-isolated .direct-grand strong{font-size:17px !important;font-weight:450 !important;}
+
+/* ---------- แบบแทงที่ 1 ---------- */
+/* ธงใช้ Flaticon ชุดเดียวกับหน้าเลือกหวย */
+#betScreen.modern-layout .modern-lotto-select-flag{
+  overflow:hidden !important;
+  padding:0 !important;
+  background:#fff !important;
+  border:1px solid rgba(120,0,12,.10) !important;
+}
+#betScreen.modern-layout .modern-lotto-select-flag .lotto-flaticon-flag-img{
+  width:100% !important;
+  height:100% !important;
+  display:block !important;
+  object-fit:cover !important;
+  border-radius:inherit !important;
+}
+#betScreen.modern-layout .modern-lotto-select-flag .lotto-flaticon-fallback{
+  width:100% !important;
+  height:100% !important;
+  display:grid !important;
+  place-items:center !important;
+  color:#b40014 !important;
+  background:#fff5f6 !important;
+}
+
+/* ช่องเวลานับถอยหลังให้กว้างขึ้น */
+#betScreen.modern-layout .modern-lotto-timer{
+  min-width:230px !important;
+}
+#betScreen.modern-layout .modern-lotto-timer b{
+  min-width:150px !important;
+  justify-content:center !important;
+  white-space:nowrap !important;
+}
+
+@media(max-width:480px){
+  #betScreen.style2-isolated .topbar > .bet-mode-tabs{
+    grid-template-columns:repeat(5,minmax(0,1fr)) !important;
+  }
+  #betScreen.style2-isolated .topbar > .bet-mode-tabs .bet-mode-tab{
+    min-height:36px !important;
+    padding:0 3px !important;
+    font-size:10.5px !important;
+  }
+  #betScreen.style2-isolated .price-bottom-bar .bill-price-panel{
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(96px,.86fr) !important;
+  }
+
+  #betScreen.modern-layout .modern-lotto-select{
+    grid-template-columns:40px minmax(0,1fr) 112px !important;
+  }
+  #betScreen.modern-layout .modern-lotto-timer{
+    min-width:112px !important;
+  }
+  #betScreen.modern-layout .modern-lotto-timer b{
+    width:108px !important;
+    min-width:108px !important;
+    padding:0 8px !important;
+  }
+}
+</style>
+
 </head>
  <body>
 
@@ -22142,7 +22319,7 @@ strong,b{
 
         <div class="home-v85-account-line">
          <i class="fi fi-sr-wallet"></i>
-         <span>บัญชีหลัก <small class="home-app-version">V116</small></span>
+         <span>บัญชีหลัก <small class="home-app-version">V117</small></span>
         </div>
        </section>
 
@@ -25584,7 +25761,7 @@ function renderBetLayoutState(cfg) {
     els.modernLottoSelectText.textContent = state.selectedLotto ? state.selectedLotto.name : "กรุณาเลือกหวย";
   }
   var modernFlag = document.getElementById("modernLottoFlag");
-  if (modernFlag) modernFlag.textContent = state.selectedLotto ? getHomeLottoFlag(state.selectedLotto.name) : "🎯";
+  if (modernFlag) modernFlag.innerHTML = state.selectedLotto ? getFlaticonFlagHtml(state.selectedLotto.name) : '<span class="lotto-flaticon-fallback"><i class="fi fi-sr-flag"></i></span>';
   var modernClose = document.getElementById("modernLottoCloseText");
   if (modernClose) modernClose.textContent = state.selectedLotto ? ("ปิดรับ " + getActualCloseText(state.selectedLotto)) : "ปิดรับ --:--";
   var clock = document.getElementById("modernSelectedCount");
