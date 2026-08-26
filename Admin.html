@@ -8360,7 +8360,7 @@ textarea:focus{
 
      <section class="admin-panel" id="adminPanel-lotto">
       <div class="admin-card">
-       <div class="admin-card-head"><div><h2>ตั้งค่าหวย</h2></div></div>
+       <div class="admin-card-head"><div><h2>ตั้งค่าหวย</h2></div><button class="admin-btn red" id="adminCreateLottoBtn">+ เพิ่มหวยใหม่</button></div>
        <div class="lotto-subtabs">
         <button class="lotto-subtab active" data-lotto-subtab="enabled">เปิด / ปิดหวย</button>
         <button class="lotto-subtab" data-lotto-subtab="rules">เงื่อนไขหวย</button>
@@ -8368,11 +8368,11 @@ textarea:focus{
         <button class="lotto-subtab" data-lotto-subtab="limits">เลขปิดรับ</button>
        </div>
        <div class="lotto-subpanel active" id="lottoSub-enabled">
-        <div class="admin-muted">เปิด/ปิดหวย และกำหนดวันเปิดรับประจำสัปดาห์ จันทร์–อาทิตย์</div>
+        <div class="admin-muted">เปิด/ปิดหวย กำหนดเวลาเปิด–ปิด และวันเปิดรับประจำสัปดาห์ จันทร์–อาทิตย์</div>
         <div class="admin-table-wrap" id="adminLottoToggleTable" style="margin-top:11px"></div>
        </div>
        <div class="lotto-subpanel" id="lottoSub-rules">
-        <div class="admin-muted">เวลาปิดรับ ขั้นต่ำ สูงสุดต่อเลข สูงสุดต่อบิล และ Alias</div>
+        <div class="admin-muted">เวลาเปิด–ปิดรับ ขั้นต่ำ สูงสุดต่อเลข สูงสุดต่อบิล และ Alias สำหรับจับชื่อผล AllHuay</div>
         <div class="admin-table-wrap" id="adminLottoRulesTable" style="margin-top:11px"></div>
        </div>
        <div class="lotto-subpanel" id="lottoSub-rates">
@@ -8706,7 +8706,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "backBtn","bottomBackBtn","classicRuleBtn","selectedName","selectedRound","selectedClose","selectedCount","selectedLimitNote","selectedRateNote",
     "accountName","heroCredit","betCredit","modernBetCredit","bottomCredit","summaryCredit","adminBtn",
     "memberSummaryBtn","moneyBtn","resultsBtn","historyBtn","lineContactBtn","logoutBtn","affiliateBackBtn","affiliateAvailableTop","affiliateCode","affiliateLink","affiliateCopyBtn","affiliateStats","affiliateWithdrawBtn","affiliateCommissionList","affiliateWithdrawList","resultsBackBtn","resultsBalance","resultsDate","resultsReloadBtn","resultsPrevBtn","resultsNextBtn","resultsSource","resultsList","historyBackBtn","historyCredit","historyFrom","historyTo",
-     "historyStatus","historyList","moneyBackBtn","moneyBalance","moneyFrom","moneyTo","moneyType","moneyList","memberSummaryBackBtn","memberSummaryBalance","memberSummaryFrom","memberSummaryTo","memberSummaryLotto","memberSummarySearchBtn","memberSummaryStats","memberSummaryTable","adminIdentity","adminLogoutBtn","syncResultsBtn","adminAffiliateReloadBtn","adminAffiliateSearch","adminAffiliateStats","adminAffiliateTable","adminAffiliateWithdrawTable","adminResultsSyncBtn","adminResultsAddBtn","adminResultsFrom","adminResultsTo","adminResultsLotto","adminResultsReloadBtn","adminResultsTable","adminDashRange","adminDashFrom","adminDashTo","adminDashCustomBtn","adminDashSelectAll","adminDashClearAll","adminDashLottoChecks","adminDashStats","adminByUser","adminByLotto","adminTopDeposits","adminTopWithdraws","adminBetFrom","adminBetTo","adminBetStatus","adminOpenUser","adminOpenLotto","adminOpenSearchBtn","adminOpenTable","adminCreateUserBtn","adminUserSearch","adminUserCount","adminUserTable","adminWithdrawStatus","adminWithdrawReloadBtn","adminWithdrawTable","adminLottoToggleTable","adminLottoRulesTable","adminRateUser","adminRateLotto","adminRateModeNote","adminRate3Straight","adminRate3Tod","adminRate2Top","adminRate2Bottom","adminRateRunTop","adminRateRunBottom","adminRateSaveBtn","adminRateResetBtn","adminRateOverridesTable","adminLimitLotto","adminLimitKind","adminLimitBetType","adminLimitSide","adminLimitNumbers","adminLimitEndDate","adminLimitReverseBtn","adminLimitAddBtn","adminLimitSaveBtn","adminNumberLimitsTable","adminAnnouncementAddBtn","adminAnnouncementReloadBtn","adminAnnouncementsTable","adminConnectionSaveBtn","adminTelegramToken","adminTelegramChatId","adminLineContactUrl","adminDepositBankShort","adminDepositBankName","adminDepositAccountNo","adminDepositAccountName","adminDepositLogoUrl","adminDepositBorderColor","adminDepositPreview","adminDepositPreviewLogo","adminDepositPreviewNumber","adminDepositPreviewBank","adminDepositPreviewName","modernBetPanel","modernBackBtn","modernRuleBtn","modernLottoSelect","modernLottoSelectText","modernSelectedTitle","modernDigitSlots","modernNumberChipBox","modernClearNumbersBtn","modernBillStack","modernBillStackList","modernBillStackCount","directTitle","numberCount","numberInput",
+     "historyStatus","historyList","moneyBackBtn","moneyBalance","moneyFrom","moneyTo","moneyType","moneyList","memberSummaryBackBtn","memberSummaryBalance","memberSummaryFrom","memberSummaryTo","memberSummaryLotto","memberSummarySearchBtn","memberSummaryStats","memberSummaryTable","adminIdentity","adminLogoutBtn","syncResultsBtn","adminAffiliateReloadBtn","adminAffiliateSearch","adminAffiliateStats","adminAffiliateTable","adminAffiliateWithdrawTable","adminResultsSyncBtn","adminResultsAddBtn","adminResultsFrom","adminResultsTo","adminResultsLotto","adminResultsReloadBtn","adminResultsTable","adminDashRange","adminDashFrom","adminDashTo","adminDashCustomBtn","adminDashSelectAll","adminDashClearAll","adminDashLottoChecks","adminDashStats","adminByUser","adminByLotto","adminTopDeposits","adminTopWithdraws","adminBetFrom","adminBetTo","adminBetStatus","adminOpenUser","adminOpenLotto","adminOpenSearchBtn","adminOpenTable","adminCreateUserBtn","adminUserSearch","adminUserCount","adminUserTable","adminWithdrawStatus","adminWithdrawReloadBtn","adminWithdrawTable","adminCreateLottoBtn","adminLottoToggleTable","adminLottoRulesTable","adminRateUser","adminRateLotto","adminRateModeNote","adminRate3Straight","adminRate3Tod","adminRate2Top","adminRate2Bottom","adminRateRunTop","adminRateRunBottom","adminRateSaveBtn","adminRateResetBtn","adminRateOverridesTable","adminLimitLotto","adminLimitKind","adminLimitBetType","adminLimitSide","adminLimitNumbers","adminLimitEndDate","adminLimitReverseBtn","adminLimitAddBtn","adminLimitSaveBtn","adminNumberLimitsTable","adminAnnouncementAddBtn","adminAnnouncementReloadBtn","adminAnnouncementsTable","adminConnectionSaveBtn","adminTelegramToken","adminTelegramChatId","adminLineContactUrl","adminDepositBankShort","adminDepositBankName","adminDepositAccountNo","adminDepositAccountName","adminDepositLogoUrl","adminDepositBorderColor","adminDepositPreview","adminDepositPreviewLogo","adminDepositPreviewNumber","adminDepositPreviewBank","adminDepositPreviewName","modernBetPanel","modernBackBtn","modernRuleBtn","modernLottoSelect","modernLottoSelectText","modernSelectedTitle","modernDigitSlots","modernNumberChipBox","modernClearNumbersBtn","modernBillStack","modernBillStackList","modernBillStackCount","directTitle","numberCount","numberInput",
     "clearNumbersBtn","numberChipBox","reverseBtn","doubleBtn",
     "priceA","priceB","priceAField","priceALabel","priceBLabel","priceBField","directPriceGrid",
     "sourceCount","betCount","currentBillTotal","grandTotal","clearAllBtn","addBillBtn","submitBtn","error","billStack","billStackList","billStackCount",
@@ -12970,10 +12970,10 @@ async function loadAdminLottoSettings() {
       var days=Array.isArray(l.openDays)&&l.openDays.length?l.openDays.map(Number):[1,2,3,4,5,6,7];
       return '<div class="lotto-days-box" data-days-for="'+escapeAttr(l.lottoName)+'">'+weekdayDefs.map(function(d){return '<label class="lotto-day-check"><input type="checkbox" data-lotto-day="'+d.n+'" '+(days.indexOf(d.n)>=0?'checked':'')+'><span>'+d.t+'</span></label>';}).join('')+'</div><button class="admin-mini edit lotto-day-save" data-save-lotto-days="'+escapeAttr(l.lottoName)+'">บันทึกวัน</button>';
     }
-    els.adminLottoToggleTable.innerHTML = adminTable(["หวย","ปิดรับ","วันเปิดรับ","สถานะ","เปิด / ปิด"],state.adminLottos.map(function(l){ return [escapeHtml(l.lottoName),escapeHtml(l.closeTime),lottoDaysHtml(l),l.enabled ? '<span class="lotto-status on">เปิด</span>' : '<span class="lotto-status off">ปิด</span>','<button class="admin-mini ' + (l.enabled ? 'danger' : 'green') + '" data-toggle-lotto="' + escapeAttr(l.lottoName) + '" data-enabled="' + (l.enabled ? '1':'0') + '">' + (l.enabled ? 'ปิดหวย':'เปิดหวย') + '</button>']; }));
-    els.adminLottoRulesTable.innerHTML = adminTable(["หวย","ปิดรับ","ขั้นต่ำ","สูงสุด/เลข","สูงสุด/บิล","Alias","แก้ไข"],state.adminLottos.map(function(l){ return [escapeHtml(l.lottoName),escapeHtml(l.closeTime),money(l.minPerNumber),money(l.maxPerNumber),money(l.maxPerBill),escapeHtml(l.aliases || ""),'<button class="admin-mini edit" data-edit-rule="' + escapeAttr(l.lottoName) + '">แก้ไข</button>']; }));
+    els.adminLottoToggleTable.innerHTML = adminTable(["หวย","เปิดรับ","ปิดรับ","วันเปิดรับ","สถานะ","เปิด / ปิด"],state.adminLottos.map(function(l){ return [escapeHtml(l.lottoName),escapeHtml(l.openTime || "05:00"),escapeHtml(l.closeTime),lottoDaysHtml(l),l.enabled ? '<span class="lotto-status on">เปิด</span>' : '<span class="lotto-status off">ปิด</span>','<button class="admin-mini ' + (l.enabled ? 'danger' : 'green') + '" data-toggle-lotto="' + escapeAttr(l.lottoName) + '" data-enabled="' + (l.enabled ? '1':'0') + '">' + (l.enabled ? 'ปิดหวย':'เปิดหวย') + '</button>']; }));
+    els.adminLottoRulesTable.innerHTML = adminTable(["หวย","เปิดรับ","ปิดรับ","ขั้นต่ำ","สูงสุด/เลข","สูงสุด/บิล","Alias","แก้ไข"],state.adminLottos.map(function(l){ return [escapeHtml(l.lottoName),escapeHtml(l.openTime || "05:00"),escapeHtml(l.closeTime),money(l.minPerNumber),money(l.maxPerNumber),money(l.maxPerBill),escapeHtml(l.aliases || ""),'<button class="admin-mini edit" data-edit-rule="' + escapeAttr(l.lottoName) + '">แก้ไข</button>']; }));
     els.adminLottoToggleTable.querySelectorAll("[data-toggle-lotto]").forEach(function(btn){ btn.onclick = async function(){ var enabled = btn.dataset.enabled !== "1"; try { adminBusy(enabled ? "กำลังเปิดหวย...":"กำลังปิดหวย..."); await api("adminSetLottoEnabled",state.token,{lottoName:btn.dataset.toggleLotto,enabled:enabled}); Swal.close(); await refreshBootData(); await loadAdminLottoSettings(); showToast(enabled ? "เปิดหวยแล้ว":"ปิดหวยแล้ว"); } catch(e) { Swal.close(); showAdminError(e); } }; });
-    els.adminLottoToggleTable.querySelectorAll("[data-save-lotto-days]").forEach(function(btn){ btn.onclick=async function(){ var name=btn.dataset.saveLottoDays,l=state.adminLottos.find(function(x){return x.lottoName===name;}); if(!l)return; var box=els.adminLottoToggleTable.querySelector('[data-days-for="'+CSS.escape(name)+'"]'); var days=[].slice.call(box.querySelectorAll('[data-lotto-day]:checked')).map(function(x){return Number(x.dataset.lottoDay);}); if(!days.length){Swal.fire({icon:"warning",title:"กรุณาเลือกอย่างน้อย 1 วัน",confirmButtonText:"ตกลง"});return;} var payload={lottoName:l.lottoName,enabled:l.enabled,closeTime:l.closeTime,minPerNumber:l.minPerNumber,maxPerNumber:l.maxPerNumber,maxPerBill:l.maxPerBill,rate3Straight:l.rate3Straight,rate3Tod:l.rate3Tod,rate2Top:l.rate2Top,rate2Bottom:l.rate2Bottom,rateRunTop:l.rateRunTop,rateRunBottom:l.rateRunBottom,aliases:l.aliases,sortOrder:l.sortOrder,numberLimits:l.numberLimits||[],openDays:days}; try{adminBusy("กำลังบันทึกวันเปิดรับ...");await api("adminSaveLottoSetting",state.token,payload);Swal.close();await refreshBootData();await loadAdminLottoSettings();showToast("บันทึกวันเปิดรับแล้ว");}catch(e){Swal.close();showAdminError(e);} }; });
+    els.adminLottoToggleTable.querySelectorAll("[data-save-lotto-days]").forEach(function(btn){ btn.onclick=async function(){ var name=btn.dataset.saveLottoDays,l=state.adminLottos.find(function(x){return x.lottoName===name;}); if(!l)return; var box=els.adminLottoToggleTable.querySelector('[data-days-for="'+CSS.escape(name)+'"]'); var days=[].slice.call(box.querySelectorAll('[data-lotto-day]:checked')).map(function(x){return Number(x.dataset.lottoDay);}); if(!days.length){Swal.fire({icon:"warning",title:"กรุณาเลือกอย่างน้อย 1 วัน",confirmButtonText:"ตกลง"});return;} var payload={lottoName:l.lottoName,enabled:l.enabled,openTime:l.openTime||"05:00",closeTime:l.closeTime,minPerNumber:l.minPerNumber,maxPerNumber:l.maxPerNumber,maxPerBill:l.maxPerBill,rate3Straight:l.rate3Straight,rate3Tod:l.rate3Tod,rate2Top:l.rate2Top,rate2Bottom:l.rate2Bottom,rateRunTop:l.rateRunTop,rateRunBottom:l.rateRunBottom,aliases:l.aliases,sortOrder:l.sortOrder,numberLimits:l.numberLimits||[],openDays:days}; try{adminBusy("กำลังบันทึกวันเปิดรับ...");await api("adminSaveLottoSetting",state.token,payload);Swal.close();await refreshBootData();await loadAdminLottoSettings();showToast("บันทึกวันเปิดรับแล้ว");}catch(e){Swal.close();showAdminError(e);} }; });
     els.adminLottoRulesTable.querySelectorAll("[data-edit-rule]").forEach(function(btn){ btn.onclick=function(){ var l=state.adminLottos.find(function(x){return x.lottoName===btn.dataset.editRule;}); if(l) openEditLottoRules(l); }; });
     showLottoSubTab(state.lottoSubTab || "enabled");
   } catch(e) { showAdminError(e); }
@@ -12981,14 +12981,64 @@ async function loadAdminLottoSettings() {
 
 async function openEditLottoRules(l) {
   var r = await Swal.fire({title:escapeHtml(l.lottoName),width:680,html:'<div class="swal-admin-grid">' +
-    '<div class="swal-admin-field"><label>เวลาปิดรับ</label><input id="admLottoClose" value="' + escapeAttr(l.closeTime) + '"></div>' +
+    '<div class="swal-admin-field"><label>เวลาเปิดรับ</label><input id="admLottoOpen" type="time" value="' + escapeAttr(l.openTime || "05:00") + '"></div>' +
+    '<div class="swal-admin-field"><label>เวลาปิดรับ</label><input id="admLottoClose" type="time" value="' + escapeAttr(l.closeTime) + '"></div>' +
     '<div class="swal-admin-field"><label>ขั้นต่ำ/เลข</label><input id="admLottoMin" type="number" value="' + Number(l.minPerNumber || 0) + '"></div>' +
     '<div class="swal-admin-field"><label>สูงสุด/เลข</label><input id="admLottoMax" type="number" value="' + Number(l.maxPerNumber || 0) + '"></div>' +
     '<div class="swal-admin-field"><label>สูงสุด/บิล</label><input id="admLottoBill" type="number" value="' + Number(l.maxPerBill || 0) + '"></div>' +
-    '<div class="swal-admin-field full"><label>Alias จาก AllHuay</label><input id="admLottoAlias" value="' + escapeAttr(l.aliases || "") + '"></div></div>',showCancelButton:true,confirmButtonText:"บันทึก",cancelButtonText:"ยกเลิก",preConfirm:function(){ return {lottoName:l.lottoName,enabled:l.enabled,closeTime:document.getElementById("admLottoClose").value,minPerNumber:num(document.getElementById("admLottoMin").value),maxPerNumber:num(document.getElementById("admLottoMax").value),maxPerBill:num(document.getElementById("admLottoBill").value),rate3Straight:l.rate3Straight,rate3Tod:l.rate3Tod,rate2Top:l.rate2Top,rate2Bottom:l.rate2Bottom,rateRunTop:l.rateRunTop,rateRunBottom:l.rateRunBottom,aliases:document.getElementById("admLottoAlias").value,sortOrder:l.sortOrder,numberLimits:l.numberLimits||[],openDays:l.openDays||[1,2,3,4,5,6,7]}; }});
+    '<div class="swal-admin-field full"><label>Alias จาก AllHuay</label><input id="admLottoAlias" value="' + escapeAttr(l.aliases || "") + '"></div></div>',showCancelButton:true,confirmButtonText:"บันทึก",cancelButtonText:"ยกเลิก",preConfirm:function(){ return {lottoName:l.lottoName,enabled:l.enabled,openTime:document.getElementById("admLottoOpen").value,closeTime:document.getElementById("admLottoClose").value,minPerNumber:num(document.getElementById("admLottoMin").value),maxPerNumber:num(document.getElementById("admLottoMax").value),maxPerBill:num(document.getElementById("admLottoBill").value),rate3Straight:l.rate3Straight,rate3Tod:l.rate3Tod,rate2Top:l.rate2Top,rate2Bottom:l.rate2Bottom,rateRunTop:l.rateRunTop,rateRunBottom:l.rateRunBottom,aliases:document.getElementById("admLottoAlias").value,sortOrder:l.sortOrder,numberLimits:l.numberLimits||[],openDays:l.openDays||[1,2,3,4,5,6,7]}; }});
   if(!r.isConfirmed)return;
   try{adminBusy("กำลังบันทึก...");await api("adminSaveLottoSetting",state.token,r.value);Swal.close();await refreshBootData();await loadAdminLottoSettings();showToast("บันทึกเงื่อนไขแล้ว");}catch(e){Swal.close();showAdminError(e);}
 }
+
+async function openCreateLottoDialog() {
+  var r = await Swal.fire({
+    title:"เพิ่มหวยใหม่",
+    width:700,
+    html:'<div class="swal-admin-grid">' +
+      '<div class="swal-admin-field full"><label>ชื่อหวย</label><input id="admNewLottoName" placeholder="เช่น ลาวตัวอย่าง"></div>' +
+      '<div class="swal-admin-field"><label>เวลาเปิดรับ</label><input id="admNewLottoOpen" type="time" value="05:00"></div>' +
+      '<div class="swal-admin-field"><label>เวลาปิดรับ</label><input id="admNewLottoClose" type="time" value="23:59"></div>' +
+      '<div class="swal-admin-field full"><label>Alias สำหรับจับชื่อใน AllHuay</label><input id="admNewLottoAlias" placeholder="ถ้าชื่อเว็บ AllHuay ต่างกัน ให้ใส่ชื่อเว็บตรงนี้"></div>' +
+      '<div class="swal-admin-field"><label>ขั้นต่ำ/เลข</label><input id="admNewLottoMin" type="number" value="1"></div>' +
+      '<div class="swal-admin-field"><label>สูงสุด/เลข</label><input id="admNewLottoMax" type="number" value="5000"></div>' +
+      '<div class="swal-admin-field"><label>สูงสุด/บิล</label><input id="admNewLottoBill" type="number" value="50000"></div>' +
+      '<div class="swal-admin-field"><label>สถานะ</label><select id="admNewLottoEnabled"><option value="1">เปิดใช้งาน</option><option value="0">ปิดไว้ก่อน</option></select></div>' +
+      '</div><div class="admin-muted" style="margin-top:10px">หลังเพิ่ม ระบบจะรีเช็ค https://www.allhuay.com/result ทันที ถ้าชื่อหรือ Alias ตรงกัน จะผูกอ่านผลอัตโนมัติ และ Trigger ทุก 1 นาทีจะตรวจหวยนี้ต่อไป</div>',
+    showCancelButton:true,confirmButtonText:"เพิ่มหวยและเช็ค API",cancelButtonText:"ยกเลิก",
+    preConfirm:function(){
+      var name=document.getElementById("admNewLottoName").value.trim();
+      if(!name){Swal.showValidationMessage("กรุณาใส่ชื่อหวย");return false;}
+      return {
+        lottoName:name,
+        openTime:document.getElementById("admNewLottoOpen").value,
+        closeTime:document.getElementById("admNewLottoClose").value,
+        aliases:document.getElementById("admNewLottoAlias").value.trim() || name,
+        enabled:document.getElementById("admNewLottoEnabled").value==="1",
+        minPerNumber:num(document.getElementById("admNewLottoMin").value)||1,
+        maxPerNumber:num(document.getElementById("admNewLottoMax").value)||5000,
+        maxPerBill:num(document.getElementById("admNewLottoBill").value)||50000,
+        openDays:[1,2,3,4,5,6,7]
+      };
+    }
+  });
+  if(!r.isConfirmed)return;
+  try{
+    adminBusy("กำลังเพิ่มหวยและตรวจ AllHuay...");
+    var out=await api("adminCreateLotto",state.token,r.value);
+    Swal.close();
+    await refreshBootData();
+    await loadAdminLottoSettings();
+    var match=out&&out.apiMatch;
+    if(match&&match.matched){
+      Swal.fire({icon:"success",title:"เพิ่มหวยแล้ว",html:"พบชื่อใน AllHuay: <b>"+escapeHtml(match.sourceName)+"</b><br>ระบบจะอ่านผลอัตโนมัติ",confirmButtonText:"ตกลง"});
+    }else{
+      Swal.fire({icon:"warning",title:"เพิ่มหวยแล้ว แต่ยังไม่พบชื่อใน AllHuay",html:"หวยใช้งานได้ตามเวลาที่ตั้ง แต่ผลจะยังไม่ Auto จนกว่าชื่อหรือ Alias จะตรงกับ AllHuay"+(match&&match.error?"<br><small>"+escapeHtml(match.error)+"</small>":""),confirmButtonText:"ตกลง"});
+    }
+  }catch(e){Swal.close();showAdminError(e);}
+}
+
+if (els.adminCreateLottoBtn) els.adminCreateLottoBtn.addEventListener("click",openCreateLottoDialog);
 
 function normalizeNumberLimits(limits){var seen={};return(Array.isArray(limits)?limits:[]).map(function(x){x=x||{};var betType=String(x.betType||"two")==="three"?"three":"two",len=betType==="three"?3:2,number=String(x.number||"").replace(/\D/g,"").slice(0,len),side=String(x.side||"both"),endDate=String(x.endDate||"").trim();if(!new RegExp("^\\d{"+len+"}$").test(number))return null;if(betType==="two"&&["top","bottom","both"].indexOf(side)===-1)side="both";if(betType==="three"&&["straight","tod","both"].indexOf(side)===-1)side="both";if(endDate&&!/^\d{4}-\d{2}-\d{2}$/.test(endDate))endDate="";var item={kind:String(x.kind||"close")==="half"?"half":"close",betType:betType,side:side,number:number,endDate:endDate},key=[item.kind,item.betType,item.side,item.number,item.endDate].join("|");if(seen[key])return null;seen[key]=true;return item;}).filter(Boolean);}
 function limitSideText(x){return({top:"บน",bottom:"ล่าง",straight:"ตรง",tod:"โต๊ด",both:"บนล่าง"})[x]||x;}
