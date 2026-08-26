@@ -22581,6 +22581,116 @@ strong,b{
 }
 </style>
 
+
+
+<style id="v121-style2-price-up-font">
+/* =====================================================
+   V121 — STYLE2 price moved up + stronger Kanit font
+===================================================== */
+#betScreen.style2-isolated{
+  --s2-v121-normal:450;
+  --s2-v121-medium:550;
+  --s2-v121-strong:600;
+}
+
+#betScreen.style2-isolated,
+#betScreen.style2-isolated button,
+#betScreen.style2-isolated input,
+#betScreen.style2-isolated textarea,
+#betScreen.style2-isolated select{
+  font-family:'Kanit',sans-serif !important;
+  font-weight:var(--s2-v121-normal) !important;
+}
+
+#betScreen.style2-isolated .direct-title,
+#betScreen.style2-isolated .selected-label,
+#betScreen.style2-isolated .price-section-title,
+#betScreen.style2-isolated .number-count-pill,
+#betScreen.style2-isolated .direct-price-label,
+#betScreen.style2-isolated .direct-add-bill,
+#betScreen.style2-isolated .direct-submit .style1-action-copy strong,
+#betScreen.style2-isolated .direct-clear-all .style1-action-copy strong,
+#betScreen.style2-isolated .direct-back-bottom,
+#betScreen.style2-isolated .toprow::before,
+#betScreen.style2-isolated .bet-mode-tab{
+  font-weight:var(--s2-v121-medium) !important;
+}
+
+#betScreen.style2-isolated .direct-price-input,
+#betScreen.style2-isolated .direct-grand strong,
+#betScreen.style2-isolated .lotto-selected .selected-name,
+#betScreen.style2-isolated .lotto-selected .selected-count{
+  font-weight:var(--s2-v121-strong) !important;
+}
+
+/* ปิด spacer error ถ้าไม่มีข้อความ */
+#betScreen.style2-isolated .error:empty{
+  display:none !important;
+  min-height:0 !important;
+  height:0 !important;
+  margin:0 !important;
+  padding:0 !important;
+}
+
+/* บังคับ flow ใหม่: รายละเอียด > ใส่ราคา > ยอดรวม */
+#betScreen.style2-isolated .direct-card{
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:flex-start !important;
+  align-items:stretch !important;
+  min-height:0 !important;
+  height:auto !important;
+  gap:0 !important;
+}
+
+#betScreen.style2-isolated .direct-card > .price-bottom-bar{
+  position:static !important;
+  order:70 !important;
+  width:100% !important;
+  margin:6px 0 0 !important;
+  padding:0 !important;
+  transform:none !important;
+  inset:auto !important;
+  z-index:auto !important;
+}
+
+#betScreen.style2-isolated .direct-card > .direct-bottom{
+  position:static !important;
+  order:80 !important;
+  width:100% !important;
+  margin:10px 0 0 !important;
+  padding:0 !important;
+  transform:none !important;
+  inset:auto !important;
+  z-index:auto !important;
+}
+
+#betScreen.style2-isolated .price-bottom-bar .bill-price-panel{
+  margin:0 !important;
+}
+
+#betScreen.style2-isolated .direct-card > .direct-bottom .style1-summary-panel{
+  margin:0 !important;
+}
+
+@media(max-width:430px){
+  #betScreen.style2-isolated .direct-card > .price-bottom-bar{
+    margin-top:4px !important;
+  }
+  #betScreen.style2-isolated .direct-card > .direct-bottom{
+    margin-top:8px !important;
+  }
+  #betScreen.style2-isolated .direct-title{font-size:18px !important;}
+  #betScreen.style2-isolated .selected-label{font-size:15px !important;}
+  #betScreen.style2-isolated .price-section-title{font-size:15px !important;}
+  #betScreen.style2-isolated .direct-price-label{font-size:12px !important;}
+  #betScreen.style2-isolated .direct-price-input{font-size:24px !important;}
+  #betScreen.style2-isolated .direct-add-bill{font-size:15px !important;}
+  #betScreen.style2-isolated .direct-grand small{font-size:12px !important;font-weight:450 !important;}
+  #betScreen.style2-isolated .direct-grand strong{font-size:18px !important;}
+}
+</style>
+
 </head>
  <body>
 
@@ -22787,7 +22897,7 @@ strong,b{
 
         <div class="home-v85-account-line">
          <i class="fi fi-sr-wallet"></i>
-         <span>บัญชีหลัก <small class="home-app-version">V120</small></span>
+         <span>บัญชีหลัก <small class="home-app-version">V121</small></span>
         </div>
        </section>
 
@@ -30514,6 +30624,60 @@ function openAdminAnnouncementEditor(item) {
     };
   }
   window.applyV115Style2Layout=applyV115Style2Layout;
+})();
+</script>
+
+
+
+<script id="v121-style2-flow-fix">
+(function(){
+  function syncV121Style2Flow(){
+    var bet=document.getElementById('betScreen');
+    if(!bet || !bet.classList.contains('style2-isolated')) return;
+    var card=bet.querySelector('.direct-bet-content .direct-card');
+    if(!card) return;
+    var price=bet.querySelector('.price-bottom-bar');
+    var total=bet.querySelector('.direct-bottom');
+    var err=card.querySelector('.error');
+    if(price){
+      if(err){
+        if(price.parentNode!==card || price.nextElementSibling!==err){
+          card.insertBefore(price, err);
+        }
+      }else if(price.parentNode!==card){
+        card.appendChild(price);
+      }
+    }
+    if(total){
+      if(total.parentNode!==card){
+        card.appendChild(total);
+      }
+      if(price && price.nextElementSibling!==total){
+        price.insertAdjacentElement('afterend', total);
+      }
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded',function(){
+    syncV121Style2Flow();
+  });
+
+  document.addEventListener('click',function(e){
+    if(e.target && e.target.closest && e.target.closest('[data-bet-layout="classic"]')){
+      setTimeout(syncV121Style2Flow,0);
+      setTimeout(syncV121Style2Flow,60);
+    }
+  },true);
+
+  if(typeof window.renderDirectBet==='function'){
+    var oldV121Render=window.renderDirectBet;
+    window.renderDirectBet=function(){
+      var r=oldV121Render.apply(this,arguments);
+      setTimeout(syncV121Style2Flow,0);
+      return r;
+    };
+  }
+  window.syncV121Style2Flow=syncV121Style2Flow;
 })();
 </script>
 
