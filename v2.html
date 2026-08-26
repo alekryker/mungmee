@@ -20266,6 +20266,38 @@ strong,b{
   #betScreen.classic-layout .style2-rate-mirror{ font-size:11px !important; font-weight:300 !important; padding:8px 10px !important; border-radius:12px !important; }
 }
 
+
+
+/* =====================================================
+   V109 — STYLE 2 REAL COMBINED FIX (resolve V107/V108 conflict)
+===================================================== */
+@media(max-width:430px){
+  /* บังคับให้กล่องใส่ราคา + ราคาทั้งหมด อยู่ชุดเดียวใต้รายละเอียดโพย */
+  #betScreen.classic-layout .direct-card > .price-bottom-bar{
+    margin-top:12px !important;
+    padding-top:0 !important;
+  }
+  #betScreen.classic-layout .direct-card > .direct-bottom{
+    width:100% !important;
+    margin:10px 0 0 !important;
+    padding:0 !important;
+    background:transparent !important;
+    border:0 !important;
+    box-shadow:none !important;
+  }
+  #betScreen.classic-layout .direct-card > .direct-bottom .style1-summary-panel{
+    padding:0 !important;
+    background:transparent !important;
+    border:0 !important;
+    box-shadow:none !important;
+  }
+  #betScreen.classic-layout .direct-card > .direct-bottom .direct-action-row{
+    margin-top:12px !important;
+  }
+  /* ไม่ให้เกิดช่องว่างจากบล็อกเก่า */
+  #betScreen.classic-layout > .direct-bottom{ margin-top:0 !important; }
+}
+
 </style>
  </head>
  <body>
@@ -20473,7 +20505,7 @@ strong,b{
 
         <div class="home-v85-account-line">
          <i class="fi fi-sr-wallet"></i>
-         <span>บัญชีหลัก <small class="home-app-version">V108</small></span>
+         <span>บัญชีหลัก <small class="home-app-version">V109</small></span>
         </div>
        </section>
 
@@ -27917,6 +27949,67 @@ function openAdminAnnouncementEditor(item) {
       return r;
     };
   }
+})();
+</script>
+
+
+
+<script>
+(function(){
+  function syncV109Style2(){
+    var betScreen=document.getElementById('betScreen');
+    if(!betScreen || !betScreen.classList.contains('classic-layout')) return;
+
+    var directContent=betScreen.querySelector('.direct-bet-content');
+    var directCard=directContent && directContent.querySelector('.direct-card');
+    var priceBar=directCard && directCard.querySelector('.price-bottom-bar');
+    var directBottom=betScreen.querySelector('.direct-bottom');
+    var bottomNav=betScreen.querySelector('.bet-v61-bottom-nav');
+    if(directCard && directBottom){
+      if(directBottom.parentNode !== directCard){
+        directCard.appendChild(directBottom);
+      }
+      if(priceBar && priceBar.nextElementSibling !== directBottom){
+        priceBar.insertAdjacentElement('afterend', directBottom);
+      }
+    }
+
+    var pricePanel=betScreen.querySelector('.price-bottom-bar .bill-price-panel');
+    var quickWrap=betScreen.querySelector('.bottom-quick-wrap.style1-amount-row');
+    if(pricePanel && quickWrap && quickWrap.parentNode !== pricePanel){
+      pricePanel.appendChild(quickWrap);
+    }
+
+    // ensure summary block visible in combined section
+    var style1Panel=directBottom && directBottom.querySelector('.style1-summary-panel');
+    if(style1Panel){
+      style1Panel.style.display='block';
+    }
+
+    // keep bottom nav after direct content if scripts moved it
+    if(bottomNav && bottomNav.parentNode !== betScreen){
+      betScreen.appendChild(bottomNav);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    syncV109Style2();
+    var betScreen=document.getElementById('betScreen');
+    if(betScreen){
+      new MutationObserver(function(){ syncV109Style2(); }).observe(betScreen,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
+    }
+  });
+
+  if(typeof window.renderDirectBet==='function'){
+    var oldRenderDirectBet=window.renderDirectBet;
+    window.renderDirectBet=function(){
+      var r=oldRenderDirectBet.apply(this,arguments);
+      syncV109Style2();
+      return r;
+    };
+  }
+
+  window.syncV109Style2=syncV109Style2;
 })();
 </script>
 
