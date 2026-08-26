@@ -18056,6 +18056,325 @@ strong,b{
   }
 }
 
+
+
+/* =====================================================
+   V99 — STYLE 1 PRICE SECTION MATCH REFERENCE
+   ปรับส่วนใส่ราคาของแบบแทงที่ 1 ให้เหมือนภาพอ้างอิงมากขึ้น
+===================================================== */
+#betScreen.modern-layout .style1-summary-panel{
+  border-radius:24px !important;
+  border:1px solid #efdee2 !important;
+  box-shadow:0 12px 30px rgba(137, 0, 16, .08) !important;
+}
+
+#betScreen.modern-layout .style1-summary-head{
+  gap:12px !important;
+  margin-bottom:14px !important;
+}
+
+#betScreen.modern-layout .style1-summary-head-icon{
+  width:38px !important;
+  height:38px !important;
+  flex-basis:38px !important;
+  font-size:17px !important;
+  background:linear-gradient(180deg,#d60018 0%,#b50012 100%) !important;
+}
+
+#betScreen.modern-layout .style1-summary-head h3{
+  font-size:16px !important;
+  font-weight:800 !important;
+}
+
+#betScreen.modern-layout .bottom-quick-wrap.style1-amount-row{
+  grid-template-columns:minmax(0,1.35fr) minmax(0,1fr) !important;
+  gap:10px !important;
+  margin-bottom:12px !important;
+}
+
+#betScreen.modern-layout .style1-amount-card{
+  min-height:88px !important;
+  grid-template-columns:48px minmax(0,1fr) auto !important;
+  gap:10px !important;
+  padding:12px 14px !important;
+  border-radius:18px !important;
+  box-shadow:none !important;
+}
+
+#betScreen.modern-layout .style1-amount-icon{
+  width:48px !important;
+  height:48px !important;
+  border-radius:14px !important;
+  font-size:20px !important;
+  background:#fff7f8 !important;
+}
+
+#betScreen.modern-layout .style1-amount-copy strong{
+  font-size:14px !important;
+  font-weight:700 !important;
+  line-height:1.1 !important;
+}
+
+#betScreen.modern-layout .style1-amount-copy small{
+  margin-top:3px !important;
+  font-size:10px !important;
+  color:#777 !important;
+}
+
+#betScreen.modern-layout .style1-amount-input{
+  width:56px !important;
+  font-size:34px !important;
+  font-weight:300 !important;
+  color:#bcbcbc !important;
+}
+
+#betScreen.modern-layout .style1-amount-unit{
+  padding-bottom:4px !important;
+  font-size:11px !important;
+}
+
+#betScreen.modern-layout .style1-quick-grid{
+  gap:8px !important;
+}
+
+#betScreen.modern-layout .style1-quick-btn{
+  min-height:88px !important;
+  border-radius:16px !important;
+  padding:6px 2px !important;
+  box-shadow:none !important;
+  font-size:18px !important;
+  font-weight:800 !important;
+}
+
+#betScreen.modern-layout .style1-quick-btn span{
+  font-size:11px !important;
+  margin-top:2px !important;
+  font-weight:500 !important;
+}
+
+#betScreen.modern-layout .modern-total-banner.style1-total-banner{
+  min-height:96px !important;
+  grid-template-columns:56px minmax(0,1fr) auto !important;
+  gap:12px !important;
+  margin-bottom:12px !important;
+  padding:14px 16px !important;
+  border-radius:18px !important;
+  box-shadow:0 12px 24px rgba(172,0,12,.16) !important;
+}
+
+#betScreen.modern-layout .style1-total-icon{
+  width:56px !important;
+  height:56px !important;
+  border-radius:16px !important;
+  font-size:24px !important;
+}
+
+#betScreen.modern-layout .style1-total-copy strong{
+  font-size:17px !important;
+  font-weight:800 !important;
+  line-height:1.1 !important;
+}
+
+#betScreen.modern-layout .style1-total-copy small{
+  font-size:11px !important;
+  margin-top:4px !important;
+}
+
+#betScreen.modern-layout .style1-total-value #grandTotal{
+  font-size:40px !important;
+  font-weight:800 !important;
+}
+
+#betScreen.modern-layout .style1-total-value small{
+  font-size:13px !important;
+  padding-bottom:5px !important;
+}
+
+#betScreen.modern-layout .style1-action-row{
+  gap:10px !important;
+}
+
+#betScreen.modern-layout .style1-action-card{
+  min-height:68px !important;
+  grid-template-columns:34px minmax(0,1fr) auto !important;
+  gap:8px !important;
+  padding:10px 12px !important;
+  border-radius:16px !important;
+  box-shadow:none !important;
+}
+
+#betScreen.modern-layout .style1-action-icon{
+  width:34px !important;
+  height:34px !important;
+  font-size:16px !important;
+}
+
+#betScreen.modern-layout .style1-action-copy strong{
+  font-size:13px !important;
+  font-weight:800 !important;
+  line-height:1.12 !important;
+}
+
+#betScreen.modern-layout .style1-action-copy small{
+  display:none !important;
+}
+
+#betScreen.modern-layout .style1-action-arrow{
+  font-size:13px !important;
+}
+
+#betScreen.modern-layout .style1-action-card.confirm:disabled{
+  background:linear-gradient(180deg,#d8d8d8 0%,#cfcfcf 100%) !important;
+  border-color:#d8d8d8 !important;
+  color:#7d7d7d !important;
+  opacity:1 !important;
+  filter:none !important;
+}
+#betScreen.modern-layout .style1-action-card.confirm:disabled .style1-action-icon{
+  background:#ffffff !important;
+  color:#8e8e8e !important;
+}
+#betScreen.modern-layout .style1-action-card.confirm:disabled .style1-action-arrow{
+  color:#fff !important;
+}
+
+#betScreen.modern-layout .style1-action-card.clear{
+  border-color:#efd8dc !important;
+}
+
+@media (max-width: 768px){
+  #betScreen.modern-layout .bottom-quick-wrap.style1-amount-row{
+    grid-template-columns:1fr !important;
+  }
+}
+
+@media (max-width: 430px){
+  #betScreen.modern-layout .direct-bottom{
+    width:calc(100% - 12px) !important;
+    margin-top:10px !important;
+  }
+
+  #betScreen.modern-layout .style1-summary-panel{
+    padding:12px !important;
+    border-radius:20px !important;
+  }
+
+  #betScreen.modern-layout .style1-summary-head{
+    margin-bottom:12px !important;
+  }
+
+  #betScreen.modern-layout .bottom-quick-wrap.style1-amount-row{
+    gap:10px !important;
+    margin-bottom:12px !important;
+  }
+
+  #betScreen.modern-layout .style1-amount-card{
+    min-height:76px !important;
+    grid-template-columns:42px minmax(0,1fr) auto !important;
+    gap:8px !important;
+    padding:10px 10px !important;
+    border-radius:16px !important;
+  }
+
+  #betScreen.modern-layout .style1-amount-icon{
+    width:42px !important;
+    height:42px !important;
+    border-radius:12px !important;
+    font-size:18px !important;
+  }
+
+  #betScreen.modern-layout .style1-amount-copy strong{
+    font-size:13px !important;
+  }
+
+  #betScreen.modern-layout .style1-amount-copy small{
+    font-size:10px !important;
+  }
+
+  #betScreen.modern-layout .style1-amount-input{
+    width:50px !important;
+    font-size:32px !important;
+  }
+
+  #betScreen.modern-layout .style1-quick-grid{
+    gap:6px !important;
+    grid-template-columns:repeat(5,minmax(0,1fr)) !important;
+  }
+
+  #betScreen.modern-layout .style1-quick-btn{
+    min-height:58px !important;
+    border-radius:12px !important;
+    font-size:15px !important;
+    font-weight:800 !important;
+  }
+
+  #betScreen.modern-layout .style1-quick-btn span{
+    font-size:9px !important;
+  }
+
+  #betScreen.modern-layout .modern-total-banner.style1-total-banner{
+    min-height:84px !important;
+    grid-template-columns:48px minmax(0,1fr) auto !important;
+    gap:10px !important;
+    padding:12px !important;
+    border-radius:16px !important;
+    margin-bottom:10px !important;
+  }
+
+  #betScreen.modern-layout .style1-total-icon{
+    width:48px !important;
+    height:48px !important;
+    border-radius:14px !important;
+    font-size:20px !important;
+  }
+
+  #betScreen.modern-layout .style1-total-copy strong{
+    font-size:15px !important;
+  }
+
+  #betScreen.modern-layout .style1-total-copy small{
+    font-size:10px !important;
+  }
+
+  #betScreen.modern-layout .style1-total-value #grandTotal{
+    font-size:34px !important;
+  }
+
+  #betScreen.modern-layout .style1-total-value small{
+    font-size:11px !important;
+  }
+
+  #betScreen.modern-layout .style1-action-row{
+    grid-template-columns:1.25fr 1fr !important;
+    gap:8px !important;
+  }
+
+  #betScreen.modern-layout .style1-action-card{
+    min-height:62px !important;
+    grid-template-columns:32px minmax(0,1fr) 12px !important;
+    gap:7px !important;
+    padding:8px 10px !important;
+    border-radius:14px !important;
+  }
+
+  #betScreen.modern-layout .style1-action-icon{
+    width:32px !important;
+    height:32px !important;
+    font-size:15px !important;
+  }
+
+  #betScreen.modern-layout .style1-action-copy strong{
+    font-size:12px !important;
+    white-space:nowrap !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+  }
+
+  #betScreen.modern-layout .style1-action-arrow{
+    font-size:12px !important;
+  }
+}
+
 </style>
  </head>
  <body>
@@ -18623,13 +18942,13 @@ strong,b{
      <div class="style1-summary-panel">
       <div class="style1-summary-head">
        <span class="style1-summary-head-icon"><i class="fi fi-sr-wallet"></i></span>
-       <h3>ราคาเท่ากันทั้งหมด</h3>
+       <h3>ราคาทั้งหมด</h3>
       </div>
 
       <div class="bottom-quick-wrap style1-amount-row">
        <div class="style1-amount-card">
         <div class="style1-amount-icon"><i class="fi fi-sr-wallet"></i></div>
-        <div class="style1-amount-copy"><strong>จำนวนเงิน</strong><small>บาท</small></div>
+        <div class="style1-amount-copy"><strong>ใส่ราคาต่อบิล</strong><small>บาท</small></div>
         <div class="style1-amount-input-wrap">
          <input class="price-quick-input style1-amount-input" id="quickPriceInput" type="number" inputmode="decimal" min="0" step="1" placeholder="0">
          <span class="style1-amount-unit">บาท</span>
