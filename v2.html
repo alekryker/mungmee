@@ -18970,7 +18970,7 @@ strong,b{
 
 
 /* =====================================================
-   V106 — STYLE2 COMBINED PRICE THIN SAME HEADER
+   V107 — STYLE2 COMBINED PRICE THIN SAME HEADER
 ===================================================== */
 #homeScreen .home-app-version{
   display:inline-flex !important;
@@ -19535,7 +19535,7 @@ strong,b{
 
 
 /* =====================================================
-   V106 — STYLE 2 COMBINED PRICE + THIN + SAME HEADER
+   V107 — STYLE 2 COMBINED PRICE + THIN + SAME HEADER
 ===================================================== */
 
 /* mirror limit messages exists only for classic header */
@@ -19964,6 +19964,75 @@ strong,b{
   }
 }
 
+
+
+/* =====================================================
+   V107 — LOTTO SELECT CLEANUP / VIP / FLATICON FLAGS
+===================================================== */
+#lottoScreen .lotto-v58-back-row,
+#lottoScreen .lotto-v58-home-btn{
+  display:none !important;
+}
+
+/* หลังลบปุ่มกลับ ไม่เหลือช่องว่างบนหัว */
+#lottoScreen .lotto-v58-hero{
+  padding-top:18px !important;
+}
+
+#lottoScreen .lotto-v60-filter-label{
+  color:#fff !important;
+  font-weight:450 !important;
+}
+
+#lottoScreen .lotto-v107-flaticon-flag{
+  overflow:hidden !important;
+  padding:0 !important;
+  background:#fff !important;
+  border:1px solid rgba(120,0,12,.08) !important;
+}
+
+#lottoScreen .lotto-flaticon-flag-img{
+  width:100% !important;
+  height:100% !important;
+  display:block !important;
+  object-fit:cover !important;
+  border-radius:inherit !important;
+}
+
+#lottoScreen .lotto-flaticon-fallback{
+  width:100% !important;
+  height:100% !important;
+  display:grid !important;
+  place-items:center !important;
+  color:#b40014 !important;
+  font-size:20px !important;
+  background:#fff5f6 !important;
+}
+
+#lottoScreen .lotto-v107-flaticon-credit{
+  margin:10px 0 calc(92px + env(safe-area-inset-bottom)) !important;
+  text-align:center !important;
+  color:rgba(255,255,255,.58) !important;
+  font-size:8px !important;
+  font-weight:300 !important;
+  letter-spacing:.01em !important;
+}
+
+@media(max-width:480px){
+  #lottoScreen .lotto-v58-hero{
+    padding-top:12px !important;
+  }
+  #lottoScreen .lotto-v60-filter-label{
+    font-size:12px !important;
+    font-weight:400 !important;
+  }
+  #lottoScreen .lotto-v58-flag{
+    width:48px !important;
+    height:48px !important;
+    min-width:48px !important;
+  }
+}
+
 </style>
  </head>
  <body>
@@ -20171,7 +20240,7 @@ strong,b{
 
         <div class="home-v85-account-line">
          <i class="fi fi-sr-wallet"></i>
-         <span>บัญชีหลัก <small class="home-app-version">V106</small></span>
+         <span>บัญชีหลัก <small class="home-app-version">V107</small></span>
         </div>
        </section>
 
@@ -20275,13 +20344,6 @@ strong,b{
    
    <section class="screen" id="lottoScreen">
     <header class="lotto-v58-hero hero">
-     <div class="lotto-v58-back-row">
-      <button class="lotto-v58-home-btn" id="lottoHomeBtn" type="button">
-       <i class="fi fi-sr-arrow-left"></i>
-       <span>กลับหน้าหลัก</span>
-      </button>
-     </div>
-
      <div class="lotto-v58-head-row">
       <div class="lotto-v58-title-wrap">
        <h1>เลือกหวย</h1>
@@ -20327,6 +20389,7 @@ strong,b{
      <div class="empty lotto-v58-empty" id="lottoEmpty" style="display:none">
       ยังไม่มีหวยที่เปิดรับ • รอบใหม่เปิดเวลา 05:00 น.
      </div>
+     <div class="lotto-v107-flaticon-credit">Flag icons by Freepik · Flaticon</div>
     </div>
 
     <nav class="lotto-v58-bottom-nav" aria-label="เมนูด้านล่าง">
@@ -22079,18 +22142,59 @@ function getHomeLottoFlag(name) {
   return "🎯";
 }
 
+/* V107 — Flaticon Country Flags (Country Flags / Flags Rounded pack)
+   Freepik / Flaticon: https://www.flaticon.com/free-icons/country-flag */
+function stripLeadingFlagEmoji(name) {
+  return String(name || "")
+    .replace(/^[\u{1F1E6}-\u{1F1FF}]{2}\s*/u, "")
+    .trim();
+}
+
+function getFlaticonCountryFlagUrl(name) {
+  name = String(name || "");
+  var id = "";
+
+  if (/ฮานอย|เวียดนาม/i.test(name)) id = "197473";
+  else if (/อียิปต์/i.test(name)) id = "197558";
+  else if (/อังกฤษ/i.test(name)) id = "197374";
+  else if (/เยอรมัน/i.test(name)) id = "197571";
+  else if (/รัสเซีย/i.test(name)) id = "197408";
+  else if (/ลาว/i.test(name)) id = "197568";
+  else if (/นิเคอิ|ญี่ปุ่น/i.test(name)) id = "197604";
+  else if (/ฮั่งเส็ง|ฮ่องกง/i.test(name)) id = "197570";
+  else if (/จีน/i.test(name)) id = "197375";
+  else if (/หุ้นไทย|ไทยเย็น/i.test(name)) id = "197452";
+  else if (/เกาหลี/i.test(name)) id = "197582";
+  else if (/สิงคโปร์/i.test(name)) id = "197496";
+  else if (/ไต้หวัน/i.test(name)) id = "197557";
+  else if (/อินเดีย/i.test(name)) id = "197419";
+  else if (/ดาวโจนส์|ดาวโจน/i.test(name)) id = "197484";
+
+  if (!id) return "";
+  return "https://cdn-icons-png.flaticon.com/512/197/" + id + ".png";
+}
+
+function getFlaticonFlagHtml(name) {
+  var url = getFlaticonCountryFlagUrl(name);
+  if (!url) {
+    return '<span class="lotto-flaticon-fallback"><i class="fi fi-sr-flag"></i></span>';
+  }
+  return '<img class="lotto-flaticon-flag-img" src="' + url + '" alt="" loading="lazy" referrerpolicy="no-referrer">';
+}
+
+
 
 function getLottoCategoryKey(name) {
   name = String(name || "").replace(/\s+/g, " ").trim();
 
-  // VIP แยกเฉพาะตลาดที่กำหนดไว้ ส่วน VIP ของลาว/ฮานอย/หุ้นยังอยู่กลุ่มหลักของตัวเอง
-  if (/(อังกฤษ|เยอรมัน|รัสเซีย)\s*[- ]*VIP/i.test(name)) return "vip";
+  // V107: หวยทุกตัวที่ "ลงท้ายด้วย VIP" ต้องอยู่กลุ่ม VIP ก่อนเสมอ
+  // รองรับทั้ง "VIP", "-VIP" และเว้นวรรคก่อน VIP
+  if (/[-\s]*VIP\s*$/i.test(name)) return "vip";
 
-  // ลาว / ฮานอย แยกก่อนหุ้น เพื่อไม่ให้คำอื่นชนกลุ่ม
   if (/ลาว/i.test(name)) return "lao";
   if (/ฮานอย|เวียดนาม/i.test(name)) return "hanoi";
 
-  // ตลาดหุ้นทั้งหมด รวมอังกฤษ เยอรมัน รัสเซีย และอียิปต์
+  // ตลาดหุ้นทั่วไปที่ไม่ลงท้าย VIP
   if (/อียิปต์|นิเคอิ|ญี่ปุ่น|หุ้นไทย|ไทยเย็น|ฮั่งเส็ง|ฮ่องกง|จีน|เกาหลี|สิงคโปร์|ไต้หวัน|อินเดีย|ดาวโจนส์|ดาวโจน|อังกฤษ|เยอรมัน|รัสเซีย|หุ้น/i.test(name)) {
     return "stock";
   }
@@ -22153,7 +22257,7 @@ function renderLottos() {
 
     b.innerHTML =
       '<div class="lotto-v58-main">' +
-        '<div class="lotto-v58-flag">' + getHomeLottoFlag(lotto.name) + '</div>' +
+        '<div class="lotto-v58-flag lotto-v107-flaticon-flag">' + getFlaticonFlagHtml(lotto.name) + '</div>' +
         '<div class="lotto-v58-copy">' +
           '<div class="lotto-name"></div>' +
           '<div class="lotto-meta"></div>' +
@@ -22165,7 +22269,7 @@ function renderLottos() {
       '</div>' +
       '<div class="lotto-v58-arrow"><i class="fi fi-sr-angle-right"></i></div>';
 
-    b.querySelector(".lotto-name").textContent = lotto.name || "-";
+    b.querySelector(".lotto-name").textContent = stripLeadingFlagEmoji(lotto.name || "-");
     b.querySelector(".lotto-meta").textContent = "ปิดรับ " + getActualCloseText(lotto);
 
     var limitText = formatNumberLimitSummary(lotto.numberLimits);
@@ -27495,7 +27599,7 @@ function openAdminAnnouncementEditor(item) {
 
 <script>
 (function(){
-  function syncV106Style2(){
+  function syncV107Style2(){
     var betScreen=document.getElementById('betScreen');
     if(!betScreen) return;
     var directCard=betScreen.querySelector('.direct-bet-content .direct-card');
@@ -27520,22 +27624,22 @@ function openAdminAnnouncementEditor(item) {
   }
 
   document.addEventListener('DOMContentLoaded',function(){
-    syncV106Style2();
+    syncV107Style2();
     var betScreen=document.getElementById('betScreen');
     if(betScreen){
-      new MutationObserver(function(){syncV106Style2();}).observe(betScreen,{attributes:true,attributeFilter:['class']});
+      new MutationObserver(function(){syncV107Style2();}).observe(betScreen,{attributes:true,attributeFilter:['class']});
     }
     var limitSrc=document.getElementById('selectedLimitNote');
     var rateSrc=document.getElementById('selectedRateNote');
-    if(limitSrc) new MutationObserver(function(){syncV106Style2();}).observe(limitSrc,{childList:true,subtree:true,characterData:true});
-    if(rateSrc) new MutationObserver(function(){syncV106Style2();}).observe(rateSrc,{childList:true,subtree:true,characterData:true});
+    if(limitSrc) new MutationObserver(function(){syncV107Style2();}).observe(limitSrc,{childList:true,subtree:true,characterData:true});
+    if(rateSrc) new MutationObserver(function(){syncV107Style2();}).observe(rateSrc,{childList:true,subtree:true,characterData:true});
   });
 
   if(typeof window.renderDirectBet==='function'){
     var v106RenderDirectBet=window.renderDirectBet;
     window.renderDirectBet=function(){
       var result=v106RenderDirectBet.apply(this,arguments);
-      syncV106Style2();
+      syncV107Style2();
       return result;
     };
   }
