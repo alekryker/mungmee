@@ -20505,7 +20505,7 @@ strong,b{
 
         <div class="home-v85-account-line">
          <i class="fi fi-sr-wallet"></i>
-         <span>บัญชีหลัก <small class="home-app-version">V109</small></span>
+         <span>บัญชีหลัก <small class="home-app-version">V110</small></span>
         </div>
        </section>
 
@@ -27860,156 +27860,125 @@ function openAdminAnnouncementEditor(item) {
 </script>
 
 
- <!-- V86: STYLE 1 STATUS COLORS + PAYOUT 0 FOR CLOSED NUMBERS -->
-
+ <!-- V110: STYLE 2 FREEZE FIX — single stable layout sync, no MutationObserver loops -->
 <script>
 (function(){
-  function syncV107Style2(){
-    var betScreen=document.getElementById('betScreen');
-    if(!betScreen) return;
-    var directCard=betScreen.querySelector('.direct-bet-content .direct-card');
-    var directBottom=betScreen.querySelector('.direct-bottom');
-    var bottomNav=betScreen.querySelector('.bet-v61-bottom-nav');
-    var isClassic=betScreen.classList.contains('classic-layout');
+  var syncing = false;
+  var syncTimer = 0;
 
-    if(directBottom && directCard && bottomNav){
+  function syncStyle2LayoutStable(){
+    if(syncing) return;
+    syncing = true;
+    try{
+      var betScreen = document.getElementById('betScreen');
+      if(!betScreen) return;
+
+      var isClassic = betScreen.classList.contains('classic-layout');
+      var directContent = betScreen.querySelector('.direct-bet-content');
+      var directCard = directContent && directContent.querySelector('.direct-card');
+      var priceBar = betScreen.querySelector('.price-bottom-bar');
+      var pricePanel = priceBar && priceBar.querySelector('.bill-price-panel');
+      var directBottom = betScreen.querySelector('.direct-bottom');
+      var bottomNav = betScreen.querySelector('.bet-v61-bottom-nav');
+      var style1Panel = directBottom && directBottom.querySelector('.style1-summary-panel');
+      var quickWrap = betScreen.querySelector('.bottom-quick-wrap.style1-amount-row');
+      var totalBanner = style1Panel && style1Panel.querySelector('.style1-total-banner');
+
       if(isClassic){
-        if(directBottom.parentNode!==directCard) directCard.appendChild(directBottom);
+        // แบบแทงที่ 2: ใส่ราคา + ราคาทั้งหมดอยู่ต่อกันใต้รายละเอียดโพย
+        if(directCard && priceBar && priceBar.parentNode !== directCard){
+          directCard.appendChild(priceBar);
+        }
+        if(directCard && directBottom){
+          if(directBottom.parentNode !== directCard){
+            directCard.appendChild(directBottom);
+          }
+          if(priceBar && priceBar.nextElementSibling !== directBottom){
+            priceBar.insertAdjacentElement('afterend', directBottom);
+          }
+        }
+        // ปุ่มราคาด่วนอยู่ในกล่องใส่ราคาแบบแทงที่ 2
+        if(pricePanel && quickWrap && quickWrap.parentNode !== pricePanel){
+          pricePanel.appendChild(quickWrap);
+        }
       }else{
-        if(directBottom.parentNode!==betScreen) betScreen.insertBefore(directBottom,bottomNav);
+        // แบบแทงที่ 1: คืน DOM กลับตำแหน่งมาตรฐาน
+        if(priceBar && priceBar.parentNode !== betScreen){
+          if(directBottom && directBottom.parentNode === betScreen){
+            betScreen.insertBefore(priceBar, directBottom);
+          }else if(bottomNav && bottomNav.parentNode === betScreen){
+            betScreen.insertBefore(priceBar, bottomNav);
+          }else{
+            betScreen.appendChild(priceBar);
+          }
+        }
+        if(directBottom && directBottom.parentNode !== betScreen){
+          if(bottomNav && bottomNav.parentNode === betScreen){
+            betScreen.insertBefore(directBottom, bottomNav);
+          }else{
+            betScreen.appendChild(directBottom);
+          }
+        }
+        if(style1Panel && quickWrap && quickWrap.parentNode !== style1Panel){
+          if(totalBanner && totalBanner.parentNode === style1Panel){
+            style1Panel.insertBefore(quickWrap, totalBanner);
+          }else{
+            style1Panel.appendChild(quickWrap);
+          }
+        }
       }
-    }
 
-    var limitSrc=document.getElementById('selectedLimitNote');
-    var rateSrc=document.getElementById('selectedRateNote');
-    var limitMirror=document.getElementById('style2LimitMirror');
-    var rateMirror=document.getElementById('style2RateMirror');
-    if(limitMirror && limitSrc) limitMirror.innerHTML=limitSrc.innerHTML || '';
-    if(rateMirror && rateSrc) rateMirror.textContent=(rateSrc.textContent || '').trim();
+      // mirror เลขอั้น / จ่ายครึ่งสำหรับหัวแบบแทงที่ 2
+      var limitSrc = document.getElementById('selectedLimitNote');
+      var rateSrc = document.getElementById('selectedRateNote');
+      var limitMirror = document.getElementById('style2LimitMirror');
+      var rateMirror = document.getElementById('style2RateMirror');
+      if(limitMirror && limitSrc && limitMirror.innerHTML !== limitSrc.innerHTML){
+        limitMirror.innerHTML = limitSrc.innerHTML || '';
+      }
+      var rateText = rateSrc ? (rateSrc.textContent || '').trim() : '';
+      if(rateMirror && rateMirror.textContent !== rateText){
+        rateMirror.textContent = rateText;
+      }
+    }finally{
+      syncing = false;
+    }
   }
 
-  document.addEventListener('DOMContentLoaded',function(){
-    syncV107Style2();
-    var betScreen=document.getElementById('betScreen');
-    if(betScreen){
-      new MutationObserver(function(){syncV107Style2();}).observe(betScreen,{attributes:true,attributeFilter:['class']});
-    }
-    var limitSrc=document.getElementById('selectedLimitNote');
-    var rateSrc=document.getElementById('selectedRateNote');
-    if(limitSrc) new MutationObserver(function(){syncV107Style2();}).observe(limitSrc,{childList:true,subtree:true,characterData:true});
-    if(rateSrc) new MutationObserver(function(){syncV107Style2();}).observe(rateSrc,{childList:true,subtree:true,characterData:true});
-  });
-
-  if(typeof window.renderDirectBet==='function'){
-    var v106RenderDirectBet=window.renderDirectBet;
-    window.renderDirectBet=function(){
-      var result=v106RenderDirectBet.apply(this,arguments);
-      syncV107Style2();
-      return result;
-    };
-  }
-})();
-</script>
-
-
-
-<script>
-(function(){
-  function syncV108Style2(){
-    var betScreen=document.getElementById('betScreen');
-    if(!betScreen) return;
-    var isClassic=betScreen.classList.contains('classic-layout');
-    var directContent=betScreen.querySelector('.direct-bet-content');
-    var directCard=betScreen.querySelector('.direct-bet-content .direct-card');
-    var directBottom=betScreen.querySelector('.direct-bottom');
-    var bottomNav=betScreen.querySelector('.bet-v61-bottom-nav');
-    var pricePanel=betScreen.querySelector('.price-bottom-bar .bill-price-panel');
-    var quickWrap=betScreen.querySelector('.direct-bottom .bottom-quick-wrap.style1-amount-row');
-    if(isClassic){
-      if(directContent && directBottom && directBottom.parentNode!==betScreen){
-        betScreen.insertBefore(directBottom,bottomNav || null);
-      }
-      if(pricePanel && quickWrap && quickWrap.parentNode!==pricePanel){
-        pricePanel.appendChild(quickWrap);
-      }
-    }
-  }
-  document.addEventListener('DOMContentLoaded',function(){
-    syncV108Style2();
-    var betScreen=document.getElementById('betScreen');
-    if(betScreen){
-      new MutationObserver(syncV108Style2).observe(betScreen,{attributes:true,childList:true,subtree:true});
-    }
-  });
-  if(typeof window.renderDirectBet==='function'){
-    var old=window.renderDirectBet;
-    window.renderDirectBet=function(){
-      var r=old.apply(this,arguments);
-      syncV108Style2();
-      return r;
-    };
-  }
-})();
-</script>
-
-
-
-<script>
-(function(){
-  function syncV109Style2(){
-    var betScreen=document.getElementById('betScreen');
-    if(!betScreen || !betScreen.classList.contains('classic-layout')) return;
-
-    var directContent=betScreen.querySelector('.direct-bet-content');
-    var directCard=directContent && directContent.querySelector('.direct-card');
-    var priceBar=directCard && directCard.querySelector('.price-bottom-bar');
-    var directBottom=betScreen.querySelector('.direct-bottom');
-    var bottomNav=betScreen.querySelector('.bet-v61-bottom-nav');
-    if(directCard && directBottom){
-      if(directBottom.parentNode !== directCard){
-        directCard.appendChild(directBottom);
-      }
-      if(priceBar && priceBar.nextElementSibling !== directBottom){
-        priceBar.insertAdjacentElement('afterend', directBottom);
-      }
-    }
-
-    var pricePanel=betScreen.querySelector('.price-bottom-bar .bill-price-panel');
-    var quickWrap=betScreen.querySelector('.bottom-quick-wrap.style1-amount-row');
-    if(pricePanel && quickWrap && quickWrap.parentNode !== pricePanel){
-      pricePanel.appendChild(quickWrap);
-    }
-
-    // ensure summary block visible in combined section
-    var style1Panel=directBottom && directBottom.querySelector('.style1-summary-panel');
-    if(style1Panel){
-      style1Panel.style.display='block';
-    }
-
-    // keep bottom nav after direct content if scripts moved it
-    if(bottomNav && bottomNav.parentNode !== betScreen){
-      betScreen.appendChild(bottomNav);
-    }
+  function scheduleStyle2Sync(){
+    clearTimeout(syncTimer);
+    syncTimer = setTimeout(syncStyle2LayoutStable, 0);
   }
 
   document.addEventListener('DOMContentLoaded', function(){
-    syncV109Style2();
-    var betScreen=document.getElementById('betScreen');
-    if(betScreen){
-      new MutationObserver(function(){ syncV109Style2(); }).observe(betScreen,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
-    }
+    scheduleStyle2Sync();
   });
 
-  if(typeof window.renderDirectBet==='function'){
-    var oldRenderDirectBet=window.renderDirectBet;
-    window.renderDirectBet=function(){
-      var r=oldRenderDirectBet.apply(this,arguments);
-      syncV109Style2();
-      return r;
+  // จัดตำแหน่งหลังผู้ใช้กดเปลี่ยนแบบแทง โดยไม่เฝ้า DOM แบบวนลูป
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest('[data-bet-layout]');
+    if(btn) scheduleStyle2Sync();
+  });
+
+  if(typeof setBetLayout === 'function'){
+    var previousSetBetLayout = setBetLayout;
+    setBetLayout = function(layout){
+      var result = previousSetBetLayout.apply(this, arguments);
+      scheduleStyle2Sync();
+      return result;
     };
   }
 
-  window.syncV109Style2=syncV109Style2;
+  if(typeof renderDirectBet === 'function'){
+    var previousRenderDirectBet = renderDirectBet;
+    renderDirectBet = function(){
+      var result = previousRenderDirectBet.apply(this, arguments);
+      scheduleStyle2Sync();
+      return result;
+    };
+  }
+
+  window.syncStyle2LayoutStable = syncStyle2LayoutStable;
 })();
 </script>
 
