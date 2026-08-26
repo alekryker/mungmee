@@ -15797,6 +15797,54 @@ strong,b{
   #betScreen.modern-layout .direct-clear-all{min-height:43px!important;font-size:13px!important}
 }
 
+
+
+/* ==========================================================
+   V84 — STYLE 1 BOTTOM PANEL AFTER LAST SLIP
+   - กล่อง ราคาเท่ากันทั้งหมด / รวมยอดแทง / ปุ่มยืนยัน
+     อยู่ใน document flow ต่อจากเลขโพยตัวสุดท้าย
+   - ไม่ sticky / ไม่ fixed / ไม่ลอยตามหน้าจอ
+========================================================== */
+#betScreen.modern-layout .direct-bottom{
+  position:static !important;
+  left:auto !important;
+  right:auto !important;
+  top:auto !important;
+  bottom:auto !important;
+  transform:none !important;
+  z-index:auto !important;
+
+  width:calc(100% - 10px) !important;
+  max-width:610px !important;
+  margin:10px auto calc(92px + env(safe-area-inset-bottom)) !important;
+
+  /* คงหน้าตาเดิม แต่ไม่ลอย */
+  padding:9px !important;
+  border-radius:17px !important;
+}
+
+/* กัน CSS รุ่นเก่าที่เคยทำ action bar เป็น sticky/fixed */
+#betScreen.modern-layout .direct-bottom,
+#betScreen.modern-layout .direct-action-row,
+#betScreen.modern-layout .bottom-quick-wrap,
+#betScreen.modern-layout .modern-total-banner{
+  contain:none !important;
+}
+
+@media (max-width:430px){
+  #betScreen.modern-layout .direct-bottom{
+    position:static !important;
+    left:auto !important;
+    right:auto !important;
+    top:auto !important;
+    bottom:auto !important;
+    transform:none !important;
+    z-index:auto !important;
+    width:calc(100% - 8px) !important;
+    margin:8px auto calc(88px + env(safe-area-inset-bottom)) !important;
+  }
+}
+
 </style>
  </head>
  <body>
