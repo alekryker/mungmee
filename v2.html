@@ -20958,6 +20958,38 @@ strong,b{
   #betScreen.classic-layout .direct-bet-content{ margin-top:10px !important; }
 }
 
+
+
+/* =====================================================
+   V120 — LOTTO SELECT: MALAYSIA + NO FLAG CREDIT
+===================================================== */
+#lottoScreen .lotto-v107-flaticon-credit{display:none !important;}
+#lottoScreen .lotto-v107-flaticon-flag{
+  display:grid !important;
+  place-items:center !important;
+  overflow:hidden !important;
+  background:#fff !important;
+}
+#lottoScreen .lotto-native-flag{
+  display:grid !important;
+  place-items:center !important;
+  width:100% !important;
+  height:100% !important;
+  font-size:28px !important;
+  line-height:1 !important;
+}
+#betScreen .modern-lotto-select-flag .lotto-native-flag{
+  display:grid !important;
+  place-items:center !important;
+  width:100% !important;
+  height:100% !important;
+  font-size:24px !important;
+  line-height:1 !important;
+}
+@media(max-width:480px){
+  #lottoScreen .lotto-native-flag{font-size:24px !important;}
+}
+
 </style>
  <style id="style2-isolated-v114">
 
@@ -22113,6 +22145,442 @@ strong,b{
 }
 </style>
 
+
+<style id="v118-confirm-simple-style">
+/* V118 — Confirmation popup + manual price hint */
+#betScreen.modern-layout .style1-amount-copy small{
+  color:#8a7577 !important;
+  font-size:10px !important;
+  font-weight:350 !important;
+  line-height:1.25 !important;
+}
+#betScreen.modern-layout #quickPriceInput{
+  cursor:text !important;
+  caret-color:#b60016 !important;
+}
+#betScreen.modern-layout #quickPriceInput:focus{
+  color:#b60016 !important;
+  outline:2px solid rgba(193,0,20,.14) !important;
+  outline-offset:4px !important;
+  border-radius:8px !important;
+}
+#betScreen.modern-layout #quickPriceInput::placeholder{
+  font-size:.52em !important;
+  font-weight:350 !important;
+  color:#ba9ea2 !important;
+}
+#betScreen.modern-layout .style1-action-card.confirm .style1-action-icon{
+  font-size:18px !important;
+}
+
+#betConfirmLayer{
+  background:rgba(34,12,14,.42) !important;
+  backdrop-filter:blur(7px) !important;
+  -webkit-backdrop-filter:blur(7px) !important;
+}
+#betConfirmCard{
+  width:min(100%,520px) !important;
+  max-height:calc(100dvh - 34px) !important;
+  border-radius:22px !important;
+  border:1px solid #f0d9dd !important;
+  background:#fff !important;
+  box-shadow:0 22px 60px rgba(66,0,8,.28) !important;
+}
+#betConfirmHead{
+  padding:16px 16px 8px !important;
+}
+#betConfirmIcon{
+  width:44px !important;
+  height:44px !important;
+  margin:0 auto 7px !important;
+  border:0 !important;
+  background:#fff0f2 !important;
+  color:#c40018 !important;
+  font-size:20px !important;
+  border-radius:14px !important;
+  display:grid !important;
+  place-items:center !important;
+}
+#betConfirmIcon i{line-height:1 !important;}
+#betConfirmTitle{
+  font-family:'Kanit',sans-serif !important;
+  font-size:20px !important;
+  font-weight:500 !important;
+  color:#2b1719 !important;
+}
+#betConfirmBody{
+  padding:4px 14px 10px !important;
+  font-family:'Kanit',sans-serif !important;
+}
+.bet-confirm-summary{
+  padding:12px !important;
+  border-radius:16px !important;
+  background:#fff6f7 !important;
+  border:1px solid #f5e1e4 !important;
+}
+.bet-confirm-lotto{
+  font-size:13px !important;
+  font-weight:350 !important;
+  color:#6d5f61 !important;
+  white-space:nowrap !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+}
+.bet-confirm-total-row{
+  display:flex !important;
+  align-items:flex-end !important;
+  justify-content:space-between !important;
+  gap:10px !important;
+  margin-top:5px !important;
+}
+.bet-confirm-total-row span{
+  font-size:12px !important;
+  font-weight:350 !important;
+  color:#7b6a6d !important;
+}
+.bet-confirm-total-row strong{
+  color:#b90015 !important;
+  font-size:22px !important;
+  font-weight:550 !important;
+  line-height:1 !important;
+  white-space:nowrap !important;
+}
+.bet-confirm-meta{
+  margin-top:5px !important;
+  font-size:11px !important;
+  font-weight:300 !important;
+  color:#8b7b7d !important;
+}
+.bet-confirm-bills{
+  display:grid !important;
+  gap:8px !important;
+  margin-top:8px !important;
+}
+.bet-confirm-bill{
+  padding:10px 11px !important;
+  border:1px solid #f0dfe2 !important;
+  border-radius:14px !important;
+  background:#fff !important;
+}
+.bet-confirm-bill-head{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  gap:10px !important;
+}
+.bet-confirm-bill-head>div{
+  min-width:0 !important;
+  display:flex !important;
+  align-items:center !important;
+  gap:6px !important;
+}
+.bet-confirm-bill-head span{
+  color:#99888a !important;
+  font-size:10px !important;
+  font-weight:300 !important;
+}
+.bet-confirm-bill-head b{
+  color:#332426 !important;
+  font-size:13px !important;
+  font-weight:500 !important;
+}
+.bet-confirm-bill-head strong{
+  color:#b90015 !important;
+  font-size:14px !important;
+  font-weight:500 !important;
+  white-space:nowrap !important;
+}
+.bet-confirm-numbers{
+  margin-top:7px !important;
+  color:#282023 !important;
+  font-size:12px !important;
+  font-weight:350 !important;
+  line-height:1.45 !important;
+  word-break:break-word !important;
+}
+.bet-confirm-price{
+  margin-top:5px !important;
+  color:#817477 !important;
+  font-size:10px !important;
+  font-weight:300 !important;
+}
+.bet-confirm-notice{
+  margin-top:7px !important;
+  padding:7px 8px !important;
+  border-radius:9px !important;
+  font-size:10px !important;
+  font-weight:300 !important;
+  line-height:1.35 !important;
+}
+.bet-confirm-notice b{font-weight:500 !important;}
+.bet-confirm-notice.closed{
+  background:#fff1f2 !important;
+  border:1px solid #fecdd3 !important;
+  color:#9f1239 !important;
+}
+.bet-confirm-notice.half{
+  background:#fffbeb !important;
+  border:1px solid #fde68a !important;
+  color:#92400e !important;
+}
+#betConfirmActions{
+  grid-template-columns:.85fr 1.25fr !important;
+  gap:8px !important;
+  padding:10px 14px calc(12px + env(safe-area-inset-bottom)) !important;
+  background:#fff !important;
+  border-top:1px solid #f2e4e6 !important;
+}
+#betConfirmActions button{
+  min-height:48px !important;
+  border-radius:14px !important;
+  font-family:'Kanit',sans-serif !important;
+  font-size:14px !important;
+  font-weight:450 !important;
+}
+#betConfirmEdit{
+  border:1px solid #ecd9dc !important;
+  background:#fff !important;
+  color:#7a4b50 !important;
+}
+#betConfirmSend{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:7px !important;
+  background:linear-gradient(135deg,#e50020,#a90012) !important;
+  color:#fff !important;
+  box-shadow:0 8px 16px rgba(150,0,18,.15) !important;
+}
+#betConfirmSend i{font-size:15px !important;}
+#betConfirmLayer.success #betConfirmIcon{
+  background:#ecfdf3 !important;
+  color:#15803d !important;
+}
+@media(max-width:480px){
+  #betConfirmLayer{padding:10px !important;}
+  #betConfirmCard{border-radius:20px !important;}
+  #betConfirmHead{padding:13px 12px 7px !important;}
+  #betConfirmTitle{font-size:18px !important;}
+  #betConfirmBody{padding:3px 10px 8px !important;}
+  .bet-confirm-summary{padding:10px !important;}
+  .bet-confirm-total-row strong{font-size:20px !important;}
+  .bet-confirm-bill{padding:9px !important;}
+  #betConfirmActions{padding:9px 10px calc(10px + env(safe-area-inset-bottom)) !important;}
+  #betConfirmActions button{min-height:46px !important;font-size:13px !important;}
+}
+</style>
+
+
+
+<style id="v119-final-layout-fixes">
+/* =====================================================
+   V119 — STYLE2 price/total no overlap + stronger font
+          STYLE1 responsive countdown (no horizontal overflow)
+===================================================== */
+
+/* ---------- แบบแทงที่ 2 ---------- */
+#betScreen.style2-isolated{
+  --s2-font-normal:400;
+  --s2-font-medium:500;
+}
+
+/* เพิ่มน้ำหนักฟอนต์ขึ้นเล็กน้อย แต่ไม่กลับไปหนาเกิน */
+#betScreen.style2-isolated,
+#betScreen.style2-isolated button,
+#betScreen.style2-isolated input,
+#betScreen.style2-isolated textarea,
+#betScreen.style2-isolated select{
+  font-weight:var(--s2-font-normal) !important;
+}
+#betScreen.style2-isolated .direct-title,
+#betScreen.style2-isolated .selected-label,
+#betScreen.style2-isolated .price-section-title,
+#betScreen.style2-isolated .number-count-pill,
+#betScreen.style2-isolated .direct-price-label,
+#betScreen.style2-isolated .direct-add-bill,
+#betScreen.style2-isolated .direct-submit .style1-action-copy strong,
+#betScreen.style2-isolated .direct-clear-all .style1-action-copy strong,
+#betScreen.style2-isolated .direct-back-bottom{
+  font-weight:var(--s2-font-medium) !important;
+}
+#betScreen.style2-isolated .direct-price-input,
+#betScreen.style2-isolated .direct-grand strong{
+  font-weight:500 !important;
+}
+
+/* สำคัญ: ทุกส่วนอยู่ใน normal flow ห้ามลอย/ห้ามซ้อน */
+#betScreen.style2-isolated .direct-bet-content,
+#betScreen.style2-isolated .direct-card,
+#betScreen.style2-isolated .price-bottom-bar,
+#betScreen.style2-isolated .direct-bottom,
+#betScreen.style2-isolated .style1-summary-panel{
+  position:static !important;
+  inset:auto !important;
+  top:auto !important;
+  right:auto !important;
+  bottom:auto !important;
+  left:auto !important;
+  transform:none !important;
+  float:none !important;
+  clear:both !important;
+  height:auto !important;
+  max-height:none !important;
+  overflow:visible !important;
+}
+
+#betScreen.style2-isolated .direct-card{
+  display:flex !important;
+  flex-direction:column !important;
+  gap:0 !important;
+  min-height:0 !important;
+  padding-bottom:12px !important;
+}
+
+/* ใส่ราคาอยู่หลังรายละเอียดโพย โดยไม่คร่อมยอดรวม */
+#betScreen.style2-isolated .direct-card > .price-bottom-bar{
+  order:90 !important;
+  width:100% !important;
+  margin:12px 0 0 !important;
+  padding:0 !important;
+  z-index:auto !important;
+}
+#betScreen.style2-isolated .price-bottom-bar .bill-price-panel{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(100px,.82fr) !important;
+  grid-template-areas:
+    "head head head"
+    "sub sub sub"
+    "prices prices add" !important;
+  gap:8px !important;
+  padding:10px !important;
+  border-radius:14px !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+}
+#betScreen.style2-isolated .price-bottom-bar .price-top-head{grid-area:head !important;}
+#betScreen.style2-isolated .price-bottom-bar .price-section-subnote{grid-area:sub !important;}
+#betScreen.style2-isolated .price-bottom-bar .direct-price-grid{
+  grid-area:prices !important;
+  min-width:0 !important;
+}
+#betScreen.style2-isolated .price-bottom-bar .direct-add-bill,
+#betScreen.style2-isolated .price-bottom-bar .visually-hidden-addbill{
+  grid-area:add !important;
+  min-width:0 !important;
+}
+
+/* ราคาทั้งหมดต้องเป็นบล็อกถัดไปจริง ๆ */
+#betScreen.style2-isolated .direct-card > .direct-bottom{
+  order:100 !important;
+  width:100% !important;
+  margin:12px 0 0 !important;
+  padding:0 !important;
+  z-index:auto !important;
+}
+#betScreen.style2-isolated .direct-card > .direct-bottom .style1-summary-panel{
+  display:block !important;
+  width:100% !important;
+  margin:0 !important;
+  padding:10px !important;
+  box-sizing:border-box !important;
+  border-radius:14px !important;
+  background:#fff !important;
+}
+#betScreen.style2-isolated .direct-grand{
+  position:static !important;
+  width:100% !important;
+  min-height:46px !important;
+  margin:0 !important;
+  padding:9px 11px !important;
+  box-sizing:border-box !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  gap:10px !important;
+}
+#betScreen.style2-isolated .direct-action-row{
+  position:static !important;
+  width:100% !important;
+  margin:8px 0 0 !important;
+  padding:0 !important;
+  box-sizing:border-box !important;
+  display:grid !important;
+  grid-template-columns:.8fr 1fr 1.05fr !important;
+  gap:7px !important;
+}
+
+/* ---------- แบบแทงที่ 1: countdown ไม่ล้นเมื่อซูม ---------- */
+#betScreen.modern-layout .modern-lotto-select{
+  width:100% !important;
+  max-width:100% !important;
+  min-width:0 !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+  grid-template-columns:minmax(36px,44px) minmax(0,1fr) minmax(92px,132px) !important;
+}
+#betScreen.modern-layout .modern-lotto-select-info{
+  min-width:0 !important;
+  max-width:100% !important;
+  overflow:hidden !important;
+}
+#betScreen.modern-layout .modern-lotto-select-info strong,
+#betScreen.modern-layout .modern-lotto-select-info small{
+  max-width:100% !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+  white-space:nowrap !important;
+}
+#betScreen.modern-layout .modern-lotto-timer{
+  width:100% !important;
+  min-width:0 !important;
+  max-width:132px !important;
+  justify-self:end !important;
+  overflow:hidden !important;
+  box-sizing:border-box !important;
+}
+#betScreen.modern-layout .modern-lotto-timer b{
+  width:100% !important;
+  min-width:0 !important;
+  max-width:100% !important;
+  padding-left:6px !important;
+  padding-right:6px !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+  text-overflow:clip !important;
+  white-space:nowrap !important;
+  font-size:clamp(10px,2.8vw,15px) !important;
+  justify-content:center !important;
+}
+
+@media(max-width:480px){
+  #betScreen.style2-isolated .price-bottom-bar .bill-price-panel{
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(92px,.78fr) !important;
+    gap:7px !important;
+  }
+  #betScreen.style2-isolated .direct-title{font-size:18px !important;}
+  #betScreen.style2-isolated .selected-label{font-size:15px !important;}
+  #betScreen.style2-isolated .price-section-title{font-size:15px !important;}
+  #betScreen.style2-isolated .direct-price-label{font-size:11px !important;}
+  #betScreen.style2-isolated .direct-price-input{font-size:22px !important;}
+  #betScreen.style2-isolated .direct-add-bill,
+  #betScreen.style2-isolated .visually-hidden-addbill{font-size:14px !important;}
+
+  #betScreen.modern-layout .modern-lotto-select{
+    grid-template-columns:minmax(34px,40px) minmax(0,1fr) minmax(88px,112px) !important;
+  }
+  #betScreen.modern-layout .modern-lotto-timer{max-width:112px !important;}
+}
+
+@media(max-width:360px){
+  #betScreen.modern-layout .modern-lotto-select{
+    grid-template-columns:34px minmax(0,1fr) 88px !important;
+    gap:5px !important;
+  }
+  #betScreen.modern-layout .modern-lotto-timer{max-width:88px !important;}
+  #betScreen.modern-layout .modern-lotto-timer b{font-size:10px !important;padding:0 3px !important;}
+}
+</style>
+
 </head>
  <body>
 
@@ -22319,7 +22787,7 @@ strong,b{
 
         <div class="home-v85-account-line">
          <i class="fi fi-sr-wallet"></i>
-         <span>บัญชีหลัก <small class="home-app-version">V117</small></span>
+         <span>บัญชีหลัก <small class="home-app-version">V120</small></span>
         </div>
        </section>
 
@@ -22468,7 +22936,6 @@ strong,b{
      <div class="empty lotto-v58-empty" id="lottoEmpty" style="display:none">
       ยังไม่มีหวยที่เปิดรับ • รอบใหม่เปิดเวลา 05:00 น.
      </div>
-     <div class="lotto-v107-flaticon-credit">Flag icons by Freepik · Flaticon</div>
     </div>
 
     <nav class="lotto-v58-bottom-nav" aria-label="เมนูด้านล่าง">
@@ -22682,9 +23149,9 @@ strong,b{
       <div class="bottom-quick-wrap style1-amount-row">
        <div class="style1-amount-card">
         <div class="style1-amount-icon"><i class="fi fi-sr-wallet"></i></div>
-        <div class="style1-amount-copy"><strong>ใส่ราคาต่อบิล</strong><small>บาท</small></div>
+        <div class="style1-amount-copy"><strong>ใส่ราคาต่อบิล</strong><small>แตะตัวเลขเพื่อพิมพ์ราคาเอง</small></div>
         <div class="style1-amount-input-wrap">
-         <input class="price-quick-input style1-amount-input" id="quickPriceInput" type="number" inputmode="decimal" min="0" step="1" placeholder="0">
+         <input class="price-quick-input style1-amount-input" id="quickPriceInput" type="number" inputmode="decimal" min="0" step="1" placeholder="พิมพ์" aria-label="แตะเพื่อพิมพ์ราคาต่อบิล">
          <span class="style1-amount-unit">บาท</span>
         </div>
        </div>
@@ -22711,7 +23178,7 @@ strong,b{
       <div class="direct-action-row style1-action-row">
        <button class="direct-back-bottom" id="bottomBackBtn" type="button">กลับ</button>
        <button class="direct-submit style1-action-card confirm" disabled id="submitBtn" type="button">
-        <span class="style1-action-icon"><i class="fi fi-sr-document"></i></span>
+        <span class="style1-action-icon"><i class="fi fi-sr-badge-check"></i></span>
         <span class="style1-action-copy"><strong>ยืนยันโพย</strong><small>ตรวจสอบและยืนยันการส่งโพย</small></span>
         <span class="style1-action-arrow"><i class="fi fi-sr-angle-right"></i></span>
        </button>
@@ -24218,47 +24685,46 @@ function getHomeLottoFlag(name) {
   if (/ไต้หวัน/i.test(name)) return "🇹🇼";
   if (/อินเดีย/i.test(name)) return "🇮🇳";
   if (/ดาวโจนส์|ดาวโจน/i.test(name)) return "🇺🇸";
+  if (/มาเลย์|มาเลเซีย|malaysia/i.test(name)) return "🇲🇾";
   return "🎯";
 }
 
-/* V107 — Flaticon Country Flags (Country Flags / Flags Rounded pack)
-   Freepik / Flaticon: https://www.flaticon.com/free-icons/country-flag */
+/* V120 — Country flags use native emoji so no Flaticon attribution footer is required. */
 function stripLeadingFlagEmoji(name) {
   return String(name || "")
     .replace(/^[\u{1F1E6}-\u{1F1FF}]{2}\s*/u, "")
     .trim();
 }
 
-function getFlaticonCountryFlagUrl(name) {
+function normalizeLottoDisplayName(name) {
+  var raw = stripLeadingFlagEmoji(name || "");
+  if (/^มาเลย์$/i.test(raw)) return "มาเลเซีย";
+  return raw;
+}
+
+function getCountryFlagEmoji(name) {
   name = String(name || "");
-  var id = "";
-
-  if (/ฮานอย|เวียดนาม/i.test(name)) id = "197473";
-  else if (/อียิปต์/i.test(name)) id = "197558";
-  else if (/อังกฤษ/i.test(name)) id = "197374";
-  else if (/เยอรมัน/i.test(name)) id = "197571";
-  else if (/รัสเซีย/i.test(name)) id = "197408";
-  else if (/ลาว/i.test(name)) id = "197568";
-  else if (/นิเคอิ|ญี่ปุ่น/i.test(name)) id = "197604";
-  else if (/ฮั่งเส็ง|ฮ่องกง/i.test(name)) id = "197570";
-  else if (/จีน/i.test(name)) id = "197375";
-  else if (/หุ้นไทย|ไทยเย็น/i.test(name)) id = "197452";
-  else if (/เกาหลี/i.test(name)) id = "197582";
-  else if (/สิงคโปร์/i.test(name)) id = "197496";
-  else if (/ไต้หวัน/i.test(name)) id = "197557";
-  else if (/อินเดีย/i.test(name)) id = "197419";
-  else if (/ดาวโจนส์|ดาวโจน/i.test(name)) id = "197484";
-
-  if (!id) return "";
-  return "https://cdn-icons-png.flaticon.com/512/197/" + id + ".png";
+  if (/ฮานอย|เวียดนาม/i.test(name)) return "🇻🇳";
+  if (/อียิปต์/i.test(name)) return "🇪🇬";
+  if (/อังกฤษ/i.test(name)) return "🇬🇧";
+  if (/เยอรมัน/i.test(name)) return "🇩🇪";
+  if (/รัสเซีย/i.test(name)) return "🇷🇺";
+  if (/ลาว/i.test(name)) return "🇱🇦";
+  if (/นิเคอิ|ญี่ปุ่น/i.test(name)) return "🇯🇵";
+  if (/ฮั่งเส็ง|ฮ่องกง/i.test(name)) return "🇭🇰";
+  if (/จีน/i.test(name)) return "🇨🇳";
+  if (/หุ้นไทย|ไทยเย็น/i.test(name)) return "🇹🇭";
+  if (/เกาหลี/i.test(name)) return "🇰🇷";
+  if (/สิงคโปร์/i.test(name)) return "🇸🇬";
+  if (/ไต้หวัน/i.test(name)) return "🇹🇼";
+  if (/อินเดีย/i.test(name)) return "🇮🇳";
+  if (/ดาวโจนส์|ดาวโจน/i.test(name)) return "🇺🇸";
+  if (/มาเลย์|มาเลเซีย|malaysia/i.test(name)) return "🇲🇾";
+  return "🏳️";
 }
 
 function getFlaticonFlagHtml(name) {
-  var url = getFlaticonCountryFlagUrl(name);
-  if (!url) {
-    return '<span class="lotto-flaticon-fallback"><i class="fi fi-sr-flag"></i></span>';
-  }
-  return '<img class="lotto-flaticon-flag-img" src="' + url + '" alt="" loading="lazy" referrerpolicy="no-referrer">';
+  return '<span class="lotto-native-flag" aria-hidden="true">' + getCountryFlagEmoji(name) + '</span>';
 }
 
 
@@ -24274,7 +24740,7 @@ function getLottoCategoryKey(name) {
   if (/ฮานอย|เวียดนาม/i.test(name)) return "hanoi";
 
   // ตลาดหุ้นทั่วไปที่ไม่ลงท้าย VIP
-  if (/อียิปต์|นิเคอิ|ญี่ปุ่น|หุ้นไทย|ไทยเย็น|ฮั่งเส็ง|ฮ่องกง|จีน|เกาหลี|สิงคโปร์|ไต้หวัน|อินเดีย|ดาวโจนส์|ดาวโจน|อังกฤษ|เยอรมัน|รัสเซีย|หุ้น/i.test(name)) {
+  if (/อียิปต์|นิเคอิ|ญี่ปุ่น|หุ้นไทย|ไทยเย็น|ฮั่งเส็ง|ฮ่องกง|จีน|เกาหลี|สิงคโปร์|ไต้หวัน|อินเดีย|ดาวโจนส์|ดาวโจน|อังกฤษ|เยอรมัน|รัสเซีย|มาเลย์|มาเลเซีย|malaysia|หุ้น/i.test(name)) {
     return "stock";
   }
 
@@ -24298,7 +24764,7 @@ function renderHomeLottoPreview(list) {
     return;
   }
   box.innerHTML = rows.map(function(lotto, idx){
-    var name = escapeHtml(lotto.name || "-");
+    var name = escapeHtml(normalizeLottoDisplayName(lotto.name || "-"));
     var closeText = escapeHtml((lotto && lotto.closeTime) ? lotto.closeTime : (getActualCloseText(lotto) || "-"));
     var flag = getHomeLottoFlag(lotto.name);
     return '<div class="home-v54-lotto-item">' +
@@ -24348,7 +24814,7 @@ function renderLottos() {
       '</div>' +
       '<div class="lotto-v58-arrow"><i class="fi fi-sr-angle-right"></i></div>';
 
-    b.querySelector(".lotto-name").textContent = stripLeadingFlagEmoji(lotto.name || "-");
+    b.querySelector(".lotto-name").textContent = normalizeLottoDisplayName(lotto.name || "-");
     b.querySelector(".lotto-meta").textContent = "ปิดรับ " + getActualCloseText(lotto);
 
     var limitText = formatNumberLimitSummary(lotto.numberLimits);
@@ -26187,47 +26653,45 @@ function buildBillRawText(bill) {
 function buildConfirmHtml() {
   var bills = getSubmissionBills();
   var total = getCombinedTotalAmount();
+  var totalCount = getCombinedBetCount();
+
   var billHtml = bills.map(function(bill,index){
     var cfg = getModeConfigForMode(bill.mode);
     var notice = getBillLimitNotice(bill);
-    var noticeHtml = "";
     var prices = [];
     if (bill.priceA > 0) prices.push(cfg.priceA + " " + money(bill.priceA));
     if (bill.priceB > 0 && cfg.priceB) prices.push(cfg.priceB + " " + money(bill.priceB));
+
+    var nums = getBillRawEffectiveNumbers(bill);
+    var numText = nums.join(" ");
+    var noticeHtml = "";
+
     if (notice.closed.length) {
-      noticeHtml += '<div style="margin-top:8px;padding:8px 9px;border-radius:10px;background:#fff7ed;border:1px solid #fed7aa;color:#7c2d12;font-size:12px;line-height:1.5"><b>เลขปิดรับ จะถูกตัดออก</b><br>' + escapeHtml(notice.closed.join(", ")) + '</div>';
+      noticeHtml += '<div class="bet-confirm-notice closed"><b>ปิดรับ:</b> ' + escapeHtml(notice.closed.join(", ")) + '</div>';
     }
     if (notice.half.length) {
-      noticeHtml += '<div style="margin-top:8px;padding:8px 9px;border-radius:10px;background:#fef9c3;border:1px solid #fde047;color:#713f12;font-size:12px;line-height:1.5"><b>เลขจ่ายครึ่ง</b><br>' + escapeHtml(notice.half.join(", ")) + '<br><small>ถ้าไม่ต้องการ กดแก้ไขเพื่อลบเลขออกได้</small></div>';
+      noticeHtml += '<div class="bet-confirm-notice half"><b>จ่ายครึ่ง:</b> ' + escapeHtml(notice.half.join(", ")) + '</div>';
     }
 
-    return '<div style="margin-top:8px;padding:10px;border:1px solid #fecaca;border-radius:12px;background:#fff">' +
-      '<div style="display:flex;justify-content:space-between;gap:8px;align-items:center">' +
-        '<b>บิล ' + (index + 1) + ' • ' + escapeHtml(cfg.title) + '</b>' +
-        '<b style="color:#b91c1c">' + money(getBillTotal(bill)) + '</b>' +
-      '</div>' +
-      '<div style="margin-top:6px;font-size:13px;line-height:1.55;word-break:break-word">' +
-        escapeHtml(getBillRawEffectiveNumbers(bill).join(" ")) +
-      '</div>' +
-      '<div style="margin-top:6px;color:#71717a;font-size:12px">' +
-        escapeHtml(prices.join(" | ")) + ' • ' + getBillCount(bill) + ' รายการรับแทง' +
-      '</div>' +
-      noticeHtml +
-    '</div>';
+    return '' +
+      '<div class="bet-confirm-bill">' +
+        '<div class="bet-confirm-bill-head">' +
+          '<div><span>บิล ' + (index + 1) + '</span><b>' + escapeHtml(cfg.title) + '</b></div>' +
+          '<strong>' + money(getBillTotal(bill)) + '</strong>' +
+        '</div>' +
+        '<div class="bet-confirm-numbers">' + escapeHtml(numText || '-') + '</div>' +
+        '<div class="bet-confirm-price">' + escapeHtml(prices.join(' • ') || '-') + ' • ' + getBillCount(bill) + ' รายการ</div>' +
+        noticeHtml +
+      '</div>';
   }).join("");
 
-  return '<div style="text-align:left">' +
-    '<div style="padding:10px 12px;background:#fef2f2;border-radius:12px;margin-bottom:10px">' +
-      '<div style="font-size:12px;color:#71717a">' + escapeHtml(state.selectedLotto.name) + '</div>' +
-      '<div style="font-size:24px;font-weight:950;color:#b91c1c;margin-top:2px">' +
-        money(total) +
-      '</div>' +
-      '<div style="font-size:12px;color:#71717a;margin-top:2px">' +
-        bills.length + ' บิล • ' + getCombinedBetCount() + ' รายการ' +
-      '</div>' +
+  return '' +
+    '<div class="bet-confirm-summary">' +
+      '<div class="bet-confirm-lotto">' + escapeHtml(state.selectedLotto.name) + '</div>' +
+      '<div class="bet-confirm-total-row"><span>ยอดแทงทั้งหมด</span><strong>' + money(total) + ' บาท</strong></div>' +
+      '<div class="bet-confirm-meta">' + bills.length + ' บิล • ' + totalCount + ' รายการ</div>' +
     '</div>' +
-    billHtml +
-  '</div>';
+    '<div class="bet-confirm-bills">' + billHtml + '</div>';
 }
 
 /* =====================================================
@@ -26309,7 +26773,7 @@ function ensureBetConfirmLayer() {
   layer.innerHTML =
     '<div id="betConfirmCard">' +
       '<div id="betConfirmHead">' +
-        '<div id="betConfirmIcon">?</div>' +
+        '<div id="betConfirmIcon"><i class="fi fi-sr-badge-check"></i></div>' +
         '<div id="betConfirmTitle">ยืนยันโพย</div>' +
       '</div>' +
       '<div id="betConfirmBody"></div>' +
@@ -26369,14 +26833,14 @@ function openConfirm() {
   var layer = ensureBetConfirmLayer();
   layer.classList.remove("success");
 
-  document.getElementById("betConfirmIcon").textContent = "?";
-  document.getElementById("betConfirmTitle").textContent = "ยืนยันโพย";
+  document.getElementById("betConfirmIcon").innerHTML = '<i class="fi fi-sr-badge-check"></i>';
+  document.getElementById("betConfirmTitle").textContent = "ตรวจสอบโพย";
   document.getElementById("betConfirmBody").innerHTML = buildConfirmHtml();
 
   var editBtn = document.getElementById("betConfirmEdit");
   var sendBtn = document.getElementById("betConfirmSend");
   editBtn.style.display = "";
-  sendBtn.textContent = "ยืนยันแทง";
+  sendBtn.innerHTML = '<i class="fi fi-sr-badge-check"></i><span>ยืนยันแทง</span>';
   sendBtn.disabled = false;
 
   layer.classList.add("show");
@@ -26393,7 +26857,7 @@ function showBetSuccessTouchSafe(total, billId) {
   var layer = ensureBetConfirmLayer();
   layer.classList.add("success");
 
-  document.getElementById("betConfirmIcon").textContent = "✓";
+  document.getElementById("betConfirmIcon").innerHTML = '<i class="fi fi-sr-badge-check"></i>';
   document.getElementById("betConfirmTitle").textContent = "แทงสำเร็จ";
   document.getElementById("betConfirmBody").innerHTML =
     '<div style="text-align:center;padding:10px 8px 18px">' +
