@@ -23139,7 +23139,7 @@ strong,b{
 
 <style id="v124-final-adjustments">
 /* =====================================================
-   V125 — Lotto group spacing + Style 1 compact presets + visible confirm icon
+   V126 — Lotto group spacing + Style 1 compact presets + visible confirm icon
 ===================================================== */
 
 /* หน้าเลือกหวย: ขยับหัวกลุ่มหวยหุ้นลงมาอีก */
@@ -23234,16 +23234,10 @@ strong,b{
 </style>
 
 
-<style id="v125-flaticon-flags-final">
-/* V125 — Flaticon country flags: lottery select + style 1 */
+<style id="v126-circle-flags-final">
+/* V126 — unified circular flag set for lotto select + style 1 */
 #lottoScreen .lotto-v107-flaticon-credit{
-  display:block !important;
-  margin:8px 0 calc(88px + env(safe-area-inset-bottom)) !important;
-  text-align:center !important;
-  color:rgba(255,255,255,.48) !important;
-  font-size:7px !important;
-  font-weight:300 !important;
-  line-height:1.2 !important;
+  display:none !important;
 }
 
 #lottoScreen .lotto-v107-flaticon-flag,
@@ -23252,16 +23246,22 @@ strong,b{
   place-items:center !important;
   overflow:hidden !important;
   padding:0 !important;
-  background:#fff !important;
+  background:#ffffff !important;
+  border-radius:50% !important;
+  box-shadow:0 8px 18px rgba(0,0,0,.08) !important;
+  border:1px solid rgba(0,0,0,.06) !important;
 }
 
+#lottoScreen .lotto-circle-flag-img,
+#betScreen.modern-layout .modern-lotto-select-flag .lotto-circle-flag-img,
 #lottoScreen .lotto-flaticon-flag-img,
 #betScreen.modern-layout .modern-lotto-select-flag .lotto-flaticon-flag-img{
   width:100% !important;
   height:100% !important;
   display:block !important;
   object-fit:cover !important;
-  border-radius:inherit !important;
+  border-radius:50% !important;
+  background:#fff !important;
 }
 
 #lottoScreen .lotto-flaticon-fallback,
@@ -23272,6 +23272,7 @@ strong,b{
   place-items:center !important;
   color:#b40014 !important;
   background:#fff5f6 !important;
+  border-radius:50% !important;
 }
 
 /* kill native emoji flag rendering from V120 */
@@ -23487,7 +23488,7 @@ strong,b{
 
         <div class="home-v85-account-line">
          <i class="fi fi-sr-wallet"></i>
-         <span>บัญชีหลัก <small class="home-app-version">V125</small></span>
+         <span>บัญชีหลัก <small class="home-app-version">V126</small></span>
         </div>
        </section>
 
@@ -25426,29 +25427,27 @@ function getCountryFlagEmoji(name) {
 
 function getFlaticonFlagUrl(name) {
   name = String(name || "");
-  var id = "";
+  var code = "";
 
-  // Flaticon country flags
-  if (/ฮานอย|เวียดนาม/i.test(name)) id = "202939";       // Vietnam
-  else if (/ลาว/i.test(name)) id = "197568";             // Laos
-  else if (/นิเคอิ|ญี่ปุ่น/i.test(name)) id = "197604";   // Japan
-  else if (/ฮั่งเส็ง|ฮ่องกง/i.test(name)) id = "197570"; // Hong Kong
-  else if (/จีน/i.test(name)) id = "317150";             // China
-  else if (/หุ้นไทย|ไทยเย็น/i.test(name)) id = "202917"; // Thailand
-  else if (/เกาหลี/i.test(name)) id = "330591";          // South Korea
-  else if (/สิงคโปร์/i.test(name)) id = "202962";        // Singapore
-  else if (/ไต้หวัน/i.test(name)) id = "203023";         // Taiwan
-  else if (/อินเดีย/i.test(name)) id = "197419";         // India
-  else if (/ดาวโจนส์|ดาวโจน/i.test(name)) id = "1863127";// USA
-  else if (/มาเลย์|มาเลเซีย|malaysia/i.test(name)) id = "197581"; // Malaysia
-  else if (/อียิปต์/i.test(name)) id = "197558";          // Egypt
-  else if (/อังกฤษ/i.test(name)) id = "197374";           // United Kingdom
-  else if (/เยอรมัน/i.test(name)) id = "197571";          // Germany
-  else if (/รัสเซีย/i.test(name)) id = "197408";          // Russia
+  if (/ฮานอย|เวียดนาม/i.test(name)) code = "vn";
+  else if (/ลาว/i.test(name)) code = "la";
+  else if (/นิเคอิ|ญี่ปุ่น/i.test(name)) code = "jp";
+  else if (/ฮั่งเส็ง|ฮ่องกง/i.test(name)) code = "hk";
+  else if (/จีน/i.test(name)) code = "cn";
+  else if (/หุ้นไทย|ไทยเย็น/i.test(name)) code = "th";
+  else if (/เกาหลี/i.test(name)) code = "kr";
+  else if (/สิงคโปร์/i.test(name)) code = "sg";
+  else if (/ไต้หวัน/i.test(name)) code = "tw";
+  else if (/อินเดีย/i.test(name)) code = "in";
+  else if (/ดาวโจนส์|ดาวโจน/i.test(name)) code = "us";
+  else if (/มาเลย์|มาเลเซีย|malaysia/i.test(name)) code = "my";
+  else if (/อียิปต์/i.test(name)) code = "eg";
+  else if (/อังกฤษ/i.test(name)) code = "gb";
+  else if (/เยอรมัน/i.test(name)) code = "de";
+  else if (/รัสเซีย/i.test(name)) code = "ru";
 
-  if (!id) return "";
-  var folder = id.length > 6 ? id.slice(0, -3) : id.slice(0, 3);
-  return "https://cdn-icons-png.flaticon.com/512/" + folder + "/" + id + ".png";
+  if (!code) return "";
+  return "https://cdn.jsdelivr.net/npm/circle-flags@1.4.0/flags/" + code + ".svg";
 }
 
 function getFlaticonFlagHtml(name) {
@@ -25456,7 +25455,7 @@ function getFlaticonFlagHtml(name) {
   if (!url) {
     return '<span class="lotto-flaticon-fallback" aria-hidden="true"><i class="fi fi-sr-flag"></i></span>';
   }
-  return '<img class="lotto-flaticon-flag-img" src="' + url + '" alt="" loading="lazy" referrerpolicy="no-referrer">';
+  return '<img class="lotto-circle-flag-img" src="' + url + '" alt="" loading="lazy" referrerpolicy="no-referrer">';
 }
 
 
