@@ -23874,7 +23874,7 @@ html[data-lang="en"] textarea{
 
         <div class="home-v85-account-line">
          <i class="fi fi-sr-wallet"></i>
-         <span>บัญชีหลัก <small class="home-app-version">V142</small></span>
+         <span>บัญชีหลัก <small class="home-app-version">V143</small></span>
         </div>
        </section>
 
@@ -26802,71 +26802,181 @@ function compressSlipImageV16(file) {
    ถอนขั้นต่ำ 50 บาท
    ไม่ใช้ SweetAlert เพื่อไม่ให้ CSS เก่าทับข้อความ
 ===================================================== */
+function wdTextV143(key) {
+  var lang = "th";
+  try {
+    if (typeof window.getSiteLanguage === "function") lang = window.getSiteLanguage() || "th";
+  } catch(e) {}
+
+  var dict = {
+    th:{
+      title:"ถอนเงิน",subtitle:"ถอนเครดิตเข้าบัญชีธนาคารของคุณ",
+      balanceLabel:"ยอดเงินคงเหลือ",amountLabel:"จำนวนเงินที่ต้องการถอน",amountHint:"กรอกจำนวนเงิน",
+      conditionTitle:"เงื่อนไขการถอน",conditionDesc:"ต้องมียอดเล่นอย่างน้อย 30% ของยอดฝากในรอบปัจจุบัน",
+      deposit:"ยอดฝากรอบนี้",required:"ต้องเล่น",played:"เล่นแล้ว",remaining:"เหลืออีก",
+      eligible:"ครบเงื่อนไขแล้ว",notEligible:"ยังไม่ครบเงื่อนไข",gameNote:"ยอดเล่นรวมจากแทงหวยและมินิเกม",
+      minimum:"ถอนเงินขั้นต่ำ 50 บาท",bankTitle:"บัญชีรับเงิน",accountName:"ชื่อบัญชี",bank:"ธนาคาร",accountNo:"เลขบัญชี",
+      cancel:"ยกเลิก",confirm:"ยืนยันถอนเงิน",sending:"กำลังส่ง...",success:"ส่งรายการถอนแล้ว",pending:"รออนุมัติ",
+      invalidAmount:"กรุณากรอกจำนวนเงินที่ต้องการถอน",minError:"ถอนเงินขั้นต่ำ 50 บาท",
+      balanceError:"ยอดเงินคงเหลือไม่เพียงพอ",eligibilityError:"ยอดเล่นยังไม่ครบ 30% ของยอดฝาก",
+      eligibilityLoadError:"ตรวจสอบเงื่อนไขการถอนไม่สำเร็จ กรุณาลองใหม่",serverWait:"กำลังตรวจสอบ..."
+    },
+    en:{
+      title:"Withdraw",subtitle:"Withdraw credit to your bank account",
+      balanceLabel:"Available balance",amountLabel:"Withdrawal amount",amountHint:"Enter amount",
+      conditionTitle:"Withdrawal requirement",conditionDesc:"Play at least 30% of deposits in the current cycle before withdrawing",
+      deposit:"Cycle deposits",required:"Required play",played:"Played",remaining:"Remaining",
+      eligible:"Requirement completed",notEligible:"Requirement not completed",gameNote:"Play amount includes lottery and all mini games",
+      minimum:"Minimum withdrawal 50 THB",bankTitle:"Receiving account",accountName:"Account name",bank:"Bank",accountNo:"Account number",
+      cancel:"Cancel",confirm:"Confirm withdrawal",sending:"Submitting...",success:"Withdrawal request submitted",pending:"Pending approval",
+      invalidAmount:"Please enter a withdrawal amount",minError:"Minimum withdrawal is 50 THB",
+      balanceError:"Insufficient balance",eligibilityError:"Play requirement has not reached 30% of deposits",
+      eligibilityLoadError:"Unable to check withdrawal requirement. Please try again.",serverWait:"Checking..."
+    },
+    lo:{
+      title:"ຖອນເງິນ",subtitle:"ຖອນເຄຣດິດເຂົ້າບັນຊີທະນາຄານ",
+      balanceLabel:"ຍອດເງິນຄົງເຫຼືອ",amountLabel:"ຈຳນວນເງິນທີ່ຕ້ອງການຖອນ",amountHint:"ໃສ່ຈຳນວນເງິນ",
+      conditionTitle:"ເງື່ອນໄຂການຖອນ",conditionDesc:"ຕ້ອງມີຍອດຫຼິ້ນຢ່າງໜ້ອຍ 30% ຂອງຍອດຝາກໃນຮອບປັດຈຸບັນ",
+      deposit:"ຍອດຝາກຮອບນີ້",required:"ຕ້ອງຫຼິ້ນ",played:"ຫຼິ້ນແລ້ວ",remaining:"ເຫຼືອອີກ",
+      eligible:"ຄົບເງື່ອນໄຂແລ້ວ",notEligible:"ຍັງບໍ່ຄົບເງື່ອນໄຂ",gameNote:"ຍອດຫຼິ້ນລວມຈາກຫວຍ ແລະ ມິນິເກມ",
+      minimum:"ຖອນຂັ້ນຕ່ຳ 50 ບາດ",bankTitle:"ບັນຊີຮັບເງິນ",accountName:"ຊື່ບັນຊີ",bank:"ທະນາຄານ",accountNo:"ເລກບັນຊີ",
+      cancel:"ຍົກເລີກ",confirm:"ຢືນຢັນຖອນເງິນ",sending:"ກຳລັງສົ່ງ...",success:"ສົ່ງລາຍການຖອນແລ້ວ",pending:"ລໍຖ້າອະນຸມັດ",
+      invalidAmount:"ກະລຸນາໃສ່ຈຳນວນເງິນທີ່ຈະຖອນ",minError:"ຖອນຂັ້ນຕ່ຳ 50 ບາດ",
+      balanceError:"ຍອດເງິນບໍ່ພຽງພໍ",eligibilityError:"ຍອດຫຼິ້ນຍັງບໍ່ຄົບ 30% ຂອງຍອດຝາກ",
+      eligibilityLoadError:"ກວດເງື່ອນໄຂການຖອນບໍ່ສຳເລັດ ກະລຸນາລອງໃໝ່",serverWait:"ກຳລັງກວດ..."
+    }
+  };
+  return (dict[lang] && dict[lang][key]) || dict.th[key] || key;
+}
+
+var withdrawEligibilityV143 = null;
+var withdrawEligibilityLoadingV143 = false;
+
 function ensureWithdrawPanel() {
   var layer = document.getElementById("withdrawPanelLayer");
-  if (layer) return layer;
+  if (layer) {
+    refreshWithdrawPanelLanguageV143();
+    return layer;
+  }
 
   var style = document.createElement("style");
-  style.id = "withdrawPanelV9Style";
-  style.textContent =
-    "#withdrawPanelLayer{" +
-      "position:fixed;inset:0;z-index:2147483100;" +
-      "display:none;align-items:center;justify-content:center;" +
-      "padding:16px;background:rgba(45,10,10,.58);" +
-      "backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);" +
-      "font-family:'Kanit','Noto Sans Thai',sans-serif;" +
-    "}" +
-    "#withdrawPanelLayer.show{display:flex!important;}" +
-    "#withdrawPanelCard{" +
-      "width:min(100%,560px);max-height:calc(100dvh - 30px);" +
-      "overflow:auto;-webkit-overflow-scrolling:touch;" +
-      "background:#fffdfa;border:1px solid #efb3ae;border-radius:26px;" +
-      "box-shadow:0 24px 80px rgba(60,5,5,.34);padding:22px;" +
-    "}" +
-    ".wd9-title{text-align:center;font-size:31px;font-weight:900;color:#3f1010;margin:4px 0 18px;}" +
-    ".wd9-box{padding:16px;border:1px solid #ead8d3;border-radius:18px;background:#f8f4f2;margin-bottom:14px;}" +
-    ".wd9-label{font-size:16px;font-weight:850;color:#4a1715;margin-bottom:8px;}" +
-    ".wd9-available{" +
-      "padding:14px;border-radius:14px;background:#fff;border:1px solid #e9dfdc;" +
-      "text-align:center;font-size:34px;font-weight:900;color:#159b2a;" +
-    "}" +
-    "#withdrawAmountV9{" +
-      "width:100%;height:60px;border:2px solid #d9cfcc;border-radius:14px;" +
-      "padding:0 16px;font:inherit;font-size:22px;font-weight:750;" +
-      "background:#fff;color:#27100f;outline:none;box-sizing:border-box;" +
-    "}" +
-    "#withdrawAmountV9:focus{border-color:#a51414;box-shadow:0 0 0 3px rgba(165,20,20,.10);}" +
-    ".wd9-min{" +
-      "padding:12px 14px;border-radius:14px;background:#fff4db;" +
-      "border:1px solid #f2cf7a;color:#744608;font-size:14px;font-weight:800;" +
-      "margin-bottom:14px;text-align:center;" +
-    "}" +
-    ".wd9-bank{" +
-      "padding:15px;border-radius:16px;background:#fff1f1;border:1px solid #f2bcbc;" +
-      "color:#6f1515;font-size:14px;line-height:1.75;" +
-    "}" +
-    ".wd9-bank-title{font-size:12px;font-weight:900;color:#b01414;margin-bottom:5px;}" +
-    "#withdrawErrorV9{min-height:22px;margin-top:10px;color:#c11414;font-size:13px;font-weight:800;text-align:center;}" +
-    ".wd9-actions{display:grid;grid-template-columns:1fr 1.35fr;gap:12px;margin-top:12px;}" +
-    ".wd9-actions button{" +
-      "min-height:58px;border-radius:14px;font:inherit;font-size:18px;font-weight:850;" +
-      "touch-action:manipulation;-webkit-tap-highlight-color:transparent;" +
-    "}" +
-    "#withdrawCancelV9{border:0;background:#fee2e2;color:#9a1717;}" +
-    "#withdrawConfirmV9{" +
-      "border:0;background:linear-gradient(135deg,#700909,#b51616);" +
-      "color:#fff;box-shadow:0 10px 24px rgba(112,9,9,.22);" +
-    "}" +
-    "#withdrawConfirmV9:disabled{opacity:.5;box-shadow:none;}" +
-    "@media(max-width:480px){" +
-      "#withdrawPanelLayer{padding:10px;}" +
-      "#withdrawPanelCard{padding:18px 15px;border-radius:22px;}" +
-      ".wd9-title{font-size:27px;margin-bottom:14px;}" +
-      ".wd9-box{padding:14px;}" +
-      ".wd9-available{font-size:31px;}" +
-      ".wd9-actions button{min-height:56px;font-size:17px;}" +
-    "}";
-
+  style.id = "withdrawPanelV143Style";
+  style.textContent = `
+    #withdrawPanelLayer{
+      position:fixed;inset:0;z-index:2147483100;display:none;align-items:center;justify-content:center;
+      padding:18px;background:rgba(32,6,8,.56);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+      font-family:'Kanit','Noto Sans Lao','Noto Sans Thai',sans-serif
+    }
+    #withdrawPanelLayer.show{display:flex!important}
+    #withdrawPanelCard{
+      width:min(100%,500px);max-height:calc(100dvh - 28px);overflow:auto;-webkit-overflow-scrolling:touch;
+      background:#fff;border:1px solid rgba(127,29,29,.08);border-radius:30px;
+      box-shadow:0 28px 90px rgba(50,5,9,.30);padding:0;position:relative
+    }
+    #withdrawPanelCard::-webkit-scrollbar{display:none}
+    .wd143-head{
+      position:sticky;top:0;z-index:4;display:flex;align-items:center;gap:12px;padding:18px 18px 14px;
+      background:rgba(255,255,255,.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+      border-bottom:1px solid #f4e5e6
+    }
+    .wd143-head-icon{
+      width:46px;height:46px;flex:0 0 46px;border-radius:15px;display:grid;place-items:center;color:#fff;font-size:20px;
+      background:linear-gradient(145deg,#7f1d1d,#dc2626);box-shadow:0 9px 20px rgba(185,28,28,.18)
+    }
+    .wd143-head-text{min-width:0;flex:1}
+    .wd143-title{font-size:21px;line-height:1.15;font-weight:850;color:#3f0b0e}
+    .wd143-sub{margin-top:3px;font-size:10px;font-weight:500;color:#9a7b7e}
+    #withdrawCloseV143{
+      width:38px;height:38px;flex:0 0 38px;border:0;border-radius:12px;display:grid;place-items:center;
+      background:#fff1f2;color:#8f1720;font-size:17px
+    }
+    .wd143-body{padding:16px 18px 4px}
+    .wd143-balance{
+      position:relative;overflow:hidden;padding:17px 18px;border-radius:22px;color:#fff;
+      background:radial-gradient(circle at 93% 10%,rgba(255,255,255,.20),transparent 30%),linear-gradient(135deg,#58080d,#a70f1b 56%,#d51d2c);
+      box-shadow:0 13px 28px rgba(138,15,26,.17)
+    }
+    .wd143-balance:after{
+      content:"";position:absolute;width:105px;height:105px;border-radius:28px;right:-24px;bottom:-50px;transform:rotate(-12deg);
+      background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.08)
+    }
+    .wd143-balance-label{font-size:10px;font-weight:550;color:rgba(255,255,255,.73)}
+    .wd143-balance-value{
+      position:relative;z-index:1;margin-top:4px;font-size:31px;line-height:1.15;font-weight:850;letter-spacing:-.5px;
+      font-variant-numeric:tabular-nums
+    }
+    .wd143-section{margin-top:14px}
+    .wd143-section-label{
+      display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 2px 7px;color:#431014;font-size:12px;font-weight:750
+    }
+    .wd143-min-inline{color:#a47d24;font-size:9px;font-weight:650}
+    .wd143-amount-wrap{
+      display:flex;align-items:center;height:60px;padding:0 6px 0 15px;border:1.5px solid #eadbdd;border-radius:17px;
+      background:#fff;transition:.18s
+    }
+    .wd143-amount-wrap:focus-within{border-color:#b91c1c;box-shadow:0 0 0 4px rgba(185,28,28,.08)}
+    .wd143-currency{color:#9f1a23;font-size:20px;font-weight:800;margin-right:8px}
+    #withdrawAmountV9{
+      width:100%;min-width:0;height:56px;border:0!important;outline:0!important;box-shadow:none!important;
+      background:transparent!important;padding:0!important;color:#2d0d10;font:inherit;font-size:23px;font-weight:750
+    }
+    #withdrawAmountV9::placeholder{color:#c8b7b9;font-weight:450}
+    .wd143-max{min-width:55px;height:42px;border:0;border-radius:12px;background:#fff1f2;color:#9f1720;font-size:10px;font-weight:800}
+    .wd143-quick{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:8px}
+    .wd143-quick button{
+      min-height:37px;border:1px solid #f0e1e2;border-radius:11px;background:#fff;color:#6b3035;font-size:10px;font-weight:700
+    }
+    .wd143-condition{
+      margin-top:14px;padding:14px;border:1px solid #eee1e2;border-radius:20px;background:linear-gradient(180deg,#fffafa,#fff)
+    }
+    .wd143-condition-top{display:flex;align-items:flex-start;gap:10px}
+    .wd143-condition-icon{
+      width:37px;height:37px;flex:0 0 37px;border-radius:12px;display:grid;place-items:center;background:#fff1f2;color:#a61520;font-size:16px
+    }
+    .wd143-condition-copy{min-width:0;flex:1}
+    .wd143-condition-title{font-size:12px;font-weight:800;color:#431014}
+    .wd143-condition-desc{margin-top:2px;font-size:9px;line-height:1.45;color:#94777a}
+    .wd143-status{
+      flex:0 0 auto;padding:6px 8px;border-radius:999px;font-size:8px;font-weight:800;background:#f4f4f5;color:#71717a
+    }
+    .wd143-status.ok{background:#ecfdf3;color:#15803d}
+    .wd143-status.wait{background:#fff7ed;color:#b45309}
+    .wd143-progress{height:8px;margin-top:12px;border-radius:999px;overflow:hidden;background:#f2e8e9}
+    #withdrawProgressBarV143{
+      width:0%;height:100%;border-radius:999px;background:linear-gradient(90deg,#991b1b,#e11d48);transition:width .35s ease
+    }
+    .wd143-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:11px}
+    .wd143-stat{min-width:0;padding:9px 10px;border-radius:13px;background:#faf7f7}
+    .wd143-stat small{display:block;color:#9b8083;font-size:8px;font-weight:600}
+    .wd143-stat b{
+      display:block;margin-top:2px;color:#451116;font-size:12px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+      font-variant-numeric:tabular-nums
+    }
+    .wd143-condition-note{display:flex;align-items:center;gap:6px;margin-top:9px;color:#a08a8c;font-size:8px;font-weight:500}
+    .wd143-bank{margin-top:14px;padding:13px 14px;border-radius:18px;background:#faf7f7;border:1px solid #eee4e5}
+    .wd143-bank-head{display:flex;align-items:center;gap:8px;margin-bottom:9px;color:#4f1418;font-size:11px;font-weight:800}
+    .wd143-bank-head i{color:#a61520}
+    .wd143-bank-grid{display:grid;gap:7px}
+    .wd143-bank-row{display:grid;grid-template-columns:84px minmax(0,1fr);gap:8px;align-items:center}
+    .wd143-bank-row small{color:#a1898b;font-size:9px;font-weight:550}
+    .wd143-bank-row b{min-width:0;color:#3c1215;font-size:10px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    #withdrawErrorV9{min-height:18px;margin:10px 3px 0;color:#c01824;font-size:10px;line-height:1.45;font-weight:650;text-align:center}
+    .wd143-actions{
+      position:sticky;bottom:0;z-index:4;display:grid;grid-template-columns:.8fr 1.35fr;gap:9px;
+      padding:12px 18px calc(14px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);
+      backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid #f3e5e6
+    }
+    .wd143-actions button{min-height:50px;border:0;border-radius:15px;font:inherit;font-size:13px;font-weight:750;touch-action:manipulation}
+    #withdrawCancelV9{background:#f8eff0;color:#6f2c31}
+    #withdrawConfirmV9{color:#fff;background:linear-gradient(135deg,#771018,#c81e2b);box-shadow:0 9px 20px rgba(153,27,27,.18)}
+    #withdrawConfirmV9:disabled{color:#b8a8aa;background:#eee8e9;box-shadow:none;cursor:not-allowed}
+    @media(max-width:520px){
+      #withdrawPanelLayer{align-items:flex-end;padding:0}
+      #withdrawPanelCard{width:100%;max-height:92dvh;border-radius:27px 27px 0 0;border-bottom:0}
+      #withdrawPanelCard:before{content:"";display:block;width:42px;height:4px;border-radius:999px;background:#dfd4d5;margin:8px auto 0}
+      .wd143-head{padding-top:11px}.wd143-body{padding-left:15px;padding-right:15px}.wd143-actions{padding-left:15px;padding-right:15px}
+    }
+  `;
   document.head.appendChild(style);
 
   layer = document.createElement("div");
@@ -26875,98 +26985,172 @@ function ensureWithdrawPanel() {
   layer.setAttribute("aria-modal","true");
   layer.innerHTML =
     '<div id="withdrawPanelCard">' +
-      '<div class="wd9-title">ถอนเงิน</div>' +
-
-      '<div class="wd9-box">' +
-        '<div class="wd9-label">จำนวนเงินที่ถอนได้</div>' +
-        '<div class="wd9-available" id="withdrawAvailableV9">฿ 0.00</div>' +
+      '<div class="wd143-head">' +
+        '<div class="wd143-head-icon"><i class="fi fi-rr-wallet-arrow"></i></div>' +
+        '<div class="wd143-head-text"><div class="wd143-title" data-wd-key="title"></div><div class="wd143-sub" data-wd-key="subtitle"></div></div>' +
+        '<button id="withdrawCloseV143" type="button" aria-label="close"><i class="fi fi-rr-cross-small"></i></button>' +
       '</div>' +
-
-      '<div class="wd9-box">' +
-        '<div class="wd9-label">จำนวนเงินที่ต้องการถอน</div>' +
-        '<input id="withdrawAmountV9" type="number" min="50" step="0.01" inputmode="decimal" placeholder="กรอกจำนวนเงิน">' +
+      '<div class="wd143-body">' +
+        '<div class="wd143-balance"><div class="wd143-balance-label" data-wd-key="balanceLabel"></div><div class="wd143-balance-value" id="withdrawAvailableV9">฿0.00</div></div>' +
+        '<div class="wd143-section">' +
+          '<div class="wd143-section-label"><span data-wd-key="amountLabel"></span><span class="wd143-min-inline" data-wd-key="minimum"></span></div>' +
+          '<div class="wd143-amount-wrap"><span class="wd143-currency">฿</span><input id="withdrawAmountV9" type="number" min="50" step="0.01" inputmode="decimal"><button class="wd143-max" id="withdrawMaxV143" type="button">MAX</button></div>' +
+          '<div class="wd143-quick"><button type="button" data-wd-amount="50">50</button><button type="button" data-wd-amount="100">100</button><button type="button" data-wd-amount="500">500</button><button type="button" data-wd-amount="MAX">MAX</button></div>' +
+        '</div>' +
+        '<div class="wd143-condition">' +
+          '<div class="wd143-condition-top"><div class="wd143-condition-icon"><i class="fi fi-rr-chart-histogram"></i></div><div class="wd143-condition-copy"><div class="wd143-condition-title" data-wd-key="conditionTitle"></div><div class="wd143-condition-desc" data-wd-key="conditionDesc"></div></div><span class="wd143-status" id="withdrawEligibilityStatusV143"></span></div>' +
+          '<div class="wd143-progress"><div id="withdrawProgressBarV143"></div></div>' +
+          '<div class="wd143-stats"><div class="wd143-stat"><small data-wd-key="deposit"></small><b id="withdrawDepositV143">฿0.00</b></div><div class="wd143-stat"><small data-wd-key="required"></small><b id="withdrawRequiredV143">฿0.00</b></div><div class="wd143-stat"><small data-wd-key="played"></small><b id="withdrawPlayedV143">฿0.00</b></div><div class="wd143-stat"><small data-wd-key="remaining"></small><b id="withdrawRemainingV143">฿0.00</b></div></div>' +
+          '<div class="wd143-condition-note"><i class="fi fi-rr-info"></i><span data-wd-key="gameNote"></span></div>' +
+        '</div>' +
+        '<div class="wd143-bank"><div class="wd143-bank-head"><i class="fi fi-rr-bank"></i><span data-wd-key="bankTitle"></span></div><div class="wd143-bank-grid"><div class="wd143-bank-row"><small data-wd-key="accountName"></small><b id="withdrawBankAccountNameV9">-</b></div><div class="wd143-bank-row"><small data-wd-key="bank"></small><b id="withdrawBankNameV9">-</b></div><div class="wd143-bank-row"><small data-wd-key="accountNo"></small><b id="withdrawBankNoV9">-</b></div></div></div>' +
+        '<div id="withdrawErrorV9"></div>' +
       '</div>' +
-
-      '<div class="wd9-min">ถอนเงินขั้นต่ำ 50 บาท</div>' +
-
-      '<div class="wd9-bank">' +
-        '<div class="wd9-bank-title">ข้อมูลธนาคารสำหรับถอนเงิน</div>' +
-        '<div><b>ชื่อบัญชี:</b> <span id="withdrawBankAccountNameV9">-</span></div>' +
-        '<div><b>ธนาคาร:</b> <span id="withdrawBankNameV9">-</span></div>' +
-        '<div><b>เลขบัญชี:</b> <span id="withdrawBankNoV9">-</span></div>' +
-      '</div>' +
-
-      '<div id="withdrawErrorV9"></div>' +
-
-      '<div class="wd9-actions">' +
-        '<button id="withdrawCancelV9" type="button">ยกเลิก</button>' +
-        '<button id="withdrawConfirmV9" type="button">ยืนยันถอนเงิน</button>' +
-      '</div>' +
+      '<div class="wd143-actions"><button id="withdrawCancelV9" type="button" data-wd-key="cancel"></button><button id="withdrawConfirmV9" type="button" data-wd-key="confirm"></button></div>' +
     '</div>';
 
   document.body.appendChild(layer);
 
-  document.getElementById("withdrawCancelV9").onclick = function(){
-    closeWithdrawPanel();
-  };
-
-  document.getElementById("withdrawConfirmV9").onclick = function(){
-    submitWithdrawV9();
-  };
+  document.getElementById("withdrawCloseV143").onclick = closeWithdrawPanel;
+  document.getElementById("withdrawCancelV9").onclick = closeWithdrawPanel;
+  document.getElementById("withdrawConfirmV9").onclick = submitWithdrawV9;
 
   document.getElementById("withdrawAmountV9").addEventListener("input", function(){
     var err = document.getElementById("withdrawErrorV9");
     if (err) err.textContent = "";
   });
 
-  document.getElementById("withdrawPanelCard").onclick = function(e){
-    e.stopPropagation();
+  document.getElementById("withdrawMaxV143").onclick = function(){
+    var available = Number((state.user && state.user.credit) || 0);
+    document.getElementById("withdrawAmountV9").value = Math.max(0, available).toFixed(2).replace(/\.00$/,"");
   };
 
-  layer.onclick = function(e){
-    if (e.target === layer) closeWithdrawPanel();
-  };
+  Array.prototype.forEach.call(layer.querySelectorAll("[data-wd-amount]"), function(btn){
+    btn.addEventListener("click", function(){
+      var input = document.getElementById("withdrawAmountV9");
+      var v = btn.getAttribute("data-wd-amount");
+      var available = Number((state.user && state.user.credit) || 0);
+      input.value = v === "MAX" ? Math.max(0, available).toFixed(2).replace(/\.00$/,"") : v;
+      var err = document.getElementById("withdrawErrorV9");
+      if (err) err.textContent = "";
+    });
+  });
 
+  document.getElementById("withdrawPanelCard").onclick = function(e){e.stopPropagation()};
+  layer.onclick = function(e){if(e.target===layer) closeWithdrawPanel()};
+
+  refreshWithdrawPanelLanguageV143();
   return layer;
+}
+
+function refreshWithdrawPanelLanguageV143() {
+  var layer = document.getElementById("withdrawPanelLayer");
+  if (!layer) return;
+  Array.prototype.forEach.call(layer.querySelectorAll("[data-wd-key]"), function(el){
+    el.textContent = wdTextV143(el.getAttribute("data-wd-key"));
+  });
+  var input = document.getElementById("withdrawAmountV9");
+  if (input) input.placeholder = wdTextV143("amountHint");
+  renderWithdrawEligibilityV143(withdrawEligibilityV143, withdrawEligibilityLoadingV143);
+}
+
+function renderWithdrawEligibilityV143(data, loading) {
+  var status = document.getElementById("withdrawEligibilityStatusV143");
+  var bar = document.getElementById("withdrawProgressBarV143");
+  if (!status || !bar) return;
+
+  if (loading) {
+    status.className = "wd143-status";
+    status.textContent = wdTextV143("serverWait");
+    bar.style.width = "0%";
+    return;
+  }
+
+  data = data || {eligible:false,depositAmount:0,requiredTurnover:0,turnover:0,remainingTurnover:0,progressPercent:0};
+  var progress = Math.max(0, Math.min(100, Number(data.progressPercent || 0)));
+  bar.style.width = progress + "%";
+
+  document.getElementById("withdrawDepositV143").textContent = "฿" + money(data.depositAmount || 0);
+  document.getElementById("withdrawRequiredV143").textContent = "฿" + money(data.requiredTurnover || 0);
+  document.getElementById("withdrawPlayedV143").textContent = "฿" + money(data.turnover || 0);
+  document.getElementById("withdrawRemainingV143").textContent = "฿" + money(data.remainingTurnover || 0);
+
+  if (data.eligible) {
+    status.className = "wd143-status ok";
+    status.textContent = wdTextV143("eligible");
+  } else {
+    status.className = "wd143-status wait";
+    status.textContent = wdTextV143("notEligible");
+  }
+}
+
+function loadWithdrawEligibilityV143() {
+  withdrawEligibilityLoadingV143 = true;
+  withdrawEligibilityV143 = null;
+  renderWithdrawEligibilityV143(null, true);
+
+  var btn = document.getElementById("withdrawConfirmV9");
+  if (btn) btn.disabled = true;
+
+  return api("getMyWithdrawEligibility", state.token)
+    .then(function(r){
+      withdrawEligibilityLoadingV143 = false;
+      withdrawEligibilityV143 = r || null;
+
+      if (state.user && r && isFinite(Number(r.credit))) {
+        state.user.credit = Number(r.credit);
+        updateUserUI();
+      }
+
+      var available = Number((r && r.credit) || (state.user && state.user.credit) || 0);
+      document.getElementById("withdrawAvailableV9").textContent = "฿" + money(available);
+      renderWithdrawEligibilityV143(withdrawEligibilityV143, false);
+
+      var err = document.getElementById("withdrawErrorV9");
+      if (available < 50) err.textContent = wdTextV143("minError");
+      else if (!r.eligible) err.textContent = wdTextV143("eligibilityError") + " · " + wdTextV143("remaining") + " ฿" + money(r.remainingTurnover || 0);
+      else err.textContent = "";
+
+      if (btn) btn.disabled = available < 50 || !r.eligible;
+      return r;
+    })
+    .catch(function(e){
+      withdrawEligibilityLoadingV143 = false;
+      withdrawEligibilityV143 = null;
+      renderWithdrawEligibilityV143(null, false);
+      var err = document.getElementById("withdrawErrorV9");
+      if (err) err.textContent = wdTextV143("eligibilityLoadError");
+      if (btn) btn.disabled = true;
+      throw e;
+    });
 }
 
 function showWithdrawInfo() {
   var user = state.user || {};
   var available = Number(user.credit || 0);
-
   var layer = ensureWithdrawPanel();
 
-  document.getElementById("withdrawAvailableV9").textContent = "฿ " + money(available);
+  document.getElementById("withdrawAvailableV9").textContent = "฿" + money(available);
 
   var input = document.getElementById("withdrawAmountV9");
   input.value = "";
   input.max = String(available);
 
-  document.getElementById("withdrawBankAccountNameV9").textContent =
-    user.bankAccountName || user.displayName || "-";
+  document.getElementById("withdrawBankAccountNameV9").textContent = user.bankAccountName || user.displayName || "-";
+  document.getElementById("withdrawBankNameV9").textContent = user.bankName || "-";
+  document.getElementById("withdrawBankNoV9").textContent = user.bankAccountNo || "-";
 
-  document.getElementById("withdrawBankNameV9").textContent =
-    user.bankName || "-";
-
-  document.getElementById("withdrawBankNoV9").textContent =
-    user.bankAccountNo || "-";
-
-  var err = document.getElementById("withdrawErrorV9");
-  err.textContent = available < 50
-    ? "ยอดเงินที่ถอนได้ยังไม่ถึงขั้นต่ำ 50 บาท"
-    : "";
+  document.getElementById("withdrawErrorV9").textContent = "";
 
   var btn = document.getElementById("withdrawConfirmV9");
-  btn.disabled = available < 50;
-  btn.textContent = "ยืนยันถอนเงิน";
+  btn.disabled = true;
+  btn.textContent = wdTextV143("confirm");
 
   layer.classList.add("show");
+  refreshWithdrawPanelLanguageV143();
+  loadWithdrawEligibilityV143().catch(function(){});
 
-  setTimeout(function(){
-    if (available >= 50) {
-      try { input.focus(); } catch(e) {}
-    }
-  }, 80);
+  setTimeout(function(){try{input.focus()}catch(e){}},120);
 }
 
 function closeWithdrawPanel() {
@@ -26982,52 +27166,52 @@ function submitWithdrawV9() {
   var err = document.getElementById("withdrawErrorV9");
   var btn = document.getElementById("withdrawConfirmV9");
 
-  if (!amount || amount <= 0) {
-    err.textContent = "กรุณากรอกจำนวนเงินที่ต้องการถอน";
+  if (withdrawEligibilityLoadingV143) {
+    err.textContent = wdTextV143("serverWait");
     return;
   }
 
-  if (amount < 50) {
-    err.textContent = "ถอนเงินขั้นต่ำ 50 บาท";
+  if (!withdrawEligibilityV143 || !withdrawEligibilityV143.eligible) {
+    var remaining = Number(withdrawEligibilityV143 && withdrawEligibilityV143.remainingTurnover || 0);
+    err.textContent = wdTextV143("eligibilityError") + (remaining > 0 ? " · " + wdTextV143("remaining") + " ฿" + money(remaining) : "");
     return;
   }
 
-  if (amount > available) {
-    err.textContent = "ยอดเงินที่ถอนได้ไม่เพียงพอ";
-    return;
-  }
+  if (!amount || amount <= 0) {err.textContent = wdTextV143("invalidAmount");return}
+  if (amount < 50) {err.textContent = wdTextV143("minError");return}
+  if (amount > available) {err.textContent = wdTextV143("balanceError");return}
 
   err.textContent = "";
   btn.disabled = true;
-  btn.textContent = "กำลังส่ง...";
+  btn.textContent = wdTextV143("sending");
 
   api("memberSubmitWithdraw", state.token, {amount:amount})
     .then(function(r){
-      if (state.user) {
-        state.user.credit = Number(r.credit || r.balanceAfter || 0);
-      }
-
+      if (state.user) state.user.credit = Number(r.credit || r.balanceAfter || 0);
       updateUserUI();
       closeWithdrawPanel();
 
       Swal.fire({
         icon:"success",
-        title:"ส่งรายการถอนแล้ว",
-        html:
-          '<div style="font-size:13px;line-height:1.8">' +
-            'ยอดถอน <b>' + money(r.amount || amount) + ' บาท</b><br>' +
-            'สถานะ <b>รออนุมัติ</b>' +
-          '</div>',
-        confirmButtonText:"ตกลง",
+        title:wdTextV143("success"),
+        html:'<div style="font-size:13px;line-height:1.8">' + wdTextV143("amountLabel") + ' <b>฿' + money(r.amount || amount) + '</b><br><span style="color:#71717a">' + wdTextV143("pending") + '</span></div>',
+        confirmButtonText:(typeof window.siteTranslate==="function" ? window.siteTranslate("ตกลง") : "ตกลง"),
         confirmButtonColor:"#b91c1c"
       });
+      withdrawEligibilityV143 = null;
     })
     .catch(function(e){
       btn.disabled = false;
-      btn.textContent = "ยืนยันถอนเงิน";
-      err.textContent = (e && e.message) ? e.message : String(e || "ส่งคำขอถอนไม่สำเร็จ");
+      btn.textContent = wdTextV143("confirm");
+      err.textContent = (e && e.message) ? e.message : String(e || wdTextV143("eligibilityLoadError"));
+      loadWithdrawEligibilityV143().catch(function(){});
     });
 }
+
+document.addEventListener("supmangmee:languagechange", function(){
+  try{refreshWithdrawPanelLanguageV143()}catch(e){}
+});
+
 
 function showLotto() {
   if (els.homeScreen) els.homeScreen.classList.remove("active");
