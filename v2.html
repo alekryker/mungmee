@@ -1,4 +1,4 @@
-<!-- V137 — MINI GAME: RPS + HEADS/TAILS + DICE HIGH/LOW / SERVER RESULT / SHARED WALLET -->
+<!-- V138 — MINI GAME: RPS + HEADS/TAILS + DICE + CARD FLIP / SERVER RESULT / SHARED WALLET -->
 <!-- ALL-IN-ONE: แนะนำเพื่อน + ถอนขั้นต่ำ 50 บาท + ประกาศหน้าเว็บ + Popup สูงสุด 2 รายการ -->
 <!-- RESULT HISTORY SHEET FINAL -->
 <!-- INDEX V9 WITHDRAW PANEL MIN50 + TOUCH-SAFE CONFIRM + STATELESS SESSION -->
@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
   <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/4.0.0/uicons-solid-straight/css/uicons-solid-straight.css">
   <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/4.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+  <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/4.0.0/uicons-regular-straight/css/uicons-regular-straight.css">
   <style>
 :root {
   --red: #b91c1c;
@@ -21116,7 +21117,36 @@ strong,b{
 @keyframes diceRollV137{0%{transform:translateY(0) rotate(0) scale(1)}22%{transform:translateY(-22px) rotate(120deg) scale(1.05)}45%{transform:translateY(-32px) rotate(300deg) scale(1.07)}68%{transform:translateY(-14px) rotate(500deg) scale(1.03)}100%{transform:translateY(0) rotate(720deg) scale(1)}}
 @keyframes diceShadowV137{0%,100%{transform:translateX(-50%) scale(1);opacity:.55}45%{transform:translateX(-50%) scale(.58);opacity:.22}}
 @media(max-width:390px){.dice-stage{gap:5px}.dice-cube{width:74px;height:74px;padding:10px;border-radius:17px}.dice-dot{width:10px;height:10px}}
+
 @media(prefers-reduced-motion:reduce){.dice-cube.rolling,.dice-roll-flash.show,.dice-result.reveal,.dice-arena.result-burst:after,.dice-stage.rolling:after{animation-duration:.01ms!important;animation-iteration-count:1!important}}
+
+/* =====================================================
+   V138 — CARD FLIP 2 CARDS
+   Final cards + outcome + balance come from Server only
+===================================================== */
+#gameSelectScreen #openCardBtn .game-card-icon i{font-size:30px!important;color:#fff!important}
+.cardgame-wrap{margin-top:12px;padding:13px;border-radius:21px;background:#21080d;color:#fff}.cardgame-wrap *{color:inherit}
+.cardgame-arena{margin-top:10px;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.12);border-radius:18px;background:radial-gradient(circle at 50% 10%,rgba(239,68,68,.10),transparent 36%),rgba(255,255,255,.06);padding:14px}
+.cardgame-title{text-align:center;font-size:11px;color:#cbd5e1!important;margin-bottom:11px}
+.cardgame-stage{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;justify-items:center;align-items:center;min-height:205px;perspective:1000px;position:relative;padding:3px 8px}
+.cardgame-card{border:0;background:transparent;padding:0;width:100%;max-width:132px;aspect-ratio:5/7;perspective:900px;position:relative;transition:transform .2s}.cardgame-card:disabled{cursor:not-allowed}.cardgame-card:active{transform:scale(.97)}
+.cardgame-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .72s cubic-bezier(.2,.72,.2,1)}.cardgame-card.flipped .cardgame-inner,.cardgame-card.reveal-slow .cardgame-inner{transform:rotateY(180deg)}
+.cardgame-face{position:absolute;inset:0;border-radius:12px;backface-visibility:hidden;overflow:hidden;box-shadow:0 16px 32px rgba(0,0,0,.30)}
+.cardgame-back{border:4px solid #fff5f5;background:radial-gradient(circle at center,transparent 0 17px,rgba(255,255,255,.08) 18px 20px,transparent 21px),repeating-linear-gradient(45deg,rgba(255,255,255,.06) 0 4px,transparent 4px 10px),linear-gradient(145deg,#c51f2c,#7f1d1d);display:grid;place-items:center}.cardgame-back:before{content:"";position:absolute;inset:8px;border:1px solid rgba(255,255,255,.25);border-radius:9px}.cardgame-back i{font-size:34px;color:#fff!important;z-index:2}
+.cardgame-front{transform:rotateY(180deg);background:linear-gradient(145deg,#fff,#fff8f8);border:4px solid #fff;color:#171717!important;padding:9px;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start}.cardgame-front.red{color:#c91c2d!important}.cardgame-front.black{color:#111827!important}.cardgame-front *{color:inherit!important}
+.cardgame-rank{font-size:22px;font-weight:800;line-height:.95}.cardgame-suit-sm{font-size:18px;line-height:1}.cardgame-suit-big{width:100%;text-align:center;font-size:50px;line-height:1;margin:auto 0}.cardgame-label{width:100%;text-align:right;font-size:8px;font-weight:650;opacity:.7}
+.cardgame-card.selected{z-index:3}.cardgame-card.selected .cardgame-back{box-shadow:0 0 0 3px rgba(239,68,68,.2),0 18px 38px rgba(239,68,68,.2)}.cardgame-card.lift{animation:cardGameLift .45s ease forwards}.cardgame-card.peek .cardgame-inner{animation:cardGamePeek .72s cubic-bezier(.2,.7,.2,1)}.cardgame-card.shuffle-left{animation:cardGameShuffleLeft .72s ease-in-out}.cardgame-card.shuffle-right{animation:cardGameShuffleRight .72s ease-in-out}
+.cardgame-flash{position:absolute;left:50%;top:47%;z-index:8;min-width:90px;padding:9px 13px;border-radius:15px;transform:translate(-50%,-50%) scale(.72);opacity:0;pointer-events:none;text-align:center;background:linear-gradient(135deg,#ef4444,#7f1d1d);border:1px solid rgba(255,255,255,.18);box-shadow:0 16px 36px rgba(127,29,29,.42);color:#fff!important;font-size:16px;font-weight:800}.cardgame-flash.show{animation:rpsBattleWord .31s ease both}.cardgame-countdown{position:absolute;left:50%;top:48%;z-index:9;transform:translate(-50%,-50%);font-size:32px;font-weight:800;color:#fff!important;opacity:0;pointer-events:none}.cardgame-countdown.show{animation:cardGameCount .42s ease both}
+.cardgame-result{min-height:44px;margin-top:11px;border-radius:12px;padding:9px;display:grid;place-items:center;text-align:center;background:rgba(255,255,255,.06);font-size:11px;color:#fff!important}.cardgame-result.waiting{background:rgba(251,191,36,.10);color:#fde68a!important}.cardgame-result.win{background:rgba(34,197,94,.14);color:#bbf7d0!important}.cardgame-result.lose{background:rgba(244,63,94,.14);color:#fecdd3!important}.cardgame-result.draw{background:rgba(251,191,36,.14);color:#fde68a!important}.cardgame-result.reveal{animation:rpsPop .36s ease}
+.cardgame-rules{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:9px}.cardgame-rule{padding:9px;border:1px solid rgba(255,255,255,.10);border-radius:12px;background:rgba(255,255,255,.05);font-size:8px;line-height:1.5;color:#cbd5e1!important}.cardgame-rule b{display:block;color:#fff!important;font-size:10px;margin-bottom:2px}
+.cardgame-arena.result-burst:after{content:"";position:absolute;left:50%;top:47%;width:150px;height:150px;border-radius:50%;border:3px solid rgba(239,68,68,.42);transform:translate(-50%,-50%) scale(.2);animation:htRing .52s ease-out forwards;pointer-events:none}
+@keyframes cardGameShuffleLeft{0%,100%{transform:translateX(0) rotate(0)}40%{transform:translateX(55%) rotate(7deg)}72%{transform:translateX(0) rotate(-3deg)}}
+@keyframes cardGameShuffleRight{0%,100%{transform:translateX(0) rotate(0)}40%{transform:translateX(-55%) rotate(-7deg)}72%{transform:translateX(0) rotate(3deg)}}
+@keyframes cardGameLift{from{transform:translateY(0) scale(1)}to{transform:translateY(-10px) scale(1.035)}}
+@keyframes cardGamePeek{0%{transform:rotateY(0)}55%{transform:rotateY(34deg)}75%{transform:rotateY(20deg)}100%{transform:rotateY(0)}}
+@keyframes cardGameCount{0%{opacity:0;transform:translate(-50%,-50%) scale(.55)}55%{opacity:1;transform:translate(-50%,-50%) scale(1.14)}100%{opacity:0;transform:translate(-50%,-50%) scale(1)}}
+@media(max-width:390px){.cardgame-stage{gap:9px;padding:3px}.cardgame-card{max-width:122px}.cardgame-rank{font-size:20px}.cardgame-suit-big{font-size:45px}}
+@media(prefers-reduced-motion:reduce){.cardgame-card.lift,.cardgame-card.peek .cardgame-inner,.cardgame-card.shuffle-left,.cardgame-card.shuffle-right,.cardgame-flash.show,.cardgame-countdown.show,.cardgame-result.reveal,.cardgame-arena.result-burst:after{animation-duration:.01ms!important;animation-iteration-count:1!important}}
 
 </style>
  <style id="style2-isolated-v114">
@@ -23312,12 +23342,16 @@ strong,b{
 ===================================================== */
 #gameSelectScreen,
 #rpsGameScreen,
-#headsTailsGameScreen{
+#headsTailsGameScreen,
+#diceGameScreen,
+#cardGameScreen{
   display:none !important;
 }
 #gameSelectScreen.active,
 #rpsGameScreen.active,
-#headsTailsGameScreen.active{
+#headsTailsGameScreen.active,
+#diceGameScreen.active,
+#cardGameScreen.active{
   display:block !important;
 }
 
@@ -23739,6 +23773,7 @@ strong,b{
       <button class="game-card" id="openRpsBtn" type="button"><span class="game-card-icon"><i class="fi fi-ss-hand-fist"></i></span><span class="game-card-copy"><strong>เป่ายิงฉุบ</strong><small>ค้อน · กรรไกร · กระดาษ</small></span><span class="game-card-arrow">›</span></button>
       <button class="game-card" id="openHeadsTailsBtn" type="button"><span class="game-card-icon"><i class="fi fi-sr-coins"></i></span><span class="game-card-copy"><strong>หัว - ก้อย</strong><small>เลือกฝั่ง แล้วโยนเหรียญ</small></span><span class="game-card-arrow">›</span></button>
       <button class="game-card" id="openDiceBtn" type="button"><span class="game-card-icon"><i class="fi fi-rr-dice"></i></span><span class="game-card-copy"><strong>ทายลูกเต๋า</strong><small>ไฮโล 3 ลูก · เลือกสูงหรือต่ำ</small></span><span class="game-card-arrow">›</span></button>
+      <button class="game-card" id="openCardBtn" type="button"><span class="game-card-icon"><i class="fi fi-rs-playing-cards"></i></span><span class="game-card-copy"><strong>เปิดไพ่</strong><small>เลือกไพ่ 1 จาก 2 ใบ · เปิดครบแล้วตัดสินผล</small></span><span class="game-card-arrow">›</span></button>
      </div>
     </div>
    </section>
@@ -23837,6 +23872,35 @@ strong,b{
       <div class="rps-history-card">
        <div class="rps-history-head"><div class="rps-history-title"><b>ประวัติการเล่น</b><small>ล่าสุด 10 ครั้ง</small></div><div class="rps-history-actions"><button class="rps-history-all" id="diceHistoryAllBtn" type="button"><i class="fi fi-sr-time-past"></i> ดูทั้งหมด</button><button class="rps-history-reload" id="diceHistoryReloadBtn" type="button"><i class="fi fi-sr-refresh"></i> รีเฟรช</button></div></div>
        <div class="rps-history-list" id="diceHistoryList"><div class="rps-history-empty">ยังไม่มีประวัติการเล่น</div></div>
+      </div>
+     </div>
+    </div>
+   </section>
+
+   <section class="screen" id="cardGameScreen">
+    <div class="game-screen-shell">
+     <div class="game-head"><button class="game-back" id="cardBackBtn" type="button">‹</button><div class="game-head-copy"><strong>เปิดไพ่</strong></div></div>
+     <div class="game-wallet"><div><small>กระเป๋าเกม</small><b>฿<span id="cardBalance">0.00</span></b></div><i class="fi fi-sr-wallet"></i></div>
+     <div class="cardgame-wrap">
+      <div class="rps-bet-card">
+       <div class="rps-label-row"><b>ลงเงินเดิมพัน</b><span>หัก/เพิ่มจากยอดหลักทันที</span></div>
+       <div class="rps-bet-row"><input id="cardBetAmount" type="number" inputmode="decimal" min="1" step="1" placeholder="0"><button class="rps-max" id="cardMaxBtn" type="button">MAX</button></div>
+       <div class="rps-quick"><button type="button" data-card-bet="5">5</button><button type="button" data-card-bet="10">10</button><button type="button" data-card-bet="20">20</button><button type="button" data-card-bet="50">50</button><button type="button" data-card-bet="100">100</button><button type="button" data-card-bet="500">500</button></div>
+      </div>
+      <div class="cardgame-arena" id="cardArena">
+       <div class="cardgame-title" id="cardGameTitle">เลือกไพ่ที่ต้องการเปิด</div>
+       <div class="cardgame-flash" id="cardRevealFlash" aria-live="polite"></div>
+       <div class="cardgame-countdown" id="cardCountdown">3</div>
+       <div class="cardgame-stage">
+        <button class="cardgame-card" type="button" data-card-choice="0"><div class="cardgame-inner"><div class="cardgame-face cardgame-back"><i class="fi fi-rs-playing-cards"></i></div><div class="cardgame-face cardgame-front"></div></div></button>
+        <button class="cardgame-card" type="button" data-card-choice="1"><div class="cardgame-inner"><div class="cardgame-face cardgame-back"><i class="fi fi-rs-playing-cards"></i></div><div class="cardgame-face cardgame-front"></div></div></button>
+       </div>
+       <div class="cardgame-result" id="cardResult">ใส่เงิน แล้วเลือกไพ่ 1 ใบ</div>
+       <div class="cardgame-rules"><div class="cardgame-rule"><b>A = 1 · 2–10 ตามหน้าไพ่</b>J / Q / K = 10 แต้ม</div><div class="cardgame-rule"><b>แต้มมากกว่าชนะ</b>แต้มเท่ากัน = เสมอ คืนทุน</div></div>
+      </div>
+      <div class="rps-history-card">
+       <div class="rps-history-head"><div class="rps-history-title"><b>ประวัติการเล่น</b><small>ล่าสุด 10 ครั้ง</small></div><div class="rps-history-actions"><button class="rps-history-all" id="cardHistoryAllBtn" type="button"><i class="fi fi-sr-time-past"></i> ดูทั้งหมด</button><button class="rps-history-reload" id="cardHistoryReloadBtn" type="button"><i class="fi fi-sr-refresh"></i> รีเฟรช</button></div></div>
+       <div class="rps-history-list" id="cardHistoryList"><div class="rps-history-empty">ยังไม่มีประวัติการเล่น</div></div>
       </div>
      </div>
     </div>
@@ -24823,6 +24887,8 @@ var state = {
   headsTailsHistory: [],
   diceBusy: false,
   diceHistory: [],
+  cardBusy: false,
+  cardHistory: [],
   allGameHistory: [],
   gameHistoryReturn: "rps"
 };
@@ -24836,8 +24902,8 @@ var LOTTO_ROUND_SWITCH_HOUR = 5;
 document.addEventListener("DOMContentLoaded", function () {
   [
     "loginScreen","mainApp","apiState","loginVersion","authLoginTab","authRegisterTab","loginPanel","registerPanel","loginUser","loginPass","loginPassToggle","loginBtn","regPhone","regPass","regPassConfirm","regBankNameAccount","regBankName","regBankAccountNo","regReferralCode","regReferralHint","registerBtn",
-    "homeScreen","homeCredit","homeUserName","homeUsername","homeLineContactBtn","homeLogoutBtn","homeDepositBtn","homeWithdrawBtn","homeLottoBtn","homeHistoryBtn","homeResultsBtn","homeSummaryBtn","homeMoneyBtn","homeAffiliateBtn","homeGameBtn","gameSelectScreen","gameSelectBackBtn","gameSelectBalance","openRpsBtn","openHeadsTailsBtn","openDiceBtn","rpsGameScreen","rpsBackBtn","rpsBalance","rpsBetAmount","rpsMaxBtn","rpsUserHand","rpsSystemHand","rpsUserName","rpsSystemName","rpsResult","rpsHistoryReloadBtn","rpsHistoryAllBtn","rpsHistoryList","headsTailsGameScreen","headsTailsBackBtn","headsTailsBalance","headsTailsBetAmount","headsTailsMaxBtn","headsTailsCoin","headsTailsCoinStage","headsTailsArena","headsTailsTossFlash","headsTailsResult","headsTailsHistoryReloadBtn","headsTailsHistoryAllBtn","headsTailsHistoryList","diceGameScreen","diceBackBtn","diceBalance","diceBetAmount","diceMaxBtn","diceArena","diceStage","diceRollFlash","dice1","dice2","dice3","diceSum","diceResult","diceHistoryReloadBtn","diceHistoryAllBtn","diceHistoryList","gameHistoryScreen","gameHistoryBackBtn","gameHistoryList","gameHistoryCount","lottoHomeBtn","betHomeBtn",
-    "lottoScreen","betScreen","historyScreen","moneyScreen","profileScreen","memberSummaryScreen","resultsScreen","affiliateScreen","gameSelectScreen","rpsGameScreen","headsTailsGameScreen","diceGameScreen","gameHistoryScreen","adminScreen","lottoGrid","lottoEmpty",
+    "homeScreen","homeCredit","homeUserName","homeUsername","homeLineContactBtn","homeLogoutBtn","homeDepositBtn","homeWithdrawBtn","homeLottoBtn","homeHistoryBtn","homeResultsBtn","homeSummaryBtn","homeMoneyBtn","homeAffiliateBtn","homeGameBtn","gameSelectScreen","gameSelectBackBtn","gameSelectBalance","openRpsBtn","openHeadsTailsBtn","openDiceBtn","rpsGameScreen","rpsBackBtn","rpsBalance","rpsBetAmount","rpsMaxBtn","rpsUserHand","rpsSystemHand","rpsUserName","rpsSystemName","rpsResult","rpsHistoryReloadBtn","rpsHistoryAllBtn","rpsHistoryList","headsTailsGameScreen","headsTailsBackBtn","headsTailsBalance","headsTailsBetAmount","headsTailsMaxBtn","headsTailsCoin","headsTailsCoinStage","headsTailsArena","headsTailsTossFlash","headsTailsResult","headsTailsHistoryReloadBtn","headsTailsHistoryAllBtn","headsTailsHistoryList","diceGameScreen","diceBackBtn","diceBalance","diceBetAmount","diceMaxBtn","diceArena","diceStage","diceRollFlash","dice1","dice2","dice3","diceSum","diceResult","diceHistoryReloadBtn","diceHistoryAllBtn","diceHistoryList","cardGameScreen","cardBackBtn","cardBalance","cardBetAmount","cardMaxBtn","cardArena","cardGameTitle","cardRevealFlash","cardCountdown","cardResult","cardHistoryReloadBtn","cardHistoryAllBtn","cardHistoryList","openCardBtn","gameHistoryScreen","gameHistoryBackBtn","gameHistoryList","gameHistoryCount","lottoHomeBtn","betHomeBtn",
+    "lottoScreen","betScreen","historyScreen","moneyScreen","profileScreen","memberSummaryScreen","resultsScreen","affiliateScreen","gameSelectScreen","rpsGameScreen","headsTailsGameScreen","diceGameScreen","cardGameScreen","gameHistoryScreen","adminScreen","lottoGrid","lottoEmpty",
     "backBtn","bottomBackBtn","classicRuleBtn","selectedName","selectedRound","selectedClose","selectedCount","selectedLimitNote","selectedRateNote",
     "accountName","heroCredit","betCredit","modernBetCredit","bottomCredit","summaryCredit","adminBtn",
     "memberSummaryBtn","moneyBtn","resultsBtn","historyBtn","lineContactBtn","logoutBtn","affiliateBackBtn","affiliateAvailableTop","affiliateCode","affiliateLink","affiliateCopyBtn","affiliateStats","affiliateWithdrawBtn","affiliateCommissionList","affiliateWithdrawList","resultsBackBtn","resultsBalance","resultsDate","resultsReloadBtn","resultsPrevBtn","resultsNextBtn","resultsSource","resultsList","historyBackBtn","historyCredit","historyFrom","historyTo",
@@ -24972,6 +25038,7 @@ function openAppRoute(route) {
   if (route === "rps") return showRpsGame();
   if (route === "heads-tails") return showHeadsTailsGame();
   if (route === "dice") return showDiceGame();
+  if (route === "card") return showCardGame();
   if (route === "game-history") return showGameHistory();
   if (route === "admin" && state.isAdmin) return showAdmin(state.adminTab || "dashboard");
 
@@ -25008,25 +25075,32 @@ function bindEvents() {
   if (els.openRpsBtn) els.openRpsBtn.onclick = showRpsGame;
   if (els.openHeadsTailsBtn) els.openHeadsTailsBtn.onclick = showHeadsTailsGame;
   if (els.openDiceBtn) els.openDiceBtn.onclick = showDiceGame;
+  if (els.openCardBtn) els.openCardBtn.onclick = showCardGame;
   if (els.rpsBackBtn) els.rpsBackBtn.onclick = showGameSelect;
   if (els.headsTailsBackBtn) els.headsTailsBackBtn.onclick = showGameSelect;
   if (els.diceBackBtn) els.diceBackBtn.onclick = showGameSelect;
+  if (els.cardBackBtn) els.cardBackBtn.onclick = showGameSelect;
   if (els.rpsMaxBtn) els.rpsMaxBtn.onclick = function(){ if (els.rpsBetAmount) els.rpsBetAmount.value = Math.floor(Number(state.gameBalance || 0)); };
   if (els.headsTailsMaxBtn) els.headsTailsMaxBtn.onclick = function(){ if (els.headsTailsBetAmount) els.headsTailsBetAmount.value = Math.floor(Number(state.gameBalance || 0)); };
   if (els.diceMaxBtn) els.diceMaxBtn.onclick = function(){ if (els.diceBetAmount) els.diceBetAmount.value = Math.floor(Number(state.gameBalance || 0)); };
+  if (els.cardMaxBtn) els.cardMaxBtn.onclick = function(){ if (els.cardBetAmount) els.cardBetAmount.value = Math.floor(Number(state.gameBalance || 0)); };
   if (els.rpsHistoryReloadBtn) els.rpsHistoryReloadBtn.onclick = function(){ loadRpsHistory().catch(showErrorGlobal); };
   if (els.headsTailsHistoryReloadBtn) els.headsTailsHistoryReloadBtn.onclick = function(){ loadHeadsTailsHistory().catch(showErrorGlobal); };
   if (els.diceHistoryReloadBtn) els.diceHistoryReloadBtn.onclick = function(){ loadDiceHistory().catch(showErrorGlobal); };
+  if (els.cardHistoryReloadBtn) els.cardHistoryReloadBtn.onclick = function(){ loadCardHistory().catch(showErrorGlobal); };
   if (els.rpsHistoryAllBtn) els.rpsHistoryAllBtn.onclick = function(){ showGameHistory('rps'); };
   if (els.headsTailsHistoryAllBtn) els.headsTailsHistoryAllBtn.onclick = function(){ showGameHistory('heads-tails'); };
   if (els.diceHistoryAllBtn) els.diceHistoryAllBtn.onclick = function(){ showGameHistory('dice'); };
-  if (els.gameHistoryBackBtn) els.gameHistoryBackBtn.onclick = function(){ if(state.gameHistoryReturn === 'heads-tails') return showHeadsTailsGame(); if(state.gameHistoryReturn === 'dice') return showDiceGame(); return showRpsGame(); };
+  if (els.cardHistoryAllBtn) els.cardHistoryAllBtn.onclick = function(){ showGameHistory('card'); };
+  if (els.gameHistoryBackBtn) els.gameHistoryBackBtn.onclick = function(){ if(state.gameHistoryReturn === 'heads-tails') return showHeadsTailsGame(); if(state.gameHistoryReturn === 'dice') return showDiceGame(); if(state.gameHistoryReturn === 'card') return showCardGame(); return showRpsGame(); };
   document.querySelectorAll("[data-rps-bet]").forEach(function(btn){ btn.onclick=function(){ if(els.rpsBetAmount) els.rpsBetAmount.value=btn.dataset.rpsBet; }; });
   document.querySelectorAll("[data-rps-choice]").forEach(function(btn){ btn.onclick=function(){ playRpsGame(btn.dataset.rpsChoice); }; });
   document.querySelectorAll("[data-ht-bet]").forEach(function(btn){ btn.onclick=function(){ if(els.headsTailsBetAmount) els.headsTailsBetAmount.value=btn.dataset.htBet; }; });
   document.querySelectorAll("[data-ht-choice]").forEach(function(btn){ btn.onclick=function(){ playHeadsTailsGame(btn.dataset.htChoice); }; });
   document.querySelectorAll("[data-dice-bet]").forEach(function(btn){ btn.onclick=function(){ if(els.diceBetAmount) els.diceBetAmount.value=btn.dataset.diceBet; }; });
   document.querySelectorAll("[data-dice-choice]").forEach(function(btn){ btn.onclick=function(){ playDiceGame(btn.dataset.diceChoice); }; });
+  document.querySelectorAll("[data-card-bet]").forEach(function(btn){ btn.onclick=function(){ if(els.cardBetAmount) els.cardBetAmount.value=btn.dataset.cardBet; }; });
+  document.querySelectorAll("[data-card-choice]").forEach(function(btn){ btn.onclick=function(){ playCardGame(Number(btn.dataset.cardChoice)); }; });
   if (els.homeLineContactBtn) els.homeLineContactBtn.onclick = openLineContact;
   if (els.homeLogoutBtn) els.homeLogoutBtn.onclick = function(){ logout(true); };
   if (els.lottoHomeBtn) els.lottoHomeBtn.onclick = showHome;
@@ -25966,7 +26040,7 @@ function hideMemberScreensV16() {
   [
     "homeScreen","lottoScreen","betScreen","historyScreen",
     "moneyScreen","profileScreen","memberSummaryScreen","resultsScreen","affiliateScreen",
-    "gameSelectScreen","rpsGameScreen","headsTailsGameScreen","diceGameScreen","gameHistoryScreen","adminScreen"
+    "gameSelectScreen","rpsGameScreen","headsTailsGameScreen","diceGameScreen","cardGameScreen","gameHistoryScreen","adminScreen"
   ].forEach(function(id){
     if (els[id]) els[id].classList.remove("active");
   });
@@ -25987,6 +26061,7 @@ function miniGameName(game){
   if(g==='ROCK_PAPER_SCISSORS') return 'เป่ายิงฉุบ';
   if(g==='HEADS_TAILS') return 'หัว - ก้อย';
   if(g==='DICE_HIGH_LOW') return 'ทายลูกเต๋า';
+  if(g==='CARD_FLIP') return 'เปิดไพ่';
   return String(game||'มินิเกม');
 }
 function miniChoiceIcon(choice){
@@ -25998,6 +26073,7 @@ function miniChoiceIcon(choice){
   if(choice==='tails') return 'fi fi-sr-star';
   if(choice==='low') return 'fi fi-rr-arrow-trend-down';
   if(choice==='high') return 'fi fi-rr-arrow-trend-up';
+  if(choice==='card1'||choice==='card2') return 'fi fi-rs-playing-cards';
   return 'fi fi-sr-gamepad';
 }
 function miniChoiceName(choice){
@@ -26009,6 +26085,8 @@ function miniChoiceName(choice){
   if(choice==='tails') return 'ก้อย';
   if(choice==='low') return 'ต่ำ';
   if(choice==='high') return 'สูง';
+  if(choice==='card1') return 'ใบ 1';
+  if(choice==='card2') return 'ใบ 2';
   return choice || '-';
 }
 function rpsIcon(choice){ return miniChoiceIcon(choice); }
@@ -26017,6 +26095,7 @@ function setRpsHand(el, choice){ if(el) el.innerHTML='<i class="'+rpsIcon(choice
 function setRpsBusy(v){ state.rpsBusy=!!v; document.querySelectorAll('[data-rps-choice],[data-rps-bet]').forEach(function(b){b.disabled=!!v;}); if(els.rpsBetAmount) els.rpsBetAmount.disabled=!!v; if(els.rpsMaxBtn) els.rpsMaxBtn.disabled=!!v; }
 function setHeadsTailsBusy(v){ state.headsTailsBusy=!!v; document.querySelectorAll('[data-ht-choice],[data-ht-bet]').forEach(function(b){b.disabled=!!v;}); if(els.headsTailsBetAmount) els.headsTailsBetAmount.disabled=!!v; if(els.headsTailsMaxBtn) els.headsTailsMaxBtn.disabled=!!v; }
 function setDiceBusy(v){ state.diceBusy=!!v; document.querySelectorAll('[data-dice-choice],[data-dice-bet]').forEach(function(b){b.disabled=!!v;}); if(els.diceBetAmount) els.diceBetAmount.disabled=!!v; if(els.diceMaxBtn) els.diceMaxBtn.disabled=!!v; }
+function setCardBusy(v){ state.cardBusy=!!v; document.querySelectorAll('[data-card-choice],[data-card-bet]').forEach(function(b){b.disabled=!!v;}); if(els.cardBetAmount) els.cardBetAmount.disabled=!!v; if(els.cardMaxBtn) els.cardMaxBtn.disabled=!!v; }
 function rpsDelay(ms){ return new Promise(function(resolve){ setTimeout(resolve,ms); }); }
 function clearRpsBattleAnimation(){
   var flash=document.getElementById('rpsBattleFlash');
@@ -26088,12 +26167,68 @@ async function runDiceAnimation(){
   if(flash){ flash.classList.remove('show'); void flash.offsetWidth; flash.textContent='รอผล'; flash.classList.add('show'); }
   if(els.diceResult){ els.diceResult.className='dice-result'; els.diceResult.textContent='กำลังเปิดผล...'; }
 }
+
+function cardSuitInfo(suitKey){
+  suitKey=String(suitKey||'').toLowerCase();
+  if(suitKey==='hearts') return {symbol:'♥',color:'red',name:'โพแดง'};
+  if(suitKey==='diamonds') return {symbol:'♦',color:'red',name:'ข้าวหลามตัด'};
+  if(suitKey==='spades') return {symbol:'♠',color:'black',name:'โพดำ'};
+  return {symbol:'♣',color:'black',name:'ดอกจิก'};
+}
+function cardShort(card){
+  card=card||{}; var si=cardSuitInfo(card.suitKey); return String(card.rank||'?')+si.symbol;
+}
+function cardFrontHtml(card){
+  card=card||{}; var si=cardSuitInfo(card.suitKey);
+  return '<div><div class="cardgame-rank">'+escapeHtml(String(card.rank||'?'))+'</div><div class="cardgame-suit-sm">'+si.symbol+'</div></div><div class="cardgame-suit-big">'+si.symbol+'</div><div class="cardgame-label">'+si.name+' · '+Number(card.points||0)+' แต้ม</div>';
+}
+function getCardButtons(){ return [].slice.call(document.querySelectorAll('#cardGameScreen [data-card-choice]')); }
+function resetCardVisuals(clearFronts){
+  getCardButtons().forEach(function(card){
+    card.classList.remove('selected','lift','peek','reveal-slow','flipped','shuffle-left','shuffle-right');
+    if(clearFronts){ var front=card.querySelector('.cardgame-front'); if(front){ front.className='cardgame-face cardgame-front'; front.innerHTML=''; } }
+  });
+  if(els.cardRevealFlash){ els.cardRevealFlash.classList.remove('show'); els.cardRevealFlash.textContent=''; }
+  if(els.cardCountdown) els.cardCountdown.classList.remove('show');
+  if(els.cardArena) els.cardArena.classList.remove('result-burst');
+}
+function cardFlash(text){ if(!els.cardRevealFlash) return; els.cardRevealFlash.classList.remove('show'); void els.cardRevealFlash.offsetWidth; els.cardRevealFlash.textContent=text; els.cardRevealFlash.classList.add('show'); }
+async function cardCount(value){ if(!els.cardCountdown) return; els.cardCountdown.classList.remove('show'); void els.cardCountdown.offsetWidth; els.cardCountdown.textContent=String(value); els.cardCountdown.classList.add('show'); await rpsDelay(420); }
+async function runCardShuffleAnimation(selectedIndex){
+  resetCardVisuals(true); var cards=getCardButtons(); if(cards[selectedIndex]) cards[selectedIndex].classList.add('selected');
+  if(els.cardResult){ els.cardResult.className='cardgame-result waiting'; els.cardResult.textContent='กำลังสับไพ่...'; }
+  cardFlash('สับไพ่'); if(cards[0]) cards[0].classList.add('shuffle-left'); if(cards[1]) cards[1].classList.add('shuffle-right');
+  await rpsDelay(760); if(cards[0]) cards[0].classList.remove('shuffle-left'); if(cards[1]) cards[1].classList.remove('shuffle-right');
+  if(cards[selectedIndex]) cards[selectedIndex].classList.add('lift'); cardFlash('ใบที่คุณเลือก');
+  if(els.cardResult) els.cardResult.textContent='รอผลไพ่จากระบบ...';
+}
+function fillServerCards(cardsData){
+  var buttons=getCardButtons(); cardsData=Array.isArray(cardsData)?cardsData:[];
+  buttons.forEach(function(btn,i){ var data=cardsData[i]||{}; var front=btn.querySelector('.cardgame-front'); if(!front) return; var si=cardSuitInfo(data.suitKey); front.className='cardgame-face cardgame-front '+si.color; front.innerHTML=cardFrontHtml(data); });
+}
+async function revealServerCards(selectedIndex){
+  var cards=getCardButtons(); var otherIndex=selectedIndex===0?1:0;
+  await cardCount(3); await cardCount(2); await cardCount(1);
+  if(cards[selectedIndex]) cards[selectedIndex].classList.add('peek'); cardFlash('แง้มไพ่'); await rpsDelay(650);
+  if(cards[selectedIndex]){ cards[selectedIndex].classList.remove('peek'); cards[selectedIndex].classList.add('reveal-slow'); } cardFlash('เปิด!'); await rpsDelay(950);
+  if(els.cardRevealFlash) els.cardRevealFlash.classList.remove('show'); if(els.cardResult) els.cardResult.textContent='เปิดอีกใบ...';
+  if(cards[otherIndex]) cards[otherIndex].classList.add('peek'); cardFlash('อีกใบ'); await rpsDelay(520);
+  if(cards[otherIndex]){ cards[otherIndex].classList.remove('peek'); cards[otherIndex].classList.add('reveal-slow'); } cardFlash('เปิด!'); await rpsDelay(850);
+  if(els.cardRevealFlash) els.cardRevealFlash.classList.remove('show');
+}
+async function closeCardRound(){
+  await rpsDelay(650); var cards=getCardButtons(); cards.forEach(function(c){ c.classList.remove('reveal-slow','lift','selected','peek'); }); await rpsDelay(620); resetCardVisuals(true);
+  if(els.cardGameTitle) els.cardGameTitle.textContent='เลือกไพ่ที่ต้องการเปิด';
+  if(els.cardResult){ els.cardResult.className='cardgame-result'; els.cardResult.textContent='เลือกไพ่ใบใหม่เพื่อเล่นต่อ'; }
+}
+
 function syncGameBalances(balance){
   state.gameBalance=Number(balance||0);
   if(els.gameSelectBalance) els.gameSelectBalance.textContent=rpsMoney(state.gameBalance);
   if(els.rpsBalance) els.rpsBalance.textContent=rpsMoney(state.gameBalance);
   if(els.headsTailsBalance) els.headsTailsBalance.textContent=rpsMoney(state.gameBalance);
   if(els.diceBalance) els.diceBalance.textContent=rpsMoney(state.gameBalance);
+  if(els.cardBalance) els.cardBalance.textContent=rpsMoney(state.gameBalance);
   if(els.homeCredit) els.homeCredit.textContent=rpsMoney(state.gameBalance);
   if(els.heroCredit) els.heroCredit.textContent=rpsMoney(state.gameBalance);
   if(state.user) state.user.credit=state.gameBalance;
@@ -26119,6 +26254,9 @@ function gameHistoryRowsHtml(rows, showGameName){
       var dv=Array.isArray(x.diceValues)?x.diceValues:[];
       var ds=Number(x.diceSum||0);
       mainText='เลือก '+miniChoiceName(userChoice)+' · '+(dv.length===3?dv.join(' · ')+' = '+ds+' · ':'')+'ออก '+miniChoiceName(systemChoice)+' · '+resultText;
+    }else if(gameKey==='CARD_FLIP'){
+      var sc=x.selectedCard||{}; var oc=x.otherCard||{};
+      mainText='เลือก '+miniChoiceName(userChoice)+' · '+cardShort(sc)+' '+Number(sc.points||0)+' แต้ม vs '+cardShort(oc)+' '+Number(oc.points||0)+' แต้ม · '+resultText;
     }else{
       mainText=miniChoiceName(userChoice)+' vs '+miniChoiceName(systemChoice)+' · '+resultText;
     }
@@ -26136,6 +26274,8 @@ function renderHeadsTailsHistory(){ if(els.headsTailsHistoryList){ var rows=Arra
 async function loadHeadsTailsHistory(){ if(!state.token) return []; var rows=await api('getMyMiniGameHistory',state.token,10,'HEADS_TAILS'); state.headsTailsHistory=Array.isArray(rows)?rows.slice(0,10):[]; renderHeadsTailsHistory(); return state.headsTailsHistory; }
 function renderDiceHistory(){ if(els.diceHistoryList){ var rows=Array.isArray(state.diceHistory)?state.diceHistory.slice(0,10):[]; els.diceHistoryList.innerHTML=gameHistoryRowsHtml(rows,false); } }
 async function loadDiceHistory(){ if(!state.token) return []; var rows=await api('getMyMiniGameHistory',state.token,10,'DICE_HIGH_LOW'); state.diceHistory=Array.isArray(rows)?rows.slice(0,10):[]; renderDiceHistory(); return state.diceHistory; }
+function renderCardHistory(){ if(els.cardHistoryList){ var rows=Array.isArray(state.cardHistory)?state.cardHistory.slice(0,10):[]; els.cardHistoryList.innerHTML=gameHistoryRowsHtml(rows,false); } }
+async function loadCardHistory(){ if(!state.token) return []; var rows=await api('getMyMiniGameHistory',state.token,10,'CARD_FLIP'); state.cardHistory=Array.isArray(rows)?rows.slice(0,10):[]; renderCardHistory(); return state.cardHistory; }
 function renderAllGameHistory(){
   if(!els.gameHistoryList) return;
   var rows=Array.isArray(state.allGameHistory)?state.allGameHistory:[];
@@ -26171,6 +26311,9 @@ async function showMiniGameOutcomePopup(out,game){
   }else if(gameKey==='DICE_HIGH_LOW'){
     var dv=Array.isArray(out.diceValues)?out.diceValues:[];
     choiceLine='คุณเลือก: <b>'+miniChoiceName(out.userChoice)+'</b><br>ลูกเต๋า: <b>'+dv.join(' + ')+' = '+Number(out.diceSum||0)+'</b> ('+miniChoiceName(out.systemChoice)+')';
+  }else if(gameKey==='CARD_FLIP'){
+    var sc=out.selectedCard||{}, oc=out.otherCard||{};
+    choiceLine='คุณเลือก: <b>'+miniChoiceName(out.userChoice)+'</b><br><b>'+cardShort(sc)+' = '+Number(sc.points||0)+' แต้ม</b> &nbsp; vs &nbsp; <b>'+cardShort(oc)+' = '+Number(oc.points||0)+' แต้ม</b>';
   }else{
     choiceLine='คุณ: <b>'+miniChoiceName(out.userChoice)+'</b> &nbsp; ระบบ: <b>'+miniChoiceName(out.systemChoice)+'</b>';
   }
@@ -26196,6 +26339,10 @@ function showHeadsTailsGame(){
 function showDiceGame(){
   state.gameHistoryReturn='dice'; hideMemberScreensV16(); if(els.diceGameScreen) els.diceGameScreen.classList.add('active');
   try { pushAppRoute('dice'); } catch(e) {} scrollTo(0,0); loadMiniGameBoot().catch(showErrorGlobal); loadDiceHistory().catch(function(){});
+}
+function showCardGame(){
+  state.gameHistoryReturn='card'; hideMemberScreensV16(); if(els.cardGameScreen) els.cardGameScreen.classList.add('active');
+  try { pushAppRoute('card'); } catch(e) {} scrollTo(0,0); loadMiniGameBoot().catch(showErrorGlobal); loadCardHistory().catch(function(){});
 }
 async function playRpsGame(choice){
   if(state.rpsBusy) return;
@@ -26262,6 +26409,34 @@ async function playDiceGame(choice){
     loadDiceHistory().catch(function(){}); await showMiniGameOutcomePopup(out,'DICE_HIGH_LOW');
   }catch(e){ clearDiceAnimation(); showErrorGlobal(e); if(els.diceResult){ els.diceResult.className='dice-result'; els.diceResult.textContent='เล่นไม่สำเร็จ กรุณาลองใหม่'; } try{ await loadMiniGameBoot(); }catch(_e){} }
   finally{ clearDiceAnimation(); setDiceBusy(false); }
+}
+
+
+async function playCardGame(selectedIndex){
+  if(state.cardBusy) return;
+  selectedIndex=Number(selectedIndex);
+  var bet=Number(els.cardBetAmount && els.cardBetAmount.value || 0);
+  if((selectedIndex!==0&&selectedIndex!==1)){ showToast('กรุณาเลือกไพ่'); return; }
+  if(!isFinite(bet)||bet<=0){ showToast('กรุณาใส่เงินเดิมพัน'); if(els.cardBetAmount) els.cardBetAmount.focus(); return; }
+  if(bet>Number(state.gameBalance||0)){ showToast('ยอดเงินคงเหลือไม่เพียงพอ'); return; }
+  setCardBusy(true); resetCardVisuals(true);
+  // หน้าเว็บทำเฉพาะ Animation; ไพ่ ผลชนะ-แพ้ และเครดิต มาจาก Server เท่านั้น
+  var serverTask=api('playCardFlip',state.token,{choice:selectedIndex,betAmount:bet}).then(function(value){ return {ok:true,value:value}; }).catch(function(error){ return {ok:false,error:error}; });
+  try{
+    await runCardShuffleAnimation(selectedIndex);
+    var serverResult=await serverTask; if(!serverResult.ok) throw serverResult.error; var out=serverResult.value || {};
+    fillServerCards(out.cards); if(els.cardGameTitle) els.cardGameTitle.textContent='ไพ่ที่คุณเลือก · ใบ '+(selectedIndex+1);
+    await revealServerCards(selectedIndex);
+    if(els.cardArena){ els.cardArena.classList.remove('result-burst'); void els.cardArena.offsetWidth; els.cardArena.classList.add('result-burst'); }
+    syncGameBalances(out.balanceAfter);
+    var sc=out.selectedCard||{}, oc=out.otherCard||{};
+    var scoreText=cardShort(sc)+' = '+Number(sc.points||0)+' แต้ม · '+cardShort(oc)+' = '+Number(oc.points||0)+' แต้ม';
+    if(out.outcome==='WIN'){ els.cardResult.className='cardgame-result win reveal'; els.cardResult.textContent=scoreText+' · คุณชนะ +฿'+rpsMoney(out.betAmount); }
+    else if(out.outcome==='LOSE'){ els.cardResult.className='cardgame-result lose reveal'; els.cardResult.textContent=scoreText+' · คุณแพ้ -฿'+rpsMoney(out.betAmount); }
+    else{ els.cardResult.className='cardgame-result draw reveal'; els.cardResult.textContent=scoreText+' · เสมอ คืนทุน'; }
+    loadCardHistory().catch(function(){}); await showMiniGameOutcomePopup(out,'CARD_FLIP'); await closeCardRound();
+  }catch(e){ resetCardVisuals(true); showErrorGlobal(e); if(els.cardResult){ els.cardResult.className='cardgame-result'; els.cardResult.textContent='เล่นไม่สำเร็จ กรุณาลองใหม่'; } try{ await loadMiniGameBoot(); }catch(_e){} }
+  finally{ setCardBusy(false); }
 }
 
 
