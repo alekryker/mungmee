@@ -1,4 +1,4 @@
-<!-- V132 — MINI GAME: RPS + HEADS/TAILS + DICE + CARD FLIP -->
+<!-- V133 — BLUE ADMIN REDESIGN + FAST NAV + MINI GAME AUDIT -->
 <!-- ALL-IN-ONE: แนะนำเพื่อน + ถอนขั้นต่ำ 50 บาท + ประกาศหน้าเว็บ + Popup สูงสุด 2 รายการ -->
 <!-- RESULT HISTORY SHEET FINAL -->
 <!-- INDEX V9 WITHDRAW PANEL MIN50 + TOUCH-SAFE CONFIRM + STATELESS SESSION -->
@@ -7658,6 +7658,438 @@ textarea:focus{
 .lotto-day-save{margin-top:6px}
 @media(max-width:620px){.lotto-days-box{min-width:250px}.lotto-day-check{padding:4px 5px}}
 </style>
+
+<style id="admin-v133-blue-redesign">
+:root{
+  --admin-blue:#155EEF;
+  --admin-blue-2:#2563EB;
+  --admin-navy:#0B1F44;
+  --admin-sky:#EAF2FF;
+  --admin-bg:#F4F7FC;
+  --admin-card:#FFFFFF;
+  --admin-line:#DFE7F3;
+  --admin-text:#12213A;
+  --admin-muted:#718096;
+  --admin-good:#0F9F6E;
+  --admin-bad:#DC3545;
+}
+
+body:has(#adminScreen.active){
+  background:var(--admin-bg)!important;
+}
+
+.app:has(#adminScreen.active){
+  width:100%!important;
+  max-width:1440px!important;
+  margin:0 auto!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+  background:var(--admin-bg)!important;
+}
+
+#adminScreen{
+  min-height:100vh!important;
+  background:var(--admin-bg)!important;
+  color:var(--admin-text)!important;
+}
+
+#adminScreen .admin-hero{
+  position:relative!important;
+  padding:calc(18px + env(safe-area-inset-top)) clamp(16px,3vw,34px) 18px!important;
+  border-radius:0!important;
+  background:
+    radial-gradient(circle at 83% 0%,rgba(255,255,255,.18),transparent 28%),
+    radial-gradient(circle at 4% 100%,rgba(96,165,250,.24),transparent 32%),
+    linear-gradient(125deg,#0B2D66 0%,#155EEF 52%,#3182F6 100%)!important;
+  box-shadow:0 8px 28px rgba(20,66,145,.18)!important;
+  color:#fff!important;
+  overflow:hidden!important;
+}
+#adminScreen .admin-hero:after{
+  content:"";
+  position:absolute;
+  width:220px;height:220px;
+  right:-75px;bottom:-155px;
+  border-radius:50%;
+  border:36px solid rgba(255,255,255,.07);
+  pointer-events:none;
+}
+#adminScreen .admin-head-row{position:relative;z-index:1;max-width:1380px;margin:auto}
+#adminScreen .admin-head-row h1{
+  margin:2px 0 0!important;
+  color:#fff!important;
+  font-size:clamp(23px,3vw,31px)!important;
+  font-weight:850!important;
+  letter-spacing:-.4px!important;
+}
+#adminScreen .eyebrow{
+  color:#BFDBFE!important;
+  font-size:9px!important;
+  font-weight:800!important;
+  letter-spacing:1.4px!important;
+}
+#adminScreen #adminIdentity{
+  color:rgba(255,255,255,.72)!important;
+  font-size:10px!important;
+  font-weight:600!important;
+}
+#adminScreen .admin-head-btn{
+  min-height:40px!important;
+  padding:0 14px!important;
+  border:1px solid rgba(255,255,255,.26)!important;
+  border-radius:12px!important;
+  background:rgba(255,255,255,.12)!important;
+  color:#fff!important;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  font-size:10px!important;
+  font-weight:750!important;
+}
+#adminScreen .admin-head-btn:hover{background:rgba(255,255,255,.20)!important}
+
+#adminScreen .admin-tabs-wrap{background:transparent!important}
+#adminScreen .admin-tabs{
+  border:1px solid var(--admin-line)!important;
+  background:#fff!important;
+  box-shadow:0 10px 30px rgba(30,64,175,.07)!important;
+}
+#adminScreen .admin-tab{
+  position:relative!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:9px!important;
+  justify-content:flex-start!important;
+  min-height:46px!important;
+  padding:0 12px!important;
+  border-radius:12px!important;
+  background:transparent!important;
+  color:#52627A!important;
+  font-size:10px!important;
+  font-weight:700!important;
+  transition:.16s ease!important;
+}
+#adminScreen .admin-tab i{
+  width:22px!important;
+  text-align:center!important;
+  font-size:14px!important;
+  color:#7B8CA7!important;
+}
+#adminScreen .admin-tab:hover{background:#F4F8FF!important;color:#1849A9!important}
+#adminScreen .admin-tab.active{
+  background:linear-gradient(135deg,#155EEF,#2E7BF6)!important;
+  color:#fff!important;
+  box-shadow:0 8px 18px rgba(21,94,239,.20)!important;
+}
+#adminScreen .admin-tab.active i{color:#fff!important}
+
+#adminScreen .admin-content{
+  background:var(--admin-bg)!important;
+}
+#adminScreen .admin-panel{animation:adminV133Fade .18s ease}
+@keyframes adminV133Fade{from{opacity:.35;transform:translateY(3px)}to{opacity:1;transform:none}}
+
+#adminScreen .admin-card{
+  padding:16px!important;
+  border:1px solid var(--admin-line)!important;
+  border-radius:18px!important;
+  background:#fff!important;
+  box-shadow:0 8px 24px rgba(25,55,105,.055)!important;
+}
+#adminScreen .admin-card h2,
+#adminScreen .admin-card h3{
+  color:var(--admin-text)!important;
+  font-weight:820!important;
+  letter-spacing:-.2px!important;
+}
+#adminScreen .admin-card h2{font-size:18px!important}
+#adminScreen .admin-card h3{font-size:14px!important}
+#adminScreen .admin-muted{
+  color:var(--admin-muted)!important;
+  font-size:9px!important;
+  font-weight:550!important;
+  line-height:1.55!important;
+}
+
+#adminScreen .admin-toolbar{
+  gap:8px!important;
+  margin-top:12px!important;
+}
+#adminScreen .admin-field label{
+  margin:0 0 5px 2px!important;
+  color:#64748B!important;
+  font-size:8.5px!important;
+  font-weight:700!important;
+}
+#adminScreen .admin-field input,
+#adminScreen .admin-field select{
+  height:42px!important;
+  border:1px solid #D8E2F0!important;
+  border-radius:11px!important;
+  background:#fff!important;
+  color:#18273E!important;
+  font-size:11px!important;
+  font-weight:600!important;
+  box-shadow:none!important;
+}
+#adminScreen .admin-field input:focus,
+#adminScreen .admin-field select:focus{
+  border-color:#4F8CFF!important;
+  box-shadow:0 0 0 3px rgba(37,99,235,.09)!important;
+}
+
+#adminScreen .admin-btn{
+  min-height:41px!important;
+  border-radius:11px!important;
+  padding:0 13px!important;
+  font-size:9.5px!important;
+  font-weight:750!important;
+}
+#adminScreen .admin-btn.red,
+#adminScreen .admin-btn.dark{
+  color:#fff!important;
+  background:linear-gradient(135deg,#155EEF,#2E7BF6)!important;
+  box-shadow:0 7px 16px rgba(21,94,239,.16)!important;
+}
+#adminScreen .admin-btn.green{
+  color:#fff!important;
+  background:linear-gradient(135deg,#087EA4,#0EA5E9)!important;
+  box-shadow:0 7px 16px rgba(14,165,233,.14)!important;
+}
+#adminScreen .admin-btn.soft{
+  border:1px solid #CFE0FF!important;
+  background:#EFF6FF!important;
+  color:#155EEF!important;
+}
+#adminScreen .admin-btn:active{transform:translateY(1px)}
+
+#adminScreen .admin-mini{
+  min-height:30px!important;
+  border-radius:8px!important;
+  font-size:8.5px!important;
+  font-weight:700!important;
+}
+#adminScreen .admin-mini:not(.danger):not(.green){
+  background:#EEF4FF!important;
+  color:#155EEF!important;
+}
+#adminScreen .admin-mini.green{
+  background:#E9FBF4!important;
+  color:#087A55!important;
+}
+#adminScreen .admin-mini.danger{
+  background:#FFF0F1!important;
+  color:#C6283A!important;
+}
+
+#adminScreen .admin-stats{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:9px!important;
+}
+#adminScreen .admin-stat{
+  padding:13px!important;
+  border:1px solid #E4EBF5!important;
+  border-radius:14px!important;
+  background:linear-gradient(180deg,#fff,#F9FBFF)!important;
+}
+#adminScreen .admin-stat small{
+  color:#7B8CA7!important;
+  font-size:8px!important;
+  font-weight:650!important;
+}
+#adminScreen .admin-stat strong{
+  margin-top:4px!important;
+  color:#17335E!important;
+  font-size:17px!important;
+  font-weight:820!important;
+}
+#adminScreen .admin-stat.net strong{color:#155EEF!important}
+
+#adminScreen .admin-table-wrap{
+  border:1px solid var(--admin-line)!important;
+  border-radius:13px!important;
+  background:#fff!important;
+  box-shadow:none!important;
+}
+#adminScreen .admin-table{
+  font-size:9.5px!important;
+}
+#adminScreen .admin-table th{
+  padding:9px 9px!important;
+  background:#F5F8FD!important;
+  color:#60708A!important;
+  border-bottom:1px solid #DDE6F2!important;
+  font-size:8.5px!important;
+  font-weight:760!important;
+}
+#adminScreen .admin-table td{
+  padding:9px!important;
+  color:#31415A!important;
+  border-bottom:1px solid #EEF2F7!important;
+  font-weight:550!important;
+}
+#adminScreen .admin-table tbody tr:hover td{background:#F8FBFF!important}
+
+#adminScreen .lotto-subtab,
+#adminScreen [data-connect-subtab]{
+  border-color:#D8E5F8!important;
+  background:#F7FAFF!important;
+  color:#52627A!important;
+}
+#adminScreen .lotto-subtab.active,
+#adminScreen [data-connect-subtab].active{
+  background:#155EEF!important;
+  color:#fff!important;
+  border-color:#155EEF!important;
+}
+
+#adminScreen .admin-empty{
+  padding:26px!important;
+  color:#8492A6!important;
+  background:#F8FAFD!important;
+  border-radius:12px!important;
+}
+
+/* Mini-game audit */
+#adminScreen .admin-game-audit-stats{
+  display:grid;
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:8px;
+  margin-top:12px;
+}
+#adminScreen .admin-game-stat{
+  min-width:0;
+  padding:11px 10px;
+  border:1px solid #DFE8F5;
+  border-radius:13px;
+  background:linear-gradient(180deg,#fff,#F8FBFF);
+}
+#adminScreen .admin-game-stat small{
+  display:block;
+  color:#8090A8;
+  font-size:8px;
+  font-weight:650;
+}
+#adminScreen .admin-game-stat b{
+  display:block;
+  margin-top:4px;
+  color:#153A72;
+  font-size:15px;
+  font-weight:820;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+#adminScreen .admin-game-stat.good b{color:#07825C}
+#adminScreen .admin-game-stat.bad b{color:#C83245}
+#adminScreen .admin-game-result{
+  display:inline-flex;
+  align-items:center;
+  min-height:23px;
+  padding:0 8px;
+  border-radius:999px;
+  font-size:8px;
+  font-weight:760;
+}
+#adminScreen .admin-game-result.win{background:#ECFDF3;color:#087A55}
+#adminScreen .admin-game-result.lose{background:#FFF0F1;color:#C6283A}
+#adminScreen .admin-game-result.draw{background:#F1F5F9;color:#64748B}
+#adminScreen .admin-game-name{
+  display:inline-flex;align-items:center;gap:5px;font-weight:700;color:#1E3A5F
+}
+#adminScreen .admin-game-profit.pos{color:#087A55;font-weight:750}
+#adminScreen .admin-game-profit.neg{color:#C6283A;font-weight:750}
+#adminScreen .admin-game-summary{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:8px;
+  margin-top:10px;
+}
+#adminScreen .admin-game-summary-item{
+  padding:10px;
+  border:1px solid #E0E9F5;
+  border-radius:12px;
+  background:#F8FBFF;
+}
+#adminScreen .admin-game-summary-item strong{
+  display:block;color:#214A80;font-size:10px
+}
+#adminScreen .admin-game-summary-item span{
+  display:block;margin-top:3px;color:#70829B;font-size:8px
+}
+
+@media(min-width:900px){
+  #adminScreen.active{
+    display:grid!important;
+    grid-template-columns:238px minmax(0,1fr)!important;
+    grid-template-areas:
+      "hero hero"
+      "nav content"!important;
+    align-items:start!important;
+  }
+  #adminScreen .admin-hero{grid-area:hero}
+  #adminScreen .admin-tabs-wrap{
+    grid-area:nav;
+    position:sticky!important;
+    top:0!important;
+    align-self:start!important;
+    height:calc(100vh - 84px)!important;
+    padding:16px 0 22px 16px!important;
+    background:var(--admin-bg)!important;
+  }
+  #adminScreen .admin-tabs{
+    height:100%!important;
+    display:flex!important;
+    flex-direction:column!important;
+    gap:5px!important;
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+    padding:8px!important;
+    border-radius:16px!important;
+  }
+  #adminScreen .admin-tab{flex:0 0 auto!important;width:100%!important}
+  #adminScreen .admin-content{
+    grid-area:content;
+    min-width:0!important;
+    padding:16px 18px 42px 14px!important;
+  }
+}
+
+@media(max-width:899px){
+  #adminScreen .admin-hero{padding-left:14px!important;padding-right:14px!important}
+  #adminScreen .admin-tabs-wrap{padding:10px 10px 0!important}
+  #adminScreen .admin-tabs{
+    display:flex!important;
+    gap:6px!important;
+    overflow-x:auto!important;
+    padding:6px!important;
+    border-radius:15px!important;
+    scrollbar-width:none;
+  }
+  #adminScreen .admin-tabs::-webkit-scrollbar{display:none}
+  #adminScreen .admin-tab{
+    flex:0 0 auto!important;
+    min-width:auto!important;
+    min-height:42px!important;
+    padding:0 11px!important;
+  }
+  #adminScreen .admin-content{padding:10px 10px 34px!important}
+  #adminScreen .admin-game-audit-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #adminScreen .admin-game-summary{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+@media(max-width:520px){
+  #adminScreen .admin-card{padding:12px!important;border-radius:15px!important}
+  #adminScreen .admin-grid-2{grid-template-columns:1fr!important}
+  #adminScreen .admin-stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  #adminScreen .admin-toolbar{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  #adminScreen .admin-toolbar .admin-field{min-width:0!important;flex:auto!important}
+  #adminScreen .admin-toolbar .admin-field.full,
+  #adminScreen .admin-toolbar .admin-btn{grid-column:1/-1}
+  #adminScreen .admin-card-head{align-items:flex-start!important}
+}
+</style>
+
 </head>
  <body>
   
@@ -8195,8 +8627,8 @@ textarea:focus{
     <header class="admin-hero">
      <div class="admin-head-row">
       <div>
-       <div class="eyebrow">ADMIN BACKOFFICE</div>
-       <h1>หลังบ้าน</h1>
+       <div class="eyebrow">CONTROL CENTER</div>
+       <h1>Admin Dashboard</h1>
        <div class="admin-muted" style="color:rgba(255,255,255,.68)" id="adminIdentity">ADMIN</div>
       </div>
       <div class="admin-head-actions">
@@ -8208,16 +8640,16 @@ textarea:focus{
 
     <div class="admin-tabs-wrap">
      <div class="admin-tabs">
-      <button class="admin-tab active" data-admin-tab="dashboard">สรุปแพ้-ชนะ</button>
-      <button class="admin-tab" data-admin-tab="openbets">โพยทั้งหมด</button>
-      <button class="admin-tab" data-admin-tab="users">ยูสเซอร์/เครดิต</button>
-      <button class="admin-tab" data-admin-tab="withdraws">รายการถอน</button>
-      <button class="admin-tab" data-admin-tab="lotto">ตั้งค่าหวย</button>
-      <button class="admin-tab" data-admin-tab="results">ผลหวย / แก้ไขผล</button>
-      <button class="admin-tab" data-admin-tab="affiliate">Affiliate</button>
-      <button class="admin-tab" data-admin-tab="announcements">ประกาศหน้าเว็บ</button>
-      <button class="admin-tab" data-admin-tab="minigame">มินิเกม</button>
-      <button class="admin-tab" data-admin-tab="connections">การเชื่อมต่อ</button>
+      <button class="admin-tab active" data-admin-tab="dashboard"><i class="fi fi-sr-dashboard"></i><span>Dashboard</span></button>
+      <button class="admin-tab" data-admin-tab="openbets"><i class="fi fi-sr-receipt"></i><span>โพยทั้งหมด</span></button>
+      <button class="admin-tab" data-admin-tab="users"><i class="fi fi-sr-users-alt"></i><span>สมาชิก / เครดิต</span></button>
+      <button class="admin-tab" data-admin-tab="withdraws"><i class="fi fi-sr-wallet"></i><span>รายการถอน</span></button>
+      <button class="admin-tab" data-admin-tab="lotto"><i class="fi fi-sr-ticket"></i><span>ตั้งค่าหวย</span></button>
+      <button class="admin-tab" data-admin-tab="results"><i class="fi fi-sr-chart-histogram"></i><span>ผลหวย</span></button>
+      <button class="admin-tab" data-admin-tab="affiliate"><i class="fi fi-sr-user-add"></i><span>Affiliate</span></button>
+      <button class="admin-tab" data-admin-tab="announcements"><i class="fi fi-sr-megaphone"></i><span>ประกาศ</span></button>
+      <button class="admin-tab" data-admin-tab="minigame"><i class="fi fi-sr-gamepad"></i><span>มินิเกม</span></button>
+      <button class="admin-tab" data-admin-tab="connections"><i class="fi fi-sr-settings"></i><span>เชื่อมต่อ</span></button>
      </div>
     </div>
 
@@ -8482,14 +8914,70 @@ textarea:focus{
 
      <section class="admin-panel" id="adminPanel-minigame">
       <div class="admin-card">
-       <div class="admin-card-head"><div><h2>ตั้งค่ามินิเกม</h2><div class="admin-muted">กำหนดโอกาสที่ “ระบบ” จะชนะของแต่ละเกม ผลจริงคำนวณจาก Server เท่านั้น</div></div><button class="admin-btn red" id="adminMiniGameSaveBtn" type="button">บันทึก</button></div>
+       <div class="admin-card-head">
+        <div>
+         <h2>ตรวจสอบการเล่นมินิเกม</h2>
+         <div class="admin-muted">ดูรอบเล่นจริงจาก Server • ผู้เล่น • เงินเดิมพัน • ผลเกม • กำไร/ขาดทุนของระบบ</div>
+        </div>
+        <button class="admin-btn dark" id="adminMiniGameReloadBtn" type="button"><i class="fi fi-sr-refresh"></i> โหลดใหม่</button>
+       </div>
+
+       <div class="admin-toolbar">
+        <div class="admin-field"><label>จากวันที่</label><input id="adminMiniGameFrom" type="date"></div>
+        <div class="admin-field"><label>ถึงวันที่</label><input id="adminMiniGameTo" type="date"></div>
+        <div class="admin-field">
+         <label>เกม</label>
+         <select id="adminMiniGameFilter">
+          <option value="">ทุกเกม</option>
+          <option value="ROCK_PAPER_SCISSORS">เป่ายิงฉุบ</option>
+          <option value="HEADS_TAILS">หัว - ก้อย</option>
+          <option value="DICE_HIGH_LOW">ทายลูกเต๋า</option>
+          <option value="CARD_FLIP">เปิดไพ่</option>
+         </select>
+        </div>
+        <div class="admin-field">
+         <label>ผล</label>
+         <select id="adminMiniGameOutcome">
+          <option value="">ทุกผล</option>
+          <option value="WIN">ผู้เล่นชนะ</option>
+          <option value="LOSE">ระบบชนะ</option>
+          <option value="DRAW">เสมอ</option>
+         </select>
+        </div>
+        <div class="admin-field" style="min-width:180px"><label>ค้นหาสมาชิก</label><input id="adminMiniGameUser" placeholder="User / User ID"></div>
+        <button class="admin-btn dark" id="adminMiniGameSearchBtn" type="button">ค้นหา</button>
+       </div>
+
+       <div class="admin-game-audit-stats" id="adminMiniGameStats">
+        <div class="admin-game-stat"><small>จำนวนรอบ</small><b>-</b></div>
+        <div class="admin-game-stat"><small>ยอดเดิมพัน</small><b>-</b></div>
+        <div class="admin-game-stat good"><small>ผู้เล่นชนะ</small><b>-</b></div>
+        <div class="admin-game-stat bad"><small>ระบบชนะ</small><b>-</b></div>
+        <div class="admin-game-stat"><small>เสมอ</small><b>-</b></div>
+        <div class="admin-game-stat"><small>กำไรระบบ</small><b>-</b></div>
+       </div>
+
+       <div class="admin-game-summary" id="adminMiniGameSummary"></div>
+       <div class="admin-table-wrap" id="adminMiniGameTable" style="margin-top:12px">
+        <div class="admin-empty">กำลังโหลดรายการมินิเกม…</div>
+       </div>
+      </div>
+
+      <div class="admin-card" style="margin-top:10px">
+       <div class="admin-card-head">
+        <div>
+         <h2>ตั้งค่าโอกาสระบบชนะ</h2>
+         <div class="admin-muted">ตั้งค่าแยกแต่ละเกม • ผลจริงคำนวณและบันทึกจาก Server</div>
+        </div>
+        <button class="admin-btn dark" id="adminMiniGameSaveBtn" type="button">บันทึกการตั้งค่า</button>
+       </div>
        <div class="admin-toolbar">
         <div class="admin-field"><label>เป่ายิงฉุบ — ระบบชนะ (%)</label><input id="adminRpsSystemWinPercent" type="number" inputmode="decimal" min="0" max="100" step="1" value="20"></div>
         <div class="admin-field"><label>หัว - ก้อย — ระบบชนะ (%)</label><input id="adminHeadsTailsSystemWinPercent" type="number" inputmode="decimal" min="0" max="100" step="1" value="20"></div>
         <div class="admin-field"><label>ทายลูกเต๋า — ระบบชนะ (%)</label><input id="adminDiceSystemWinPercent" type="number" inputmode="decimal" min="0" max="100" step="1" value="20"></div>
         <div class="admin-field"><label>เปิดไพ่ — ระบบชนะ (%)</label><input id="adminCardSystemWinPercent" type="number" inputmode="decimal" min="0" max="100" step="1" value="20"></div>
        </div>
-       <div class="admin-muted" style="margin-top:10px">ตัวอย่าง: ตั้งเกมใด 70% = แต่ละรอบเกมนั้นระบบมีโอกาสชนะ 70% • เป่ายิงฉุบยังมีผลเสมอได้สูงสุด 10% จากส่วนที่เหลือ • หัว - ก้อย และทายลูกเต๋าไม่มีผลเสมอ • เปิดไพ่มีผลเสมอได้สูงสุด 10% จากส่วนที่เหลือ</div>
+       <div class="admin-muted" style="margin-top:10px">เป่ายิงฉุบและเปิดไพ่สามารถเสมอได้ • หัว-ก้อยและทายลูกเต๋าไม่มีผลเสมอ</div>
       </div>
      </section>
 
@@ -8721,7 +9209,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "backBtn","bottomBackBtn","classicRuleBtn","selectedName","selectedRound","selectedClose","selectedCount","selectedLimitNote","selectedRateNote",
     "accountName","heroCredit","betCredit","modernBetCredit","bottomCredit","summaryCredit","adminBtn",
     "memberSummaryBtn","moneyBtn","resultsBtn","historyBtn","lineContactBtn","logoutBtn","affiliateBackBtn","affiliateAvailableTop","affiliateCode","affiliateLink","affiliateCopyBtn","affiliateStats","affiliateWithdrawBtn","affiliateCommissionList","affiliateWithdrawList","resultsBackBtn","resultsBalance","resultsDate","resultsReloadBtn","resultsPrevBtn","resultsNextBtn","resultsSource","resultsList","historyBackBtn","historyCredit","historyFrom","historyTo",
-     "historyStatus","historyList","moneyBackBtn","moneyBalance","moneyFrom","moneyTo","moneyType","moneyList","memberSummaryBackBtn","memberSummaryBalance","memberSummaryFrom","memberSummaryTo","memberSummaryLotto","memberSummarySearchBtn","memberSummaryStats","memberSummaryTable","adminIdentity","adminLogoutBtn","syncResultsBtn","adminAffiliateReloadBtn","adminAffiliateSearch","adminAffiliateStats","adminAffiliateTable","adminAffiliateWithdrawTable","adminResultsSyncBtn","adminResultsAddBtn","adminResultsFrom","adminResultsTo","adminResultsLotto","adminResultsReloadBtn","adminResultsTable","adminDashRange","adminDashFrom","adminDashTo","adminDashCustomBtn","adminDashSelectAll","adminDashClearAll","adminDashLottoChecks","adminDashStats","adminByUser","adminByLotto","adminTopDeposits","adminTopWithdraws","adminBetFrom","adminBetTo","adminBetStatus","adminOpenUser","adminOpenLotto","adminOpenSearchBtn","adminOpenTable","adminCreateUserBtn","adminUserSearch","adminUserCount","adminUserTable","adminWithdrawStatus","adminWithdrawReloadBtn","adminWithdrawTable","adminCreateLottoBtn","adminLottoToggleTable","adminLottoRulesTable","adminRateUser","adminRateLotto","adminRateModeNote","adminRate3Straight","adminRate3Tod","adminRate2Top","adminRate2Bottom","adminRateRunTop","adminRateRunBottom","adminRateSaveBtn","adminRateResetBtn","adminRateOverridesTable","adminLimitLotto","adminLimitKind","adminLimitBetType","adminLimitSide","adminLimitNumbers","adminLimitEndDate","adminLimitReverseBtn","adminLimitAddBtn","adminLimitSaveBtn","adminNumberLimitsTable","adminAnnouncementAddBtn","adminAnnouncementReloadBtn","adminAnnouncementsTable","adminMiniGameSaveBtn","adminRpsSystemWinPercent","adminHeadsTailsSystemWinPercent","adminDiceSystemWinPercent","adminCardSystemWinPercent","adminConnectionSaveBtn","adminTelegramToken","adminTelegramChatId","adminLineContactUrl","adminDepositBankShort","adminDepositBankName","adminDepositAccountNo","adminDepositAccountName","adminDepositLogoUrl","adminDepositBorderColor","adminDepositPreview","adminDepositPreviewLogo","adminDepositPreviewNumber","adminDepositPreviewBank","adminDepositPreviewName","modernBetPanel","modernBackBtn","modernRuleBtn","modernLottoSelect","modernLottoSelectText","modernSelectedTitle","modernDigitSlots","modernNumberChipBox","modernClearNumbersBtn","modernBillStack","modernBillStackList","modernBillStackCount","directTitle","numberCount","numberInput",
+     "historyStatus","historyList","moneyBackBtn","moneyBalance","moneyFrom","moneyTo","moneyType","moneyList","memberSummaryBackBtn","memberSummaryBalance","memberSummaryFrom","memberSummaryTo","memberSummaryLotto","memberSummarySearchBtn","memberSummaryStats","memberSummaryTable","adminIdentity","adminLogoutBtn","syncResultsBtn","adminAffiliateReloadBtn","adminAffiliateSearch","adminAffiliateStats","adminAffiliateTable","adminAffiliateWithdrawTable","adminResultsSyncBtn","adminResultsAddBtn","adminResultsFrom","adminResultsTo","adminResultsLotto","adminResultsReloadBtn","adminResultsTable","adminDashRange","adminDashFrom","adminDashTo","adminDashCustomBtn","adminDashSelectAll","adminDashClearAll","adminDashLottoChecks","adminDashStats","adminByUser","adminByLotto","adminTopDeposits","adminTopWithdraws","adminBetFrom","adminBetTo","adminBetStatus","adminOpenUser","adminOpenLotto","adminOpenSearchBtn","adminOpenTable","adminCreateUserBtn","adminUserSearch","adminUserCount","adminUserTable","adminWithdrawStatus","adminWithdrawReloadBtn","adminWithdrawTable","adminCreateLottoBtn","adminLottoToggleTable","adminLottoRulesTable","adminRateUser","adminRateLotto","adminRateModeNote","adminRate3Straight","adminRate3Tod","adminRate2Top","adminRate2Bottom","adminRateRunTop","adminRateRunBottom","adminRateSaveBtn","adminRateResetBtn","adminRateOverridesTable","adminLimitLotto","adminLimitKind","adminLimitBetType","adminLimitSide","adminLimitNumbers","adminLimitEndDate","adminLimitReverseBtn","adminLimitAddBtn","adminLimitSaveBtn","adminNumberLimitsTable","adminAnnouncementAddBtn","adminAnnouncementReloadBtn","adminAnnouncementsTable","adminMiniGameSaveBtn","adminMiniGameReloadBtn","adminMiniGameSearchBtn","adminMiniGameFrom","adminMiniGameTo","adminMiniGameFilter","adminMiniGameOutcome","adminMiniGameUser","adminMiniGameStats","adminMiniGameSummary","adminMiniGameTable","adminRpsSystemWinPercent","adminHeadsTailsSystemWinPercent","adminDiceSystemWinPercent","adminCardSystemWinPercent","adminConnectionSaveBtn","adminTelegramToken","adminTelegramChatId","adminLineContactUrl","adminDepositBankShort","adminDepositBankName","adminDepositAccountNo","adminDepositAccountName","adminDepositLogoUrl","adminDepositBorderColor","adminDepositPreview","adminDepositPreviewLogo","adminDepositPreviewNumber","adminDepositPreviewBank","adminDepositPreviewName","modernBetPanel","modernBackBtn","modernRuleBtn","modernLottoSelect","modernLottoSelectText","modernSelectedTitle","modernDigitSlots","modernNumberChipBox","modernClearNumbersBtn","modernBillStack","modernBillStackList","modernBillStackCount","directTitle","numberCount","numberInput",
     "clearNumbersBtn","numberChipBox","reverseBtn","doubleBtn",
     "priceA","priceB","priceAField","priceALabel","priceBLabel","priceBField","directPriceGrid",
     "sourceCount","betCount","currentBillTotal","grandTotal","clearAllBtn","addBillBtn","submitBtn","error","billStack","billStackList","billStackCount",
@@ -9030,9 +9518,16 @@ function bindEvents() {
   if (els.adminResultsLotto) els.adminResultsLotto.onchange = loadAdminResults;
   if (els.adminResultsAddBtn) els.adminResultsAddBtn.onclick = function(){ openAdminResultEditor(null); };
   if (els.adminAffiliateReloadBtn) els.adminAffiliateReloadBtn.onclick = loadAdminAffiliates;
-  if (els.adminAffiliateSearch) els.adminAffiliateSearch.oninput = loadAdminAffiliates;
+  if (els.adminAffiliateSearch) els.adminAffiliateSearch.oninput = adminDebounceV133(function(){ invalidateAdminFastTab("affiliate"); loadAdminAffiliates(); },350);
   if (els.adminConnectionSaveBtn) els.adminConnectionSaveBtn.onclick = saveAdminConnectionSettings;
   if (els.adminMiniGameSaveBtn) els.adminMiniGameSaveBtn.onclick = saveAdminMiniGameSettings;
+  if (els.adminMiniGameReloadBtn) els.adminMiniGameReloadBtn.onclick = function(){ invalidateAdminFastTab("minigame"); loadAdminMiniGameRounds(true); };
+  if (els.adminMiniGameSearchBtn) els.adminMiniGameSearchBtn.onclick = function(){ invalidateAdminFastTab("minigame"); loadAdminMiniGameRounds(true); };
+  if (els.adminMiniGameFrom) els.adminMiniGameFrom.onchange = function(){ invalidateAdminFastTab("minigame"); };
+  if (els.adminMiniGameTo) els.adminMiniGameTo.onchange = function(){ invalidateAdminFastTab("minigame"); };
+  if (els.adminMiniGameFilter) els.adminMiniGameFilter.onchange = function(){ invalidateAdminFastTab("minigame"); loadAdminMiniGameRounds(true); };
+  if (els.adminMiniGameOutcome) els.adminMiniGameOutcome.onchange = function(){ invalidateAdminFastTab("minigame"); loadAdminMiniGameRounds(true); };
+  if (els.adminMiniGameUser) els.adminMiniGameUser.onkeydown = function(e){ if(e.key==="Enter"){ invalidateAdminFastTab("minigame"); loadAdminMiniGameRounds(true); } };
   if (els.adminLineContactUrl) els.adminLineContactUrl.oninput = function(){
     state.lineContactUrl = (els.adminLineContactUrl.value || "").trim() || DEFAULT_LINE_CONTACT_URL;
   };
@@ -12022,6 +12517,48 @@ function showAdmin(tab) {
   scrollTo(0,0);
 }
 
+var adminFastV133 = {
+  loadedAt:{},
+  pending:{}
+};
+
+function adminDebounceV133(fn, wait){
+  var timerId = null;
+  return function(){
+    var args = arguments;
+    var ctx = this;
+    clearTimeout(timerId);
+    timerId = setTimeout(function(){ fn.apply(ctx,args); }, wait || 250);
+  };
+}
+
+function invalidateAdminFastTab(tab){
+  if(!tab) return;
+  delete adminFastV133.loadedAt[tab];
+}
+
+function adminLoadFastV133(tab, loader, ttl){
+  ttl = Number(ttl || 10000);
+  var now = Date.now();
+
+  if(adminFastV133.pending[tab]) return adminFastV133.pending[tab];
+  if(adminFastV133.loadedAt[tab] && now - adminFastV133.loadedAt[tab] < ttl){
+    return Promise.resolve();
+  }
+
+  var p = Promise.resolve()
+    .then(loader)
+    .then(function(){
+      adminFastV133.loadedAt[tab] = Date.now();
+    })
+    .finally(function(){
+      delete adminFastV133.pending[tab];
+    });
+
+  adminFastV133.pending[tab] = p;
+  return p;
+}
+
 function showAdminTab(tab) {
   if (!state.isAdmin) return;
 
@@ -12038,16 +12575,23 @@ function showAdminTab(tab) {
   var panel = document.getElementById("adminPanel-" + state.adminTab);
   if (panel) panel.classList.add("active");
 
-  if (state.adminTab === "dashboard") loadAdminDashboard("day");
-  if (state.adminTab === "openbets") loadAdminAllBets();
-  if (state.adminTab === "users") loadAdminUsers();
-  if (state.adminTab === "withdraws") loadAdminWithdraws();
-  if (state.adminTab === "lotto") { loadAdminLottoSettings(); showLottoSubTab(state.lottoSubTab || "enabled"); }
-  if (state.adminTab === "results") loadAdminResults();
-  if (state.adminTab === "affiliate") loadAdminAffiliates();
-  if (state.adminTab === "announcements") loadAdminAnnouncements();
-  if (state.adminTab === "minigame") loadAdminMiniGameSettings();
-  if (state.adminTab === "connections") { loadAdminConnectionSettings(); showConnectSubTab(state.connectSubTab || "telegram"); }
+  // V133: reuse recently loaded tab data to avoid duplicate API calls
+  if (state.adminTab === "dashboard") adminLoadFastV133("dashboard",function(){ return loadAdminDashboard("day"); },8000);
+  if (state.adminTab === "openbets") adminLoadFastV133("openbets",loadAdminAllBets,8000);
+  if (state.adminTab === "users") adminLoadFastV133("users",loadAdminUsers,12000);
+  if (state.adminTab === "withdraws") adminLoadFastV133("withdraws",loadAdminWithdraws,8000);
+  if (state.adminTab === "lotto") {
+    showLottoSubTab(state.lottoSubTab || "enabled");
+    adminLoadFastV133("lotto",loadAdminLottoSettings,20000);
+  }
+  if (state.adminTab === "results") adminLoadFastV133("results",loadAdminResults,10000);
+  if (state.adminTab === "affiliate") adminLoadFastV133("affiliate",loadAdminAffiliates,10000);
+  if (state.adminTab === "announcements") adminLoadFastV133("announcements",loadAdminAnnouncements,15000);
+  if (state.adminTab === "minigame") adminLoadFastV133("minigame",loadAdminMiniGameHubV133,8000);
+  if (state.adminTab === "connections") {
+    showConnectSubTab(state.connectSubTab || "telegram");
+    adminLoadFastV133("connections",loadAdminConnectionSettings,30000);
+  }
 }
 
 function fillAdminLottoFilter() {
@@ -12082,6 +12626,155 @@ function renderAdminSummaryLottoChecks() {
   });
 }
 
+
+function adminMiniGameLocalDateV133(offsetDays){
+  var d = new Date();
+  d.setDate(d.getDate() + Number(offsetDays || 0));
+  var y = d.getFullYear();
+  var m = String(d.getMonth()+1).padStart(2,"0");
+  var day = String(d.getDate()).padStart(2,"0");
+  return y+"-"+m+"-"+day;
+}
+
+function adminMiniGameNameV133(game){
+  var map = {
+    ROCK_PAPER_SCISSORS:"เป่ายิงฉุบ",
+    HEADS_TAILS:"หัว - ก้อย",
+    DICE_HIGH_LOW:"ทายลูกเต๋า",
+    CARD_FLIP:"เปิดไพ่"
+  };
+  return map[String(game||"").toUpperCase()] || game || "-";
+}
+
+function adminMiniGameOutcomeV133(outcome){
+  outcome = String(outcome||"").toUpperCase();
+  if(outcome==="WIN") return '<span class="admin-game-result win">ผู้เล่นชนะ</span>';
+  if(outcome==="LOSE") return '<span class="admin-game-result lose">ระบบชนะ</span>';
+  return '<span class="admin-game-result draw">เสมอ</span>';
+}
+
+function adminMiniGameRenderStatsV133(s){
+  s = s || {};
+  if(!els.adminMiniGameStats) return;
+  var net = Number(s.systemNet || 0);
+  els.adminMiniGameStats.innerHTML =
+    '<div class="admin-game-stat"><small>จำนวนรอบ</small><b>'+money(s.rounds||0)+'</b></div>'+
+    '<div class="admin-game-stat"><small>ยอดเดิมพัน</small><b>฿'+money(s.turnover||0)+'</b></div>'+
+    '<div class="admin-game-stat good"><small>ผู้เล่นชนะ</small><b>'+money(s.playerWins||0)+'</b></div>'+
+    '<div class="admin-game-stat bad"><small>ระบบชนะ</small><b>'+money(s.systemWins||0)+'</b></div>'+
+    '<div class="admin-game-stat"><small>เสมอ</small><b>'+money(s.draws||0)+'</b></div>'+
+    '<div class="admin-game-stat '+(net>=0?'good':'bad')+'"><small>กำไรระบบ</small><b>'+(net>=0?'+':'-')+'฿'+money(Math.abs(net))+'</b></div>';
+}
+
+function adminMiniGameRenderSummaryV133(rows){
+  if(!els.adminMiniGameSummary) return;
+  rows = Array.isArray(rows) ? rows : [];
+  if(!rows.length){
+    els.adminMiniGameSummary.innerHTML = "";
+    return;
+  }
+
+  els.adminMiniGameSummary.innerHTML = rows.map(function(x){
+    var net = Number(x.systemNet||0);
+    return '<div class="admin-game-summary-item">'+
+      '<strong>'+escapeHtml(adminMiniGameNameV133(x.game))+'</strong>'+
+      '<span>'+money(x.rounds||0)+' รอบ · เดิมพัน ฿'+money(x.turnover||0)+'</span>'+
+      '<span>กำไรระบบ '+(net>=0?'+':'-')+'฿'+money(Math.abs(net))+'</span>'+
+    '</div>';
+  }).join("");
+}
+
+function adminMiniGameDetailV133(r){
+  var game = String(r.game||"").toUpperCase();
+  var userChoice = String(r.userChoice||"");
+  var sys = String(r.systemChoice||"");
+
+  if(game==="ROCK_PAPER_SCISSORS"){
+    var hand={rock:"ค้อน",scissors:"กรรไกร",paper:"กระดาษ"};
+    return "เลือก "+(hand[userChoice]||userChoice)+" · ระบบ "+(hand[sys]||sys);
+  }
+
+  if(game==="HEADS_TAILS"){
+    var coin={heads:"หัว",tails:"ก้อย"};
+    return "เลือก "+(coin[userChoice]||userChoice)+" · ออก "+(coin[sys]||sys);
+  }
+
+  if(game==="DICE_HIGH_LOW"){
+    var parts=sys.split("|");
+    var side={low:"ต่ำ",high:"สูง"};
+    var dice=(parts[1]||"").split(",").filter(Boolean);
+    return "เลือก "+(side[userChoice]||userChoice)+" · "+dice.join("+")+" = "+(parts[2]||"-")+" ("+(side[parts[0]]||parts[0]||"-")+")";
+  }
+
+  if(game==="CARD_FLIP"){
+    var p=sys.split("|");
+    var selected=(userChoice.match(/\d+/)||["1"])[0];
+    var suit={hearts:"♥",diamonds:"♦",spades:"♠",clubs:"♣"};
+    function cardText(spec){
+      var c=String(spec||"").split(",");
+      return (c[0]||"?")+(suit[c[1]]||"")+" ("+(c[2]||"?")+")";
+    }
+    return "เลือกใบ "+selected+" · "+cardText(p[1])+" vs "+cardText(p[2]);
+  }
+
+  return userChoice+" · "+sys;
+}
+
+async function loadAdminMiniGameRounds(force){
+  if(!els.adminMiniGameTable) return;
+
+  if(!els.adminMiniGameFrom.value) els.adminMiniGameFrom.value = adminMiniGameLocalDateV133(-6);
+  if(!els.adminMiniGameTo.value) els.adminMiniGameTo.value = adminMiniGameLocalDateV133(0);
+
+  els.adminMiniGameTable.innerHTML = '<div class="admin-empty">กำลังโหลดรายการมินิเกม…</div>';
+
+  try{
+    var result = await api("adminGetMiniGameRounds",state.token,{
+      from:els.adminMiniGameFrom.value || "",
+      to:els.adminMiniGameTo.value || "",
+      game:els.adminMiniGameFilter.value || "",
+      outcome:els.adminMiniGameOutcome.value || "",
+      user:(els.adminMiniGameUser.value || "").trim(),
+      limit:200
+    });
+
+    adminMiniGameRenderStatsV133(result && result.summary);
+    adminMiniGameRenderSummaryV133(result && result.byGame);
+
+    var rows = result && result.rows || [];
+    if(!rows.length){
+      els.adminMiniGameTable.innerHTML = '<div class="admin-empty">ไม่พบประวัติการเล่นตามเงื่อนไขที่เลือก</div>';
+      return;
+    }
+
+    els.adminMiniGameTable.innerHTML = adminTable(
+      ["เวลา","สมาชิก","เกม","เดิมพัน","รายละเอียด","ผล","ระบบชนะ %","กำไรระบบ"],
+      rows.map(function(r){
+        var net = Number(r.systemNet||0);
+        return [
+          escapeHtml(r.createdAtText || "-"),
+          '<b>'+escapeHtml(r.username || "-")+'</b><br><span style="color:#8796aa;font-size:8px">'+escapeHtml(r.userId || "")+'</span>',
+          '<span class="admin-game-name"><i class="fi fi-sr-gamepad"></i>'+escapeHtml(adminMiniGameNameV133(r.game))+'</span>',
+          '฿'+money(r.betAmount||0),
+          '<span class="numbers">'+escapeHtml(adminMiniGameDetailV133(r))+'</span>',
+          adminMiniGameOutcomeV133(r.outcome),
+          money(r.systemWinPercent||0)+'%',
+          '<span class="admin-game-profit '+(net>=0?'pos':'neg')+'">'+(net>=0?'+':'-')+'฿'+money(Math.abs(net))+'</span>'
+        ];
+      })
+    );
+  }catch(e){
+    els.adminMiniGameTable.innerHTML = '<div class="admin-empty">โหลดประวัติมินิเกมไม่สำเร็จ</div>';
+    showAdminError(e);
+  }
+}
+
+async function loadAdminMiniGameHubV133(){
+  await Promise.all([
+    loadAdminMiniGameSettings(),
+    loadAdminMiniGameRounds(false)
+  ]);
+}
 
 async function loadAdminMiniGameSettings(){
   try{
