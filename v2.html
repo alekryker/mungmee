@@ -1,4 +1,4 @@
-<!-- V131 — BASE V128 UPDATED: MINI GAME PAGE SWITCH + FLATICON + 5 BAHT + SERVER RESULT ANIMATION -->
+<!-- V136 — MINI GAME: RPS + HEADS/TAILS / SERVER RESULT / SHARED WALLET -->
 <!-- ALL-IN-ONE: แนะนำเพื่อน + ถอนขั้นต่ำ 50 บาท + ประกาศหน้าเว็บ + Popup สูงสุด 2 รายการ -->
 <!-- RESULT HISTORY SHEET FINAL -->
 <!-- INDEX V9 WITHDRAW PANEL MIN50 + TOUCH-SAFE CONFIRM + STATELESS SESSION -->
@@ -23284,11 +23284,13 @@ strong,b{
    - กัน CSS รุ่นเก่าทำหน้าซ้อนกัน
 ===================================================== */
 #gameSelectScreen,
-#rpsGameScreen{
+#rpsGameScreen,
+#headsTailsGameScreen{
   display:none !important;
 }
 #gameSelectScreen.active,
-#rpsGameScreen.active{
+#rpsGameScreen.active,
+#headsTailsGameScreen.active{
   display:block !important;
 }
 
@@ -23352,6 +23354,34 @@ strong,b{
   #homeScreen .home-v135-game-icon{width:82px;height:82px;border-radius:24px;}
   #homeScreen .home-v135-game-icon i{font-size:46px !important;}
 }
+
+
+/* =====================================================
+   V136 — HEADS / TAILS
+   Result + balance come from Server only
+===================================================== */
+#gameSelectScreen #openHeadsTailsBtn .game-card-icon i{font-size:30px!important;color:#fff!important}
+.ht-wrap{margin-top:12px;padding:13px;border-radius:21px;background:#21080d;color:#fff}.ht-wrap *{color:inherit}
+.ht-arena{margin-top:10px;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.12);border-radius:18px;background:rgba(255,255,255,.06);padding:14px}
+.ht-arena-title{text-align:center;font-size:11px;color:#cbd5e1!important;margin-bottom:8px}
+.ht-coin-stage{height:154px;display:grid;place-items:center;position:relative;perspective:900px}
+.ht-coin{width:116px;height:116px;border-radius:50%;position:relative;transform-style:preserve-3d;transition:transform .38s ease}
+.ht-coin[data-side="tails"]{transform:rotateY(180deg)}
+.ht-coin.flipping{animation:htCoinFlip 1.1s cubic-bezier(.22,.61,.36,1)}
+.ht-coin.ht-waiting{animation:htCoinWaiting .62s linear infinite}
+.ht-face{position:absolute;inset:0;border-radius:50%;backface-visibility:hidden;display:grid;place-items:center;border:7px solid #ffd36a;background:radial-gradient(circle at 35% 28%,#fff4b5 0 8%,#f7c948 26%,#d99c18 64%,#b7780b 100%);box-shadow:inset 0 0 0 4px rgba(255,255,255,.18),inset 0 -10px 18px rgba(112,69,0,.22),0 20px 34px rgba(0,0,0,.34)}
+.ht-face:after{content:"";position:absolute;inset:9px;border-radius:50%;border:2px dashed rgba(101,61,0,.34)}
+.ht-face i{position:relative;z-index:2;font-size:43px;color:#7d4a00!important}.ht-face span{position:absolute;right:20px;bottom:18px;z-index:3;min-width:27px;height:22px;padding:0 5px;border-radius:999px;display:grid;place-items:center;background:rgba(125,74,0,.14);color:#7d4a00!important;font-size:9px;font-weight:700}.ht-face.tails{transform:rotateY(180deg)}
+.ht-coin-shadow{position:absolute;left:50%;bottom:9px;transform:translateX(-50%);width:78px;height:18px;border-radius:999px;background:radial-gradient(circle,rgba(0,0,0,.48),rgba(0,0,0,0) 70%);filter:blur(2px);opacity:.55}.ht-coin-stage.flipping .ht-coin-shadow{animation:htShadow 1.1s ease-in-out}
+.ht-toss-flash{position:absolute;left:50%;top:43%;z-index:8;min-width:84px;padding:8px 12px;border-radius:14px;transform:translate(-50%,-50%) scale(.72);opacity:0;pointer-events:none;text-align:center;background:linear-gradient(135deg,#ef4444,#7f1d1d);border:1px solid rgba(255,255,255,.2);box-shadow:0 14px 32px rgba(127,29,29,.42);color:#fff!important;font-size:16px;font-weight:800}.ht-toss-flash.show{animation:rpsBattleWord .31s ease both}
+.ht-result{min-height:44px;margin-top:10px;border-radius:12px;padding:9px;display:grid;place-items:center;text-align:center;background:rgba(255,255,255,.06);font-size:11px;color:#fff!important}.ht-result.win{background:rgba(34,197,94,.14);color:#bbf7d0!important}.ht-result.lose{background:rgba(244,63,94,.14);color:#fecdd3!important}.ht-result.reveal{animation:rpsPop .36s ease}
+.ht-choices{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.ht-choice{min-height:82px;border:1px solid rgba(255,255,255,.12);border-radius:16px;background:rgba(255,255,255,.06);color:#fff!important}.ht-choice i{display:block;font-size:28px;color:#fff!important;margin-bottom:4px}.ht-choice span{font-size:12px;color:#fff!important}.ht-choice:disabled{opacity:.5}
+.ht-arena.result-burst:after{content:"";position:absolute;left:50%;top:45%;width:145px;height:145px;border-radius:50%;border:3px solid rgba(239,68,68,.42);transform:translate(-50%,-50%) scale(.2);animation:htRing .52s ease-out forwards;pointer-events:none}
+@keyframes htCoinFlip{0%{transform:rotateY(0) translateY(0) scale(1)}25%{transform:rotateY(360deg) translateY(-25px) scale(1.07)}55%{transform:rotateY(900deg) translateY(-11px) scale(1.02)}100%{transform:rotateY(1440deg) translateY(0) scale(1)}}
+@keyframes htCoinWaiting{from{transform:rotateY(0)}to{transform:rotateY(360deg)}}
+@keyframes htShadow{0%,100%{transform:translateX(-50%) scale(1);opacity:.52}45%{transform:translateX(-50%) scale(.58);opacity:.24}}
+@keyframes htRing{from{opacity:.9;transform:translate(-50%,-50%) scale(.2)}to{opacity:0;transform:translate(-50%,-50%) scale(1.55)}}
+@media(prefers-reduced-motion:reduce){.ht-coin.flipping,.ht-coin.ht-waiting,.ht-toss-flash.show,.ht-result.reveal,.ht-arena.result-burst:after{animation-duration:.01ms!important;animation-iteration-count:1!important}}
 </style>
 
 </head>
@@ -23560,7 +23590,7 @@ strong,b{
 
         <div class="home-v85-account-line">
          <i class="fi fi-sr-wallet"></i>
-         <span>บัญชีหลัก <small class="home-app-version">V128</small></span>
+         <span>บัญชีหลัก <small class="home-app-version">V136</small></span>
         </div>
        </section>
 
@@ -23680,6 +23710,7 @@ strong,b{
      <div class="game-wallet"><div><small>ยอดเงินคงเหลือ</small><b>฿<span id="gameSelectBalance">0.00</span></b></div><i class="fi fi-sr-wallet"></i></div>
      <div class="game-list">
       <button class="game-card" id="openRpsBtn" type="button"><span class="game-card-icon"><i class="fi fi-ss-hand-fist"></i></span><span class="game-card-copy"><strong>เป่ายิงฉุบ</strong><small>ค้อน · กรรไกร · กระดาษ</small></span><span class="game-card-arrow">›</span></button>
+      <button class="game-card" id="openHeadsTailsBtn" type="button"><span class="game-card-icon"><i class="fi fi-sr-coins"></i></span><span class="game-card-copy"><strong>หัว - ก้อย</strong><small>เลือกฝั่ง แล้วโยนเหรียญ</small></span><span class="game-card-arrow">›</span></button>
      </div>
     </div>
    </section>
@@ -23711,6 +23742,40 @@ strong,b{
       <div class="rps-history-card">
        <div class="rps-history-head"><div class="rps-history-title"><b>ประวัติการเล่น</b><small>ล่าสุด 10 ครั้ง</small></div><div class="rps-history-actions"><button class="rps-history-all" id="rpsHistoryAllBtn" type="button"><i class="fi fi-sr-time-past"></i> ดูทั้งหมด</button><button class="rps-history-reload" id="rpsHistoryReloadBtn" type="button"><i class="fi fi-sr-refresh"></i> รีเฟรช</button></div></div>
        <div class="rps-history-list" id="rpsHistoryList"><div class="rps-history-empty">ยังไม่มีประวัติการเล่น</div></div>
+      </div>
+     </div>
+    </div>
+   </section>
+
+   <section class="screen" id="headsTailsGameScreen">
+    <div class="game-screen-shell">
+     <div class="game-head"><button class="game-back" id="headsTailsBackBtn" type="button">‹</button><div class="game-head-copy"><strong>หัว - ก้อย</strong></div></div>
+     <div class="game-wallet"><div><small>กระเป๋าเกม</small><b>฿<span id="headsTailsBalance">0.00</span></b></div><i class="fi fi-sr-wallet"></i></div>
+     <div class="ht-wrap">
+      <div class="rps-bet-card">
+       <div class="rps-label-row"><b>ลงเงินเดิมพัน</b><span>หัก/เพิ่มจากยอดหลักทันที</span></div>
+       <div class="rps-bet-row"><input id="headsTailsBetAmount" type="number" inputmode="decimal" min="1" step="1" placeholder="0"><button class="rps-max" id="headsTailsMaxBtn" type="button">MAX</button></div>
+       <div class="rps-quick"><button type="button" data-ht-bet="5">5</button><button type="button" data-ht-bet="10">10</button><button type="button" data-ht-bet="20">20</button><button type="button" data-ht-bet="50">50</button><button type="button" data-ht-bet="100">100</button><button type="button" data-ht-bet="500">500</button></div>
+      </div>
+      <div class="ht-arena" id="headsTailsArena">
+       <div class="ht-toss-flash" id="headsTailsTossFlash" aria-live="polite"></div>
+       <div class="ht-arena-title">ผลการโยนเหรียญ</div>
+       <div class="ht-coin-stage" id="headsTailsCoinStage">
+        <div class="ht-coin" id="headsTailsCoin" data-side="heads">
+         <div class="ht-face heads"><i class="fi fi-sr-user"></i><span>หัว</span></div>
+         <div class="ht-face tails"><i class="fi fi-sr-star"></i><span>ก้อย</span></div>
+        </div>
+        <div class="ht-coin-shadow"></div>
+       </div>
+       <div class="ht-result" id="headsTailsResult">ใส่เงิน แล้วเลือก “หัว” หรือ “ก้อย”</div>
+      </div>
+      <div class="ht-choices">
+       <button class="ht-choice" type="button" data-ht-choice="heads"><i class="fi fi-sr-user"></i><span>หัว</span></button>
+       <button class="ht-choice" type="button" data-ht-choice="tails"><i class="fi fi-sr-star"></i><span>ก้อย</span></button>
+      </div>
+      <div class="rps-history-card">
+       <div class="rps-history-head"><div class="rps-history-title"><b>ประวัติการเล่น</b><small>ล่าสุด 10 ครั้ง</small></div><div class="rps-history-actions"><button class="rps-history-all" id="headsTailsHistoryAllBtn" type="button"><i class="fi fi-sr-time-past"></i> ดูทั้งหมด</button><button class="rps-history-reload" id="headsTailsHistoryReloadBtn" type="button"><i class="fi fi-sr-refresh"></i> รีเฟรช</button></div></div>
+       <div class="rps-history-list" id="headsTailsHistoryList"><div class="rps-history-empty">ยังไม่มีประวัติการเล่น</div></div>
       </div>
      </div>
     </div>
@@ -24692,7 +24757,11 @@ var state = {
   adminTab: "dashboard",
   gameBalance: 0,
   rpsBusy: false,
-  rpsHistory: []
+  rpsHistory: [],
+  headsTailsBusy: false,
+  headsTailsHistory: [],
+  allGameHistory: [],
+  gameHistoryReturn: "rps"
 };
 
 var els = {};
@@ -24704,8 +24773,8 @@ var LOTTO_ROUND_SWITCH_HOUR = 5;
 document.addEventListener("DOMContentLoaded", function () {
   [
     "loginScreen","mainApp","apiState","loginVersion","authLoginTab","authRegisterTab","loginPanel","registerPanel","loginUser","loginPass","loginPassToggle","loginBtn","regPhone","regPass","regPassConfirm","regBankNameAccount","regBankName","regBankAccountNo","regReferralCode","regReferralHint","registerBtn",
-    "homeScreen","homeCredit","homeUserName","homeUsername","homeLineContactBtn","homeLogoutBtn","homeDepositBtn","homeWithdrawBtn","homeLottoBtn","homeHistoryBtn","homeResultsBtn","homeSummaryBtn","homeMoneyBtn","homeAffiliateBtn","homeGameBtn","gameSelectScreen","gameSelectBackBtn","gameSelectBalance","openRpsBtn","rpsGameScreen","rpsBackBtn","rpsBalance","rpsBetAmount","rpsMaxBtn","rpsUserHand","rpsSystemHand","rpsUserName","rpsSystemName","rpsResult","rpsHistoryReloadBtn","rpsHistoryAllBtn","rpsHistoryList","gameHistoryScreen","gameHistoryBackBtn","gameHistoryList","gameHistoryCount","lottoHomeBtn","betHomeBtn",
-    "lottoScreen","betScreen","historyScreen","moneyScreen","profileScreen","memberSummaryScreen","resultsScreen","affiliateScreen","gameSelectScreen","rpsGameScreen","gameHistoryScreen","adminScreen","lottoGrid","lottoEmpty",
+    "homeScreen","homeCredit","homeUserName","homeUsername","homeLineContactBtn","homeLogoutBtn","homeDepositBtn","homeWithdrawBtn","homeLottoBtn","homeHistoryBtn","homeResultsBtn","homeSummaryBtn","homeMoneyBtn","homeAffiliateBtn","homeGameBtn","gameSelectScreen","gameSelectBackBtn","gameSelectBalance","openRpsBtn","openHeadsTailsBtn","rpsGameScreen","rpsBackBtn","rpsBalance","rpsBetAmount","rpsMaxBtn","rpsUserHand","rpsSystemHand","rpsUserName","rpsSystemName","rpsResult","rpsHistoryReloadBtn","rpsHistoryAllBtn","rpsHistoryList","headsTailsGameScreen","headsTailsBackBtn","headsTailsBalance","headsTailsBetAmount","headsTailsMaxBtn","headsTailsCoin","headsTailsCoinStage","headsTailsArena","headsTailsTossFlash","headsTailsResult","headsTailsHistoryReloadBtn","headsTailsHistoryAllBtn","headsTailsHistoryList","gameHistoryScreen","gameHistoryBackBtn","gameHistoryList","gameHistoryCount","lottoHomeBtn","betHomeBtn",
+    "lottoScreen","betScreen","historyScreen","moneyScreen","profileScreen","memberSummaryScreen","resultsScreen","affiliateScreen","gameSelectScreen","rpsGameScreen","headsTailsGameScreen","gameHistoryScreen","adminScreen","lottoGrid","lottoEmpty",
     "backBtn","bottomBackBtn","classicRuleBtn","selectedName","selectedRound","selectedClose","selectedCount","selectedLimitNote","selectedRateNote",
     "accountName","heroCredit","betCredit","modernBetCredit","bottomCredit","summaryCredit","adminBtn",
     "memberSummaryBtn","moneyBtn","resultsBtn","historyBtn","lineContactBtn","logoutBtn","affiliateBackBtn","affiliateAvailableTop","affiliateCode","affiliateLink","affiliateCopyBtn","affiliateStats","affiliateWithdrawBtn","affiliateCommissionList","affiliateWithdrawList","resultsBackBtn","resultsBalance","resultsDate","resultsReloadBtn","resultsPrevBtn","resultsNextBtn","resultsSource","resultsList","historyBackBtn","historyCredit","historyFrom","historyTo",
@@ -24838,6 +24907,7 @@ function openAppRoute(route) {
   if (route === "affiliate") return showAffiliate();
   if (route === "games") return showGameSelect();
   if (route === "rps") return showRpsGame();
+  if (route === "heads-tails") return showHeadsTailsGame();
   if (route === "game-history") return showGameHistory();
   if (route === "admin" && state.isAdmin) return showAdmin(state.adminTab || "dashboard");
 
@@ -24872,13 +24942,20 @@ function bindEvents() {
   if (els.homeGameBtn) els.homeGameBtn.onclick = showGameSelect;
   if (els.gameSelectBackBtn) els.gameSelectBackBtn.onclick = showHome;
   if (els.openRpsBtn) els.openRpsBtn.onclick = showRpsGame;
+  if (els.openHeadsTailsBtn) els.openHeadsTailsBtn.onclick = showHeadsTailsGame;
   if (els.rpsBackBtn) els.rpsBackBtn.onclick = showGameSelect;
+  if (els.headsTailsBackBtn) els.headsTailsBackBtn.onclick = showGameSelect;
   if (els.rpsMaxBtn) els.rpsMaxBtn.onclick = function(){ if (els.rpsBetAmount) els.rpsBetAmount.value = Math.floor(Number(state.gameBalance || 0)); };
+  if (els.headsTailsMaxBtn) els.headsTailsMaxBtn.onclick = function(){ if (els.headsTailsBetAmount) els.headsTailsBetAmount.value = Math.floor(Number(state.gameBalance || 0)); };
   if (els.rpsHistoryReloadBtn) els.rpsHistoryReloadBtn.onclick = function(){ loadRpsHistory().catch(showErrorGlobal); };
-  if (els.rpsHistoryAllBtn) els.rpsHistoryAllBtn.onclick = showGameHistory;
-  if (els.gameHistoryBackBtn) els.gameHistoryBackBtn.onclick = showRpsGame;
+  if (els.headsTailsHistoryReloadBtn) els.headsTailsHistoryReloadBtn.onclick = function(){ loadHeadsTailsHistory().catch(showErrorGlobal); };
+  if (els.rpsHistoryAllBtn) els.rpsHistoryAllBtn.onclick = function(){ showGameHistory('rps'); };
+  if (els.headsTailsHistoryAllBtn) els.headsTailsHistoryAllBtn.onclick = function(){ showGameHistory('heads-tails'); };
+  if (els.gameHistoryBackBtn) els.gameHistoryBackBtn.onclick = function(){ state.gameHistoryReturn === 'heads-tails' ? showHeadsTailsGame() : showRpsGame(); };
   document.querySelectorAll("[data-rps-bet]").forEach(function(btn){ btn.onclick=function(){ if(els.rpsBetAmount) els.rpsBetAmount.value=btn.dataset.rpsBet; }; });
   document.querySelectorAll("[data-rps-choice]").forEach(function(btn){ btn.onclick=function(){ playRpsGame(btn.dataset.rpsChoice); }; });
+  document.querySelectorAll("[data-ht-bet]").forEach(function(btn){ btn.onclick=function(){ if(els.headsTailsBetAmount) els.headsTailsBetAmount.value=btn.dataset.htBet; }; });
+  document.querySelectorAll("[data-ht-choice]").forEach(function(btn){ btn.onclick=function(){ playHeadsTailsGame(btn.dataset.htChoice); }; });
   if (els.homeLineContactBtn) els.homeLineContactBtn.onclick = openLineContact;
   if (els.homeLogoutBtn) els.homeLogoutBtn.onclick = function(){ logout(true); };
   if (els.lottoHomeBtn) els.lottoHomeBtn.onclick = showHome;
@@ -25818,7 +25895,7 @@ function hideMemberScreensV16() {
   [
     "homeScreen","lottoScreen","betScreen","historyScreen",
     "moneyScreen","profileScreen","memberSummaryScreen","resultsScreen","affiliateScreen",
-    "gameSelectScreen","rpsGameScreen","gameHistoryScreen","adminScreen"
+    "gameSelectScreen","rpsGameScreen","headsTailsGameScreen","gameHistoryScreen","adminScreen"
   ].forEach(function(id){
     if (els[id]) els[id].classList.remove("active");
   });
@@ -25834,17 +25911,40 @@ function showHome() {
 
 
 function rpsMoney(n){ return Number(n || 0).toLocaleString('th-TH',{minimumFractionDigits:2,maximumFractionDigits:2}); }
-function rpsIcon(choice){ return choice==='rock'?'fi fi-ss-hand-fist':(choice==='scissors'?'fi fi-ss-hand-scissors':'fi fi-ss-hand-paper'); }
-function rpsName(choice){ return choice==='rock'?'ค้อน':(choice==='scissors'?'กรรไกร':'กระดาษ'); }
+function miniGameName(game){
+  var g=String(game||'').trim().toUpperCase().replace(/-/g,'_');
+  if(g==='ROCK_PAPER_SCISSORS') return 'เป่ายิงฉุบ';
+  if(g==='HEADS_TAILS') return 'หัว - ก้อย';
+  return String(game||'มินิเกม');
+}
+function miniChoiceIcon(choice){
+  choice=String(choice||'').toLowerCase();
+  if(choice==='rock') return 'fi fi-ss-hand-fist';
+  if(choice==='scissors') return 'fi fi-ss-hand-scissors';
+  if(choice==='paper') return 'fi fi-ss-hand-paper';
+  if(choice==='heads') return 'fi fi-sr-user';
+  if(choice==='tails') return 'fi fi-sr-star';
+  return 'fi fi-sr-gamepad';
+}
+function miniChoiceName(choice){
+  choice=String(choice||'').toLowerCase();
+  if(choice==='rock') return 'ค้อน';
+  if(choice==='scissors') return 'กรรไกร';
+  if(choice==='paper') return 'กระดาษ';
+  if(choice==='heads') return 'หัว';
+  if(choice==='tails') return 'ก้อย';
+  return choice || '-';
+}
+function rpsIcon(choice){ return miniChoiceIcon(choice); }
+function rpsName(choice){ return miniChoiceName(choice); }
 function setRpsHand(el, choice){ if(el) el.innerHTML='<i class="'+rpsIcon(choice)+'"></i>'; }
 function setRpsBusy(v){ state.rpsBusy=!!v; document.querySelectorAll('[data-rps-choice],[data-rps-bet]').forEach(function(b){b.disabled=!!v;}); if(els.rpsBetAmount) els.rpsBetAmount.disabled=!!v; if(els.rpsMaxBtn) els.rpsMaxBtn.disabled=!!v; }
+function setHeadsTailsBusy(v){ state.headsTailsBusy=!!v; document.querySelectorAll('[data-ht-choice],[data-ht-bet]').forEach(function(b){b.disabled=!!v;}); if(els.headsTailsBetAmount) els.headsTailsBetAmount.disabled=!!v; if(els.headsTailsMaxBtn) els.headsTailsMaxBtn.disabled=!!v; }
 function rpsDelay(ms){ return new Promise(function(resolve){ setTimeout(resolve,ms); }); }
 function clearRpsBattleAnimation(){
   var flash=document.getElementById('rpsBattleFlash');
   if(flash){ flash.classList.remove('show'); flash.textContent=''; }
-  [els.rpsUserHand,els.rpsSystemHand].forEach(function(el){
-    if(el) el.classList.remove('rps-battle-left','rps-battle-right','rps-waiting');
-  });
+  [els.rpsUserHand,els.rpsSystemHand].forEach(function(el){ if(el) el.classList.remove('rps-battle-left','rps-battle-right','rps-waiting'); });
 }
 async function runRpsBattleAnimation(){
   var flash=document.getElementById('rpsBattleFlash');
@@ -25852,7 +25952,6 @@ async function runRpsBattleAnimation(){
   if(els.rpsSystemHand) els.rpsSystemHand.innerHTML='<i class="fi fi-ss-hand-fist"></i>';
   if(els.rpsUserName) els.rpsUserName.textContent='เตรียม...';
   if(els.rpsSystemName) els.rpsSystemName.textContent='เตรียม...';
-
   var words=['เป่า!','ยิง!','ฉุบ!'];
   for(var i=0;i<words.length;i++){
     if(flash){ flash.classList.remove('show'); void flash.offsetWidth; flash.textContent=words[i]; flash.classList.add('show'); }
@@ -25861,14 +25960,39 @@ async function runRpsBattleAnimation(){
     if(els.rpsResult){ els.rpsResult.className='rps-result'; els.rpsResult.textContent=words[i]; }
     await rpsDelay(350);
   }
-
-  [els.rpsUserHand,els.rpsSystemHand].forEach(function(el){
-    if(el){ el.classList.remove('rps-battle-left','rps-battle-right'); el.classList.add('rps-waiting'); }
-  });
+  [els.rpsUserHand,els.rpsSystemHand].forEach(function(el){ if(el){ el.classList.remove('rps-battle-left','rps-battle-right'); el.classList.add('rps-waiting'); } });
   if(flash){ flash.classList.remove('show'); void flash.offsetWidth; flash.textContent='รอผล'; flash.classList.add('show'); }
   if(els.rpsResult){ els.rpsResult.className='rps-result'; els.rpsResult.textContent='กำลังเปิดผล...'; }
 }
-function syncGameBalances(balance){ state.gameBalance=Number(balance||0); if(els.gameSelectBalance) els.gameSelectBalance.textContent=rpsMoney(state.gameBalance); if(els.rpsBalance) els.rpsBalance.textContent=rpsMoney(state.gameBalance); if(els.homeCredit) els.homeCredit.textContent=rpsMoney(state.gameBalance); if(els.heroCredit) els.heroCredit.textContent=rpsMoney(state.gameBalance); if(state.user) state.user.credit=state.gameBalance; }
+function clearHeadsTailsAnimation(){
+  if(els.headsTailsTossFlash){ els.headsTailsTossFlash.classList.remove('show'); els.headsTailsTossFlash.textContent=''; }
+  if(els.headsTailsCoin) els.headsTailsCoin.classList.remove('flipping','ht-waiting');
+  if(els.headsTailsCoinStage) els.headsTailsCoinStage.classList.remove('flipping');
+  if(els.headsTailsArena) els.headsTailsArena.classList.remove('result-burst');
+}
+async function runHeadsTailsAnimation(){
+  clearHeadsTailsAnimation();
+  if(els.headsTailsResult){ els.headsTailsResult.className='ht-result'; els.headsTailsResult.textContent='เตรียมโยนเหรียญ...'; }
+  var flash=els.headsTailsTossFlash;
+  if(flash){ flash.textContent='เตรียม!'; flash.classList.add('show'); }
+  await rpsDelay(280);
+  if(flash){ flash.classList.remove('show'); void flash.offsetWidth; flash.textContent='โยน!'; flash.classList.add('show'); }
+  if(els.headsTailsCoin){ els.headsTailsCoin.classList.remove('flipping'); void els.headsTailsCoin.offsetWidth; els.headsTailsCoin.classList.add('flipping'); }
+  if(els.headsTailsCoinStage) els.headsTailsCoinStage.classList.add('flipping');
+  await rpsDelay(1100);
+  if(els.headsTailsCoin) els.headsTailsCoin.classList.add('ht-waiting');
+  if(flash){ flash.classList.remove('show'); void flash.offsetWidth; flash.textContent='รอผล'; flash.classList.add('show'); }
+  if(els.headsTailsResult){ els.headsTailsResult.className='ht-result'; els.headsTailsResult.textContent='กำลังเปิดผล...'; }
+}
+function syncGameBalances(balance){
+  state.gameBalance=Number(balance||0);
+  if(els.gameSelectBalance) els.gameSelectBalance.textContent=rpsMoney(state.gameBalance);
+  if(els.rpsBalance) els.rpsBalance.textContent=rpsMoney(state.gameBalance);
+  if(els.headsTailsBalance) els.headsTailsBalance.textContent=rpsMoney(state.gameBalance);
+  if(els.homeCredit) els.homeCredit.textContent=rpsMoney(state.gameBalance);
+  if(els.heroCredit) els.heroCredit.textContent=rpsMoney(state.gameBalance);
+  if(state.user) state.user.credit=state.gameBalance;
+}
 async function loadMiniGameBoot(){ var data=await api('getMiniGameBoot',state.token); syncGameBalances(data && data.balance); return data; }
 function gameHistoryRowsHtml(rows, showGameName){
   rows=Array.isArray(rows)?rows:[];
@@ -25879,29 +26003,25 @@ function gameHistoryRowsHtml(rows, showGameName){
     var resultText=outcome==='WIN'?'ชนะ':(outcome==='LOSE'?'แพ้':'เสมอ');
     var net=Number(x.netAmount||0);
     var moneyText=outcome==='WIN'?'+฿'+rpsMoney(Math.abs(net||x.betAmount)):(outcome==='LOSE'?'-฿'+rpsMoney(Math.abs(net||x.betAmount)):'คืนทุน');
-    var userChoice=String(x.userChoice||'rock');
-    var systemChoice=String(x.systemChoice||'rock');
-    var gameName=String(x.game||'')==='rock-paper-scissors'?'เป่ายิงฉุบ':(String(x.game||'')||'มินิเกม');
-    var meta=(showGameName?gameName+' · ':'')+escapeHtml(String(x.createdAt||''))+' · เดิมพัน ฿'+rpsMoney(x.betAmount);
+    var userChoice=String(x.userChoice||'');
+    var systemChoice=String(x.systemChoice||'');
+    var gameKey=String(x.game||'').trim().toUpperCase().replace(/-/g,'_');
+    var gameName=miniGameName(gameKey);
+    var mainText=gameKey==='HEADS_TAILS'
+      ? 'เลือก '+miniChoiceName(userChoice)+' · ออก '+miniChoiceName(systemChoice)+' · '+resultText
+      : miniChoiceName(userChoice)+' vs '+miniChoiceName(systemChoice)+' · '+resultText;
+    var meta=(showGameName?escapeHtml(gameName)+' · ':'')+escapeHtml(String(x.createdAt||''))+' · เดิมพัน ฿'+rpsMoney(x.betAmount);
     return '<div class="rps-history-item">'+
-      '<div class="rps-history-icon"><i class="'+rpsIcon(userChoice)+'"></i></div>'+
-      '<div class="rps-history-main"><strong>'+rpsName(userChoice)+' vs '+rpsName(systemChoice)+' · '+resultText+'</strong><small>'+meta+'</small></div>'+
-      '<div class="rps-history-money '+cls+'">'+moneyText+'</div>'+
+      '<div class="rps-history-icon"><i class="'+miniChoiceIcon(userChoice)+'"></i></div>'+ 
+      '<div class="rps-history-main"><strong>'+escapeHtml(mainText)+'</strong><small>'+meta+'</small></div>'+ 
+      '<div class="rps-history-money '+cls+'">'+moneyText+'</div>'+ 
     '</div>';
   }).join('');
 }
-function renderRpsHistory(){
-  if(!els.rpsHistoryList) return;
-  var rows=Array.isArray(state.rpsHistory)?state.rpsHistory.slice(0,10):[];
-  els.rpsHistoryList.innerHTML=gameHistoryRowsHtml(rows,false);
-}
-async function loadRpsHistory(){
-  if(!state.token) return [];
-  var rows=await api('getMyMiniGameHistory',state.token,10);
-  state.rpsHistory=Array.isArray(rows)?rows.slice(0,10):[];
-  renderRpsHistory();
-  return state.rpsHistory;
-}
+function renderRpsHistory(){ if(els.rpsHistoryList){ var rows=Array.isArray(state.rpsHistory)?state.rpsHistory.slice(0,10):[]; els.rpsHistoryList.innerHTML=gameHistoryRowsHtml(rows,false); } }
+async function loadRpsHistory(){ if(!state.token) return []; var rows=await api('getMyMiniGameHistory',state.token,10,'ROCK_PAPER_SCISSORS'); state.rpsHistory=Array.isArray(rows)?rows.slice(0,10):[]; renderRpsHistory(); return state.rpsHistory; }
+function renderHeadsTailsHistory(){ if(els.headsTailsHistoryList){ var rows=Array.isArray(state.headsTailsHistory)?state.headsTailsHistory.slice(0,10):[]; els.headsTailsHistoryList.innerHTML=gameHistoryRowsHtml(rows,false); } }
+async function loadHeadsTailsHistory(){ if(!state.token) return []; var rows=await api('getMyMiniGameHistory',state.token,10,'HEADS_TAILS'); state.headsTailsHistory=Array.isArray(rows)?rows.slice(0,10):[]; renderHeadsTailsHistory(); return state.headsTailsHistory; }
 function renderAllGameHistory(){
   if(!els.gameHistoryList) return;
   var rows=Array.isArray(state.allGameHistory)?state.allGameHistory:[];
@@ -25911,108 +26031,88 @@ function renderAllGameHistory(){
 async function loadAllGameHistory(){
   if(!state.token) return [];
   if(els.gameHistoryList) els.gameHistoryList.innerHTML='<div class="rps-history-empty">กำลังโหลดประวัติ…</div>';
-  var rows=await api('getMyMiniGameHistory',state.token,0);
+  var rows=await api('getMyMiniGameHistory',state.token,0,'');
   state.allGameHistory=Array.isArray(rows)?rows:[];
   renderAllGameHistory();
   return state.allGameHistory;
 }
-function showGameHistory(){
+function showGameHistory(returnGame){
+  if(returnGame) state.gameHistoryReturn=returnGame;
   hideMemberScreensV16();
   if(els.gameHistoryScreen) els.gameHistoryScreen.classList.add('active');
   try { pushAppRoute('game-history'); } catch(e) {}
   scrollTo(0,0);
-  loadAllGameHistory().catch(function(err){
-    if(els.gameHistoryList) els.gameHistoryList.innerHTML='<div class="rps-history-empty">โหลดประวัติไม่สำเร็จ</div>';
-    showErrorGlobal(err);
-  });
+  loadAllGameHistory().catch(function(err){ if(els.gameHistoryList) els.gameHistoryList.innerHTML='<div class="rps-history-empty">โหลดประวัติไม่สำเร็จ</div>'; showErrorGlobal(err); });
 }
-async function showRpsOutcomePopup(out){
+async function showMiniGameOutcomePopup(out,game){
   if(!out || (out.outcome!=='WIN' && out.outcome!=='LOSE')) return;
   var isWin=out.outcome==='WIN';
   var amount=rpsMoney(out.betAmount);
   var title=isWin?'คุณชนะ!':'แพ้รอบนี้';
   var resultLine=isWin?'<b style="color:#15803d;font-size:20px">+฿'+amount+'</b>':'<b style="color:#b91c1c;font-size:20px">-฿'+amount+'</b>';
+  var gameKey=String(game||out.game||'').toUpperCase().replace(/-/g,'_');
+  var choiceLine=gameKey==='HEADS_TAILS'
+    ? 'คุณเลือก: <b>'+miniChoiceName(out.userChoice)+'</b> &nbsp; ผล: <b>'+miniChoiceName(out.systemChoice)+'</b>'
+    : 'คุณ: <b>'+miniChoiceName(out.userChoice)+'</b> &nbsp; ระบบ: <b>'+miniChoiceName(out.systemChoice)+'</b>';
   await Swal.fire({
-    icon:isWin?'success':'error',
-    title:title,
-    html:'<div style="font-size:12px;line-height:1.8">'+
-      '<div>คุณ: <b>'+rpsName(out.userChoice)+'</b> &nbsp; ระบบ: <b>'+rpsName(out.systemChoice)+'</b></div>'+
-      '<div style="margin:8px 0 4px">'+resultLine+'</div>'+
-      '<div style="color:#71717a">ยอดคงเหลือ ฿'+rpsMoney(out.balanceAfter)+'</div>'+
-    '</div>',
-    confirmButtonText:'เล่นต่อ',
-    confirmButtonColor:'#b91c1c',
-    allowOutsideClick:true
+    icon:isWin?'success':'error', title:title,
+    html:'<div style="font-size:12px;line-height:1.8"><div>'+choiceLine+'</div><div style="margin:8px 0 4px">'+resultLine+'</div><div style="color:#71717a">ยอดคงเหลือ ฿'+rpsMoney(out.balanceAfter)+'</div></div>',
+    confirmButtonText:'เล่นต่อ', confirmButtonColor:'#b91c1c', allowOutsideClick:true
   });
 }
+async function showRpsOutcomePopup(out){ return showMiniGameOutcomePopup(out,'ROCK_PAPER_SCISSORS'); }
 function showGameSelect(){
-  hideMemberScreensV16();
-  if(els.gameSelectScreen) els.gameSelectScreen.classList.add('active');
-  try { pushAppRoute('games'); } catch(e) {}
-  scrollTo(0,0);
-  loadMiniGameBoot().catch(showErrorGlobal);
+  hideMemberScreensV16(); if(els.gameSelectScreen) els.gameSelectScreen.classList.add('active');
+  try { pushAppRoute('games'); } catch(e) {} scrollTo(0,0); loadMiniGameBoot().catch(showErrorGlobal);
 }
 function showRpsGame(){
-  hideMemberScreensV16();
-  if(els.rpsGameScreen) els.rpsGameScreen.classList.add('active');
-  try { pushAppRoute('rps'); } catch(e) {}
-  scrollTo(0,0);
-  loadMiniGameBoot().catch(showErrorGlobal);
-  loadRpsHistory().catch(function(){});
+  state.gameHistoryReturn='rps'; hideMemberScreensV16(); if(els.rpsGameScreen) els.rpsGameScreen.classList.add('active');
+  try { pushAppRoute('rps'); } catch(e) {} scrollTo(0,0); loadMiniGameBoot().catch(showErrorGlobal); loadRpsHistory().catch(function(){});
+}
+function showHeadsTailsGame(){
+  state.gameHistoryReturn='heads-tails'; hideMemberScreensV16(); if(els.headsTailsGameScreen) els.headsTailsGameScreen.classList.add('active');
+  try { pushAppRoute('heads-tails'); } catch(e) {} scrollTo(0,0); loadMiniGameBoot().catch(showErrorGlobal); loadHeadsTailsHistory().catch(function(){});
 }
 async function playRpsGame(choice){
   if(state.rpsBusy) return;
   var bet=Number(els.rpsBetAmount && els.rpsBetAmount.value || 0);
   if(!isFinite(bet)||bet<=0){ showToast('กรุณาใส่เงินเดิมพัน'); if(els.rpsBetAmount) els.rpsBetAmount.focus(); return; }
   if(bet>Number(state.gameBalance||0)){ showToast('ยอดเงินคงเหลือไม่เพียงพอ'); return; }
-
-  setRpsBusy(true);
-  clearRpsBattleAnimation();
-
-  // เริ่มเรียก Server ทันที แต่หน้าเว็บทำเพียงอนิเมชันระหว่างรอ
-  // ไม่มีการสุ่ม outcome / systemChoice / ยอดเงินใน Browser
-  var serverTask=api('playRockPaperScissors',state.token,{choice:choice,betAmount:bet})
-    .then(function(value){ return {ok:true,value:value}; })
-    .catch(function(error){ return {ok:false,error:error}; });
-
+  setRpsBusy(true); clearRpsBattleAnimation();
+  var serverTask=api('playRockPaperScissors',state.token,{choice:choice,betAmount:bet}).then(function(value){ return {ok:true,value:value}; }).catch(function(error){ return {ok:false,error:error}; });
   try{
     await runRpsBattleAnimation();
-    var serverResult=await serverTask;
-    if(!serverResult.ok) throw serverResult.error;
-    var out=serverResult.value || {};
-
-    clearRpsBattleAnimation();
-    setRpsHand(els.rpsUserHand,out.userChoice);
-    setRpsHand(els.rpsSystemHand,out.systemChoice);
-    [els.rpsUserHand,els.rpsSystemHand].forEach(function(el){
-      if(el){ el.classList.remove('rps-pop'); void el.offsetWidth; el.classList.add('rps-pop'); }
-    });
-    if(els.rpsUserName) els.rpsUserName.textContent=rpsName(out.userChoice);
-    if(els.rpsSystemName) els.rpsSystemName.textContent=rpsName(out.systemChoice);
+    var serverResult=await serverTask; if(!serverResult.ok) throw serverResult.error; var out=serverResult.value || {};
+    clearRpsBattleAnimation(); setRpsHand(els.rpsUserHand,out.userChoice); setRpsHand(els.rpsSystemHand,out.systemChoice);
+    [els.rpsUserHand,els.rpsSystemHand].forEach(function(el){ if(el){ el.classList.remove('rps-pop'); void el.offsetWidth; el.classList.add('rps-pop'); } });
+    if(els.rpsUserName) els.rpsUserName.textContent=rpsName(out.userChoice); if(els.rpsSystemName) els.rpsSystemName.textContent=rpsName(out.systemChoice); syncGameBalances(out.balanceAfter);
+    if(out.outcome==='WIN'){ els.rpsResult.className='rps-result win'; els.rpsResult.textContent='คุณชนะ +฿'+rpsMoney(out.betAmount); }
+    else if(out.outcome==='LOSE'){ els.rpsResult.className='rps-result lose'; els.rpsResult.textContent='ระบบชนะ -฿'+rpsMoney(out.betAmount); }
+    else{ els.rpsResult.className='rps-result draw'; els.rpsResult.textContent='เสมอ · คืนทุน'; }
+    loadRpsHistory().catch(function(){}); await showRpsOutcomePopup(out);
+  }catch(e){ clearRpsBattleAnimation(); showErrorGlobal(e); if(els.rpsResult){ els.rpsResult.className='rps-result'; els.rpsResult.textContent='เล่นไม่สำเร็จ กรุณาลองใหม่'; } try{ await loadMiniGameBoot(); }catch(_e){} }
+  finally{ clearRpsBattleAnimation(); setRpsBusy(false); }
+}
+async function playHeadsTailsGame(choice){
+  if(state.headsTailsBusy) return;
+  var bet=Number(els.headsTailsBetAmount && els.headsTailsBetAmount.value || 0);
+  if(!isFinite(bet)||bet<=0){ showToast('กรุณาใส่เงินเดิมพัน'); if(els.headsTailsBetAmount) els.headsTailsBetAmount.focus(); return; }
+  if(bet>Number(state.gameBalance||0)){ showToast('ยอดเงินคงเหลือไม่เพียงพอ'); return; }
+  setHeadsTailsBusy(true); clearHeadsTailsAnimation();
+  // หน้าเว็บเริ่ม Animation เท่านั้น ไม่สุ่มหัว/ก้อยและไม่แก้ยอดเงินเอง
+  var serverTask=api('playHeadsTails',state.token,{choice:choice,betAmount:bet}).then(function(value){ return {ok:true,value:value}; }).catch(function(error){ return {ok:false,error:error}; });
+  try{
+    await runHeadsTailsAnimation();
+    var serverResult=await serverTask; if(!serverResult.ok) throw serverResult.error; var out=serverResult.value || {};
+    clearHeadsTailsAnimation();
+    if(els.headsTailsCoin) els.headsTailsCoin.dataset.side=String(out.systemChoice||'heads').toLowerCase();
+    if(els.headsTailsArena){ els.headsTailsArena.classList.remove('result-burst'); void els.headsTailsArena.offsetWidth; els.headsTailsArena.classList.add('result-burst'); }
     syncGameBalances(out.balanceAfter);
-
-    if(out.outcome==='WIN'){
-      els.rpsResult.className='rps-result win';
-      els.rpsResult.textContent='คุณชนะ +฿'+rpsMoney(out.betAmount);
-    }else if(out.outcome==='LOSE'){
-      els.rpsResult.className='rps-result lose';
-      els.rpsResult.textContent='ระบบชนะ -฿'+rpsMoney(out.betAmount);
-    }else{
-      els.rpsResult.className='rps-result draw';
-      els.rpsResult.textContent='เสมอ · คืนทุน';
-    }
-
-    loadRpsHistory().catch(function(){});
-    await showRpsOutcomePopup(out);
-  }catch(e){
-    clearRpsBattleAnimation();
-    showErrorGlobal(e);
-    if(els.rpsResult){ els.rpsResult.className='rps-result'; els.rpsResult.textContent='เล่นไม่สำเร็จ กรุณาลองใหม่'; }
-    try{ await loadMiniGameBoot(); }catch(_e){}
-  }finally{
-    clearRpsBattleAnimation();
-    setRpsBusy(false);
-  }
+    if(out.outcome==='WIN'){ els.headsTailsResult.className='ht-result win reveal'; els.headsTailsResult.textContent='ออก '+miniChoiceName(out.systemChoice)+' · คุณชนะ +฿'+rpsMoney(out.betAmount); }
+    else{ els.headsTailsResult.className='ht-result lose reveal'; els.headsTailsResult.textContent='ออก '+miniChoiceName(out.systemChoice)+' · คุณแพ้ -฿'+rpsMoney(out.betAmount); }
+    loadHeadsTailsHistory().catch(function(){}); await showMiniGameOutcomePopup(out,'HEADS_TAILS');
+  }catch(e){ clearHeadsTailsAnimation(); showErrorGlobal(e); if(els.headsTailsResult){ els.headsTailsResult.className='ht-result'; els.headsTailsResult.textContent='เล่นไม่สำเร็จ กรุณาลองใหม่'; } try{ await loadMiniGameBoot(); }catch(_e){} }
+  finally{ clearHeadsTailsAnimation(); setHeadsTailsBusy(false); }
 }
 
 
