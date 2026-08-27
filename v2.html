@@ -23466,6 +23466,107 @@ strong,b{
 </style>
 
 
+
+<style id="v141-flag-language-style">
+/* V141 — Replace notification bell with Flaticon flag language menu */
+#homeScreen .home-flag-language{
+  position:relative;
+  flex:0 0 auto;
+}
+#homeScreen .home-flag-language-btn{
+  width:45px;
+  height:39px;
+  padding:3px 5px;
+  border:1px solid rgba(255,255,255,.24);
+  border-radius:14px;
+  background:rgba(255,255,255,.12);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:3px;
+  box-shadow:none;
+  -webkit-tap-highlight-color:transparent;
+}
+#homeScreen .home-flag-language-btn:active{transform:scale(.96)}
+#homeScreen .home-flag-language-btn img{
+  width:25px;
+  height:25px;
+  display:block;
+  object-fit:cover;
+  border-radius:50%;
+  background:#fff;
+  box-shadow:0 0 0 1px rgba(255,255,255,.22);
+}
+#homeScreen .home-flag-language-btn > i{
+  font-size:11px;
+  line-height:1;
+  opacity:.82;
+}
+#homeScreen .home-flag-language-menu{
+  position:absolute;
+  top:calc(100% + 8px);
+  right:0;
+  width:174px;
+  padding:7px;
+  z-index:1200;
+  border-radius:17px;
+  background:#fff;
+  border:1px solid rgba(127,29,29,.10);
+  box-shadow:0 16px 40px rgba(62,8,13,.20);
+}
+#homeScreen .home-flag-language-menu[hidden]{display:none!important}
+#homeScreen .home-flag-language-option{
+  width:100%;
+  min-height:45px;
+  padding:6px 8px;
+  border:0;
+  border-radius:12px;
+  background:transparent;
+  display:grid;
+  grid-template-columns:30px minmax(0,1fr) 18px;
+  align-items:center;
+  gap:8px;
+  color:#3f0a0f;
+  text-align:left;
+  font-size:12px;
+  font-weight:650;
+}
+#homeScreen .home-flag-language-option:active,
+#homeScreen .home-flag-language-option.is-active{
+  background:#fff1f2;
+}
+#homeScreen .home-flag-language-option img{
+  width:28px;
+  height:28px;
+  object-fit:cover;
+  border-radius:50%;
+  display:block;
+  box-shadow:0 0 0 1px rgba(127,29,29,.08);
+}
+#homeScreen .home-flag-language-option > i{
+  color:#b91c1c;
+  font-size:13px;
+  opacity:0;
+}
+#homeScreen .home-flag-language-option.is-active > i{opacity:1}
+#homeScreen .home-flag-language-credit{
+  display:block;
+  margin:3px 4px 1px;
+  padding-top:6px;
+  border-top:1px solid #f3e4e5;
+  color:#a48b8e;
+  font-size:8px;
+  text-align:center;
+  text-decoration:none;
+}
+@media(max-width:380px){
+  #homeScreen .home-flag-language-btn{width:42px;height:37px;border-radius:13px}
+  #homeScreen .home-flag-language-btn img{width:23px;height:23px}
+  #homeScreen .home-flag-language-menu{width:164px}
+}
+</style>
+
 <style id="v140-i18n-style">
 .site-language-row{display:flex;align-items:center;justify-content:flex-end;gap:7px;margin:0 2px 10px}
 .site-language-label{font-size:11px;font-weight:600;color:#7f1d1d}
@@ -23676,15 +23777,30 @@ html[data-lang="en"] textarea{
         </div>
 
         <div class="v16-head-actions home-v54-head-actions home-v85-head-actions">
-         <select class="site-language-select home-language-select" id="siteLangHome" aria-label="เลือกภาษา">
-          <option value="th">ไทย</option>
-          <option value="en">EN</option>
-          <option value="lo">ລາວ</option>
-         </select>
-         <button class="home-v54-bell home-v85-icon-btn" type="button" aria-label="ประกาศ" onclick="try{state.announcementsShown=false;loadAndShowActiveAnnouncements();}catch(e){}">
-          <i class="fi fi-sr-bell"></i>
-          <span class="home-v54-notice-dot"></span>
-         </button>
+         <div class="home-flag-language" id="homeFlagLanguage">
+          <button class="home-flag-language-btn" id="homeFlagLanguageBtn" type="button" aria-label="เลือกภาษา" aria-expanded="false">
+           <img id="homeCurrentFlag" src="https://cdn-icons-png.flaticon.com/512/197/197452.png" alt="ไทย">
+           <i class="fi fi-rr-angle-small-down" aria-hidden="true"></i>
+          </button>
+          <div class="home-flag-language-menu" id="homeFlagLanguageMenu" hidden>
+           <button type="button" class="home-flag-language-option" data-lang="th">
+            <img src="https://cdn-icons-png.flaticon.com/512/197/197452.png" alt="ธงไทย">
+            <span>ไทย</span>
+            <i class="fi fi-rr-check"></i>
+           </button>
+           <button type="button" class="home-flag-language-option" data-lang="en">
+            <img src="https://cdn-icons-png.flaticon.com/512/197/197374.png" alt="United Kingdom flag">
+            <span>English</span>
+            <i class="fi fi-rr-check"></i>
+           </button>
+           <button type="button" class="home-flag-language-option" data-lang="lo">
+            <img src="https://cdn-icons-png.flaticon.com/512/197/197568.png" alt="ທຸງລາວ">
+            <span>ລາວ</span>
+            <i class="fi fi-rr-check"></i>
+           </button>
+           <a class="home-flag-language-credit" href="https://www.flaticon.com/" target="_blank" rel="noopener">Flags by Flaticon</a>
+          </div>
+         </div>
 
          <button class="v16-logout home-v54-logout home-v85-logout" id="homeLogoutBtn" type="button">
           <i class="fi fi-sr-sign-out-alt"></i>
@@ -23720,7 +23836,7 @@ html[data-lang="en"] textarea{
 
         <div class="home-v85-account-line">
          <i class="fi fi-sr-wallet"></i>
-         <span>บัญชีหลัก <small class="home-app-version">V140</small></span>
+         <span>บัญชีหลัก <small class="home-app-version">V141</small></span>
         </div>
        </section>
 
@@ -32341,6 +32457,101 @@ function openAdminAnnouncementEditor(item) {
   window.siteTranslate=function(text){ return translateCore(String(text||""),currentLang); };
 
   init();
+})();
+</script>
+
+
+<script id="v141-flag-language-js">
+(function(){
+  "use strict";
+
+  var FLAGS = {
+    th: {
+      src: "https://cdn-icons-png.flaticon.com/512/197/197452.png",
+      alt: "ไทย"
+    },
+    en: {
+      src: "https://cdn-icons-png.flaticon.com/512/197/197374.png",
+      alt: "English"
+    },
+    lo: {
+      src: "https://cdn-icons-png.flaticon.com/512/197/197568.png",
+      alt: "ລາວ"
+    }
+  };
+
+  var root = document.getElementById("homeFlagLanguage");
+  var trigger = document.getElementById("homeFlagLanguageBtn");
+  var menu = document.getElementById("homeFlagLanguageMenu");
+  var currentFlag = document.getElementById("homeCurrentFlag");
+  if(!root || !trigger || !menu || !currentFlag) return;
+
+  var options = Array.prototype.slice.call(menu.querySelectorAll(".home-flag-language-option"));
+
+  function getLang(){
+    try{
+      if(typeof window.getSiteLanguage === "function"){
+        return window.getSiteLanguage() || "th";
+      }
+    }catch(e){}
+    try{
+      return localStorage.getItem("supmangmeeLanguage") || "th";
+    }catch(e){}
+    return "th";
+  }
+
+  function closeMenu(){
+    menu.hidden = true;
+    trigger.setAttribute("aria-expanded","false");
+  }
+
+  function openMenu(){
+    menu.hidden = false;
+    trigger.setAttribute("aria-expanded","true");
+  }
+
+  function sync(lang){
+    lang = FLAGS[lang] ? lang : "th";
+    var item = FLAGS[lang];
+    currentFlag.src = item.src;
+    currentFlag.alt = item.alt;
+    options.forEach(function(btn){
+      btn.classList.toggle("is-active", btn.getAttribute("data-lang") === lang);
+    });
+  }
+
+  trigger.addEventListener("click",function(ev){
+    ev.stopPropagation();
+    if(menu.hidden) openMenu();
+    else closeMenu();
+  });
+
+  options.forEach(function(btn){
+    btn.addEventListener("click",function(){
+      var lang = btn.getAttribute("data-lang") || "th";
+      if(typeof window.setSiteLanguage === "function"){
+        window.setSiteLanguage(lang);
+      }else{
+        try{ localStorage.setItem("supmangmeeLanguage",lang); }catch(e){}
+      }
+      sync(lang);
+      closeMenu();
+    });
+  });
+
+  document.addEventListener("click",function(ev){
+    if(!root.contains(ev.target)) closeMenu();
+  });
+
+  document.addEventListener("keydown",function(ev){
+    if(ev.key === "Escape") closeMenu();
+  });
+
+  document.addEventListener("supmangmee:languagechange",function(ev){
+    sync(ev && ev.detail ? ev.detail.lang : getLang());
+  });
+
+  sync(getLang());
 })();
 </script>
 
