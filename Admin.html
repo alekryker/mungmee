@@ -8481,11 +8481,12 @@ textarea:focus{
 
      <section class="admin-panel" id="adminPanel-minigame">
       <div class="admin-card">
-       <div class="admin-card-head"><div><h2>ตั้งค่ามินิเกม</h2><div class="admin-muted">กำหนดโอกาสที่ “ระบบ” จะชนะในเกมเป่ายิงฉุบ ผลจริงคำนวณจาก Server</div></div><button class="admin-btn red" id="adminMiniGameSaveBtn" type="button">บันทึก</button></div>
+       <div class="admin-card-head"><div><h2>ตั้งค่ามินิเกม</h2><div class="admin-muted">กำหนดโอกาสที่ “ระบบ” จะชนะของแต่ละเกม ผลจริงคำนวณจาก Server เท่านั้น</div></div><button class="admin-btn red" id="adminMiniGameSaveBtn" type="button">บันทึก</button></div>
        <div class="admin-toolbar">
-        <div class="admin-field"><label>ระบบชนะ (%)</label><input id="adminRpsSystemWinPercent" type="number" inputmode="decimal" min="0" max="100" step="1" value="20"></div>
+        <div class="admin-field"><label>เป่ายิงฉุบ — ระบบชนะ (%)</label><input id="adminRpsSystemWinPercent" type="number" inputmode="decimal" min="0" max="100" step="1" value="20"></div>
+        <div class="admin-field"><label>หัว - ก้อย — ระบบชนะ (%)</label><input id="adminHeadsTailsSystemWinPercent" type="number" inputmode="decimal" min="0" max="100" step="1" value="20"></div>
        </div>
-       <div class="admin-muted" style="margin-top:10px">ตัวอย่าง: ตั้ง 70% = ทุกครั้งที่ลูกค้าเล่น ระบบมีโอกาสชนะ 70% ของแต่ละรอบ • เสมอใช้โอกาสสูงสุด 10% จากส่วนที่เหลือ</div>
+       <div class="admin-muted" style="margin-top:10px">ตัวอย่าง: ตั้งหัว - ก้อย 70% = แต่ละรอบระบบมีโอกาสชนะ 70% • เป่ายิงฉุบยังคงมีผลเสมอได้สูงสุด 10% จากส่วนที่เหลือ • หัว - ก้อยไม่มีผลเสมอ</div>
       </div>
      </section>
 
@@ -8717,7 +8718,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "backBtn","bottomBackBtn","classicRuleBtn","selectedName","selectedRound","selectedClose","selectedCount","selectedLimitNote","selectedRateNote",
     "accountName","heroCredit","betCredit","modernBetCredit","bottomCredit","summaryCredit","adminBtn",
     "memberSummaryBtn","moneyBtn","resultsBtn","historyBtn","lineContactBtn","logoutBtn","affiliateBackBtn","affiliateAvailableTop","affiliateCode","affiliateLink","affiliateCopyBtn","affiliateStats","affiliateWithdrawBtn","affiliateCommissionList","affiliateWithdrawList","resultsBackBtn","resultsBalance","resultsDate","resultsReloadBtn","resultsPrevBtn","resultsNextBtn","resultsSource","resultsList","historyBackBtn","historyCredit","historyFrom","historyTo",
-     "historyStatus","historyList","moneyBackBtn","moneyBalance","moneyFrom","moneyTo","moneyType","moneyList","memberSummaryBackBtn","memberSummaryBalance","memberSummaryFrom","memberSummaryTo","memberSummaryLotto","memberSummarySearchBtn","memberSummaryStats","memberSummaryTable","adminIdentity","adminLogoutBtn","syncResultsBtn","adminAffiliateReloadBtn","adminAffiliateSearch","adminAffiliateStats","adminAffiliateTable","adminAffiliateWithdrawTable","adminResultsSyncBtn","adminResultsAddBtn","adminResultsFrom","adminResultsTo","adminResultsLotto","adminResultsReloadBtn","adminResultsTable","adminDashRange","adminDashFrom","adminDashTo","adminDashCustomBtn","adminDashSelectAll","adminDashClearAll","adminDashLottoChecks","adminDashStats","adminByUser","adminByLotto","adminTopDeposits","adminTopWithdraws","adminBetFrom","adminBetTo","adminBetStatus","adminOpenUser","adminOpenLotto","adminOpenSearchBtn","adminOpenTable","adminCreateUserBtn","adminUserSearch","adminUserCount","adminUserTable","adminWithdrawStatus","adminWithdrawReloadBtn","adminWithdrawTable","adminCreateLottoBtn","adminLottoToggleTable","adminLottoRulesTable","adminRateUser","adminRateLotto","adminRateModeNote","adminRate3Straight","adminRate3Tod","adminRate2Top","adminRate2Bottom","adminRateRunTop","adminRateRunBottom","adminRateSaveBtn","adminRateResetBtn","adminRateOverridesTable","adminLimitLotto","adminLimitKind","adminLimitBetType","adminLimitSide","adminLimitNumbers","adminLimitEndDate","adminLimitReverseBtn","adminLimitAddBtn","adminLimitSaveBtn","adminNumberLimitsTable","adminAnnouncementAddBtn","adminAnnouncementReloadBtn","adminAnnouncementsTable","adminMiniGameSaveBtn","adminRpsSystemWinPercent","adminConnectionSaveBtn","adminTelegramToken","adminTelegramChatId","adminLineContactUrl","adminDepositBankShort","adminDepositBankName","adminDepositAccountNo","adminDepositAccountName","adminDepositLogoUrl","adminDepositBorderColor","adminDepositPreview","adminDepositPreviewLogo","adminDepositPreviewNumber","adminDepositPreviewBank","adminDepositPreviewName","modernBetPanel","modernBackBtn","modernRuleBtn","modernLottoSelect","modernLottoSelectText","modernSelectedTitle","modernDigitSlots","modernNumberChipBox","modernClearNumbersBtn","modernBillStack","modernBillStackList","modernBillStackCount","directTitle","numberCount","numberInput",
+     "historyStatus","historyList","moneyBackBtn","moneyBalance","moneyFrom","moneyTo","moneyType","moneyList","memberSummaryBackBtn","memberSummaryBalance","memberSummaryFrom","memberSummaryTo","memberSummaryLotto","memberSummarySearchBtn","memberSummaryStats","memberSummaryTable","adminIdentity","adminLogoutBtn","syncResultsBtn","adminAffiliateReloadBtn","adminAffiliateSearch","adminAffiliateStats","adminAffiliateTable","adminAffiliateWithdrawTable","adminResultsSyncBtn","adminResultsAddBtn","adminResultsFrom","adminResultsTo","adminResultsLotto","adminResultsReloadBtn","adminResultsTable","adminDashRange","adminDashFrom","adminDashTo","adminDashCustomBtn","adminDashSelectAll","adminDashClearAll","adminDashLottoChecks","adminDashStats","adminByUser","adminByLotto","adminTopDeposits","adminTopWithdraws","adminBetFrom","adminBetTo","adminBetStatus","adminOpenUser","adminOpenLotto","adminOpenSearchBtn","adminOpenTable","adminCreateUserBtn","adminUserSearch","adminUserCount","adminUserTable","adminWithdrawStatus","adminWithdrawReloadBtn","adminWithdrawTable","adminCreateLottoBtn","adminLottoToggleTable","adminLottoRulesTable","adminRateUser","adminRateLotto","adminRateModeNote","adminRate3Straight","adminRate3Tod","adminRate2Top","adminRate2Bottom","adminRateRunTop","adminRateRunBottom","adminRateSaveBtn","adminRateResetBtn","adminRateOverridesTable","adminLimitLotto","adminLimitKind","adminLimitBetType","adminLimitSide","adminLimitNumbers","adminLimitEndDate","adminLimitReverseBtn","adminLimitAddBtn","adminLimitSaveBtn","adminNumberLimitsTable","adminAnnouncementAddBtn","adminAnnouncementReloadBtn","adminAnnouncementsTable","adminMiniGameSaveBtn","adminRpsSystemWinPercent","adminHeadsTailsSystemWinPercent","adminConnectionSaveBtn","adminTelegramToken","adminTelegramChatId","adminLineContactUrl","adminDepositBankShort","adminDepositBankName","adminDepositAccountNo","adminDepositAccountName","adminDepositLogoUrl","adminDepositBorderColor","adminDepositPreview","adminDepositPreviewLogo","adminDepositPreviewNumber","adminDepositPreviewBank","adminDepositPreviewName","modernBetPanel","modernBackBtn","modernRuleBtn","modernLottoSelect","modernLottoSelectText","modernSelectedTitle","modernDigitSlots","modernNumberChipBox","modernClearNumbersBtn","modernBillStack","modernBillStackList","modernBillStackCount","directTitle","numberCount","numberInput",
     "clearNumbersBtn","numberChipBox","reverseBtn","doubleBtn",
     "priceA","priceB","priceAField","priceALabel","priceBLabel","priceBField","directPriceGrid",
     "sourceCount","betCount","currentBillTotal","grandTotal","clearAllBtn","addBillBtn","submitBtn","error","billStack","billStackList","billStackCount",
@@ -12083,17 +12084,25 @@ async function loadAdminMiniGameSettings(){
   try{
     var cfg=await api('adminGetMiniGameSettings',state.token);
     var rps=cfg && cfg.rockPaperScissors || {};
+    var ht=cfg && cfg.headsTails || {};
     if(els.adminRpsSystemWinPercent) els.adminRpsSystemWinPercent.value=Number(rps.systemWinPercent==null?20:rps.systemWinPercent);
+    if(els.adminHeadsTailsSystemWinPercent) els.adminHeadsTailsSystemWinPercent.value=Number(ht.systemWinPercent==null?20:ht.systemWinPercent);
   }catch(e){showAdminError(e);}
 }
 async function saveAdminMiniGameSettings(){
-  var p=Number(els.adminRpsSystemWinPercent && els.adminRpsSystemWinPercent.value);
-  if(!isFinite(p)||p<0||p>100){showToast('กรุณาใส่เปอร์เซ็นต์ 0 - 100');return;}
+  var rpsPercent=Number(els.adminRpsSystemWinPercent && els.adminRpsSystemWinPercent.value);
+  var htPercent=Number(els.adminHeadsTailsSystemWinPercent && els.adminHeadsTailsSystemWinPercent.value);
+  if(!isFinite(rpsPercent)||rpsPercent<0||rpsPercent>100){showToast('เปอร์เซ็นต์เป่ายิงฉุบต้องอยู่ 0 - 100');return;}
+  if(!isFinite(htPercent)||htPercent<0||htPercent>100){showToast('เปอร์เซ็นต์หัว - ก้อยต้องอยู่ 0 - 100');return;}
   try{
     adminBusy('กำลังบันทึกตั้งค่าเกม...');
-    var cfg=await api('adminSaveMiniGameSettings',state.token,{rockPaperScissors:{systemWinPercent:p}});
+    var cfg=await api('adminSaveMiniGameSettings',state.token,{
+      rockPaperScissors:{systemWinPercent:rpsPercent},
+      headsTails:{systemWinPercent:htPercent}
+    });
     Swal.close();
     if(els.adminRpsSystemWinPercent) els.adminRpsSystemWinPercent.value=cfg.rockPaperScissors.systemWinPercent;
+    if(els.adminHeadsTailsSystemWinPercent) els.adminHeadsTailsSystemWinPercent.value=cfg.headsTails.systemWinPercent;
     showToast('บันทึกเปอร์เซ็นต์ระบบชนะแล้ว');
   }catch(e){Swal.close();showAdminError(e);}
 }
