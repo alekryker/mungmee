@@ -14,6 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
   <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/4.0.0/uicons-solid-straight/css/uicons-solid-straight.css">
   <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/4.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
@@ -23464,6 +23465,41 @@ strong,b{
 @media(prefers-reduced-motion:reduce){.ht-coin.flipping,.ht-coin.ht-waiting,.ht-toss-flash.show,.ht-result.reveal,.ht-arena.result-burst:after{animation-duration:.01ms!important;animation-iteration-count:1!important}}
 </style>
 
+
+<style id="v140-i18n-style">
+.site-language-row{display:flex;align-items:center;justify-content:flex-end;gap:7px;margin:0 2px 10px}
+.site-language-label{font-size:11px;font-weight:600;color:#7f1d1d}
+.site-language-select{
+  min-height:36px;min-width:72px;padding:5px 8px;border-radius:999px;
+  border:1px solid rgba(153,27,27,.18);background:#fff;color:#7f1d1d;
+  font:700 11px "Kanit",system-ui,sans-serif;outline:none;text-align:center
+}
+.home-language-select{
+  min-width:62px;min-height:34px;padding:4px 6px;
+  border-color:rgba(255,255,255,.24);background:rgba(255,255,255,.12);
+  color:#fff;box-shadow:none
+}
+.home-language-select option{color:#3f0a0f;background:#fff}
+html[data-lang="lo"] body,
+html[data-lang="lo"] button,
+html[data-lang="lo"] input,
+html[data-lang="lo"] select,
+html[data-lang="lo"] textarea{
+  font-family:"Noto Sans Lao","Kanit",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important
+}
+html[data-lang="en"] body,
+html[data-lang="en"] button,
+html[data-lang="en"] input,
+html[data-lang="en"] select,
+html[data-lang="en"] textarea{
+  letter-spacing:normal
+}
+@media(max-width:380px){
+  .home-language-select{min-width:56px;width:56px;font-size:10px;padding-left:3px;padding-right:3px}
+  .site-language-row{margin-bottom:8px}
+}
+</style>
+
 </head>
  <body>
 
@@ -23471,6 +23507,15 @@ strong,b{
     <div class="login-v56-wrap">
       <div class="login-logo-credit">
         <img src="./supmangmee-logo.png" alt="ทรัพย์มั่งมี">
+      </div>
+
+      <div class="site-language-row login-language-row">
+        <label class="site-language-label" for="siteLangLogin">ภาษา</label>
+        <select class="site-language-select" id="siteLangLogin" aria-label="เลือกภาษา">
+          <option value="th">ไทย</option>
+          <option value="en">English</option>
+          <option value="lo">ລາວ</option>
+        </select>
       </div>
 
       <div class="login-card-credit">
@@ -23631,6 +23676,11 @@ strong,b{
         </div>
 
         <div class="v16-head-actions home-v54-head-actions home-v85-head-actions">
+         <select class="site-language-select home-language-select" id="siteLangHome" aria-label="เลือกภาษา">
+          <option value="th">ไทย</option>
+          <option value="en">EN</option>
+          <option value="lo">ລາວ</option>
+         </select>
          <button class="home-v54-bell home-v85-icon-btn" type="button" aria-label="ประกาศ" onclick="try{state.announcementsShown=false;loadAndShowActiveAnnouncements();}catch(e){}">
           <i class="fi fi-sr-bell"></i>
           <span class="home-v54-notice-dot"></span>
@@ -23670,7 +23720,7 @@ strong,b{
 
         <div class="home-v85-account-line">
          <i class="fi fi-sr-wallet"></i>
-         <span>บัญชีหลัก <small class="home-app-version">V137</small></span>
+         <span>บัญชีหลัก <small class="home-app-version">V140</small></span>
         </div>
        </section>
 
@@ -32102,6 +32152,195 @@ function openAdminAnnouncementEditor(item) {
     };
   }
   window.syncV121Style2Flow=syncV121Style2Flow;
+})();
+</script>
+
+
+<script id="v140-i18n-js">
+(function(){
+  "use strict";
+
+  var DICT = {
+    en: {"ภาษา":"Language","เลือกภาษา":"Select language","ทรัพย์มั่งมี":"Sup Mang Mee","เข้าสู่ระบบ":"Log in","ยินดีต้อนรับกลับมา":"Welcome back","สมัครสมาชิก":"Sign up","สร้างบัญชีเพื่อเริ่มใช้งาน":"Create an account to get started","เบอร์โทรศัพท์":"Phone number","รหัสผ่าน":"Password","แสดง":"Show","ซ่อน":"Hide","ลืมรหัสผ่าน?":"Forgot password?","ยืนยันรหัสผ่าน":"Confirm password","ชื่อ - นามสกุล":"Full name","ธนาคาร":"Bank","เลือกธนาคาร":"Select bank","หมายเลขบัญชี":"Account number","เลขบัญชี":"Account number","รหัสแนะนำ Affiliate (ถ้ามี)":"Affiliate referral code (optional)","สมัครผ่านลิงก์แนะนำ ระบบจะผูกผู้แนะนำให้บัญชีนี้ถาวร":"If you sign up through a referral link, the referrer will be linked to this account permanently.","หรือเข้าสู่ระบบด้วย":"Or continue with","ติดต่อเราทาง LINE":"Contact us on LINE","แนะนำเพื่อน":"Refer friends","ชวนเพื่อนมาเล่น รับค่าคอมมิชชั่น":"Invite friends and earn commission","© 2026 ทรัพย์มั่งมี สงวนลิขสิทธิ์":"© 2026 Sup Mang Mee. All rights reserved.","ออกจากระบบ":"Log out","ติดต่อ":"Contact","ยอดเงินคงเหลือ":"Available balance","ประวัติการทำรายการ":"Transaction history","บัญชีหลัก":"Main wallet","ฝากเงิน":"Deposit","เติมเครดิตเข้าบัญชี":"Add credit to your account","ถอนเงิน":"Withdraw","ถอนเครดิตเข้าบัญชี":"Withdraw credit to your bank","เข้าแทงหวย":"Play lottery","เลือกประเภทการแทง":"Choose a betting type","กำลังโหลดหวยที่เปิดรับ...":"Loading available lotteries...","เริ่มต้นเดิมพันของคุณ":"Start placing your bets","มินิเกม":"Mini games","เลือกเกมแล้วเริ่มเล่นได้ทันที":"Choose a game and start playing","เมนูลัด":"Quick menu","ดูทั้งหมด":"View all","รายการโพย":"Bet slips","ดูรายการโพยทั้งหมด":"View all bet slips","ผลหวย":"Lottery results","ตรวจผลรางวัล":"Check results","สรุปแพ้-ชนะ":"Win / Loss summary","สถิติการเล่น":"Playing statistics","รายการเงิน":"Transactions","ประวัติการเงิน":"Financial history","รับค่าคอมมิชชั่นจากยอดแทงเพื่อน":"Earn commission from your referrals' betting turnover","ดูรายละเอียด":"View details","หน้าหลัก":"Home","แทงหวย":"Lottery","ประวัติ":"History","ฉัน":"Me","เลือกเกม":"Choose a game","เป่ายิงฉุบ":"Rock Paper Scissors","ค้อน · กรรไกร · กระดาษ":"Rock · Scissors · Paper","หัว - ก้อย":"Heads - Tails","เลือกฝั่ง แล้วโยนเหรียญ":"Choose a side, then flip the coin","ทายลูกเต๋า":"Dice Guess","ไฮโล 3 ลูก · เลือกสูงหรือต่ำ":"3 dice · Choose High or Low","เปิดไพ่":"Card Flip","เลือกไพ่ 1 จาก 2 ใบ · เปิดครบแล้วตัดสินผล":"Pick 1 of 2 cards · Reveal both to decide the result","กระเป๋าเกม":"Game wallet","ลงเงินเดิมพัน":"Bet amount","หัก/เพิ่มจากยอดหลักทันที":"Applied to your main balance instantly","รอคุณเลือก":"Waiting for your choice","รอระบบ":"Waiting for system","ใส่เงิน แล้วเลือกค้อน กรรไกร หรือกระดาษ":"Enter a bet, then choose Rock, Scissors or Paper","ค้อน":"Rock","กรรไกร":"Scissors","กระดาษ":"Paper","ประวัติการเล่น":"Game history","ล่าสุด 10 ครั้ง":"Latest 10 rounds","รีเฟรช":"Refresh","ยังไม่มีประวัติการเล่น":"No game history yet","ผลการโยนเหรียญ":"Coin flip result","หัว":"Heads","ก้อย":"Tails","ใส่เงิน แล้วเลือก “หัว” หรือ “ก้อย”":"Enter a bet, then choose “Heads” or “Tails”","ผลการเขย่าลูกเต๋า 3 ลูก":"3-dice result","รอผลจากระบบ":"Waiting for server result","ใส่เงิน แล้วเลือก “สูง” หรือ “ต่ำ”":"Enter a bet, then choose “High” or “Low”","ต่ำ":"Low","ผลรวม 4–10":"Total 4–10","สูง":"High","ผลรวม 11–17":"Total 11–17","เลือกไพ่ที่ต้องการเปิด":"Choose a card to reveal","ใส่เงิน แล้วเลือกไพ่ 1 ใบ":"Enter a bet, then choose 1 card","A = 1 · 2–10 ตามหน้าไพ่":"A = 1 · 2–10 use face value","J / Q / K = 10 แต้ม":"J / Q / K = 10 points","แต้มมากกว่าชนะ":"Higher score wins","แต้มเท่ากัน = เสมอ คืนทุน":"Equal score = Draw, bet returned","ประวัติการเล่นทั้งหมด":"All game history","รวมประวัติการเล่น":"All game history","ครั้ง":"rounds","กำลังโหลดประวัติ…":"Loading history…","เลือกหวย":"Choose lottery","เลือกกลุ่มหวยที่ต้องการ":"Choose a lottery group","หลังบ้าน":"Admin","ออก":"Result","กลุ่มหวย":"Lottery groups","ทั้งหมด":"All","หวยหุ้น":"Stock lotteries","หวย VIP":"VIP lotteries","หวยลาว":"Lao lotteries","ฮานอย":"Hanoi","อื่นๆ":"Others","ยังไม่มีหวยที่เปิดรับ • รอบใหม่เปิดเวลา 05:00 น.":"No lotteries are open · New round opens at 05:00","โพยของฉัน":"My slips","บัญชีของฉัน":"My account","หวยที่เลือก":"Selected lottery","ยอดคงเหลือ":"Balance","อัตราการจ่าย & วิธีเล่น":"Payouts & How to play","แบบแทงที่ 1":"Bet mode 1","แบบแทงที่ 2":"Bet mode 2","2 ตัว":"2 digits","3 ตัว":"3 digits","3 ตัวกลับ":"3-digit permutations","19 ประตู":"19-door","เลขวิ่ง":"Running number","‹ หน้าแทงหวย":"‹ Betting page","กรุณาเลือกหวย":"Please select a lottery","ปิดรับ --:--":"Closes --:--","เหลือเวลาอีก":"Time left","2 ตัวบน":"2-digit top","2 ตัวล่าง":"2-digit bottom","2 ตัวกลับ":"2-digit reverse","3 ตัวบน":"3-digit straight","3 ตัวโต๊ด":"3-digit box","ตัวเลือกเสริม":"Extra options","6/3 กลับ":"6/3 permutations","เลขเบิ้ล":"Double digits","รายการที่เลือก":"Selected entries","ระบุตัวเลข":"Enter numbers","ล้าง":"Clear","เลขที่เลือก":"Selected numbers","ล้างเลข":"Clear numbers","รายการบิล":"Bet list","เลข 2 ตัว":"2-digit numbers","↔ กลับเลข":"↔ Reverse","+ เลขเบิ้ล":"+ Doubles","รายละเอียดโพย":"Slip details","ใส่ราคา":"Enter stake","ยอดรายการนี้":"Current total","ใส่ราคาให้เลขที่กำลังเลือก":"Enter stake for selected numbers","บน":"Top","ล่าง":"Bottom","เพิ่มบิล":"Add bet","ราคาทั้งหมด":"All stakes","ใส่ราคาต่อบิล":"Stake per bet","แตะตัวเลขเพื่อพิมพ์ราคาเอง":"Tap a number to enter the stake","บาท":"THB","รวมยอดแทง":"Total bet","ยอดรวมทั้งหมดของโพย":"Slip grand total","ยอดรวมทุกรายการ":"Grand total","กลับ":"Back","ยืนยันโพย":"Confirm slip","ตรวจสอบและยืนยันการส่งโพย":"Review and confirm your slip","ล้างทั้งหมด":"Clear all","ลบข้อมูลทั้งหมด":"Delete all data","หน้าแทงหวย":"Betting page","‹ กลับ":"‹ Back","ทุกรายการ":"All transactions","เติมเครดิตด้วยสลิป":"Deposit by slip","ถอนเงินรออนุมัติ":"Withdrawal pending","ยกเลิกถอน/คืนเครดิต":"Withdrawal cancelled / credit returned","คืนเครดิตยกเลิกโพย":"Cancelled slip refund","ถูกรางวัล":"Prize won","แอดมินเพิ่มเครดิต":"Admin credit added","แอดมินหักเครดิต":"Admin credit deducted","กำลังโหลดรายการ...":"Loading transactions...","ข้อมูลส่วนตัว":"Personal information","ข้อมูลบัญชี":"Account information","เบอร์โทร":"Phone","รหัสผ่านปัจจุบัน":"Current password","เปลี่ยนรหัสผ่าน":"Change password","รหัสผ่านเดิม":"Old password","รหัสผ่านใหม่":"New password","ยืนยันรหัสผ่านใหม่":"Confirm new password","หลังเปลี่ยนรหัสผ่าน ระบบจะใช้รหัสใหม่ในการเข้าสู่ระบบครั้งถัดไป":"After changing your password, use the new password the next time you log in.","บันทึกรหัสผ่านใหม่":"Save new password","วันนี้":"Today","เมื่อวาน":"Yesterday","สัปดาห์นี้":"This week","สัปดาห์ที่แล้ว":"Last week","เดือนนี้":"This month","จาก":"From","ถึง":"To","หวย":"Lottery","ค้นหา":"Search","สรุปแยกตามหวย":"Summary by lottery","ดูผลวันที่เลือก":"View selected date","‹ วันก่อน":"‹ Previous day","วันถัดไป ›":"Next day ›","กำลังโหลด…":"Loading…","รับค่าคอมจากยอดแทงจริงของสมาชิกที่สมัครผ่านลิงก์ของคุณ":"Earn commission from actual betting turnover of members who joined through your link","คอมถอนได้":"Withdrawable commission","รหัสแนะนำเพื่อนของคุณ":"Your referral code","คัดลอกลิงก์":"Copy link","ค่าคอมคิดจาก Turnover ของโพยที่แทงสำเร็จ • ไม่คิดจากยอดเติมเงิน":"Commission is calculated from successful betting turnover · Deposits are excluded","ถอนค่าคอม":"Withdraw commission","ประวัติค่าคอม":"Commission history","ประวัติถอนเงิน":"Withdrawal history","ดูโพยย้อนหลังและสถานะผลรางวัล":"View past slips and prize status","‹ กลับไปเลือกหวย":"‹ Back to lottery selection","ทุกสถานะ":"All statuses","รอผล":"Waiting for result","ไม่ถูกรางวัล":"No prize","ยกเลิก":"Cancel","เช่น 0812345678":"e.g. 0812345678","กรอกรหัสผ่านของคุณ":"Enter your password","6 ตัวขึ้นไป":"6 characters or more","กรอกรหัสผ่านอีกครั้ง":"Enter password again","ชื่อบัญชีธนาคาร":"Bank account name","เช่น AFF-A001":"e.g. AFF-A001","ประกาศ":"Announcements","เมนูด้านล่าง":"Bottom menu","กลับหน้าหลัก":"Back to home","กรอกรหัสผ่านเดิม":"Enter old password","อย่างน้อย 6 ตัวอักษร":"At least 6 characters","กรอกรหัสผ่านใหม่อีกครั้ง":"Enter new password again","กรุณาเข้าสู่ระบบใหม่":"Please log in again","กรุณากรอก User และ Password":"Please enter your user and password","กรุณากรอกเบอร์โทรให้ถูกต้อง":"Please enter a valid phone number","รหัสผ่านอย่างน้อย 6 ตัว":"Password must be at least 6 characters","ยืนยันรหัสผ่านไม่ตรงกัน":"Passwords do not match","กรุณากรอกข้อมูลธนาคารให้ครบ":"Please complete your bank information","สมัครสมาชิกสำเร็จ":"Registration successful","ไม่มีเลขบัญชีให้คัดลอก":"No account number to copy","คัดลอกไม่สำเร็จ":"Copy failed","คัดลอกเลขบัญชีแล้ว":"Account number copied","ยังไม่มีหวยที่เปิดรับในขณะนี้":"No lotteries are open right now","เปิดรับ":"Open","ยังไม่มีหวยในกลุ่มนี้ที่เปิดรับ":"No lotteries are open in this group","เตรียม...":"Ready...","เป่า!":"Rock!","ยิง!":"Paper!","ฉุบ!":"Scissors!","กำลังเปิดผล...":"Revealing result...","เตรียมโยนเหรียญ...":"Get ready to flip...","เตรียม!":"Ready!","โยน!":"Flip!","เตรียมเขย่าลูกเต๋า...":"Get ready to roll...","กำลังรอผลจากระบบ":"Waiting for server result","เขย่า!":"Roll!","เปิด!":"Reveal!","โพแดง":"Hearts","ข้าวหลามตัด":"Diamonds","โพดำ":"Spades","ดอกจิก":"Clubs","กำลังสับไพ่...":"Shuffling cards...","สับไพ่":"Shuffle","ใบที่คุณเลือก":"Your selected card","รอผลไพ่จากระบบ...":"Waiting for card result...","แง้มไพ่":"Peeking card","เปิดอีกใบ...":"Revealing the other card...","อีกใบ":"Other card","เลือกไพ่ใบใหม่เพื่อเล่นต่อ":"Choose a new card to play again","ชนะ":"Win","แพ้":"Lose","เสมอ":"Draw","คืนทุน":"Bet returned","เลือก":"Choice","คุณชนะ!":"You win!","แพ้รอบนี้":"You lost this round","เล่นต่อ":"Play again","กรุณาใส่เงินเดิมพัน":"Please enter a bet amount","ยอดเงินคงเหลือไม่เพียงพอ":"Insufficient balance","ระบบชนะ":"System wins","เสมอ · คืนทุน":"Draw · Bet returned","เล่นไม่สำเร็จ กรุณาลองใหม่":"Unable to play. Please try again","ผลรวม":"Total","กรุณาเลือกไพ่":"Please select a card","เติมเครดิตเดิมพัน":"Add betting credit","อัปโหลดสลิป":"Upload slip","ตรวจสลิป":"Verify slip","ตกลง":"OK","กรุณาเลือกไฟล์สลิป":"Please select a slip image","ไฟล์สลิปต้องมีขนาดไม่เกิน 10 MB":"Slip image must be no larger than 10 MB","เติมเครดิตสำเร็จ":"Deposit successful","อ่านไฟล์สลิปไม่สำเร็จ":"Unable to read slip file","จำนวนเงินที่ถอนได้":"Available to withdraw","จำนวนเงินที่ต้องการถอน":"Withdrawal amount","ถอนเงินขั้นต่ำ 50 บาท":"Minimum withdrawal is 50 THB","ข้อมูลธนาคารสำหรับถอนเงิน":"Withdrawal bank details","ชื่อบัญชี:":"Account name:","ธนาคาร:":"Bank:","เลขบัญชี:":"Account number:","ยืนยันถอนเงิน":"Confirm withdrawal","ยอดเงินที่ถอนได้ยังไม่ถึงขั้นต่ำ 50 บาท":"Available balance is below the 50 THB minimum","กรุณากรอกจำนวนเงินที่ต้องการถอน":"Please enter a withdrawal amount","ยอดเงินที่ถอนได้ไม่เพียงพอ":"Insufficient withdrawable balance","กำลังส่ง...":"Submitting...","ส่งรายการถอนแล้ว":"Withdrawal request submitted","ธนาคารกสิกรไทย":"Kasikornbank","ธนาคารไทยพาณิชย์":"Siam Commercial Bank","ธนาคารกรุงเทพ":"Bangkok Bank","ธนาคารกรุงไทย":"Krung Thai Bank","ธนาคารกรุงศรีอยุธยา":"Krungsri Bank","ธนาคารทหารไทยธนชาต":"ttb bank","ธนาคารออมสิน":"Government Savings Bank","ธ.ก.ส.":"BAAC","ธนาคารซีไอเอ็มบีไทย":"CIMB Thai Bank","ธนาคารยูโอบี":"UOB"},
+    lo: {"ภาษา":"ພາສາ","เลือกภาษา":"ເລືອກພາສາ","ทรัพย์มั่งมี":"ຊັບມັ່ງມີ","เข้าสู่ระบบ":"ເຂົ້າລະບົບ","ยินดีต้อนรับกลับมา":"ຍິນດີຕ້ອນຮັບກັບຄືນ","สมัครสมาชิก":"ສະໝັກສະມາຊິກ","สร้างบัญชีเพื่อเริ่มใช้งาน":"ສ້າງບັນຊີເພື່ອເລີ່ມໃຊ້ງານ","เบอร์โทรศัพท์":"ເບີໂທລະສັບ","รหัสผ่าน":"ລະຫັດຜ່ານ","แสดง":"ສະແດງ","ซ่อน":"ເຊື່ອງ","ลืมรหัสผ่าน?":"ລືມລະຫັດຜ່ານ?","ยืนยันรหัสผ่าน":"ຢືນຢັນລະຫັດຜ່ານ","ชื่อ - นามสกุล":"ຊື່ - ນາມສະກຸນ","ธนาคาร":"ທະນາຄານ","เลือกธนาคาร":"ເລືອກທະນາຄານ","หมายเลขบัญชี":"ເລກບັນຊີ","เลขบัญชี":"ເລກບັນຊີ","รหัสแนะนำ Affiliate (ถ้ามี)":"ລະຫັດແນະນຳ Affiliate (ຖ້າມີ)","สมัครผ่านลิงก์แนะนำ ระบบจะผูกผู้แนะนำให้บัญชีนี้ถาวร":"ຖ້າສະໝັກຜ່ານລິ້ງແນະນຳ ລະບົບຈະຜູກຜູ້ແນະນຳກັບບັນຊີນີ້ຖາວອນ","หรือเข้าสู่ระบบด้วย":"ຫຼື ເຂົ້າລະບົບດ້ວຍ","ติดต่อเราทาง LINE":"ຕິດຕໍ່ພວກເຮົາທາງ LINE","แนะนำเพื่อน":"ແນະນຳໝູ່","ชวนเพื่อนมาเล่น รับค่าคอมมิชชั่น":"ຊວນໝູ່ມາຫຼິ້ນ ແລະຮັບຄ່າຄອມ","© 2026 ทรัพย์มั่งมี สงวนลิขสิทธิ์":"© 2026 ຊັບມັ່ງມີ. ສະຫງວນລິຂະສິດ","ออกจากระบบ":"ອອກຈາກລະບົບ","ติดต่อ":"ຕິດຕໍ່","ยอดเงินคงเหลือ":"ຍອດເງິນຄົງເຫຼືອ","ประวัติการทำรายการ":"ປະຫວັດລາຍການ","บัญชีหลัก":"ກະເປົາຫຼັກ","ฝากเงิน":"ຝາກເງິນ","เติมเครดิตเข้าบัญชี":"ເພີ່ມເຄຣດິດເຂົ້າບັນຊີ","ถอนเงิน":"ຖອນເງິນ","ถอนเครดิตเข้าบัญชี":"ຖອນເຄຣດິດເຂົ້າບັນຊີ","เข้าแทงหวย":"ເຂົ້າຫຼິ້ນຫວຍ","เลือกประเภทการแทง":"ເລືອກປະເພດການຫຼິ້ນ","กำลังโหลดหวยที่เปิดรับ...":"ກຳລັງໂຫຼດຫວຍທີ່ເປີດຮັບ...","เริ่มต้นเดิมพันของคุณ":"ເລີ່ມການພະນັນຂອງທ່ານ","มินิเกม":"ມິນິເກມ","เลือกเกมแล้วเริ่มเล่นได้ทันที":"ເລືອກເກມແລ້ວເລີ່ມຫຼິ້ນໄດ້ທັນທີ","เมนูลัด":"ເມນູດ່ວນ","ดูทั้งหมด":"ເບິ່ງທັງໝົດ","รายการโพย":"ລາຍການໂພຍ","ดูรายการโพยทั้งหมด":"ເບິ່ງໂພຍທັງໝົດ","ผลหวย":"ຜົນຫວຍ","ตรวจผลรางวัล":"ກວດຜົນລາງວັນ","สรุปแพ้-ชนะ":"ສະຫຼຸບແພ້-ຊະນະ","สถิติการเล่น":"ສະຖິຕິການຫຼິ້ນ","รายการเงิน":"ລາຍການເງິນ","ประวัติการเงิน":"ປະຫວັດການເງິນ","รับค่าคอมมิชชั่นจากยอดแทงเพื่อน":"ຮັບຄ່າຄອມຈາກຍອດພະນັນຂອງໝູ່","ดูรายละเอียด":"ເບິ່ງລາຍລະອຽດ","หน้าหลัก":"ໜ້າຫຼັກ","แทงหวย":"ຫຼິ້ນຫວຍ","ประวัติ":"ປະຫວັດ","ฉัน":"ຂ້ອຍ","เลือกเกม":"ເລືອກເກມ","เป่ายิงฉุบ":"ຄ້ອນ-ກັນໄກ-ເຈ້ຍ","ค้อน · กรรไกร · กระดาษ":"ຄ້ອນ · ກັນໄກ · ເຈ້ຍ","หัว - ก้อย":"ຫົວ - ກ້ອຍ","เลือกฝั่ง แล้วโยนเหรียญ":"ເລືອກຝັ່ງ ແລ້ວໂຍນຫຼຽນ","ทายลูกเต๋า":"ທາຍລູກເຕົ໋າ","ไฮโล 3 ลูก · เลือกสูงหรือต่ำ":"ໄຮໂລ 3 ລູກ · ເລືອກສູງ ຫຼື ຕ່ຳ","เปิดไพ่":"ເປີດໄພ່","เลือกไพ่ 1 จาก 2 ใบ · เปิดครบแล้วตัดสินผล":"ເລືອກໄພ່ 1 ຈາກ 2 ໃບ · ເປີດຄົບແລ້ວຕັດສິນຜົນ","กระเป๋าเกม":"ກະເປົາເກມ","ลงเงินเดิมพัน":"ລົງເງິນພະນັນ","หัก/เพิ่มจากยอดหลักทันที":"ຫັກ/ເພີ່ມຈາກຍອດຫຼັກທັນທີ","รอคุณเลือก":"ລໍຖ້າທ່ານເລືອກ","รอระบบ":"ລໍຖ້າລະບົບ","ใส่เงิน แล้วเลือกค้อน กรรไกร หรือกระดาษ":"ໃສ່ເງິນ ແລ້ວເລືອກ ຄ້ອນ ກັນໄກ ຫຼື ເຈ້ຍ","ค้อน":"ຄ້ອນ","กรรไกร":"ກັນໄກ","กระดาษ":"ເຈ້ຍ","ประวัติการเล่น":"ປະຫວັດການຫຼິ້ນ","ล่าสุด 10 ครั้ง":"10 ຄັ້ງຫຼ້າສຸດ","รีเฟรช":"ໂຫຼດໃໝ່","ยังไม่มีประวัติการเล่น":"ຍັງບໍ່ມີປະຫວັດການຫຼິ້ນ","ผลการโยนเหรียญ":"ຜົນການໂຍນຫຼຽນ","หัว":"ຫົວ","ก้อย":"ກ້ອຍ","ใส่เงิน แล้วเลือก “หัว” หรือ “ก้อย”":"ໃສ່ເງິນ ແລ້ວເລືອກ “ຫົວ” ຫຼື “ກ້ອຍ”","ผลการเขย่าลูกเต๋า 3 ลูก":"ຜົນລູກເຕົ໋າ 3 ລູກ","รอผลจากระบบ":"ລໍຖ້າຜົນຈາກລະບົບ","ใส่เงิน แล้วเลือก “สูง” หรือ “ต่ำ”":"ໃສ່ເງິນ ແລ້ວເລືອກ “ສູງ” ຫຼື “ຕ່ຳ”","ต่ำ":"ຕ່ຳ","ผลรวม 4–10":"ຜົນລວມ 4–10","สูง":"ສູງ","ผลรวม 11–17":"ຜົນລວມ 11–17","เลือกไพ่ที่ต้องการเปิด":"ເລືອກໄພ່ທີ່ຕ້ອງການເປີດ","ใส่เงิน แล้วเลือกไพ่ 1 ใบ":"ໃສ່ເງິນ ແລ້ວເລືອກໄພ່ 1 ໃບ","A = 1 · 2–10 ตามหน้าไพ่":"A = 1 · 2–10 ຕາມໜ້າໄພ່","J / Q / K = 10 แต้ม":"J / Q / K = 10 ຄະແນນ","แต้มมากกว่าชนะ":"ຄະແນນຫຼາຍກວ່າຊະນະ","แต้มเท่ากัน = เสมอ คืนทุน":"ຄະແນນເທົ່າກັນ = ສະເໝີ ຄືນທຶນ","ประวัติการเล่นทั้งหมด":"ປະຫວັດການຫຼິ້ນທັງໝົດ","รวมประวัติการเล่น":"ລວມປະຫວັດການຫຼິ້ນ","ครั้ง":"ຄັ້ງ","กำลังโหลดประวัติ…":"ກຳລັງໂຫຼດປະຫວັດ…","เลือกหวย":"ເລືອກຫວຍ","เลือกกลุ่มหวยที่ต้องการ":"ເລືອກກຸ່ມຫວຍທີ່ຕ້ອງການ","หลังบ้าน":"ຫຼັງບ້ານ","ออก":"ຜົນ","กลุ่มหวย":"ກຸ່ມຫວຍ","ทั้งหมด":"ທັງໝົດ","หวยหุ้น":"ຫວຍຫຸ້ນ","หวย VIP":"ຫວຍ VIP","หวยลาว":"ຫວຍລາວ","ฮานอย":"ຮາໂນຍ","อื่นๆ":"ອື່ນໆ","ยังไม่มีหวยที่เปิดรับ • รอบใหม่เปิดเวลา 05:00 น.":"ຍັງບໍ່ມີຫວຍເປີດຮັບ • ຮອບໃໝ່ເປີດ 05:00","โพยของฉัน":"ໂພຍຂອງຂ້ອຍ","บัญชีของฉัน":"ບັນຊີຂອງຂ້ອຍ","หวยที่เลือก":"ຫວຍທີ່ເລືອກ","ยอดคงเหลือ":"ຍອດຄົງເຫຼືອ","อัตราการจ่าย & วิธีเล่น":"ອັດຕາຈ່າຍ & ວິທີຫຼິ້ນ","แบบแทงที่ 1":"ແບບພະນັນ 1","แบบแทงที่ 2":"ແບບພະນັນ 2","2 ตัว":"2 ໂຕ","3 ตัว":"3 ໂຕ","3 ตัวกลับ":"3 ໂຕກັບ","19 ประตู":"19 ປະຕູ","เลขวิ่ง":"ເລກວິ່ງ","‹ หน้าแทงหวย":"‹ ໜ້າພະນັນຫວຍ","กรุณาเลือกหวย":"ກະລຸນາເລືອກຫວຍ","ปิดรับ --:--":"ປິດຮັບ --:--","เหลือเวลาอีก":"ເວລາເຫຼືອ","2 ตัวบน":"2 ໂຕເທິງ","2 ตัวล่าง":"2 ໂຕລຸ່ມ","2 ตัวกลับ":"2 ໂຕກັບ","3 ตัวบน":"3 ໂຕກົງ","3 ตัวโต๊ด":"3 ໂຕໂຕດ","ตัวเลือกเสริม":"ຕົວເລືອກເສີມ","6/3 กลับ":"6/3 ກັບ","เลขเบิ้ล":"ເລກເບິ້ນ","รายการที่เลือก":"ລາຍການທີ່ເລືອກ","ระบุตัวเลข":"ໃສ່ຕົວເລກ","ล้าง":"ລ້າງ","เลขที่เลือก":"ເລກທີ່ເລືອກ","ล้างเลข":"ລ້າງເລກ","รายการบิล":"ລາຍການບິນ","เลข 2 ตัว":"ເລກ 2 ໂຕ","↔ กลับเลข":"↔ ກັບເລກ","+ เลขเบิ้ล":"+ ເລກເບິ້ນ","รายละเอียดโพย":"ລາຍລະອຽດໂພຍ","ใส่ราคา":"ໃສ່ລາຄາ","ยอดรายการนี้":"ຍອດລາຍການນີ້","ใส่ราคาให้เลขที่กำลังเลือก":"ໃສ່ລາຄາໃຫ້ເລກທີ່ເລືອກ","บน":"ເທິງ","ล่าง":"ລຸ່ມ","เพิ่มบิล":"ເພີ່ມບິນ","ราคาทั้งหมด":"ລາຄາທັງໝົດ","ใส่ราคาต่อบิล":"ໃສ່ລາຄາຕໍ່ບິນ","แตะตัวเลขเพื่อพิมพ์ราคาเอง":"ແຕະຕົວເລກເພື່ອໃສ່ລາຄາ","บาท":"ບາດ","รวมยอดแทง":"ລວມຍອດພະນັນ","ยอดรวมทั้งหมดของโพย":"ຍອດລວມໂພຍ","ยอดรวมทุกรายการ":"ຍອດລວມທັງໝົດ","กลับ":"ກັບ","ยืนยันโพย":"ຢືນຢັນໂພຍ","ตรวจสอบและยืนยันการส่งโพย":"ກວດສອບ ແລະຢືນຢັນໂພຍ","ล้างทั้งหมด":"ລ້າງທັງໝົດ","ลบข้อมูลทั้งหมด":"ລຶບຂໍ້ມູນທັງໝົດ","หน้าแทงหวย":"ໜ້າພະນັນຫວຍ","‹ กลับ":"‹ ກັບ","ทุกรายการ":"ທຸກລາຍການ","เติมเครดิตด้วยสลิป":"ເພີ່ມເຄຣດິດດ້ວຍສະລິບ","ถอนเงินรออนุมัติ":"ລໍຖ້າອະນຸມັດການຖອນ","ยกเลิกถอน/คืนเครดิต":"ຍົກເລີກຖອນ/ຄືນເຄຣດິດ","คืนเครดิตยกเลิกโพย":"ຄືນເຄຣດິດໂພຍທີ່ຍົກເລີກ","ถูกรางวัล":"ຖືກລາງວັນ","แอดมินเพิ่มเครดิต":"ແອັດມິນເພີ່ມເຄຣດິດ","แอดมินหักเครดิต":"ແອັດມິນຫັກເຄຣດິດ","กำลังโหลดรายการ...":"ກຳລັງໂຫຼດລາຍການ...","ข้อมูลส่วนตัว":"ຂໍ້ມູນສ່ວນຕົວ","ข้อมูลบัญชี":"ຂໍ້ມູນບັນຊີ","เบอร์โทร":"ເບີໂທ","รหัสผ่านปัจจุบัน":"ລະຫັດຜ່ານປັດຈຸບັນ","เปลี่ยนรหัสผ่าน":"ປ່ຽນລະຫັດຜ່ານ","รหัสผ่านเดิม":"ລະຫັດຜ່ານເກົ່າ","รหัสผ่านใหม่":"ລະຫັດຜ່ານໃໝ່","ยืนยันรหัสผ่านใหม่":"ຢືນຢັນລະຫັດຜ່ານໃໝ່","หลังเปลี่ยนรหัสผ่าน ระบบจะใช้รหัสใหม่ในการเข้าสู่ระบบครั้งถัดไป":"ຫຼັງປ່ຽນລະຫັດຜ່ານ ໃຫ້ໃຊ້ລະຫັດໃໝ່ໃນການເຂົ້າລະບົບຄັ້ງຕໍ່ໄປ","บันทึกรหัสผ่านใหม่":"ບັນທຶກລະຫັດໃໝ່","วันนี้":"ມື້ນີ້","เมื่อวาน":"ມື້ວານ","สัปดาห์นี้":"ອາທິດນີ້","สัปดาห์ที่แล้ว":"ອາທິດກ່ອນ","เดือนนี้":"ເດືອນນີ້","จาก":"ຈາກ","ถึง":"ເຖິງ","หวย":"ຫວຍ","ค้นหา":"ຄົ້ນຫາ","สรุปแยกตามหวย":"ສະຫຼຸບແຍກຕາມຫວຍ","ดูผลวันที่เลือก":"ເບິ່ງຜົນວັນທີ່ເລືອກ","‹ วันก่อน":"‹ ມື້ກ່ອນ","วันถัดไป ›":"ມື້ຕໍ່ໄປ ›","กำลังโหลด…":"ກຳລັງໂຫຼດ…","รับค่าคอมจากยอดแทงจริงของสมาชิกที่สมัครผ่านลิงก์ของคุณ":"ຮັບຄ່າຄອມຈາກຍອດພະນັນຈິງຂອງສະມາຊິກທີ່ສະໝັກຜ່ານລິ້ງຂອງທ່ານ","คอมถอนได้":"ຄ່າຄອມທີ່ຖອນໄດ້","รหัสแนะนำเพื่อนของคุณ":"ລະຫັດແນະນຳໝູ່ຂອງທ່ານ","คัดลอกลิงก์":"ຄັດລອກລິ້ງ","ค่าคอมคิดจาก Turnover ของโพยที่แทงสำเร็จ • ไม่คิดจากยอดเติมเงิน":"ຄ່າຄອມຄິດຈາກ Turnover ຂອງໂພຍທີ່ສຳເລັດ • ບໍ່ຄິດຈາກຍອດຝາກ","ถอนค่าคอม":"ຖອນຄ່າຄອມ","ประวัติค่าคอม":"ປະຫວັດຄ່າຄອມ","ประวัติถอนเงิน":"ປະຫວັດການຖອນ","ดูโพยย้อนหลังและสถานะผลรางวัล":"ເບິ່ງໂພຍຍ້ອນຫຼັງ ແລະສະຖານະລາງວັນ","‹ กลับไปเลือกหวย":"‹ ກັບໄປເລືອກຫວຍ","ทุกสถานะ":"ທຸກສະຖານະ","รอผล":"ລໍຖ້າຜົນ","ไม่ถูกรางวัล":"ບໍ່ຖືກລາງວັນ","ยกเลิก":"ຍົກເລີກ","เช่น 0812345678":"ເຊັ່ນ 0812345678","กรอกรหัสผ่านของคุณ":"ໃສ່ລະຫັດຜ່ານຂອງທ່ານ","6 ตัวขึ้นไป":"6 ຕົວຂຶ້ນໄປ","กรอกรหัสผ่านอีกครั้ง":"ໃສ່ລະຫັດຜ່ານອີກຄັ້ງ","ชื่อบัญชีธนาคาร":"ຊື່ບັນຊີທະນາຄານ","เช่น AFF-A001":"ເຊັ່ນ AFF-A001","ประกาศ":"ປະກາດ","เมนูด้านล่าง":"ເມນູດ້ານລຸ່ມ","กลับหน้าหลัก":"ກັບໜ້າຫຼັກ","กรอกรหัสผ่านเดิม":"ໃສ່ລະຫັດຜ່ານເກົ່າ","อย่างน้อย 6 ตัวอักษร":"ຢ່າງໜ້ອຍ 6 ຕົວອັກສອນ","กรอกรหัสผ่านใหม่อีกครั้ง":"ໃສ່ລະຫັດໃໝ່ອີກຄັ້ງ","กรุณาเข้าสู่ระบบใหม่":"ກະລຸນາເຂົ້າລະບົບໃໝ່","กรุณากรอก User และ Password":"ກະລຸນາໃສ່ User ແລະ Password","กรุณากรอกเบอร์โทรให้ถูกต้อง":"ກະລຸນາໃສ່ເບີໂທໃຫ້ຖືກຕ້ອງ","รหัสผ่านอย่างน้อย 6 ตัว":"ລະຫັດຜ່ານຢ່າງໜ້ອຍ 6 ຕົວ","ยืนยันรหัสผ่านไม่ตรงกัน":"ລະຫັດຜ່ານຢືນຢັນບໍ່ກົງກັນ","กรุณากรอกข้อมูลธนาคารให้ครบ":"ກະລຸນາໃສ່ຂໍ້ມູນທະນາຄານໃຫ້ຄົບ","สมัครสมาชิกสำเร็จ":"ສະໝັກສະມາຊິກສຳເລັດ","ไม่มีเลขบัญชีให้คัดลอก":"ບໍ່ມີເລກບັນຊີໃຫ້ຄັດລອກ","คัดลอกไม่สำเร็จ":"ຄັດລອກບໍ່ສຳເລັດ","คัดลอกเลขบัญชีแล้ว":"ຄັດລອກເລກບັນຊີແລ້ວ","ยังไม่มีหวยที่เปิดรับในขณะนี้":"ຕອນນີ້ຍັງບໍ່ມີຫວຍເປີດຮັບ","เปิดรับ":"ເປີດຮັບ","ยังไม่มีหวยในกลุ่มนี้ที่เปิดรับ":"ຍັງບໍ່ມີຫວຍເປີດຮັບໃນກຸ່ມນີ້","เตรียม...":"ກຽມ...","เป่า!":"ເປົ່າ!","ยิง!":"ຍິງ!","ฉุบ!":"ຊຸບ!","กำลังเปิดผล...":"ກຳລັງເປີດຜົນ...","เตรียมโยนเหรียญ...":"ກຽມໂຍນຫຼຽນ...","เตรียม!":"ກຽມ!","โยน!":"ໂຍນ!","เตรียมเขย่าลูกเต๋า...":"ກຽມເຂົ່າລູກເຕົ໋າ...","กำลังรอผลจากระบบ":"ກຳລັງລໍຖ້າຜົນຈາກລະບົບ","เขย่า!":"ເຂົ່າ!","เปิด!":"ເປີດ!","โพแดง":"ໂພແດງ","ข้าวหลามตัด":"ເພັດ","โพดำ":"ໂພດຳ","ดอกจิก":"ດອກຈິກ","กำลังสับไพ่...":"ກຳລັງສັບໄພ່...","สับไพ่":"ສັບໄພ່","ใบที่คุณเลือก":"ໃບທີ່ທ່ານເລືອກ","รอผลไพ่จากระบบ...":"ລໍຖ້າຜົນໄພ່ຈາກລະບົບ...","แง้มไพ่":"ແງ້ມໄພ່","เปิดอีกใบ...":"ເປີດອີກໃບ...","อีกใบ":"ອີກໃບ","เลือกไพ่ใบใหม่เพื่อเล่นต่อ":"ເລືອກໄພ່ໃບໃໝ່ເພື່ອຫຼິ້ນຕໍ່","ชนะ":"ຊະນະ","แพ้":"ແພ້","เสมอ":"ສະເໝີ","คืนทุน":"ຄືນທຶນ","เลือก":"ເລືອກ","คุณชนะ!":"ທ່ານຊະນະ!","แพ้รอบนี้":"ແພ້ຮອບນີ້","เล่นต่อ":"ຫຼິ້ນຕໍ່","กรุณาใส่เงินเดิมพัน":"ກະລຸນາໃສ່ເງິນພະນັນ","ยอดเงินคงเหลือไม่เพียงพอ":"ຍອດເງິນບໍ່ພຽງພໍ","ระบบชนะ":"ລະບົບຊະນະ","เสมอ · คืนทุน":"ສະເໝີ · ຄືນທຶນ","เล่นไม่สำเร็จ กรุณาลองใหม่":"ຫຼິ້ນບໍ່ສຳເລັດ ກະລຸນາລອງໃໝ່","ผลรวม":"ຜົນລວມ","กรุณาเลือกไพ่":"ກະລຸນາເລືອກໄພ່","เติมเครดิตเดิมพัน":"ເພີ່ມເຄຣດິດພະນັນ","อัปโหลดสลิป":"ອັບໂຫຼດສະລິບ","ตรวจสลิป":"ກວດສະລິບ","ตกลง":"ຕົກລົງ","กรุณาเลือกไฟล์สลิป":"ກະລຸນາເລືອກໄຟລ໌ສະລິບ","ไฟล์สลิปต้องมีขนาดไม่เกิน 10 MB":"ໄຟລ໌ສະລິບຕ້ອງບໍ່ເກີນ 10 MB","เติมเครดิตสำเร็จ":"ເພີ່ມເຄຣດິດສຳເລັດ","อ่านไฟล์สลิปไม่สำเร็จ":"ອ່ານໄຟລ໌ສະລິບບໍ່ສຳເລັດ","จำนวนเงินที่ถอนได้":"ຈຳນວນເງິນທີ່ຖອນໄດ້","จำนวนเงินที่ต้องการถอน":"ຈຳນວນເງິນທີ່ຕ້ອງການຖອນ","ถอนเงินขั้นต่ำ 50 บาท":"ຖອນຂັ້ນຕ່ຳ 50 ບາດ","ข้อมูลธนาคารสำหรับถอนเงิน":"ຂໍ້ມູນທະນາຄານສຳລັບຖອນເງິນ","ชื่อบัญชี:":"ຊື່ບັນຊີ:","ธนาคาร:":"ທະນາຄານ:","เลขบัญชี:":"ເລກບັນຊີ:","ยืนยันถอนเงิน":"ຢືນຢັນຖອນເງິນ","ยอดเงินที่ถอนได้ยังไม่ถึงขั้นต่ำ 50 บาท":"ຍອດທີ່ຖອນໄດ້ຍັງບໍ່ເຖິງຂັ້ນຕ່ຳ 50 ບາດ","กรุณากรอกจำนวนเงินที่ต้องการถอน":"ກະລຸນາໃສ່ຈຳນວນເງິນທີ່ຈະຖອນ","ยอดเงินที่ถอนได้ไม่เพียงพอ":"ຍອດທີ່ຖອນໄດ້ບໍ່ພຽງພໍ","กำลังส่ง...":"ກຳລັງສົ່ງ...","ส่งรายการถอนแล้ว":"ສົ່ງລາຍການຖອນແລ້ວ","ธนาคารกสิกรไทย":"Kasikornbank","ธนาคารไทยพาณิชย์":"Siam Commercial Bank","ธนาคารกรุงเทพ":"Bangkok Bank","ธนาคารกรุงไทย":"Krung Thai Bank","ธนาคารกรุงศรีอยุธยา":"Krungsri Bank","ธนาคารทหารไทยธนชาต":"ttb bank","ธนาคารออมสิน":"Government Savings Bank","ธ.ก.ส.":"BAAC","ธนาคารซีไอเอ็มบีไทย":"CIMB Thai Bank","ธนาคารยูโอบี":"UOB"}
+  };
+  var PATTERNS = {
+    en: [["^(\\d+) บิล$","\\1 bets"],["^(\\d+) ตัว$","\\1 numbers"],["^([\\d,.]+) บาท$","\\1 THB"],["^ปิดรับ (.+)$","Closes \\1"],["^รอบ (.+)$","Round \\1"],["^ผลรวม (\\d+)$","Total \\1"],["^คุณชนะ \\+฿(.+)$","You win +฿\\1"],["^ระบบชนะ -฿(.+)$","System wins -฿\\1"],["^คุณแพ้ -฿(.+)$","You lose -฿\\1"],["^ออก (.+) · คุณชนะ \\+฿(.+)$","Result \\1 · You win +฿\\2"],["^ออก (.+) · คุณแพ้ -฿(.+)$","Result \\1 · You lose -฿\\2"],["^เดิมพัน ฿(.+) · (.+)$","Bet ฿\\1 · \\2"]],
+    lo: [["^(\\d+) บิล$","\\1 ບິນ"],["^(\\d+) ตัว$","\\1 ໂຕ"],["^([\\d,.]+) บาท$","\\1 ບາດ"],["^ปิดรับ (.+)$","ປິດຮັບ \\1"],["^รอบ (.+)$","ຮອບ \\1"],["^ผลรวม (\\d+)$","ຜົນລວມ \\1"],["^คุณชนะ \\+฿(.+)$","ທ່ານຊະນະ +฿\\1"],["^ระบบชนะ -฿(.+)$","ລະບົບຊະນະ -฿\\1"],["^คุณแพ้ -฿(.+)$","ທ່ານແພ້ -฿\\1"],["^ออก (.+) · คุณชนะ \\+฿(.+)$","ຜົນ \\1 · ທ່ານຊະນະ +฿\\2"],["^ออก (.+) · คุณแพ้ -฿(.+)$","ຜົນ \\1 · ທ່ານແພ້ -฿\\2"],["^เดิมพัน ฿(.+) · (.+)$","ພະນັນ ฿\\1 · \\2"]]
+  };
+
+  var currentLang = "th";
+  var textState = new WeakMap();
+  var attrState = new WeakMap();
+  var applying = false;
+  var observer = null;
+
+  function loadLang(){
+    try{
+      var saved = localStorage.getItem("supmangmeeLanguage");
+      if(saved==="th" || saved==="en" || saved==="lo") return saved;
+    }catch(e){}
+    return "th";
+  }
+
+  function saveLang(lang){
+    try{ localStorage.setItem("supmangmeeLanguage",lang); }catch(e){}
+  }
+
+  function translateCore(text,lang){
+    if(lang==="th") return text;
+    var map = DICT[lang] || {};
+    if(Object.prototype.hasOwnProperty.call(map,text)) return map[text];
+
+    var list = PATTERNS[lang] || [];
+    for(var i=0;i<list.length;i++){
+      try{
+        var re = new RegExp(list[i][0]);
+        if(re.test(text)) return text.replace(re,list[i][1]);
+      }catch(e){}
+    }
+    return text;
+  }
+
+  function translatePreserveSpace(raw,lang){
+    if(raw==null) return raw;
+    var m = String(raw).match(/^(\s*)([\s\S]*?)(\s*)$/);
+    var lead=m?m[1]:"", core=m?m[2]:String(raw), tail=m?m[3]:"";
+    if(!core) return raw;
+    return lead + translateCore(core,lang) + tail;
+  }
+
+  function processTextNode(node,force){
+    if(!node || node.nodeType!==3) return;
+    var parent=node.parentNode;
+    if(!parent || /^(SCRIPT|STYLE|NOSCRIPT)$/i.test(parent.nodeName)) return;
+
+    var current=node.nodeValue;
+    var state=textState.get(node);
+    if(!state){
+      state={source:current,last:null};
+      textState.set(node,state);
+    }else if(!force && state.last!==null && current!==state.last){
+      // Existing app code changed this node. Treat the new Thai text as the source.
+      state.source=current;
+    }
+
+    var rendered = currentLang==="th" ? state.source : translatePreserveSpace(state.source,currentLang);
+    state.last=rendered;
+    if(node.nodeValue!==rendered) node.nodeValue=rendered;
+  }
+
+  function processAttributes(el,force){
+    if(!el || el.nodeType!==1) return;
+    var names=["placeholder","title","aria-label"];
+    var state=attrState.get(el) || {};
+    var changed=false;
+
+    names.forEach(function(name){
+      if(!el.hasAttribute(name)) return;
+      var current=el.getAttribute(name);
+      var a=state[name];
+      if(!a){
+        a={source:current,last:null};
+        state[name]=a;
+        changed=true;
+      }else if(!force && a.last!==null && current!==a.last){
+        a.source=current;
+      }
+      var rendered=currentLang==="th" ? a.source : translateCore(a.source,currentLang);
+      a.last=rendered;
+      if(current!==rendered) el.setAttribute(name,rendered);
+    });
+
+    if(changed || Object.keys(state).length) attrState.set(el,state);
+  }
+
+  function walk(root,force){
+    if(!root) return;
+    if(root.nodeType===3){ processTextNode(root,force); return; }
+    if(root.nodeType!==1 && root.nodeType!==9 && root.nodeType!==11) return;
+
+    if(root.nodeType===1) processAttributes(root,force);
+    var walker=document.createTreeWalker(root,NodeFilter.SHOW_ELEMENT|NodeFilter.SHOW_TEXT);
+    var n;
+    while((n=walker.nextNode())){
+      if(n.nodeType===3) processTextNode(n,force);
+      else processAttributes(n,force);
+    }
+  }
+
+  function syncSelectors(){
+    ["siteLangLogin","siteLangHome"].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el && el.value!==currentLang) el.value=currentLang;
+    });
+  }
+
+  function setLanguage(lang,save){
+    if(lang!=="th" && lang!=="en" && lang!=="lo") lang="th";
+    currentLang=lang;
+    window.SUPMANGMEE_LANG=lang;
+    document.documentElement.lang = lang==="lo" ? "lo" : (lang==="en" ? "en" : "th");
+    document.documentElement.setAttribute("data-lang",lang);
+    if(save!==false) saveLang(lang);
+
+    applying=true;
+    try{
+      walk(document.body,true);
+      syncSelectors();
+    }finally{
+      applying=false;
+    }
+
+    try{
+      document.dispatchEvent(new CustomEvent("supmangmee:languagechange",{detail:{lang:lang}}));
+    }catch(e){}
+  }
+
+  function init(){
+    var loginSel=document.getElementById("siteLangLogin");
+    var homeSel=document.getElementById("siteLangHome");
+    [loginSel,homeSel].forEach(function(sel){
+      if(!sel) return;
+      sel.addEventListener("change",function(){ setLanguage(sel.value,true); });
+    });
+
+    currentLang=loadLang();
+
+    observer=new MutationObserver(function(mutations){
+      if(applying) return;
+      applying=true;
+      try{
+        mutations.forEach(function(m){
+          if(m.type==="characterData"){
+            processTextNode(m.target,false);
+          }else if(m.type==="childList"){
+            Array.prototype.forEach.call(m.addedNodes,function(node){ walk(node,false); });
+          }else if(m.type==="attributes"){
+            processAttributes(m.target,false);
+          }
+        });
+      }finally{
+        applying=false;
+      }
+    });
+
+    observer.observe(document.body,{
+      subtree:true,
+      childList:true,
+      characterData:true,
+      attributes:true,
+      attributeFilter:["placeholder","title","aria-label"]
+    });
+
+    setLanguage(currentLang,false);
+  }
+
+  window.setSiteLanguage=function(lang){ setLanguage(lang,true); };
+  window.getSiteLanguage=function(){ return currentLang; };
+  window.siteTranslate=function(text){ return translateCore(String(text||""),currentLang); };
+
+  init();
 })();
 </script>
 
