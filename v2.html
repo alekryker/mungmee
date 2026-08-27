@@ -14,6 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
+  <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/4.0.0/uicons-solid-straight/css/uicons-solid-straight.css">
   <style>
 :root {
   --red: #b91c1c;
@@ -23277,6 +23278,20 @@ strong,b{
 
 
 /* =====================================================
+   V130 MINI GAME PAGE SWITCH FIX
+   - หน้าเลือกเกม / หน้าเล่นเกม แสดงได้ทีละหน้าเท่านั้น
+   - กัน CSS รุ่นเก่าทำหน้าซ้อนกัน
+===================================================== */
+#gameSelectScreen,
+#rpsGameScreen{
+  display:none !important;
+}
+#gameSelectScreen.active,
+#rpsGameScreen.active{
+  display:block !important;
+}
+
+/* =====================================================
    V129 MINI GAME — GAME SELECT + ROCK PAPER SCISSORS
 ===================================================== */
 .game-screen-shell{min-height:100vh;background:linear-gradient(180deg,#450a0a 0,#991b1b 150px,#fff7f7 150px,#fff7f7 100%);padding:calc(14px + env(safe-area-inset-top)) 12px calc(88px + env(safe-area-inset-bottom))}
@@ -23572,7 +23587,7 @@ strong,b{
        </div>
 
        <button class="home-v85-game-card" id="homeGameBtn" type="button">
-        <span class="home-v85-game-icon"><i class="fi fi-sr-gamepad"></i></span>
+        <span class="home-v85-game-icon"><i class="fi fi-ss-gamepad"></i></span>
         <span class="home-v85-game-copy"><strong>มินิเกม</strong><small>เล่นเกมด้วยยอดเงินคงเหลือในบัญชีหลัก</small></span>
         <i class="fi fi-sr-angle-small-right"></i>
        </button>
@@ -23604,7 +23619,7 @@ strong,b{
      <div class="game-head"><button class="game-back" id="gameSelectBackBtn" type="button">‹</button><div class="game-head-copy"><small>MINI GAME</small><strong>เลือกเกม</strong></div></div>
      <div class="game-wallet"><div><small>ยอดเงินคงเหลือ</small><b>฿<span id="gameSelectBalance">0.00</span></b></div><i class="fi fi-sr-wallet"></i></div>
      <div class="game-list">
-      <button class="game-card" id="openRpsBtn" type="button"><span class="game-card-icon"><i class="fi fi-sr-gamepad"></i></span><span class="game-card-copy"><strong>เป่ายิงฉุบ</strong><small>ค้อน · กรรไกร · กระดาษ</small></span><span class="game-card-arrow">›</span></button>
+      <button class="game-card" id="openRpsBtn" type="button"><span class="game-card-icon"><i class="fi fi-ss-gamepad"></i></span><span class="game-card-copy"><strong>เป่ายิงฉุบ</strong><small>ค้อน · กรรไกร · กระดาษ</small></span><span class="game-card-arrow">›</span></button>
      </div>
     </div>
    </section>
@@ -24742,6 +24757,8 @@ function openAppRoute(route) {
   if (route === "summary") return showMemberSummary();
   if (route === "results") return showResults();
   if (route === "affiliate") return showAffiliate();
+  if (route === "games") return showGameSelect();
+  if (route === "rps") return showRpsGame();
   if (route === "admin" && state.isAdmin) return showAdmin(state.adminTab || "dashboard");
 
   showHome();
@@ -25717,7 +25734,8 @@ function chooseLotto(lotto) {
 function hideMemberScreensV16() {
   [
     "homeScreen","lottoScreen","betScreen","historyScreen",
-    "moneyScreen","profileScreen","memberSummaryScreen","resultsScreen","affiliateScreen","adminScreen"
+    "moneyScreen","profileScreen","memberSummaryScreen","resultsScreen","affiliateScreen",
+    "gameSelectScreen","rpsGameScreen","adminScreen"
   ].forEach(function(id){
     if (els[id]) els[id].classList.remove("active");
   });
@@ -25739,8 +25757,20 @@ function setRpsHand(el, choice){ if(el) el.innerHTML='<i class="'+rpsIcon(choice
 function setRpsBusy(v){ state.rpsBusy=!!v; document.querySelectorAll('[data-rps-choice],[data-rps-bet]').forEach(function(b){b.disabled=!!v;}); if(els.rpsBetAmount) els.rpsBetAmount.disabled=!!v; if(els.rpsMaxBtn) els.rpsMaxBtn.disabled=!!v; }
 function syncGameBalances(balance){ state.gameBalance=Number(balance||0); if(els.gameSelectBalance) els.gameSelectBalance.textContent=rpsMoney(state.gameBalance); if(els.rpsBalance) els.rpsBalance.textContent=rpsMoney(state.gameBalance); if(els.homeCredit) els.homeCredit.textContent=rpsMoney(state.gameBalance); if(els.heroCredit) els.heroCredit.textContent=rpsMoney(state.gameBalance); if(state.user) state.user.credit=state.gameBalance; }
 async function loadMiniGameBoot(){ var data=await api('getMiniGameBoot',state.token); syncGameBalances(data && data.balance); return data; }
-function showGameSelect(){ hideMemberScreensV16(); if(els.gameSelectScreen) els.gameSelectScreen.classList.add('active'); scrollTo(0,0); loadMiniGameBoot().catch(showErrorGlobal); }
-function showRpsGame(){ hideMemberScreensV16(); if(els.rpsGameScreen) els.rpsGameScreen.classList.add('active'); scrollTo(0,0); loadMiniGameBoot().catch(showErrorGlobal); }
+function showGameSelect(){
+  hideMemberScreensV16();
+  if(els.gameSelectScreen) els.gameSelectScreen.classList.add('active');
+  try { pushAppRoute('games'); } catch(e) {}
+  scrollTo(0,0);
+  loadMiniGameBoot().catch(showErrorGlobal);
+}
+function showRpsGame(){
+  hideMemberScreensV16();
+  if(els.rpsGameScreen) els.rpsGameScreen.classList.add('active');
+  try { pushAppRoute('rps'); } catch(e) {}
+  scrollTo(0,0);
+  loadMiniGameBoot().catch(showErrorGlobal);
+}
 async function playRpsGame(choice){
   if(state.rpsBusy) return;
   var bet=Number(els.rpsBetAmount && els.rpsBetAmount.value || 0);
