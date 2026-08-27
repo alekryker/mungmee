@@ -1,4 +1,4 @@
-<!-- V138 — MINI GAME: RPS + HEADS/TAILS + DICE + CARD FLIP / SERVER RESULT / SHARED WALLET -->
+<!-- V139 — HOME CTA RED FULL WIDTH + MINI GAME: RPS + HEADS/TAILS + DICE + CARD FLIP / SERVER RESULT / SHARED WALLET -->
 <!-- ALL-IN-ONE: แนะนำเพื่อน + ถอนขั้นต่ำ 50 บาท + ประกาศหน้าเว็บ + Popup สูงสุด 2 รายการ -->
 <!-- RESULT HISTORY SHEET FINAL -->
 <!-- INDEX V9 WITHDRAW PANEL MIN50 + TOUCH-SAFE CONFIRM + STATELESS SESSION -->
@@ -21148,6 +21148,25 @@ strong,b{
 @media(max-width:390px){.cardgame-stage{gap:9px;padding:3px}.cardgame-card{max-width:122px}.cardgame-rank{font-size:20px}.cardgame-suit-big{font-size:45px}}
 @media(prefers-reduced-motion:reduce){.cardgame-card.lift,.cardgame-card.peek .cardgame-inner,.cardgame-card.shuffle-left,.cardgame-card.shuffle-right,.cardgame-flash.show,.cardgame-countdown.show,.cardgame-result.reveal,.cardgame-arena.result-burst:after{animation-duration:.01ms!important;animation-iteration-count:1!important}}
 
+
+
+/* =====================================================
+   V139 — HOME CTA RED FULL WIDTH
+   ปิดแถบ :before จาก .v16-lotto-entry เดิม เพื่อให้พื้นแดงเต็มขอบซ้าย
+===================================================== */
+#homeScreen #homeLottoBtn::before,
+#homeScreen #homeGameBtn::before{
+  content:none !important;
+  display:none !important;
+  width:0 !important;
+}
+#homeScreen #homeLottoBtn,
+#homeScreen #homeGameBtn{
+  background-size:100% 100% !important;
+  background-repeat:no-repeat !important;
+  background-origin:border-box !important;
+  background-clip:border-box !important;
+}
 </style>
  <style id="style2-isolated-v114">
 
