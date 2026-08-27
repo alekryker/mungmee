@@ -23601,6 +23601,44 @@ html[data-lang="en"] textarea{
 }
 </style>
 
+
+<style id="v142-flag-menu-layer-fix">
+/* V142 — keep language dropdown above the balance card */
+#homeScreen .home-v54-top,
+#homeScreen .home-v85-top{
+  overflow:visible !important;
+}
+
+#homeScreen .home-v54-header,
+#homeScreen .home-v85-header{
+  position:relative !important;
+  z-index:5000 !important;
+  overflow:visible !important;
+}
+
+#homeScreen .home-v54-head-actions,
+#homeScreen .home-v85-head-actions{
+  position:relative !important;
+  z-index:5001 !important;
+  overflow:visible !important;
+}
+
+#homeScreen .home-flag-language{
+  position:relative !important;
+  z-index:5002 !important;
+}
+
+#homeScreen .home-flag-language-menu{
+  z-index:99999 !important;
+}
+
+#homeScreen .home-v54-wallet,
+#homeScreen .home-v85-wallet,
+#homeScreen .home-v54-money-actions{
+  z-index:1 !important;
+}
+</style>
+
 </head>
  <body>
 
@@ -23836,7 +23874,7 @@ html[data-lang="en"] textarea{
 
         <div class="home-v85-account-line">
          <i class="fi fi-sr-wallet"></i>
-         <span>บัญชีหลัก <small class="home-app-version">V141</small></span>
+         <span>บัญชีหลัก <small class="home-app-version">V142</small></span>
         </div>
        </section>
 
