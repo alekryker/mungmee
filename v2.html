@@ -23312,6 +23312,46 @@ strong,b{
 @media(max-width:380px){.rps-quick{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(prefers-reduced-motion:reduce){.rps-battle-flash.show,.rps-hand-box.rps-battle-left,.rps-hand-box.rps-battle-right,.rps-hand-box.rps-waiting,.rps-pop{animation-duration:.01ms!important;animation-iteration-count:1!important}}
 .home-v85-game-card{margin-top:10px;width:100%;min-height:72px;border:1px solid #f0caca;border-radius:16px;background:linear-gradient(135deg,#fff7f7,#fff);display:flex;align-items:center;gap:12px;padding:12px;text-align:left}.home-v85-game-icon{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:#b91c1c;color:#fff!important;font-size:20px}.home-v85-game-copy{flex:1}.home-v85-game-copy strong{display:block}.home-v85-game-copy small{display:block;color:#80655d!important;font-size:9px}.home-v85-game-card>i{color:#b91c1c!important}
+
+/* =====================================================
+   V135 — MINI GAME ENTRY MATCHES LOTTO CTA
+   Flaticon UIcons: gamepad + RPS hand icon
+===================================================== */
+#homeScreen .home-v135-game-entry{
+  margin-top:10px !important;
+  background:
+    radial-gradient(circle at 19% 88%,rgba(255,75,87,.45),transparent 30%),
+    linear-gradient(110deg,#b80a21 0%,#86000f 50%,#4d0008 100%) !important;
+}
+#homeScreen .home-v135-game-art{
+  align-items:center !important;
+  justify-content:center !important;
+  padding:10px 0 10px 10px !important;
+}
+#homeScreen .home-v135-game-icon{
+  width:96px;
+  height:96px;
+  border-radius:28px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(145deg,rgba(255,255,255,.22),rgba(255,255,255,.08));
+  border:1px solid rgba(255,255,255,.20);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 13px 24px rgba(39,0,4,.23);
+}
+#homeScreen .home-v135-game-icon i{
+  color:#fff !important;
+  font-size:54px !important;
+  line-height:1;
+  filter:drop-shadow(0 6px 8px rgba(47,0,5,.18));
+}
+#gameSelectScreen #openRpsBtn .game-card-icon i{
+  font-size:30px !important;
+  color:#fff !important;
+}
+@media(max-width:420px){
+  #homeScreen .home-v135-game-icon{width:82px;height:82px;border-radius:24px;}
+  #homeScreen .home-v135-game-icon i{font-size:46px !important;}
+}
 </style>
 
 </head>
@@ -23571,10 +23611,15 @@ strong,b{
         <span class="home-v85-lotto-arrow"><i class="fi fi-sr-angle-small-right"></i></span>
        </button>
 
-       <button class="home-v85-game-card" id="homeGameBtn" type="button">
-        <span class="home-v85-game-icon"><i class="fi fi-ss-gamepad"></i></span>
-        <span class="home-v85-game-copy"><strong>มินิเกม</strong><small>เล่นเกมด้วยยอดเงินคงเหลือในบัญชีหลัก</small></span>
-        <i class="fi fi-sr-angle-small-right"></i>
+       <button class="v16-lotto-entry home-v54-lotto-card home-v85-lotto-card home-v135-game-entry" id="homeGameBtn" type="button">
+        <span class="home-v85-lotto-art home-v135-game-art" aria-hidden="true">
+         <span class="home-v135-game-icon"><i class="fi fi-ss-gamepad"></i></span>
+        </span>
+        <span class="home-v85-lotto-copy">
+         <strong>มินิเกม</strong>
+         <small>เลือกเกมแล้วเริ่มเล่นได้ทันที</small>
+        </span>
+        <span class="home-v85-lotto-arrow"><i class="fi fi-sr-angle-small-right"></i></span>
        </button>
 
        <div class="home-v54-section-head home-v85-shortcut-head">
@@ -23634,7 +23679,7 @@ strong,b{
      <div class="game-head"><button class="game-back" id="gameSelectBackBtn" type="button">‹</button><div class="game-head-copy"><small>MINI GAME</small><strong>เลือกเกม</strong></div></div>
      <div class="game-wallet"><div><small>ยอดเงินคงเหลือ</small><b>฿<span id="gameSelectBalance">0.00</span></b></div><i class="fi fi-sr-wallet"></i></div>
      <div class="game-list">
-      <button class="game-card" id="openRpsBtn" type="button"><span class="game-card-icon"><i class="fi fi-ss-gamepad"></i></span><span class="game-card-copy"><strong>เป่ายิงฉุบ</strong><small>ค้อน · กรรไกร · กระดาษ</small></span><span class="game-card-arrow">›</span></button>
+      <button class="game-card" id="openRpsBtn" type="button"><span class="game-card-icon"><i class="fi fi-ss-hand-fist"></i></span><span class="game-card-copy"><strong>เป่ายิงฉุบ</strong><small>ค้อน · กรรไกร · กระดาษ</small></span><span class="game-card-arrow">›</span></button>
      </div>
     </div>
    </section>
@@ -25841,7 +25886,7 @@ function gameHistoryRowsHtml(rows, showGameName){
     return '<div class="rps-history-item">'+
       '<div class="rps-history-icon"><i class="'+rpsIcon(userChoice)+'"></i></div>'+
       '<div class="rps-history-main"><strong>'+rpsName(userChoice)+' vs '+rpsName(systemChoice)+' · '+resultText+'</strong><small>'+meta+'</small></div>'+
-      '<div class="rps-history-money '+cls+'">'+moneyText+'<small>คงเหลือ ฿'+rpsMoney(x.balanceAfter)+'</small></div>'+
+      '<div class="rps-history-money '+cls+'">'+moneyText+'</div>'+
     '</div>';
   }).join('');
 }
