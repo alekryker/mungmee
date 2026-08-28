@@ -24385,7 +24385,7 @@ html[data-lang="en"] textarea{
 
         <div class="home-v85-account-line">
          <i class="fi fi-sr-wallet"></i>
-         <span>บัญชีหลัก <small class="home-app-version">V160</small></span>
+         <span>บัญชีหลัก <small class="home-app-version">V161</small></span>
         </div>
        </section>
 
@@ -34484,6 +34484,33 @@ function openAdminAnnouncementEditor(item) {
     });
   };
 
+
+  function getLineRedirectUriV161(){
+    var host = String(window.location.hostname || "").toLowerCase();
+    var path = String(window.location.pathname || "/");
+
+    if(host === "supmangmee.com" || host === "www.supmangmee.com"){
+      return "https://supmangmee.com/";
+    }
+
+    if(host === "alekryker.github.io"){
+      // GitHub Pages project root
+      return "https://alekryker.github.io/mungmee/";
+    }
+
+    // Unknown host: always fall back to production instead of sending arbitrary URL
+    return "https://supmangmee.com/";
+  }
+
+  window.GET_LINE_LOGIN_REDIRECT_V161 = function(){
+    return {
+      hostname:window.location.hostname,
+      pathname:window.location.pathname,
+      redirectUri:getLineRedirectUriV161()
+    };
+  };
+
+
   function startLineLoginV159(){
     setLineLoginBusyV159(true);
 
@@ -34494,7 +34521,13 @@ function openAdminAnnouncementEditor(item) {
       ).trim().toUpperCase();
     } catch(e) {}
 
-    api("lineLoginStartV95", referralCode)
+    var lineRedirectUriV161 = getLineRedirectUriV161();
+
+    api(
+      "lineLoginStartV95",
+      referralCode,
+      lineRedirectUriV161
+    )
       .then(function(data){
         if(!data || !data.authUrl){
           throw new Error("ไม่พบ LINE Login URL");
