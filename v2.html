@@ -23883,7 +23883,7 @@ html[data-lang="en"] textarea{
 
         <div class="home-v85-account-line">
          <i class="fi fi-sr-wallet"></i>
-         <span>บัญชีหลัก <small class="home-app-version">V146</small></span>
+         <span>บัญชีหลัก <small class="home-app-version">V148</small></span>
         </div>
        </section>
 
@@ -25184,7 +25184,9 @@ function api(action) {
       }
 
       if (!res.ok || data.ok === false) {
-        throw new Error(data.error || "API error");
+        var apiErr = new Error(data.error || "API error");
+        apiErr.code = data.code || "";
+        throw apiErr;
       }
 
       return data.data;
@@ -25197,6 +25199,11 @@ function api(action) {
       var sessionErr = new Error("SESSION_EXPIRED");
       sessionErr.silentSession = true;
       throw sessionErr;
+    }
+    if ((err && err.code === "SHEETS_READ_QUOTA") || /Quota exceeded|Read requests per minute|Google Sheet กำลังมีคำขอจำนวนมาก/i.test(msg)) {
+      var quotaErr = new Error("ระบบกำลังเชื่อมต่อข้อมูลจำนวนมาก กรุณารอประมาณ 20 วินาทีแล้วลองใหม่");
+      quotaErr.code = "SHEETS_READ_QUOTA";
+      throw quotaErr;
     }
     if (/load failed|failed to fetch|networkerror|cancelled/i.test(msg)) {
       throw new Error("เชื่อมต่อ API ไม่สำเร็จ: รูปสลิปอาจใหญ่เกินไป หรือ Apps Script ยังไม่ได้ Deploy เวอร์ชันล่าสุด");
@@ -25665,13 +25672,22 @@ function ensureBootLoaded() {
   return state.bootPromise;
 }
 
-function login() {
+var loginQuotaRetryTimerV148 = null;
+
+function login(retryAttempt) {
+  retryAttempt = Number(retryAttempt || 0);
+
   var u = (els.loginUser.value || "").trim();
   var p = els.loginPass.value || "";
 
   if (!u || !p) {
     showErrorGlobal("กรุณากรอก User และ Password");
     return;
+  }
+
+  if (loginQuotaRetryTimerV148) {
+    clearTimeout(loginQuotaRetryTimerV148);
+    loginQuotaRetryTimerV148 = null;
   }
 
   setLoading(true);
@@ -25681,20 +25697,25 @@ function login() {
       state.token = r.token;
       saveClientSessionToken(state.token);
 
-      // เข้าระบบทันทีจากข้อมูลที่ webLogin คืนมา
       enterAppImmediately(r.user);
-
-      // ปิดวงกลมโหลดทันที ไม่รอ getCreditBetBoot
       setLoading(false);
-
-      // V4: ไม่โหลดข้อมูลหนักหลัง Login
-      // จะโหลดเมื่อผู้ใช้กดเมนูที่ต้องใช้เท่านั้น
     })
     .catch(function(err){
-      showErrorGlobal(err);
       setLoading(false);
+
+      if (err && err.code === "SHEETS_READ_QUOTA" && retryAttempt < 1) {
+        showToast("ระบบกำลังรีเซ็ตการอ่านข้อมูล จะลองเข้าสู่ระบบให้อีกครั้งใน 20 วินาที");
+        loginQuotaRetryTimerV148 = setTimeout(function(){
+          loginQuotaRetryTimerV148 = null;
+          login(retryAttempt + 1);
+        }, 20000);
+        return;
+      }
+
+      showErrorGlobal(err);
     });
 }
+
 
 function registerMember() {
   var payload = {
@@ -28841,6 +28862,7 @@ function validateDirectBet() {
   return true;
 }
 
+/* V147 STYLE2 STRUCTURED BET FIX */
 function buildDirectBetPayload() {
   return buildBillDirectPayload(getCurrentBillSnapshot());
 }
@@ -29222,9 +29244,24 @@ function confirmAndSend() {
   var bills = getSubmissionBills();
   var totalBeforeSend = getCombinedTotalAmount();
   var raw = buildCanonicalRawText();
+
+  // V147:
+  // แบบแทงที่ 2 (classic) ส่งทุกบิลเป็น structured payload ไป Server โดยตรง
+  // ไม่ย้อนกลับไปให้ parser อ่าน rawText อีก เพราะหลายบิล/หลายโหมดอาจถูกตีความคลาดเคลื่อน
+  var structuredBills =
+    bills.length &&
+    bills.every(function(bill){ return !billHasRowOverrides(bill); })
+      ? bills.map(buildBillDirectPayload)
+      : null;
+
   var directBet =
-    bills.length === 1 && !billHasRowOverrides(bills[0])
-      ? buildBillDirectPayload(bills[0])
+    structuredBills && structuredBills.length === 1
+      ? structuredBills[0]
+      : null;
+
+  var directBets =
+    structuredBills && structuredBills.length > 1
+      ? structuredBills
       : null;
 
   betSubmitting = true;
@@ -29240,9 +29277,12 @@ function confirmAndSend() {
 
   var payload = {
     lottoName: state.selectedLotto.name,
-    rawText: raw
+    rawText: raw,
+    clientBetLayout: state.betLayout === "classic" ? "STYLE2" : "STYLE1"
   };
+
   if (directBet) payload.directBet = directBet;
+  if (directBets) payload.directBets = directBets;
 
   api("placeCreditBet", state.token, payload)
   .then(function(r){
