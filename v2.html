@@ -24558,6 +24558,249 @@ html[data-lang="en"] textarea{
 }
 </style>
 
+
+<style id="v168-home-withdraw-ticker-style">
+/* =====================================================
+   V168 — HOME WITHDRAW TICKER (RIGHT -> LEFT)
+===================================================== */
+#homeScreen .home-withdraw-ticker-v168{
+  position:relative;
+  z-index:6;
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr);
+  align-items:center;
+  gap:9px;
+  width:100%;
+  margin:0 0 10px;
+  padding:6px 7px 6px 9px;
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:14px;
+  background:rgba(255,255,255,.09);
+  box-shadow:0 6px 18px rgba(35,0,4,.10);
+  overflow:hidden;
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+
+#homeScreen .home-withdraw-ticker-label-v168{
+  display:flex;
+  align-items:center;
+  gap:5px;
+  padding-right:8px;
+  border-right:1px solid rgba(255,255,255,.16);
+  white-space:nowrap;
+}
+
+#homeScreen .home-withdraw-ticker-label-v168 strong{
+  color:#fff;
+  font-size:9.5px;
+  font-weight:650;
+  line-height:1;
+}
+
+#homeScreen .home-withdraw-ticker-label-v168 small{
+  color:rgba(255,255,255,.54);
+  font-size:6.8px;
+  font-weight:400;
+}
+
+#homeScreen .home-withdraw-live-v168{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#22c55e;
+  box-shadow:0 0 0 3px rgba(34,197,94,.13);
+  flex:0 0 6px;
+}
+
+#homeScreen .home-withdraw-marquee-v168{
+  position:relative;
+  min-width:0;
+  overflow:hidden;
+  -webkit-mask-image:linear-gradient(
+    90deg,
+    transparent 0,
+    #000 5%,
+    #000 95%,
+    transparent 100%
+  );
+  mask-image:linear-gradient(
+    90deg,
+    transparent 0,
+    #000 5%,
+    #000 95%,
+    transparent 100%
+  );
+}
+
+#homeScreen .home-withdraw-track-v168{
+  display:flex;
+  align-items:center;
+  width:max-content;
+  will-change:transform;
+  animation:homeWithdrawMoveV168 42s linear infinite;
+}
+
+#homeScreen .home-withdraw-marquee-v168:hover .home-withdraw-track-v168{
+  animation-play-state:paused;
+}
+
+#homeScreen .home-withdraw-item-v168{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  flex:0 0 auto;
+  min-height:34px;
+  margin-right:7px;
+  padding:4px 9px;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:10px;
+  background:rgba(255,255,255,.96);
+  box-shadow:0 3px 10px rgba(28,0,3,.08);
+}
+
+#homeScreen .home-withdraw-item-v168 strong{
+  color:#32181a;
+  font-size:8.8px;
+  font-weight:650;
+  white-space:nowrap;
+}
+
+#homeScreen .home-withdraw-item-v168 .bank-v168{
+  color:#817679;
+  font-size:7.6px;
+  white-space:nowrap;
+}
+
+#homeScreen .home-withdraw-item-v168 .amount-v168{
+  color:#0b9a4c;
+  font-size:8px;
+  font-weight:650;
+  white-space:nowrap;
+}
+
+#homeScreen .home-withdraw-item-v168 .time-v168{
+  color:#a09598;
+  font-size:7.2px;
+  white-space:nowrap;
+}
+
+#homeScreen .home-withdraw-item-v168 .check-v168{
+  color:#16a35a;
+  font-size:11px;
+  line-height:1;
+}
+
+@keyframes homeWithdrawMoveV168{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+
+@media(max-width:430px){
+  #homeScreen .home-withdraw-ticker-v168{
+    grid-template-columns:auto minmax(0,1fr);
+    gap:6px;
+    margin-bottom:8px;
+    padding:5px 6px 5px 7px;
+    border-radius:12px;
+  }
+
+  #homeScreen .home-withdraw-ticker-label-v168{
+    gap:4px;
+    padding-right:6px;
+  }
+
+  #homeScreen .home-withdraw-ticker-label-v168 strong{
+    font-size:8.3px;
+  }
+
+  #homeScreen .home-withdraw-ticker-label-v168 small{
+    font-size:5.8px;
+  }
+
+  #homeScreen .home-withdraw-item-v168{
+    min-height:31px;
+    gap:5px;
+    margin-right:5px;
+    padding:3px 7px;
+    border-radius:9px;
+  }
+
+  #homeScreen .home-withdraw-item-v168 strong{
+    font-size:8px;
+  }
+
+  #homeScreen .home-withdraw-item-v168 .bank-v168{
+    font-size:7px;
+  }
+
+  #homeScreen .home-withdraw-item-v168 .amount-v168{
+    font-size:7.4px;
+  }
+
+  #homeScreen .home-withdraw-item-v168 .time-v168{
+    font-size:6.7px;
+  }
+
+  #homeScreen .home-withdraw-track-v168{
+    animation-duration:36s;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  #homeScreen .home-withdraw-track-v168{
+    animation:none !important;
+    transform:none !important;
+  }
+}
+</style>
+
+
+<style id="v169-withdraw-label-style">
+/* V169 — Login withdraw heading white */
+#loginScreen .login-withdraw-list-head-v167 strong{
+  color:#fff !important;
+}
+
+/* Keep disclosure, but make it very subtle */
+#loginScreen .login-withdraw-list-head-v167 small{
+  color:rgba(255,255,255,.34) !important;
+  font-size:6.5px !important;
+  font-weight:400 !important;
+}
+
+#homeScreen .home-withdraw-ticker-label-v168 small{
+  color:rgba(255,255,255,.30) !important;
+  font-size:5.6px !important;
+  font-weight:400 !important;
+}
+</style>
+
+
+<style id="v170-withdraw-latest-label-style">
+#loginScreen .login-withdraw-list-head-v167 small,
+#homeScreen .home-withdraw-ticker-label-v168 small{
+  color:rgba(255,255,255,.78) !important;
+  font-weight:500 !important;
+}
+
+#loginScreen .login-withdraw-disclosure-v170{
+  margin-top:5px;
+  text-align:right;
+  color:rgba(255,255,255,.24);
+  font-size:5.8px;
+  line-height:1;
+}
+
+#homeScreen .home-withdraw-disclosure-v170{
+  margin-left:2px;
+  color:rgba(255,255,255,.22);
+  font-size:5px;
+  font-weight:400;
+  white-space:nowrap;
+}
+</style>
+
 </head>
  <body>
 
@@ -24748,7 +24991,7 @@ html[data-lang="en"] textarea{
         <div class="login-withdraw-list-head-v167">
           <div>
             <strong>รายการถอน</strong>
-            <small>ข้อมูลจำลอง</small>
+            <small>ถอนล่าสุด</small>
           </div>
           <span class="login-withdraw-live-dot-v167"></span>
         </div>
@@ -24801,6 +25044,20 @@ html[data-lang="en"] textarea{
    <section class="screen" id="homeScreen">
     <div class="v16-home-shell home-v54-shell home-v85-shell">
      <div class="v16-home home-v54-page home-v85-page">
+
+
+      <section class="home-withdraw-ticker-v168" aria-label="รายการถอน ข้อมูลจำลอง">
+        <div class="home-withdraw-ticker-label-v168">
+          <span class="home-withdraw-live-v168"></span>
+          <strong>รายการถอน</strong>
+          <small>ถอนล่าสุด</small>
+          
+        </div>
+
+        <div class="home-withdraw-marquee-v168">
+          <div class="home-withdraw-track-v168" id="homeWithdrawTrackV168"></div>
+        </div>
+      </section>
 
       <div class="home-v54-top home-v85-top">
        <div class="v16-home-head home-v54-header home-v85-header">
@@ -24867,7 +25124,7 @@ html[data-lang="en"] textarea{
 
         <div class="home-v85-account-line">
          <i class="fi fi-sr-wallet"></i>
-         <span>บัญชีหลัก <small class="home-app-version">V167</small></span>
+         <span>บัญชีหลัก <small class="home-app-version">V170</small></span>
         </div>
        </section>
 
@@ -35289,6 +35546,142 @@ function openAdminAnnouncementEditor(item) {
   document.addEventListener("DOMContentLoaded",function(){
     renderList();
     scheduleNext();
+  });
+})();
+</script>
+
+
+<script id="v168-home-withdraw-ticker-js">
+(function(){
+  "use strict";
+
+  var namesV168 = [
+    "พิยากร ห*****",
+    "ณัฐวุฒิ ส*****",
+    "กิตติพงศ์ พ*****",
+    "อรทัย จ*****",
+    "สุพัตรา น*****",
+    "ธนกฤต ว*****",
+    "ชลธิชา ร*****",
+    "พิมพ์ชนก ก*****",
+    "วรัญญา ส*****",
+    "ศุภชัย ม*****",
+    "อนุชา ป*****",
+    "เบญจพร ท*****",
+    "ชุติมา ว*****",
+    "ธีรภัทร ก*****",
+    "ภัทรวดี น*****"
+  ];
+
+  var banksV168 = [
+    ["กสิกรไทย","xxx294xxxx"],
+    ["ไทยพาณิชย์","xxx681xxxx"],
+    ["กรุงเทพ","xxx437xxxx"],
+    ["กรุงไทย","xxx552xxxx"],
+    ["กรุงศรีอยุธยา","xxx903xxxx"],
+    ["ทหารไทยธนชาต","xxx118xxxx"],
+    ["ออมสิน","xxx746xxxx"]
+  ];
+
+  var amountsV168 = [
+    500,700,800,1000,1200,1500,1800,
+    2000,2500,3000,3500,5000
+  ];
+
+  function pickV168(arr){
+    return arr[Math.floor(Math.random()*arr.length)];
+  }
+
+  function moneyV168(n){
+    try{
+      return Number(n).toLocaleString("th-TH");
+    }catch(e){
+      return String(n);
+    }
+  }
+
+  function pad2V168(n){
+    return String(n).padStart(2,"0");
+  }
+
+  function timeV168(index){
+    var d = new Date();
+
+    var minus =
+      index * (2 + Math.floor(Math.random()*3)) +
+      Math.floor(Math.random()*4);
+
+    d.setMinutes(d.getMinutes() - minus);
+
+    return pad2V168(d.getHours()) + ":" + pad2V168(d.getMinutes());
+  }
+
+  function escapeV168(value){
+    return String(value || "")
+      .replace(/&/g,"&amp;")
+      .replace(/</g,"&lt;")
+      .replace(/>/g,"&gt;")
+      .replace(/"/g,"&quot;");
+  }
+
+  function buildItemV168(index){
+    var bank = pickV168(banksV168);
+
+    return (
+      '<div class="home-withdraw-item-v168">' +
+        '<i class="fi fi-sr-check-circle check-v168"></i>' +
+        '<strong>' + escapeV168(pickV168(namesV168)) + '</strong>' +
+        '<span class="bank-v168">' +
+          escapeV168(bank[1]) + ' • ' + escapeV168(bank[0]) +
+        '</span>' +
+        '<span class="amount-v168">ถอน ' +
+          moneyV168(pickV168(amountsV168)) + '฿ สำเร็จ' +
+        '</span>' +
+        '<span class="time-v168">' + timeV168(index) + '</span>' +
+      '</div>'
+    );
+  }
+
+  function renderHomeWithdrawV168(){
+    var track = document.getElementById("homeWithdrawTrackV168");
+    if(!track) return;
+
+    var items = [];
+
+    for(var i=0;i<5;i++){
+      items.push(buildItemV168(i));
+    }
+
+    // Duplicate the same 5 items for seamless right-to-left loop.
+    var group = items.join("");
+    track.innerHTML = group + group;
+
+    // Restart CSS animation cleanly after content refresh.
+    track.style.animation = "none";
+    void track.offsetWidth;
+    track.style.animation = "";
+  }
+
+  function nextIntervalV168(){
+    // Truly random refresh between 3 and 18 minutes, including seconds.
+    var min = 3 * 60;
+    var max = 18 * 60;
+    var sec =
+      Math.floor(Math.random() * (max - min + 1)) + min;
+
+    return sec * 1000;
+  }
+
+  function scheduleV168(){
+    window.setTimeout(function(){
+      renderHomeWithdrawV168();
+      scheduleV168();
+    },nextIntervalV168());
+  }
+
+  document.addEventListener("DOMContentLoaded",function(){
+    renderHomeWithdrawV168();
+    scheduleV168();
   });
 })();
 </script>
