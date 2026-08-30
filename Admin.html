@@ -10254,6 +10254,17 @@ function boot(silent) {
     .finally(function(){ if (!silent) setLoading(false); });
 }
 
+
+// =====================================================
+// FIX — refreshBootData
+// Admin หลายเมนูเรียกฟังก์ชันนี้หลังบันทึก/เปิด/ปิดหวย
+// ใช้ boot(true) เพื่อรีเฟรช user + credit + รายการหวยโดยไม่เปลี่ยนหน้าปัจจุบัน
+// =====================================================
+async function refreshBootData() {
+  if (!state.token) throw new Error("ไม่มี session");
+  return await boot(true);
+}
+
 function updateUserUI() {
   if (!state.user) return;
 
