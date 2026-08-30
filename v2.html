@@ -24464,8 +24464,9 @@ html[data-lang="en"] textarea{
 </style>
 
 
-<style id="v165-login-demo-withdraw-style">
-.login-withdraw-demo-v165{
+
+<style id="v167-withdraw-list-style">
+.login-withdraw-list-v167{
   width:min(430px,100%);
   margin:12px auto 0;
   padding:12px;
@@ -24475,99 +24476,85 @@ html[data-lang="en"] textarea{
   backdrop-filter:blur(8px);
   -webkit-backdrop-filter:blur(8px);
 }
-.login-withdraw-demo-head-v165{
+.login-withdraw-list-head-v167{
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:10px;
-  margin-bottom:9px;
-  color:#fff;
+  margin-bottom:8px;
 }
-.login-withdraw-demo-head-v165 strong{
+.login-withdraw-list-head-v167 strong{
   display:block;
   color:#fff;
-  font-size:11.5px;
+  font-size:12px;
   font-weight:650;
 }
-.login-withdraw-demo-head-v165 small{
+.login-withdraw-list-head-v167 small{
   display:block;
   margin-top:1px;
-  color:rgba(255,255,255,.68);
-  font-size:8.7px;
-}
-.login-demo-badge-v165{
-  padding:4px 7px;
-  border-radius:999px;
-  background:rgba(255,255,255,.15);
-  color:#fff;
-  border:1px solid rgba(255,255,255,.22);
+  color:rgba(255,255,255,.62);
   font-size:8px;
-  font-weight:750;
 }
-.login-withdraw-demo-card-v165{
-  display:grid;
-  grid-template-columns:38px 1fr 24px;
-  gap:9px;
-  align-items:center;
-  min-height:68px;
-  padding:10px;
-  border-radius:14px;
-  background:#fff;
-  box-shadow:0 8px 22px rgba(40,0,5,.12);
-  transition:opacity .2s ease, transform .2s ease;
+.login-withdraw-live-dot-v167{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#22c55e;
+  box-shadow:0 0 0 4px rgba(34,197,94,.12);
 }
-.login-withdraw-demo-card-v165.is-changing{
-  opacity:.35;
-  transform:translateY(3px);
-}
-.login-withdraw-demo-icon-v165{
-  width:38px;
-  height:38px;
+.login-withdraw-list-items-v167{
   display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+.login-withdraw-row-v167{
+  min-height:58px;
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:8px;
   align-items:center;
-  justify-content:center;
-  border-radius:12px;
-  background:#fff1f2;
-  color:#b00016;
+  padding:8px 10px;
+  border-radius:13px;
+  background:#fff;
+  box-shadow:0 5px 14px rgba(40,0,5,.08);
 }
-.login-withdraw-demo-icon-v165 i{
-  color:#b00016;
-  font-size:18px;
-}
-.login-withdraw-demo-copy-v165{
+.login-withdraw-row-main-v167{
   min-width:0;
 }
-.login-withdraw-demo-copy-v165 strong{
+.login-withdraw-row-main-v167 strong{
   display:block;
-  color:#2e171a;
-  font-size:11.3px;
+  color:#2d1719;
+  font-size:10.8px;
   font-weight:650;
 }
-.login-withdraw-demo-copy-v165 span{
+.login-withdraw-row-main-v167 span{
   display:block;
   margin-top:1px;
-  color:#756b6d;
-  font-size:9.3px;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
+  color:#766d70;
+  font-size:8.9px;
 }
-.login-withdraw-demo-copy-v165 small{
+.login-withdraw-row-main-v167 small{
   display:block;
   margin-top:3px;
-  color:#079447;
-  font-size:9.4px;
+  color:#0a9a4a;
+  font-size:9px;
   font-weight:600;
 }
-.login-withdraw-demo-status-v165 i{
-  color:#13a557;
-  font-size:17px;
+.login-withdraw-row-time-v167{
+  color:#9a8f92;
+  font-size:8.5px;
+  font-weight:500;
+  white-space:nowrap;
 }
-.login-withdraw-demo-note-v165{
-  margin-top:7px;
-  color:rgba(255,255,255,.60);
-  font-size:8px;
-  text-align:center;
+@media(max-width:390px){
+  .login-withdraw-list-v167{
+    padding:10px;
+    border-radius:15px;
+  }
+  .login-withdraw-row-v167{
+    min-height:54px;
+    padding:7px 9px;
+  }
 }
 </style>
 
@@ -24756,6 +24743,25 @@ html[data-lang="en"] textarea{
       </div>
 
 
+
+      <section class="login-withdraw-list-v167" aria-label="รายการถอน ข้อมูลจำลอง">
+        <div class="login-withdraw-list-head-v167">
+          <div>
+            <strong>รายการถอน</strong>
+            <small>ข้อมูลจำลอง</small>
+          </div>
+          <span class="login-withdraw-live-dot-v167"></span>
+        </div>
+
+        <div class="login-withdraw-list-items-v167" id="loginWithdrawListV167">
+          <div class="login-withdraw-row-v167"></div>
+          <div class="login-withdraw-row-v167"></div>
+          <div class="login-withdraw-row-v167"></div>
+          <div class="login-withdraw-row-v167"></div>
+          <div class="login-withdraw-row-v167"></div>
+        </div>
+      </section>
+
       <section class="home-seo-public" aria-label="ซื้อหวยออนไลน์ แทงหวยออนไลน์ และผลหวยวันนี้">
         <h1>ซื้อหวยออนไลน์ แทงหวยออนไลน์ เล่นหวยออนไลน์</h1>
         <p>ทรัพย์มั่งมีเป็นเว็บหวยออนไลน์สำหรับสมาชิก ใช้งานสำหรับซื้อหวย แทงหวย และเล่นหวยออนไลน์ พร้อมดูหวยวันนี้ ผลหวยวันนี้ รายการโพย ผลย้อนหลัง สถิติหวย และข้อมูลหวยหลายประเภท</p>
@@ -24785,37 +24791,7 @@ html[data-lang="en"] textarea{
           <a href="/results/calculator/">คำนวณหวย</a>
         </nav>
       </section>
-
-
-      <section class="login-withdraw-demo-v165" aria-label="ตัวอย่างรายการถอน">
-        <div class="login-withdraw-demo-head-v165">
-          <div>
-            <strong>ตัวอย่างรายการถอน</strong>
-            <small>ข้อมูลจำลองสำหรับสาธิตหน้าเว็บ</small>
-          </div>
-          <span class="login-demo-badge-v165">DEMO</span>
-        </div>
-
-        <div class="login-withdraw-demo-card-v165" id="loginWithdrawDemoCardV165">
-          <div class="login-withdraw-demo-icon-v165">
-            <i class="fi fi-sr-wallet"></i>
-          </div>
-          <div class="login-withdraw-demo-copy-v165">
-            <strong id="loginWithdrawDemoNameV165">กำลังโหลดตัวอย่าง...</strong>
-            <span id="loginWithdrawDemoBankV165">ข้อมูลจำลอง</span>
-            <small id="loginWithdrawDemoAmountV165">ถอน — ฿ • สำเร็จ</small>
-          </div>
-          <div class="login-withdraw-demo-status-v165">
-            <i class="fi fi-sr-check-circle"></i>
-          </div>
-        </div>
-
-        <div class="login-withdraw-demo-note-v165">
-          * รายการด้านบนเป็นข้อมูลจำลอง ไม่ใช่ธุรกรรมจริง
-        </div>
-      </section>
-
-      <div class="login-v56-copyright">© 2026 ทรัพย์มั่งมี สงวนลิขสิทธิ์</div>
+<div class="login-v56-copyright">© 2026 ทรัพย์มั่งมี สงวนลิขสิทธิ์</div>
     </div>
   </section>
 
@@ -24891,7 +24867,7 @@ html[data-lang="en"] textarea{
 
         <div class="home-v85-account-line">
          <i class="fi fi-sr-wallet"></i>
-         <span>บัญชีหลัก <small class="home-app-version">V166</small></span>
+         <span>บัญชีหลัก <small class="home-app-version">V167</small></span>
         </div>
        </section>
 
@@ -35210,7 +35186,8 @@ function openAdminAnnouncementEditor(item) {
 </script>
 
 
-<script id="v165-login-demo-withdraw-js">
+
+<script id="v167-withdraw-list-js">
 (function(){
   "use strict";
 
@@ -35243,43 +35220,55 @@ function openAdminAnnouncementEditor(item) {
     500,700,800,1000,1200,1500,1800,2000,2500,3000,3500,5000
   ];
 
-
   function pick(arr){
     return arr[Math.floor(Math.random()*arr.length)];
   }
 
   function money(n){
-    try{
-      return Number(n).toLocaleString("th-TH");
-    }catch(e){
-      return String(n);
-    }
+    return Number(n).toLocaleString("th-TH");
   }
 
-  function renderDemo(){
-    var card = document.getElementById("loginWithdrawDemoCardV165");
-    var name = document.getElementById("loginWithdrawDemoNameV165");
-    var bank = document.getElementById("loginWithdrawDemoBankV165");
-    var amount = document.getElementById("loginWithdrawDemoAmountV165");
-
-    if(!card || !name || !bank || !amount) return;
-
-    card.classList.add("is-changing");
-
-    setTimeout(function(){
-      var b = pick(banks);
-
-      name.textContent = pick(names);
-      bank.textContent = b[1] + " • " + b[0];
-      amount.textContent = "ถอน " + money(pick(amounts)) + "฿ • สำเร็จ";
-
-      card.classList.remove("is-changing");
-    },180);
+  function pad2(n){
+    return String(n).padStart(2,"0");
   }
 
-  function randomIntervalMsV166(){
-    // สุ่มจริงทุกครั้งระหว่าง 3–18 นาที
-    // ใช้ระดับวินาทีด้วย เพื่อไม่ให้เปลี่ยนตรงนาทีเป๊ะ ๆ
+  function randomTimeText(index){
+    var now = new Date();
+    var minusMin =
+      index * (2 + Math.floor(Math.random()*4)) +
+      Math.floor(Math.random()*4);
+
+    now.setMinutes(now.getMinutes() - minusMin);
+
+    return pad2(now.getHours()) + ":" + pad2(now.getMinutes());
+  }
+
+  function makeRow(index){
+    var b = pick(banks);
+
+    return (
+      '<div class="login-withdraw-row-main-v167">' +
+        '<strong>' + pick(names) + '</strong>' +
+        '<span>' + b[1] + ' • ' + b[0] + '</span>' +
+        '<small>ถอน ' + money(pick(amounts)) + '฿ • สำเร็จ</small>' +
+      '</div>' +
+      '<div class="login-withdraw-row-time-v167">' +
+        randomTimeText(index) +
+      '</div>'
+    );
+  }
+
+  function renderList(){
+    var rows = document.querySelectorAll(
+      "#loginWithdrawListV167 .login-withdraw-row-v167"
+    );
+
+    Array.prototype.forEach.call(rows,function(row,index){
+      row.innerHTML = makeRow(index);
+    });
+  }
+
+  function randomIntervalMs(){
     var minSeconds = 3 * 60;
     var maxSeconds = 18 * 60;
     var seconds =
@@ -35292,13 +35281,13 @@ function openAdminAnnouncementEditor(item) {
 
   function scheduleNext(){
     window.setTimeout(function(){
-      renderDemo();
+      renderList();
       scheduleNext();
-    },randomIntervalMsV166());
+    },randomIntervalMs());
   }
 
   document.addEventListener("DOMContentLoaded",function(){
-    renderDemo();
+    renderList();
     scheduleNext();
   });
 })();
