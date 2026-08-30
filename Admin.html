@@ -7646,10 +7646,12 @@ textarea:focus{
 </style>
  
 <style id="admin-page-only">
-  /* หน้า Admin แยก: ซ่อนการสมัครสมาชิก */
+  /* หน้า Admin แยก: แสดงเฉพาะฟอร์มเข้าสู่ระบบ Admin */
   #authRegisterTab, #registerPanel { display:none !important; }
-  .auth-tabs { grid-template-columns:1fr !important; }
-  #authLoginTab { pointer-events:none; }
+  .auth-tabs { display:none !important; }
+  #loginPanel, #loginPanel.auth-panel { display:block !important; }
+  #loginPanel .login-field { display:block !important; }
+  #loginBtn { display:block !important; width:100% !important; }
 
 /* LOTTO WEEKDAY SCHEDULE */
 .lotto-days-box{display:flex;flex-wrap:wrap;gap:4px;min-width:290px}
@@ -8087,6 +8089,308 @@ body:has(#adminScreen.active){
   #adminScreen .admin-toolbar .admin-field.full,
   #adminScreen .admin-toolbar .admin-btn{grid-column:1/-1}
   #adminScreen .admin-card-head{align-items:flex-start!important}
+}
+</style>
+
+
+<style id="admin-thin-easy-ui-v1">
+/* =====================================================
+   ADMIN THIN + EASY UI V1
+   - ลดน้ำหนักฟอนต์
+   - ลดเส้น/เงาที่รบกวนสายตา
+   - เพิ่มพื้นที่กดและลำดับข้อมูล
+   - รองรับมือถือดีขึ้น
+===================================================== */
+:root{
+  --ui-bg:#f7f7f8;
+  --ui-card:#ffffff;
+  --ui-text:#241b1b;
+  --ui-muted:#7a7070;
+  --ui-line:#ece7e7;
+  --ui-red:#a71919;
+  --ui-red-2:#d9362c;
+  --ui-soft:#fff5f4;
+  --ui-shadow:0 8px 24px rgba(45,18,18,.055);
+}
+
+/* Typography: บาง อ่านสบาย แต่หัวข้อยังแยกชั้นชัด */
+html,body,
+body input,body textarea,body select,body button,
+.swal2-popup,.swal2-title,.swal2-html-container,
+.swal2-input,.swal2-select,.swal2-confirm,.swal2-cancel{
+  font-family:"Kanit","Noto Sans Thai",sans-serif !important;
+  font-weight:300 !important;
+  letter-spacing:0 !important;
+}
+
+body{ background:var(--ui-bg) !important; color:var(--ui-text) !important; }
+
+h1,h2,h3,
+.admin-head-row h1,.admin-card h2,.admin-card h3,
+.card-title,.direct-title,.selected-name,.lotto-name,
+.login-card-credit h1,.v16-brand-copy strong,.v16-lotto-title{
+  font-weight:500 !important;
+}
+
+strong,b,
+.admin-stat strong,.summary-stat b,.bill-summary-pill strong,
+.direct-grand strong,.grand strong,.v16-wallet-balance{
+  font-weight:500 !important;
+}
+
+button,.admin-btn,.admin-mini,.admin-tab,.lotto-subtab,
+.summary-preset,.account-btn,.auth-tab,.quick-tool,
+.direct-submit,.direct-clear-all,.direct-back-bottom,
+.v16-money-btn,.v16-shortcut,.v16-logout,.v16-lotto-go{
+  font-weight:400 !important;
+}
+
+small,label,.admin-muted,.admin-table,.admin-table th,.admin-table td,
+.history-meta,.history-raw,.result-date,.money-note,.submit-credit-note,
+.card-help,.direct-help,.lotto-meta,.lotto-date,.selected-sub{
+  font-weight:300 !important;
+}
+
+/* Admin shell */
+.admin-screen,.admin-content,.admin-tabs-wrap{
+  background:var(--ui-bg) !important;
+}
+.admin-hero{
+  padding:calc(18px + env(safe-area-inset-top)) 16px 18px !important;
+  background:linear-gradient(135deg,#4b0707,#8f1010 66%,#b9221c) !important;
+  border-radius:0 0 20px 20px !important;
+  border:0 !important;
+  box-shadow:0 8px 24px rgba(75,7,7,.16) !important;
+}
+.admin-head-row h1{
+  font-size:24px !important;
+  line-height:1.2 !important;
+  color:#fff !important;
+  text-shadow:none !important;
+}
+.admin-head-btn{
+  min-height:38px !important;
+  padding:0 12px !important;
+  border-radius:10px !important;
+  background:rgba(255,255,255,.10) !important;
+  border:1px solid rgba(255,255,255,.20) !important;
+  color:#fff !important;
+  box-shadow:none !important;
+}
+.admin-head-btn.light{
+  background:#fff !important;
+  color:#7f1010 !important;
+  border-color:#fff !important;
+}
+
+/* Navigation: compact, scroll-friendly */
+.admin-tabs-wrap{ padding:10px 10px 0 !important; }
+.admin-tabs{
+  display:flex !important;
+  gap:6px !important;
+  overflow-x:auto !important;
+  padding:5px !important;
+  border:1px solid var(--ui-line) !important;
+  border-radius:14px !important;
+  background:#fff !important;
+  box-shadow:var(--ui-shadow) !important;
+  scrollbar-width:none;
+}
+.admin-tabs::-webkit-scrollbar{ display:none; }
+.admin-tab{
+  flex:0 0 auto !important;
+  min-width:auto !important;
+  min-height:42px !important;
+  padding:0 13px !important;
+  border-radius:10px !important;
+  background:transparent !important;
+  color:#625858 !important;
+  box-shadow:none !important;
+}
+.admin-tab.active{
+  background:var(--ui-red) !important;
+  color:#fff !important;
+  box-shadow:none !important;
+}
+
+/* Cards */
+.admin-content{ padding:10px 10px 28px !important; }
+.admin-card{
+  padding:14px !important;
+  border:1px solid var(--ui-line) !important;
+  border-radius:15px !important;
+  background:#fff !important;
+  box-shadow:var(--ui-shadow) !important;
+}
+.admin-card + .admin-card{ margin-top:9px !important; }
+.admin-card h2{ font-size:17px !important; color:var(--ui-text) !important; }
+.admin-card h3{ font-size:14px !important; color:var(--ui-text) !important; }
+.admin-muted{ color:var(--ui-muted) !important; font-size:10px !important; line-height:1.55 !important; }
+
+/* Stats: cleaner visual hierarchy */
+.admin-stats{ gap:7px !important; margin-top:10px !important; }
+.admin-stat{
+  padding:11px !important;
+  border:1px solid var(--ui-line) !important;
+  border-radius:12px !important;
+  background:#fafafa !important;
+  box-shadow:none !important;
+}
+.admin-stat small{ font-size:9px !important; color:var(--ui-muted) !important; }
+.admin-stat strong{ margin-top:4px !important; font-size:18px !important; color:var(--ui-text) !important; }
+.admin-stat.deposit,.admin-stat.withdraw{
+  padding:13px !important;
+  border-width:1px !important;
+  box-shadow:none !important;
+}
+.admin-stat.deposit{ background:#f5fbf6 !important; border-color:#dcefe0 !important; }
+.admin-stat.withdraw{ background:#fff6f5 !important; border-color:#f3dddd !important; }
+.admin-stat.deposit strong{ color:#237a3a !important; }
+.admin-stat.withdraw strong{ color:#a71919 !important; }
+
+/* Fields */
+.admin-toolbar{ gap:7px !important; margin-top:10px !important; }
+.admin-field{ flex:1 1 150px !important; }
+.admin-field label{ margin-bottom:5px !important; color:var(--ui-muted) !important; font-size:9px !important; }
+.admin-field input,.admin-field select,
+.rate-input-grid input,
+.summary-filter-grid input,.summary-filter-grid select{
+  height:42px !important;
+  border:1px solid #e5dfdf !important;
+  border-radius:10px !important;
+  padding:0 11px !important;
+  background:#fff !important;
+  color:var(--ui-text) !important;
+  box-shadow:none !important;
+}
+.admin-field input:focus,.admin-field select:focus,
+.rate-input-grid input:focus,
+.summary-filter-grid input:focus,.summary-filter-grid select:focus{
+  border-color:#c8625c !important;
+  box-shadow:0 0 0 3px rgba(167,25,25,.08) !important;
+}
+
+/* Buttons: primary stands out, secondary stays quiet */
+.admin-btn{
+  min-height:40px !important;
+  padding:0 13px !important;
+  border-radius:10px !important;
+  box-shadow:none !important;
+}
+.admin-btn.red,.admin-btn.dark,.admin-btn.green{
+  background:var(--ui-red) !important;
+  color:#fff !important;
+  border:1px solid var(--ui-red) !important;
+}
+.admin-btn.soft{
+  background:var(--ui-soft) !important;
+  color:#8f1717 !important;
+  border:1px solid #f2d9d7 !important;
+}
+.admin-mini{
+  min-height:30px !important;
+  padding:0 9px !important;
+  border-radius:8px !important;
+  box-shadow:none !important;
+}
+.admin-mini.edit,.admin-mini.credit,.admin-mini.green{
+  background:#faf8f8 !important;
+  color:#5d5050 !important;
+  border:1px solid var(--ui-line) !important;
+}
+.admin-mini.danger{
+  background:#fff5f4 !important;
+  color:#a71919 !important;
+  border:1px solid #f2d5d2 !important;
+}
+
+/* Tables: less cramped, lighter header */
+.admin-table-wrap{
+  border:1px solid var(--ui-line) !important;
+  border-radius:12px !important;
+  box-shadow:none !important;
+  background:#fff !important;
+}
+.admin-table{ font-size:10px !important; background:#fff !important; }
+.admin-table th{
+  padding:9px 8px !important;
+  background:#faf9f9 !important;
+  color:#756969 !important;
+  border-bottom:1px solid var(--ui-line) !important;
+  font-size:9px !important;
+  font-weight:400 !important;
+}
+.admin-table td{
+  padding:10px 8px !important;
+  border-bottom:1px solid #f2eeee !important;
+  color:#403636 !important;
+  font-weight:300 !important;
+  line-height:1.45 !important;
+}
+.admin-table tr:hover td{ background:#fffafa !important; }
+.admin-table .numbers{ color:#756969 !important; font-weight:300 !important; }
+
+/* Submenus / filters */
+.lotto-subtabs{ gap:6px !important; }
+.lotto-subtab{
+  min-height:38px !important;
+  padding:0 12px !important;
+  border:1px solid var(--ui-line) !important;
+  background:#fff !important;
+  color:#6a5f5f !important;
+  border-radius:9px !important;
+  box-shadow:none !important;
+}
+.lotto-subtab.active{ background:#fff2f1 !important; color:#941919 !important; border-color:#efcfcc !important; }
+.admin-lotto-filter,.rate-editor-card{
+  border:1px solid var(--ui-line) !important;
+  border-radius:12px !important;
+  background:#fafafa !important;
+  box-shadow:none !important;
+}
+.admin-lotto-check{ background:#fff !important; border:1px solid #f0ecec !important; }
+
+/* SweetAlert forms */
+.swal2-popup{
+  border-radius:18px !important;
+  border:1px solid var(--ui-line) !important;
+  box-shadow:0 24px 70px rgba(35,15,15,.16) !important;
+}
+.swal2-title{ font-weight:500 !important; }
+.swal-admin-field label{ font-weight:300 !important; color:var(--ui-muted) !important; }
+.swal-admin-field input,.swal-admin-field select{
+  height:42px !important;
+  border:1px solid #e5dfdf !important;
+  border-radius:10px !important;
+  font-weight:300 !important;
+}
+.swal2-confirm{ background:var(--ui-red) !important; box-shadow:none !important; }
+.swal2-cancel{ background:#f4f1f1 !important; color:#5f5353 !important; box-shadow:none !important; }
+
+/* Mobile */
+@media(max-width:620px){
+  .admin-hero{ padding-left:12px !important; padding-right:12px !important; }
+  .admin-head-row{ align-items:flex-start !important; }
+  .admin-head-row h1{ font-size:21px !important; }
+  .admin-head-actions{ gap:5px !important; }
+  .admin-head-btn{ min-height:36px !important; padding:0 9px !important; font-size:9px !important; }
+  .admin-stats{ grid-template-columns:repeat(2,minmax(0,1fr)) !important; }
+  .admin-stat strong{ font-size:16px !important; }
+  .admin-toolbar{ display:grid !important; grid-template-columns:1fr 1fr !important; }
+  .admin-field{ min-width:0 !important; }
+  .admin-toolbar > .admin-btn{ width:100% !important; }
+  .admin-grid-2{ grid-template-columns:1fr !important; gap:8px !important; }
+}
+
+@media(max-width:430px){
+  .admin-content{ padding-left:8px !important; padding-right:8px !important; }
+  .admin-card{ padding:12px !important; border-radius:13px !important; }
+  .admin-tabs-wrap{ padding-left:8px !important; padding-right:8px !important; }
+  .admin-tab{ min-height:40px !important; padding:0 11px !important; font-size:10px !important; }
+  .admin-toolbar{ grid-template-columns:1fr !important; }
+  .admin-field input,.admin-field select{ height:44px !important; }
+  .admin-btn{ min-height:42px !important; }
+  .admin-table th,.admin-table td{ padding:8px 6px !important; }
 }
 </style>
 
@@ -8794,7 +9098,7 @@ body:has(#adminScreen.active){
 
      <section class="admin-panel" id="adminPanel-lotto">
       <div class="admin-card">
-       <div class="admin-card-head"><div><h2>ตั้งค่าหวย</h2></div><button class="admin-btn red" id="adminCreateLottoBtn">+ เพิ่มหวยใหม่</button></div>
+       <div class="admin-card-head"><div><h2>ตั้งค่าหวย</h2></div><div style="display:flex;gap:7px;flex-wrap:wrap"><button class="admin-btn soft" id="adminCreateThaiGovLottoBtn" onclick="createThaiGovernmentLottery(); return false;">🇹🇭 เพิ่มหวยรัฐบาลไทย</button><button class="admin-btn soft" id="adminThaiGovScheduleBtn" onclick="openThaiGovScheduleDialog(); return false;">📅 ตั้งงวดรัฐบาล</button><button class="admin-btn red" id="adminCreateLottoBtn">+ เพิ่มหวยใหม่</button></div></div>
        <div class="lotto-subtabs">
         <button class="lotto-subtab active" data-lotto-subtab="enabled">เปิด / ปิดหวย</button>
         <button class="lotto-subtab" data-lotto-subtab="rules">เงื่อนไขหวย</button>
@@ -9209,7 +9513,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "backBtn","bottomBackBtn","classicRuleBtn","selectedName","selectedRound","selectedClose","selectedCount","selectedLimitNote","selectedRateNote",
     "accountName","heroCredit","betCredit","modernBetCredit","bottomCredit","summaryCredit","adminBtn",
     "memberSummaryBtn","moneyBtn","resultsBtn","historyBtn","lineContactBtn","logoutBtn","affiliateBackBtn","affiliateAvailableTop","affiliateCode","affiliateLink","affiliateCopyBtn","affiliateStats","affiliateWithdrawBtn","affiliateCommissionList","affiliateWithdrawList","resultsBackBtn","resultsBalance","resultsDate","resultsReloadBtn","resultsPrevBtn","resultsNextBtn","resultsSource","resultsList","historyBackBtn","historyCredit","historyFrom","historyTo",
-     "historyStatus","historyList","moneyBackBtn","moneyBalance","moneyFrom","moneyTo","moneyType","moneyList","memberSummaryBackBtn","memberSummaryBalance","memberSummaryFrom","memberSummaryTo","memberSummaryLotto","memberSummarySearchBtn","memberSummaryStats","memberSummaryTable","adminIdentity","adminLogoutBtn","syncResultsBtn","adminAffiliateReloadBtn","adminAffiliateSearch","adminAffiliateStats","adminAffiliateTable","adminAffiliateWithdrawTable","adminResultsSyncBtn","adminResultsAddBtn","adminResultsFrom","adminResultsTo","adminResultsLotto","adminResultsReloadBtn","adminResultsTable","adminDashRange","adminDashFrom","adminDashTo","adminDashCustomBtn","adminDashSelectAll","adminDashClearAll","adminDashLottoChecks","adminDashStats","adminByUser","adminByLotto","adminTopDeposits","adminTopWithdraws","adminBetFrom","adminBetTo","adminBetStatus","adminOpenUser","adminOpenLotto","adminOpenSearchBtn","adminOpenTable","adminCreateUserBtn","adminUserSearch","adminUserCount","adminUserTable","adminWithdrawStatus","adminWithdrawReloadBtn","adminWithdrawTable","adminCreateLottoBtn","adminLottoToggleTable","adminLottoRulesTable","adminRateUser","adminRateLotto","adminRateModeNote","adminRate3Straight","adminRate3Tod","adminRate2Top","adminRate2Bottom","adminRateRunTop","adminRateRunBottom","adminRateSaveBtn","adminRateResetBtn","adminRateOverridesTable","adminLimitLotto","adminLimitKind","adminLimitBetType","adminLimitSide","adminLimitNumbers","adminLimitEndDate","adminLimitReverseBtn","adminLimitAddBtn","adminLimitSaveBtn","adminNumberLimitsTable","adminAnnouncementAddBtn","adminAnnouncementReloadBtn","adminAnnouncementsTable","adminMiniGameSaveBtn","adminMiniGameReloadBtn","adminMiniGameSearchBtn","adminMiniGameFrom","adminMiniGameTo","adminMiniGameFilter","adminMiniGameOutcome","adminMiniGameUser","adminMiniGameStats","adminMiniGameSummary","adminMiniGameTable","adminRpsSystemWinPercent","adminHeadsTailsSystemWinPercent","adminDiceSystemWinPercent","adminCardSystemWinPercent","adminConnectionSaveBtn","adminTelegramToken","adminTelegramChatId","adminLineContactUrl","adminDepositBankShort","adminDepositBankName","adminDepositAccountNo","adminDepositAccountName","adminDepositLogoUrl","adminDepositBorderColor","adminDepositPreview","adminDepositPreviewLogo","adminDepositPreviewNumber","adminDepositPreviewBank","adminDepositPreviewName","modernBetPanel","modernBackBtn","modernRuleBtn","modernLottoSelect","modernLottoSelectText","modernSelectedTitle","modernDigitSlots","modernNumberChipBox","modernClearNumbersBtn","modernBillStack","modernBillStackList","modernBillStackCount","directTitle","numberCount","numberInput",
+     "historyStatus","historyList","moneyBackBtn","moneyBalance","moneyFrom","moneyTo","moneyType","moneyList","memberSummaryBackBtn","memberSummaryBalance","memberSummaryFrom","memberSummaryTo","memberSummaryLotto","memberSummarySearchBtn","memberSummaryStats","memberSummaryTable","adminIdentity","adminLogoutBtn","syncResultsBtn","adminAffiliateReloadBtn","adminAffiliateSearch","adminAffiliateStats","adminAffiliateTable","adminAffiliateWithdrawTable","adminResultsSyncBtn","adminResultsAddBtn","adminResultsFrom","adminResultsTo","adminResultsLotto","adminResultsReloadBtn","adminResultsTable","adminDashRange","adminDashFrom","adminDashTo","adminDashCustomBtn","adminDashSelectAll","adminDashClearAll","adminDashLottoChecks","adminDashStats","adminByUser","adminByLotto","adminTopDeposits","adminTopWithdraws","adminBetFrom","adminBetTo","adminBetStatus","adminOpenUser","adminOpenLotto","adminOpenSearchBtn","adminOpenTable","adminCreateUserBtn","adminUserSearch","adminUserCount","adminUserTable","adminWithdrawStatus","adminWithdrawReloadBtn","adminWithdrawTable","adminCreateLottoBtn","adminCreateThaiGovLottoBtn","adminLottoToggleTable","adminLottoRulesTable","adminRateUser","adminRateLotto","adminRateModeNote","adminRate3Straight","adminRate3Tod","adminRate2Top","adminRate2Bottom","adminRateRunTop","adminRateRunBottom","adminRateSaveBtn","adminRateResetBtn","adminRateOverridesTable","adminLimitLotto","adminLimitKind","adminLimitBetType","adminLimitSide","adminLimitNumbers","adminLimitEndDate","adminLimitReverseBtn","adminLimitAddBtn","adminLimitSaveBtn","adminNumberLimitsTable","adminAnnouncementAddBtn","adminAnnouncementReloadBtn","adminAnnouncementsTable","adminMiniGameSaveBtn","adminMiniGameReloadBtn","adminMiniGameSearchBtn","adminMiniGameFrom","adminMiniGameTo","adminMiniGameFilter","adminMiniGameOutcome","adminMiniGameUser","adminMiniGameStats","adminMiniGameSummary","adminMiniGameTable","adminRpsSystemWinPercent","adminHeadsTailsSystemWinPercent","adminDiceSystemWinPercent","adminCardSystemWinPercent","adminConnectionSaveBtn","adminTelegramToken","adminTelegramChatId","adminLineContactUrl","adminDepositBankShort","adminDepositBankName","adminDepositAccountNo","adminDepositAccountName","adminDepositLogoUrl","adminDepositBorderColor","adminDepositPreview","adminDepositPreviewLogo","adminDepositPreviewNumber","adminDepositPreviewBank","adminDepositPreviewName","modernBetPanel","modernBackBtn","modernRuleBtn","modernLottoSelect","modernLottoSelectText","modernSelectedTitle","modernDigitSlots","modernNumberChipBox","modernClearNumbersBtn","modernBillStack","modernBillStackList","modernBillStackCount","directTitle","numberCount","numberInput",
     "clearNumbersBtn","numberChipBox","reverseBtn","doubleBtn",
     "priceA","priceB","priceAField","priceALabel","priceBLabel","priceBField","directPriceGrid",
     "sourceCount","betCount","currentBillTotal","grandTotal","clearAllBtn","addBillBtn","submitBtn","error","billStack","billStackList","billStackCount",
@@ -13788,6 +14092,102 @@ async function openCreateLottoDialog() {
   }catch(e){Swal.close();showAdminError(e);}
 }
 
+async function createThaiGovernmentLottery() {
+  var existing=(state.adminLottos||[]).find(function(l){ return /รัฐบาลไทย|หวยรัฐบาล|สลากกินแบ่งรัฐบาล/i.test(String(l.lottoName||"")); });
+  if(existing){
+    Swal.fire({
+      icon:"info",
+      title:"มีหวยรัฐบาลไทยแล้ว",
+      html:"รายการ <b>"+escapeHtml(existing.lottoName)+"</b> อยู่ในระบบแล้ว<br>ใช้ปุ่ม <b>เปิดหวย / ปิดหวย</b> ในตารางด้านล่างได้ทันที",
+      confirmButtonText:"ตกลง"
+    });
+    return;
+  }
+  var ask=await Swal.fire({
+    icon:"question",
+    title:"เพิ่มหวยรัฐบาลไทย?",
+    html:"ระบบจะเพิ่ม <b>รัฐบาลไทย</b> เข้ารายการหวย<br>เวลาเริ่มต้น <b>05:00</b> • ปิดรับ <b>15:20</b><br><small>เริ่มต้นเป็นสถานะปิด เพื่อให้แอดมินกดเปิดเองเมื่อถึงงวด</small>",
+    showCancelButton:true,
+    confirmButtonText:"เพิ่มหวยรัฐบาลไทย",
+    cancelButtonText:"ยกเลิก"
+  });
+  if(!ask.isConfirmed)return;
+  try{
+    adminBusy("กำลังเพิ่มหวยรัฐบาลไทย...");
+    await api("adminCreateLotto",state.token,{
+      lottoName:"รัฐบาลไทย",
+      openTime:"05:00",
+      closeTime:"15:20",
+      aliases:"รัฐบาลไทย,หวยรัฐบาล,สลากกินแบ่งรัฐบาล",
+      enabled:false,
+      minPerNumber:1,
+      maxPerNumber:5000,
+      maxPerBill:50000,
+      openDays:[1,2,3,4,5,6,7]
+    });
+    Swal.close();
+    await refreshBootData();
+    await loadAdminLottoSettings();
+    Swal.fire({
+      icon:"success",
+      title:"เพิ่มหวยรัฐบาลไทยแล้ว",
+      html:"ตอนนี้สถานะเป็น <b>ปิด</b><br>เมื่อถึงงวด ให้กด <b>เปิดหวย</b> จากตารางตั้งค่าหวย และกด <b>ปิดหวย</b> ได้ทันทีเมื่อต้องการหยุดรับ",
+      confirmButtonText:"ตกลง"
+    });
+  }catch(e){Swal.close();showAdminError(e);}
+}
+
+
+async function openThaiGovScheduleDialog() {
+  try {
+    var current={};
+    try { current=await api("adminGetThaiGovSchedule",state.token) || {}; } catch(e) { current={}; }
+    var now=new Date();
+    var pad=function(n){return String(n).padStart(2,"0");};
+    var today=now.getFullYear()+"-"+pad(now.getMonth()+1)+"-"+pad(now.getDate());
+    var res=await Swal.fire({
+      title:"ตั้งงวดรัฐบาลไทย",
+      html:
+        '<div class="swal-admin-grid">'+
+        '<div class="swal-admin-field"><label>วันที่เริ่มเปิดรับ</label><input id="tgOpenDate" type="date" value="'+escapeAttr(current.openDate||today)+'"></div>'+
+        '<div class="swal-admin-field"><label>เวลาเริ่มเปิดรับ</label><input id="tgOpenTime" type="time" value="'+escapeAttr(current.openTime||"05:00")+'"></div>'+
+        '<div class="swal-admin-field"><label>วันที่ปิดรับ / วันออกผล</label><input id="tgCloseDate" type="date" value="'+escapeAttr(current.closeDate||"")+'"></div>'+
+        '<div class="swal-admin-field"><label>เวลาปิดรับ</label><input id="tgCloseTime" type="time" value="'+escapeAttr(current.closeTime||"15:20")+'"></div>'+
+        '<div class="swal-admin-field full"><div style="padding:10px;border-radius:10px;background:#fff7ed;color:#7c2d12;font-size:11px;line-height:1.6">เปิดรับได้วันไหนก็ได้ เช่น <b>25/08 → 01/09 15:20</b> ระบบจะเปิดหวยให้อัตโนมัติเมื่อถึงวันเริ่ม และปิดอัตโนมัติเมื่อถึงวัน/เวลาปิด</div></div>'+
+        '</div>',
+      showCancelButton:true,
+      confirmButtonText:"บันทึกงวด",
+      cancelButtonText:"ยกเลิก",
+      preConfirm:function(){
+        var d={
+          openDate:document.getElementById("tgOpenDate").value,
+          openTime:document.getElementById("tgOpenTime").value,
+          closeDate:document.getElementById("tgCloseDate").value,
+          closeTime:document.getElementById("tgCloseTime").value
+        };
+        if(!d.openDate||!d.closeDate) return Swal.showValidationMessage("กรุณาเลือกวันที่เปิดและวันที่ปิด");
+        if((d.openDate+" "+d.openTime) >= (d.closeDate+" "+d.closeTime)) return Swal.showValidationMessage("วัน/เวลาปิดต้องอยู่หลังวัน/เวลาเปิด");
+        return d;
+      }
+    });
+    if(!res.isConfirmed)return;
+    adminBusy("กำลังบันทึกงวดรัฐบาลไทย...");
+    var saved=await api("adminSaveThaiGovSchedule",state.token,res.value);
+    Swal.close();
+    await refreshBootData();
+    await loadAdminLottoSettings();
+    Swal.fire({icon:"success",title:"บันทึกงวดแล้ว",html:"เปิดรับ <b>"+escapeHtml(saved.openDate)+" "+escapeHtml(saved.openTime)+"</b><br>ปิดรับ <b>"+escapeHtml(saved.closeDate)+" "+escapeHtml(saved.closeTime)+"</b><br><small>ระบบจะเปิด/ปิดรัฐบาลไทยอัตโนมัติตามช่วงนี้</small>",confirmButtonText:"ตกลง"});
+  }catch(e){Swal.close();showAdminError(e);}
+}
+window.openThaiGovScheduleDialog = openThaiGovScheduleDialog;
+
+window.createThaiGovernmentLottery = createThaiGovernmentLottery;
+if (els.adminCreateThaiGovLottoBtn) {
+  els.adminCreateThaiGovLottoBtn.addEventListener("click", function(ev){
+    if (ev) ev.preventDefault();
+    return createThaiGovernmentLottery();
+  });
+}
 if (els.adminCreateLottoBtn) els.adminCreateLottoBtn.addEventListener("click",openCreateLottoDialog);
 
 function normalizeNumberLimits(limits){var seen={};return(Array.isArray(limits)?limits:[]).map(function(x){x=x||{};var betType=String(x.betType||"two")==="three"?"three":"two",len=betType==="three"?3:2,number=String(x.number||"").replace(/\D/g,"").slice(0,len),side=String(x.side||"both"),endDate=String(x.endDate||"").trim();if(!new RegExp("^\\d{"+len+"}$").test(number))return null;if(betType==="two"&&["top","bottom","both"].indexOf(side)===-1)side="both";if(betType==="three"&&["straight","tod","both"].indexOf(side)===-1)side="both";if(endDate&&!/^\d{4}-\d{2}-\d{2}$/.test(endDate))endDate="";var item={kind:String(x.kind||"close")==="half"?"half":"close",betType:betType,side:side,number:number,endDate:endDate},key=[item.kind,item.betType,item.side,item.number,item.endDate].join("|");if(seen[key])return null;seen[key]=true;return item;}).filter(Boolean);}
