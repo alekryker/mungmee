@@ -9,7 +9,16 @@
   <meta content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover" name="viewport"/>
   <meta content="#b91c1c" name="theme-color"/>
   <title>ทรัพย์มั่งมี — Admin</title>
-  <script src="./config.js"></script>
+  <script src="./config.js">
+document.addEventListener("DOMContentLoaded", function(){
+  var closeBtn = document.getElementById("adminErrorBannerClose");
+  if (closeBtn) closeBtn.addEventListener("click", function(){
+    var box = document.getElementById("adminErrorBanner");
+    if (box) box.classList.remove("show");
+  });
+});
+
+</script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -7643,6 +7652,640 @@ textarea:focus{
 .announcement-form-preview{margin-top:8px;max-height:220px;overflow:hidden;border:1px solid #ead2c6;border-radius:12px;background:#fff;text-align:center}.announcement-form-preview img{display:block;width:100%;max-height:220px;object-fit:contain}
 @media(max-width:620px){.announcement-admin-card{grid-template-columns:72px minmax(0,1fr)}.announcement-admin-thumb{width:72px;height:64px}.announcement-admin-actions{grid-column:1/-1;justify-content:flex-start}}
 
+
+/* =====================================================
+   V100 — MODERN ADMIN + NO ERROR POPUP
+===================================================== */
+.admin-error-banner{
+  display:none;align-items:flex-start;gap:10px;margin:0 0 12px;padding:12px 14px;
+  border:1px solid #fecaca;border-radius:12px;background:#fff1f2;color:#7f1d1d;
+  box-shadow:0 4px 14px rgba(127,29,29,.06);font-size:11px;line-height:1.55;
+}
+.admin-error-banner.show{display:flex}
+.admin-error-banner-icon{
+  width:22px;height:22px;flex:0 0 22px;border-radius:50%;display:grid;place-items:center;
+  background:#b91c1c;color:#fff;font-weight:800;
+}
+.admin-error-banner-copy{flex:1;min-width:0}
+.admin-error-banner-copy strong{display:block;font-size:12px;margin-bottom:2px}
+.admin-error-banner-close{
+  width:28px;height:28px;border:0;border-radius:8px;background:transparent;color:#7f1d1d;font-size:18px;
+}
+@media(min-width:900px){
+  .app{max-width:none!important;margin:0!important;border:0!important;border-radius:0!important;overflow:visible!important}
+  .admin-screen{min-height:100vh!important;background:#f7f7f8!important}
+  .admin-hero{
+    position:fixed!important;left:0;top:0;bottom:0;width:220px;z-index:60;
+    padding:22px 14px!important;border-radius:0!important;
+    background:linear-gradient(180deg,#5a0c0c,#260606)!important;
+    box-shadow:8px 0 26px rgba(45,5,5,.12)!important;
+  }
+  .admin-head-row{display:block!important}
+  .admin-head-row h1{font-size:21px!important;margin:0 0 18px!important}
+  .admin-head-actions{display:grid!important;grid-template-columns:1fr!important;gap:7px!important}
+  .admin-head-btn{width:100%!important;justify-content:flex-start!important}
+  .admin-tabs-wrap{
+    position:fixed!important;left:0;top:92px;bottom:0;width:220px;z-index:61;
+    padding:10px 12px 20px!important;background:transparent!important;overflow:auto;
+  }
+  .admin-tabs{
+    display:flex!important;flex-direction:column!important;gap:5px!important;overflow:visible!important;
+    padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;
+  }
+  .admin-tab{
+    min-height:43px!important;width:100%!important;text-align:left!important;padding:0 13px!important;
+    border-radius:9px!important;background:transparent!important;color:rgba(255,255,255,.82)!important;
+  }
+  .admin-tab:hover{background:rgba(255,255,255,.08)!important}
+  .admin-tab.active{
+    background:linear-gradient(135deg,#8f1010,#b91c1c)!important;color:#fff!important;
+    box-shadow:0 7px 18px rgba(0,0,0,.18)!important;
+  }
+  .admin-content{margin-left:220px!important;padding:26px 24px 50px!important;max-width:1500px!important}
+  .admin-card{border-radius:14px!important;box-shadow:0 4px 16px rgba(0,0,0,.04)!important}
+  .admin-stats{grid-template-columns:repeat(5,minmax(0,1fr))!important}
+  .admin-stat{background:#fff!important;border-color:#ececec!important}
+  .admin-table{min-width:900px!important}
+}
+
+
+/* ==========================================================
+   V101 — UX/UI ONLY : MATCH RED ADMIN REFERENCE
+   ไม่มีการแก้ business logic / API / event / function ใด ๆ
+========================================================== */
+:root{
+  --v101-red:#9f1717;
+  --v101-red2:#b82020;
+  --v101-red-dark:#5a0a0a;
+  --v101-side:#230707;
+  --v101-side2:#120303;
+  --v101-bg:#f4f4f5;
+  --v101-card:#ffffff;
+  --v101-text:#1f2937;
+  --v101-muted:#6b7280;
+  --v101-line:#e5e7eb;
+}
+
+#adminScreen{
+  background:var(--v101-bg)!important;
+  color:var(--v101-text)!important;
+}
+
+/* ---------- DESKTOP APP SHELL ---------- */
+@media(min-width:900px){
+  html,body{
+    background:var(--v101-bg)!important;
+  }
+  .app{
+    width:100%!important;
+    max-width:none!important;
+    margin:0!important;
+    padding:0!important;
+    border:0!important;
+    border-radius:0!important;
+    overflow:visible!important;
+    background:var(--v101-bg)!important;
+  }
+
+  /* top red bar */
+  #adminScreen .admin-hero{
+    position:fixed!important;
+    z-index:100!important;
+    top:0!important;
+    left:0!important;
+    right:0!important;
+    width:auto!important;
+    height:64px!important;
+    padding:0 20px!important;
+    display:flex!important;
+    align-items:center!important;
+    border:0!important;
+    border-radius:0!important;
+    overflow:visible!important;
+    background:linear-gradient(90deg,#650c0c 0%,#8e1212 45%,#741010 100%)!important;
+    box-shadow:0 1px 0 rgba(0,0,0,.20),0 5px 18px rgba(61,4,4,.12)!important;
+  }
+  #adminScreen .admin-hero:before{
+    content:"☰";
+    width:34px;
+    height:34px;
+    margin-right:12px;
+    display:grid;
+    place-items:center;
+    border-radius:8px;
+    color:#fff;
+    font-size:21px;
+    line-height:1;
+    background:rgba(255,255,255,.04);
+  }
+  #adminScreen .admin-hero:after{display:none!important}
+  #adminScreen .admin-head-row{
+    width:100%!important;
+    max-width:none!important;
+    margin:0!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    gap:16px!important;
+  }
+  #adminScreen .admin-head-row>div:first-child{
+    display:flex!important;
+    align-items:center!important;
+    gap:12px!important;
+  }
+  #adminScreen .admin-head-row h1{
+    margin:0!important;
+    color:#fff!important;
+    font-size:18px!important;
+    line-height:1!important;
+    font-weight:700!important;
+    letter-spacing:0!important;
+  }
+  #adminScreen .eyebrow,
+  #adminScreen #adminIdentity{
+    display:none!important;
+  }
+  #adminScreen .admin-head-actions{
+    display:flex!important;
+    align-items:center!important;
+    gap:8px!important;
+  }
+  #adminScreen .admin-head-btn{
+    min-height:36px!important;
+    padding:0 10px!important;
+    border:0!important;
+    border-radius:7px!important;
+    background:transparent!important;
+    color:rgba(255,255,255,.90)!important;
+    box-shadow:none!important;
+    font-size:10px!important;
+    font-weight:500!important;
+  }
+  #adminScreen .admin-head-btn:hover{
+    background:rgba(255,255,255,.08)!important;
+  }
+
+  /* left dark sidebar */
+  #adminScreen .admin-tabs-wrap{
+    position:fixed!important;
+    z-index:90!important;
+    top:64px!important;
+    left:0!important;
+    bottom:0!important;
+    width:190px!important;
+    padding:14px 10px 24px!important;
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+    background:linear-gradient(180deg,#2b0808 0%,#190404 58%,#100202 100%)!important;
+    border:0!important;
+  }
+  #adminScreen .admin-tabs{
+    display:flex!important;
+    flex-direction:column!important;
+    gap:4px!important;
+    width:100%!important;
+    padding:0!important;
+    margin:0!important;
+    overflow:visible!important;
+    border:0!important;
+    border-radius:0!important;
+    background:transparent!important;
+    box-shadow:none!important;
+  }
+  #adminScreen .admin-tab{
+    flex:0 0 auto!important;
+    width:100%!important;
+    min-height:42px!important;
+    padding:0 12px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+    gap:10px!important;
+    border:0!important;
+    border-radius:7px!important;
+    background:transparent!important;
+    color:rgba(255,255,255,.76)!important;
+    box-shadow:none!important;
+    text-align:left!important;
+    font-size:10px!important;
+    font-weight:400!important;
+    white-space:normal!important;
+  }
+  #adminScreen .admin-tab i{
+    width:18px!important;
+    flex:0 0 18px!important;
+    color:rgba(255,255,255,.82)!important;
+    font-size:14px!important;
+    text-align:center!important;
+  }
+  #adminScreen .admin-tab span{
+    color:inherit!important;
+  }
+  #adminScreen .admin-tab:hover{
+    background:rgba(255,255,255,.055)!important;
+    color:#fff!important;
+  }
+  #adminScreen .admin-tab.active{
+    background:linear-gradient(90deg,#991b1b,#a91d1d)!important;
+    color:#fff!important;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.025),0 7px 18px rgba(0,0,0,.16)!important;
+  }
+  #adminScreen .admin-tab.active i{color:#fff!important}
+
+  /* main workspace */
+  #adminScreen .admin-content{
+    min-height:100vh!important;
+    margin-left:190px!important;
+    padding:92px 20px 42px!important;
+    background:#f5f5f6!important;
+    max-width:none!important;
+  }
+  #adminScreen .admin-panel{
+    max-width:1320px!important;
+    margin:0 auto!important;
+  }
+
+  /* cards */
+  #adminScreen .admin-card,
+  #adminScreen .summary-filter-card,
+  #adminScreen .summary-table-card{
+    padding:14px!important;
+    border:1px solid #e2e5e9!important;
+    border-radius:11px!important;
+    background:#fff!important;
+    box-shadow:0 2px 8px rgba(17,24,39,.035)!important;
+  }
+  #adminScreen .admin-card+.admin-card{margin-top:12px!important}
+  #adminScreen .admin-card-head{
+    gap:10px!important;
+  }
+  #adminScreen .admin-card h2{
+    margin:0!important;
+    color:#171717!important;
+    font-size:15px!important;
+    line-height:1.35!important;
+    font-weight:700!important;
+  }
+  #adminScreen .admin-card h3{
+    color:#252525!important;
+    font-size:13px!important;
+    font-weight:650!important;
+  }
+  #adminScreen .admin-muted{
+    margin-top:3px!important;
+    color:#7b7f87!important;
+    font-size:9px!important;
+    font-weight:400!important;
+  }
+
+  /* filter area */
+  #adminScreen .admin-toolbar{
+    display:grid!important;
+    grid-template-columns:repeat(4,minmax(120px,1fr)) auto!important;
+    gap:9px!important;
+    align-items:end!important;
+    margin-top:12px!important;
+    padding:12px!important;
+    border:1px solid #eceef0!important;
+    border-radius:10px!important;
+    background:#fafafa!important;
+  }
+  #adminScreen .admin-toolbar>.admin-btn{
+    min-width:75px!important;
+  }
+  #adminScreen .admin-field{
+    flex:auto!important;
+    min-width:0!important;
+  }
+  #adminScreen .admin-field label{
+    margin-bottom:5px!important;
+    color:#5f6368!important;
+    font-size:9px!important;
+    font-weight:500!important;
+  }
+  #adminScreen .admin-field input,
+  #adminScreen .admin-field select{
+    width:100%!important;
+    height:38px!important;
+    padding:0 9px!important;
+    border:1px solid #dfe3e8!important;
+    border-radius:7px!important;
+    background:#fff!important;
+    color:#343434!important;
+    box-shadow:none!important;
+    font-size:10px!important;
+    font-weight:400!important;
+  }
+  #adminScreen .admin-field input:focus,
+  #adminScreen .admin-field select:focus{
+    border-color:#c43b3b!important;
+    box-shadow:0 0 0 2px rgba(185,28,28,.08)!important;
+  }
+
+  #adminScreen .admin-btn{
+    min-height:38px!important;
+    border-radius:7px!important;
+    padding:0 11px!important;
+    box-shadow:none!important;
+    font-size:9px!important;
+    font-weight:600!important;
+  }
+  #adminScreen .admin-btn.dark,
+  #adminScreen .admin-btn.red,
+  #adminScreen .admin-btn.green{
+    border:1px solid #a61919!important;
+    background:linear-gradient(180deg,#ae2020,#941616)!important;
+    color:#fff!important;
+  }
+  #adminScreen .admin-btn.soft{
+    border:1px solid #dde1e5!important;
+    background:#fff!important;
+    color:#51565c!important;
+  }
+  #adminScreen .admin-btn.soft:hover{
+    border-color:#c9cdd2!important;
+    background:#f7f7f7!important;
+  }
+
+  /* checkbox filter */
+  #adminScreen .admin-lotto-filter{
+    margin-top:10px!important;
+    padding:10px!important;
+    border:1px solid #e7e9ec!important;
+    border-radius:9px!important;
+    background:#fafafa!important;
+  }
+  #adminScreen .admin-lotto-filter-head strong{
+    color:#454545!important;
+    font-size:10px!important;
+  }
+  #adminScreen .admin-lotto-checks{
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  }
+  #adminScreen .admin-lotto-check{
+    background:#fff!important;
+    border:1px solid #eef0f2!important;
+  }
+
+  /* stat boxes */
+  #adminScreen .admin-stats{
+    display:grid!important;
+    grid-template-columns:repeat(5,minmax(0,1fr))!important;
+    gap:8px!important;
+    margin-top:12px!important;
+  }
+  #adminScreen .admin-stat{
+    min-height:72px!important;
+    padding:11px!important;
+    border:1px solid #e5e7eb!important;
+    border-radius:9px!important;
+    background:#fff!important;
+    box-shadow:none!important;
+  }
+  #adminScreen .admin-stat small{
+    color:#70757c!important;
+    font-size:8px!important;
+    font-weight:450!important;
+  }
+  #adminScreen .admin-stat strong{
+    margin-top:5px!important;
+    color:#1f2937!important;
+    font-size:16px!important;
+    font-weight:700!important;
+  }
+  #adminScreen .admin-stat.deposit,
+  #adminScreen .admin-stat.withdraw{
+    padding:11px!important;
+    border:1px solid #e5e7eb!important;
+    background:#fff!important;
+    box-shadow:none!important;
+  }
+  #adminScreen .admin-stat.deposit strong{color:#16713b!important}
+  #adminScreen .admin-stat.withdraw strong{color:#a71919!important}
+
+  /* grids */
+  #adminScreen .admin-grid-2{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:12px!important;
+    margin-top:12px!important;
+  }
+
+  /* tables */
+  #adminScreen .admin-table-wrap{
+    width:100%!important;
+    overflow:auto!important;
+    border:1px solid #e4e7ea!important;
+    border-radius:9px!important;
+    background:#fff!important;
+    box-shadow:none!important;
+  }
+  #adminScreen .admin-table{
+    width:100%!important;
+    min-width:760px!important;
+    border-collapse:collapse!important;
+    background:#fff!important;
+    color:#363636!important;
+    font-size:9px!important;
+  }
+  #adminScreen .admin-table th{
+    position:sticky!important;
+    top:0!important;
+    z-index:2!important;
+    padding:9px 8px!important;
+    border-bottom:1px solid #e5e7eb!important;
+    background:#fafafa!important;
+    color:#60656c!important;
+    font-size:8px!important;
+    font-weight:600!important;
+    white-space:nowrap!important;
+  }
+  #adminScreen .admin-table td{
+    padding:9px 8px!important;
+    border-bottom:1px solid #f0f1f2!important;
+    color:#414141!important;
+    font-size:9px!important;
+    font-weight:400!important;
+    vertical-align:middle!important;
+  }
+  #adminScreen .admin-table tr:hover td{
+    background:#fcfcfc!important;
+  }
+
+  /* action chips/buttons */
+  #adminScreen .admin-mini{
+    min-height:28px!important;
+    padding:0 8px!important;
+    border:1px solid #e0e3e6!important;
+    border-radius:6px!important;
+    background:#fff!important;
+    color:#51565d!important;
+    box-shadow:none!important;
+    font-size:8px!important;
+    font-weight:600!important;
+  }
+  #adminScreen .admin-mini.edit,
+  #adminScreen .admin-mini.credit{
+    border-color:#b92020!important;
+    background:#a91b1b!important;
+    color:#fff!important;
+  }
+  #adminScreen .admin-mini.danger{
+    border-color:#f1bcbc!important;
+    background:#fff1f1!important;
+    color:#a31515!important;
+  }
+
+  /* status pills */
+  #adminScreen .status-pill{
+    min-height:24px!important;
+    align-items:center!important;
+    padding:0 8px!important;
+    border-radius:6px!important;
+    font-size:8px!important;
+    font-weight:600!important;
+  }
+  #adminScreen .status-WAITING{background:#fff6d8!important;color:#9a6c00!important}
+  #adminScreen .status-WIN{background:#eaf8ee!important;color:#247541!important}
+  #adminScreen .status-LOSE{background:#fff0f0!important;color:#a81b1b!important}
+  #adminScreen .status-CANCELLED{background:#f0f0f1!important;color:#60656c!important}
+
+  /* non-modal error banner */
+  #adminScreen .admin-error-banner{
+    margin:0 auto 12px!important;
+    max-width:1320px!important;
+    border:1px solid #f2b9b9!important;
+    border-radius:9px!important;
+    background:#fff7f7!important;
+    color:#8b1a1a!important;
+    box-shadow:none!important;
+  }
+}
+
+/* ---------- MOBILE / TABLET ---------- */
+@media(max-width:899px){
+  #adminScreen .admin-hero{
+    position:sticky!important;
+    top:0!important;
+    z-index:80!important;
+    padding:calc(10px + env(safe-area-inset-top)) 12px 10px!important;
+    border-radius:0!important;
+    background:linear-gradient(90deg,#650c0c,#951717)!important;
+    box-shadow:0 4px 16px rgba(61,4,4,.18)!important;
+  }
+  #adminScreen .admin-head-row h1{
+    font-size:18px!important;
+    color:#fff!important;
+  }
+  #adminScreen .eyebrow,
+  #adminScreen #adminIdentity{display:none!important}
+  #adminScreen .admin-head-btn{
+    min-height:34px!important;
+    border:0!important;
+    background:rgba(255,255,255,.08)!important;
+    color:#fff!important;
+  }
+  #adminScreen .admin-tabs-wrap{
+    position:sticky!important;
+    top:58px!important;
+    z-index:70!important;
+    padding:7px!important;
+    background:#210505!important;
+    overflow:hidden!important;
+  }
+  #adminScreen .admin-tabs{
+    display:flex!important;
+    gap:5px!important;
+    overflow-x:auto!important;
+    padding:0!important;
+    border:0!important;
+    background:transparent!important;
+    box-shadow:none!important;
+    scrollbar-width:none;
+  }
+  #adminScreen .admin-tabs::-webkit-scrollbar{display:none}
+  #adminScreen .admin-tab{
+    flex:0 0 auto!important;
+    min-height:38px!important;
+    padding:0 10px!important;
+    border:0!important;
+    border-radius:7px!important;
+    background:transparent!important;
+    color:rgba(255,255,255,.72)!important;
+    white-space:nowrap!important;
+    font-size:9px!important;
+  }
+  #adminScreen .admin-tab i{color:inherit!important}
+  #adminScreen .admin-tab.active{
+    background:#991b1b!important;
+    color:#fff!important;
+  }
+  #adminScreen .admin-content{
+    margin:0!important;
+    padding:12px 9px 34px!important;
+    background:#f4f4f5!important;
+  }
+  #adminScreen .admin-card{
+    padding:12px!important;
+    border:1px solid #e4e7ea!important;
+    border-radius:10px!important;
+    background:#fff!important;
+    box-shadow:0 2px 7px rgba(0,0,0,.035)!important;
+  }
+  #adminScreen .admin-toolbar{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:8px!important;
+    padding:9px!important;
+    background:#fafafa!important;
+    border:1px solid #eceef0!important;
+    border-radius:9px!important;
+  }
+  #adminScreen .admin-field{
+    min-width:0!important;
+  }
+  #adminScreen .admin-field input,
+  #adminScreen .admin-field select{
+    height:40px!important;
+    border-radius:7px!important;
+    border-color:#dfe3e8!important;
+    background:#fff!important;
+  }
+  #adminScreen .admin-toolbar>.admin-btn{
+    width:100%!important;
+    min-height:40px!important;
+  }
+  #adminScreen .admin-stats{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:7px!important;
+  }
+  #adminScreen .admin-stat{
+    border:1px solid #e5e7eb!important;
+    border-radius:8px!important;
+    background:#fff!important;
+  }
+  #adminScreen .admin-grid-2{
+    grid-template-columns:1fr!important;
+  }
+  #adminScreen .admin-table-wrap{
+    border-radius:8px!important;
+    border-color:#e4e7ea!important;
+  }
+  #adminScreen .admin-table{
+    min-width:760px!important;
+  }
+  #adminScreen .admin-error-banner{
+    margin-bottom:10px!important;
+    border-radius:8px!important;
+  }
+}
+
+/* Never show generic SweetAlert API-error modal over admin UI.
+   Confirmation dialogs used by admin actions remain untouched. */
+#adminScreen ~ .swal2-container .swal2-popup.admin-api-error-hidden{
+  display:none!important;
+}
+
 </style>
  
 <style id="admin-page-only">
@@ -8932,12 +9575,12 @@ small,label,.admin-muted,.admin-table,.admin-table th,.admin-table td,
      <div class="admin-head-row">
       <div>
        <div class="eyebrow">CONTROL CENTER</div>
-       <h1>Admin Dashboard</h1>
+       <h1>Panel Admin</h1>
        <div class="admin-muted" style="color:rgba(255,255,255,.68)" id="adminIdentity">ADMIN</div>
       </div>
       <div class="admin-head-actions">
        
-       <button class="admin-head-btn" id="adminLogoutBtn">ออก</button>
+       <button class="admin-head-btn" id="adminLogoutBtn">↪&nbsp; ออกจากระบบ</button>
       </div>
      </div>
     </header>
@@ -8958,6 +9601,11 @@ small,label,.admin-muted,.admin-table,.admin-table th,.admin-table td,
     </div>
 
     <div class="admin-content">
+<div id="adminErrorBanner" class="admin-error-banner" role="status">
+  <div class="admin-error-banner-icon">!</div>
+  <div class="admin-error-banner-copy"><strong>ไม่สามารถโหลดข้อมูลได้</strong><span id="adminErrorBannerText"></span></div>
+  <button type="button" class="admin-error-banner-close" id="adminErrorBannerClose" aria-label="ปิด">×</button>
+</div>
      <section class="admin-panel active" id="adminPanel-dashboard">
       <div class="admin-card">
        <div class="admin-card-head">
@@ -9099,6 +9747,41 @@ small,label,.admin-muted,.admin-table,.admin-table th,.admin-table td,
      <section class="admin-panel" id="adminPanel-lotto">
       <div class="admin-card">
        <div class="admin-card-head"><div><h2>ตั้งค่าหวย</h2></div><div style="display:flex;gap:7px;flex-wrap:wrap"><button class="admin-btn soft" id="adminCreateThaiGovLottoBtn" onclick="createThaiGovernmentLottery(); return false;">🇹🇭 เพิ่มหวยรัฐบาลไทย</button><button class="admin-btn soft" id="adminThaiGovScheduleBtn" onclick="openThaiGovScheduleDialog(); return false;">📅 ตั้งงวดรัฐบาล</button><button class="admin-btn red" id="adminCreateLottoBtn">+ เพิ่มหวยใหม่</button></div></div>
+       <div class="rate-editor-card" id="adminYeekeeCard" style="margin:12px 0 14px">
+        <div class="admin-card-head">
+         <div style="display:flex;align-items:center;gap:10px">
+          <img src="yeekee-logo.jpeg" alt="" style="width:52px;height:52px;object-fit:cover;border-radius:14px">
+          <div>
+           <h3 style="margin:0">หวยยี่กี 96 รอบ</h3>
+           <div class="admin-muted">รอบ 01 เวลา 06:00 → รอบ 96 เวลา 05:45 • ออกทุก 15 นาที</div>
+          </div>
+         </div>
+         <button class="admin-btn dark" id="adminYeekeeSaveBtn" type="button">บันทึกยี่กี</button>
+        </div>
+        <div class="admin-toolbar">
+         <div class="admin-field">
+          <label>เปิดใช้งานกลุ่มยี่กี</label>
+          <select id="adminYeekeeEnabled">
+           <option value="1">เปิด</option>
+           <option value="0">ปิด</option>
+          </select>
+         </div>
+         <div class="admin-field">
+          <label>ระบบชนะ (%)</label>
+          <input id="adminYeekeeSystemWinPercent" type="number" inputmode="decimal" min="0" max="100" step="1" value="70">
+         </div>
+         <div class="admin-field">
+          <label>จำนวนรอบ</label>
+          <input value="96" disabled>
+         </div>
+         <div class="admin-field">
+          <label>ห่างกัน</label>
+          <input value="15 นาที" disabled>
+         </div>
+        </div>
+        <div class="admin-muted" id="adminYeekeeStatus" style="margin-top:8px">กำลังอ่านสถานะยี่กี…</div>
+       </div>
+
        <div class="lotto-subtabs">
         <button class="lotto-subtab active" data-lotto-subtab="enabled">เปิด / ปิดหวย</button>
         <button class="lotto-subtab" data-lotto-subtab="rules">เงื่อนไขหวย</button>
@@ -9824,6 +10507,8 @@ function bindEvents() {
   if (els.adminAffiliateReloadBtn) els.adminAffiliateReloadBtn.onclick = loadAdminAffiliates;
   if (els.adminAffiliateSearch) els.adminAffiliateSearch.oninput = adminDebounceV133(function(){ invalidateAdminFastTab("affiliate"); loadAdminAffiliates(); },350);
   if (els.adminConnectionSaveBtn) els.adminConnectionSaveBtn.onclick = saveAdminConnectionSettings;
+  var adminYeekeeSaveBtn = document.getElementById("adminYeekeeSaveBtn");
+  if (adminYeekeeSaveBtn) adminYeekeeSaveBtn.onclick = saveAdminYeekeeSettings;
   if (els.adminMiniGameSaveBtn) els.adminMiniGameSaveBtn.onclick = saveAdminMiniGameSettings;
   if (els.adminMiniGameReloadBtn) els.adminMiniGameReloadBtn.onclick = function(){ invalidateAdminFastTab("minigame"); loadAdminMiniGameRounds(true); };
   if (els.adminMiniGameSearchBtn) els.adminMiniGameSearchBtn.onclick = function(){ invalidateAdminFastTab("minigame"); loadAdminMiniGameRounds(true); };
@@ -14025,9 +14710,65 @@ function showLottoSubTab(tab) {
   if (state.lottoSubTab === "limits") renderAdminNumberLimits();
 }
 
+
+async function loadAdminYeekeeSettings(){
+  try{
+    var cfg = await api("adminGetYeekeeSettings",state.token) || {};
+    var enabledEl = document.getElementById("adminYeekeeEnabled");
+    var percentEl = document.getElementById("adminYeekeeSystemWinPercent");
+    var statusEl = document.getElementById("adminYeekeeStatus");
+
+    if(enabledEl) enabledEl.value = cfg.enabled === false ? "0" : "1";
+    if(percentEl) percentEl.value = Number(cfg.systemWinPercent == null ? 70 : cfg.systemWinPercent);
+
+    if(statusEl){
+      var next = cfg.nextRound;
+      statusEl.innerHTML =
+        'สถานะ: <b>'+(cfg.enabled===false?'ปิด':'เปิด')+'</b>'+
+        ' • ระบบชนะ <b>'+Number(cfg.systemWinPercent||0)+'%</b>'+
+        ' • 96 รอบ/วัน'+
+        (next
+          ? ' • รอบถัดไป <b>'+escapeHtml(next.lottoName||"")+'</b> ปิด '+escapeHtml(next.closeTime||"")
+          : ' • ขณะนี้ไม่มีรอบเปิดรับ');
+    }
+  }catch(e){
+    var statusEl = document.getElementById("adminYeekeeStatus");
+    if(statusEl) statusEl.textContent = "โหลดตั้งค่ายี่กีไม่สำเร็จ";
+    showAdminError(e);
+  }
+}
+
+async function saveAdminYeekeeSettings(){
+  var enabledEl = document.getElementById("adminYeekeeEnabled");
+  var percentEl = document.getElementById("adminYeekeeSystemWinPercent");
+  var p = Number(percentEl && percentEl.value);
+
+  if(!isFinite(p) || p < 0 || p > 100){
+    return showToast("เปอร์เซ็นต์ระบบชนะยี่กีต้องอยู่ 0 - 100");
+  }
+
+  try{
+    adminBusy("กำลังบันทึกยี่กี...");
+    await api("adminSaveYeekeeSettings",state.token,{
+      enabled:!enabledEl || enabledEl.value !== "0",
+      systemWinPercent:p
+    });
+    Swal.close();
+
+    await refreshBootData();
+    await loadAdminYeekeeSettings();
+
+    showToast("บันทึกตั้งค่ายี่กีแล้ว");
+  }catch(e){
+    Swal.close();
+    showAdminError(e);
+  }
+}
+
 async function loadAdminLottoSettings() {
   if (!state.isAdmin) return;
   try {
+    await loadAdminYeekeeSettings();
     state.adminLottos = await api("adminGetLottoSettings",state.token) || [];
     fillAdminLimitLottoOptions();
     var weekdayDefs=[{n:1,t:"จ"},{n:2,t:"อ"},{n:3,t:"พ"},{n:4,t:"พฤ"},{n:5,t:"ศ"},{n:6,t:"ส"},{n:7,t:"อา"}];
@@ -14245,18 +14986,27 @@ function adminBusy(title) {
 }
 
 function showAdminError(e) {
+  setLoading(false);
+  try { Swal.close(); } catch(_e) {}
+
   var msg = typeof e === "string"
     ? e
-    : (e && e.message ? e.message : "เกิดข้อผิดพลาด");
+    : (e && e.message ? e.message : "โหลดข้อมูลไม่สำเร็จ");
 
-  if (typeof Swal !== "undefined") {
-    Swal.fire({
-      icon:"error",
-      title:"เกิดข้อผิดพลาด",
-      text:msg
-    });
+  if (msg === "SESSION_EXPIRED" || /Session หมดอายุ/i.test(msg)) {
+    logout(false);
+    showToast("กรุณาเข้าสู่ระบบใหม่");
+    return;
+  }
+
+  var box = document.getElementById("adminErrorBanner");
+  var copy = document.getElementById("adminErrorBannerText");
+  if (copy) copy.textContent = msg;
+  if (box) {
+    box.classList.add("show");
+    try { box.scrollIntoView({behavior:"smooth",block:"nearest"}); } catch(_e) {}
   } else {
-    Swal.fire({icon:"info",title:"แจ้งเตือน",text:String(msg),confirmButtonText:"ตกลง",confirmButtonColor:"#e11d48"});
+    showToast("โหลดข้อมูลไม่สำเร็จ");
   }
 }
 
@@ -14487,6 +15237,11 @@ function showErrorGlobal(e) {
   if (msg === "SESSION_EXPIRED" || /Session หมดอายุ/i.test(msg)) {
     logout(false);
     showToast("กรุณาเข้าสู่ระบบใหม่");
+    return;
+  }
+
+  if (state && state.isAdmin) {
+    showAdminError(msg);
     return;
   }
 
