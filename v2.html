@@ -24977,6 +24977,28 @@ html[data-lang="en"] textarea{
 }
 </style>
 
+
+<style>
+/* V155 — แนะนำเพื่อน: ปุ่ม 'ดูรายละเอียด' เป็นสีดำ */
+#homeAffiliateBtn .home-v85-detail-pill,
+#homeAffiliateBtn .home-v85-detail-pill i {
+  color: #000 !important;
+}
+</style>
+
+
+<style id="v156-affiliate-detail-force-black">
+#homeScreen #homeAffiliateBtn .home-v85-detail-pill,
+#homeScreen #homeAffiliateBtn .home-v85-detail-pill > span,
+#homeScreen #homeAffiliateBtn .home-v85-detail-pill i{
+  color:#000 !important;
+  -webkit-text-fill-color:#000 !important;
+  opacity:1 !important;
+  visibility:visible !important;
+  text-shadow:none !important;
+}
+</style>
+
 </head>
  <body>
 
@@ -25135,6 +25157,21 @@ html[data-lang="en"] textarea{
             <div class="login-field">
               <label>หมายเลขบัญชี</label>
               <input id="regBankAccountNo" inputmode="numeric" placeholder="เลขบัญชี">
+            </div>
+
+            <div class="login-field full">
+              <label>รู้จักเราผ่านช่องทางไหน</label>
+              <select id="regDiscoverySource" required>
+                <option value="" selected disabled>เลือกช่องทาง</option>
+                <option value="Facebook">Facebook</option>
+                <option value="TikTok">TikTok</option>
+                <option value="LINE">LINE</option>
+                <option value="Google">Google</option>
+                <option value="YouTube">YouTube</option>
+                <option value="เพื่อนแนะนำ">เพื่อนแนะนำ</option>
+                <option value="กลุ่มหวย/ชุมชน">กลุ่มหวย / ชุมชน</option>
+                <option value="อื่นๆ">อื่นๆ</option>
+              </select>
             </div>
 
             <div class="login-field full">
@@ -25398,7 +25435,10 @@ html[data-lang="en"] textarea{
         <span class="home-v54-affiliate-copy home-v85-affiliate-copy">
          <strong><i class="fi fi-sr-user-add"></i>แนะนำเพื่อน</strong>
          <small>รับค่าคอมมิชชั่นจากยอดแทงเพื่อน</small>
-         <span class="home-v85-detail-pill">ดูรายละเอียด <i class="fi fi-sr-angle-small-right"></i></span>
+         <span class="home-v85-detail-pill" style="color:#000!important;-webkit-text-fill-color:#000!important;opacity:1!important;visibility:visible!important;">
+  <span style="color:#000!important;-webkit-text-fill-color:#000!important;opacity:1!important;">ดูรายละเอียด</span>
+  <i class="fi fi-sr-angle-small-right" style="color:#000!important;-webkit-text-fill-color:#000!important;opacity:1!important;"></i>
+</span>
         </span>
         <span class="home-v54-gift home-v85-gift"><i class="fi fi-sr-gift"></i></span>
        </button>
@@ -25915,6 +25955,7 @@ html[data-lang="en"] textarea{
       <select id="moneyType" class="wide">
        <option value="">ทุกรายการ</option>
        <option value="DEPOSIT_SLIP">เติมเครดิตด้วยสลิป</option>
+       <option value="DEPOSIT_TRUEWALLET">เติมเครดิตด้วยซองอั่งเปา</option>
        <option value="WITHDRAW_PENDING">ถอนเงินรออนุมัติ</option>
        <option value="WITHDRAW_CANCEL">ยกเลิกถอน/คืนเครดิต</option>
        <option value="BET">แทงหวย</option>
@@ -26601,7 +26642,7 @@ window.addEventListener("pageshow", function(){
 
 document.addEventListener("DOMContentLoaded", function () {
   [
-    "loginScreen","mainApp","apiState","loginVersion","authLoginTab","authRegisterTab","loginPanel","registerPanel","loginUser","loginPass","loginPassToggle","loginBtn","regPhone","regPass","regPassConfirm","regBankNameAccount","regBankName","regBankAccountNo","regReferralCode","regReferralHint","registerBtn",
+    "loginScreen","mainApp","apiState","loginVersion","authLoginTab","authRegisterTab","loginPanel","registerPanel","loginUser","loginPass","loginPassToggle","loginBtn","regPhone","regPass","regPassConfirm","regBankNameAccount","regBankName","regBankAccountNo","regDiscoverySource","regReferralCode","regReferralHint","registerBtn",
     "homeScreen","homeCredit","homeUserName","homeUsername","homeMemberCode","homeLineContactBtn","homeLogoutBtn","homeDepositBtn","homeWithdrawBtn","homeLottoBtn","homeHistoryBtn","homeResultsBtn","homeSummaryBtn","homeMoneyBtn","homeAffiliateBtn","homeGameBtn","gameSelectScreen","gameSelectBackBtn","gameSelectBalance","openRpsBtn","openHeadsTailsBtn","openDiceBtn","rpsGameScreen","rpsBackBtn","rpsBalance","rpsBetAmount","rpsMaxBtn","rpsUserHand","rpsSystemHand","rpsUserName","rpsSystemName","rpsResult","rpsHistoryReloadBtn","rpsHistoryAllBtn","rpsHistoryList","headsTailsGameScreen","headsTailsBackBtn","headsTailsBalance","headsTailsBetAmount","headsTailsMaxBtn","headsTailsCoin","headsTailsCoinStage","headsTailsArena","headsTailsTossFlash","headsTailsResult","headsTailsHistoryReloadBtn","headsTailsHistoryAllBtn","headsTailsHistoryList","diceGameScreen","diceBackBtn","diceBalance","diceBetAmount","diceMaxBtn","diceArena","diceStage","diceRollFlash","dice1","dice2","dice3","diceSum","diceResult","diceHistoryReloadBtn","diceHistoryAllBtn","diceHistoryList","cardGameScreen","cardBackBtn","cardBalance","cardBetAmount","cardMaxBtn","cardArena","cardGameTitle","cardRevealFlash","cardCountdown","cardResult","cardHistoryReloadBtn","cardHistoryAllBtn","cardHistoryList","openCardBtn","gameHistoryScreen","gameHistoryBackBtn","gameHistoryList","gameHistoryCount","lottoHomeBtn","betHomeBtn",
     "lottoScreen","betScreen","historyScreen","moneyScreen","profileScreen","memberSummaryScreen","resultsScreen","yeekeeResultsScreen","affiliateScreen","gameSelectScreen","rpsGameScreen","headsTailsGameScreen","diceGameScreen","cardGameScreen","gameHistoryScreen","adminScreen","lottoGrid","lottoEmpty",
     "backBtn","bottomBackBtn","classicRuleBtn","selectedName","selectedRound","selectedClose","selectedCount","selectedLimitNote","selectedRateNote",
@@ -26832,7 +26873,7 @@ function bindEvents() {
 
   // V16.1: สมาชิกอัปโหลดสลิปและตรวจสอบได้ด้วยตัวเอง
   if (els.homeDepositBtn) els.homeDepositBtn.onclick = function(){
-    ensureBootLoaded().then(openSelfDeposit).catch(showErrorGlobal);
+    ensureBootLoaded().then(openDepositMethodPickerV159).catch(showErrorGlobal);
   };
   if (els.homeWithdrawBtn) els.homeWithdrawBtn.onclick = showWithdrawInfo;
   if (els.homeAffiliateBtn) els.homeAffiliateBtn.onclick = showAffiliate;
@@ -27431,6 +27472,7 @@ function registerMember() {
     bankAccountName: els.regBankNameAccount ? els.regBankNameAccount.value || "" : "",
     bankName: els.regBankName ? els.regBankName.value || "" : "",
     bankAccountNo: normalizeDigits(els.regBankAccountNo && els.regBankAccountNo.value),
+    discoverySource: String(els.regDiscoverySource && els.regDiscoverySource.value || "").trim(),
     referralCode: String(els.regReferralCode && els.regReferralCode.value || "").trim().toUpperCase()
   };
 
@@ -27448,6 +27490,10 @@ function registerMember() {
   }
   if (!payload.bankAccountName || !payload.bankName || !payload.bankAccountNo) {
     showErrorGlobal("กรุณากรอกข้อมูลธนาคารให้ครบ");
+    return;
+  }
+  if (!payload.discoverySource) {
+    showErrorGlobal("กรุณาเลือกว่ารู้จักเราผ่านช่องทางไหน");
     return;
   }
 
@@ -28711,6 +28757,157 @@ function depositBankCardHtmlV144(cfg) {
     '</div>' +
   '</div>';
 }
+
+
+function openDepositMethodPickerV159() {
+  Swal.fire({
+    title:'ฝากเงิน',
+    html:
+      '<div style="font-size:12px;line-height:1.7;color:#6b5a5c;margin-bottom:12px">' +
+        'เลือกช่องทางฝากเงิน' +
+      '</div>' +
+      '<div style="display:grid;grid-template-columns:1fr;gap:10px">' +
+        '<button type="button" id="depositMethodSlipV159" style="border:1px solid #ead9da;background:#fff;border-radius:16px;padding:15px 16px;text-align:left;cursor:pointer">' +
+          '<div style="font-size:14px;font-weight:800;color:#3f0b0e">โอนธนาคาร / อัปโหลดสลิป</div>' +
+          '<div style="font-size:10px;color:#8f7779;margin-top:3px">ตรวจสลิปและเพิ่มเครดิตแบบเดิม</div>' +
+        '</button>' +
+        '<button type="button" id="depositMethodTrueWalletV159" style="border:1px solid #ffe2b8;background:#fff8ef;border-radius:16px;padding:15px 16px;text-align:left;cursor:pointer">' +
+          '<div style="font-size:14px;font-weight:800;color:#9a4b00">ซองอั่งเปา TrueMoney</div>' +
+          '<div style="font-size:10px;color:#9b7859;margin-top:3px">วางลิงก์ซอง แล้วเติมเครดิตจากยอดที่ได้รับจริง</div>' +
+        '</button>' +
+      '</div>',
+    showConfirmButton:false,
+    showCancelButton:true,
+    cancelButtonText:'ยกเลิก',
+    didOpen:function(){
+      var slipBtn = document.getElementById('depositMethodSlipV159');
+      var twBtn = document.getElementById('depositMethodTrueWalletV159');
+
+      if (slipBtn) {
+        slipBtn.onclick = function(){
+          Swal.close();
+          setTimeout(openSelfDeposit, 60);
+        };
+      }
+
+      if (twBtn) {
+        twBtn.onclick = function(){
+          Swal.close();
+          setTimeout(openTrueWalletDepositV159, 60);
+        };
+      }
+    }
+  });
+}
+
+function openTrueWalletDepositV159() {
+  Swal.fire({
+    title:'ฝากด้วยซองอั่งเปา',
+    html:
+      '<div style="text-align:left;font-size:11px;line-height:1.75;color:#69595b;margin-bottom:10px">' +
+        'วางลิงก์ซองอั่งเปา TrueMoney<br>' +
+        '<code style="font-size:9px;word-break:break-all;color:#8c4b08">https://gift.truemoney.com/campaign/?v=...</code>' +
+        '<div style="margin-top:10px;padding:9px 10px;border-radius:12px;background:#fff7ed;color:#9a4b00">' +
+          'ระบบจะเพิ่มเครดิตจากยอดที่ TrueMoney ยืนยันว่าได้รับจริงเท่านั้น' +
+        '</div>' +
+      '</div>',
+    input:'text',
+    inputPlaceholder:'วางลิงก์ซองอั่งเปา TrueMoney',
+    inputAttributes:{
+      autocapitalize:'off',
+      autocomplete:'off',
+      spellcheck:'false'
+    },
+    showCancelButton:true,
+    confirmButtonText:'รับซองและเติมเครดิต',
+    cancelButtonText:'ยกเลิก',
+    confirmButtonColor:'#c2410c',
+    showLoaderOnConfirm:true,
+    allowOutsideClick:function(){
+      return !Swal.isLoading();
+    },
+    preConfirm:function(value){
+      var voucher = String(value || '').trim();
+
+      if (!voucher) {
+        Swal.showValidationMessage('กรุณาวางลิงก์ซองอั่งเปา');
+        return false;
+      }
+
+      if (voucher.length > 512) {
+        Swal.showValidationMessage('ลิงก์ซองยาวเกินไป');
+        return false;
+      }
+
+      return api(
+        'memberRedeemTrueWalletVoucher',
+        state.token,
+        {voucher:voucher}
+      ).catch(function(err){
+        var msg =
+          err && err.message
+            ? String(err.message)
+            : 'รับซองไม่สำเร็จ กรุณาลองใหม่';
+
+        // Never print raw JSON/HTML/transport details in popup.
+        if (
+          /^[\[{]/.test(msg) ||
+          /<html|payload|json|http\s*\d{3}|exception|stack|token|api[_ -]?key/i.test(msg)
+        ) {
+          msg = 'รับซองไม่สำเร็จ กรุณาลองใหม่';
+        }
+
+        Swal.showValidationMessage(msg);
+        return false;
+      });
+    }
+  }).then(function(result){
+    if (!result.isConfirmed || !result.value) return;
+
+    var r = result.value || {};
+    var balance = Number(
+      r.credit ||
+      r.shopCredit ||
+      r.balanceAfter ||
+      0
+    );
+
+    if (state.user) state.user.credit = balance;
+    state.shopCredit = balance;
+    updateUserUI();
+
+    Swal.fire({
+      icon:'success',
+      title:
+        r.alreadyCredited
+          ? 'ซองนี้เติมเครดิตแล้ว'
+          : 'เติมเครดิตสำเร็จ',
+      html:
+        '<div style="font-size:13px;line-height:1.8">' +
+          'ยอดที่ได้รับ <b>' +
+          money(Number(r.verifiedAmount || 0)) +
+          ' บาท</b><br>' +
+          'ยอดคงเหลือ <b>' +
+          money(balance) +
+          ' บาท</b>' +
+          (
+            r.ownerName
+              ? '<br><span style="font-size:11px;color:#7a696b">ผู้ส่ง: ' +
+                escapeHtml(r.ownerName) +
+                '</span>'
+              : ''
+          ) +
+        '</div>',
+      confirmButtonText:'ตกลง',
+      confirmButtonColor:'#b91c1c'
+    });
+
+    try {
+      loadMoneyTransactions();
+    } catch(e) {}
+  });
+}
+
 
 function openSelfDeposit() {
   ensureDepositV144Style();
@@ -31093,6 +31290,7 @@ function showMoney() {
 function moneyTypeText(type) {
   return ({
     DEPOSIT_SLIP:"เติมเครดิตด้วยสลิป",
+    DEPOSIT_TRUEWALLET:"เติมเครดิตด้วยซองอั่งเปา",
     BET:"แทงหวย",
     CANCEL:"คืนเครดิตยกเลิกโพย",
     WIN:"ถูกรางวัล",
@@ -31694,12 +31892,15 @@ function showHistory() {
 function loadHistory() {
   if (!state.token) return;
 
-  els.historyList.innerHTML = '<div class="empty">กำลังโหลดรายการ...</div>';
+  if (!state.historyBets || !state.historyBets.length) {
+    els.historyList.innerHTML = '<div class="empty">กำลังโหลดรายการ...</div>';
+  }
 
   api("getMyBetHistory", state.token, {
     dateFrom: els.historyFrom.value || "",
     dateTo: els.historyTo.value || "",
-    status: els.historyStatus.value || ""
+    status: els.historyStatus.value || "",
+    limit: 100
   })
     .then(function(r){
       state.user = r.user;
