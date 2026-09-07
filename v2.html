@@ -25052,6 +25052,102 @@ html[data-lang="lo"] option{
 }
 </style>
 
+
+<style id="v164-bet-winning-detail">
+.bet-winning-box{
+  margin:12px 0 0;
+  padding:12px;
+  border:1px solid #d8eadc;
+  border-radius:16px;
+  background:#f7fff9;
+}
+.bet-winning-box.lose{
+  border-color:#eadfe0;
+  background:#faf7f7;
+}
+.bet-winning-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:9px;
+  color:#174b28;
+}
+.bet-winning-box.lose .bet-winning-title{
+  color:#6e5557;
+  margin-bottom:0;
+}
+.bet-winning-title span{
+  font-size:13px;
+  font-weight:700;
+}
+.bet-winning-title b{
+  font-size:12px;
+  font-weight:700;
+}
+.bet-winning-list{
+  display:grid;
+  gap:8px;
+}
+.bet-winning-item{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:10px;
+  padding:9px 10px;
+  border-radius:13px;
+  background:#fff;
+  border:1px solid #e1eee4;
+}
+.bet-winning-number{
+  min-width:48px;
+  padding:7px 9px;
+  border-radius:10px;
+  background:#16803b;
+  color:#fff;
+  font-size:17px;
+  font-weight:800;
+  text-align:center;
+  letter-spacing:.5px;
+}
+.bet-winning-info{
+  display:flex;
+  min-width:0;
+  flex-direction:column;
+  gap:2px;
+}
+.bet-winning-info b{
+  color:#233a2a;
+  font-size:12px;
+}
+.bet-winning-info small{
+  color:#718078;
+  font-size:10px;
+}
+.bet-winning-item strong{
+  color:#16803b;
+  font-size:13px;
+  white-space:nowrap;
+}
+.bet-winning-empty{
+  padding:10px;
+  border-radius:12px;
+  background:#fff;
+  color:#7d6d70;
+  font-size:11px;
+  text-align:center;
+}
+.bet-detail-payout{
+  margin-top:10px !important;
+  border-color:#b7dfc2 !important;
+  background:#ecfff1 !important;
+}
+.bet-detail-payout b{
+  color:#117334 !important;
+  font-size:18px !important;
+}
+</style>
+
 </head>
  <body>
 
@@ -25992,7 +26088,7 @@ html[data-lang="lo"] option{
    <section class="screen" id="moneyScreen">
     <header class="hero">
      <div class="eyebrow">MONEY HISTORY</div>
-     <h1>รายการเงิน</h1>
+     <h1>ประวัติการทำรายการ</h1>
      <div class="account-row">
       <button class="account-btn light" id="moneyBackBtn">‹ กลับ</button>
       <div class="account-credit">
@@ -26006,15 +26102,9 @@ html[data-lang="lo"] option{
       <input id="moneyFrom" type="date">
       <input id="moneyTo" type="date">
       <select id="moneyType" class="wide">
-       <option value="">ทุกรายการ</option>
-       <option value="DEPOSIT_SLIP">เติมเครดิตด้วยสลิป</option>
-       <option value="WITHDRAW_PENDING">ถอนเงินรออนุมัติ</option>
-       <option value="WITHDRAW_CANCEL">ยกเลิกถอน/คืนเครดิต</option>
-       <option value="BET">แทงหวย</option>
-       <option value="CANCEL">คืนเครดิตยกเลิกโพย</option>
-       <option value="WIN">ถูกรางวัล</option>
-       <option value="ADMIN_ADD">แอดมินเพิ่มเครดิต</option>
-       <option value="ADMIN_SUB">แอดมินหักเครดิต</option>
+       <option value="DEPOSIT_WITHDRAW">ฝาก - ถอนทั้งหมด</option>
+       <option value="DEPOSIT_SLIP">รายการฝาก</option>
+       <option value="WITHDRAW">รายการถอน</option>
       </select>
      </div>
      <div class="money-list" id="moneyList">
@@ -31214,10 +31304,28 @@ function loadMoneyTransactions() {
   api("getMyShopWalletTransactions", state.token, {
     dateFrom:els.moneyFrom.value || "",
     dateTo:els.moneyTo.value || "",
-    type:els.moneyType.value || ""
+    type:els.moneyType.value || "DEPOSIT_WITHDRAW",
+    limit:200
   })
   .then(function(rows){
     rows = rows || [];
+
+    var selectedType = String(els.moneyType.value || "DEPOSIT_WITHDRAW").toUpperCase();
+    rows = rows.filter(function(x){
+      var t = String(x && x.type || "").toUpperCase();
+
+      if (selectedType === "DEPOSIT_SLIP") {
+        return t === "DEPOSIT_SLIP";
+      }
+
+      if (selectedType === "WITHDRAW") {
+        return t === "WITHDRAW_PENDING" || t === "WITHDRAW_CANCEL";
+      }
+
+      return t === "DEPOSIT_SLIP" ||
+             t === "WITHDRAW_PENDING" ||
+             t === "WITHDRAW_CANCEL";
+    });
 
     if (!rows.length) {
       els.moneyList.innerHTML = '<div class="empty">ยังไม่มีรายการเงิน</div>';
@@ -32066,7 +32174,7 @@ function betGroupPriceText(g) {
   return parts.join("  |  ");
 }
 
-async function showBetDetails(bet, isAdminView) {
+async async function showBetDetails(bet, isAdminView) {
   bet = bet || {};
   var groups = Array.isArray(bet.groups) ? bet.groups : [];
 
@@ -32090,10 +32198,58 @@ async function showBetDetails(bet, isAdminView) {
       }).join("")
     : '<div class="bet-detail-empty">ไม่มีรายละเอียด</div>';
 
-  var payoutRow = bet.status === "WIN"
-    ? '<div class="bet-detail-summary"><span>ยอดถูกรางวัล</span><b>' +
-        money(bet.payout) + '</b></div>'
-    : '';
+  var winningItems = Array.isArray(bet.winningItems)
+    ? bet.winningItems
+    : [];
+
+  var winningHtml = '';
+
+  if (bet.status === "WIN") {
+    winningHtml =
+      '<div class="bet-winning-box">' +
+        '<div class="bet-winning-title">' +
+          '<span>เลขที่ถูก</span>' +
+          '<b>' + winningItems.length + ' รายการ</b>' +
+        '</div>' +
+        (
+          winningItems.length
+            ? '<div class="bet-winning-list">' +
+                winningItems.map(function(x){
+                  return (
+                    '<div class="bet-winning-item">' +
+                      '<div class="bet-winning-number">' +
+                        escapeHtml(x.number || '-') +
+                      '</div>' +
+                      '<div class="bet-winning-info">' +
+                        '<b>' + escapeHtml(x.betType || 'ถูกรางวัล') + '</b>' +
+                        '<small>แทง ' + money(x.stake || 0) +
+                        (x.half ? ' • จ่ายครึ่ง' : '') +
+                        '</small>' +
+                      '</div>' +
+                      '<strong>+' + money(x.payout || 0) + '</strong>' +
+                    '</div>'
+                  );
+                }).join('') +
+              '</div>'
+            : '<div class="bet-winning-empty">ไม่พบรายละเอียดเลขที่ถูก</div>'
+        ) +
+      '</div>';
+  } else if (bet.status === "LOSE") {
+    winningHtml =
+      '<div class="bet-winning-box lose">' +
+        '<div class="bet-winning-title">' +
+          '<span>เลขที่ถูก</span><b>ไม่มี</b>' +
+        '</div>' +
+      '</div>';
+  }
+
+  var payoutRow =
+    bet.status === "WIN" || bet.status === "LOSE"
+      ? '<div class="bet-detail-summary bet-detail-payout">' +
+          '<span>ยอดที่ถูกรางวัล</span><b>' +
+          money(Number(bet.payout || 0)) +
+          ' บาท</b></div>'
+      : '';
 
   var cancelInfo = '';
 
@@ -32125,6 +32281,7 @@ async function showBetDetails(bet, isAdminView) {
         groupsHtml +
         '<div class="bet-detail-summary"><span>ยอดแทง</span><b>' +
           money(bet.totalAmount) + '</b></div>' +
+        winningHtml +
         payoutRow +
         cancelInfo +
       '</div>',
