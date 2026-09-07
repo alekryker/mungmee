@@ -32174,7 +32174,7 @@ function betGroupPriceText(g) {
   return parts.join("  |  ");
 }
 
-async async function showBetDetails(bet, isAdminView) {
+async function showBetDetails(bet, isAdminView) {
   bet = bet || {};
   var groups = Array.isArray(bet.groups) ? bet.groups : [];
 
