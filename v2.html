@@ -25021,6 +25021,37 @@ html[data-lang="lo"] option{
 }
 </style>
 
+
+<style id="v162-home-header-layer-fix">
+/* V162 — แก้ Header หน้าแรกไม่ให้ลอยทับ Popup/ประกาศ
+   ยังให้เมนูภาษาอยู่เหนือ Wallet แต่ต่ำกว่า SweetAlert */
+#homeScreen .home-v54-header,
+#homeScreen .home-v85-header{
+  position:relative !important;
+  z-index:80 !important;
+}
+
+#homeScreen .home-v54-head-actions,
+#homeScreen .home-v85-head-actions{
+  position:relative !important;
+  z-index:81 !important;
+}
+
+#homeScreen .home-flag-language{
+  position:relative !important;
+  z-index:82 !important;
+}
+
+#homeScreen .home-flag-language-menu{
+  z-index:83 !important;
+}
+
+/* Popup ต้องอยู่เหนือส่วนหัวหน้าเว็บเสมอ */
+.swal2-container{
+  z-index:1200 !important;
+}
+</style>
+
 </head>
  <body>
 
