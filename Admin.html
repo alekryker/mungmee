@@ -14493,10 +14493,10 @@ async function openAdminResultEditor(row) {
       '<div class="swal-admin-grid">' +
        '<div class="swal-admin-field"><label>รอบวันที่</label><input id="swalResultRound" type="date" value="' + escapeAttr(defaultRound) + '"></div>' +
        '<div class="swal-admin-field"><label>หวย</label><select id="swalResultLotto">' + options + '</select></div>' +
-       '<div class="swal-admin-field"><label>ผลเลขชุด 4 ตัว (ถ้ามี)</label><input id="swalResultFour" inputmode="numeric" maxlength="4" value="' + escapeAttr(row && row.fourTop || '') + '"></div>' +
+       '<div class="swal-admin-field"><label>ผลเลขชุด 4 ตัว (Admin ลงเอง)</label><input id="swalResultFour" inputmode="numeric" maxlength="4" value="' + escapeAttr(row && row.fourTop || '') + '"></div>' +
        '<div class="swal-admin-field"><label>3 ตัวบน</label><input id="swalResultThree" inputmode="numeric" maxlength="3" value="' + escapeAttr(row && row.threeTop || '') + '"></div>' +
        '<div class="swal-admin-field"><label>2 ตัวล่าง</label><input id="swalResultBottom" inputmode="numeric" maxlength="2" value="' + escapeAttr(row && row.twoBottom || '') + '"></div>' +
-       '<div class="swal-admin-field full"><div class="admin-muted">ผลเลขชุด 4 ตัวใช้ตัดสินโพยชุดใหญ่/กลาง/เล็ก • 2 ตัวบนคำนวณจาก 2 หลักท้ายของ 3 ตัวบนอัตโนมัติ • วันที่นี้คือ “รอบหวย” ไม่ใช่วันที่ปฏิทินที่ผลออก • เมื่อแก้ผล ระบบจะตรวจโพยทั้งหมดของงวดนั้นใหม่โดยยึดผลล่าสุดที่บันทึกไว้</div></div>' +
+       '<div class="swal-admin-field full"><div class="admin-muted">ผลเลขชุด 4 ตัวต้องกรอกโดย Admin เท่านั้น และใช้ตัดสินโพยชุดใหญ่/กลาง/เล็ก • 2 ตัวบนคำนวณจาก 2 หลักท้ายของ 3 ตัวบนอัตโนมัติ • วันที่นี้คือ “รอบหวย” ไม่ใช่วันที่ปฏิทินที่ผลออก • เมื่อแก้ผล ระบบจะตรวจโพยทั้งหมดของงวดนั้นใหม่โดยยึดผลล่าสุดที่บันทึกไว้</div></div>' +
       '</div>',
     showCancelButton:true,
     confirmButtonText:'บันทึกลงชีต',
