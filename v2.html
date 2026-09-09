@@ -1,3 +1,4 @@
+<!-- V175 — CENTER BET SUCCESS + AFFILIATE COLOR FIX -->
 <!-- V139 — HOME CTA RED FULL WIDTH + MINI GAME: RPS + HEADS/TAILS + DICE + CARD FLIP / SERVER RESULT / SHARED WALLET -->
 <!-- ALL-IN-ONE: แนะนำเพื่อน + ถอนขั้นต่ำ 50 บาท + ประกาศหน้าเว็บ + Popup สูงสุด 2 รายการ -->
 <!-- RESULT HISTORY SHEET FINAL -->
@@ -25776,6 +25777,116 @@ html[data-lang="lo"] option{
 #betScreen.set-package-only-v168 .setbet-inline-timer small{
   color:#6f6262 !important;
   -webkit-text-fill-color:#6f6262 !important;
+}
+</style>
+
+
+<style id="v175-bet-success-affiliate-fix">
+/* =====================================================
+   V175 — BET SUCCESS
+   ปุ่ม "ตกลง" อยู่กลาง popup เสมอ
+===================================================== */
+#betConfirmLayer.success #betConfirmActions{
+  display:flex !important;
+  grid-template-columns:none !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:0 !important;
+}
+
+#betConfirmLayer.success #betConfirmEdit{
+  display:none !important;
+}
+
+#betConfirmLayer.success #betConfirmSend{
+  width:min(390px,100%) !important;
+  max-width:390px !important;
+  margin:0 auto !important;
+  flex:0 1 390px !important;
+  color:#fff !important;
+  text-align:center !important;
+  justify-content:center !important;
+}
+
+/* =====================================================
+   V175 — AFFILIATE COLOR
+   ให้ข้อความอ่านชัดและเข้ากับพื้นแดง/ขาว
+===================================================== */
+#affiliateScreen .hero,
+#affiliateScreen .hero h1,
+#affiliateScreen .hero p,
+#affiliateScreen .hero .eyebrow{
+  color:#fff8f5 !important;
+}
+
+#affiliateScreen .account-credit small{
+  color:rgba(255,255,255,.78) !important;
+}
+
+#affiliateScreen .account-credit strong{
+  color:#fff !important;
+}
+
+#affiliateScreen .affiliate-link-card{
+  color:#35100e !important;
+}
+
+#affiliateScreen .affiliate-link-card > small{
+  color:#5f3934 !important;
+}
+
+#affiliateScreen .affiliate-code{
+  color:#991b1b !important;
+}
+
+#affiliateScreen .affiliate-link-row input{
+  color:#3f1714 !important;
+  background:#fff !important;
+  border-color:#dca39c !important;
+}
+
+#affiliateScreen .affiliate-link-row button,
+#affiliateScreen .affiliate-withdraw-btn{
+  color:#fff !important;
+  background:linear-gradient(135deg,#7f0d0d,#c62020) !important;
+  border:0 !important;
+  text-shadow:none !important;
+}
+
+#affiliateScreen .affiliate-ref-hint{
+  color:#6b4710 !important;
+  background:#fff3cd !important;
+}
+
+#affiliateScreen .affiliate-section,
+#affiliateScreen .affiliate-section h3{
+  color:#2b0e0c !important;
+}
+
+#affiliateScreen .affiliate-row,
+#affiliateScreen .affiliate-row strong{
+  color:#35100e !important;
+}
+
+#affiliateScreen .affiliate-row small{
+  color:#74534d !important;
+}
+
+#affiliateScreen .affiliate-row b{
+  color:#991b1b !important;
+}
+
+#affiliateScreen .empty{
+  color:#7f1d1d !important;
+  background:#fff !important;
+}
+
+@media(max-width:480px){
+  #betConfirmLayer.success #betConfirmSend{
+    width:min(100%,320px) !important;
+    max-width:320px !important;
+    flex-basis:320px !important;
+  }
 }
 </style>
 
