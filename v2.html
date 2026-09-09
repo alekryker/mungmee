@@ -26514,10 +26514,10 @@ html[data-lang="lo"] option{
 
      <div class="setbet-inline-lotto">
       <div class="setbet-inline-lotto-main">
-       <span class="setbet-inline-flag">🇱🇦</span>
+       <span class="setbet-inline-flag" id="setBetInlineFlagV173">🏳️</span>
        <div>
         <small>หวยเลขชุด</small>
-        <strong>ลาวพัฒนาชุด</strong>
+        <strong id="setBetInlineLottoNameV173">หวยชุด</strong>
        </div>
       </div>
       <div class="setbet-inline-timer">
@@ -28063,7 +28063,7 @@ function readFastLoginUser() {
 
 
 const FAST_LOTTO_CACHE_KEY_V156 = "creditLottosV156";
-const FAST_LOTTO_CACHE_TTL_V156 = 5 * 60 * 1000;
+const FAST_LOTTO_CACHE_TTL_V156 = 12 * 60 * 60 * 1000;
 
 function saveFastLottosV156(list) {
   if (!Array.isArray(list) || !list.length) return;
@@ -28565,6 +28565,68 @@ function logout(callServer) {
   } catch(e) {}
 }
 
+
+function mapServerLottosV173(list) {
+  return (list || []).map(function(l){
+    return {
+      name:l.lottoName,
+      lottoName:l.lottoName,
+      closeTime:l.closeTime,
+      roundDate:l.roundDate,
+      closeDate:l.closeDate || l.roundDate,
+      drawDate:l.drawDate || l.roundDate,
+      open:l.open !== false,
+      minPerNumber:Number(l.minPerNumber || 0),
+      maxPerNumber:Number(l.maxPerNumber || 0),
+      maxPerBill:Number(l.maxPerBill || 0),
+      rate3Straight:Number(l.rate3Straight || 0),
+      rate3Tod:Number(l.rate3Tod || 0),
+      rate2Top:Number(l.rate2Top || 0),
+      rate2Bottom:Number(l.rate2Bottom || 0),
+      rateRunTop:Number(l.rateRunTop || 0),
+      rateRunBottom:Number(l.rateRunBottom || 0),
+      payoutRates:l.payoutRates || null,
+      numberLimits:l.numberLimits || [],
+      isYeekee:l.isYeekee === true,
+      roundNo:Number(l.roundNo || 0),
+      logoUrl:l.logoUrl || ""
+    };
+  });
+}
+
+function loadFastLottosV173() {
+  if (!state.token) {
+    return Promise.reject(
+      new Error("ไม่มี session")
+    );
+  }
+
+  return api(
+    "getOpenLottosFastV129",
+    state.token
+  ).then(function(data){
+    var list =
+      mapServerLottosV173(
+        data && data.lottos || []
+      );
+
+    if (!list.length) {
+      throw new Error(
+        "ไม่พบรายการหวย"
+      );
+    }
+
+    state.lottos = list;
+    saveFastLottosV156(list);
+
+    renderLottos();
+    startTimer(updateLottoCountdowns);
+
+    return list;
+  });
+}
+
+
 function boot(silent) {
   silent = !!silent;
   if (!state.token) return Promise.reject(new Error("ไม่มี session"));
@@ -28580,31 +28642,10 @@ function boot(silent) {
       state.depositAccount = data.depositAccount || state.depositAccount;
       state.lineContactUrl = normalizeContactUrl(data.lineContactUrl || state.lineContactUrl);
 
-      state.lottos = (data.lottos || []).map(function(l){
-        return {
-          name: l.lottoName,
-          lottoName: l.lottoName,
-          closeTime: l.closeTime,
-          roundDate: l.roundDate,
-          closeDate: l.closeDate || l.roundDate,
-          drawDate: l.roundDate,
-          open: l.open !== false,
-          minPerNumber: Number(l.minPerNumber || 0),
-          maxPerNumber: Number(l.maxPerNumber || 0),
-          maxPerBill: Number(l.maxPerBill || 0),
-          rate3Straight: Number(l.rate3Straight || 0),
-          rate3Tod: Number(l.rate3Tod || 0),
-          rate2Top: Number(l.rate2Top || 0),
-          rate2Bottom: Number(l.rate2Bottom || 0),
-          rateRunTop: Number(l.rateRunTop || 0),
-          rateRunBottom: Number(l.rateRunBottom || 0),
-          payoutRates: l.payoutRates || null,
-          numberLimits: l.numberLimits || [],
-          isYeekee: l.isYeekee === true,
-          roundNo: Number(l.roundNo || 0),
-          logoUrl: l.logoUrl || ""
-        };
-      });
+      state.lottos =
+        mapServerLottosV173(
+          data.lottos || []
+        );
 
       saveFastLottosV156(state.lottos);
 
@@ -28860,15 +28901,39 @@ function renderLottos() {
   var order = ["setpackage", "yeekee", "government", "stock", "vip", "lao", "hanoi", "other"];
   var groups = { setpackage:[], yeekee:[], government:[], stock:[], vip:[], lao:[], hanoi:[], other:[] };
 
-  function isLaoDevelopmentV168(lotto){
-    var name = String((lotto && (lotto.lottoName || lotto.name)) || "")
-      .replace(/[^ก-๙A-Za-z]/g,"")
-      .toLowerCase();
+  function setPackageSpecV173(lotto){
+    var raw = String(
+      (lotto && (lotto.lottoName || lotto.name)) || ""
+    );
 
-    return (
+    var name =
+      raw
+        .replace(/[^ก-๙A-Za-z]/g,"")
+        .toLowerCase();
+
+    if (
       name === "ลาวพัฒนา" ||
       name === "หวยลาวพัฒนา"
-    ) && name.indexOf("vip") < 0;
+    ) {
+      return {
+        alias:"ลาวพัฒนาชุด",
+        flag:"🇱🇦"
+      };
+    }
+
+    if (
+      name === "ฮานอย" ||
+      name === "หวยฮานอย" ||
+      name === "ฮานอยปกติ" ||
+      name === "หวยฮานอยปกติ"
+    ) {
+      return {
+        alias:"ฮานอยชุด",
+        flag:"🇻🇳"
+      };
+    }
+
+    return null;
   }
 
   open.forEach(function(lotto){
@@ -28876,14 +28941,25 @@ function renderLottos() {
     if (!groups[key]) groups[key] = [];
     groups[key].push(lotto);
 
-    if (isLaoDevelopmentV168(lotto)) {
-      groups.setpackage.push(Object.assign({}, lotto, {
-        name:"ลาวพัฒนาชุด",
-        displayName:"ลาวพัฒนาชุด",
-        lottoName:lotto.lottoName || lotto.name,
-        _baseLottoName:lotto.lottoName || lotto.name,
-        _setPackageOnly:true
-      }));
+    var setSpec =
+      setPackageSpecV173(lotto);
+
+    if (setSpec) {
+      groups.setpackage.push(
+        Object.assign({}, lotto, {
+          name:setSpec.alias,
+          displayName:setSpec.alias,
+          lottoName:setSpec.alias,
+          _baseLottoName:
+            lotto.lottoName ||
+            lotto.name,
+          _setPackageAlias:
+            setSpec.alias,
+          _setPackageFlag:
+            setSpec.flag,
+          _setPackageOnly:true
+        })
+      );
     }
   });
 
@@ -28916,7 +28992,11 @@ function renderLottos() {
 
     b.querySelector(".lotto-name").textContent =
       lotto._setPackageOnly
-        ? "ลาวพัฒนาชุด"
+        ? (
+            lotto._setPackageAlias ||
+            lotto.name ||
+            "-"
+          )
         : normalizeLottoDisplayName(lotto.name || "-");
 
     b.querySelector(".lotto-meta").textContent =
@@ -28938,13 +29018,42 @@ function renderLottos() {
       var t = getLottoCloseTarget(lotto);
       if (t && t.getTime() <= Date.now()) return;
 
-      chooseLotto(lotto);
-
       if (lotto._setPackageOnly) {
+        chooseLotto(lotto);
+
         setTimeout(function(){
           openSetPackageInlineV169();
         }, 30);
+
+        return;
       }
+
+      // รายการหวยแสดงได้จาก Fast List ก่อน
+      // แต่ก่อนเข้าแทงหวยปกติ ให้รอ Full Boot เพื่อให้ payout rate ราย user ถูกต้อง
+      if (!state.bootLoaded) {
+        b.disabled = true;
+
+        ensureBootLoaded()
+          .then(function(){
+            var latest =
+              (state.lottos || []).find(function(x){
+                return String(x.lottoName || x.name || "") ===
+                       String(lotto._baseLottoName || lotto.lottoName || lotto.name || "");
+              });
+
+            chooseLotto(
+              latest || lotto
+            );
+          })
+          .catch(showErrorGlobal)
+          .finally(function(){
+            b.disabled = false;
+          });
+
+        return;
+      }
+
+      chooseLotto(lotto);
     };
 
     return b;
@@ -29024,7 +29133,11 @@ function chooseLotto(lotto) {
 
   els.selectedName.textContent =
     lotto._setPackageOnly
-      ? "ลาวพัฒนาชุด"
+      ? (
+          lotto._setPackageAlias ||
+          lotto.name ||
+          "-"
+        )
       : (lotto.name || "-");
 
   if (els.betScreen) {
@@ -30440,17 +30553,41 @@ function showLotto() {
   }
   if (els.lottoEmpty) els.lottoEmpty.classList.add("hidden");
 
-  ensureBootLoaded()
-    .then(function(){
-      renderLottos();
-      startTimer(updateLottoCountdowns);
-    })
-    .catch(function(err){
-      if (els.lottoGrid) {
-        els.lottoGrid.innerHTML = '<div class="empty">โหลดรายการหวยไม่สำเร็จ กรุณาลองใหม่</div>';
-      }
-      showErrorGlobal(err);
-    });
+  // V173: แสดงรายการหวยจาก Fast endpoint ก่อน Full Boot
+  var fastPromise =
+    loadFastLottosV173()
+      .catch(function(err){
+        console.warn(
+          "Fast lotto load failed:",
+          err && err.message
+            ? err.message
+            : err
+        );
+
+        return null;
+      });
+
+  // Full Boot ทำงานข้างหลังเพื่อโหลด payout rate เฉพาะ user
+  startBackgroundBoot();
+
+  fastPromise.then(function(list){
+    if (list && list.length) return;
+
+    // fallback ถ้า Fast endpoint มีปัญหา
+    ensureBootLoaded()
+      .then(function(){
+        renderLottos();
+        startTimer(updateLottoCountdowns);
+      })
+      .catch(function(err){
+        if (els.lottoGrid) {
+          els.lottoGrid.innerHTML =
+            '<div class="empty">โหลดรายการหวยไม่สำเร็จ กรุณาลองใหม่</div>';
+        }
+
+        showErrorGlobal(err);
+      });
+  });
 }
 
 function showBet() {
@@ -32134,7 +32271,7 @@ function openSetPackageBetV167(){
     selectedCompact !== "ลาวพัฒนา" &&
     selectedCompact !== "หวยลาวพัฒนา"
   ) {
-    showErrorGlobal("เลขชุดเปิดรับเฉพาะหวยลาวพัฒนา");
+    showErrorGlobal("เลขชุดเปิดรับเฉพาะลาวพัฒนาชุดและฮานอยชุด");
     return;
   }
 
@@ -32377,18 +32514,12 @@ function setBetInlineCfgV169(){
 function setBetInlineIsLaoV169(){
   if (!state.selectedLotto) return false;
 
-  var name = String(
-    state.selectedLotto._baseLottoName ||
-    state.selectedLotto.lottoName ||
-    state.selectedLotto.name ||
-    ""
-  )
-  .replace(/[^ก-๙A-Za-z]/g,"")
-  .toLowerCase();
-
-  return (
-    name === "ลาวพัฒนา" ||
-    name === "หวยลาวพัฒนา"
+  return !!(
+    state.selectedLotto._setPackageOnly &&
+    (
+      state.selectedLotto._setPackageAlias === "ลาวพัฒนาชุด" ||
+      state.selectedLotto._setPackageAlias === "ฮานอยชุด"
+    )
   );
 }
 
@@ -32464,6 +32595,34 @@ function renderSetPackageInlineV169(){
       "setBetInlineCloseV169"
     );
 
+  var lottoNameEl =
+    document.getElementById(
+      "setBetInlineLottoNameV173"
+    );
+
+  var flagEl =
+    document.getElementById(
+      "setBetInlineFlagV173"
+    );
+
+  if (lottoNameEl) {
+    lottoNameEl.textContent =
+      String(
+        state.selectedLotto &&
+        state.selectedLotto._setPackageAlias ||
+        "หวยชุด"
+      );
+  }
+
+  if (flagEl) {
+    flagEl.textContent =
+      String(
+        state.selectedLotto &&
+        state.selectedLotto._setPackageFlag ||
+        "🏳️"
+      );
+  }
+
   var submit =
     document.getElementById(
       "setBetInlineSubmitV169"
@@ -32509,7 +32668,7 @@ function resetSetPackageInlineV169(){
 function openSetPackageInlineV169(){
   if (!setBetInlineIsLaoV169()) {
     showErrorGlobal(
-      "เลขชุดเปิดรับเฉพาะหวยลาวพัฒนา"
+      "เลขชุดเปิดรับเฉพาะลาวพัฒนาชุดและฮานอยชุด"
     );
     return;
   }
@@ -32571,7 +32730,7 @@ function submitSetPackageInlineV169(){
     !setBetInlineIsLaoV169()
   ) {
     showErrorGlobal(
-      "เลขชุดเปิดรับเฉพาะหวยลาวพัฒนา"
+      "เลขชุดเปิดรับเฉพาะลาวพัฒนาชุดและฮานอยชุด"
     );
     return;
   }
@@ -32585,9 +32744,7 @@ function submitSetPackageInlineV169(){
     state.token,
     {
       lottoName:
-        state.selectedLotto._baseLottoName ||
-        state.selectedLotto.lottoName ||
-        state.selectedLotto.name,
+        state.selectedLotto._setPackageAlias,
       rawText:"เลขชุด " + s.number,
       setBet:{
         number:s.number,
