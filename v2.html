@@ -25277,6 +25277,42 @@ html[data-lang="lo"] option{
 }
 </style>
 
+
+<style id="v168-set-package-only-lao">
+#betScreen:not(.set-package-only-v168) #setPackageBetBtn{
+  display:none !important;
+}
+#betScreen:not(.set-package-only-v168) .bet-layout-switch{
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+}
+#betScreen.set-package-only-v168 .bet-layout-switch{
+  grid-template-columns:1fr !important;
+}
+#betScreen.set-package-only-v168 .bet-layout-switch [data-bet-layout="modern"],
+#betScreen.set-package-only-v168 .bet-layout-switch [data-bet-layout="classic"],
+#betScreen.set-package-only-v168 .bet-mode-tabs,
+#betScreen.set-package-only-v168 #modernBetPanel,
+#betScreen.set-package-only-v168 .direct-bet-content,
+#betScreen.set-package-only-v168 .bet-bottom-bar{
+  display:none !important;
+}
+#betScreen.set-package-only-v168 #setPackageBetBtn{
+  display:block !important;
+  min-height:52px;
+  font-size:16px;
+  font-weight:700;
+}
+#lottoScreen [data-group="setpackage"]{
+  padding:14px;
+  border:1px solid #f1c7c9;
+  border-radius:22px;
+  background:linear-gradient(180deg,#fff8f8,#fff);
+}
+#lottoScreen [data-group="setpackage"] .lotto-v58-group-icon{
+  background:linear-gradient(145deg,#a70b15,#d51421) !important;
+}
+</style>
+
 </head>
  <body>
 
@@ -25924,6 +25960,7 @@ html[data-lang="lo"] option{
       <span class="lotto-v60-filter-label">กลุ่มหวย</span>
       <div class="lotto-v60-filter-tabs" id="lottoCategoryTabs">
        <button class="active" data-lotto-filter="all" type="button">ทั้งหมด</button>
+       <button data-lotto-filter="setpackage" type="button">หวยเลขชุด</button>
        <button data-lotto-filter="yeekee" type="button">หวยยี่กี</button>
        <button data-lotto-filter="stock" type="button">หวยหุ้น</button>
        <button data-lotto-filter="vip" type="button">หวย VIP</button>
@@ -28168,6 +28205,7 @@ function getLottoCategoryKey(name) {
 }
 
 function getLottoCategoryConfig(key) {
+  if (key === "setpackage") return { label:"หวยเลขชุด", icon:"fi fi-sr-ticket" };
   if (key === "yeekee") return { label:"หวยยี่กี", icon:"fi fi-sr-time-quarter-to" };
   if (key === "government") return { label:"หวยรัฐบาลไทย", icon:"fi fi-sr-badge-check" };
   if (key === "stock") return { label:"หวยหุ้น", icon:"fi fi-sr-chart-simple" };
@@ -28211,13 +28249,34 @@ function renderLottos() {
   renderHomeLottoPreview(open);
 
   var tabs = document.getElementById("lottoCategoryTabs");
-  var order = ["yeekee", "government", "stock", "vip", "lao", "hanoi", "other"];
-  var groups = { yeekee:[], government:[], stock:[], vip:[], lao:[], hanoi:[], other:[] };
+  var order = ["setpackage", "yeekee", "government", "stock", "vip", "lao", "hanoi", "other"];
+  var groups = { setpackage:[], yeekee:[], government:[], stock:[], vip:[], lao:[], hanoi:[], other:[] };
+
+  function isLaoDevelopmentV168(lotto){
+    var name = String((lotto && (lotto.lottoName || lotto.name)) || "")
+      .replace(/[^ก-๙A-Za-z]/g,"")
+      .toLowerCase();
+
+    return (
+      name === "ลาวพัฒนา" ||
+      name === "หวยลาวพัฒนา"
+    ) && name.indexOf("vip") < 0;
+  }
 
   open.forEach(function(lotto){
     var key = getLottoCategoryKey(lotto.name || lotto.lottoName || "");
     if (!groups[key]) groups[key] = [];
     groups[key].push(lotto);
+
+    if (isLaoDevelopmentV168(lotto)) {
+      groups.setpackage.push(Object.assign({}, lotto, {
+        name:"ลาวพัฒนาชุด",
+        displayName:"ลาวพัฒนาชุด",
+        lottoName:lotto.lottoName || lotto.name,
+        _baseLottoName:lotto.lottoName || lotto.name,
+        _setPackageOnly:true
+      }));
+    }
   });
 
   function makeLottoCard(lotto, key) {
@@ -28227,9 +28286,11 @@ function renderLottos() {
     b._lotto = lotto;
     b.setAttribute("data-category", key);
 
+    var lottoVisualName = lotto._baseLottoName || lotto.name;
+
     var lottoVisualHtml = lotto.isYeekee
       ? '<img class="lotto-yeekee-logo" src="' + escapeAttr(lotto.logoUrl || "yeekee-logo.jpeg") + '" alt="" loading="lazy">'
-      : getFlaticonFlagHtml(lotto.name);
+      : getFlaticonFlagHtml(lottoVisualName);
 
     b.innerHTML =
       '<div class="lotto-v58-main">' +
@@ -28245,10 +28306,20 @@ function renderLottos() {
       '</div>' +
       '<div class="lotto-v58-arrow"><i class="fi fi-sr-angle-right"></i></div>';
 
-    b.querySelector(".lotto-name").textContent = normalizeLottoDisplayName(lotto.name || "-");
-    b.querySelector(".lotto-meta").textContent = "ปิดรับ " + getActualCloseText(lotto);
+    b.querySelector(".lotto-name").textContent =
+      lotto._setPackageOnly
+        ? "ลาวพัฒนาชุด"
+        : normalizeLottoDisplayName(lotto.name || "-");
 
-    var limitText = formatNumberLimitSummary(lotto.numberLimits);
+    b.querySelector(".lotto-meta").textContent =
+      lotto._setPackageOnly
+        ? ("เลขชุด • ใหญ่ / กลาง / เล็ก • ปิดรับ " + getActualCloseText(lotto))
+        : ("ปิดรับ " + getActualCloseText(lotto));
+
+    var limitText = lotto._setPackageOnly
+      ? ""
+      : formatNumberLimitSummary(lotto.numberLimits);
+
     if (limitText) b.querySelector(".lotto-meta").textContent += " • " + limitText;
 
     b.querySelector(".lotto-date").textContent = lotto.isYeekee
@@ -28258,7 +28329,14 @@ function renderLottos() {
     b.onclick = function(){
       var t = getLottoCloseTarget(lotto);
       if (t && t.getTime() <= Date.now()) return;
+
       chooseLotto(lotto);
+
+      if (lotto._setPackageOnly) {
+        setTimeout(function(){
+          openSetPackageBetV167();
+        }, 80);
+      }
     };
 
     return b;
@@ -28336,7 +28414,18 @@ function chooseLotto(lotto) {
   state.betMode = "two";
   clearCurrentBet(false);
 
-  els.selectedName.textContent = lotto.name || "-";
+  els.selectedName.textContent =
+    lotto._setPackageOnly
+      ? "ลาวพัฒนาชุด"
+      : (lotto.name || "-");
+
+  if (els.betScreen) {
+    els.betScreen.classList.toggle(
+      "set-package-only-v168",
+      !!lotto._setPackageOnly
+    );
+  }
+
   els.selectedRound.textContent = lotto.isYeekee
     ? ("รอบที่ " + String(Number(lotto.roundNo || 0)).padStart(2,"0") + " • " + getRoundDateText(lotto))
     : ("รอบ " + getRoundDateText(lotto));
@@ -29826,6 +29915,13 @@ function openBetRules() {
 
 function backToLotto() {
   state.selectedLotto = null;
+
+  if (els.betScreen) {
+    els.betScreen.classList.remove(
+      "set-package-only-v168"
+    );
+  }
+
   clearCurrentBet(false);
   showLotto();
 }
@@ -31413,6 +31509,27 @@ function openSetPackageBetV167(){
     return;
   }
 
+  var selectedBaseName =
+    String(
+      state.selectedLotto._baseLottoName ||
+      state.selectedLotto.lottoName ||
+      state.selectedLotto.name ||
+      ""
+    );
+
+  var selectedCompact =
+    selectedBaseName
+      .replace(/[^ก-๙A-Za-z]/g,"")
+      .toLowerCase();
+
+  if (
+    selectedCompact !== "ลาวพัฒนา" &&
+    selectedCompact !== "หวยลาวพัฒนา"
+  ) {
+    showErrorGlobal("เลขชุดเปิดรับเฉพาะหวยลาวพัฒนา");
+    return;
+  }
+
   var currentTier="big";
   var currentNumber="";
   var quantity=1;
@@ -31432,7 +31549,7 @@ function openSetPackageBetV167(){
     return '<div class="setbet-wrap">' +
       '<div class="setbet-lotto">' +
         '<div><small>หวยที่เลือก</small><strong>' +
-          escapeHtml(state.selectedLotto.name + "ชุด") +
+          escapeHtml("ลาวพัฒนาชุด") +
         '</strong></div>' +
         '<div style="text-align:right"><small>ราคา/ชุด</small><strong>' +
           money(cfg.price) + ' บาท</strong></div>' +
@@ -31594,7 +31711,10 @@ function openSetPackageBetV167(){
     setLoading(true);
 
     api("placeCreditBet",state.token,{
-      lottoName:state.selectedLotto.name,
+      lottoName:
+        state.selectedLotto._baseLottoName ||
+        state.selectedLotto.lottoName ||
+        state.selectedLotto.name,
       rawText:"เลขชุด "+r.value.number,
       setBet:{
         number:r.value.number,
