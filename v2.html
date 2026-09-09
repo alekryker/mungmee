@@ -25148,6 +25148,135 @@ html[data-lang="lo"] option{
 }
 </style>
 
+
+<style id="v167-set-package-bet">
+#betScreen .bet-layout-switch{
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+}
+.bet-set-package-btn{
+  background:linear-gradient(135deg,#8e1414,#c70b16) !important;
+  color:#fff !important;
+  border-color:#9f1118 !important;
+}
+.setbet-wrap{
+  text-align:left;
+  color:#251919;
+}
+.setbet-lotto{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding:11px 12px;
+  border:1px solid #e5d7d7;
+  border-radius:14px;
+  background:#fff;
+  margin-bottom:10px;
+}
+.setbet-lotto strong{font-size:15px}
+.setbet-lotto small{color:#7a6a6a;font-size:10px}
+.setbet-tiers{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:7px;
+  margin-bottom:12px;
+}
+.setbet-tier{
+  border:1px solid #e4d6d6;
+  border-radius:13px;
+  padding:10px 5px;
+  background:#fff;
+  text-align:center;
+  font-family:inherit;
+}
+.setbet-tier b{display:block;font-size:13px}
+.setbet-tier span{display:block;margin-top:3px;font-size:18px;font-weight:800;color:#a40d16}
+.setbet-tier.active{
+  background:#970d15;
+  color:#fff;
+  border-color:#970d15;
+}
+.setbet-tier.active span{color:#fff}
+.setbet-number-label{
+  text-align:center;
+  font-size:15px;
+  font-weight:700;
+  margin:8px 0;
+}
+.setbet-slots{
+  display:grid;
+  grid-template-columns:repeat(4,52px);
+  justify-content:center;
+  gap:8px;
+  margin-bottom:12px;
+}
+.setbet-slot{
+  height:54px;
+  display:grid;
+  place-items:center;
+  border:1px solid #ded5d5;
+  border-radius:10px;
+  background:#fff;
+  font-size:24px;
+  font-weight:800;
+}
+.setbet-keypad{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:6px;
+  margin-bottom:12px;
+}
+.setbet-keypad button{
+  min-height:44px;
+  border:1px solid #e2dada;
+  background:#fff;
+  border-radius:9px;
+  font:inherit;
+  font-size:18px;
+  font-weight:700;
+}
+.setbet-keypad .danger{background:#d90a13;color:#fff}
+.setbet-keypad .muted{background:#777;color:#fff}
+.setbet-qty{
+  padding:10px;
+  background:#fff5f5;
+  border:1px solid #efd6d6;
+  border-radius:14px;
+}
+.setbet-qty-head{
+  display:flex;justify-content:space-between;gap:10px;align-items:center;
+}
+.setbet-qty input{
+  width:96px;height:40px;border:1px solid #dbcaca;border-radius:9px;
+  padding:0 8px;font:inherit;font-size:16px;text-align:center;background:#fff;
+}
+.setbet-qty-grid{
+  display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px;margin-top:8px;
+}
+.setbet-qty-grid button{
+  min-height:34px;border:1px solid #b7dfbf;border-radius:8px;
+  background:#eaffee;color:#116d27;font:inherit;font-size:11px;font-weight:700;
+}
+.setbet-summary{
+  display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0;
+}
+.setbet-summary>div{
+  padding:10px;border-radius:12px;background:#171717;color:#fff;text-align:center;
+}
+.setbet-summary small{display:block;color:#ddd;font-size:10px}
+.setbet-summary b{display:block;font-size:20px;margin-top:2px}
+.setbet-rates{
+  width:100%;border-collapse:collapse;margin-top:10px;font-size:11px;
+}
+.setbet-rates th,.setbet-rates td{
+  border:1px solid #eadede;padding:7px 5px;text-align:center;
+}
+.setbet-rates th{background:#8f1717;color:#fff}
+.setbet-rates td:first-child{font-weight:700}
+.setbet-note{
+  margin-top:8px;font-size:10px;line-height:1.55;color:#765d5d;
+}
+</style>
+
 </head>
  <body>
 
@@ -25859,6 +25988,7 @@ html[data-lang="lo"] option{
      <div class="bet-layout-switch">
       <button class="bet-layout-btn active" data-bet-layout="modern" type="button">แบบแทงที่ 1</button>
       <button class="bet-layout-btn" data-bet-layout="classic" type="button">แบบแทงที่ 2</button>
+      <button class="bet-layout-btn bet-set-package-btn" id="setPackageBetBtn" type="button">เลขชุด</button>
      </div>
      <div class="bet-mode-tabs">
       <button class="bet-mode-tab active" data-mode="two">2 ตัว</button>
@@ -31257,6 +31387,245 @@ function confirmAndSend() {
     showErrorGlobal(e);
   });
 }
+
+
+/* =====================================================
+   V167 — เลขชุด ใหญ่ / กลาง / เล็ก
+===================================================== */
+var SET_PACKAGE_CONFIG_V167 = {
+  big:{
+    name:"ชุดใหญ่",price:120,
+    pay:[90000,40000,4000,3000,1200,1200]
+  },
+  medium:{
+    name:"ชุดกลาง",price:60,
+    pay:[45000,20000,2000,1500,600,600]
+  },
+  small:{
+    name:"ชุดเล็ก",price:30,
+    pay:[22500,10000,1000,750,300,300]
+  }
+};
+
+function openSetPackageBetV167(){
+  if (!state.selectedLotto) {
+    showErrorGlobal("กรุณาเลือกหวยก่อน");
+    return;
+  }
+
+  var currentTier="big";
+  var currentNumber="";
+  var quantity=1;
+
+  var rows=[
+    "4 ตัวตรง",
+    "3 ตัวตรง",
+    "4 ตัวโต๊ด",
+    "3 ตัวโต๊ด",
+    "2 ตัวหน้า",
+    "2 ตัวหลัง"
+  ];
+
+  function popupHtml(){
+    var cfg=SET_PACKAGE_CONFIG_V167[currentTier];
+
+    return '<div class="setbet-wrap">' +
+      '<div class="setbet-lotto">' +
+        '<div><small>หวยที่เลือก</small><strong>' +
+          escapeHtml(state.selectedLotto.name + "ชุด") +
+        '</strong></div>' +
+        '<div style="text-align:right"><small>ราคา/ชุด</small><strong>' +
+          money(cfg.price) + ' บาท</strong></div>' +
+      '</div>' +
+
+      '<div class="setbet-tiers">' +
+        ["big","medium","small"].map(function(k){
+          var x=SET_PACKAGE_CONFIG_V167[k];
+          return '<button type="button" class="setbet-tier '+(k===currentTier?"active":"")+'" data-set-tier="'+k+'">' +
+            '<b>'+x.name+'</b><span>'+money(x.price)+'</span>' +
+          '</button>';
+        }).join("") +
+      '</div>' +
+
+      '<div class="setbet-number-label">ระบุตัวเลข 4 หลัก</div>' +
+      '<div class="setbet-slots">' +
+        [0,1,2,3].map(function(i){
+          return '<div class="setbet-slot">'+escapeHtml(currentNumber[i]||"")+'</div>';
+        }).join("") +
+      '</div>' +
+
+      '<div class="setbet-keypad">' +
+        [1,2,3,4,5,6,7,8,9].map(function(n){
+          return '<button type="button" data-set-key="'+n+'">'+n+'</button>';
+        }).join("") +
+        '<button type="button" class="danger" data-set-random="1">สุ่มเลข</button>' +
+        '<button type="button" data-set-key="0">0</button>' +
+        '<button type="button" class="muted" data-set-back="1">⌫</button>' +
+      '</div>' +
+
+      '<div class="setbet-qty">' +
+        '<div class="setbet-qty-head"><b>จำนวนชุด</b>' +
+          '<input id="setBetQtyV167" type="number" inputmode="numeric" min="1" max="9999" value="'+quantity+'">' +
+        '</div>' +
+        '<div class="setbet-qty-grid">' +
+          [1,2,3,4,5,10].map(function(n){
+            return '<button type="button" data-set-qty="'+n+'">'+n+' ชุด</button>';
+          }).join("") +
+        '</div>' +
+      '</div>' +
+
+      '<div class="setbet-summary">' +
+        '<div><small>ยอดเครดิตคงเหลือ</small><b>'+money(Number(state.user&&state.user.credit||0))+'</b></div>' +
+        '<div><small>รวมยอดแทง</small><b id="setBetTotalV167">'+money(cfg.price*quantity)+'</b></div>' +
+      '</div>' +
+
+      '<table class="setbet-rates">' +
+        '<thead><tr><th>ชนิด</th><th>ชุดใหญ่</th><th>ชุดกลาง</th><th>ชุดเล็ก</th></tr></thead>' +
+        '<tbody>' +
+          rows.map(function(label,i){
+            return '<tr><td>'+label+'</td>' +
+              '<td>'+money(SET_PACKAGE_CONFIG_V167.big.pay[i])+'</td>' +
+              '<td>'+money(SET_PACKAGE_CONFIG_V167.medium.pay[i])+'</td>' +
+              '<td>'+money(SET_PACKAGE_CONFIG_V167.small.pay[i])+'</td></tr>';
+          }).join("") +
+        '</tbody>' +
+      '</table>' +
+      '<div class="setbet-note">ไม่มีส่วนลด • อัตราจ่ายถูกบันทึกตามชุดที่ลูกค้าเลือกตอนส่งโพย • จำนวนรางวัลคูณตามจำนวนชุด</div>' +
+    '</div>';
+  }
+
+  function rerender(){
+    var body=document.getElementById("setBetPopupBodyV167");
+    if(body) body.innerHTML=popupHtml();
+    bind();
+  }
+
+  function updateTotal(){
+    var el=document.getElementById("setBetTotalV167");
+    var cfg=SET_PACKAGE_CONFIG_V167[currentTier];
+    if(el) el.textContent=money(cfg.price*quantity);
+  }
+
+  function bind(){
+    document.querySelectorAll("[data-set-tier]").forEach(function(btn){
+      btn.onclick=function(){
+        currentTier=btn.dataset.setTier;
+        rerender();
+      };
+    });
+
+    document.querySelectorAll("[data-set-key]").forEach(function(btn){
+      btn.onclick=function(){
+        if(currentNumber.length>=4) return;
+        currentNumber+=String(btn.dataset.setKey);
+        rerender();
+      };
+    });
+
+    var back=document.querySelector("[data-set-back]");
+    if(back) back.onclick=function(){
+      currentNumber=currentNumber.slice(0,-1);
+      rerender();
+    };
+
+    var random=document.querySelector("[data-set-random]");
+    if(random) random.onclick=function(){
+      currentNumber=String(Math.floor(Math.random()*10000)).padStart(4,"0");
+      rerender();
+    };
+
+    document.querySelectorAll("[data-set-qty]").forEach(function(btn){
+      btn.onclick=function(){
+        quantity=Number(btn.dataset.setQty||1);
+        var q=document.getElementById("setBetQtyV167");
+        if(q) q.value=quantity;
+        updateTotal();
+      };
+    });
+
+    var q=document.getElementById("setBetQtyV167");
+    if(q) q.oninput=function(){
+      var n=Math.floor(Number(q.value||0));
+      quantity=Math.max(1,Math.min(9999,n||1));
+      updateTotal();
+    };
+  }
+
+  Swal.fire({
+    title:"แทงเลขชุด",
+    html:'<div id="setBetPopupBodyV167">'+popupHtml()+'</div>',
+    width:620,
+    showCancelButton:true,
+    confirmButtonText:"ยืนยันส่งโพย",
+    cancelButtonText:"ยกเลิก",
+    confirmButtonColor:"#b91c1c",
+    didOpen:bind,
+    preConfirm:function(){
+      var q=document.getElementById("setBetQtyV167");
+      quantity=Math.floor(Number(q&&q.value||quantity));
+
+      if(!/^\d{4}$/.test(currentNumber)){
+        Swal.showValidationMessage("กรุณาระบุตัวเลข 4 หลัก");
+        return false;
+      }
+      if(!(quantity>=1&&quantity<=9999)){
+        Swal.showValidationMessage("จำนวนชุดต้องอยู่ระหว่าง 1 - 9,999");
+        return false;
+      }
+
+      var cfg=SET_PACKAGE_CONFIG_V167[currentTier];
+      var total=cfg.price*quantity;
+
+      if(Number(state.user&&state.user.credit||0)<total){
+        Swal.showValidationMessage("เครดิตไม่เพียงพอ");
+        return false;
+      }
+
+      return {
+        number:currentNumber,
+        tier:currentTier,
+        quantity:quantity,
+        total:total
+      };
+    }
+  }).then(function(r){
+    if(!r.isConfirmed||!r.value) return;
+
+    setLoading(true);
+
+    api("placeCreditBet",state.token,{
+      lottoName:state.selectedLotto.name,
+      rawText:"เลขชุด "+r.value.number,
+      setBet:{
+        number:r.value.number,
+        tier:r.value.tier,
+        quantity:r.value.quantity
+      }
+    })
+    .then(function(resp){
+      setLoading(false);
+
+      if(state.user) state.user.credit=resp.credit;
+      updateUserUI();
+
+      showBetSuccessTouchSafe(
+        Number(resp.totalAmount||r.value.total),
+        String(resp.billId||"").slice(0,8)
+      );
+    })
+    .catch(function(e){
+      setLoading(false);
+      showErrorGlobal(e);
+    });
+  });
+}
+
+document.addEventListener("DOMContentLoaded",function(){
+  var btn=document.getElementById("setPackageBetBtn");
+  if(btn){
+    btn.onclick=openSetPackageBetV167;
+  }
+});
 
 /* =====================================================
    MEMBER MONEY
