@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function(){
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
 :root {
   --red: #b91c1c;
@@ -48,7 +48,7 @@ html, body {
   min-height: 100%;
   background: var(--bg);
   color: var(--ink);
-  font-family:"Kanit","Noto Sans Thai",sans-serif;
+  font-family:"Anuphan","Noto Sans Thai",sans-serif;
 }
 
 button, input, textarea {
@@ -2046,7 +2046,7 @@ button:active {
 .swal2-cancel,
 .swal2-input,
 .swal2-select {
-  font-family:"Kanit","Noto Sans Thai",sans-serif !important;
+  font-family:"Anuphan","Noto Sans Thai",sans-serif !important;
 }
 
 .login-title-inline {
@@ -2074,7 +2074,7 @@ button:active {
 /* V12 - อ่านง่ายขึ้น */
 html, body { font-weight:400; letter-spacing:0; }
 body, input, textarea, select, button {
-  font-family:"Kanit","Noto Sans Thai",sans-serif;
+  font-family:"Anuphan","Noto Sans Thai",sans-serif;
 }
 h1,h2,h3,.hero h1,.admin-head-row h1,.direct-title,.lotto-name,
 .selected-name,.history-head strong,.result-card-head strong {
@@ -3061,7 +3061,7 @@ button:hover{
 }
 .swal2-popup{
   border-radius:22px !important;
-  font-family:"Kanit","Noto Sans Thai",sans-serif !important;
+  font-family:"Anuphan","Noto Sans Thai",sans-serif !important;
 }
 .swal2-title{
   color:var(--ink) !important;
@@ -8761,7 +8761,7 @@ html,body,
 body input,body textarea,body select,body button,
 .swal2-popup,.swal2-title,.swal2-html-container,
 .swal2-input,.swal2-select,.swal2-confirm,.swal2-cancel{
-  font-family:"Kanit","Noto Sans Thai",sans-serif !important;
+  font-family:"Anuphan","Noto Sans Thai",sans-serif !important;
   font-weight:300 !important;
   letter-spacing:0 !important;
 }
@@ -9034,6 +9034,38 @@ small,label,.admin-muted,.admin-table,.admin-table th,.admin-table td,
   .admin-field input,.admin-field select{ height:44px !important; }
   .admin-btn{ min-height:42px !important; }
   .admin-table th,.admin-table td{ padding:8px 6px !important; }
+}
+</style>
+
+
+<style id="v104-result-editor-select-fix">
+.swal2-popup .swal-admin-field select,
+.swal2-popup #swalResultLotto{
+  color:#2a1111 !important;
+  -webkit-text-fill-color:#2a1111 !important;
+  background:#fff !important;
+  opacity:1 !important;
+  visibility:visible !important;
+  appearance:auto !important;
+  -webkit-appearance:menulist !important;
+}
+.swal2-popup #swalResultLotto option{
+  color:#2a1111 !important;
+  -webkit-text-fill-color:#2a1111 !important;
+  background:#fff !important;
+}
+</style>
+
+
+<style id="v105-admin-font-anuphan">
+html, body,
+body *,
+button, input, textarea, select, option,
+.admin-shell, .admin-shell *,
+.admin-topbar, .admin-sidebar, .admin-content,
+.admin-panel, .admin-table, .admin-table *,
+.swal2-container, .swal2-popup, .swal2-popup *{
+  font-family:"Anuphan","Noto Sans Thai",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;
 }
 </style>
 
@@ -11212,7 +11244,7 @@ function ensureWithdrawPanel() {
       "display:none;align-items:center;justify-content:center;" +
       "padding:16px;background:rgba(45,10,10,.58);" +
       "backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);" +
-      "font-family:'Kanit','Noto Sans Thai',sans-serif;" +
+      "font-family:'Anuphan','Noto Sans Thai',sans-serif;" +
     "}" +
     "#withdrawPanelLayer.show{display:flex!important;}" +
     "#withdrawPanelCard{" +
@@ -13297,18 +13329,76 @@ function requestAffiliateWithdraw() {
 ===================================================== */
 async function loadAdminAffiliates() {
   if (!state.isAdmin || !els.adminAffiliateTable) return;
-  els.adminAffiliateTable.innerHTML = '<div class="admin-empty">กำลังโหลด…</div>';
+
+  els.adminAffiliateTable.innerHTML =
+    '<div class="admin-empty">กำลังโหลด Affiliate…</div>';
+
+  if (els.adminAffiliateWithdrawTable) {
+    els.adminAffiliateWithdrawTable.innerHTML =
+      '<div class="admin-empty">กำลังโหลดรายการถอน…</div>';
+  }
+
   try {
-    var r = await api("adminGetAffiliates", state.token, {search:els.adminAffiliateSearch ? els.adminAffiliateSearch.value : ""});
+    var r = await api(
+      "adminGetAffiliates",
+      state.token,
+      {
+        search:
+          els.adminAffiliateSearch
+            ? els.adminAffiliateSearch.value
+            : ""
+      }
+    );
+
     state.adminAffiliates = r.affiliates || [];
-    state.adminAffiliateWithdrawals = r.pendingWithdrawals || [];
+    state.adminAffiliateWithdrawals =
+      r.pendingWithdrawals || [];
+
     var t = r.totals || {};
+
     els.adminAffiliateStats.innerHTML = [
-      ["Affiliate",t.affiliates||0],["ลูกทีม",t.members||0],["Turnover วันนี้",money(t.todayTurnover||0)],["คอมวันนี้",money(t.todayCommission||0)],["รอถอน",money(t.pendingWithdraw||0)]
-    ].map(function(x){return '<div class="admin-affiliate-stat"><small>'+escapeHtml(String(x[0]))+'</small><b>'+escapeHtml(String(x[1]))+'</b></div>';}).join("");
+      ["Affiliate",t.affiliates||0],
+      ["ลูกทีม",t.members||0],
+      ["Turnover วันนี้",money(t.todayTurnover||0)],
+      ["คอมวันนี้",money(t.todayCommission||0)],
+      ["รอถอน",money(t.pendingWithdraw||0)]
+    ].map(function(x){
+      return (
+        '<div class="admin-affiliate-stat">' +
+          '<small>'+escapeHtml(String(x[0]))+'</small>' +
+          '<b>'+escapeHtml(String(x[1]))+'</b>' +
+        '</div>'
+      );
+    }).join("");
+
     renderAdminAffiliateTable();
     renderAdminAffiliateWithdrawals();
-  } catch(e) { showAdminError(e); }
+  } catch(e) {
+    var msg =
+      e && e.message
+        ? String(e.message)
+        : "โหลด Affiliate ไม่สำเร็จ";
+
+    els.adminAffiliateTable.innerHTML =
+      '<div class="admin-empty">' +
+        'โหลด Affiliate ไม่สำเร็จ<br>' +
+        '<button type="button" class="admin-mini edit" id="adminAffiliateRetryV106" style="margin-top:10px">ลองใหม่</button>' +
+      '</div>';
+
+    if (els.adminAffiliateWithdrawTable) {
+      els.adminAffiliateWithdrawTable.innerHTML =
+        '<div class="admin-empty">โหลดรายการถอนไม่สำเร็จ</div>';
+    }
+
+    var retry =
+      document.getElementById("adminAffiliateRetryV106");
+
+    if (retry) {
+      retry.onclick = loadAdminAffiliates;
+    }
+
+    showAdminError(msg);
+  }
 }
 
 function renderAdminAffiliateTable() {
@@ -14062,29 +14152,28 @@ async function loadAdminDashboard(mode) {
 
 async function syncAdminResults() {
   try {
-    adminBusy("กำลังดึงผลจาก AllHuay...");
+    adminBusy("กำลังดึงผลล่าสุด...");
+    var url="https://supmangmee.com/.netlify/functions/lottery-results-sync?manual=1&_="+Date.now();
+    var res=await fetch(url,{method:"GET",mode:"cors",cache:"no-store",credentials:"omit"});
+    var raw=await res.text(), r={};
+    try{r=raw?JSON.parse(raw):{};}catch(_){}
+    if(!res.ok || r.ok===false) throw new Error(r.error||r.message||("Netlify HTTP "+res.status));
 
-    var r = await api("adminSyncResultsNow", state.token);
+    var settled={};
+    try{settled=await api("adminSyncResultsNow",state.token)||{};}catch(_){}
 
-    Swal.fire({
-      icon:"success",
-      title:"ตรวจผลเสร็จแล้ว",
-      html:
-        "พบผลจาก AllHuay " + money(r.foundFromAllHuay || r.found || 0) + " รายการ<br>" +
-        "บันทึก/จับคู่ลงชีต " + money(r.matchedHuay || r.saved || 0) + "<br>" +
-        "ตรวจโพยจากชีต " + money(r.settledBills || 0) + " บิล<br>" +
-        "จ่ายเครดิต " + money(r.credited || 0)
-    });
-
+    Swal.close();
+    adminTabCacheV133.results=0;
+    adminTabCacheV133.dashboard=0;
     await refreshBootData();
+    await loadAdminResults();
     await loadAdminDashboard("day");
-
+    showToast("ดึงผลแล้ว "+money(r.foundFromAllHuay||r.confirmedResults||0)+" รายการ");
   } catch(e) {
     Swal.close();
     showAdminError(e);
   }
 }
-
 
 function adminResultDefaultRoundDate() {
   var now = bangkokNowParts();
@@ -14153,12 +14242,103 @@ function renderAdminResultsTable() {
 
 async function openAdminResultEditor(row) {
   row = row || null;
-  var defaultRound = row && row.roundDate ? row.roundDate : adminResultDefaultRoundDate();
-  var defaultLotto = row && row.lottoName ? row.lottoName : ((state.lottos && state.lottos[0]) ? state.lottos[0].lottoName : '');
-  var options = (state.lottos || []).map(function(l){
-    var selected = l.lottoName === defaultLotto ? ' selected' : '';
-    return '<option value="' + escapeAttr(l.lottoName) + '"' + selected + '>' + escapeHtml(l.lottoName) + '</option>';
-  }).join('');
+
+  // V104: รวมรายชื่อหวยจากทุกแหล่งที่หน้า Admin มี
+  // เวลา "แก้ไข" ต้องมีหวยของแถวนั้นเสมอ แม้ API ตั้งค่าหวยโหลดช้า/พลาด
+  var lottoMap = Object.create(null);
+
+  function addLottoName(name) {
+    name = String(name || "").trim();
+    if (!name) return;
+    if (/ยี่กี่|yeekee/i.test(name)) return;
+    var key = name.toLowerCase();
+    if (!lottoMap[key]) lottoMap[key] = name;
+  }
+
+  if (row && row.lottoName) addLottoName(row.lottoName);
+
+  (state.adminResults || []).forEach(function(x){
+    addLottoName(x && x.lottoName);
+  });
+
+  (state.adminLottos || []).forEach(function(x){
+    addLottoName(x && x.lottoName);
+  });
+
+  (state.lottos || []).forEach(function(x){
+    addLottoName(x && x.lottoName);
+  });
+
+  // ดึงรายการล่าสุดจาก backend เพิ่มอีกชั้น
+  try {
+    var apiLottos = await api("adminGetLottoSettings", state.token);
+
+    // รองรับทั้ง array ตรงๆ และ object ที่ห่อ list มา
+    if (!Array.isArray(apiLottos) && apiLottos && Array.isArray(apiLottos.lottos)) {
+      apiLottos = apiLottos.lottos;
+    }
+
+    if (Array.isArray(apiLottos)) {
+      state.adminLottos = apiLottos;
+      apiLottos.forEach(function(x){
+        addLottoName(x && x.lottoName);
+      });
+    }
+  } catch(e) {
+    // ไม่ให้ popup แก้ผลพังเพราะ API รายการหวยโหลดไม่สำเร็จ
+  }
+
+  var lottoNames = Object.keys(lottoMap).map(function(k){
+    return lottoMap[k];
+  }).sort(function(a,b){
+    return String(a).localeCompare(String(b), "th");
+  });
+
+  var defaultRound =
+    row && row.roundDate
+      ? row.roundDate
+      : adminResultDefaultRoundDate();
+
+  var defaultLotto =
+    row && row.lottoName
+      ? String(row.lottoName)
+      : (lottoNames[0] || "");
+
+  var options = "";
+
+  if (!row) {
+    options += '<option value="" disabled' +
+      (!defaultLotto ? ' selected' : '') +
+      '>เลือกหวย</option>';
+  }
+
+  lottoNames.forEach(function(name){
+    var selected =
+      String(name).trim() === String(defaultLotto).trim()
+        ? ' selected'
+        : '';
+
+    options +=
+      '<option value="' + escapeAttr(name) + '"' + selected + '>' +
+      escapeHtml(name) +
+      '</option>';
+  });
+
+  // กรณีแก้ไข: ต่อให้ list อื่นว่าง หวยของแถวต้องเลือกได้เสมอ
+  if (row && row.lottoName && !lottoNames.length) {
+    options =
+      '<option value="' + escapeAttr(row.lottoName) + '" selected>' +
+      escapeHtml(row.lottoName) +
+      '</option>';
+    defaultLotto = String(row.lottoName);
+  }
+
+  if (!options) {
+    options =
+      '<option value="" selected disabled>' +
+      'ไม่พบรายการหวย — กรุณารีเฟรชหน้า Admin' +
+      '</option>';
+  }
 
   var result = await Swal.fire({
     title:row ? 'แก้ไขผลหวย' : 'เพิ่มผลหวย',
@@ -14173,16 +14353,55 @@ async function openAdminResultEditor(row) {
     showCancelButton:true,
     confirmButtonText:'บันทึกลงชีต',
     cancelButtonText:'ยกเลิก',
+
+    didOpen:function(){
+      var sel = document.getElementById('swalResultLotto');
+
+      if (sel) {
+        // บังคับสีและค่าที่เลือก ป้องกัน select ขาว/ค่าว่างในบาง browser
+        sel.style.color = '#2a1111';
+        sel.style.webkitTextFillColor = '#2a1111';
+        sel.style.opacity = '1';
+
+        Array.prototype.forEach.call(sel.options || [], function(opt){
+          opt.style.color = '#2a1111';
+          opt.style.backgroundColor = '#ffffff';
+        });
+
+        if (defaultLotto) {
+          sel.value = defaultLotto;
+        }
+
+        // ถ้าค่าที่ต้องการหาไม่เจอ ให้เลือก option จริงตัวแรก
+        if (!sel.value) {
+          for (var i=0; i<sel.options.length; i++) {
+            if (sel.options[i].value) {
+              sel.selectedIndex = i;
+              break;
+            }
+          }
+        }
+      }
+    },
+
     preConfirm:function(){
       var roundDate = document.getElementById('swalResultRound').value;
-      var lottoName = document.getElementById('swalResultLotto').value;
+      var lottoEl = document.getElementById('swalResultLotto');
+      var lottoName = lottoEl ? String(lottoEl.value || '').trim() : '';
       var threeTop = String(document.getElementById('swalResultThree').value || '').replace(/\D/g,'');
       var twoBottom = String(document.getElementById('swalResultBottom').value || '').replace(/\D/g,'');
+
       if (!roundDate) return Swal.showValidationMessage('กรุณาเลือกรอบวันที่');
       if (!lottoName) return Swal.showValidationMessage('กรุณาเลือกหวย');
       if (!/^\d{3}$/.test(threeTop)) return Swal.showValidationMessage('3 ตัวบนต้องมี 3 หลัก');
       if (!/^\d{2}$/.test(twoBottom)) return Swal.showValidationMessage('2 ตัวล่างต้องมี 2 หลัก');
-      return {roundDate:roundDate, lottoName:lottoName, threeTop:threeTop, twoBottom:twoBottom};
+
+      return {
+        roundDate:roundDate,
+        lottoName:lottoName,
+        threeTop:threeTop,
+        twoBottom:twoBottom
+      };
     }
   });
 
@@ -14192,19 +14411,18 @@ async function openAdminResultEditor(row) {
     adminBusy('กำลังบันทึกผลลงชีตและตรวจโพย...');
     var saved = await api('adminSaveResult', state.token, result.value);
     Swal.close();
+
+    adminTabCacheV133.results = 0;
+    adminTabCacheV133.dashboard = 0;
+
     await loadAdminResults();
     await refreshBootData();
-    Swal.fire({
-      icon:'success',
-      title:'บันทึกผลแล้ว',
-      html:
-        'บันทึกผลเรียบร้อย' +
-        '<br>ตรวจโพยใหม่ ' + money(saved.recalculatedBills || saved.settledBills || 0) + ' บิล' +
-        '<br>โพยที่มีการเปลี่ยนแปลง ' + money(saved.changedBills || 0) + ' บิล' +
-        '<br>ชนะ ' + money(saved.winBills || 0) + ' • แพ้ ' + money(saved.loseBills || 0) +
-        '<br>ปรับเครดิตสุทธิ ' + ((Number(saved.creditAdjustment || 0) >= 0) ? '+' : '') + money(saved.creditAdjustment || 0) + ' บาท',
-      confirmButtonText:'ตกลง'
-    });
+
+    showToast(
+      'บันทึกผลแล้ว • ตรวจโพยใหม่ ' +
+      money(saved.recalculatedBills || saved.settledBills || 0) +
+      ' บิล'
+    );
   } catch(e) {
     Swal.close();
     showAdminError(e);
