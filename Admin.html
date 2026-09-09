@@ -13836,12 +13836,27 @@ function fillAdminLottoFilter() {
     return '<option value="' + escapeHtml(l.lottoName) + '">' + escapeHtml(l.lottoName) + '</option>';
   }).join("");
 
-  [els.adminOpenLotto, els.memberSummaryLotto, els.adminResultsLotto].forEach(function(select){
+  [els.adminOpenLotto, els.memberSummaryLotto].forEach(function(select){
     if (!select) return;
     var current = select.value || "";
     select.innerHTML = options;
     if ([].slice.call(select.options).some(function(o){ return o.value === current; })) select.value = current;
   });
+
+  if (els.adminResultsLotto) {
+    var currentResultLotto = els.adminResultsLotto.value || "";
+    els.adminResultsLotto.innerHTML =
+      options +
+      '<option value="ลาวพัฒนาชุด">🇱🇦 ลาวพัฒนาชุด</option>' +
+      '<option value="ฮานอยชุด">🇻🇳 ฮานอยชุด</option>';
+
+    if (
+      [].slice.call(els.adminResultsLotto.options)
+        .some(function(o){ return o.value === currentResultLotto; })
+    ) {
+      els.adminResultsLotto.value = currentResultLotto;
+    }
+  }
 
   if (!state.adminSummarySelected.length && state.lottos.length) {
     state.adminSummarySelected = state.lottos.map(function(l){ return l.lottoName; });
@@ -14361,13 +14376,14 @@ function renderAdminResultsTable() {
   }
 
   var html = '<table class="admin-table"><thead><tr>' +
-    '<th>รอบ</th><th>หวย</th><th>3 บน</th><th>2 บน</th><th>2 ล่าง</th><th>ที่มา</th><th>อัปเดต</th><th></th>' +
+    '<th>รอบ</th><th>หวย</th><th>4 ตัว</th><th>3 บน</th><th>2 บน</th><th>2 ล่าง</th><th>ที่มา</th><th>อัปเดต</th><th></th>' +
     '</tr></thead><tbody>';
 
   rows.forEach(function(x, i){
     html += '<tr>' +
       '<td>' + escapeHtml(x.roundDate || '-') + '</td>' +
       '<td>' + escapeHtml(x.lottoName || '-') + '</td>' +
+      '<td><b>' + escapeHtml(x.fourTop || '-') + '</b></td>' +
       '<td><b>' + escapeHtml(x.threeTop || '-') + '</b></td>' +
       '<td>' + escapeHtml(x.twoTop || '-') + '</td>' +
       '<td><b>' + escapeHtml(x.twoBottom || '-') + '</b></td>' +
@@ -14403,6 +14419,10 @@ async function openAdminResultEditor(row) {
   }
 
   if (row && row.lottoName) addLottoName(row.lottoName);
+
+  // V110: ผลลาวพัฒนาชุดเป็นผล Manual ของ Admin
+  addLottoName("ลาวพัฒนาชุด");
+  addLottoName("ฮานอยชุด");
 
   (state.adminResults || []).forEach(function(x){
     addLottoName(x && x.lottoName);
@@ -14493,9 +14513,9 @@ async function openAdminResultEditor(row) {
       '<div class="swal-admin-grid">' +
        '<div class="swal-admin-field"><label>รอบวันที่</label><input id="swalResultRound" type="date" value="' + escapeAttr(defaultRound) + '"></div>' +
        '<div class="swal-admin-field"><label>หวย</label><select id="swalResultLotto">' + options + '</select></div>' +
-       '<div class="swal-admin-field"><label>ผลเลขชุด 4 ตัว (Admin ลงเอง)</label><input id="swalResultFour" inputmode="numeric" maxlength="4" value="' + escapeAttr(row && row.fourTop || '') + '"></div>' +
-       '<div class="swal-admin-field"><label>3 ตัวบน</label><input id="swalResultThree" inputmode="numeric" maxlength="3" value="' + escapeAttr(row && row.threeTop || '') + '"></div>' +
-       '<div class="swal-admin-field"><label>2 ตัวล่าง</label><input id="swalResultBottom" inputmode="numeric" maxlength="2" value="' + escapeAttr(row && row.twoBottom || '') + '"></div>' +
+       '<div class="swal-admin-field" id="swalResultFourField"><label>ผลเลขชุด 4 ตัว (Admin ลงเอง)</label><input id="swalResultFour" inputmode="numeric" maxlength="4" value="' + escapeAttr(row && row.fourTop || '') + '"></div>' +
+       '<div class="swal-admin-field" id="swalResultThreeField"><label>3 ตัวบน</label><input id="swalResultThree" inputmode="numeric" maxlength="3" value="' + escapeAttr(row && row.threeTop || '') + '"></div>' +
+       '<div class="swal-admin-field" id="swalResultBottomField"><label>2 ตัวล่าง</label><input id="swalResultBottom" inputmode="numeric" maxlength="2" value="' + escapeAttr(row && row.twoBottom || '') + '"></div>' +
        '<div class="swal-admin-field full"><div class="admin-muted">ผลเลขชุด 4 ตัวต้องกรอกโดย Admin เท่านั้น และใช้ตัดสินโพยชุดใหญ่/กลาง/เล็ก • 2 ตัวบนคำนวณจาก 2 หลักท้ายของ 3 ตัวบนอัตโนมัติ • วันที่นี้คือ “รอบหวย” ไม่ใช่วันที่ปฏิทินที่ผลออก • เมื่อแก้ผล ระบบจะตรวจโพยทั้งหมดของงวดนั้นใหม่โดยยึดผลล่าสุดที่บันทึกไว้</div></div>' +
       '</div>',
     showCancelButton:true,
@@ -14520,11 +14540,43 @@ async function openAdminResultEditor(row) {
           sel.value = defaultLotto;
         }
 
+        function applyResultModeV110(){
+          var selectedSetName =
+            String(sel.value || "").trim();
+
+          var isSet =
+            selectedSetName === "ลาวพัฒนาชุด" ||
+            selectedSetName === "ฮานอยชุด";
+
+          var fourField =
+            document.getElementById("swalResultFourField");
+          var threeField =
+            document.getElementById("swalResultThreeField");
+          var bottomField =
+            document.getElementById("swalResultBottomField");
+
+          if (fourField) {
+            fourField.style.display = isSet ? "" : "none";
+          }
+          if (threeField) {
+            threeField.style.display = isSet ? "none" : "";
+          }
+          if (bottomField) {
+            bottomField.style.display = isSet ? "none" : "";
+          }
+        }
+
+        sel.onchange = applyResultModeV110;
+        applyResultModeV110();
+
         // ถ้าค่าที่ต้องการหาไม่เจอ ให้เลือก option จริงตัวแรก
         if (!sel.value) {
           for (var i=0; i<sel.options.length; i++) {
             if (sel.options[i].value) {
               sel.selectedIndex = i;
+              if (typeof applyResultModeV110 === "function") {
+                applyResultModeV110();
+              }
               break;
             }
           }
@@ -14542,16 +14594,36 @@ async function openAdminResultEditor(row) {
 
       if (!roundDate) return Swal.showValidationMessage('กรุณาเลือกรอบวันที่');
       if (!lottoName) return Swal.showValidationMessage('กรุณาเลือกหวย');
-      if (fourTop && !/^\d{4}$/.test(fourTop)) return Swal.showValidationMessage('ผลเลขชุดต้องมี 4 หลัก');
+
+      var isSetPackage =
+        lottoName === "ลาวพัฒนาชุด" ||
+        lottoName === "ฮานอยชุด";
+
+      if (isSetPackage) {
+        if (!/^\d{4}$/.test(fourTop)) {
+          return Swal.showValidationMessage('ผลหวยชุดต้องมี 4 หลัก');
+        }
+
+        return {
+          roundDate:roundDate,
+          lottoName:lottoName,
+          fourTop:fourTop,
+          threeTop:"",
+          twoBottom:"",
+          setPackageResult:true
+        };
+      }
+
       if (!/^\d{3}$/.test(threeTop)) return Swal.showValidationMessage('3 ตัวบนต้องมี 3 หลัก');
       if (!/^\d{2}$/.test(twoBottom)) return Swal.showValidationMessage('2 ตัวล่างต้องมี 2 หลัก');
 
       return {
         roundDate:roundDate,
         lottoName:lottoName,
-        fourTop:fourTop,
+        fourTop:"",
         threeTop:threeTop,
-        twoBottom:twoBottom
+        twoBottom:twoBottom,
+        setPackageResult:false
       };
     }
   });
