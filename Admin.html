@@ -9069,6 +9069,103 @@ button, input, textarea, select, option,
 }
 </style>
 
+
+<style id="v107-admin-bet-winning-detail">
+.admin-bet-winning-box{
+  margin:12px 0 0;
+  padding:12px;
+  border:1px solid #cfe7d5;
+  border-radius:16px;
+  background:#f6fff8;
+}
+.admin-bet-winning-box.lose{
+  border-color:#eadfe0;
+  background:#faf7f7;
+}
+.admin-bet-winning-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:9px;
+  color:#174b28;
+}
+.admin-bet-winning-box.lose
+.admin-bet-winning-title{
+  color:#6e5557;
+  margin-bottom:0;
+}
+.admin-bet-winning-title span{
+  font-size:13px;
+  font-weight:700;
+}
+.admin-bet-winning-title b{
+  font-size:12px;
+  font-weight:700;
+}
+.admin-bet-winning-list{
+  display:grid;
+  gap:8px;
+}
+.admin-bet-winning-item{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:10px;
+  padding:9px 10px;
+  border-radius:13px;
+  background:#fff;
+  border:1px solid #e1eee4;
+}
+.admin-bet-winning-number{
+  min-width:50px;
+  padding:7px 9px;
+  border-radius:10px;
+  background:#16803b;
+  color:#fff;
+  font-size:17px;
+  font-weight:800;
+  text-align:center;
+  letter-spacing:.5px;
+}
+.admin-bet-winning-info{
+  display:flex;
+  min-width:0;
+  flex-direction:column;
+  gap:2px;
+}
+.admin-bet-winning-info b{
+  color:#233a2a;
+  font-size:12px;
+}
+.admin-bet-winning-info small{
+  color:#718078;
+  font-size:10px;
+}
+.admin-bet-winning-item strong{
+  color:#16803b;
+  font-size:13px;
+  white-space:nowrap;
+}
+.admin-bet-winning-empty{
+  padding:10px;
+  border-radius:12px;
+  background:#fff;
+  color:#7d6d70;
+  font-size:11px;
+  text-align:center;
+}
+.admin-bet-payout{
+  margin-top:10px !important;
+  border-color:#b7dfc2 !important;
+  background:#ecfff1 !important;
+}
+.admin-bet-payout b{
+  color:#117334 !important;
+  font-size:18px !important;
+}
+</style>
+
 </head>
  <body>
   
@@ -13488,10 +13585,59 @@ async function showBetDetails(bet, isAdminView) {
       }).join("")
     : '<div class="bet-detail-empty">ไม่มีรายละเอียด</div>';
 
-  var payoutRow = bet.status === "WIN"
-    ? '<div class="bet-detail-summary"><span>ยอดถูกรางวัล</span><b>' +
-        money(bet.payout) + '</b></div>'
-    : '';
+  var winningItems = Array.isArray(bet.winningItems)
+    ? bet.winningItems
+    : [];
+
+  var winningHtml = '';
+
+  if (bet.status === "WIN") {
+    winningHtml =
+      '<div class="admin-bet-winning-box">' +
+        '<div class="admin-bet-winning-title">' +
+          '<span>เลขที่ถูกรางวัล</span>' +
+          '<b>' + winningItems.length + ' รายการ</b>' +
+        '</div>' +
+        (
+          winningItems.length
+            ? '<div class="admin-bet-winning-list">' +
+                winningItems.map(function(x){
+                  return (
+                    '<div class="admin-bet-winning-item">' +
+                      '<div class="admin-bet-winning-number">' +
+                        escapeHtml(x.number || '-') +
+                      '</div>' +
+                      '<div class="admin-bet-winning-info">' +
+                        '<b>' + escapeHtml(x.betType || 'ถูกรางวัล') + '</b>' +
+                        '<small>แทง ' + money(x.stake || 0) +
+                        (x.half ? ' • จ่ายครึ่ง' : '') +
+                        '</small>' +
+                      '</div>' +
+                      '<strong>+' + money(x.payout || 0) + '</strong>' +
+                    '</div>'
+                  );
+                }).join('') +
+              '</div>'
+            : '<div class="admin-bet-winning-empty">ไม่พบรายละเอียดเลขที่ถูก</div>'
+        ) +
+      '</div>';
+  } else if (bet.status === "LOSE") {
+    winningHtml =
+      '<div class="admin-bet-winning-box lose">' +
+        '<div class="admin-bet-winning-title">' +
+          '<span>เลขที่ถูกรางวัล</span>' +
+          '<b>ไม่มี</b>' +
+        '</div>' +
+      '</div>';
+  }
+
+  var payoutRow =
+    bet.status === "WIN" || bet.status === "LOSE"
+      ? '<div class="bet-detail-summary admin-bet-payout">' +
+          '<span>ยอดที่ถูกรางวัล</span><b>' +
+          money(Number(bet.payout || 0)) +
+          ' บาท</b></div>'
+      : '';
 
   var cancelInfo = '';
 
@@ -13523,6 +13669,7 @@ async function showBetDetails(bet, isAdminView) {
         groupsHtml +
         '<div class="bet-detail-summary"><span>ยอดแทง</span><b>' +
           money(bet.totalAmount) + '</b></div>' +
+        winningHtml +
         payoutRow +
         cancelInfo +
       '</div>',
